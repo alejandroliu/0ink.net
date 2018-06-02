@@ -25,141 +25,91 @@ title: Deploying Kerberos based SSO
 ...
 ---
 
-<h2>Pre-requisites</h2>
+Pre-requisites
+--------------
 
-<ul>
-<li>Kerberos Domain Controller (KDC)</li>
-<li>User accounts in the KDC</li>
-<li>KDC based logins</li>
-</ul>
+*   Kerberos Domain Controller (KDC)
+*   User accounts in the KDC
+*   KDC based logins
 
-To make sure that this is working, login to your workstation using
-your kerberos password and use the command:
+To make sure that this is working, login to your workstation using your kerberos password and use the command:
 
-<pre><code>klist
-</code></pre>
+    klist
+    
 
 This should show your principals assigned to you.
 
-<pre><code>Ticket cache: FILE:/tmp/krb5cc_XXXX_ErVb5X
-Default principal: zzzz@LOCALNET
+    Ticket cache: FILE:/tmp/krb5cc_XXXX_ErVb5X
+    Default principal: zzzz@LOCALNET
+    
+    Valid starting       Expires              Service principal
+    01/11/2016 15:51:35  01/12/2016 15:51:34  krbtgt/LOCALNET@LOCALNET
+    
 
-Valid starting       Expires              Service principal
-01/11/2016 15:51:35  01/12/2016 15:51:34  krbtgt/LOCALNET@LOCALNET
-</code></pre>
+Configuring Apache
+------------------
 
-<h2>Configuring Apache</h2>
+1.  Install any necessary modules on the server:
+    *   `yum install mod_auth_kerb`
+2.  Create a service principal for the web server (this needs to be done on the KDC.
+    *   `kadmin.local -q "addprinc -randkey HTTP/www.example.com`
+3.  Export the encpryption keys to a keytab:
+    *   `kadmin.local -q "ktadd -k /tmp/http.keytab HTTP/www.example.com`
+4.  Copy `/tmp/http.keytab` to the webserver at `/etc/httpd/http.keytab`.
+5.  Set ownership and permissions:
+    *   `chmod 600 /etc/httpd/http.keytab`
+    *   `chown apache /etc/httpd/http.keytab`
+6.  Enable authentication, configure this:
+    *   `AuthType Kerberos`
+    *   `AuthName "Acme Corporation"`
+    *   `KrbMethodNegotiate on`
+    *   `KrbMethodK5Passwd off`
+    *   `Krb5Keytab /etc/httpd/http.keytab`
+    *   `require valid-user`
+7.  Re-start apache
 
-<ol>
-<li>Install any necessary modules on the server:
+Configure FireFox
+-----------------
 
-<ul>
-<li><code>yum install mod_auth_kerb</code></li>
-</ul></li>
-<li>Create a service principal for the web server (this needs to be
-done on the KDC.
-
-<ul>
-<li><code>kadmin.local -q "addprinc -randkey HTTP/www.example.com</code></li>
-</ul></li>
-<li>Export the encpryption keys to a keytab:
-
-<ul>
-<li><code>kadmin.local -q "ktadd -k /tmp/http.keytab HTTP/www.example.com</code></li>
-</ul></li>
-<li>Copy <code>/tmp/http.keytab</code> to the webserver at
-<code>/etc/httpd/http.keytab</code>.</li>
-<li>Set ownership and permissions:
-
-<ul>
-<li><code>chmod 600 /etc/httpd/http.keytab</code></li>
-<li><code>chown apache /etc/httpd/http.keytab</code></li>
-</ul></li>
-<li>Enable authentication, configure this:
-
-<ul>
-<li><code>AuthType Kerberos</code></li>
-<li><code>AuthName "Acme Corporation"</code></li>
-<li><code>KrbMethodNegotiate on</code></li>
-<li><code>KrbMethodK5Passwd off</code></li>
-<li><code>Krb5Keytab /etc/httpd/http.keytab</code></li>
-<li><code>require valid-user</code></li>
-</ul></li>
-<li>Re-start apache</li>
-</ol>
-
-<h2>Configure FireFox</h2>
-
-<ol>
-<li>Navigate to <code>about:config</code></li>
-<li>Search for: <code>negotiate-auth</code></li>
-<li>Double click on <code>network.negotiate-auth.trusted-uris</code>.</li>
-<li>Enter hostname's, URL prefixes, etc, separated by commas.
-Examples:
-
-<ul>
-<li>www.example.com</li>
-<li>http://www.example.com/</li>
-<li>.example.com</li>
-</ul></li>
-</ol>
+1.  Navigate to `about:config`
+2.  Search for: `negotiate-auth`
+3.  Double click on `network.negotiate-auth.trusted-uris`.
+4.  Enter hostname's, URL prefixes, etc, separated by commas. Examples:
+    *   www.example.com
+    *   http://www.example.com/
+    *   .example.com
 
 It is possible to configure this setting for all users by creating a global config file:
 
-<ol>
-<li>Find configuration directory:
+1.  Find configuration directory:
+    *   `rpm -q firefox -l | grep preferences`
+2.  Create a javascript file in that directory. (by convention, `autoconfig.js`; other file names will work, but for best results it should be early in the alphabet.)
+3.  Add the following line:
+    *   `pref("network.negotiate-auth.trusted-uris",".example.com");`
 
-<ul>
-<li><code>rpm -q firefox -l | grep preferences</code></li>
-</ul></li>
-<li>Create a javascript file in that directory.  (by convention, <code>autoconfig.js</code>; other
-file names will work, but for best results it should be early in the alphabet.)</li>
-<li>Add the following line:
+Configure OpenSSH server
+------------------------
 
-<ul>
-<li><code>pref("network.negotiate-auth.trusted-uris",".example.com");</code></li>
-</ul></li>
-</ol>
+1.  Create a service principal for the host (this needs to be done on the KDC.
+    *   `kadmin.local -q "addprinc -randkey host/shell.example.com`
+2.  Export the encpryption keys to a keytab:
+    *   `kadmin.local -q "ktadd -k /tmp/krb5.keytab host/shell.example.com`
+3.  Copy `/tmp/krb5.keytab` to the host at: `/etc/krb5.keytab`.
+4.  Set ownership and permissions:
+    *   `chmod 600 /etc/krb5.keytab`
+    *   `chown root /etc/krb5.keytab`
+5.  Enable authentication, change these settings in `/etc/ssh/sshd_config`:
+    *   `KerberosAuthentication yes`
+    *   `GSSAPIAuthentication yes`
+    *   `GSSAPICleanupCredentials yes`
+    *   `UsePAM no` _\# This is not supported by RHEL7 and should be left as `yes`_
+6.  Restart `sshd`.
 
-<h2>Configure OpenSSH server</h2>
+Configure OpenSSH clients
+-------------------------
 
-<ol>
-<li>Create a service principal for the host (this needs to be
-done on the KDC.
+Configure `/etc/ssh_config` or `~/ssh/ssh_config`:
 
-<ul>
-<li><code>kadmin.local -q "addprinc -randkey host/shell.example.com</code></li>
-</ul></li>
-<li>Export the encpryption keys to a keytab:
-
-<ul>
-<li><code>kadmin.local -q "ktadd -k /tmp/krb5.keytab host/shell.example.com</code></li>
-</ul></li>
-<li>Copy <code>/tmp/krb5.keytab</code> to the host at:
-<code>/etc/krb5.keytab</code>.</li>
-<li>Set ownership and permissions:
-
-<ul>
-<li><code>chmod 600 /etc/krb5.keytab</code></li>
-<li><code>chown root /etc/krb5.keytab</code></li>
-</ul></li>
-<li>Enable authentication, change these settings in
-<code>/etc/ssh/sshd_config</code>:
-
-<ul>
-<li><code>KerberosAuthentication yes</code></li>
-<li><code>GSSAPIAuthentication yes</code></li>
-<li><code>GSSAPICleanupCredentials yes</code></li>
-<li><code>UsePAM no</code> <em># This is not supported by RHEL7 and should be left as <code>yes</code></em></li>
-</ul></li>
-<li>Restart <code>sshd</code>.</li>
-</ol>
-
-<h2>Configure OpenSSH clients</h2>
-
-Configure <code>/etc/ssh_config</code> or <code>~/ssh/ssh_config</code>:
-
-<pre><code>Host *.localnet
-  GSSAPIAuthentication yes
-  GSSAPIDelegateCredentials yes
-</code></pre>
+    Host *.localnet
+      GSSAPIAuthentication yes
+      GSSAPIDelegateCredentials yes

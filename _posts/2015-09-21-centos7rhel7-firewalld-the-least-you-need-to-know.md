@@ -27,36 +27,18 @@ title: Centos7/RHEL7 FirewallD -- the least you need to know
 
 This post is just a simple hints-tips to get something going with FirewallD without going into too much detail.
 
-<ol>
-<li>Checking if you are using <strong>firewalld</strong>:
+1.  Checking if you are using **firewalld**:
+    *   firewall-cmd --state
+2.  Check your zones (needed later when opening ports):
+    *   firewall-cmd --get-default-zone
+    *   firewall-cmd --get-active-zones
+3.  Checking what is active:
+    *   firewall-cmd --zone=public --list-all
+4.  Opening services:
+    *   firewall-cmd --zone=public --add-service=http Or alternatively:
+    *   firewall-cmd --permanent --zone=public --add-service=http
+    *   firewall-cmd --reload Services are defined in /usr/lib/firewalld/services and /etc/firewalld/services.
+5.  Opening ports:
+    *   firewall-cmd --permanent --zone=public --add-port=443/tcp
+    *   firewall-cmd --reload
 
-<ul>
-<li>firewall-cmd --state</li>
-</ul></li>
-<li>Check your zones (needed later when opening ports):
-
-<ul>
-<li>firewall-cmd --get-default-zone</li>
-<li>firewall-cmd --get-active-zones</li>
-</ul></li>
-<li>Checking what is active:
-
-<ul>
-<li>firewall-cmd --zone=public --list-all</li>
-</ul></li>
-<li>Opening services:
-
-<ul>
-<li>firewall-cmd --zone=public --add-service=http
-Or alternatively:</li>
-<li>firewall-cmd --permanent --zone=public --add-service=http</li>
-<li>firewall-cmd --reload
-Services are defined in /usr/lib/firewalld/services and /etc/firewalld/services.</li>
-</ul></li>
-<li>Opening ports:
-
-<ul>
-<li>firewall-cmd --permanent --zone=public --add-port=443/tcp</li>
-<li>firewall-cmd --reload</li>
-</ul></li>
-</ol>

@@ -25,10 +25,21 @@ title: Code Kingdoms
 ...
 ---
 
-<img src="https://0ink.net/wp-content/uploads/2015/04/pugw1qoceliykwmnprbt-300x169.png" alt="pugw1qoceliykwmnprbt" width="300" height="169" class="alignnone size-medium wp-image-989" />
+![pugw1qoceliykwmnprbt]({{ site.url }}/images/2015/pugw1qoceliykwmnprbt.png)
 
-Code Kingdoms is targeted towards six- to 13-year olds and looks very much like your everyday puzzle adventure game. Choose an animal, walk around a kingdom saving animals through puzzles. The difference is most of the puzzles require kids to use code elements to solve the puzzles. At first this is through dragging-and-dropping code snippets, but as they progress, kids will be typing in code themselves.
 
-Besides teaching actual JavaScript through play, Code Kingdoms also helps kids develop problem-solving skills and the encouragement to keep pushing on when they’re faced with a challenge in the game—much like programmers often have to push through challenging walls.
+Code Kingdoms is targeted towards six- to 13-year olds and looks very
+much like your everyday puzzle adventure game. Choose an animal, walk
+around a kingdom saving animals through puzzles. The difference is
+most of the puzzles require kids to use code elements to solve the
+puzzles. At first this is through dragging-and-dropping code snippets,
+but as they progress, kids will be typing in code themselves.
 
-<a href="http://codekingdoms.com/">Code Kingdoms</a>
+Besides teaching actual JavaScript through play, Code Kingdoms
+also helps kids develop problem-solving skills and the encouragement
+to keep pushing on when they’re faced with a challenge in the
+game—much like programmers often have to push through challenging
+walls.
+
+[Code Kingdoms](http://codekingdoms.com/)
+

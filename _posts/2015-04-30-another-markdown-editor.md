@@ -27,4 +27,4 @@ title: Another Markdown Editor
 
 This one is GitHubFlavored markdown...
 
-<a href="http://jbt.github.io/markdown-editor/">markdown editor</a>
+[markdown editor](http://jbt.github.io/markdown-editor/)

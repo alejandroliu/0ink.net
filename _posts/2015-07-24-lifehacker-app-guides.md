@@ -27,7 +27,5 @@ title: Lifehacker App Guides
 
 These two hyperlinks from Lifehacker are quite useful:
 
-<ul>
-<li><a href="http://lifehacker.com/5825402/the-lifehacker-app-directory-iphone" title="Lifehacker App directory for iPhone">iPhone App Guide</a></li>
-<li><a href="http://lifehacker.com/5825401/the-lifehacker-app-directory-android" title="Lifehacker App directory for Android">Android App Guide</a></li>
-</ul>
+*   [iPhone App Guide](http://lifehacker.com/5825402/the-lifehacker-app-directory-iphone "Lifehacker App directory for iPhone")
+*   [Android App Guide](http://lifehacker.com/5825401/the-lifehacker-app-directory-android "Lifehacker App directory for Android")

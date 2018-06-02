@@ -25,7 +25,7 @@ title: Building chroots with yum
 ...
 ---
 
-[markdown]
+
 Building CHROOTs with Yum in a single command:
 
     yum --releasever=7 --installroot=/chroot/jail2 -y install httpd
@@ -34,5 +34,5 @@ Will install httpd with all its dependancies.  If you are on x86_64 and want a 3
 
     setarch i386 yum --releasever=6 --installroot=/chroot/jail32 -y install httpd
 
-[/markdown]
+
 

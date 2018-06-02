@@ -25,7 +25,6 @@ title: Building Signed APKs
 ...
 ---
 
-[markdown]
 Building signed APK's for Android is easy if you know what you are doing.
 
 # Preparation
@@ -84,4 +83,4 @@ android {
 ```
 
 
-[/markdown]
+

@@ -27,6 +27,7 @@ title: Fiddle Markdown Tool
 
 For a quick and simple Markdown Preview:
 
-<img src="https://0ink.net/wp-content/uploads/2015/04/oudpno5sb9dfgfkvpvgw-300x169.png" alt="oudpno5sb9dfgfkvpvgw" width="300" height="169" class="alignnone size-medium wp-image-987" />
+![oudpno5sb9dfgfkvpvgw]({{ site.url }}/images/2015/oudpno5sb9dfgfkvpvgw.png)
 
-<a href="https://fiddle.md/">Fiddle</a>
+[Fiddle](https://fiddle.md/)
+

@@ -25,9 +25,8 @@ title: Side Load apps on Android TV
 ...
 ---
 
-<img src="https://0ink.net/wp-content/uploads/2017/01/50PFK6540_12-IMS-nl_NL-300x264.png" alt="" width="300" height="264" class="alignnone size-medium wp-image-1024" />
+![Philips 50PFK6540]({{ site.url }}/image/2017/50PFK6540_12-IMS-nl_NL.png)
 
-[markdown]
 So we bough a Philips 50PFK6540.  This is a 50" TV with
 [Ambi Ligh](https://en.wikipedia.org/wiki/Ambilight) and
 [Android TV](https://en.wikipedia.org/wiki/Android_TV).
@@ -43,10 +42,10 @@ do this from the built-in browser.  So the procedure is as folows:
 1. Go to settings to enable **Install from Unknown sources**, which should be under
    `Security &amp; Restrictions`.
 2. Download [ES File Explorer](https://play.google.com/store/apps/details?id=com.estrongs.android.pop)
-   from the Play Store.  A bit of a warning: on phones and tablets, ES File Explorer isn’t something
+   from the Play Store.  A bit of a warning: on phones and tablets, ES File Explorer isn't something
    that is generally recommended as it used to be a reliable file manager that was one of the
-   most valuable Android apps, but recently it became riddled with ads—many of which are highly
-   intrusive—leading many users to uninstall it and websites to remove it from their “must have” lists.
+   most valuable Android apps, but recently it became riddled with ads *many of which are highly
+   intrusive) leading many users to uninstall it and websites to remove it from their *must have* lists.
    Fortunately, the Android TV app seems to have gone largely untouched by this, so it still is
    recommended it for the purpose of this tutorial.
 3. Use ES File Explorer to download the APK you want to side load.  There is a number of ways to do
@@ -56,4 +55,3 @@ do this from the built-in browser.  So the procedure is as folows:
 
 
 
-[/markdown]

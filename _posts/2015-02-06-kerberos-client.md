@@ -25,18 +25,17 @@ title: Kerberos Client
 ...
 ---
 
-<ol>
-<li>Make sure you have the pam&#095;krb5 rpm files installed. You can check this by running the <code>rpm -qa | grep pam</code> command and seeing whether the pam_krb5 rpm files are listed. If they aren't, you can typically download them in an update of the Linux or Unix operating system that you are running.</li>
-<li>Add the line to the "/etc/pam.d/system-auth" part of the auth section of Kerberos. Add it after the "pam&#095;unix.so" line:
-
-<pre><code>auth sufficient /lib/security/pam_krb5.so use_first_pass forwardable
-</code></pre></li>
-<li>Add the line to the "/etc/pam.d/system-auth" part of the password section of Kerberos. Add it after the "pam&#095;unix.so" line:
-
-<pre><code>password sufficient /lib/security/pam_krb5.so use_authtok
-</code></pre></li>
-<li>Add the line to the "/etc/pam.d/system-auth" part of the session section of Kerberos. Add it after the "pam&#095;unix.so" line:
-
-<pre><code>session optional /lib/security/pam_krb5.so
-</code></pre></li>
-</ol>
+1.  Make sure you have the pam_krb5 rpm files installed. You can check this by running the `rpm -qa | grep pam` command and seeing whether the pam_krb5 rpm files are listed. If they aren't, you can typically download them in an update of the Linux or Unix operating system that you are running.
+2.  Add the line to the "/etc/pam.d/system-auth" part of the auth section of Kerberos. Add it after the "pam_unix.so" line:
+    
+        auth sufficient /lib/security/pam_krb5.so use_first_pass forwardable
+        
+    
+3.  Add the line to the "/etc/pam.d/system-auth" part of the password section of Kerberos. Add it after the "pam_unix.so" line:
+    
+        password sufficient /lib/security/pam_krb5.so use_authtok
+        
+    
+4.  Add the line to the "/etc/pam.d/system-auth" part of the session section of Kerberos. Add it after the "pam_unix.so" line:
+    
+        session optional /lib/security/pam_krb5.so

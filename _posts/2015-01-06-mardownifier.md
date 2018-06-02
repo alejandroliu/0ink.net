@@ -27,7 +27,6 @@ title: Convert HTML to Markdown
 
 These web sites convert to Markdown:
 
-<ul>
-<li><a href="http://heckyesmarkdown.com/">Mardownifier</a>: Convert the given URL</li>
-<li><a href="https://domchristie.github.io/to-markdown/">to-markdown</a>: Convert HTML snippets</li>
-</ul>
+*   [Mardownifier](http://heckyesmarkdown.com/): Convert the given URL
+*   [to-markdown](https://domchristie.github.io/to-markdown/): Convert HTML snippets
+*   [turndown](http://domchristie.github.io/turndown/)

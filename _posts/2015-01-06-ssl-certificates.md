@@ -25,10 +25,7 @@ title: SSL Certificates
 ...
 ---
 
-So it is is a more dangerous world out there.  You can start securing web sites using self signed certificates.  Another option is to:
+So it is is a more dangerous world out there. You can start securing web sites using self signed certificates. Another option is to:
 
-<ol>
-<li>Use CloudFlare.  This will use a CF certificate from the CF CDN to the web site, while using a
-self-signed certificate between the CF CDN to your web server.</li>
-<li>Use <a href="https://www.startssl.com/">startssl</a></li>
-</ol>
+1.  Use CloudFlare. This will use a CF certificate from the CF CDN to the web site, while using a self-signed certificate between the CF CDN to your web server.
+2.  Use [startssl](https://www.startssl.com/)

@@ -25,7 +25,7 @@ title: MariaDB Quickest Quick start
 ...
 ---
 
-[markdown]
+
 Make sure your system is up to date:
 
 | CentOS/RHEL | ArchLinux |
@@ -71,4 +71,4 @@ Create user:
      GRANT ALL PRIVILEGES ON killrate.* TO 'pocketmine'@'%' IDENTIFIED BY 'mypass';
      FLUSH PRIVILEGES;
 
-[/markdown]
+

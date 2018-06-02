@@ -32,53 +32,51 @@ If you are like me and prefer to log on a limited privilege account and use Runa
 
 Here is a list of admin tools with their .msc file names.
 
-<ul>
-<li>domain.msc: AD Domains and Trusts</li>
-<li>admgmt.msc: Active Directory Management</li>
-<li>dssite.msc: AD Sites and Serrvices</li>
-<li>dsa.msc: AD Users and Computers</li>
-<li>adsiedit.msc: ADSI Edit</li>
-<li>azman.msc: Authorization manager</li>
-<li>certsrv.msc: Certification Authority Management</li>
-<li>certtmpl.msc: Certificate Templates</li>
-<li>cluadmin.exe: Cluster Administrator</li>
-<li>compmgmt.msc: Computer Management</li>
-<li>comexp.msc: Component Services</li>
-<li>cys.exe: Configure Your Server</li>
-<li>devmgmt.msc: Device Manager</li>
-<li>dhcpmgmt.msc: DHCP Managment</li>
-<li>dfrg.msc: Disk Defragmenter</li>
-<li>diskmgmt.msc: Disk Manager</li>
-<li>dfsgui.msc: Distributed File System</li>
-<li>dnsmgmt.msc: DNS Managment</li>
-<li>eventvwr.msc: Event Viewer</li>
-<li>ciadv.msc: Indexing Service Management</li>
-<li>ipaddrmgmt.msc: IP Address Management</li>
-<li>llsmgr.exe: Licensing Manager</li>
-<li>certmgr.msc: Local Certificates Management</li>
-<li>gpedit.msc: Local Group Policy Editor</li>
-<li>secpol.msc: Local Security Settings Manager</li>
-<li>lusrmgr.msc: Local Users and Groups Manager</li>
-<li>nlbmgr.exe: Network Load balancing</li>
-<li>perfmon.msc: Performance Monitor</li>
-<li>pkiview.msc: PKI Viewer</li>
-<li>pkmgmt.msc: Public Key Managment</li>
-<li>acssnap.msc: QoS Control Management</li>
-<li>tsmmc.msc: Remote Desktops</li>
-<li>rsadmin.msc: Remote Storage Administration</li>
-<li>ntmsmgr.msc: Removable Storage </li>
-<li>ntmsoprq.msc: Removable Storage Operator Requests</li>
-<li>rrasmgmt.msc: Routing and Remote Access Manager</li>
-<li>rsop.msc: Resultant Set of Policy</li>
-<li>schmmgmt.msc: Schema management</li>
-<li>services.msc: Services Management</li>
-<li>fsmgmt.msc: Shared Folders</li>
-<li>sidwalk.msc: SID Security Migration</li>
-<li>tapimgmt.msc: Telephony Management</li>
-<li>tscc.msc: Terminal Server Configuration</li>
-<li>licmgr.exe: Terminal Server Licensing </li>
-<li>tsadmin.exe: Terminal Server Manager</li>
-<li>uddi.msc: UDDI Services Managment</li>
-<li>wmimgmt.msc: Windows Mangement Instumentation</li>
-<li>winsmgmt.msc: WINS Server manager</li>
-</ul>
+*   domain.msc: AD Domains and Trusts
+*   admgmt.msc: Active Directory Management
+*   dssite.msc: AD Sites and Serrvices
+*   dsa.msc: AD Users and Computers
+*   adsiedit.msc: ADSI Edit
+*   azman.msc: Authorization manager
+*   certsrv.msc: Certification Authority Management
+*   certtmpl.msc: Certificate Templates
+*   cluadmin.exe: Cluster Administrator
+*   compmgmt.msc: Computer Management
+*   comexp.msc: Component Services
+*   cys.exe: Configure Your Server
+*   devmgmt.msc: Device Manager
+*   dhcpmgmt.msc: DHCP Managment
+*   dfrg.msc: Disk Defragmenter
+*   diskmgmt.msc: Disk Manager
+*   dfsgui.msc: Distributed File System
+*   dnsmgmt.msc: DNS Managment
+*   eventvwr.msc: Event Viewer
+*   ciadv.msc: Indexing Service Management
+*   ipaddrmgmt.msc: IP Address Management
+*   llsmgr.exe: Licensing Manager
+*   certmgr.msc: Local Certificates Management
+*   gpedit.msc: Local Group Policy Editor
+*   secpol.msc: Local Security Settings Manager
+*   lusrmgr.msc: Local Users and Groups Manager
+*   nlbmgr.exe: Network Load balancing
+*   perfmon.msc: Performance Monitor
+*   pkiview.msc: PKI Viewer
+*   pkmgmt.msc: Public Key Managment
+*   acssnap.msc: QoS Control Management
+*   tsmmc.msc: Remote Desktops
+*   rsadmin.msc: Remote Storage Administration
+*   ntmsmgr.msc: Removable Storage
+*   ntmsoprq.msc: Removable Storage Operator Requests
+*   rrasmgmt.msc: Routing and Remote Access Manager
+*   rsop.msc: Resultant Set of Policy
+*   schmmgmt.msc: Schema management
+*   services.msc: Services Management
+*   fsmgmt.msc: Shared Folders
+*   sidwalk.msc: SID Security Migration
+*   tapimgmt.msc: Telephony Management
+*   tscc.msc: Terminal Server Configuration
+*   licmgr.exe: Terminal Server Licensing
+*   tsadmin.exe: Terminal Server Manager
+*   uddi.msc: UDDI Services Managment
+*   wmimgmt.msc: Windows Mangement Instumentation
+*   winsmgmt.msc: WINS Server manager

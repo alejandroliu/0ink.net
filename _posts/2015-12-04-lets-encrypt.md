@@ -25,36 +25,25 @@ title: Let's Encrypt
 ...
 ---
 
-This is a service that let's you get SSL certificates for HTTPS.  These certificates are trusted by major browsers.
+This is a service that let's you get SSL certificates for HTTPS. These certificates are trusted by major browsers. See [Let's Encrypt](https://letsencrypt.org/about/) This is a barebones _howto_ to get SSL certificates:
 
-See <a href="https://letsencrypt.org/about/">Let's Encrypt</a>
-
-This is a barebones <em>howto</em> to get SSL certificates:
-
-<pre><code>git clone https://github.com/letsencrypt/letsencrypt
-cd letsencrypt
-</code></pre>
+    git clone https://github.com/letsencrypt/letsencrypt
+    cd letsencrypt
+    
 
 This contains the client software for let's encrypt.
 
-<pre><code>./letsencrypt-auto certonly --manual
-</code></pre>
+    ./letsencrypt-auto certonly --manual
+    
 
-This will start by updating and getting any needed dependencies and then jump to a <em>wizard</em>
-like configuration to get this done.  Follow the prompts and pay special attention on the
-prompt used to validate your domain.  (You need to create a couple of folders and a file
-with the right content).
+This will start by updating and getting any needed dependencies and then jump to a _wizard_ like configuration to get this done. Follow the prompts and pay special attention on the prompt used to validate your domain. (You need to create a couple of folders and a file with the right content). Afterwards your certificates will be in:
 
-Afterwards your certificates will be in:
-
-<pre><code>/etc/letsencrypt/live/mydomain.tld
-</code></pre>
+    /etc/letsencrypt/live/mydomain.tld
+    
 
 Then go to your CPanel configuration, then upload:
 
-<ul>
-<li><code>privkey.pem</code> to <strong>Private Keys</strong></li>
-<li><code>cert.pem</code> to <strong>Certificates</strong></li>
-</ul>
+*   `privkey.pem` to **Private Keys**
+*   `cert.pem` to **Certificates**
 
-Then you go to <strong>Manage SSL Hosts -&gt; Browse Certificates</strong>, pick the right certificate.  Then paste <code>chain.pem</code> (from /etc/letsencrypt/live/mydomain.tld) to the CA Bundle box.
+Then you go to **Manage SSL Hosts -> Browse Certificates**, pick the right certificate. Then paste `chain.pem` (from /etc/letsencrypt/live/mydomain.tld) to the CA Bundle box.

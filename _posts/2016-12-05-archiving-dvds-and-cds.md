@@ -25,7 +25,7 @@ title: Archiving DVDs and CDs
 ...
 ---
 
-[markdown]
+
 Since now I have a Android TV I put away my HTPC and with that the capability to view DVDs or
 listen CDs directly.
 
@@ -147,4 +147,3 @@ Using `mplayer` to play extract:
     mplayer -dvd-device /dev/sr0 dvd://$title -chapter $chapter-$chapter -dumpstream -dumpfile ~/$title.VOB
 
 
-[/markdown]

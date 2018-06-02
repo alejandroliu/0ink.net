@@ -25,7 +25,6 @@ title: Writing Safe Shell scripts
 ...
 ---
 
-[markdown]
 This article comes from [Writing Safe Shell](https://sipb.mit.edu/doc/safe-shell/).
 
 Writing shell scripts leaves a lot of room to make mistakes, in ways that will cause
@@ -48,7 +47,7 @@ still call external programs. In Python, the
 module is very useful for this.  You should try to avoid passing `shell=True` to `subprocess`
 (or using `os.system` or similar functions at all), since that will run a shell, exposing
 you to many of the same issues as plain shell has. It also has two big advantages over
-shell — it's a lot easier to avoid
+shell: it's a lot easier to avoid
 [word-splitting](http://www.gnu.org/software/bash/manual/html_node/Word-Splitting.html)
 or similar issues, and since calls to `subprocess` will tend to be relatively uncommon,
 it's easy to scrutinize them especially hard. When using `subprocess` or similar tools,
@@ -74,7 +73,7 @@ What do those do?
 
 If a command fails, `set -e` will make the whole script exit, instead of just resuming
 on the next line. If you have commands that can fail without it being an issue, you can
-append `|| true` or `|| :` to suppress this behavior — for example `set -e` followed by
+append `|| true` or `|| :` to suppress this behavior - for example `set -e` followed by
 `false || :` will not cause your script to terminate.
 
 [set -u](http://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html)
@@ -130,7 +129,7 @@ wrapped-command "$@"
 
 See
 ["Special Parameters" in the bash manual](http://www.gnu.org/software/bash/manual/html_node/Special-Parameters.html)
-for details on the distinction between `$*`, `$@`, and `"$@"` — the first and second are
+for details on the distinction between `$*`, `$@`, and `"$@"` - the first and second are
 rarely what you want in a safe shell script.
 
 # Passing filenames or other positional arguments to commands
@@ -145,7 +144,7 @@ passes `-u root reboot`, `sudo` will catch the second `-u` and run it as `root`.
 Fixing this depends on what command you're running.
 
 For many commands, however, `--` is accepted to indicate that any options are done,
-and future arguments should be parsed as positional parameters — even if they look like
+and future arguments should be parsed as positional parameters - even if they look like
 options. In the `sudo` example above, `sudo -u nobody -- "$@"` would avoid this attack
 (though obviously specifying in the `sudo` configuration that commands can only be run
 as `nobody` is also a good idea).
@@ -169,4 +168,4 @@ When possible, instead of writing a "safe" shell script, **use a higher-level la
 like Python**. If you can't do that, the shell has several options that you can enable that
 will reduce your chances of having bugs, and you should be sure to quote liberally.
 
-[/markdown]
+

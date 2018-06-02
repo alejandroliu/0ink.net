@@ -30,9 +30,9 @@ portable console
 
 Set scrolling region:
 
-printf "\033[1;24r"
+    printf "\033[1;24r"
 
 Reset scrolling region:
 
-printf "\033[r"
+    printf "\033[r"
 
