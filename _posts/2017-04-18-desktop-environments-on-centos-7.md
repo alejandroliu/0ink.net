@@ -24,25 +24,28 @@ comment_count: "0"
 title: Desktop environments on Centos 7
 ---
 
-# Gnome
+These are commands to install different Desktop environments
+on Centos7
+
+## Gnome
 
     yum groupinstall 'GNOME Desktop'
 
-# KDE
+## KDE
 
     yum groupinstall "KDE Plasma Workspaces"
 
-# Cinnamon
+## Cinnamon
 
     yum install epel-release
     yum --enablerepo=epel install cinnamon
 
-# MATE
+## MATE
 
     yum install epel-release
     yum --enablerepo=epel groupinstall "MATE Desktop"
 
-# XFCE
+## XFCE
 
     yum install epel-release
     yum --enablerepo=epel groupinstall XFCE
