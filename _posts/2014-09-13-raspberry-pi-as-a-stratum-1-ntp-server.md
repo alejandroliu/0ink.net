@@ -27,13 +27,12 @@ title: Raspberry Pi as a Stratum-1 NTP Server
 
 This is something I found:
 
-<ul>
-<li>http://www.satsignal.eu/ntp/Raspberry-Pi-NTP.html</li>
-</ul>
+*   http://www.satsignal.eu/ntp/Raspberry-Pi-NTP.html
 
-Essentially it requires pairing a Raspberry Pi with a 
-<a href="http://ava.upuaut.net/store/index.php?route=product/product&amp;path=59_60&amp;product_id=95">NTPI Raspberry Pi GPS addon board</a>
+Essentially it requires pairing a Raspberry Pi with a
+[NTPI Raspberry Pi GPS addon board](http://ava.upuaut.net/store/index.php?route=product/product&path=59_60&product_id=95)
 
-On the software side of things you need <a href="http://vanheusden.com/time/rpi_gpio_ntp/">rpi_gpio_ntp</a>
+On the software side of things you need
+[rpi\_gpio\_ntp](http://vanheusden.com/time/rpi_gpio_ntp/)
 
-<img src="https://0ink.net/wp-content/uploads/2014/09/Pi-GPS-shield-2013-10-15-1533-44-b-300x167.jpg" alt="pi-gps-shield-2013-10-15-1533-44-b" width="300" height="167" class="alignnone size-medium wp-image-993" />
+![pi-gps-shield-2013-10-15-1533-44-b]({{ site.url }}/images/2014/pi-gps-shield-2013-10-15-1533-44-b.jpg)

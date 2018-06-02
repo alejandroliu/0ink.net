@@ -29,21 +29,20 @@ This is my simple procedure for backing up my DVD movies:
 
 Examine the DVD:
 
-<pre><code>dvdbackup -i /dev/sr0 -I
-</code></pre>
+    dvdbackup -i /dev/sr0 -I
+    
 
 Create a full backup:
 
-<pre><code>dvdbackup -i /dev/dvd -o ~ -M
-</code></pre>
+    dvdbackup -i /dev/dvd -o ~ -M
+    
 
 Creating an ISO:
 
-<pre><code>mkisofs -dvd-video -udf -o ~/dvd.iso ~/movie_name
-</code></pre>
+    mkisofs -dvd-video -udf -o ~/dvd.iso ~/movie_name
+    
 
 Testing the newly created ISO:
 
-<pre><code>mplayer dvd:// -dvd-device ~/dvd.iso
-</code></pre>
+    mplayer dvd:// -dvd-device ~/dvd.iso
 

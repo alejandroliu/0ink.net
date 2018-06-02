@@ -25,11 +25,10 @@ title: Raspberry Pi - Low cost CCTV
 ...
 ---
 
-<img src="https://0ink.net/wp-content/uploads/2014/09/FJJOOSJHO7X6PIT.MEDIUM-300x300.jpg" alt="fjjoosjho7x6pit-medium" width="300" height="300" class="alignnone size-medium wp-image-991" />
+![FJJOOSJHO7X6PIT.MEDIUM]({{ site.url }}/images/2014/FJJOOSJHO7X6PIT.MEDIUM.jpg)
 
-<a href="http://www.instructables.com/id/Raspberry-Pi-as-low-cost-HD-surveillance-camera/">Instructables</a> has
-a good tutorial on creating a low cost surveillance camera.
+[Instructables](http://www.instructables.com/id/Raspberry-Pi-as-low-cost-HD-surveillance-camera/) has a good tutorial on creating a low cost surveillance camera.
 
 Essentially makes use of a Pi, the Camera module and fitted into one of those inexpensive fake surveillance cameras.
 
-It uses <a href="http://www.lavrsen.dk/foswiki/bin/view/Motion">motion</a> for the motion detection software.
+It uses [motion](http://www.lavrsen.dk/foswiki/bin/view/Motion) for the motion detection software.

@@ -25,6 +25,4 @@ title: Incredible PBX for RasPBX
 ...
 ---
 
-This is a link to <a href="http://nerdvittles.com/?p=8222">IncrediblePBX for RasPBX</a>.  Looks like bundles to run Asterisk PBX'es on a Raspberry Pi.
-
-Neat.
+This is a link to [IncrediblePBX for RasPBX](http://nerdvittles.com/?p=8222). Looks like bundles to run Asterisk PBX'es on a Raspberry Pi. Neat.

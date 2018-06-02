@@ -66,10 +66,10 @@ In your `build.gradle` you need the following:
 android {
   signingConfigs {
     release {
-      storeFile file(&quot;my_keystore.keystore&quot;)
-      storePassword &quot;{password}&quot;
-      keyAlias &quot;Key_Alias&quot;
-      keyPassword &quot;{password}&quot;
+      storeFile file("my_keystore.keystore")
+      storePassword "{password}"
+      keyAlias "Key_Alias"
+      keyPassword "{password}"
     }
   }
   buildTypes {

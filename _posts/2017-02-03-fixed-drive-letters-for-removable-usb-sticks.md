@@ -75,7 +75,7 @@ change them. Click `Yes` to continue.
 Back in the main Disk Management window, you should see the new drive letter assigned to the
 drive. You can now close the Disk Management window.
 
-![sud_6]({{ site.url }}/image/2017/sud_6.png)
+![sud_6]({{ site.url }}/images/2017/sud_6.png)
 
 From now on, when you disconnect and reconnect the drive, that new drive letter should persist.
 You can also now use fixed paths for that drive in apps `such as back up apps` that may require them.
