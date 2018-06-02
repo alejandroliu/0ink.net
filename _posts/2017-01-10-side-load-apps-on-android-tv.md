@@ -25,7 +25,7 @@ title: Side Load apps on Android TV
 ...
 ---
 
-![Philips 50PFK6540]({{ site.url }}/image/2017/50PFK6540_12-IMS-nl_NL.png)
+![Philips 50PFK6540]({{ site.url }}/images/2017/50PFK6540_12-IMS-nl_NL.png)
 
 So we bough a Philips 50PFK6540.  This is a 50" TV with
 [Ambi Ligh](https://en.wikipedia.org/wiki/Ambilight) and

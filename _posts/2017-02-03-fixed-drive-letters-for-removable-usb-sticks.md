@@ -48,12 +48,12 @@ window. Right-click the USB drive to which you want to assign a persistent drive
 then click `Change Drive Letter and Paths.`
 
 
-![sud_2]({{ site.url }}/image/2017/sud_2.png)
+![sud_2]({{ site.url }}/images/2017/sud_2.png)
 
 The `Change Drive Letter and Paths` window the selected drive's current drive letter. To
 change the drive letter, click `Change.`
 
-![sud_3]({{ site.url }}/image/2017/sud_3.png)
+![sud_3]({{ site.url }}/images/2017/sud_3.png)
 
 In the `Change Drive Letter or Path` window that opens, make sure the `Assign the following
 drive letter` option is selected and then use the drop-down menu to select a new drive letter.
@@ -63,14 +63,14 @@ NOTE: We suggest picking a drive letter between M and Z, because earlier drive l
 still get assigned to drives that don't always show up in File Explorer-like optical and
 removable card drives. M through Z are almost never used on most Windows systems.
 
-![sud_4]({{ site.url }}/image/2017/sud_4.png)
+![sud_4]({{ site.url }}/images/2017/sud_4.png)
 
 Windows will display a warning letting you know that some apps might rely on drive letters
 to run properly. For the most part, you won't have to worry about this. But if you do have
 any apps in which you've specified another drive letter for this drive, you may need to
 change them. Click `Yes` to continue.
 
-![sud_5]({{ site.url }}/image/2017/sud_5.png)
+![sud_5]({{ site.url }}/images/2017/sud_5.png)
 
 Back in the main Disk Management window, you should see the new drive letter assigned to the
 drive. You can now close the Disk Management window.
