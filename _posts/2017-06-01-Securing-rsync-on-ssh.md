@@ -24,8 +24,6 @@ comment_count: "0"
 title: Securing rsync on ssh
 ---
 
-# Securing rsync on ssh
-
 Reference: [positon.org](http://positon.org/rsync-command-restriction-over-ssh)
 
 You have 2 systems and you want to set up a secure backup with rsync + SSH of one system to the other.

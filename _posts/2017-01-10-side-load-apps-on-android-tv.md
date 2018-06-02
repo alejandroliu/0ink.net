@@ -22,7 +22,6 @@ post_type: post
 post_mime_type: ""
 comment_count: "1"
 title: Side Load apps on Android TV
-...
 ---
 
 ![Philips 50PFK6540]({{ site.url }}/images/2017/50PFK6540_12-IMS-nl_NL.png)

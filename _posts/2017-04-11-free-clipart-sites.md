@@ -22,11 +22,8 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Free Clipart sites
-...
 ---
 
-
-# Free Clipart sites
 
 From [makeuseof](http://www.makeuseof.com/tag/the-best-websites-for-free-clipart-downloads/)
 

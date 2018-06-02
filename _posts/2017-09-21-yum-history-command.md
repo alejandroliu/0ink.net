@@ -24,8 +24,6 @@ comment_count: "0"
 title: Rollback with YUM History Command
 ---
 
-# How To Use YUM History Command To Rollback An Updates In RHEL/CentOS Systems
-
 From [2daygeek.com](https://www.2daygeek.com/rollback-fallback-updates-downgrade-packages-centos-rhel-fedora/)
 
 Server patching is one of the important task of Linux system administrator to make the system more stable and better performance. All the vendors used to release security/vulnerabilities patches very often, the affected package must be updated in order to limit any potential security risks.
