@@ -2,7 +2,7 @@
 title: Network wiring notes - 8P8C / RJ45
 ---
 
-### What you were probably looking forT568A/B (10-BASE-T and 100-BASE-TX):
+What you were probably looking forT568A/B (10-BASE-T and 100-BASE-TX):
 
 With pin positions are counted from _left to right_ with the _contacts facing_ you (clip on the back) and pointing up _(cable coming out the bottom):_
 
