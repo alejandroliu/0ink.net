@@ -25,23 +25,17 @@ title: 'Mini-Howto: Setup proxy on Ubuntu'
 ...
 ---
 
-<img src="https://0ink.net/wp-content/uploads/2013/07/logo-ubuntu_su-orange-hex.jpg" alt="logo-ubuntu_su-orange-hex" width="284" height="64" class="alignnone size-full wp-image-995" />
+![logo-ubuntu_su-orange-hex]({{ site.url }}/images/2013/logo-ubuntu_su-orange-hex.jpg)
 
-This one is short and sweet:
 
-<ol>
-<li>Install Squid with the following command at the Linux command prompt:<br />
-<code>sudo apt-get install squid</code></li>
-<li>Edit the Squid config file in <code>/etc/squid</code> adding these lines:<br />
-<code>http_access allow local_net</code><br />
-<code>acl local_net src 10.10.0.0/255.255.0.0</code>  </li>
-<li>Save the file, exit the editor and restart Squid. You are now ready to configure your browser to use the proxy server.</li>
-<li>Click "Tools," "Options," "Advanced," "Network" and "Settings" in Firefox, which is the normal Ubuntu Linux browser. Select "Manual Proxy Configuration," enter the IP address of your proxy server, enter port 3128 in the Port field and then click "OK."</li>
-</ol>
+1.  Install Squid with the following command at the Linux command prompt:  
+    `sudo apt-get install squid`
+2.  Edit the Squid config file in `/etc/squid` adding these lines:  
+    `http_access allow local_net`  
+    `acl local_net src 10.10.0.0/255.255.0.0`
+3.  Save the file, exit the editor and restart Squid. You are now ready to configure your browser to use the proxy server.
+4.  Click "Tools," "Options," "Advanced," "Network" and "Settings" in Firefox, which is the normal Ubuntu Linux browser. Select "Manual Proxy Configuration," enter the IP address of your proxy server, enter port 3128 in the Port field and then click "OK."
 
 References:
 
-<ul>
-<li><a href="http://science.opposingviews.com/set-up-secure-proxy-server-ubuntu-linux-23184.html">http://science.opposingviews.com/set-up-secure-proxy-server-ubuntu-linux-23184.html</a> by Alan Hughes</li>
-</ul>
-
+*   [http://science.opposingviews.com/set-up-secure-proxy-server-ubuntu-linux-23184.html](http://science.opposingviews.com/set-up-secure-proxy-server-ubuntu-linux-23184.html) by Alan Hughes
