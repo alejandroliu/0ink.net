@@ -25,7 +25,6 @@ title: Desktop environments on Centos 7
 ...
 ---
 
-[markdown]
 # Gnome
 
     yum groupinstall 'GNOME Desktop'
@@ -49,4 +48,3 @@ title: Desktop environments on Centos 7
     yum install epel-release
     yum --enablerepo=epel groupinstall XFCE
 
-[/markdown]
