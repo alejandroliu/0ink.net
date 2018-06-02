@@ -27,7 +27,12 @@ title: Keep e-mail private
 
 This is a handy tip.
 
-If you don't want to give out your real email address to register for a site and don't want to go through the hassle of creating a spam email address, just point your browser to <a href="https://www.guerrillamail.com/" title="Guerrilla Mail" target="_blank"><br /> Guerrilla Mail;</a> upon loading the page you'll have an automatically assigned email address that is good for one hour.
+If you don't want to give out your real email address to register for
+a site and don't want to go through the hassle of creating a spam
+email address, just point your browser to
+[Guerrilla Mail](https://www.guerrillamail.com/)
+upon loading the page you'll have an automatically assigned email
+address that is good for one hour.
 
 Hopefully this helps reduce spam.
 
