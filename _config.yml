@@ -13,5 +13,9 @@ header_pages:
 # imghdr: under-construction.png
 imghdr: pig_med.png
 
+# Hard coding https
 url: https://www.0ink.net/
 
+plugins:
+  - jekyll-sitemap
+ 
