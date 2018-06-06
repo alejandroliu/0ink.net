@@ -37,8 +37,8 @@ but as they progress, kids will be typing in code themselves.
 
 Besides teaching actual JavaScript through play, Code Kingdoms
 also helps kids develop problem-solving skills and the encouragement
-to keep pushing on when they’re faced with a challenge in the
-game—much like programmers often have to push through challenging
+to keep pushing on when they're faced with a challenge in the
+game-much like programmers often have to push through challenging
 walls.
 
 [Code Kingdoms](http://codekingdoms.com/)

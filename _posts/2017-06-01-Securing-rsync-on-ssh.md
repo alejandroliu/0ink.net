@@ -64,8 +64,7 @@ And for even more security, you can add an IP filter, and other options:
 from="backup.example.com",command="rsync --server --sender -vlogDtprze.iLsf --numeric-ids . /path/",no-agent-forwarding,no-port-forwarding,no-pty,no-user-rc,no-X11-forwarding ssh-rsa AAAAB3NzaC1in2EAAAABIwAAABio......
 ```
 
-Now try to open a ssh shell on the remote server.. and try some unauthorized rsync commands…
-
+Now try to open a ssh shell on the remote server.. and try some unauthorized rsync commands...
 *Notes:*
 
 * Beware that if you change rsync command options, change also the authorized_keys file.

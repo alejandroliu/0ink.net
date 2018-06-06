@@ -147,7 +147,7 @@ Like Busybox HTTPd, the URL decoding of strings on the command line is supported
 An URL encoded String!
 </code></pre>
 
-If the $p$… format is used, uhttpd will compare the client provided password against the one stored in the shadow or passwd database.<br />
+If the $p$- format is used, uhttpd will compare the client provided password against the one stored in the shadow or passwd database.<br />
 URL decoding<br />
 Like Busybox HTTPd, the URL decoding of strings on the command line is supported through the -d switch:<br />
 root@OpenWrt:/# uhttpd -d "An%20URL%20encoded%20String%21%0a"<br />

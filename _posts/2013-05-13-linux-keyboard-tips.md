@@ -37,7 +37,7 @@ The <code>5</code> key is the left-click.
 
 <h1>Special Characters on X11</h1>
 
-The compose key, when pressed in sequence with other keys, produces a Unicode character. E.g., in most configurations pressing <code>&lt;Compose&gt; ' e</code> produces é.
+The compose key, when pressed in sequence with other keys, produces a Unicode character. E.g., in most configurations pressing <code>&lt;Compose&gt; ' e</code> produces &eacute;.
 
 Compose keys appeared on some computer keyboards decades ago, especially those produced by Sun Microsystems. However, it can be enabled on any keyboard with setxkbmap. For example, compose can be set to right alt by running:
 
@@ -66,7 +66,7 @@ Compose keys appeared on some computer keyboards decades ago, especially those p
 
     À  A grave                 A`           à  a grave                 a`
     Á  A acute                 A'           á  a acute                 a'
-    Â  A circumflex            A^           â  a circumflex            a^
+       A circumflex            A^           â  a circumflex            a^
     Ã  A tilde                 A~           ã  a tilde                 a~
     Ä  A diaeresis             A"           ä  a diaeresis             a"
     Å  A ring                  A*           å  a ring                  a*
@@ -74,10 +74,10 @@ Compose keys appeared on some computer keyboards decades ago, especially those p
 
     Ç  C cedilla               C,           ç  c cedilla               c,
 
-    È  E grave                 E`           è  e grave                 e`
-    É  E acute                 E'           é  e acute                 e'
+    È  E grave                 E`           &egrave;  e grave                 e`
+    É  E acute                 E'           &eacute;  e acute                 e'
     Ê  E circumflex            E^           ê  e circumflex            e^
-    Ë  E diaeresis             E"           ë  e diaeresis             e"
+    Ë  E diaeresis             E"           &euml;  e diaeresis             e"
 
     Ì  I grave                 I`           ì  i grave                 i`
     Í  I acute                 I'           í  i acute                 i'
@@ -106,7 +106,7 @@ Compose keys appeared on some computer keyboards decades ago, especially those p
 
     ß  German small sharp s    ss           ÿ  y diaeresis             y"
 
-    €  Euro                    e=
+      Euro                    e=
 </code></pre>
 
 <h2>Environment variables</h2>

@@ -25,7 +25,7 @@ title: Upgrading pacman config files
 ...
 ---
 
-So when upgrading software packages sometimes you need to merge changes.  My recipe in <strong>archlinux</strong> is as follows:
+So when upgrading software packages sometimes you need to merge changes.  My recipe in <strong>archlinux</strong> is as follows:
 
 <ol>
     <li>Look for <strong>*.pacnew</strong> files.</li>

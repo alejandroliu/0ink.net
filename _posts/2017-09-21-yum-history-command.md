@@ -34,13 +34,13 @@ I advise you to take a full system backup prior to performing any update/upgrade
 
 n some cases, the hosted applications might not work properly or through some error due to recent patch updates (It could be some library incompatibility or package upgrade), what will be the solution in this case?
 
-Get in touch with App Dev team and figure it out an issue creating library’s and packages then do the rollback with help of yum history command.
+Get in touch with App Dev team and figure it out an issue creating library' and packages then do the rollback with help of yum history command.
 
 **Note:**
 
 Rollback of selinux, selinux-policy-*, kernel, glibc (dependencies of glibc such as gcc) packages to older version is not supported.
 Downgrading a system to minor version is not recommended (CentOS 6.9 to CentOS 6.8) which leads to make the system in undesired state
-Let’s first verify an available updates on system and pick any of the package for this experiment.
+Let' first verify an available updates on system and pick any of the package for this experiment.
 
 ```
 # yum update
@@ -208,7 +208,7 @@ ID     | Login user               | Date and time    | Action(s)      | Altered
      1 | root               | 2016-07-26 11:40 | E, I, U        |  160 EE
 ```
 
-The above command shows two packages has been altered because git updated it’s dependence package too `perl-Git`. Run the following command to view detailed information about the transaction.
+The above command shows two packages has been altered because git updated it' dependence package too `perl-Git`. Run the following command to view detailed information about the transaction.
 
 ```
 # yum history info 13

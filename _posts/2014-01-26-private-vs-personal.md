@@ -27,7 +27,7 @@ title: Private vs. Personal
 
 In Microsoft Outlook has the option to tag e-mails with a sensitivity tag. Technically this is fairly meaningless. However sometimes I like to use them.  
 
-The confidential tag is quite self explanatory. I always confuse what is the difference between private and personal.  So here is one possibility...
+The confidential tag is quite self explanatory. I always confuse what is the difference between private and personal.   So here is one possibility...
 
 *   Personal information are things like preferences, political association, likes and dislikes.
 *   Private information are things like bank account numbers. Stuff that you probably would like to keep secret.

@@ -60,28 +60,28 @@ This is a command line JSON processor.  Here are a couple of examples of what ca
 
 To parse a JSON object:
 
-<pre><code>jq ‘.name’ &lt; json.txt
+<pre><code>jq '.name' &lt; json.txt
 
 "Google"
 </code></pre>
 
 To parse a nested JSON object:
 
-<pre><code>$ jq ‘.location.city’ &lt; json.txt
+<pre><code>$ jq '.location.city' &lt; json.txt
 
 "Mountain View"
 </code></pre>
 
 To parse a JSON array:
 
-<pre><code>$ jq ‘.employees[0].name’ &lt; json.txt
+<pre><code>$ jq '.employees[0].name' &lt; json.txt
 
 "Michael"
 </code></pre>
 
 To extract specific fields from a JSON object:
 
-<pre><code>$ jq ‘.location | {street, city}’ &lt; json.txt
+<pre><code>$ jq '.location | {street, city}' &lt; json.txt
 
 {
   "city": "Mountain View",

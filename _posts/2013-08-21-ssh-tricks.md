@@ -80,5 +80,5 @@ ServerAliveCountMax 10
 TCPKeepAlive no
 </code></pre>
 
-Counterintuitively, setting this results in fewer disconnections from your host, as transient TCP problems can self-repair in ways that fly below SSH’s radar. You may not want to apply this to scripts that work via SSH, as “parts of the SSH tunnel going non-responsive” may work in ways you neither want nor expect!
+Counterintuitively, setting this results in fewer disconnections from your host, as transient TCP problems can self-repair in ways that fly below SSH's radar. You may not want to apply this to scripts that work via SSH, as "parts of the SSH tunnel going non-responsive" may work in ways you neither want nor expect!
 

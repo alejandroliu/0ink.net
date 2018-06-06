@@ -50,8 +50,8 @@ Next, partition the new drive so that you are using the amount of
 space you will eventually use on all new disks. For example, if you
 are going from 100 GB drives to 250 GB drives, you will want to
 partition the new 250 GB drive to use 250 GB, not 100 GB. Also,
-remember to set the partition type to **0xDA** \- Non-fs data (or
-**0xFD**, Linux raid autodetect if you are still using the deprecated
+remember to set the partition type to **0xDA** \- Non-fs data (or
+**0xFD**, Linux raid autodetect if you are still using the deprecated
 autodetect).
 
 ```
@@ -140,7 +140,7 @@ LVM (logical volume manager) abstracts a logical volume
 (that a filesystem sits on) from the physical disk. If you are used
 to LVM then you are likely used to growing LVs (logical volumes), but
 what we grow here is the PV (physical volume) that sits on the
-_md_ device (RAID array).
+_md_ device (RAID array).
 
 For further LVM documentation, please see the
 [Linux LVM HOWTO](http://tldp.org/HOWTO/LVM-HOWTO/)
@@ -184,7 +184,7 @@ root@barcelona:~# pvdisplay
 ```
 
 The above is the PV part after md0 was grown from ~400GB to ~930GB
-(a 400GB disk to a 1TB disk). Note the _PV Size_ descriptions before
+(a 400GB disk to a 1TB disk). Note the _PV Size_ descriptions before
 and after.
 
 Once the PV has been grown (and hence the size of the VG, volume
@@ -196,8 +196,8 @@ lvextend -L +50G -n home\_lv server1\_vg
 resize2fs /dev/server1\_vg/home\_lv
 ```
 
-The above grows the _home_lv_ logical volume in the _server1_vg_ 
+The above grows the _home_lv_ logical volume in the _server1_vg_ 
 volume group by 50GB. It then grows the ext2/ext3 filesystem on that
-LV to the full size of the LV, as per _Extending the filesystem_ above.
+LV to the full size of the LV, as per _Extending the filesystem_ above.
 
-Source: [https://raid.wiki.kernel.org/index.php/Growing](https://raid.wiki.kernel.org/index.php/Growing "Raid Wiki")
+Source: [https://raid.wiki.kernel.org/index.php/Growing](https://raid.wiki.kernel.org/index.php/Growing "Raid Wiki")

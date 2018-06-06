@@ -33,9 +33,9 @@ In order for <code>FS-Cache</code> to operate, it needs cache back-end which pro
 
 One requirement for setting up <code>cachefiles</code> is that local filesystem support user-defined extended file attributes (i.e., <code>xattr</code>), because <code>cachefiles</code> use <code>xattr</code> to store extra information for cache maintenance.
 
-If your local filesystem is ext4-type, you don’t need to worry about this since <code>xattr</code> is enabled in ext4 by default.
+If your local filesystem is ext4-type, you don't need to worry about this since <code>xattr</code> is enabled in ext4 by default.
 
-However, if you are using ext3 filesystem, then you need to mount the local filesystem with “user_xattr” option. To do so, edit /etc/mtab to add “user_xattr” mount option to the disk partition that will be used by <code>cachefiles</code> for file caching. For example, assuming that /dev/hda1 is such a partition:
+However, if you are using ext3 filesystem, then you need to mount the local filesystem with "user_xattr" option. To do so, edit /etc/mtab to add "user_xattr" mount option to the disk partition that will be used by <code>cachefiles</code> for file caching. For example, assuming that /dev/hda1 is such a partition:
 
 <hr />
 
