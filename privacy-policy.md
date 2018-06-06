@@ -28,7 +28,7 @@ securely until a time it is no longer required or has no use, as
 detailed in the Data Protection Act 1998. Every effort has been made
 to ensure a safe and secure form to email submission process but
 advise users using such form to email processes that they do so at
-their own risk.  
+their own risk.
 
 ## External Links
 
