@@ -24,8 +24,6 @@ comment_count: "0"
 title: How to encrypt linux partitions with LUKS
 ---
 
-# Intro
-
 There are plenty of reasons why people would need to encrypt a
 partition. Whether they're rooted it in privacy, security, or
 confidentiality, setting up a basic encrypted partition on a Linux
