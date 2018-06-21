@@ -2,7 +2,19 @@
 title: Metabase
 ---
 
-# [Metabase Freecode entry](http://freecode.com/projects/metabase)
+Options:
+
+- https://github.com/victorstanciu/dbv
+- http://deltasql.sourceforge.net/features.php
+- http://propelorm.org/
+- https://phinx.org/
+- https://www.doctrine-project.org/
+- https://redbeanphp.com/index.php
+
+
+
+
+- [Metabase Freecode entry](http://freecode.com/projects/metabase)
 
 Metabase is a DBMS-independent PHP API to access SQL databases. It
 supports MySQL, PostgreSQL, Oracle, Microsoft SQL server, Microsoft

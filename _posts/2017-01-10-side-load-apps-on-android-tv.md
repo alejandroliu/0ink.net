@@ -24,11 +24,11 @@ comment_count: "1"
 title: Side Load apps on Android TV
 ---
 
-![Philips 50PFK6540]({{ site.url }}/images/2017/50PFK6540_12-IMS-nl_NL.png)
-
 So we bough a Philips 50PFK6540.  This is a 50" TV with
 [Ambi Ligh](https://en.wikipedia.org/wiki/Ambilight) and
 [Android TV](https://en.wikipedia.org/wiki/Android_TV).
+
+![Philips 50PFK6540]({{ site.url }}/images/2017/50PFK6540_12-IMS-nl_NL.png)
 
 One of the things I wanted to do from the very start was to load my own APKs.  This was not
 possible until a recent (2016) update that enabled the **"Install from Unknown Sources"**
