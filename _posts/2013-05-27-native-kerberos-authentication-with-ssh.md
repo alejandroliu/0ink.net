@@ -22,53 +22,57 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Native Kerberos Authentication with SSH
-
 ---
 
-<h1>Pre-requisites</h1>
+This article is about integrating OpenSSH in a kerberos environment.
+Allthough OpenSSH can provide passwordless logins (through Public/Private
+keys), it is not a true SSO set-up.  This article makes use of
+Kerberos TGT service to implement a true SSO configuration for OpenSSH.
 
-First off, you'll need to make sure that the OpenSSH server's Kerberos configuration (in <code>/etc/krb5.conf</code>) is correct and works, and that the server's keytab (typically <code>/etc/krb5.keytab</code>) contains an entry for <code>host/fqdn@REALM</code> (case-sensitive). I won't go into details on how this is done again; instead, I'll refer you to any one of the recent Kerberos-related articles (like <a href="http://blog.scottlowe.org/2006/08/08/linux-active-directory-and-windows-server-2003-r2-revisited/">this one</a>, <a href="http://blog.scottlowe.org/2006/08/15/solaris-10-and-active-directory-integration/">this one</a>, or <a href="http://blog.scottlowe.org/2006/08/21/more-on-kerberos-authentication-against-active-directory/">even this one</a>). Just be sure that you can issue a <code>kinit -k host/fqdn@REALM</code> and get back a Kerberos ticket without having specify a password. (This tells you that the keytab is working as expected.)
 
-<h1>Configuring the SSH Server</h1>
+# Pre-requisites
+
+First off, you'll need to make sure that the OpenSSH server's Kerberos configuration (in `/etc/krb5.conf`) is correct and works, and that the server's keytab (typically `/etc/krb5.keytab`) contains an entry for `host/fqdn@REALM` (case-sensitive). I won't go into details on how this is done again; instead, I'll refer you to any one of the recent Kerberos-related articles (like [this one](http://blog.scottlowe.org/2006/08/08/linux-active-directory-and-windows-server-2003-r2-revisited/), [this one](http://blog.scottlowe.org/2006/08/15/solaris-10-and-active-directory-integration/), or [even this one](http://blog.scottlowe.org/2006/08/21/more-on-kerberos-authentication-against-active-directory/)). Just be sure that you can issue a `kinit -k host/fqdn@REALM` and get back a Kerberos ticket without having specify a password. (This tells you that the keytab is working as expected.)
+
+# Configuring the SSH Server
 
 Configure `/etc/ssh/sshd_config with the following:
 
-<pre><code> KerberosAuthentication yes
+```
+ KerberosAuthentication yes
  KerberosTicketCleanup yes
  GSSAPIAuthentication yes
  GSSAPICleanupCredentials yes
  UseDNS yes
  UsePAM no
-</code></pre>
 
-If <code>UseDNS</code> is set to <code>Yes</code>, the ssh server does a reverse host lookup to find the name of the connecting client. This is necessary when host-based authentication is used or when you want last login
-information to display host names rather than IP addresses.
+```
 
-<em>Note:</em> Some ssh sessions stall when performing reverse name lookups because the DNS servers are unreachable. If this happens, you can skip the DNS lookups by setting <code>UseDNS</code> to <code>no</code>. If <code>UseDNS</code> is not explicitly set in the <code>/etc/ssh/sshd_config</code> file, the default value is <code>UseDNS yes</code>.
+If `UseDNS` is set to `Yes`, the ssh server does a reverse host lookup to find the name of the connecting client. This is necessary when host-based authentication is used or when you want last login information to display host names rather than IP addresses. _Note:_ Some ssh sessions stall when performing reverse name lookups because the DNS servers are unreachable. If this happens, you can skip the DNS lookups by setting `UseDNS` to `no`. If `UseDNS` is not explicitly set in the `/etc/ssh/sshd_config` file, the default value is `UseDNS yes`.
 
-<h1>Configuring the SSH Client</h1>
+# Configuring the SSH Client
 
-Edit <code>/etc/ssh/ssh_config</code>, and change the file accordingly. For
-example, we want to enable Kerberos mechanism for all Hosts:
+Edit `/etc/ssh/ssh_config`, and change the file accordingly. For example, we want to enable Kerberos mechanism for all Hosts:
 
-<pre><code> Host *
+```
+ Host *
       ....
       GSSAPIAuthentication yes
       GSSAPIDelegateCredentials yes
-</code></pre>
+
+```
 
 or to enable to specific domains:
 
-<pre><code>Host *.example.com
+```
+Host *.example.com
   GSSAPIAuthentication yes
   GSSAPIDelegateCredentials yes
-</code></pre>
 
-This limits GSSAPI authentication to only those hosts in the <code>example.com</code> domain. Modify the domain to be the appropriate domain for your network.
+```
 
-<h1>Testing the Configuration</h1>
+This limits GSSAPI authentication to only those hosts in the `example.com` domain. Modify the domain to be the appropriate domain for your network.
 
-Obtain a valid Kerberos ticket <code>kinit username</code> from the command line.
+# Testing the Configuration
 
-Once you have a ticket, you should be able to simply <code>ssh fqdn.of.server</code> and you will get logged in, without getting prompted for a password. If you get prompted for a password, go back and double-check your keytab, your SSH daemon configuration, and the time configuration on your OpenSSH server. Because Kerberos requires time synchronization, differences of greater than 5 minutes will cause the authentication to fail.
-
+Obtain a valid Kerberos ticket `kinit username` from the command line. Once you have a ticket, you should be able to simply `ssh fqdn.of.server` and you will get logged in, without getting prompted for a password. If you get prompted for a password, go back and double-check your keytab, your SSH daemon configuration, and the time configuration on your OpenSSH server. Because Kerberos requires time synchronization, differences of greater than 5 minutes will cause the authentication to fail.
