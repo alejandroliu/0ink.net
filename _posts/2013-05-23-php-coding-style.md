@@ -21,31 +21,26 @@ menu_order: "0"
 post_type: post
 post_mime_type: ""
 comment_count: "0"
-title: PHP Tips
-
+title: PHP notes
 ---
 
-<h1>Object oriented introspection</h1>
+Notes on doing different things within the PHP language.
 
-<ul>
-<li>property_exists(obj,prop_name) </li>
-<li>method_exists(obj,method_name) </li>
-<li>is_a(obj,'clas_name') or ($obj instanceof ClassName) </li>
-</ul>
 
-<h1>Dynamic coding</h1>
+# Object oriented introspection
 
-<ul>
-<li>Call a method: call_user_func(array($obj,'method',...args...) </li>
-<li>You can simply $obj-&gt;prop = value to add properties.</li>
-<li>or you can use __set and __get. See <a href="http://php.net/manual/en/language.oop5.overloading.php">http://php.net/manual/en/language.oop5.overloading.php</a></li>
-</ul>
+*   property\_exists(obj,prop\_name)
+*   method\_exists(obj,method\_name)
+*   is\_a(obj,'clas\_name') or ($obj instanceof ClassName)
 
-<h1>varargs</h1>
+# Dynamic coding
 
-<ul>
-<li><a href="http://php.net/manual/en/function.func-get-arg.php">func_get_arg(num)</a></li>
-<li><a href="http://www.php.net/manual/en/function.func-get-args.php">func_get_args()</a></li>
-<li><a href="http://www.php.net/manual/en/function.func-num-args.php">func_get_num_args()</a></li>
-</ul>
+*   Call a method: call\_user\_func(array($obj,'method',...args...)
+*   You can simply $obj->prop = value to add properties.
+*   or you can use \_\_set and \_\_get. See [http://php.net/manual/en/language.oop5.overloading.php](http://php.net/manual/en/language.oop5.overloading.php)
 
+# varargs
+
+*   [func\_get\_arg(num)](http://php.net/manual/en/function.func-get-arg.php)
+*   [func\_get\_args()](http://www.php.net/manual/en/function.func-get-args.php)
+*   [func\_get\_num_args()](http://www.php.net/manual/en/function.func-num-args.php)
