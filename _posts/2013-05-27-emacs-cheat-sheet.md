@@ -22,8 +22,10 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Emacs Cheat Sheet
-
 ---
+
+Quick reference article for how to use Emacs.  Yes, it is really
+old skool!
 
 <h1>Cursor Motion</h1>
 
