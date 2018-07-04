@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Web Authoring Tips
-...
+
 ---
 
 <h2>On-line resources</h2>

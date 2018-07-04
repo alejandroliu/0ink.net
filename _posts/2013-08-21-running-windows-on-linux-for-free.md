@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Running Windows on Linux for Free
-...
+
 ---
 
 Microsoft is now making available Windows VM image for testing Internet Explorer for free.  You can find them at:

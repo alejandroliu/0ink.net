@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Mirroring a Gitorious repository to GitHub
-...
+
 ---
 
 There is nothing special with <a href="http://github.com/">GitHub</a> and <a href="http://gitorious.com/">Gitorious</a> here. This technique would work exactly the same the other way around or with other servers.

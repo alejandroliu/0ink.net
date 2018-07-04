@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Enable local file caching for NFS share on Linux
-...
+
 ---
 
 In Linux, there is a caching filesystem called <code>FS-Cache</code> which enables file caching for network file systems such as NFS. <code>FS-Cache</code> is built into the Linux kernel 2.6.30 and higher.

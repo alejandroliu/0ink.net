@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: My Must Have Android Apps
-...
+
 ---
 
 This is a list of my favorite Android Apps:

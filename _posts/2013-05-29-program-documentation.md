@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Program Documentation
-...
+
 ---
 
 So these are my ideas on how to document projects. There are three types of documentation types:

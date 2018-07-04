@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: UNIX find with dates
-...
+
 ---
 
 <code>-atime/-ctime/-mtime</code> the last time a files's <em>access time</em>, <em>file status</em> and <em>modification time</em>, measured in days or minutes. Time interval in options <code>-ctime</code>, <code>-mtime</code> and <code>-atime</code> is an integer with optional sign.

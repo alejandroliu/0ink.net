@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: IPv6 testing
-...
+
 ---
 
 When trying to get on-to the IPv6 Internet, here are a couple of links to do diagnostics:

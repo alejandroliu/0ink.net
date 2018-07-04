@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Kerberos Client
-...
+
 ---
 
 1.  Make sure you have the pam_krb5 rpm files installed. You can check this by running the `rpm -qa | grep pam` command and seeing whether the pam_krb5 rpm files are listed. If they aren't, you can typically download them in an update of the Linux or Unix operating system that you are running.

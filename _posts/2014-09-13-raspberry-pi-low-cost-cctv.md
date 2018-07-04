@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Raspberry Pi - Low cost CCTV
-...
+
 ---
 
 ![FJJOOSJHO7X6PIT.MEDIUM]({{ site.url }}/images/2014/FJJOOSJHO7X6PIT.MEDIUM.jpg)

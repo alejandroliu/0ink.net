@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Cleaning-up Outlook Calendar
-...
+
 ---
 
 <h2>Procedure for Outlook 2007</h2>

@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: CipherUSB
-...
+
 ---
 
 <a href="http://www.addonics.com/products/cipherusb.php">Addonics Product: CipherUSB</a>.

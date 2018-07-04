@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: 'Mini-Howto: Setup proxy on Ubuntu'
-...
+
 ---
 
 ![logo-ubuntu_su-orange-hex]({{ site.url }}/images/2013/logo-ubuntu_su-orange-hex.jpg)

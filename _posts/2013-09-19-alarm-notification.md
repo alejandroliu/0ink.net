@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Alarm Notification
-...
+
 ---
 
 This tutorial describes how to use the alarm manager to set alarms and how to use the notification framework to display them.

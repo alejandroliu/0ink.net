@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: PingTool.org
-...
+
 ---
 
 <a href="http://pingtool.org/">http://pingtool.org/</a>

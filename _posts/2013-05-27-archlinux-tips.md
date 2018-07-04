@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: ArchLinux tips
-...
+
 ---
 
 <h1>Custom Repos and Packages</h1>

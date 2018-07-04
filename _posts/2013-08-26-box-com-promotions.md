@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: BOX.com promotions
-...
+
 ---
 
 This is a good link to keep an eye on:

@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Getting rid of DRM on e-books and videos
-...
+
 ---
 
 <h1>How to Remove DRM from Ebooks (and Back Up Your Library Permanently)</h1>

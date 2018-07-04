@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: PHP Tips
-...
+
 ---
 
 <h1>Object oriented introspection</h1>

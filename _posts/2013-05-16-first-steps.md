@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: First steps...
-...
+
 ---
 
 So finally took the time to re-launch the <code>0ink</code> web site.

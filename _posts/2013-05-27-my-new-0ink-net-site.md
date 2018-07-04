@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: My new 0ink.net site
-...
+
 ---
 
 So one weekend went by and managed to finish up my <code>0ink.net</code> web site.

@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: SSH Tricks
-...
+
 ---
 
 <h2>Forcing either IPv4 or IPv6</h2>

@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Chrome Kerberos Authentication
-...
+
 ---
 
 To config chrome to use kerberos authentication you need to start the application the following parameter:

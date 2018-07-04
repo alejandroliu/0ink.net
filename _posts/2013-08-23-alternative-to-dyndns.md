@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Alternative to DynDNS
-...
+
 ---
 
 <a href="http://linuxaria.com/howto/dynamic-dns-with-bash-afraid-org">linuxaria blog article</a>

@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: International Phonetic Alphabet
-...
+
 ---
 
 <h1>Phonetic Alphabet</h1>

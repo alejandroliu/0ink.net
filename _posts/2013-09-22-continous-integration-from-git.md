@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Continuous Integration from Git
-...
+
 ---
 
 <a href="http://www.drdobbs.com/architecture-and-design/driving-continuous-integration-from-git/240161383">Continuous Integration</a>

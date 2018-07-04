@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Google Services Tips
-...
+
 ---
 
 <h1>Cleaning up Google Calendar</h1>

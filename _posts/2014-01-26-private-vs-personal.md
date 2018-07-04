@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Private vs. Personal
-...
+
 ---
 
 In Microsoft Outlook has the option to tag e-mails with a sensitivity tag. Technically this is fairly meaningless. However sometimes I like to use them.  

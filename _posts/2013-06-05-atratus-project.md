@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: atratus project
-...
+
 ---
 
 The other day I came across this <a title="Atratus project" href="http://atratus.org/" target="_blank">project</a>.

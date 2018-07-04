@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Remote Bridging
-...
+
 ---
 
 <h1>Connecting Two Remote Local Networks With Transparent Bridging Technique</h1>

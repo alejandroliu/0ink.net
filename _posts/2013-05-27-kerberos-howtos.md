@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Kerberos howtos
-...
+
 ---
 
 Kerberos is a network authentication protocol which works on the basis of "tickets" to allow nodes communicating over a non-secure network to prove their identity to one another in a secure manner. (Source <a href="http://en.wikipedia.org/wiki/Kerberos_(protocol)">Kerberos_(protocol)</a> )

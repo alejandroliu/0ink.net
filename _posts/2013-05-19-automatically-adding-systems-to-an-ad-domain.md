@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Automatically adding systems to an AD domain
-...
+
 ---
 
 When using virtualisation it is very common to create <em>template</em> VMs that can be cloned from.  This makes deployment much easier than having to install a new VM from scratch.

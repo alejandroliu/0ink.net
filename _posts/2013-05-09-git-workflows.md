@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Git Workflows
-...
+
 ---
 
 This article describes my personal <code>git</code> Workflow.

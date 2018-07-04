@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: GrandStream City Codes
-...
+
 ---
 
 <a href="http://weather.aol.com/europe/germany">http://weather.aol.com/europe/germany</a>

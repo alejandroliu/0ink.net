@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Raspberry Pi Thin Client
-...
+
 ---
 
 [RPITC](http://rpitc.blogspot.nl/)

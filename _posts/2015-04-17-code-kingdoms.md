@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Code Kingdoms
-...
+
 ---
 
 ![pugw1qoceliykwmnprbt]({{ site.url }}/images/2015/pugw1qoceliykwmnprbt.png)

@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Off site backup options
-...
+
 ---
 
 <h1>Off site backup options | 0ink.net</h1>
