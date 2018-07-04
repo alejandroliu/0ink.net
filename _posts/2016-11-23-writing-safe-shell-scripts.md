@@ -22,10 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Writing Safe Shell scripts
-...
 ---
-
-This article comes from [Writing Safe Shell](https://sipb.mit.edu/doc/safe-shell/).
 
 Writing shell scripts leaves a lot of room to make mistakes, in ways that will cause
 your scripts to break on certain input, or (if some input is untrusted) open up security
@@ -168,4 +165,6 @@ When possible, instead of writing a "safe" shell script, **use a higher-level la
 like Python**. If you can't do that, the shell has several options that you can enable that
 will reduce your chances of having bugs, and you should be sure to quote liberally.
 
+
+Source [Writing Safe Shell](https://sipb.mit.edu/doc/safe-shell/).
 

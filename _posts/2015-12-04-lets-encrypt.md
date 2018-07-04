@@ -22,7 +22,6 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Let's Encrypt
-...
 ---
 
 This is a service that let's you get SSL certificates for HTTPS. These certificates are trusted by major browsers. See [Let's Encrypt](https://letsencrypt.org/about/) This is a barebones _howto_ to get SSL certificates:

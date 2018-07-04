@@ -22,7 +22,6 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Building Signed APKs
-...
 ---
 
 Building signed APK's for Android is easy if you know what you are doing.

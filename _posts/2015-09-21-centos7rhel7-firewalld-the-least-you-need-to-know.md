@@ -22,7 +22,6 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Centos7/RHEL7 FirewallD -- the least you need to know
-...
 ---
 
 This post is just a simple hints-tips to get something going with FirewallD without going into too much detail.

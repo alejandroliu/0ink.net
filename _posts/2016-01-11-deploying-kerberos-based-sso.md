@@ -22,11 +22,9 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Deploying Kerberos based SSO
-...
 ---
 
-Pre-requisites
---------------
+## Pre-requisites
 
 *   Kerberos Domain Controller (KDC)
 *   User accounts in the KDC
@@ -46,8 +44,7 @@ This should show your principals assigned to you.
     01/11/2016 15:51:35  01/12/2016 15:51:34  krbtgt/LOCALNET@LOCALNET
     
 
-Configuring Apache
-------------------
+## Configuring Apache
 
 1.  Install any necessary modules on the server:
     *   `yum install mod_auth_kerb`
@@ -68,8 +65,7 @@ Configuring Apache
     *   `require valid-user`
 7.  Re-start apache
 
-Configure FireFox
------------------
+## Configure FireFox
 
 1.  Navigate to `about:config`
 2.  Search for: `negotiate-auth`
@@ -87,8 +83,7 @@ It is possible to configure this setting for all users by creating a global conf
 3.  Add the following line:
     *   `pref("network.negotiate-auth.trusted-uris",".example.com");`
 
-Configure OpenSSH server
-------------------------
+## Configure OpenSSH server
 
 1.  Create a service principal for the host (this needs to be done on the KDC.
     *   `kadmin.local -q "addprinc -randkey host/shell.example.com`
@@ -105,8 +100,8 @@ Configure OpenSSH server
     *   `UsePAM no` _\# This is not supported by RHEL7 and should be left as `yes`_
 6.  Restart `sshd`.
 
-Configure OpenSSH clients
--------------------------
+## Configure OpenSSH clients
+
 
 Configure `/etc/ssh_config` or `~/ssh/ssh_config`:
 
