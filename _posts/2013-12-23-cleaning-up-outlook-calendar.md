@@ -22,43 +22,36 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Cleaning-up Outlook Calendar
-
 ---
 
-<h2>Procedure for Outlook 2007</h2>
+This is a procedure I go through at the end of the year
+to clean-up my Outlook Calendar.  Usually the Outlook
+Calendar gets full of junk over time.  So this is something
+worth doing on a regular basis.
 
-<ol>
-<li>Backup calendar folder</li>
-<li>Select default calendar</li>
-<li>Switch view to <code>Inactive Appointments (non-recurrent)</code></li>
-<li>Delete appointments</li>
-<li>Switch view to <code>Inactive Appointments (recurrent)</code></li>
-<li>Delete appointments</li>
-</ol>
+Procedure for Outlook 2007
+--------------------------
 
-<h2>Procedures for Previous versions of Outlook</h2>
+1.  Backup calendar folder
+2.  Select default calendar
+3.  Switch view to `Inactive Appointments (non-recurrent)`
+4.  Delete appointments
+5.  Switch view to `Inactive Appointments (recurrent)`
+6.  Delete appointments
+
+Procedures for Previous versions of Outlook
+-------------------------------------------
 
 This is my procedure for cleaning my Outlook calendar from old appointments and other assorted outdated stuff:
 
-<ol>
-<li>Backup your calendar folder (just in case)</li>
-<li>Create a temporary Calendar folder</li>
-<li>Select your default Calendar</li>
-<li>Switch to <code>All Appointments</code> view:
-
-<ul>
-<li>View -&gt; Current View -&gt; All Appointments</li>
-</ul></li>
-<li>Select all the appointments and <strong>move</strong> them to the temporary
-Calendar folder</li>
-<li>Select the temporary Calendar folder</li>
-<li>Switch to <code>Active Appointments</code> vew:
-
-<ul>
-<li>View -&gt; Current View -&gt; Active Appointments</li>
-</ul></li>
-<li>Select all the visible appointments and <strong>move</strong> the m back to
-the default Calendar folder.</li>
-<li>You can now dispose of the temporary folder (or backed it up
-for reference.</li>
-</ol>
+1.  Backup your calendar folder (just in case)
+2.  Create a temporary Calendar folder
+3.  Select your default Calendar
+4.  Switch to `All Appointments` view:
+    *   View -> Current View -> All Appointments
+5.  Select all the appointments and **move** them to the temporary Calendar folder
+6.  Select the temporary Calendar folder
+7.  Switch to `Active Appointments` vew:
+    *   View -> Current View -> Active Appointments
+8.  Select all the visible appointments and **move** the m back to the default Calendar folder.
+9.  You can now dispose of the temporary folder (or backed it up for reference.

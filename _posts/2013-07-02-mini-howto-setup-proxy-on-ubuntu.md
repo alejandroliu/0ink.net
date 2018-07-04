@@ -22,8 +22,11 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: 'Mini-Howto: Setup proxy on Ubuntu'
-
 ---
+
+A quick and dirty mini-howto to setup a proxy on Ubuntu.
+This is meant mostly for doing quick setup of a proxy
+on a cloud environment.
 
 ![logo-ubuntu_su-orange-hex]({{ site.url }}/images/2013/logo-ubuntu_su-orange-hex.jpg)
 

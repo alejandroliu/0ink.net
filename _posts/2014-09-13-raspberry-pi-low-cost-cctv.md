@@ -22,8 +22,11 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Raspberry Pi - Low cost CCTV
-
 ---
+
+A good tutorial on creating a low cost surveillance camera using
+the raspberry Pi camera module and one of thos fake surveillance
+camera things.
 
 ![FJJOOSJHO7X6PIT.MEDIUM]({{ site.url }}/images/2014/FJJOOSJHO7X6PIT.MEDIUM.jpg)
 
