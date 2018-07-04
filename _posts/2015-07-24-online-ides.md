@@ -22,9 +22,14 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Online IDEs
-
 ---
+
+If you want to move to the cloud and like to code like me, this is
+kinda of a basic necessity.
+
+This applies in particular to Chromebook users.
+
 
 [5 Best online IDEs](http://www.chromebookhq.com/five-best-online-ides-making-the-switch-to-a-chromebook/)
 
-If you want to move to the cloud and like to code like me, this is kinda of a basic necessity.
+

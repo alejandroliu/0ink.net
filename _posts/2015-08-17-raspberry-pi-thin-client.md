@@ -22,9 +22,11 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Raspberry Pi Thin Client
-
 ---
+
+Thin Client project want to create a very low price thin client over
+Raspberry Pi board! Microsoft RDC, Citrix ICA, VMWare View, OpenNX &
+SPICE
 
 [RPITC](http://rpitc.blogspot.nl/)
 
-Thin Client project want to create a very low price thin client over Raspberry Pi board! Microsoft RDC, Citrix ICA, VMWare View, OpenNX & SPICE
