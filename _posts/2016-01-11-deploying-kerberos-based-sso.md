@@ -24,6 +24,11 @@ comment_count: "0"
 title: Deploying Kerberos based SSO
 ---
 
+This article goes over how to implement Single-Sign-On
+on Linux.  It goes over the integration around
+the Kerberos service and the applications, like for example
+FireFox.
+
 ## Pre-requisites
 
 *   Kerberos Domain Controller (KDC)

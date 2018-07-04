@@ -24,6 +24,10 @@ comment_count: "0"
 title: MariaDB Quickest Quick start
 ---
 
+This article outlines the bare minimum to get
+a MariaDB or MySQL database up and running.
+
+It covers a CentOS/RHEL and an ArchLinux installs.
 
 Make sure your system is up to date:
 
