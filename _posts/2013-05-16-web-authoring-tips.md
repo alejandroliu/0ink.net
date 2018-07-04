@@ -24,6 +24,10 @@ comment_count: "0"
 title: On-line Web Authoring Resources
 ---
 
+A collection of links for Web-Authoring.  This focuses on using
+Web (HTML and CSS) technologies directly and not through a
+CMS like Wordpress.
+
 
 *   [http://www.webestools.com/](http://www.webestools.com/)  
     Free online tools, generators, services, scripts, tutorials.
