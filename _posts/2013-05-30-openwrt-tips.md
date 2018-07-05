@@ -61,61 +61,15 @@ HTTPS Enable and Certificate Settings and Creation
 
 First of all, you need to install the `uhttpd-mod-tls` package in order to pull into the system the 'TLS plugin which adds HTTPS support to uHTTPd'. Then if listen_https is defined in the server configuration, the certificate and private key is missing. In this case (as of 10.03.1) you'll need to install the `luci-ssl` meta-package which in turn will pull also the `px5g` script. With this utility the init script will generate the appropriate certifcate and key files when the server is started for the first time, either by reboot or by manual restart. The `/etc/config/uhttpd` file contains in the end a section detailing the certificate and key files creation parameters:
 
-<table>
-<thead>
-<tr>
-  <th>Name</th>
-  <th>Type</th>
-  <th>Required</th>
-  <th>Default</th>
-  <th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td>days</td>
-  <td>integer</td>
-  <td>no</td>
-  <td>730</td>
-  <td>Validity time of the generated certificates in days</td>
-</tr>
-<tr>
-  <td>bits</td>
-  <td>integer</td>
-  <td>no</td>
-  <td>1024</td>
-  <td>Size of the generated RSA key in bits</td>
-</tr>
-<tr>
-  <td>country</td>
-  <td>string</td>
-  <td>no</td>
-  <td>DE</td>
-  <td>ISO country code of the certificate issuer</td>
-</tr>
-<tr>
-  <td>state</td>
-  <td>string</td>
-  <td>no</td>
-  <td>Berlin</td>
-  <td>State of the certificate issuer</td>
-</tr>
-<tr>
-  <td>location</td>
-  <td>string</td>
-  <td>no</td>
-  <td>Berlin</td>
-  <td>Location/city of the certificate issuer</td>
-</tr>
-<tr>
-  <td>commonname</td>
-  <td>string</td>
-  <td>no</td>
-  <td>OpenWrt</td>
-  <td>Common name covered by the certificate</td>
-</tr>
-</tbody>
-</table>
+|Name|Type|Required|Default|Description|
+|--- |--- |--- |--- |--- |
+|days|integer|no|730|Validity time of the generated certificates in days|
+|bits|integer|no|1024|Size of the generated RSA key in bits|
+|country|string|no|DE|ISO country code of the certificate issuer|
+|state|string|no|Berlin|State of the certificate issuer|
+|location|string|no|Berlin|Location/city of the certificate issuer|
+|commonname|string|no|OpenWrt|Common name covered by the certificate|
+
 
 Those will be needed only once, at the next restart.
 
