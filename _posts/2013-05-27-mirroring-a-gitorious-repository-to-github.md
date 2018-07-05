@@ -22,51 +22,78 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Mirroring a Gitorious repository to GitHub
-
 ---
 
-There is nothing special with <a href="http://github.com/">GitHub</a> and <a href="http://gitorious.com/">Gitorious</a> here. This technique would work exactly the same the other way around or with other servers.
+There is nothing special with [GitHub](http://github.com/) and
+[Gitorious](http://gitorious.com/) here. This technique would work
+exactly the same the other way around or with other servers.
 
-<h1>In a nutshell</h1>
+# In a nutshell
 
-<pre><code># Inital setup
+```
+# Inital setup
 git clone --mirror git://gitorious.org/weasyprint/weasyprint.git weasyprint
 GIT_DIR=weasyprint git remote add github git@github.com:SimonSapin/WeasyPrint.git
 
 # In cron
-cd /path/to/project &amp;&amp; git fetch -q &amp;&amp; git push -q --mirror github
-</code></pre>
+cd /path/to/project && git fetch -q && git push -q --mirror github
 
-<h1>How it works</h1>
+```
 
-Mirroring with Git is pretty easy: just pull from or push to another repository. <a href="http://github.com/">GitHub</a> and <a href="http://gitorious.com/">Gitorious</a> allow you to push to them or pull from them, but you can not make them push to somewhere else. You need something in the middle.
+# How it works
 
-Digging a bit in the man pages tells you that the magic option is <code>--mirror</code>. First, clone your "source" repository:
+Mirroring with Git is pretty easy: just pull from or push to another
+repository. [GitHub](http://github.com/) and
+[Gitorious](http://gitorious.com/) allow you to push to them or pull
+from them, but you can not make them push to somewhere else. You need
+something in the middle. Digging a bit in the man pages tells you that
+the magic option is `--mirror`. First, clone your "source" repository:
 
-<pre><code>git clone --mirror git://gitorious.org/weasyprint/weasyprint.git weasyprint
-</code></pre>
+```
+git clone --mirror git://gitorious.org/weasyprint/weasyprint.git weasyprint
 
-<code>--mirror</code> implies <code>--bare</code>. This repository is not for working, you don't want it to have a working directory. More importantly, <code>--mirror</code> sets up the origin remote so that git fetch will directly fetch into local branches without doing any merge. It will force the update if the remote history has diverged from the local one.
+```
 
-<pre><code>git fetch
-</code></pre>
+`--mirror` implies `--bare`. This repository is not for working, you
+don't want it to have a working directory. More importantly, `--mirror`
+sets up the origin remote so that git fetch will directly fetch into
+local branches without doing any merge. It will force the update if
+the remote history has diverged from the local one.
 
-Now our local repository is an exact mirror of what we have on <a href="http://gitorious.com/">Gitorious</a>. Let's push it to <a href="http://github.com/">GitHub</a>:
+```
+git fetch
 
-<pre><code>git remote add github git@github.com:SimonSapin/WeasyPrint.git
+```
+
+Now our local repository is an exact mirror of what we have on
+[Gitorious](http://gitorious.com/). Let's push it to [GitHub](http://github.com/):
+
+```
+git remote add github git@github.com:SimonSapin/WeasyPrint.git
 git push --mirror github
-</code></pre>
 
-The <code>--mirror</code> option for git push is similar to that for git clone: instead of pushing just a branch, it says that all references (branches, tags, -) should be the same on the remote end as they are here, even if it means forced updates or removing.
+```
 
-Now our <a href="http://gitorious.com/">GitHub</a> repository also is a mirror. Let's update it every hour with cron. The <code>-q</code> option says to suppress normal output but keep error messages, which cron should send you by email if your server is properly configured.
+The `--mirror` option for git push is similar to that for git clone:
+instead of pushing just a branch, it says that all references (branches,
+tags, -) should be the same on the remote end as they are here, even if
+it means forced updates or removing. Now our
+[GitHub](http://gitorious.com/) repository also is a mirror. Let's
+update it every hour with cron. The `-q` option says to suppress normal
+output but keep error messages, which cron should send you by email if
+your server is properly configured.
 
-<pre><code>42 *    * * *   cd /path/to/weasyprint &amp;&amp; git fetch -q &amp;&amp; git push -q --mirror github
-</code></pre>
+```
+42 *    * * *   cd /path/to/weasyprint && git fetch -q && git push -q --mirror github
 
-<h3>Warning: <code>--mirror</code> is like <code>--force</code></h3>
+```
 
-Both <code>--mirror</code> options are kind of like <code>--force</code> in that you can lose data if you're not careful. It will make exact mirrors, no question asked. If you push changes to the mirror's destination, they will be overwritten/removed on the next update if they are not in the mirror's source.
+### Warning: `--mirror` is like `--force`
 
-Original article by Simon Sapin:  <a href="http://exyr.org/2011/git-mirrors/">http://exyr.org/2011/git-mirrors/</a>
+Both `--mirror` options are kind of like `--force` in that you can
+lose data if you're not careful. It will make exact mirrors, no question
+asked. If you push changes to the mirror's destination, they will be
+overwritten/removed on the next update if they are not in the mirror's
+source.
 
+Original article by Simon Sapin: [http://exyr.org/2011/git-mirrors/](http://exyr.org/2011/git-mirrors/)

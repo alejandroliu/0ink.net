@@ -24,8 +24,8 @@ comment_count: "0"
 title: Driving Continuous Integration from Git
 ---
 
-*Testing, code coverage, style enforcement are all check-in and merge
-requirements that can be automated and driven from Git.*
+**Testing, code coverage, style enforcement are all check-in and merge
+requirements that can be automated and driven from Git.**
 
 If you're among the rising number of Git users out there, you're in
 luck: You can automate pieces of your development workflow with Git
