@@ -6,57 +6,17 @@ What you were probably looking forT568A/B (10-BASE-T and 100-BASE-TX):
 
 With pin positions are counted from _left to right_ with the _contacts facing_ you (clip on the back) and pointing up _(cable coming out the bottom):_
 
-<table>
-<thead>
-<tr>
-  <th>Color (568B)</th>
-  <th>Pin</th>
-  <th>Color(568A)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td>Orange-white</td>
-  <td>1</td>
-  <td>Green-white</td>
-</tr>
-<tr>
-  <td>Orange</td>
-  <td>2</td>
-  <td>Green</td>
-</tr>
-<tr>
-  <td>Green-white</td>
-  <td>3</td>
-  <td>Orange-white</td>
-</tr>
-<tr>
-  <td>Blue</td>
-  <td>4</td>
-  <td>Blue</td>
-</tr>
-<tr>
-  <td>Blue-white</td>
-  <td>5</td>
-  <td>Blue-white</td>
-</tr>
-<tr>
-  <td>Green</td>
-  <td>6</td>
-  <td>Orange</td>
-</tr>
-<tr>
-  <td>Brown-white</td>
-  <td>7</td>
-  <td>Brown-white</td>
-</tr>
-<tr>
-  <td>Brown</td>
-  <td>8</td>
-  <td>Brown</td>
-</tr>
-</tbody>
-</table>
+|Color (568B)|Pin|Color(568A)|
+|--- |--- |--- |
+|Orange-white|1|Green-white|
+|Orange|2|Green|
+|Green-white|3|Orange-white|
+|Blue|4|Blue|
+|Blue-white|5|Blue-white|
+|Green|6|Orange|
+|Brown-white|7|Brown-white|
+|Brown|8|Brown|
+
 
 ![wiring1]({{ site.url }}/images/2013/wiring1.jpg)
 
