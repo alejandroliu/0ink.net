@@ -22,10 +22,9 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: PingTool.org
-
 ---
 
-<a href="http://pingtool.org/">http://pingtool.org/</a>
+Another short and sweet. This web site provides a number of on-line
+tools. Useful for diagnosing problems when setting a home server.
 
-Another short and sweet.  This web site provides a number of on-line tools.  Useful for diagnosing problems when setting a home server.
-
+[http://pingtool.org/](http://pingtool.org/)
