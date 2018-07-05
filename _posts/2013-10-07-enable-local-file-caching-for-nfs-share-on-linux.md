@@ -22,88 +22,103 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Enable local file caching for NFS share on Linux
-
 ---
 
-In Linux, there is a caching filesystem called <code>FS-Cache</code> which enables file caching for network file systems such as NFS. <code>FS-Cache</code> is built into the Linux kernel 2.6.30 and higher.
+In Linux, there is a caching filesystem called `FS-Cache` which enables
+file caching for network file systems such as NFS. `FS-Cache` is built
+into the Linux kernel 2.6.30 and higher. In order for `FS-Cache` to
+operate, it needs cache back-end which provides actual storage for
+caching. One such cache back-end is `cachefiles`. Therefore, once you
+set up `cachefiles`, it will automatically enable file caching for NFS shares.
 
-In order for <code>FS-Cache</code> to operate, it needs cache back-end which provides actual storage for caching. One such cache back-end is <code>cachefiles</code>. Therefore, once you set up <code>cachefiles</code>, it will automatically enable file caching for NFS shares.
+# Requirements
 
-<h1>Requirements</h1>
+One requirement for setting up `cachefiles` is that local filesystem support user-defined extended file attributes (i.e., `xattr`), because `cachefiles` use `xattr` to store extra information for cache maintenance. If your local filesystem is ext4-type, you don't need to worry about this since `xattr` is enabled in ext4 by default. However, if you are using ext3 filesystem, then you need to mount the local filesystem with "user\_xattr" option. To do so, edit /etc/mtab to add "user\_xattr" mount option to the disk partition that will be used by `cachefiles` for file caching. For example, assuming that /dev/hda1 is such a partition:
 
-One requirement for setting up <code>cachefiles</code> is that local filesystem support user-defined extended file attributes (i.e., <code>xattr</code>), because <code>cachefiles</code> use <code>xattr</code> to store extra information for cache maintenance.
+* * *
 
-If your local filesystem is ext4-type, you don't need to worry about this since <code>xattr</code> is enabled in ext4 by default.
+```
+/dev/hda1 / ext3 rw,user_xattr  0 0
 
-However, if you are using ext3 filesystem, then you need to mount the local filesystem with "user_xattr" option. To do so, edit /etc/mtab to add "user_xattr" mount option to the disk partition that will be used by <code>cachefiles</code> for file caching. For example, assuming that /dev/hda1 is such a partition:
+```
 
-<hr />
-
-<pre><code>/dev/hda1 / ext3 rw,user_xattr  0 0
-</code></pre>
-
-<hr />
+* * *
 
 After modifying /etc/fstab, reload it by running:
 
-<pre><code>$ sudo mount -o remount / 
-</code></pre>
+```
+$ sudo mount -o remount / 
 
-<h1>Configure CacheFiles</h1>
+```
 
-In order to set up cache back-end using <code>cachefiles</code>, you need to install <code>cachefilesd</code>, a userspace daemon for managing <code>cachefiles</code>.
+# Configure CacheFiles
 
-To install <code>cachefilesd</code> on Ubuntu or Debian:
+In order to set up cache back-end using `cachefiles`, you need to install `cachefilesd`, a userspace daemon for managing `cachefiles`. To install `cachefilesd` on Ubuntu or Debian:
 
-<pre><code>$ sudo apt-get install cachefilesd
-</code></pre>
+```
+$ sudo apt-get install cachefilesd
 
-To install <code>cachefilesd</code> on CentOS, Fedora or RedHat:
+```
 
-<pre><code>$ sudo yum install cachefilesd
+To install `cachefilesd` on CentOS, Fedora or RedHat:
+
+```
+$ sudo yum install cachefilesd
 $ sudo chkconfig cachefilesd on
-</code></pre>
 
-After installation, enable <code>cachefilesd</code> by editing its configuration file as follows.
+```
 
-<pre><code>$ sudo vi /etc/default/cachefilesd
-</code></pre>
+After installation, enable `cachefilesd` by editing its configuration file as follows.
 
-<hr />
+```
+$ sudo vi /etc/default/cachefilesd
 
-<pre><code>RUN=yes
-</code></pre>
+```
 
-<hr />
+* * *
 
-Next, mount a remote NFS share with <code>fsc</code> option:
+```
+RUN=yes
 
-<pre><code> $ sudo vi /etc/fstab
-</code></pre>
+```
 
-<hr />
+* * *
 
-<pre><code> 192.168.1.13:/home/xmodulo /mnt nfs rw,hard,intr,fsc
-</code></pre>
+Next, mount a remote NFS share with `fsc` option:
 
-<hr />
+```
+ $ sudo vi /etc/fstab
 
-Alternatively, if you mount the remote NFS share from the command line, specify <code>fsc</code> as a command-line option:
+```
 
-<pre><code>$ sudo mount -t nfs 192.168.1.13:/home/xmodulo /mnt -o fsc
-</code></pre>
+* * *
 
-Finally, restart <code>cachefilesd</code>:
+```
+ 192.168.1.13:/home/xmodulo /mnt nfs rw,hard,intr,fsc
 
-<pre><code>$ sudo service cachefilesd restart
-</code></pre>
+```
 
-At this point, file caching should be enabled for the mounted NFS share, which means that previously accessed files in the mounted NFS share will be retrieved from local file cache.
+* * *
 
-If you want to flush NFS file cache for any reason, simply restart <code>cachefilesd</code>.
+Alternatively, if you mount the remote NFS share from the command line, specify `fsc` as a command-line option:
 
-<pre><code> $ sudo service cachefilesd restart 
-</code></pre>
+```
+$ sudo mount -t nfs 192.168.1.13:/home/xmodulo /mnt -o fsc
 
-Source: <a href="http://xmodulo.com/2013/06/how-to-enable-local-file-caching-for-nfs-share-on-linux.html">xmodule.com</a>
+```
 
+Finally, restart `cachefilesd`:
+
+```
+$ sudo service cachefilesd restart
+
+```
+
+At this point, file caching should be enabled for the mounted NFS share, which means that previously accessed files in the mounted NFS share will be retrieved from local file cache. If you want to flush NFS file cache for any reason, simply restart `cachefilesd`.
+
+```
+ $ sudo service cachefilesd restart 
+
+```
+
+Source: [xmodule.com](http://xmodulo.com/2013/06/how-to-enable-local-file-caching-for-nfs-share-on-linux.html)

@@ -22,55 +22,52 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Media Tips
-
 ---
 
-<ul>
-<li><a href="http://code.google.com/p/mp4v2/">libmp4v2</a> contains: 
+*   [libmp4v2](http://code.google.com/p/mp4v2/) contains:
+    *   mp4art - to extract a picture (or coverart from mp4)
+    *   mp4info - to get meta data from mp4 streams
+    *   mp4tags - to set metadata and picture.
+*   qt-fastload to move index to the front and making mp4 streamable
+*   When encoding:
+    *   Change max GOP or IDR to around 5 seconds.
+    *   2-pass avg bitrate: 800 or even 500...
 
-<ul>
-<li>mp4art - to extract a picture (or coverart from mp4)</li>
-<li>mp4info - to get meta data from mp4 streams</li>
-<li>mp4tags - to set metadata and picture.</li>
-</ul></li>
-<li>qt-fastload to move index to the front and making mp4 streamable</li>
-<li>When encoding: 
+# Concatenating files:
 
-<ul>
-<li>Change max GOP or IDR to around 5 seconds.</li>
-<li>2-pass avg bitrate: 800 or even 500...</li>
-</ul></li>
-</ul>
-
-<h1>Concatenating files:</h1>
-
-<h2>ffmpeg</h2>
+## ffmpeg
 
 ffmpeg has a feature concat, like
 
-<pre><code>ffmpeg -i concat:"video1.ts|video2.ts"
-</code></pre>
+```
+ffmpeg -i concat:"video1.ts|video2.ts"
 
-There is also a "concat" video filter that may be useful.
+```
 
-See <a href="http://ffmpeg.org/trac/ffmpeg/wiki/How%20to%20concatenate%20%28join,%20merge%29%20media%20files">http://ffmpeg.org/trac/ffmpeg/wiki/How%20to%20concatenate%20%28join,%20merge%29%20media%20files</a>
+There is also a "concat" video filter that may be useful. See
+[http://ffmpeg.org/trac/ffmpeg/wiki/How%20to%20concatenate%20%28join,%20merge%29%20media%20files](http://ffmpeg.org/trac/ffmpeg/wiki/How%20to%20concatenate%20%28join,%20merge%29%20media%20files)
 
-<h2>gpac</h2>
+## gpac
 
-An alternative is <a href="http://gpac.wp.mines-telecom.fr/">gpac</a>.  One command it includes is MP4Box to concatenate MP4s
+An alternative is [gpac](http://gpac.wp.mines-telecom.fr/). One command
+it includes is MP4Box to concatenate MP4s
 
-<pre><code>mp4box -cat sbd0.mp4 -cat sbd1.mp4 -new sbd.mp4
-</code></pre>
+```
+mp4box -cat sbd0.mp4 -cat sbd1.mp4 -new sbd.mp4
 
-<h2>AviDemux</h2>
+```
+
+## AviDemux
 
 Of course the avidemux GUI can append files.
 
-<h2>Final notes</h2>
+## Final notes
 
 So far I have not been able to create a reliable media concat recipe.
 
-<h1>Media Gain</h1>
+# Media Gain
 
-<a href="http://mp3gain.sourceforge.net/">mp3gain</a> can be used to normalize volume levels (without re-encoding).  Accomplish this by using <a href="http://en.wikipedia.org/wiki/ReplayGain">ReplayGain</a> that needs to be supported by player.  (XBMC claims to supports this).
-
+[mp3gain](http://mp3gain.sourceforge.net/) can be used to normalize
+volume levels (without re-encoding). Accomplish this by using
+[ReplayGain](http://en.wikipedia.org/wiki/ReplayGain) that needs to be
+supported by player. (XBMC claims to supports this).
