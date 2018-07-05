@@ -22,19 +22,9 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Remote VirtualBox
-
 ---
 
-<a href="http://knobgoblin.org.uk/" title="RemoteBox">RemoteBox</a> is a Remote VirtualBox UI.
-It is similar <a href="http://sourceforge.net/projects/phpvirtualbox/" title="phpVirtualBox">phpVirtualBox</a>  in that allows to manage 
-VirtualBox remotely (on a potentially headless server).
-They differ in their requirements:
+[RemoteBox](http://knobgoblin.org.uk/ "RemoteBox") is a Remote VirtualBox UI. It is similar [phpVirtualBox](http://sourceforge.net/projects/phpvirtualbox/ "phpVirtualBox") in that allows to manage VirtualBox remotely (on a potentially headless server). They differ in their requirements:
 
-<ul>
-<li><a href="http://knobgoblin.org.uk/" title="RemoteBox">RemoteBox</a> does not require much on the server, but you
-need to install it on the client.</li>
-<li><a href="http://sourceforge.net/projects/phpvirtualbox/" title="phpVirtualBox">phpVirtualBox</a> only requires a browser and rdp viewer
-on the client, but requires a web server with PHP support
-on the server.</li>
-</ul>
-
+*   [RemoteBox](http://knobgoblin.org.uk/ "RemoteBox") does not require much on the server, but you need to install it on the client.
+*   [phpVirtualBox](http://sourceforge.net/projects/phpvirtualbox/ "phpVirtualBox") only requires a browser and rdp viewer on the client, but requires a web server with PHP support on the server.

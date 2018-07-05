@@ -22,21 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: First steps...
-
 ---
 
-So finally took the time to re-launch the <code>0ink</code> web site.
-
-This time used more off-the shelf software. So this site is just a another plain <a href="http://wordpress.org">wordpress powered</a> site. Actually I have to thank my son for <em>introducing</em> me to <strong>wordpress.</strong>
-
-What happened is that my son, who is only seven wanted to have his own<br />
-web site. (Due to peer pressure, kids these days...) He has an Android tablet that he uses quite often.
-
-Since I knew that <strong>wordpress</strong> can be used to make decent looking web sites and there even was an Android app. Also knew that free **wordpress* hosting sites can easily be found...
-
-Make a story short, I set him up with a <a href="http://wordpress.com/">http://wordpress.com/</a> account and he was live on the 'Net in a matter of minutes. His website can be found <a href="http://sebitoliu.wordpress.com/">here</a>.
-
-This first foray got me intrigued, so I tested it on another free hosting <a href="http://s12.pw/">site (here)</a> and found it quite powerful so decided to use it for <code>0ink.net</code> which seriously needed to move to a new host. The old hosting service <a href="http://www.110mb.com/">110mb</a> had been taken over by a <strong>new management team</strong> and the new free hosting service was not as appealing as before. Add in a little bit of bit-rot and that site quickly became an ugly mess.
-
-So now we are back again, and hopefully will be more maintainable.
-
+So finally took the time to re-launch the `0ink` web site. This time used more off-the shelf software. So this site is just a another plain [wordpress powered](http://wordpress.org) site. Actually I have to thank my son for _introducing_ me to **wordpress.** What happened is that my son, who is only seven wanted to have his own  
+web site. (Due to peer pressure, kids these days...) He has an Android tablet that he uses quite often. Since I knew that **wordpress** can be used to make decent looking web sites and there even was an Android app. Also knew that free \*\*wordpress\* hosting sites can easily be found... Make a story short, I set him up with a [http://wordpress.com/](http://wordpress.com/) account and he was live on the 'Net in a matter of minutes. His website can be found [here](http://sebitoliu.wordpress.com/). This first foray got me intrigued, so I tested it on another free hosting [site (here)](http://s12.pw/) and found it quite powerful so decided to use it for `0ink.net` which seriously needed to move to a new host. The old hosting service [110mb](http://www.110mb.com/) had been taken over by a **new management team** and the new free hosting service was not as appealing as before. Add in a little bit of bit-rot and that site quickly became an ugly mess. So now we are back again, and hopefully will be more maintainable.
