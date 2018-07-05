@@ -26,6 +26,22 @@ title: International Phonetic Alphabet
 
 Phonetic Alphabet
 
+
+|1|2|3|4|
+|--- |--- |--- |--- |
+|Alpha|Kilo|Uniform|0 - Zero|
+|Bravo|Lima|Victor|1 - Wun|
+|Charlie|Mike|Whiskey|2 - Two|
+|Delta|November|X-Ray|3 - Tree|
+|Echo|Oscar|Yankee|4 - Fower|
+|Foxtrot|Papa|Zulu|5 - Fife|
+|Golf|Quebec|. decimal|6 - Six|
+|Hotel|Romeo|(point)|7 -Seven|
+|India|Sierra|. (full)|8 - Ait|
+|Juliet|Tango|stop|9 - Niner|
+
+
+
 <table>
 <thead>
 <tr>
