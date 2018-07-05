@@ -29,9 +29,20 @@ portable console
 
 Set scrolling region:
 
-    printf "\033[1;24r"
+~~~bash
+printf "\033[1;24r"
+~~~
 
 Reset scrolling region:
 
-    printf "\033[r"
+
+~~~bash
+printf "\033[r"
+~~~
+
+However, it is easier/better to do:
+
+~~~bash
+stty rows 24 cols 80
+~~~
 
