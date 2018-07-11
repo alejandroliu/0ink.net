@@ -26,10 +26,10 @@ This will *implicitly* print lines that match the regular expression.
 
 If you feel lost, Here are a series of posts about awk for you:
 
-* https://blog.jpalardy.com/posts/why-learn-awk/
-* https://blog.jpalardy.com/posts/awk-tutorial-part-1/
-* https://blog.jpalardy.com/posts/awk-tutorial-part-2/
-* https://blog.jpalardy.com/posts/awk-tutorial-part-3/
+* [Why Learn AWK](https://blog.jpalardy.com/posts/why-learn-awk/)
+* [Tutorial Part 1](https://blog.jpalardy.com/posts/awk-tutorial-part-1/)
+* [Tutorial Part 2](https://blog.jpalardy.com/posts/awk-tutorial-part-2/)
+* [Tutorial Part 3](https://blog.jpalardy.com/posts/awk-tutorial-part-3/)
 
 # Why would you want to do this?
 
