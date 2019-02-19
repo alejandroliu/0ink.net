@@ -2,8 +2,6 @@
 title: Installing Void Linux
 ---
 
-# Void Linux installation
-
 I am making a switch to [void linux][void].  So far it has been working
 fine.  I like that it is very stream-lined and hardware support
 has been mostly fine.
@@ -403,8 +401,8 @@ For that you need to patch `/etc/acpi/handler.sh` as follows:
 
 ```
 --- handler.sh	2019-02-19 06:34:44.007629342 +0100
-+++ handler-hib.sh	2019-02-19 06:35:08.130628479 +0100
-@@ -26,8 +26,14 @@
++++ handler-hib.sh	2019-02-19 09:08:49.521017978 +0100
+@@ -26,8 +26,22 @@
          #echo "PowerButton pressed!">/dev/tty5
          case "$2" in
              PBTN|PWRF)
@@ -413,7 +411,15 @@ For that you need to patch `/etc/acpi/handler.sh` as follows:
 +		    is_active=$(ck-list-sessions | grep active | grep TRUE | wc -l)
 +		    if [ $is_active -gt 0 ] ; then
 +		      logger "PowerButton pressed: $2, Hibernating..."
++		      cvt=$(fgconsole)
++		      ( echo "Hibernating..." ) > /dev/tty1 < /dev/tty1 2>&1
++		      chvt 1
 +		      ZZZ
++		      ( echo "Resuming..." ) > /dev/tty1 < /dev/tty1 2>&1
++		      if [ -n "$cvt" ] ; then
++		        sleep 3
++			chvt "$cvt"
++		      fi
 +		    else
 +		      logger "PowerButton pressed: $2, Shutting down..."
 +		      shutdown -P now
@@ -421,23 +427,9 @@ For that you need to patch `/etc/acpi/handler.sh` as follows:
  		    ;;
              *)      logger "ACPI action undefined: $2" ;;
          esac
-```
-FIXME: Use "chvt 5" and show text explaining what we are doing
-in /dev/tty5
-
-Additional software:
 
 ```
-geany
-geany-plugins
-geany-plugins-extra
-git
-tcl
-tk
-mplayer
-ffmpeg
-gst-libav
-```
+
 Check [here](https://www.youtube.com/html5) to make sure FireFox
 can play `mp4` files.
 
