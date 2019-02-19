@@ -432,7 +432,14 @@ geany
 geany-plugins
 geany-plugins-extra
 git
+tcl
+tk
+mplayer
+ffmpeg
+gst-libav
 ```
+Check [here](https://www.youtube.com/html5) to make sure FireFox
+can play `mp4` files.
 
 
  [void]: https://voidlinux.org "Void Linux"
