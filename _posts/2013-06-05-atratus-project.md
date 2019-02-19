@@ -22,18 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: atratus project
-...
 ---
 
-The other day I came across this <a title="Atratus project" href="http://atratus.org/" target="_blank">project</a>.
 
-Looks an interesting idea.  It is a project that lets you run unmodified Linux binaries on Windows.  It is more similar to WINE than to for example coLinux.
-
-While I conceptually I understand how it would work at a low level, I am curious how it works with dynamically link executables.
-
-This is something I would like to test out when I have time.
-
-&nbsp;
-
-&nbsp;
-
+The other day I came across this [project](http://atratus.org/ "Atratus project"). Looks an interesting idea. It is a project that lets you run unmodified Linux binaries on Windows. It is more similar to WINE than to for example coLinux. While I conceptually I understand how it would work at a low level, I am curious how it works with dynamically link executables. This is something I would like to test out when I have time.

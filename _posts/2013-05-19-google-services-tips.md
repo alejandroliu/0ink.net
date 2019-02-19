@@ -21,17 +21,12 @@ menu_order: "0"
 post_type: post
 post_mime_type: ""
 comment_count: "0"
-title: Google Services Tips
-...
+title: Cleaning up Google Calendar
 ---
 
-<h1>Cleaning up Google Calendar</h1>
+Recipe for cleaning a google calendar.
 
-<ol>
-<li>Sign in to Google Calendar</li>
-<li>Click on Calendar Settings (current version has this just above the list of personal calendars, under an arrow).</li>
-<li>Click on "Delete" of the main calendar.</li>
-<li>A confirmation dialog box appears telling you that
-that "This deletes all events on primary Calendar".</li>
-</ol>
-
+1.  Sign in to Google Calendar
+2.  Click on Calendar Settings (current version has this just above the list of personal calendars, under an arrow).
+3.  Click on "Delete" of the main calendar.
+4.  A confirmation dialog box appears telling you that that "This deletes all events on primary Calendar".

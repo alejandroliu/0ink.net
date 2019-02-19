@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: SSL Certificates
-...
+
 ---
 
 So it is is a more dangerous world out there. You can start securing web sites using self signed certificates. Another option is to:

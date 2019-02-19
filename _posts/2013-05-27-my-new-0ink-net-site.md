@@ -22,24 +22,20 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: My new 0ink.net site
-...
 ---
 
-So one weekend went by and managed to finish up my <code>0ink.net</code> web site.
 
-So now I have:
 
-<ul>
-<li><a href="http://wordpress.org/">wordpress</a><br />
-For main content.</li>
-<li><a href="http://tt-rss.org/">tt-rss</a><br />
-This is my answer to Google's shutdown of the Reader service.</li>
-<li>Automated backups<br />
-Through my own custom scripts.</li>
-<li>New e-mail server</li>
-<li><a href="http://www.manyfish.co.uk/sitecopy/">sitecopy</a><br />
-To manage the web software updates.</li>
-<li><a href="http://www.cloudflare.com/">CloudFlare</a><br />
-Reverse proxy and web accelerator.</li>
-</ul>
+So one weekend went by and managed to finish up my `0ink.net` web site. So now I have:
 
+*   [wordpress](http://wordpress.org/)  
+    For main content.
+*   [tt-rss](http://tt-rss.org/)  
+    This is my answer to Google's shutdown of the Reader service.
+*   Automated backups  
+    Through my own custom scripts.
+*   New e-mail server
+*   [sitecopy](http://www.manyfish.co.uk/sitecopy/)  
+    To manage the web software updates.
+*   [CloudFlare](http://www.cloudflare.com/)  
+    Reverse proxy and web accelerator.

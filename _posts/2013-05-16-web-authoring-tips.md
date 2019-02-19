@@ -21,27 +21,22 @@ menu_order: "0"
 post_type: post
 post_mime_type: ""
 comment_count: "0"
-title: Web Authoring Tips
-...
+title: On-line Web Authoring Resources
 ---
 
-<h2>On-line resources</h2>
+A collection of links for Web-Authoring.  This focuses on using
+Web (HTML and CSS) technologies directly and not through a
+CMS like Wordpress.
 
-<ul>
-<li><p><a href="http://www.webestools.com/">http://www.webestools.com/</a><br />
-Free online tools, generators, services, scripts, tutorials.</p></li>
-<li><p><a href="http://www.google.com/webmasters/tools">http://www.google.com/webmasters/tools</a><br />
-Google Webmaster tools, gives you a peek of how your website<br />
-looks from google search engines perspective.</p></li>
-</ul>
 
-<h2>Source of Free templates</h2>
-
-<ul>
-<li><a href="http://www.freecsstemplates.org/">http://www.freecsstemplates.org/</a></li>
-<li><a href="http://csscreme.com/">http://csscreme.com/</a></li>
-<li><a href="http://www.templatemo.com/">http://www.templatemo.com/</a> (Unrestricted)</li>
-<li><a href="http://www.free-css.com/">http://www.free-css.com/</a> (GPL or CC)</li>
-<li><a href="http://www.free-css-templates.com/">http://www.free-css-templates.com/</a> (CC)</li>
-</ul>
-
+*   [http://www.webestools.com/](http://www.webestools.com/)  
+    Free online tools, generators, services, scripts, tutorials.
+*   [http://www.google.com/webmasters/tools](http://www.google.com/webmasters/tools)  
+    Google Webmaster tools, gives you a peek of how your website  
+    looks from google search engines perspective.
+* Free templates
+  *   [http://www.freecsstemplates.org/](http://www.freecsstemplates.org/)
+  *   [http://csscreme.com/](http://csscreme.com/)
+  *   [http://www.templatemo.com/](http://www.templatemo.com/) (Unrestricted)
+  *   [http://www.free-css.com/](http://www.free-css.com/) (GPL or CC)
+  *   [http://www.free-css-templates.com/](http://www.free-css-templates.com/) (CC)

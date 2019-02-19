@@ -12,6 +12,6 @@ I use this to collect my notes. Usually clippings from the Internet
 that I want to keep together in a single place but keep available
 over the Internet.
 
-See on [github]({{ site.github.repository_url }}).
+See this on [github]({{ site.github.repository_url }}).
 
 

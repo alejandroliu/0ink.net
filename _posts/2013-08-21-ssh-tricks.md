@@ -22,63 +22,73 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: SSH Tricks
-...
 ---
 
-<h2>Forcing either IPv4 or IPv6</h2>
+A bunch of stupid SSH tricks that can be useful somehow, somewhere...
 
-This is for the scenario that you know which specific protocol works<br />
-to reach a particular host. Usually good to eliminate the delay<br />
-for SSH to figure out to switch IP protocols.
+Forcing either IPv4 or IPv6
+---------------------------
 
-For IPv4:
+This is for the scenario that you know which specific protocol works  
+to reach a particular host. Usually good to eliminate the delay  
+for SSH to figure out to switch IP protocols. For IPv4:
 
-<pre><code>ssh -4 user@hostname.com
-</code></pre>
+    ssh -4 user@hostname.com
+    
 
 For IPv6
 
-<pre><code>ssh -6 user@hostname.com
-</code></pre>
+    ssh -6 user@hostname.com
+    
 
-<h2>Reuse a SSH connection</h2>
+Reuse a SSH connection
+----------------------
 
-Rather than start a new TCP connection to a remote host, simply multiplex over an existing connection:
+Rather than start a new TCP connection to a remote host, simply
+multiplex over an existing connection: Add to your `~/.ssh/config` the
+following lines:
 
-Add to your <code>~/.ssh/config</code> the following lines:
+    Host *
+        ControlMaster auto
+        ControlPath /tmp/%r@%h:%p
+        ControlPersist 4h
+    # Another option for Control Path
+        ControlPath ~/.ssh/%r@%h:%p
+    
 
-<pre><code>Host *
-    ControlMaster auto
-    ControlPath /tmp/%r@%h:%p
-    ControlPersist 4h
-# Another option for Control Path
-    ControlPath ~/.ssh/%r@%h:%p
-</code></pre>
+Enable compression
+------------------
 
-<h2>Enable compression</h2>
+Use the `-C` option. Or in the config file:
 
-Use the <code>-C</code> option. Or in the config file:
+    Compression yes
+    
 
-<pre><code>Compression yes
-</code></pre>
+Using cheaper cyphers
+---------------------
 
-<h2>Using cheaper cyphers</h2>
+Using less computation-heavy ciphers in SSH, so that less time is spent
+during encryption/decryption. The default **AES** cipher used by
+OpenSSH is known to be slow. An independent study shows that
+**arcfour** and **blowfish** ciphers are faster than **AES**. 
+**blowfish** is a fast block cipher which is also very secure.
+Meanwhile, **arcfour** stream cipher is known to have vulnerabilities.
+So use caution when using **arcfour**. Use the `-c blowfish-cbc,arcfour`
+option or in the config file:
 
-Using less computation-heavy ciphers in SSH, so that less time is spent during encryption/decryption. The default <strong>AES</strong> cipher used by OpenSSH is known to be slow.
+    Ciphers blowfish-cbc,arcfour
+    
 
-An independent study shows that <strong>arcfour</strong> and <strong>blowfish</strong> ciphers are faster than <strong>AES</strong>. <strong>blowfish</strong> is a fast block cipher which is also very secure. Meanwhile, <strong>arcfour</strong> stream cipher is known to have vulnerabilities. So use caution when using <strong>arcfour</strong>.
+Improve Session Persistence
+---------------------------
 
-Use the <code>-c blowfish-cbc,arcfour</code> option or in the config file:
+    ServerAliveInterval 60
+    ServerAliveCountMax 10
+    TCPKeepAlive no
+    
 
-<pre><code>Ciphers blowfish-cbc,arcfour
-</code></pre>
-
-<h2>Improve Session Persistence</h2>
-
-<pre><code>ServerAliveInterval 60
-ServerAliveCountMax 10
-TCPKeepAlive no
-</code></pre>
-
-Counterintuitively, setting this results in fewer disconnections from your host, as transient TCP problems can self-repair in ways that fly below SSH's radar. You may not want to apply this to scripts that work via SSH, as "parts of the SSH tunnel going non-responsive" may work in ways you neither want nor expect!
-
+Counterintuitively, setting this results in fewer disconnections from
+your host, as transient TCP problems can self-repair in ways that fly
+below SSH's radar. You may not want to apply this to scripts that work
+via SSH, as "parts of the SSH tunnel going non-responsive" may work in
+ways you neither want nor expect!

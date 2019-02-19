@@ -11,6 +11,8 @@ post_type: post
 title: Linux Keyboard Tips
 ---
 
+Miscellaneous hacks to use the keyboard under Linux.
+
 # Turn number pad into a mouse controller
 
 This comes in handy when working at a **colo** or someplace where you

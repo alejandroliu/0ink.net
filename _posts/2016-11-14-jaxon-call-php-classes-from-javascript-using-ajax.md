@@ -22,11 +22,8 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: 'Jaxon: Call PHP classes from JavaScript using AJAX'
-...
 ---
 
-
-# [Jaxon][jxurl]
 
 [Jaxon][jxurl] is an open source PHP library for easily creating Ajax web applications. It allows into a web page to make direct Ajax calls to PHP classes that will in turn update its content, without reloading the entire page.
 

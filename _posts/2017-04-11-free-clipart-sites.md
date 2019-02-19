@@ -24,17 +24,20 @@ comment_count: "0"
 title: Free Clipart sites
 ---
 
-
-From [makeuseof](http://www.makeuseof.com/tag/the-best-websites-for-free-clipart-downloads/)
-
 In 2014, Microsoft [killed and buried Clipart](https://www.makeuseof.com/tag/clip-art-gone-heres-find-free-images-instead/)
 in the digital graveyard.
 
-Clipart had outlived its usefulness as users relied more on search engines than Microsoft' somewhat limited supply through the Office suite.
+Clipart had outlived its usefulness as users relied more on search
+engines than Microsoft' somewhat limited supply through the Office
+suite.
 
-Today' clipart needs to be modern, colorful, and less cartoonish. An online search for clip art images will net you files that are of far better quality and relevance. But you need shortcuts when searching for the right image is a daily workout.
+Today' clipart needs to be modern, colorful, and less cartoonish. An
+online search for clip art images will net you files that are of far
+better quality and relevance. But you need shortcuts when searching for
+the right image is a daily workout.
 
-These are *13 of the top websites* for free clipart downloads. Browse through them and bookmark the ones that meet your needs.
+These are *13 of the top websites* for free clipart downloads. Browse
+through them and bookmark the ones that meet your needs.
 
 * [clker.com](http://www.clker.com/) : This site is among the more neatly designed ones you can expect to find for clipart hunting. The images are free to download and use. All images are in the public domain, so feel free to use them anywhere after agreeing to the site' terms of use policy.
 * [Vecteezy](https://www.vecteezy.com/free-vector/vector-clipart-free-download) : Vecteezy
@@ -59,15 +62,4 @@ These are *13 of the top websites* for free clipart downloads. Browse through th
 * [Wikimedia Commons](https://commons.wikimedia.org/wiki/Main_Page) : This is arguably the largest collection of free images on the web. So far there are *38,205,390* freely usable media files and it is always open for contribution from anyone in the world. Use the search box at the top to ferret the files you want to use. As a regular user, you can take advantage of the syndicated feeds to grab the latest images that come into the archive.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+From [makeuseof](http://www.makeuseof.com/tag/the-best-websites-for-free-clipart-downloads/)

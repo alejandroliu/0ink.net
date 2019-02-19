@@ -22,12 +22,15 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Building Signed APKs
-...
 ---
 
-Building signed APK's for Android is easy if you know what you are doing.
+Building signed APK's for Android is easy if you know what you
+are doing.
 
-# Preparation
+This article goes over the preparation steps and the additional
+build instructions needed to created signed APKs.
+
+## Preparation
 
 First you need to have a `keystore`.  Use this command:
 
@@ -57,7 +60,7 @@ EOF
 
 Remember the keystore file and passwords.
 
-# Build instructions
+## Build instructions
 
 In your `build.gradle` you need the following:
 

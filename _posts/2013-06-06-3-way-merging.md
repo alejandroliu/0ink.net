@@ -22,22 +22,16 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Upgrading pacman config files
-...
 ---
 
-So when upgrading software packages sometimes you need to merge changes.  My recipe in <strong>archlinux</strong> is as follows:
+So when upgrading software packages sometimes you need to merge changes. My recipe in **archlinux** is as follows:
 
-<ol>
-    <li>Look for <strong>*.pacnew</strong> files.</li>
-    <li>Retrieve the original version (from /var/cache/pacman) from the old source package.</li>
-    <li>Use a 3 way merge tool between old version, current file and the pacnew file.</li>
-</ol>
+1.  Look for ***.pacnew** files.
+2.  Retrieve the original version (from /var/cache/pacman) from the old source package.
+3.  Use a 3 way merge tool between old version, current file and the pacnew file.
 
 These are my options for merging:
 
-<ul>
-    <li>diff3 -m : Merges the changes into a single file (Use -m option)</li>
-    <li><a title="diffuse" href="http://diffuse.sourceforge.net/">diffuse</a></li>
-    <li><a title="meld merge" href="http://meldmerge.org/">meld</a></li>
-</ul>
-
+*   diff3 -m : Merges the changes into a single file (Use -m option)
+*   [diffuse](http://diffuse.sourceforge.net/ "diffuse")
+*   [meld](http://meldmerge.org/ "meld merge")

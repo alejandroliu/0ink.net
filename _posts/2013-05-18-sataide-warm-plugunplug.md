@@ -22,27 +22,31 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: SATA/IDE warm plug/unplug
-...
 ---
 
 This is for SATA and IDE interfaces that do not automatically detect added/removed devices.
 
-<h2>Scanning for newly added discs:</h2>
+## Scanning for newly added discs:
 
-<pre><code>echo "- - -" &gt; /sys/class/scsi_host/host0/scan
-</code></pre>
+```
+echo "- - -" > /sys/class/scsi_host/host0/scan
 
-<h2>safely removing a disk</h2>
+```
 
-<pre><code>echo 1 &gt; /sys/block/sda/device/delete
-</code></pre>
+## safely removing a disk
 
-<h2>Other notes...</h2>
+```
+echo 1 > /sys/block/sda/device/delete
 
-In the <em>HP MicroServer</em>, we can identify the host to scan by:
+```
 
-<pre><code>head -1 /sys/class/scsi_host/host*/proc_name
-</code></pre>
+## Other notes...
 
-And look for the <code>pata_atiixp</code>.  Should show <code>ahci</code> and <code>usb-storage</code> too.
+In the _HP MicroServer_, we can identify the host to scan by:
 
+```
+head -1 /sys/class/scsi_host/host*/proc_name
+
+```
+
+And look for the `pata_atiixp`. Should show `ahci` and `usb-storage` too.

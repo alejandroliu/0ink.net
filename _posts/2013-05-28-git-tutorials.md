@@ -22,16 +22,13 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Git Tutorials
-...
 ---
 
 Reference for Git tutorials
 
-<ul>
-    <li><a href="http://linux.yyz.us/git-howto.html">http://linux.yyz.us/git-howto.html</a></li>
-    <li><a href="http://git.or.cz/course/svn.html">http://git.or.cz/course/svn.html</a></li>
-    <li><a href="http://spheredev.org/wiki/Git_for_the_lazy">http://spheredev.org/wiki/Git_for_the_lazy</a></li>
-    <li><a href="http://www.kernel.org/pub/software/scm/git/docs/gittutorial.html">http://www.kernel.org/pub/software/scm/git/docs/gittutorial.html</a></li>
-    <li><a href="http://www.kernel.org/pub/software/scm/git/docs/everyday.html">http://www.kernel.org/pub/software/scm/git/docs/everyday.html</a></li>
-    <li><a href="https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial">https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial</a></li>
-</ul>
+*   [http://linux.yyz.us/git-howto.html](http://linux.yyz.us/git-howto.html)
+*   [http://git.or.cz/course/svn.html](http://git.or.cz/course/svn.html)
+*   [http://spheredev.org/wiki/Git\_for\_the_lazy](http://spheredev.org/wiki/Git_for_the_lazy)
+*   [http://www.kernel.org/pub/software/scm/git/docs/gittutorial.html](http://www.kernel.org/pub/software/scm/git/docs/gittutorial.html)
+*   [http://www.kernel.org/pub/software/scm/git/docs/everyday.html](http://www.kernel.org/pub/software/scm/git/docs/everyday.html)
+*   [https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial](https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial)

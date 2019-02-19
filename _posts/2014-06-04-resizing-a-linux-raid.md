@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Resizing a Linux RAID
-...
+
 ---
 
 It is possible to migrate the whole array to larger drives

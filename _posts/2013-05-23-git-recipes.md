@@ -22,307 +22,321 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Git recipes
-...
 ---
 
-<h1>Rewriting history</h1>
+A collection of small useful recipes for using with `Git`.
 
-<h2>Rolling back the last commit</h2>
+
+Rewriting history
+=================
+
+Rolling back the last commit
+----------------------------
 
 if nobody has pulled your remote repo yet, you can change your branch HEAD and force push it to said remote repo:
 
-<pre><code>git reset --hard HEAD^
-git push -f
-</code></pre>
+    git reset --hard HEAD^
+    git push -f
+    
 
-<h1>Restoring changes</h1>
+Restoring changes
+=================
 
 So in the event that you want to go back to a previous version of a file. First you must identify the version using:
 
-<pre><code>git log $file
-</code></pre>
+    git log $file
+    
 
 Once you know which commit to go to, do:
 
-<pre><code>git checkout $hash $file
-</code></pre>
+    git checkout $hash $file
+    
 
 Then
 
-<pre><code>git commit $file
-</code></pre>
+    git commit $file
+    
 
-<h1>User friendly version ids</h1>
+User friendly version ids
+=========================
 
 Creating version ids Use:
 
-<pre><code> git describe
-</code></pre>
+     git describe
+    
 
 Gives:
 
-<pre><code> $tag-$commit_count-$hash
-</code></pre>
+     $tag-$commit_count-$hash
+    
 
 However for this to work, you need to have a good tag set and a good tag naming convention.
 
-<h1>Branches</h1>
+Branches
+========
 
 Main branch names:
 
-<ul>
-<li>master - The main branch. Source code of HEAD always reflects production-ready status.</li>
-<li>develop or dev - Main dev branch. HEAD always reflects state with the latest development changes for the next release. This can sometimes be called the "integration branch" and used to generate automatic nightly builds.</li>
-</ul>
+*   master - The main branch. Source code of HEAD always reflects production-ready status.
+*   develop or dev - Main dev branch. HEAD always reflects state with the latest development changes for the next release. This can sometimes be called the "integration branch" and used to generate automatic nightly builds.
 
 Also a variety of supporting branches to aid parallel development between team members, ease tracking of features, prepare for production releases and to assist in quickly fixing live production problems. Unlike the main branches, these branches always have a limited life time, since they will be removed eventually. Creating a new branch:
 
-<pre><code> git checkout -b new_branch develop
- # Creates a branch called "new_branch" from "develop" and switches to it
-  git push -u origin new_branch
-  # Pushes "new_branch" to the remote repo
-</code></pre>
+     git checkout -b new_branch develop
+     # Creates a branch called "new_branch" from "develop" and switches to it
+      git push -u origin new_branch
+      # Pushes "new_branch" to the remote repo
+    
 
 Listing branches
 
-<pre><code> git branch      # List all local branches
- git branch -a  # List local and remote branches    
-</code></pre>
+     git branch      # List all local branches
+     git branch -a  # List local and remote branches    
+    
 
 Merging branches
 
-<pre><code> git checkout dev
- # Switches to branch that will receive the commits...
- git merge --no-ff "feature_branch"
- # makes the a single commit (instead of replaying all the commits from the feature branch)
-</code></pre>
+     git checkout dev
+     # Switches to branch that will receive the commits...
+     git merge --no-ff "feature_branch"
+     # makes the a single commit (instead of replaying all the commits from the feature branch)
+    
 
 Deleting branches
 
-<pre><code>git branch -d branch_name    # Only local branches
-git push origin --delete branch_name # Remote branch
-git push origin :branch_name # Old format for deleting... prefix with ":"
-</code></pre>
+    git branch -d branch_name    # Only local branches
+    git push origin --delete branch_name # Remote branch
+    git push origin :branch_name # Old format for deleting... prefix with ":"
+    
 
 Clean-up delete branches in remote repo from local repo...
 
-<pre><code>git branch --delete branch
-git remote prune origin
-</code></pre>
+    git branch --delete branch
+    git remote prune origin
+    
 
-<h1>Tagging</h1>
+Tagging
+=======
 
-<h2>Creating tags</h2>
+Creating tags
+-------------
 
 Tag releases with
 
-<pre><code>git tag -a $tagname -m "$descr"
-</code></pre>
+    git tag -a $tagname -m "$descr"
+    
 
 This creates an annotated tag that has full meta data content and it is favored by Git describe.
 
-<h2>Temporary snapshots</h2>
+Temporary snapshots
+-------------------
 
-<pre><code>git tag $tagname
-</code></pre>
+    git tag $tagname
+    
 
 These are lightweight tag that are associated to a specific commit.
 
-<h2>Sharing tags</h2>
+Sharing tags
+------------
 
 By default are not pushed. They need to be exported with:
 
-<pre><code>git push origin $tagname
-</code></pre>
+    git push origin $tagname
+    
 
 or
 
-<pre><code>git push origin --tags
-</code></pre>
+    git push origin --tags
+    
 
-<h2>To pull tags (if there aren't any)</h2>
+To pull tags (if there aren't any)
+----------------------------------
 
-<pre><code>git fetch --tags
-</code></pre>
+    git fetch --tags
+    
 
-<h2>Deleting tags</h2>
+Deleting tags
+-------------
 
-<pre><code>git tag -d $tagname    # Local tags
-git push --delete origin $tagname # Remote tags
-git push origin :refs/tags/$tagname   # Remote tags (OLD VERSION)
+    git tag -d $tagname    # Local tags
+    git push --delete origin $tagname # Remote tags
+    git push origin :refs/tags/$tagname   # Remote tags (OLD VERSION)
+    
+    
 
-</code></pre>
+Rename a tag:
+-------------
 
-<h2>Rename a tag:</h2>
+    git tag new old
+    git tag -d old
+    git push origin :refs/tags/old
+    
 
-<pre><code>git tag new old
-git tag -d old
-git push origin :refs/tags/old
-</code></pre>
+Setting up GIT
+==============
 
-<h1>Setting up GIT</h1>
-
-<pre><code>git config --global user.name "user"
-git config --global user.email "email"
-</code></pre>
+    git config --global user.name "user"
+    git config --global user.email "email"
+    
 
 Other settings:
 
-<pre><code>[http]
-  sslVerify = false
-  proxy = http://10.47.142.30:8080/
-[user]
-  email = alejandro_liu@hotmail.com
-  name = alex
-</code></pre>
+    [http]
+      sslVerify = false
+      proxy = http://10.47.142.30:8080/
+    [user]
+      email = alejandro_liu@hotmail.com
+      name = alex
+    
 
-<h2>Using ~/.netrc for persistent authentication</h2>
+Using ~/.netrc for persistent authentication
+--------------------------------------------
 
-Create a file called <code>.netrc</code> in your home directory.  Make sure you sets permissions <code>600</code> so
-that it is only readable by user.
+Create a file called `.netrc` in your home directory. Make sure you sets permissions `600` so that it is only readable by user. With Windows, create a file `_netrc` in your home directory. You may need to define a %HOME% environment variable. In Windows 7 you can use:
 
-With Windows, create a file <code>_netrc</code> in your home directory.  You may need to define a %HOME%
-environment variable.  In Windows 7 you can use:
-
-<pre><code>setx HOME %USERPROFILE%
-</code></pre>
+    setx HOME %USERPROFILE%
+    
 
 or
 
-<pre><code>set HOME=%HOMEDRIVE%%HOMEPATH%
-</code></pre>
+    set HOME=%HOMEDRIVE%%HOMEPATH%
+    
 
-The contents of <code>.netrc</code> (or <code>_netrc</code>) are as follows:
+The contents of `.netrc` (or `_netrc`) are as follows:
 
-<pre><code>|machine $system
-|   login $user
-|   password $pwd
-|machine $system
-|   login $user
-|   password $pwd
-</code></pre>
+    |machine $system
+    |   login $user
+    |   password $pwd
+    |machine $system
+    |   login $user
+    |   password $pwd
+    
 
-<h1>Creating new repositories</h1>
+Creating new repositories
+=========================
 
-<pre><code>mkdir ~/hello-world
-cd ~/hello-world
-git init
-# Creates an empty repository in ~/hello-world
-touch file
-git add file
-git commit -m 'first commit'
-# Creates a new file and commits locally
-git remote add origin 'https://$user:$passwd@github.com/$user/hello-world.git
-# Creates a remote name for push/pull
-git push origin master
-# Send commits to remote
-</code></pre>
+    mkdir ~/hello-world
+    cd ~/hello-world
+    git init
+    # Creates an empty repository in ~/hello-world
+    touch file
+    git add file
+    git commit -m 'first commit'
+    # Creates a new file and commits locally
+    git remote add origin 'https://$user:$passwd@github.com/$user/hello-world.git
+    # Creates a remote name for push/pull
+    git push origin master
+    # Send commits to remote
+    
 
 Creating a bare repo:
 
-<pre><code>mkdir templ
-cd templ
-echo "Initial commit" &amp;gt; README.md
-git add README.md
-git commit -m"Initial commit"
-git clone --bare . 
-</code></pre>
+    mkdir templ
+    cd templ
+    echo "Initial commit" &gt; README.md
+    git add README.md
+    git commit -m"Initial commit"
+    git clone --bare . 
+    
 
-<h1>Vendor Branches</h1>
+Vendor Branches
+===============
 
 Set-up
 
-<pre><code>unzip wordpress-2.3.zip
-cd wordpress 
-# Note, unzip creates this directory...
-git init
-git add .
-git commit -m 'Import wordpress 2.3'
-git tag v2.3
-git branch upstream
-# Create the upstream branch used to track new vendor releases
-</code></pre>
+    unzip wordpress-2.3.zip
+    cd wordpress 
+    # Note, unzip creates this directory...
+    git init
+    git add .
+    git commit -m 'Import wordpress 2.3'
+    git tag v2.3
+    git branch upstream
+    # Create the upstream branch used to track new vendor releases
+    
 
 When a new release comes out:
 
-<pre><code>cd wordpress
-git checkout upstream
-rm -r *
-# Delete all files in the main directory but doesn't touch dot files (like .git)
-(cd .. &amp;amp;&amp;amp; unzip wordpress-2.3.1.zip)
-git add .
-git commit -a -m 'Import wordpress 2.3.1'
-git tag v2.3.1
-git checkout master
-git merge upstream
-</code></pre>
+    cd wordpress
+    git checkout upstream
+    rm -r *
+    # Delete all files in the main directory but doesn't touch dot files (like .git)
+    (cd .. &amp;&amp; unzip wordpress-2.3.1.zip)
+    git add .
+    git commit -a -m 'Import wordpress 2.3.1'
+    git tag v2.3.1
+    git checkout master
+    git merge upstream
+    
 
-A variation of vendor branches is to sync with an upstream fork in github.  Read this guide on how to do that: <a href="https://help.github.com/articles/syncing-a-fork/">Syncing a fork on github</a>
+A variation of vendor branches is to sync with an upstream fork in github. Read this guide on how to do that: [Syncing a fork on github](https://help.github.com/articles/syncing-a-fork/)
 
-<h1>GIT through patches</h1>
+GIT through patches
+===================
 
 Creating a patch:
 
-<pre><code> ... prepare a new branch to keep work separate ...
- git checkout -b mybranch
- ... do work ...
- git commit -a
- .. create the patch from branch "master"...
- git format-patch master --stdout &amp;gt; file.patch
-</code></pre>
+     ... prepare a new branch to keep work separate ...
+     git checkout -b mybranch
+     ... do work ...
+     git commit -a
+     .. create the patch from branch "master"...
+     git format-patch master --stdout &gt; file.patch
+    
 
 To apply patch..
 
-<pre><code> ... show what the patch file will do ...
- git apply --stat file.patch
- .. displays issues the patch might cause...
- git apply --check file.patch
- .. apply with am (so you can sign-off)
- git am --signoff &amp;lt; file.patch
-</code></pre>
+     ... show what the patch file will do ...
+     git apply --stat file.patch
+     .. displays issues the patch might cause...
+     git apply --check file.patch
+     .. apply with am (so you can sign-off)
+     git am --signoff &lt; file.patch
+    
 
-<h1>Maintenance</h1>
+Maintenance
+===========
 
-<pre><code>git fsck
-git gc --prune=now     # Clean-up
-git remote prune origin # Clean-up stale references to deleted remote objects
-</code></pre>
+    git fsck
+    git gc --prune=now     # Clean-up
+    git remote prune origin # Clean-up stale references to deleted remote objects
+    
 
-<h1>Submodules</h1>
+Submodules
+==========
 
 Add submodules to a project:
 
-<pre><code>git submodule add $repo_url $dir
-</code></pre>
+    git submodule add $repo_url $dir
+    
 
 Clone a project with submodules:
 
-<pre><code>git clone $repo_url
-cd $repo
-git submodule init
-git submodule update
-</code></pre>
+    git clone $repo_url
+    cd $repo
+    git submodule init
+    git submodule update
+    
 
-Or in a single command (Git &gt;1.6.5):
+Or in a single command (Git >1.6.5):
 
-<pre><code>git clone --recursive $repo_url
-</code></pre>
+    git clone --recursive $repo_url
+    
 
-For already cloned (Git &gt;1.6.5):
+For already cloned (Git >1.6.5):
 
-<pre><code>git clone $repo_url
-cd $repo
-git submodule update --init --recursive
-</code></pre>
+    git clone $repo_url
+    cd $repo
+    git submodule update --init --recursive
+    
 
 To keep a submodule up-to-date:
 
-<pre><code>git pull
-git submodule update
-</code></pre>
+    git pull
+    git submodule update
+    
 
 Remove sub-modules:
 
-<pre><code>git submodule deinit $submodule
-git rm $submodule # No trailing slash!
-</code></pre>
+    git submodule deinit $submodule
+    git rm $submodule # No trailing slash!

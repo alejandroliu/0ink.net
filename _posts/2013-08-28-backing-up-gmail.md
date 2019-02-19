@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Backing up GMail
-...
+
 ---
 
 The other day I found <a href="http://gmvault.org/index.html">Gmvault</a>.

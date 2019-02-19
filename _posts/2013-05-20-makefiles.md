@@ -22,30 +22,32 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Makefiles
-...
 ---
 
-<h1>GNU Make automatic variables:</h1>
+Some notes on GNU Make.  I always have to look-up these in
+the manual.  Here now for my own convenience.
 
-From <a href="http://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html">http://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html</a>.
 
-<ul>
-<li>$@<br />
-The file name of the target of the rule.</li>
-<li>$%<br />
-The target member name</li>
-<li>$&lt;<br />
-The name of the first prerequisite.</li>
-<li>$?<br />
-The names of all the prerequisites that are newer.</li>
-<li>$^<br />
-The names of all the prerequisites.</li>
-</ul>
+# GNU Make automatic variables:
+
+From [http://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html](http://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html).
+
+*   $@  
+    The file name of the target of the rule.
+*   $%  
+    The target member name
+*   $<  
+    The name of the first prerequisite.
+*   $?  
+    The names of all the prerequisites that are newer.
+*   $^  
+    The names of all the prerequisites.
 
 To include files in Makefile only if they exist:
 
-<pre><code>ifneq ($(wildcard _incfile_),)
+```
+ifneq ($(wildcard _incfile_),)
   include _incfile_
 endif
-</code></pre>
 
+```

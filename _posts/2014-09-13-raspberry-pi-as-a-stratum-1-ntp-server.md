@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Raspberry Pi as a Stratum-1 NTP Server
-...
+
 ---
 
 This is something I found:

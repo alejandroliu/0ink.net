@@ -22,7 +22,6 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Windows administration from the command line
-...
 ---
 
 Windows system administration is very mouse driven and to reach

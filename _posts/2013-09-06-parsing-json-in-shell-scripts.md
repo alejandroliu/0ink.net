@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Parsing JSON in Shell scripts
-...
+
 ---
 
 This can be simple by using <a href="http://stedolan.github.io/jq/">jq</a>.

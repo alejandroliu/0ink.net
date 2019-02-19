@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: DVD archiving
-...
+
 ---
 
 This is my simple procedure for backing up my DVD movies:

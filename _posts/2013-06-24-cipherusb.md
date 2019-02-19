@@ -22,10 +22,9 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: CipherUSB
-...
 ---
 
-<a href="http://www.addonics.com/products/cipherusb.php">Addonics Product: CipherUSB</a>.
+This is an interesting concept. Essentially is an Encryption dongle
+that encrypts stuff between your PC and your USB mass storage device.
 
-This is an interesting concept.  Essentially is an Encryption dongle that encrypts stuff between your PC and your USB mass storage device.
-
+[Addonics Product: CipherUSB](http://www.addonics.com/products/cipherusb.php).

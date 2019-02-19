@@ -22,16 +22,13 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: libmspack
-...
 ---
 
-<a href="http://www.cabextract.org.uk/libmspack/">libmspack</a>.
 
-Recently I found this Open Source project.  Apparently it recently gained support to unpack <strong>Exchange Offline Address Book</strong> files.  What I don't know is after you unpack it, how would you use such a file.  Intriguing but apparently falls a little bit short.
+Recently I found this Open Source project. Apparently it recently
+gained support to unpack **Exchange Offline Address Book** files. What
+I don't know is after you unpack it, how would you use such a file.
+Intriguing but apparently falls a little bit short. Probably would need
+to try it out for myself to see how it works.
 
-Probably would need to try it out for myself to see how it works.
-
-&nbsp;
-
-&nbsp;
-
+[libmspack](http://www.cabextract.org.uk/libmspack/).

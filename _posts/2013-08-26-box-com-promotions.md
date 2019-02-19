@@ -22,10 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: BOX.com promotions
-...
 ---
 
-This is a good link to keep an eye on:
 
-<a href="https://support.box.com/entries/22057282-box-promotions-faq">box.com promotions</a>
-
+This is a good link to keep an eye on: [box.com promotions](https://support.box.com/entries/22057282-box-promotions-faq)

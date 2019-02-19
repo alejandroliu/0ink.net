@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Lifehacker App Guides
-...
+
 ---
 
 These two hyperlinks from Lifehacker are quite useful:

@@ -21,11 +21,8 @@ menu_order: "0"
 post_type: post
 post_mime_type: ""
 comment_count: "0"
-title: Web app build tools
-...
+title: 6 Cloud-Based Tools To Help You Build A Web App With Ease
 ---
-
-6 Cloud-Based Tools To Help You Build A Web App With Ease
 
 In just a relatively short amount of time, building mobile apps has
 transformed from a process that included lots of knowledge in

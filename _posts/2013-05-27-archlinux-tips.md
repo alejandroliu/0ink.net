@@ -22,80 +22,87 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: ArchLinux tips
-...
 ---
 
-<h1>Custom Repos and Packages</h1>
+A bunch of recipes useful for an ArchLinux system environment.
+
+Mostly around system administration.
+
+# Custom Repos and Packages
 
 In the repo directory, put all the packages in there.
 
-<pre><code>repo-add ./custom.db.tar.gz ./*
-</code></pre>
+```
+repo-add ./custom.db.tar.gz ./*
 
-Add to <code>pacman.conf</code>:
+```
 
-<pre><code>[custom]
+Add to `pacman.conf`:
+
+```
+[custom]
 SigLevel = [Package|Databse]Never|Optional|Required
 Server = path-to-repo
-</code></pre>
 
-See also <code>repo-remove</code>.
+```
 
-A package database is a tar file, optionally compressed. Valid extensions are <code>.db</code> or <code>.files</code> followed by an archive extension of <code>.tar</code>, <code>.tar.gz</code>, <code>.tar.bz2</code>, <code>.tar.xz</code>, or <code>.tar.Z</code>. The file does not need to exist, but all parent directories must exist.
+See also `repo-remove`. A package database is a tar file, optionally compressed. Valid extensions are `.db` or `.files` followed by an archive extension of `.tar`, `.tar.gz`, `.tar.bz2`, `.tar.xz`, or `.tar.Z`. The file does not need to exist, but all parent directories must exist. ?Can we create a `rpmgot.php` hack?
 
-?Can we create a <code>rpmgot.php</code> hack?
+# Safe automatic pacman upgrades
 
-<h1>Safe automatic pacman upgrades</h1>
+*   [safepac](https://bbs.archlinux.org/viewtopic.php?id=66822) : This is an approach for automating pacman upgrades yet catching _problematic_ updates before hand.
 
-<ul>
-<li><a href="https://bbs.archlinux.org/viewtopic.php?id=66822">safepac</a> : This is an approach for
-automating pacman upgrades yet catching <em>problematic</em> updates before hand.</li>
-</ul>
-
-<h1>Building packages</h1>
+# Building packages
 
 requires: @base-devel, abs, fakeroot
 
-<pre><code>makepkg -s 
-</code></pre>
+```
+makepkg -s 
+
+```
 
 or
 
-<pre><code>makeworld ?
-</code></pre>
+```
+makeworld ?
 
-<h1>Working with the serial console</h1>
+```
+
+# Working with the serial console
 
 Configure your Arch Linux machine so you can connect to it via the serial console port (com port). This will enable you to administer the machine even if it has no keyboard, mouse, monitor, or network attached to it (a headless server).
 
-<h2>Configuration</h2>
+## Configuration
 
 Add this to the bootloader kernel line:
 
-<pre><code>console=tty0 console=ttyS0,9600
-</code></pre>
+```
+console=tty0 console=ttyS0,9600
+
+```
 
 From systemd:
 
-<pre><code>systemctl enable getty@ttyS0.service 
-</code></pre>
+```
+systemctl enable getty@ttyS0.service 
 
-<h1>Installing Arch Linux using the serial console</h1>
+```
 
-<ol>
-<li>Boot the target machine using the Arch Linux installation CD.</li>
-<li>When the bootloader appears, select "Boot Arch Linux ()" and press tab to edit</li>
-<li>Append console=ttyS0 and press enter</li>
-<li>Systemd should now detect ttyS0 and spawn a serial getty on it, allowing you to proceed as usual</li>
-</ol>
+# Installing Arch Linux using the serial console
+
+1.  Boot the target machine using the Arch Linux installation CD.
+2.  When the bootloader appears, select "Boot Arch Linux ()" and press tab to edit
+3.  Append console=ttyS0 and press enter
+4.  Systemd should now detect ttyS0 and spawn a serial getty on it, allowing you to proceed as usual
 
 Note: After setup is complete, the console settings will not be saved on the target machine; in order to avoid having to connect a keyboard and monitor, configure console access on the target machine before rebooting.
 
-<hr />
+* * *
 
-<h1>Identifying files not owned by any package</h1>
+# Identifying files not owned by any package
 
-<pre><code>pacman-disowned
+```
+pacman-disowned
 
 #!/bin/sh
 
@@ -106,38 +113,30 @@ fs=$tmp/fs
 mkdir "$tmp"
 trap 'rm -rf "$tmp"' EXIT
 
-pacman -Qlq | sort -u &gt; "$db"
+pacman -Qlq | sort -u > "$db"
 
 find /bin /etc /sbin /usr 
   ! -name lost+found 
-  ( -type d -printf '%p/n' -o -print ) | sort &gt; "$fs"
+  ( -type d -printf '%p/n' -o -print ) | sort > "$fs"
 
 comm -23 "$fs" "$db"
-</code></pre>
 
-<h1>Pacman one liners</h1>
+```
 
-<ul>
-<li>Remove packages and its dependancies.
+# Pacman one liners
 
-pacman -Rs ...</p></li>
-<li><p>List explicitly installed packages
-
-pacman -Qeq</p></li>
-<li><p>List orphans
-
-pacman -Qtdq</p></li>
-<li><p>Remove everything but base group
-
-pacman -Rs $(comm -23 &lt;(pacman -Qeq|sort) &lt;((for i in $(pacman -Qqg base); do pactree -ul $i; done)|sort -u|cut -d ' ' -f 1))</p></li>
-<li><p>Listing changed configuraiton files
-
-pacman -Qii | awk '/^MODIFIED/ {print $2}'</p></li>
-<li><p>Download a package without installing it
-
-pacman -Sw package_name</p></li>
-<li><p>Manage pacman cache
-
-<p>paccache -h</p></li>
-</ul>
-
+*   Remove packages and its dependancies. pacman -Rs ...
+    
+*   List explicitly installed packages pacman -Qeq
+    
+*   List orphans pacman -Qtdq
+    
+*   Remove everything but base group pacman -Rs $(comm -23 <(pacman -Qeq|sort) <((for i in $(pacman -Qqg base); do pactree -ul $i; done)|sort -u|cut -d ' ' -f 1))
+    
+*   Listing changed configuraiton files pacman -Qii | awk '/^MODIFIED/ {print $2}'
+    
+*   Download a package without installing it pacman -Sw package_name
+    
+*   Manage pacman cache
+    
+    paccache -h
