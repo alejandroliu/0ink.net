@@ -248,7 +248,7 @@ Update dracut:
 
 Download the [rEFInd][refind] zip binary from:
 
-[rEFInd download][getting-refind]
+* [rEFInd download][getting-refind]
 
 Set-up the boot partition:
 
@@ -435,9 +435,9 @@ git
 ```
 
 
-* [void]: https://voidlinux.org "Void Linux"
-* [refind]: http://www.rodsbooks.com/refind/ "rEFInd bootloader"
-* [void-uefi]: https://wiki.voidlinux.org/Installation_on_UEFI,_via_chroot "Install void linux on UEFI via chroot"
-* [mate]: https://mate-desktop.org/ "MATE Desktop environment"
-* [getting-refind]: http://www.rodsbooks.com/refind/getting.html "rEFInd download page"
+ [void]: https://voidlinux.org "Void Linux"
+ [refind]: http://www.rodsbooks.com/refind/ "rEFInd bootloader"
+ [void-uefi]: https://wiki.voidlinux.org/Installation_on_UEFI,_via_chroot "Install void linux on UEFI via chroot"
+ [mate]: https://mate-desktop.org/ "MATE Desktop environment"
+ [getting-refind]: http://www.rodsbooks.com/refind/getting.html "rEFInd download page"
 
