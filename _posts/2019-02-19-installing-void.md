@@ -430,9 +430,6 @@ For that you need to patch `/etc/acpi/handler.sh` as follows:
 
 ```
 
-Check [here](https://www.youtube.com/html5) to make sure FireFox
-can play `mp4` files.
-
 
  [void]: https://voidlinux.org "Void Linux"
  [refind]: http://www.rodsbooks.com/refind/ "rEFInd bootloader"
