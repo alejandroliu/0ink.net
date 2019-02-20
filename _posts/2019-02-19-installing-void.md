@@ -329,8 +329,18 @@ xbps-reconfigure -f linux4.0
 bash /boot/mkmenu.sh
 ```
 
-FIXME: should add a something in `/etc/kernel.d` so that this is
-call automatically on a kernel upgrade.
+Add the following scripts to: 
+
+- `/etc/kernel.d/post-install/99-refind`
+- `/etc/kernel.d/post-remove/99-refind`
+
+```
+#!/bin/bash
+exec /bin/bash /boot/mkmenu.sh
+```
+
+Make sure they are executable.  This is supposed to re-create
+menu entries whenever the kernel gets upgraded.
 
 We are now ready to boot into [Void][void].
 
@@ -412,10 +422,10 @@ For that you need to patch `/etc/acpi/handler.sh` as follows:
 +		    if [ $is_active -gt 0 ] ; then
 +		      logger "PowerButton pressed: $2, Hibernating..."
 +		      cvt=$(fgconsole)
-+		      ( echo "Hibernating..." ) > /dev/tty1 < /dev/tty1 2>&1
++		      ( echo ; echo "Hibernating..." ) > /dev/tty1 < /dev/tty1 2>&1
 +		      chvt 1
 +		      ZZZ
-+		      ( echo "Resuming..." ) > /dev/tty1 < /dev/tty1 2>&1
++		      ( echo ; echo "Resuming..." ) > /dev/tty1 < /dev/tty1 2>&1
 +		      if [ -n "$cvt" ] ; then
 +		        sleep 3
 +			chvt "$cvt"
