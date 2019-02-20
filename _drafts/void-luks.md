@@ -2,8 +2,6 @@
 title: Encrypting /home in Void Linux
 ---
 
-# Encrypting /home in Void Linux
-
 Generate a passphrase and save it a safe place for later.
 
 ```
