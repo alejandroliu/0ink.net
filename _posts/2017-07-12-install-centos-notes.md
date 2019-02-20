@@ -56,3 +56,48 @@ travis enable
 travis settings builds_only_with_travis_yml -t
 ```
 
+[PRoot](https://github.com/proot-me/PRoot/releases)
+
+project
+  -module: centos/alpine
+      -module: proot
+
+- [travis ci custom build](https://docs.travis-ci.com/user/customizing-the-build/)
+
+- install: install any dependencies required
+- script: run the build script
+
+# Nameing conventions
+
+Naming tmXXXXYYYYRRRR
+
+* tmc7r1 : centos 7 template
+* tmwin7r1 : not using these, I think it is better to do fresh install...
+* tmal3r1 :  alpine linux template. 
+   - after boot:
+     1. mount xvda1 on /media/xvda1 and run setup-alpine
+     2. modify /etc/inittab /etc/securetty to allow ttyS0 (console) login
+     3. may need to switch cdrom as needed.
+
+Sample vm names:
+
+* winvm1 : windows vm
+* cvm2 : centos vm
+* alvm3 : alpine linux vm
+
+
+
+More complete guides: 
+
+- [Rasperry Pi router](https://wiki.alpinelinux.org/wiki/Linux_Router_with_VPN_on_a_Raspberry_Pi)
+- [AWall](https://wiki.alpinelinux.org/wiki/How-To_Alpine_Wall)
+- [webserver + php](https://wiki.alpinelinux.org/wiki/Nginx)
+- [Networking](https://wiki.alpinelinux.org/wiki/Configure_Networking)
+- [DNSMasq IPv6 stuff](https://egustafson.github.io/ipv6-dhcpv6.html)
+- [Another DNSmasq + ipv6](https://hveem.no/using-dnsmasq-for-dhcpv6)
+
+Second wifi on OpenWrt
+
+-
+ [cucumber-wifi](https://cucumberwifi.io/community/tutorials/openwrt-adding-second-ssid.html)
+- [smalltech](https://www.smallbusinesstech.net/more-complicated-instructions/openwrt/hosting-two-wifi-networks-on-one-openwrt-router)
