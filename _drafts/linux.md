@@ -16,6 +16,7 @@ geany-plugins
 geany-plugins-extra
 mplayer			# media support
 ffmpeg
+vlc
 gst-libav		# void-linux add mp4 support to firefox
 surf			# support for webapps
 xprop
