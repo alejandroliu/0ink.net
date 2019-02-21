@@ -449,4 +449,4 @@ For that you need to patch `/etc/acpi/handler.sh` as follows:
 
 <iframe src="https://github.com/TortugaLabs/void-utils/blob/master/kernel/mkmenu.sh"></iframe>
 
-<script src="http://gist-it.appspot.com/https://github.com/TortugaLabs/void-utils/raw/master/kernel/mkmenu.sh?footer=minimal"></script>
+<script src="https://gist-it.appspot.com/https://github.com/TortugaLabs/void-utils/raw/master/kernel/mkmenu.sh?footer=minimal"></script>
