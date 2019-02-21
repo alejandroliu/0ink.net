@@ -1,6 +1,6 @@
 ---
 title: Global Windows Keyboard Shorcuts
-----
+---
 
 Common Window Management Shortcuts
 
