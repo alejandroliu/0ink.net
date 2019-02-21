@@ -447,3 +447,5 @@ For that you need to patch `/etc/acpi/handler.sh` as follows:
  [mate]: https://mate-desktop.org/ "MATE Desktop environment"
  [getting-refind]: http://www.rodsbooks.com/refind/getting.html "rEFInd download page"
 
+
+<script src="http://gist-it.appspot.com/http://github.com/https://raw.githubusercontent.com/TortugaLabs/void-utils/master/kernel/mkmenu.sh?footer=minimal"></script>
