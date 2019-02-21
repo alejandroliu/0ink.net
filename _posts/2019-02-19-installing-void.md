@@ -448,4 +448,4 @@ For that you need to patch `/etc/acpi/handler.sh` as follows:
  [getting-refind]: http://www.rodsbooks.com/refind/getting.html "rEFInd download page"
 
 
-<script src="http://gist-it.appspot.com/http://github.com/https://raw.githubusercontent.com/TortugaLabs/void-utils/master/kernel/mkmenu.sh?footer=minimal"></script>
+<script src="http://gist-it.appspot.com/https://raw.githubusercontent.com/TortugaLabs/void-utils/master/kernel/mkmenu.sh?footer=minimal"></script>
