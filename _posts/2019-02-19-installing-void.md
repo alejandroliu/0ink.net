@@ -272,55 +272,7 @@ For my hardware I had to add the option:
 
 Create the following script as `/boot/mkmenu.sh`
 
-```
-#!/bin/bash
-set -euf -o pipefail
-
-die() {
-  echo FATAL:"$@" 1>&2
-  exit "$1"
-}
-  
-
-bootdir=$(cd $(dirname $0) && pwd)
-[ -z "$bootdir" ] &&  die 1 "Missing bootdir"
-
-if [ -f "$bootdir/cmdline" ] ; then
-  def_cmdline="$(cat $bootdir/cmdline)"
-else
-  def_cmdline="auto"
-fi
-
-find_kernels() {
-  find "$bootdir" -maxdepth 1 -type f -name 'vmlinuz*' | (while read k
-  do
-    kver=$(basename "$k" | cut -d- -f2-)
-    [ -f "$bootdir/initramfs-$kver.img" ] || continue
-    echo "$kver"
-  done) | sort -r
-}
-
-find_kernels
-
-(
-  echo "scanfor manual"
-  echo "timeout 3"
-  echo "default_selection 1"
-
-  for kver in $(find_kernels)
-  do
-    echo "menuentry \"linux-$kver\" {"
-    echo "  loader /vmlinuz-$kver"
-    echo "  initrd /initramfs-$kver.img"
-    if [ -f "$bootdir/cmdline-$kver" ] ; then
-      echo "  options" \"$(cat "$bootdir/cmdline-$kver")\"
-    else
-      echo "  options" \"$def_cmdline\"
-    fi
-    echo "}"
-  done
-) > "$bootdir/EFI/BOOT/refind.conf"
-```
+<script src="https://gist-it.appspot.com/https://github.com/TortugaLabs/void-utils/raw/master/kernel/mkmenu.sh?footer=minimal"></script>
 
 And run this script to create the boot menu entries:
 
@@ -334,10 +286,7 @@ Add the following scripts to:
 - `/etc/kernel.d/post-install/99-refind`
 - `/etc/kernel.d/post-remove/99-refind`
 
-```
-#!/bin/bash
-exec /bin/bash /boot/mkmenu.sh
-```
+<script src="https://gist-it.appspot.com/https://github.com/TortugaLabs/void-utils/raw/master/kernel/hook.sh?footer=minimal"></script>
 
 Make sure they are executable.  This is supposed to re-create
 menu entries whenever the kernel gets upgraded.
@@ -440,6 +389,8 @@ For that you need to patch `/etc/acpi/handler.sh` as follows:
 
 ```
 
+Or retrieve from [here](https://github.com/TortugaLabs/void-utils/blob/master/acpi-handler/handler.sh).
+
 
  [void]: https://voidlinux.org "Void Linux"
  [refind]: http://www.rodsbooks.com/refind/ "rEFInd bootloader"
@@ -447,6 +398,3 @@ For that you need to patch `/etc/acpi/handler.sh` as follows:
  [mate]: https://mate-desktop.org/ "MATE Desktop environment"
  [getting-refind]: http://www.rodsbooks.com/refind/getting.html "rEFInd download page"
 
-<iframe src="https://github.com/TortugaLabs/void-utils/blob/master/kernel/mkmenu.sh"></iframe>
-
-<script src="https://gist-it.appspot.com/https://github.com/TortugaLabs/void-utils/raw/master/kernel/mkmenu.sh?footer=minimal"></script>
