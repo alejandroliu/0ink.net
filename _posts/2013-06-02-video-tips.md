@@ -24,6 +24,12 @@ comment_count: "0"
 title: Media Tips
 ---
 
+This is an article about different media (and more specifically)
+video files can be manipulated.
+
+This is just for historical purposes as now almost everything can be
+done using `ffmpeg` and the right options.
+
 *   [libmp4v2](http://code.google.com/p/mp4v2/) contains:
     *   mp4art - to extract a picture (or coverart from mp4)
     *   mp4info - to get meta data from mp4 streams

@@ -268,7 +268,10 @@ root=LABEL=voidlinux ro quiet
 For my hardware I had to add the option:
 
 - `intel_iommu=igfx_off`
-  To work around some strange bug.
+  - To work around some strange bug.
+- `i915.enable_ips=0`
+  - fixes a power saving mode problem on 4.1-rc6+
+
 
 Create the following script as `/boot/mkmenu.sh`
 
@@ -333,6 +336,27 @@ Uncomment:
 ```
 # %wheel ALL=(ALL) ALL
 ```
+
+## Time synchronisation
+
+Install `chrony`.
+
+```
+xbps-install chrony
+```
+
+Enable `chrony`
+
+```
+ln -s /etc/sv/chronyd /var/service
+```
+
+We are using the default configuration, which should be OK.  Uses
+`pool.ntp.org` for the time server which would use a suitable
+default.
+
+`chrony` is reputed to be more secure that `ntpd` and more compliant
+than `openntpd`.
 
 ## Tweaks
 
