@@ -40,3 +40,10 @@ Would be the call back to MailGun
   - save transient when we start
   - Use event API to get message lists (since last transient)
   - Use message API to retrieve and delete messages
+
+* E-mail archiving alternatives
+    * [lurker ](http://lurker.sourceforge.net/)
+    * [mboxpurge.pl](http://terminal.se/code.html)
+    * [archivemail](http://archivemail.sourceforge.net/)
+    * [GYB](http://git.io/gyb)
+    * [gmvault](http://gmvault.org)

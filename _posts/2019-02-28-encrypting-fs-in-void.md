@@ -1,8 +1,21 @@
 ---
-title: Encrypting /home in Void Linux
+title: Encrypting FileSystem in Void Linux
 ---
 
+The point of this recipe is to create a encrypted file sytem
+so that when the disc is disposed, it does not need to be
+securely erased.  This is particularly important for SSD devices
+since because of block remapping (for wear levelling) data can't
+be overwritten consistently.
+
+The idea is that the boot/root filesystem containing the encryption
+keys are stored in a different device as the encrypted file system.
+
+* * *
+
 Generate a passphrase and save it a safe place for later.
+
+# Create block devices
 
 ```
 xbps-install -S lvm2 cryptsetup
@@ -15,8 +28,9 @@ lvcreate --name home0 -L 20G pool
 ```
 Add `rd.luks.crypttab=1 rd.luks=1` to the kernel command line.
 
+# Create a decryption key
 
-Create the key file in the unencrypted /boot partition
+Create the key file in the unencrypted `/` partition
 
 ```
 dd if=/dev/urandom of=/crypto_keyfile.bin bs=1024 count=4
@@ -54,4 +68,15 @@ Update boot menu entries:
 bash /boot/mkmenu.sh
 ```
 
+At this point it would be good to save:
+
+- `/etc/crypttab`
+- `/crypto_keyfile.bin`
+- Optionally, passphrase
+
+* * *
+
+Reboot and make sure that the block device gets created on start-up.
+
+Create your file-system and add it to `/etc/fstab`.
 
