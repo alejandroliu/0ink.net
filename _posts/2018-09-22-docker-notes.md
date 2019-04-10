@@ -2,8 +2,7 @@
 title: Docker on Alpine Linux
 ---
 
-
-# Alpine Linux Quick installation
+Alpine Linux Quick installation
 
 See [wiki](https://wiki.alpinelinux.org/wiki/Docker)  For Alpine Linux > 3.8
 

@@ -98,6 +98,12 @@ xorg-video-drivers
 zip
 unzip
 wget
+acl-progs
+p7zip
+patch
+rsync
+pwgen
+netcat
 ```
 
 This installs a [MATE][mate] desktop environment.
@@ -357,6 +363,61 @@ default.
 
 `chrony` is reputed to be more secure that `ntpd` and more compliant
 than `openntpd`.
+
+## Logging
+
+Source: [Logging](https://voidlinux.org/faq/#Logging)
+
+Install:
+
+```
+socklog-void
+```
+
+Commands:
+
+```
+xbps-install -S socklog-void
+usermod -aG socklog <your username>
+ln -s /etc/sv/socklog-unix /var/service/
+ln -s /etc/sv/nanoklogd /var/service/
+```
+Because I like to have just a single directory for everything and use
+`grep`, I do the following:
+
+```
+rm -rf /var/log/socklog/*
+mkdir /var/log/socklog/everything
+```
+
+Create the file `/var/log/socklog/everything/config` with these
+contents:
+
+```
++*
+u192.168.2.2:514
+```
+
+Reload `svlogd`
+
+```
+killall -1 svlogd
+```
+
+## Enable automounting
+
+Install:
+
+```
+autofs
+nfs-utils
+```
+Enable services:
+
+```
+ln -s /etc/sv/{statd,rpcbind,autofs} /var/service
+```
+
 
 ## Tweaks
 

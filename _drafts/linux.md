@@ -4,7 +4,7 @@ title: Linux Desktop tweaks
 
 Additional software (Tested on void linux):
 
-Note: use `sed -e 's/#.*$//'` to strip comments!
+Tip: use `sed -e 's/#.*$//'` to strip comments!
 
 
 ```
@@ -17,20 +17,42 @@ geany-plugins-extra
 mplayer			# media support
 ffmpeg
 vlc
+eyeD3
+ImageMagick
 gst-libav		# void-linux add mp4 support to firefox
-surf			# support for webapps
-xprop
-dmenu
 synergy-gui		# software kvm switch
 gthumb			# photo manager
 libreoffice		# Office applications
 mypaint			# MSPaint like ... alternatives: mtpaint or grafx2 for a more old-skool pixel-art feel
+simple-scan		# scanner support
+xsane
+xorg-apps		# Basic X apps
+mesa-demos
+xterm
+tigervnc
 
+calibre
 
+font-bh-ttf noto-fonts-ttf
+
+php
+jq
+asciidoc
+gcc
+make
+ltrace
+strace
+tcpdump
+
+luakit
+
+mtools
+syslinux
 ```
 
 Check [here](https://www.youtube.com/html5) to make sure FireFox
 can play `mp4` files.
+
 
 
 ## HotKeys
@@ -71,22 +93,6 @@ setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl
 ```
 
 From `xinitrc` may be needed.
-
-## void linux specifics
-
-Enable automounting:
-
-Install:
-
-```
-autofs
-nfs-utils
-```
-Enable services:
-
-```
-ln -s /etc/sv/{statd,rpcbind,autofs} /var/service
-```
 
 ## MATE Desktop specifics
 
