@@ -2,8 +2,6 @@
 
 ## 0ink.net
 
-- resize virtual volumes
-- flatpak install
 - write an article on using rsync batch mode and lvm snapshots
 - mate tricks: change background from cli
     - `dconf write /org/mate/desktop/background/picture-filename "'PATH-TO-JPEG'"`
@@ -20,9 +18,12 @@
 - Links
    * MediaServer (UPnP/DLNA)
    * Options (<http://www.linuxlinks.com/article/2014011110033786/UPnPServers.html>):
+- rsync ad-hoc server
 
 ## alejandro.iliu.net
 
 - write an article on geany replacing emacs
+- write a availabity calculator
+
 
 
