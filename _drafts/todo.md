@@ -18,12 +18,6 @@
 - Links
    * MediaServer (UPnP/DLNA)
    * Options (<http://www.linuxlinks.com/article/2014011110033786/UPnPServers.html>):
-- rsync ad-hoc server
-
-## alejandro.iliu.net
-
-- write an article on geany replacing emacs
-- write a availabity calculator
 
 
 
