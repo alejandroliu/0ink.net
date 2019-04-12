@@ -368,12 +368,6 @@ than `openntpd`.
 
 Source: [Logging](https://voidlinux.org/faq/#Logging)
 
-Install:
-
-```
-socklog-void
-```
-
 Commands:
 
 ```
@@ -403,6 +397,19 @@ Reload `svlogd`
 ```
 killall -1 svlogd
 ```
+
+## Cron
+
+Source: [Cron](https://voidlinux.org/faq/#cron)
+
+Commands:
+
+```
+xbps-install -S dcron
+ln -s /etc/sv/crond /var/service/
+```
+
+`dcron` is a full feature and the most light-weight option available.
 
 ## Enable automounting
 
