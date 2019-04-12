@@ -1,2 +1,2 @@
 #!/bin/sh
-rsync --rsh=$(dirname $0)/send-nc -avzr "$@"
+rsync --rsh=$(dirname $0)/send-nc "$@"
