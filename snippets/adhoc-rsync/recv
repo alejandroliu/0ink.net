@@ -1,0 +1,4 @@
+#!/bin/sh
+read args
+#echo ">>> $args" 1>&2
+exec rsync $args

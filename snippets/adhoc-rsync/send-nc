@@ -1,0 +1,11 @@
+#!/bin/sh
+lport=25584
+host="$1"
+echo  '>>' "$@" 1>&2
+(
+  shift 2
+  echo "$@"
+  cat
+)|nc $host $lport
+
+

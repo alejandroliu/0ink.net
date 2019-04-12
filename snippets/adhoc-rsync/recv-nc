@@ -1,0 +1,4 @@
+#!/bin/sh
+lport=25584
+echo "Listen on $lport"
+nc -l -p $lport -e $(dirname $0)/recv
