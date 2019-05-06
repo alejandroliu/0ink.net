@@ -57,6 +57,8 @@ but not USB.
 
 An excerpt from the manual page of `blkdiscard(8)`:
 
+* * *
+
 ## NAME
 
 blkdiscard - discard sectors on a device
@@ -81,6 +83,7 @@ The device argument is the pathname of the block device.
 
 **WARNING: All data in the discarded region on the device will be lost!**
 
+* * *
 
 # Use TRIM
 
