@@ -17,7 +17,9 @@ imghdr: pig_med.png
 url: https://www.0ink.net/
 
 # Enable site search
-search: 0ink.net
+search:
+  sites: 0ink.net
+  prefill: Search DuckDuckGo
 
 plugins:
   - jekyll-sitemap
