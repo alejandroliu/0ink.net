@@ -382,6 +382,7 @@ Because I like to have just a single directory for everything and use
 ```
 rm -rf /var/log/socklog/*
 mkdir /var/log/socklog/everything
+ln -s socklog/everything/current /var/log/messages.log
 ```
 
 Create the file `/var/log/socklog/everything/config` with these
@@ -428,19 +429,52 @@ ln -s /etc/sv/{statd,rpcbind,autofs} /var/service
 
 ## Tweaks
 
-OK, in my case, shutting down and rebooting was not activated in
-the [MATE][mate] desktop menu.  To enable this I had to create
-a file `/etc/polkit-1/rules.d/void-live.rules`:
+
+OK, in my case, `shutdown`, `reboot` and local media access functions
+were not available using the [MATE][mate] desktop.
+To enable this I had to create tweak the PolKit rules:
+
+In file `/etc/polkit-1/rules.d/10-udisks2.rules`:
 
 ```
-polkit.addAdminRule(function(action, subject) {
-    return ["unix-group:wheel"];
-});
+// Allow udisks2 to mount devices without authentication
 
 polkit.addRule(function(action, subject) {
-    if (subject.isInGroup("wheel")) {
-        return polkit.Result.YES;
+  if (action.id == "org.freedesktop.udisks2.filesystem-mount-system" ||
+	action.id == "org.freedesktop.udisks2.eject-media" ||
+        action.id == "org.freedesktop.udisks2.filesystem-mount") {
+    if (subject.isInGroup("storage")) {
+      polkit.log("POSITIVE: isInGroup(storage)");
+      return polkit.Result.YES;
+    } else if (subject.local) {
+      polkit.log("POSITIVE: local user");
+      return polkit.Result.YES;
+    } else {
+      polkit.log("NEGATIVE: udisks rules");
     }
+
+  }
+});
+```
+
+In file `/etc/polkit-1/rules.d/20-shutdown-reboot.rules`:
+
+```
+// Rule to allow reboots or shutdowns
+//
+polkit.addRule(function(action, subject) {
+  if (action.id == "org.freedesktop.consolekit.system.stop" ||
+	action.id == "org.freedesktop.consolekit.system.restart") {
+    if (subject.isInGroup("wheel")) {
+      polkit.log("POSITIVE: isInGroup(wheel)");
+      return polkit.Result.YES;
+    } else if (subject.local) {
+      polkit.log("POSITIVE: local user");
+      return polkit.Result.YES;
+    } else {
+      polkit.log("NEGATIVE: power rules");
+    }
+  }
 });
 ```
 
