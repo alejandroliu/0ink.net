@@ -14,4 +14,6 @@ over the Internet.
 
 See this on [github]({{ site.github.repository_url }}).
 
+This site uses the [jekyll-sitemap](https://github.com/jekyll/jekyll-sitemap)
+plugin.  You can find this site's XML sitemap [here](/sitemap.xml).
 
