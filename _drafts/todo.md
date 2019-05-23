@@ -6,8 +6,6 @@
 - mate tricks: change background from cli
     - `dconf write /org/mate/desktop/background/picture-filename "'PATH-TO-JPEG'"`
 - article: - https://github.com/azure/azurite
-- [about virtual env](https://stackoverflow.com/questions/27695501/use-virtualenv-in-python-script)
-- [python]([https://homes.cs.washington.edu/~yjzhang/notes/python_web.html])
 - [How To Upload Music To Google Music On Linux](https://www.addictivetips.com/ubuntu-linux-tips/upload-music-to-google-music-on-linux/) Try and write about it!
 - SSL NetCat
     - $ cat request.txt | nc -w 5 <someserver> 80
