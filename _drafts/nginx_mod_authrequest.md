@@ -128,11 +128,31 @@ The user is then re-directed to the login page, where the actual
 login takes place.  If succesful, a session cookie is set and
 the user is redirected to the original URL.
 
-* * *
+This is implemented using the following script:
 
-EXAMPLE IMPLEMENTATION USING [bottle][bottlepy]
+<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/nginx_mod_authrequest/auth1.py?footer=minimal"></script>
 
-* * *
+This makes uses of the [bottle][bottlepy] micro framework.
+
+It implements four routes:
+
+1. `GET /hello`  
+   This is just a demo URL used for testing.  Only shows the request headers.
+2. `GET /login/`  
+   This is the login page entry point.
+3. `POST /login/`  
+   This is the handler for the login page.
+4. `GET /auth`  
+   This is the sub-request handler.
+
+For the demo, we are not really doing any login handling.  You only
+need to make the username the same as the password to login.  Anything
+else is a login failure.
+
+When the user succesfully logs in, we set a cookie.  Because the
+login URL and the protected resource (`/hello` URL) are in the
+same cookie scope, we can use cookie set by the login page
+as the verification token in the sub-request.
 
 Note that the login page can be as simple or as complex as it is
 needed.  For example, it is possible to implement a [SAML][saml],
@@ -141,8 +161,6 @@ available.
 
 Alternatively, two factor authentication could be implemented here.
 The possibilities are endless.
-
-* * *
 
 An interesting use of the [auth_request][ngx_http_auth_request_module]
 module would be to delegate [Basic Authentication][basicauth] to a different
@@ -162,5 +180,6 @@ server or to even implement authentications not supported by
 [bottlepy]: https://bottlepy.org/
 [SAML]: https://en.wikipedia.org/wiki/Security_Assertion_Markup_Language
 [oidc]: https://openid.net/connect/
-[digest]:
-[basicauth]:
+[basicauth]: https://en.wikipedia.org/wiki/Basic_access_authentication
+[digest]: https://en.wikipedia.org/wiki/Digest_access_authentication
+

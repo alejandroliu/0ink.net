@@ -63,12 +63,7 @@ def do_login():
 
 @route('/auth')
 def auth():
-  import pprint
-  pprint.pprint(dict(request.headers))
-
   sid = is_active_session()
-  #sid = uuid.uuid4()
-  #sessions[sid] = "abc"
   if sid:
     response.set_header('X-Username', sessions[sid])
     response.set_header('X-Session', str(sid))
