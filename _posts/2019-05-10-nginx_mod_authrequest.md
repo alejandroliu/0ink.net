@@ -38,12 +38,12 @@ This block configures the web server area that will be protected:
           error_page 401 = @error401;	# Specific login page to use
           auth_request /auth;		# The sub-request to use
           auth_request_set $username $upstream_http_x_username;	# Make the sub request data available
-          auth_request_set $groups $upstream_http_x_groups;	# send what is needed
+          auth_request_set $sid $upstream_http_x_session;	# send what is needed
 
           proxy_pass http://sample.com:8080/hello;	# actual location of protected data
           proxy_set_header X-Forwarded-Host $host;	# Custom headers with authentication related data
           proxy_set_header X-Remote-User $username;
-          proxy_set_header X-Remote-Groups $groups;
+          proxy_set_header X-Remote-SID $sid;
         }
 ```
 
@@ -168,9 +168,67 @@ server or to even implement authentications not supported by
 [nginx][nginx] like for example a simple Token-Bearer header or
 [Digest authentication][digest]
 
-- basic authentication
-- digest authentication
+## basic authentication
 
+This may seem silly since [nginx][nginx] supports [basic authentication][basicauth]
+out of the box.  The use case for this is when you have a cluster of nginx
+front ends, and you want all of them to authenticate against a central 
+identity server.  Furthermore, since the URI can be passed, a more sophisticated
+access control can be implemented.  Finally, additional values can be passed
+through headers, such as group names, tokens, etc.
+
+### nginx configuration
+
+Protected Resource:
+
+```
+        location /hello {
+          auth_request /auth;		# The sub-request to use
+          auth_request_set $username $upstream_http_x_username;	# Make the sub request data available
+
+          proxy_pass http://sample.com:8080/hello;	# actual location of protected data
+          proxy_set_header X-Forwarded-Host $host;	# Custom headers with authentication related data
+          proxy_set_header X-Remote-User $username;
+        }
+```
+
+**NOTE:** unlike the previous example, we do not need to provide a @error401 page.
+
+Sub-request configuration:
+
+```
+        location = /auth {
+          proxy_pass http://auth-server.sample.com:8080/auth;	# authentication server
+          proxy_pass_request_body off;				# no data is being transferred...
+          proxy_set_header Content-Length '0';
+          proxy_set_header Host $host;				# Custom headers with authentication related data
+          proxy_set_header X-Origin-URI $request_uri;
+          proxy_set_header X-Forwarded-Host $host;
+        }
+```
+
+### authentication server
+
+The python implementation (again, using [bottle][bottlepy]):
+
+<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/nginx_mod_authrequest/auth2.py?footer=minimal"></script>
+
+Like in the previous example, we are not doing any user/password verification.  We are only
+checking if username and password are matching.
+
+Unlike the previous example, all the authentication is handled by a single route (`/auth`).
+It returns 'WWW-Authenticate' to prompt the user for a password.  And if it sees
+an `Authorization` header, it would validate it.
+
+## digest authentication
+
+This implements [digest][digest] authentication for [nginx][nginx] using the
+[auth request module][ngx_http_auth_request_module].  The nginx configuration is the
+same as in the [Basic][basicauth] authentication.
+
+The implentation in python (using [bottle][bottlepy] framework):
+
+<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/nginx_mod_authrequest/auth3.py?footer=minimal"></script>
 
 * * *
 
