@@ -23,8 +23,8 @@ Also is good to use data mode (persistent /var) as most docker data is stored th
 ```
 adduser -SDHs /sbin/nologin dockremap
 addgroup -S dockremap
-echo dockremap:$(cat /etc/passwd|grep dockremap|cut -d: -f3):65536 >> /etc/subuid
-echo dockremap:$(cat /etc/passwd|grep dockremap|cut -d: -f4):65536 >> /etc/subgid
+echo dockremap:100000:65535 | tee /etc/subuid
+echo dockremap:100000:65535 | tee /etc/suguid
 ```
 In `/etc/docker/daemon.json`:
 

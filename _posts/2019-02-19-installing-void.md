@@ -81,7 +81,6 @@ grub-x86_64-efi
 gvfs-afc
 gvfs-mtp
 gvfs-smb
-intel-ucode
 lvm2
 lxdm
 mate
@@ -104,9 +103,19 @@ patch
 rsync
 pwgen
 netcat
+void-repo-nonfree
 ```
 
 This installs a [MATE][mate] desktop environment.
+
+## nonfree software
+
+Install:
+
+```
+intel-ucode
+unrar
+```
 
 ## Enter the void chroot
 
@@ -313,8 +322,10 @@ reboot
 After the first boot, we need to activate services:
 
 ```
-ln -s /etc/sv/{NetworkManager,acpid,cgmanager,consolekit,dbus,dhcpcd,lxdm,polkitd,rtkit,sshd,uuidd} /var/service
+ln -s /etc/sv/{NetworkManager,acpid,cgmanager,consolekit,dbus,lxdm,polkitd,rtkit,sshd,uuidd} /var/service
 ```
+
+**NOTE**: For command line configuration, replace `NetworkManager` with `dhcpcd`.
 
 Since I am a `bash` convert, I would do this:
 

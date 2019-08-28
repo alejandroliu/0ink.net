@@ -230,6 +230,7 @@ The implentation in python (using [bottle][bottlepy] framework):
 
 <script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/nginx_mod_authrequest/auth3.py?footer=minimal"></script>
 
+
 * * *
 
 [nginx]: http://nginx.org/en/
