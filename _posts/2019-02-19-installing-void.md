@@ -67,46 +67,24 @@ env XBPS_ARCH=x86_64 xbps-install -S -R http://alpha.de.repo.voidlinux.org/curre
 
 But actually, for the package list I have been using this list:
 
-```
-alsa-plugins-pulseaudio
-base-system
-cryptsetup
-dejavu-fonts-ttf
-dialog
-firefox-esr
-font-misc-misc
-gnome-keyring
-grub-i386-efi
-grub-x86_64-efi
-gvfs-afc
-gvfs-mtp
-gvfs-smb
-lvm2
-lxdm
-mate
-mate-extra
-mdadm
-network-manager-applet
-setxkbmap
-terminus-font
-udisks2
-xauth
-xorg-input-drivers
-xorg-minimal
-xorg-video-drivers
-zip
-unzip
-wget
-acl-progs
-p7zip
-patch
-rsync
-pwgen
-netcat
-void-repo-nonfree
-```
+<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/swlist.txt?footer=minimal"></script>
 
 This installs a [MATE][mate] desktop environment.
+
+### Software selection notes
+
+- For time synchronisation (ntp) we ae choosing `chrony` as it is
+  reputed to be more secure that `ntpd` and more compliant than
+  `openntpd`.
+- We are using the default configuration, which should be OK.  Uses
+  `pool.ntp.org` for the time server which would use a suitable
+  default.
+- For `cron` we are using `dcron`.  It is full featured (i.e.
+  compatibnle with `cron` and it can handle power-off situations,
+  while being the most light-weight option available.
+  See: [VoidLinux FAQ: Cron](https://voidlinux.org/faq/#cron)
+- Includes `autofs` and `nfs-utils` for network filesystems and
+  automount support.
 
 ## nonfree software
 
@@ -322,7 +300,7 @@ reboot
 After the first boot, we need to activate services:
 
 ```
-ln -s /etc/sv/{NetworkManager,acpid,cgmanager,consolekit,dbus,lxdm,polkitd,rtkit,sshd,uuidd} /var/service
+ln -s /etc/sv/{NetworkManager,acpid,chronyd,cgmanager,consolekit,dbus,crond,lxdm,polkitd,rtkit,sshd,uuidd,statd,rpcbind,autofs} /var/service
 ```
 
 **NOTE**: For command line configuration, replace `NetworkManager` with `dhcpcd`.
@@ -354,26 +332,6 @@ Uncomment:
 # %wheel ALL=(ALL) ALL
 ```
 
-## Time synchronisation
-
-Install `chrony`.
-
-```
-xbps-install chrony
-```
-
-Enable `chrony`
-
-```
-ln -s /etc/sv/chronyd /var/service
-```
-
-We are using the default configuration, which should be OK.  Uses
-`pool.ntp.org` for the time server which would use a suitable
-default.
-
-`chrony` is reputed to be more secure that `ntpd` and more compliant
-than `openntpd`.
 
 ## Logging
 
@@ -410,32 +368,8 @@ Reload `svlogd`
 killall -1 svlogd
 ```
 
-## Cron
 
-Source: [Cron](https://voidlinux.org/faq/#cron)
 
-Commands:
-
-```
-xbps-install -S dcron
-ln -s /etc/sv/crond /var/service/
-```
-
-`dcron` is a full feature and the most light-weight option available.
-
-## Enable automounting
-
-Install:
-
-```
-autofs
-nfs-utils
-```
-Enable services:
-
-```
-ln -s /etc/sv/{statd,rpcbind,autofs} /var/service
-```
 
 
 ## Tweaks
