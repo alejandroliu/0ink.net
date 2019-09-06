@@ -1,3 +1,8 @@
+#
+# Download this with:
+#
+#	wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/swlist.txt | sed -e 's/#.*$//'
+#
 alsa-plugins-pulseaudio
 base-system
 chrony
