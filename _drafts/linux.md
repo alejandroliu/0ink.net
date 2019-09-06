@@ -21,7 +21,6 @@ eyeD3
 ImageMagick
 gst-libav		# void-linux add mp4 support to firefox
 synergy-gui		# software kvm switch
-gthumb			# photo manager
 libreoffice		# Office applications
 mypaint			# MSPaint like ... alternatives: mtpaint or grafx2 for a more old-skool pixel-art feel
 simple-scan		# scanner support
@@ -48,7 +47,23 @@ luakit
 
 mtools
 syslinux
+
+bootiso			# Create USB boot discs from ISOs
+cadaver			# modify NextCloud from CLI
+catimg feh		# barebones img viewers
+clamav			# anti virus
+darkhttpd		# light weight web server
+pandoc			# create md to epub
+pidgin			# chat app
+redshift-gtk		# blue blocker
+safeeyes		# eye care
+streamripper		# copy internet radio
+
+wmctrl			# windows scripting
+xscreensaver		# cross DE screen saver
+
 ```
+
 
 Check [here](https://www.youtube.com/html5) to make sure FireFox
 can play `mp4` files.

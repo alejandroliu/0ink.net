@@ -299,7 +299,11 @@ reboot
 After the first boot, we need to activate services:
 
 ```
-ln -s /etc/sv/{NetworkManager,acpid,chronyd,cgmanager,consolekit,dbus,crond,lxdm,polkitd,rtkit,sshd,uuidd,statd,rpcbind,autofs} /var/service
+ln -s /etc/sv/sshd /var/service
+ln -s /etc/sv/{acpid,chronyd,cgmanager,consolekit,dbus,crond,lxdm,polkitd,rtkit,uuidd,statd,rpcbind,autofs} /var/service
+# network auto config, either or...
+ln -s /etc/sv/NetworkManager /var/service
+ln -s /etc/sv/dhcpcd /var/service
 ```
 
 **NOTE**: For command line configuration, replace `NetworkManager` with `dhcpcd`.
