@@ -5,9 +5,9 @@
 #
 alsa-plugins-pulseaudio
 base-system
-chrony
-cryptsetup
-dcron
+cryptsetup		# encrypted LUKS filesystem
+chrony			# ntp client
+dcron			# cron support
 dejavu-fonts-ttf
 dialog
 firefox-esr
@@ -40,6 +40,7 @@ patch
 rsync
 pwgen
 netcat
-void-repo-nonfree
-autofs
+void-repo-nonfree	# need for intel-ucode and unrar
+autofs			# for NFS and automounting
 nfs-utils
+socklog-void		# needed for logging

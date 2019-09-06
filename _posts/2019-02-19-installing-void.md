@@ -99,14 +99,7 @@ unrar
 
 Upon completion of the install, we set up our chroot jail, and chroot into our mounted filesystem:
 
-```
-mount -t proc proc /mnt/proc
-mount -t sysfs sys /mnt/sys
-mount -o bind /dev /mnt/dev
-mount -t devpts pts /mnt/dev/pts
-cp -L /etc/resolv.conf /mnt/etc/
-chroot /mnt bash -il
-```
+<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/enter-void.sh?footer=minimal"></script>
 
 In order to verify our install, we can have a look at the directory structure:
 
@@ -226,13 +219,13 @@ Which should return something akin to:
 ```
 drwxr-xr-x  3 root root   21 Jan 31 15:22 .
 drwxr-xr-x 23 root root 8192 Jan 31 15:22 ..
-drwxr-xr-x  3 root root 4096 Jan 31 15:22 4.0.4_1
+drwxr-xr-x  3 root root 4096 Jan 31 15:22 4.19.4_1
 ```
 
 Update dracut:
 
 ```
-# dracut --force --kver 4.0.4_1
+# dracut --force --kver 4.19.4_1
 ```
 
 ## Set-up UEFI boot
@@ -251,6 +244,8 @@ mkdir /boot/EFI/BOOT
 Copy from the `zip file` the file `refind-bin-{version}/refind/refind_x64.efi` to
 `/boot/EFI/BOOT/BOOTX64.EFI`.
 
+The version I am using right now can be found here: [v0.11.4 BOOTX64.EFI](https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/BOOTX64.EFI)
+
 Create kernel options files `/boot/cmdline`:
 
 ```
@@ -268,12 +263,12 @@ For my hardware I had to add the option:
 
 Create the following script as `/boot/mkmenu.sh`
 
-<script src="https://gist-it.appspot.com/https://github.com/TortugaLabs/void-utils/raw/master/kernel/mkmenu.sh?footer=minimal"></script>
+<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/mkmenu.sh?footer=minimal"></script>
 
 And run this script to create the boot menu entries:
 
 ```
-xbps-reconfigure -f linux4.0
+xbps-reconfigure -f linux4.19
 bash /boot/mkmenu.sh
 ```
 
@@ -282,7 +277,11 @@ Add the following scripts to:
 - `/etc/kernel.d/post-install/99-refind`
 - `/etc/kernel.d/post-remove/99-refind`
 
-<script src="https://gist-it.appspot.com/https://github.com/TortugaLabs/void-utils/raw/master/kernel/hook.sh?footer=minimal"></script>
+<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/hook.sh?footer=minimal"></script>
+
+```
+wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/hook.sh | tee /etc/kernel.d/post-{install,remove}/99-refind
+```
 
 Make sure they are executable.  This is supposed to re-create
 menu entries whenever the kernel gets upgraded.
@@ -335,132 +334,40 @@ Uncomment:
 
 ## Logging
 
+
 Source: [Logging](https://voidlinux.org/faq/#Logging)
 
 Commands:
 
-```
-xbps-install -S socklog-void
-usermod -aG socklog <your username>
-ln -s /etc/sv/socklog-unix /var/service/
-ln -s /etc/sv/nanoklogd /var/service/
-```
-Because I like to have just a single directory for everything and use
-`grep`, I do the following:
-
-```
-rm -rf /var/log/socklog/*
-mkdir /var/log/socklog/everything
-ln -s socklog/everything/current /var/log/messages.log
-```
-
-Create the file `/var/log/socklog/everything/config` with these
-contents:
-
-```
-+*
-u192.168.2.2:514
-```
-
-Reload `svlogd`
-
-```
-killall -1 svlogd
-```
-
-
-
-
+<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/setup-socklog.sh?footer=minimal"></script>
 
 ## Tweaks
 
 
 OK, in my case, `shutdown`, `reboot` and local media access functions
 were not available using the [MATE][mate] desktop.
-To enable this I had to create tweak the PolKit rules:
 
-In file `/etc/polkit-1/rules.d/10-udisks2.rules`:
+To enable this I had to create/tweak the PolKit rules...
 
-```
-// Allow udisks2 to mount devices without authentication
+<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/tweak-polkit-rules.sh?footer=minimal"></script>
 
-polkit.addRule(function(action, subject) {
-  if (action.id == "org.freedesktop.udisks2.filesystem-mount-system" ||
-	action.id == "org.freedesktop.udisks2.eject-media" ||
-        action.id == "org.freedesktop.udisks2.filesystem-mount") {
-    if (subject.isInGroup("storage")) {
-      polkit.log("POSITIVE: isInGroup(storage)");
-      return polkit.Result.YES;
-    } else if (subject.local) {
-      polkit.log("POSITIVE: local user");
-      return polkit.Result.YES;
-    } else {
-      polkit.log("NEGATIVE: udisks rules");
-    }
-
-  }
-});
-```
-
-In file `/etc/polkit-1/rules.d/20-shutdown-reboot.rules`:
-
-```
-// Rule to allow reboots or shutdowns
-//
-polkit.addRule(function(action, subject) {
-  if (action.id == "org.freedesktop.consolekit.system.stop" ||
-	action.id == "org.freedesktop.consolekit.system.restart") {
-    if (subject.isInGroup("wheel")) {
-      polkit.log("POSITIVE: isInGroup(wheel)");
-      return polkit.Result.YES;
-    } else if (subject.local) {
-      polkit.log("POSITIVE: local user");
-      return polkit.Result.YES;
-    } else {
-      polkit.log("NEGATIVE: power rules");
-    }
-  }
-});
-```
 
 FIXME: I think this may be a bug, or maybe I need to install: `polkit-gnome`.
 The documentation states it should just work.
+FIXME2: It should work with the previous tweaks/rules
 
 I like to be able to hibernate when somebody push the power button.
 For that you need to patch `/etc/acpi/handler.sh` as follows:
 
-```
---- handler.sh	2019-02-19 06:34:44.007629342 +0100
-+++ handler-hib.sh	2019-02-19 09:08:49.521017978 +0100
-@@ -26,8 +26,22 @@
-         #echo "PowerButton pressed!">/dev/tty5
-         case "$2" in
-             PBTN|PWRF)
--		    logger "PowerButton pressed: $2, shutting down..."
--		    shutdown -P now
-+		    is_active=$(ck-list-sessions | grep active | grep TRUE | wc -l)
-+		    if [ $is_active -gt 0 ] ; then
-+		      logger "PowerButton pressed: $2, Hibernating..."
-+		      cvt=$(fgconsole)
-+		      ( echo ; echo "Hibernating..." ) > /dev/tty1 < /dev/tty1 2>&1
-+		      chvt 1
-+		      ZZZ
-+		      ( echo ; echo "Resuming..." ) > /dev/tty1 < /dev/tty1 2>&1
-+		      if [ -n "$cvt" ] ; then
-+		        sleep 3
-+			chvt "$cvt"
-+		      fi
-+		    else
-+		      logger "PowerButton pressed: $2, Shutting down..."
-+		      shutdown -P now
-+                    fi
- 		    ;;
-             *)      logger "ACPI action undefined: $2" ;;
-         esac
+<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/acpi-handler.patch?footer=minimal"></script>
 
 ```
+wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/acpi-handler.patch | patch -d /etc/acpi
+# or
+wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/acpi-handler.patch | sudo patch -d /etc/acpi
+```
 
-Or retrieve from [here](https://github.com/TortugaLabs/void-utils/blob/master/acpi-handler/handler.sh).
+Or retrieve a pre-patched file from [here](https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/handler.sh).
 
 
  [void]: https://voidlinux.org "Void Linux"

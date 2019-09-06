@@ -1,0 +1,28 @@
+--- handler.sh	2019-02-19 06:34:44.007629342 +0100
++++ handler-hib.sh	2019-02-19 09:08:49.521017978 +0100
+@@ -26,8 +26,22 @@
+         #echo "PowerButton pressed!">/dev/tty5
+         case "$2" in
+             PBTN|PWRF)
+-		    logger "PowerButton pressed: $2, shutting down..."
+-		    shutdown -P now
++		    is_active=$(ck-list-sessions | grep active | grep TRUE | wc -l)
++		    if [ $is_active -gt 0 ] ; then
++		      logger "PowerButton pressed: $2, Hibernating..."
++		      cvt=$(fgconsole)
++		      ( echo ; echo "Hibernating..." ) > /dev/tty1 < /dev/tty1 2>&1
++		      chvt 1
++		      ZZZ
++		      ( echo ; echo "Resuming..." ) > /dev/tty1 < /dev/tty1 2>&1
++		      if [ -n "$cvt" ] ; then
++		        sleep 3
++			chvt "$cvt"
++		      fi
++		    else
++		      logger "PowerButton pressed: $2, Shutting down..."
++		      shutdown -P now
++                    fi
+ 		    ;;
+             *)      logger "ACPI action undefined: $2" ;;
+         esac
+
