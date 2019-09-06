@@ -11,8 +11,6 @@ acl-progs
 alsa-plugins-pulseaudio
 base-system
 dialog
-grub-i386-efi
-grub-x86_64-efi
 lvm2
 netcat
 p7zip

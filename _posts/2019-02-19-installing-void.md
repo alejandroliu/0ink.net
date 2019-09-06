@@ -183,8 +183,7 @@ Also, modify the `/etc/fstab`:
 #
 # <file system>	<dir>	<type>	<options>		<dump>	<pass>
 tmpfs		/tmp	tmpfs	defaults,nosuid,nodev   0       0
-LABEL=EFI	/boot	vfat	rw,fmask=0133,dmask=0022,noatime,discard	
-0	2
+LABEL=EFI	/boot	vfat	rw,fmask=0133,dmask=0022,noatime,discard  0 2
 LABEL=voidlinux	/	xfs	rw,relatime,discard	0 1
 LABEL=swp0 	swap	swap	defaults		0 0
 ```
@@ -281,6 +280,7 @@ Add the following scripts to:
 
 ```
 wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/hook.sh | tee /etc/kernel.d/post-{install,remove}/99-refind
+chmod 755 /etc/kernel.d/post-{install,remove}/99-refind
 ```
 
 Make sure they are executable.  This is supposed to re-create

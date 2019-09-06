@@ -3,10 +3,10 @@
 # Enter the void...
 #
 # Use this command:
-#	wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/enter-void.sh | sh
-# or
-#	wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/enter-void.sh | sudo sh
-#
+#	wget https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/enter-void.sh
+#	sudo sh enter-void.sh
+#	or
+#	sh enter-void.sh
 
 mount -t proc proc /mnt/proc
 mount -t sysfs sys /mnt/sys
