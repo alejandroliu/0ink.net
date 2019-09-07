@@ -56,7 +56,8 @@ darkhttpd		# light weight web server
 pandoc			# create md to epub
 pidgin			# chat app
 redshift-gtk		# blue blocker
-safeeyes		# eye care
+safeeyes 		# eye care
+xprintidle
 streamripper		# copy internet radio
 
 wmctrl			# windows scripting

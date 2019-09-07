@@ -142,6 +142,12 @@ chown root:root /
 chmod 755 /
 ```
 
+Since I am a `bash` convert, I would do this:
+
+```
+xbps-alternatives --set bash
+```
+
 Create the `hostname` for the new install:
 
 ```
@@ -207,26 +213,6 @@ Or whatever locale you want to use.  And run:
 xbps-reconfigure -f glibc-locales
 ```
 
-We need to have a look at `/lib/modules` to get our Linux kernel version
-
-```
-ls -la /lib/modules
-```
-
-Which should return something akin to:
-
-```
-drwxr-xr-x  3 root root   21 Jan 31 15:22 .
-drwxr-xr-x 23 root root 8192 Jan 31 15:22 ..
-drwxr-xr-x  3 root root 4096 Jan 31 15:22 4.19.4_1
-```
-
-Update dracut:
-
-```
-# dracut --force --kver 4.19.4_1
-```
-
 ## Set-up UEFI boot
 
 Download the [rEFInd][refind] zip binary from:
@@ -264,13 +250,6 @@ Create the following script as `/boot/mkmenu.sh`
 
 <script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/mkmenu.sh?footer=minimal"></script>
 
-And run this script to create the boot menu entries:
-
-```
-xbps-reconfigure -f linux4.19
-bash /boot/mkmenu.sh
-```
-
 Add the following scripts to: 
 
 - `/etc/kernel.d/post-install/99-refind`
@@ -286,6 +265,35 @@ chmod 755 /etc/kernel.d/post-{install,remove}/99-refind
 Make sure they are executable.  This is supposed to re-create
 menu entries whenever the kernel gets upgraded.
 
+We need to have a look at `/lib/modules` to get our Linux kernel version
+
+```
+ls -la /lib/modules
+```
+
+Which should return something akin to:
+
+```
+drwxr-xr-x  3 root root   21 Jan 31 15:22 .
+drwxr-xr-x 23 root root 8192 Jan 31 15:22 ..
+drwxr-xr-x  3 root root 4096 Jan 31 15:22 4.19.4_1
+```
+
+And this script to create boot files:
+
+```
+xbps-reconfigure -f linux4.19
+```
+
+If you need to manually prepare boot files:
+
+```
+# update dracut
+dracut --force --kver 4.19.4_1
+# update refind menu
+bash /boot/mkmenu.sh
+```
+
 We are now ready to boot into [Void][void].
 
 ```
@@ -299,20 +307,15 @@ reboot
 After the first boot, we need to activate services:
 
 ```
+ln -s /etc/sv/NetworkManager /var/service
+ln -s /etc/sv/dhcpcd /var/service
 ln -s /etc/sv/sshd /var/service
 ln -s /etc/sv/{acpid,chronyd,cgmanager,consolekit,dbus,crond,lxdm,polkitd,rtkit,uuidd,statd,rpcbind,autofs} /var/service
 # network auto config, either or...
-ln -s /etc/sv/NetworkManager /var/service
-ln -s /etc/sv/dhcpcd /var/service
 ```
 
 **NOTE**: For command line configuration, replace `NetworkManager` with `dhcpcd`.
 
-Since I am a `bash` convert, I would do this:
-
-```
-xbps-alternatives --set bash
-```
 
 Creating new users:
 
