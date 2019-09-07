@@ -357,10 +357,10 @@ Commands:
 
 ## Tweaks and Bug-fixes
 
-### Hibernate on power button (tweak)
+### power button handling
 
-I like to be able to hibernate when somebody push the power button.
-For that you need to patch `/etc/acpi/handler.sh` as follows:
+This patch prevents the /etc/acpi/handler.sh to handle the power button
+instead, letting the Desktop Environment handle the event.
 
 <script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/acpi-handler.patch?footer=minimal"></script>
 
@@ -370,8 +370,6 @@ wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing
 wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/acpi-handler.patch | sudo patch -b -void -d /etc/acpi
 ```
 
-Or retrieve a pre-patched file from [here](https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/handler.sh).
-
 ### `rtkit` spamming logs
 
 Apparently, `rtkit` requres an `rtkit` user to exist.  Otherwise it
@@ -380,7 +378,6 @@ will spam the logs with error messages.  To correct use this command:
 ```
 useradd -r -s /sbin/nologin rtkit
 ```
-
 
 ## Old Notes
 
