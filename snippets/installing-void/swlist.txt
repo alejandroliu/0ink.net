@@ -35,6 +35,7 @@ xauth
 xorg-input-drivers
 xorg-minimal
 xorg-video-drivers
+ConsoleKit2
 
 dejavu-fonts-ttf
 terminus-font
