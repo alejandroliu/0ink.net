@@ -16,7 +16,7 @@ xbps-install -S socklog-void
 # Because I like to have just a single directory for everything and use
 # `grep`, I do the following:
 
-rm -rf /var/log/socklog/*
+rm -rf /var/log/socklog/?*
 mkdir /var/log/socklog/everything
 ln -s socklog/everything/current /var/log/messages.log
 
