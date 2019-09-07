@@ -306,16 +306,23 @@ reboot
 
 After the first boot, we need to activate services:
 
+Command line set-up:
+
 ```
-ln -s /etc/sv/NetworkManager /var/service
 ln -s /etc/sv/dhcpcd /var/service
 ln -s /etc/sv/sshd /var/service
-ln -s /etc/sv/{acpid,chronyd,cgmanager,consolekit,dbus,crond,lxdm,polkitd,rtkit,uuidd,statd,rpcbind,autofs} /var/service
-# network auto config, either or...
+ln -s /etc/sv/{acpid,chronyd,cgmanager,crond,uuidd,statd,rcpbind,autofs} /var/service
 ```
 
-**NOTE**: For command line configuration, replace `NetworkManager` with `dhcpcd`.
+Full workstation set-up:
 
+```
+ln -s /etc/sv/dbus /var/service
+ln -s /etc/sv/NetworkManager /var/service
+ln -s /etc/sv/sshd /var/service
+ln -s /etc/sv/{acpid,chronyd,cgmanager,crond,uuidd,statd,rcpbind,autofs} /var/service
+ln -s /etc/sv/{consolekit,lxdm,polkitd,rtkit} /var/service
+```
 
 Creating new users:
 
@@ -348,8 +355,42 @@ Commands:
 
 <script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/setup-socklog.sh?footer=minimal"></script>
 
-## Tweaks
+## Tweaks and Bug-fixes
 
+### Hibernate on power button (tweak)
+
+I like to be able to hibernate when somebody push the power button.
+For that you need to patch `/etc/acpi/handler.sh` as follows:
+
+<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/acpi-handler.patch?footer=minimal"></script>
+
+```
+wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/acpi-handler.patch | patch -b -void -d /etc/acpi
+# or
+wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/acpi-handler.patch | sudo patch -b -void -d /etc/acpi
+```
+
+Or retrieve a pre-patched file from [here](https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/handler.sh).
+
+### `rtkit` spamming logs
+
+Apparently, `rtkit` requres an `rtkit` user to exist.  Otherwise it
+will spam the logs with error messages.  To correct use this command:
+
+```
+useradd -r -s /sbin/nologin rtkit
+```
+
+
+## Old Notes
+
+### PolKit rule tweaks
+
+Testing as of 2019-09-07, the following does not seem to be needed
+any longer.  I left it here just for reference (in case it breaks
+again.
+
+* * *
 
 OK, in my case, `shutdown`, `reboot` and local media access functions
 were not available using the [MATE][mate] desktop.
@@ -358,23 +399,10 @@ To enable this I had to create/tweak the PolKit rules...
 
 <script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/tweak-polkit-rules.sh?footer=minimal"></script>
 
+* * *
 
-FIXME: I think this may be a bug, or maybe I need to install: `polkit-gnome`.
-The documentation states it should just work.
-FIXME2: It should work with the previous tweaks/rules
 
-I like to be able to hibernate when somebody push the power button.
-For that you need to patch `/etc/acpi/handler.sh` as follows:
 
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/acpi-handler.patch?footer=minimal"></script>
-
-```
-wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/acpi-handler.patch | patch -d /etc/acpi
-# or
-wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/acpi-handler.patch | sudo patch -d /etc/acpi
-```
-
-Or retrieve a pre-patched file from [here](https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/handler.sh).
 
 
  [void]: https://voidlinux.org "Void Linux"
