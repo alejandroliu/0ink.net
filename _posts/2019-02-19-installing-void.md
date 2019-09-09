@@ -62,7 +62,7 @@ env XBPS_ARCH=x86_64-musl xbps-install -S -R http://alpha.de.repo.voidlinux.org/
 
 For glibc (untested)
 ```
-env XBPS_ARCH=x86_64 xbps-install -S -R http://alpha.de.repo.voidlinux.org/current/musl -r /mnt base-system grub-x86_64-efi
+env XBPS_ARCH=x86_64 xbps-install -S -R http://alpha.de.repo.voidlinux.org/current -r /mnt base-system grub-x86_64-efi
 ```
 
 But actually, for the package list I have been using this list:
@@ -365,9 +365,9 @@ instead, letting the Desktop Environment handle the event.
 <script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/acpi-handler.patch?footer=minimal"></script>
 
 ```
-wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/acpi-handler.patch | patch -b -void -d /etc/acpi
+wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/acpi-handler.patch | patch -b -z -void -d /etc/acpi
 # or
-wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/acpi-handler.patch | sudo patch -b -void -d /etc/acpi
+wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/acpi-handler.patch | sudo patch -b -z -void -d /etc/acpi
 ```
 
 ### `rtkit` spamming logs
