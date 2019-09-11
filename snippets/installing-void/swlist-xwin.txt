@@ -1,0 +1,13 @@
+# Basic software for X windows
+setxkbmap
+xauth
+xorg-input-drivers
+xorg-minimal
+xorg-video-drivers
+ConsoleKit2
+
+# default fonts
+dejavu-fonts-ttf
+terminus-font
+font-misc-misc
+

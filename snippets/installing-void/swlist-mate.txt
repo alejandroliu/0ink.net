@@ -1,0 +1,19 @@
+# MATE desktop environment
+lxdm
+mate
+mate-extra
+network-manager-applet
+udisks2
+gnome-keyring
+gvfs-afc
+gvfs-mtp
+gvfs-smb
+caja-open-terminal
+
+# Just the web browser
+firefox-esr
+
+
+
+
+

@@ -1,12 +1,3 @@
-#
-# Download this with:
-#
-#	wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/swlist.txt | sed -e 's/#.*$//'
-#
-# use:
-#	xbps-query -m
-# To see the list of "manually" installed packages
-#
 acl-progs
 alsa-plugins-pulseaudio
 base-system
@@ -29,31 +20,4 @@ socklog-void		# needed for logging
 cryptsetup		# encrypted LUKS filesystem
 chrony			# ntp client
 dcron			# cron support
-
-setxkbmap
-xauth
-xorg-input-drivers
-xorg-minimal
-xorg-video-drivers
-ConsoleKit2
-
-dejavu-fonts-ttf
-terminus-font
-font-misc-misc
-
-lxdm
-mate
-mate-extra
-network-manager-applet
-udisks2
-gnome-keyring
-gvfs-afc
-gvfs-mtp
-gvfs-smb
-
-firefox-esr
-
-
-
-
 
