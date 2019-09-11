@@ -6,7 +6,7 @@ I am making a switch to [void linux][void].  So far it has been working
 fine.  I like that it is very stream-lined and hardware support
 has been mostly fine.
 
-I have tweaked the installation on my computers to use UEFI and thus 
+I have tweaked the installation on my computers to use UEFI and thus
 I am using [rEFInd][refind] instead of grub.  This is because it makes
 doing bare metal backups and restore just a simple file copy.  Using
 UEFI grub or my previous BIOS based boot process would require doing some
@@ -15,6 +15,26 @@ to partition things right and copy things to the right location to
 have a working system.
 
 My installation process roughly follows the [UEFI chroot install][void-uefi].
+
+This process is implemented in a script and can be found here:
+
+- [install.sh](https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/install.sh)
+
+Script usage:
+
+```
+	Usage: installer.sh _sdx_ _hostname_ [options]
+
+	- _sdx_: Block device to install to
+	- _hostname_: Hostname to use
+
+	Options:
+	- mem=memory : memory size, defaults computed from /proc/meminfo
+	- glibc : Do a glibc install
+	- noxwin : do not insall X11 related packages
+	  desktop=no ; do not install desktop environment
+	  desktop=mate : Install MATE dekstop environment
+```
 
 ## Initial set-up
 
@@ -36,18 +56,19 @@ This is on a USB thumb drive.  The data I keep on an internal disk.
 Now we create the filesystems:
 
 ```
-mkfs.vfat -F 32 -n EFI /dev/xda1
-mkswap -L swp0 /dev/xda2
-mkfs.xfs -L voidlinux /dev/xda3
+sysdev=<block device>
+
+mkfs.vfat -F 32 -n EFI "${sysdev}1"
+mkswap -L swp0 "${sysdev}2"
+mkfs.xfs -f -L voidlinux "${sysdev}3"
 ```
 
-We're now ready to mount the volumes, making any necessary mount point directories along the way (the sequence is important, yes): 
-
+We're now ready to mount the volumes, making any necessary mount point directories along the way (the sequence is important, yes):
 
 ```
-mount /dev/xda3 /mnt
+mount "${sysdev}3" /mnt
 mkdir /mnt/boot
-mount /dev/xda1 /mnt/boot
+mount "${sysdev}1" /mnt/boot
 ```
 
 ## Installing Void
@@ -65,19 +86,21 @@ For glibc (untested)
 env XBPS_ARCH=x86_64 xbps-install -S -R http://alpha.de.repo.voidlinux.org/current -r /mnt base-system grub-x86_64-efi
 ```
 
-But actually, for the package list I have been using this list:
+But actually, for the package list I have been using these lists:
 
 <script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/swlist.txt?footer=minimal"></script>
+<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/swlist-xwin.txt?footer=minimal"></script>
+<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/swlist-mate.txt?footer=minimal"></script>
 
 This installs a [MATE][mate] desktop environment.
 
 ### Software selection notes
 
 - For time synchronisation (ntp) we ae choosing `chrony` as it is
-  reputed to be more secure that `ntpd` and more compliant than
-  `openntpd`.
+ reputed to be more secure that `ntpd` and more compliant than
+ `openntpd`.
 - We are using the default configuration, which should be OK.  Uses
-  `pool.ntp.org` for the time server which would use a suitable
+ `pool.ntp.org` for the time server which would use a suitable
   default.
 - For `cron` we are using `dcron`.  It is full featured (i.e.
   compatibnle with `cron` and it can handle power-off situations,
@@ -99,12 +122,19 @@ unrar
 
 Upon completion of the install, we set up our chroot jail, and chroot into our mounted filesystem:
 
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/enter-void.sh?footer=minimal"></script>
+```
+mount -t proc proc /mnt/proc
+mount -t sysfs sys /mnt/sys
+mount -o bind /dev /mnt/dev
+mount -t devpts pts /mnt/dev/pts
+cp -L /etc/resolv.conf /mnt/etc/
+chroot /mnt bash -il
+```
 
 In order to verify our install, we can have a look at the directory structure:
 
 ```
-ls -la
+ ls -la
 ```
 
 The output should look something akin to the following:
@@ -137,15 +167,15 @@ drwxr-xr-x 11 root root  150 Jan 17 15:26 var
 While chrooted, we create the password for the root user, and set root access permissions:
 
 ```
-passwd root
-chown root:root /
-chmod 755 /
+ passwd root
+ chown root:root /
+ chmod 755 /
 ```
 
 Since I am a `bash` convert, I would do this:
 
 ```
-xbps-alternatives --set bash
+ xbps-alternatives --set bash
 ```
 
 Create the `hostname` for the new install:
@@ -154,7 +184,7 @@ Create the `hostname` for the new install:
 echo <HOSTNAME> > /etc/hostname
 ```
 
-Edit our `rc.conf` file, like so:
+Edit our `/etc/rc.conf` file, like so:
 
 ```
 HOSTNAME="<HOSTNAME>"
@@ -192,6 +222,7 @@ tmpfs		/tmp	tmpfs	defaults,nosuid,nodev   0       0
 LABEL=EFI	/boot	vfat	rw,fmask=0133,dmask=0022,noatime,discard  0 2
 LABEL=voidlinux	/	xfs	rw,relatime,discard	0 1
 LABEL=swp0 	swap	swap	defaults		0 0
+_EOF_
 ```
 
 For a removable drive I include the line:
@@ -210,7 +241,7 @@ uncomment:
 Or whatever locale you want to use.  And run:
 
 ```
-xbps-reconfigure -f glibc-locales
+ xbps-reconfigure -f glibc-locales
 ```
 
 ## Set-up UEFI boot
@@ -245,22 +276,16 @@ For my hardware I had to add the option:
 - `i915.enable_ips=0`
   - fixes a power saving mode problem on 4.1-rc6+
 
-
 Create the following script as `/boot/mkmenu.sh`
 
 <script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/mkmenu.sh?footer=minimal"></script>
 
-Add the following scripts to: 
+Add the following scripts to:
 
 - `/etc/kernel.d/post-install/99-refind`
 - `/etc/kernel.d/post-remove/99-refind`
 
 <script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/hook.sh?footer=minimal"></script>
-
-```
-wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/hook.sh | tee /etc/kernel.d/post-{install,remove}/99-refind
-chmod 755 /etc/kernel.d/post-{install,remove}/99-refind
-```
 
 Make sure they are executable.  This is supposed to re-create
 menu entries whenever the kernel gets upgraded.
@@ -284,6 +309,7 @@ And this script to create boot files:
 ```
 xbps-reconfigure -f linux4.19
 ```
+
 
 If you need to manually prepare boot files:
 
@@ -348,12 +374,43 @@ Uncomment:
 
 ## Logging
 
-
 Source: [Logging](https://voidlinux.org/faq/#Logging)
 
-Commands:
+Optional:
 
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/setup-socklog.sh?footer=minimal"></script>
+```
+usermod -aG socklog <your username>
+```
+
+Because I like to have just a single directory for everything and use
+`grep`, I do the following:
+
+```
+rm -rf /var/log/socklog/?*
+mkdir /var/log/socklog/everything
+ln -s socklog/everything/current /var/log/messages.log
+```
+
+Create the file `/var/log/socklog/everything/config` with these
+contents:
+
+```
++*
+u172.17.1.8:514
+```
+
+Enable daemons...
+
+```
+ln -s /etc/sv/socklog-unix /var/service/
+ln -s /etc/sv/nanoklogd /var/service/
+```
+
+Reload `svlogd` (if it was already running)
+
+```
+killall -1 svlogd
+
 
 ## Tweaks and Bug-fixes
 
@@ -364,11 +421,6 @@ instead, letting the Desktop Environment handle the event.
 
 <script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/acpi-handler.patch?footer=minimal"></script>
 
-```
-wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/acpi-handler.patch | patch -b -z -void -d /etc/acpi
-# or
-wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/acpi-handler.patch | sudo patch -b -z -void -d /etc/acpi
-```
 
 ### `rtkit` spamming logs
 
@@ -397,10 +449,6 @@ To enable this I had to create/tweak the PolKit rules...
 <script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/tweak-polkit-rules.sh?footer=minimal"></script>
 
 * * *
-
-
-
-
 
  [void]: https://voidlinux.org "Void Linux"
  [refind]: http://www.rodsbooks.com/refind/ "rEFInd bootloader"

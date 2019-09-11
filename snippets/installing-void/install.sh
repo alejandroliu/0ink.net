@@ -15,6 +15,10 @@ if [ $# -eq 0 ] ; then
 	output="echo"
       elif [ x"$ln" = x":#end-output" ] ; then
 	output=":"
+      elif [ x"$ln" = x"::begin-output" ] ; then
+	output="echo"
+      elif [ x"$ln" = x"::end-output" ] ; then
+	output=":"
       else
 	$output "$ln"
       fi
@@ -25,7 +29,8 @@ if [ $# -eq 0 ] ; then
 	-e 's/^://' \
     | sed \
 	-e 's!$repourl!'"$repourl!" \
-	-e 's!$0!installer.sh!'
+	-e 's!$0!installer.sh!' \
+	-e 's!$run!!'
   exit 0
 fi
 
@@ -161,7 +166,7 @@ if [ -b "$sysdev" ] ; then
 	,${swapsz}K,S,
 	,,L,
 	_EOF_
-
+  sleep 1
 fi
 
 #begin-output
@@ -227,19 +232,20 @@ fi
 if ! check_opt glibc "$@" ; then
   # MUSL installation
   arch="x86_64-musl"
-  repourl="http://alpha.de.repo.voidlinux.org/current/musl"
+  voidurl="http://alpha.de.repo.voidlinux.org/current/musl"
 else
   # GLIBC installation
   arch="x86_64"
-  repourl="http://alpha.de.repo.voidlinux.org/current"
+  voidurl="http://alpha.de.repo.voidlinux.org/current"
 fi
 desktop=$(check_opt desktop "$@") || :
 [ -z "$desktop" ] && desktop=mate
 
-env XBPS_ARCH="$arch" xbps-install -S -R "$repourl" -r /mnt $(
-  set -x
+run="chroot /mnt"
+
+env XBPS_ARCH="$arch" xbps-install -S -R "$voidurl" -r /mnt $(
   (wget -O- "$repourl/swlist.txt" 
-  if ! check_opt noxwin "$@" ; then
+  if ! check_opt noxwin "$@" >/dev/null 2>&1 ; then
     wget -O- "$repourl/swlist-xwin.txt"
     if is_valid_desktop "$desktop" ; then
       wget -O- "$repourl/swlist-$desktop.txt" | sed -e 's/#.*$//'
@@ -272,7 +278,7 @@ env XBPS_ARCH="$arch" xbps-install -S -R "$repourl" -r /mnt $(
 ## unrar
 ## ```
 #end-output
-env XBPS_ARCH="$arch" xbps-install -S -R "$repourl" -r /mnt intel-ucode unrar
+env XBPS_ARCH="$arch" xbps-install -S -R "$voidurl" -r /mnt intel-ucode unrar
 #begin-output
 ##
 ## ## Enter the void chroot
@@ -291,7 +297,7 @@ cp -L /etc/resolv.conf /mnt/etc/
 ## In order to verify our install, we can have a look at the directory structure:
 ##
 ## ```
-## ls -la
+$run ls -la
 ## ```
 ##
 ## The output should look something akin to the following:
@@ -324,61 +330,77 @@ cp -L /etc/resolv.conf /mnt/etc/
 ## While chrooted, we create the password for the root user, and set root access permissions:
 ##
 ## ```
-## passwd root
-## chown root:root /
-## chmod 755 /
+$run passwd root
+$run chown root:root /
+$run chmod 755 /
 ## ```
 ##
 ## Since I am a `bash` convert, I would do this:
 ##
 ## ```
-## xbps-alternatives --set bash
+$run xbps-alternatives --set bash
 ## ```
 ##
 ## Create the `hostname` for the new install:
 ##
 ## ```
 ## echo <HOSTNAME> > /etc/hostname
+#end-output
+echo $syshost > /mnt/etc/hostname
+#begin-output
 ## ```
 ##
-## Edit our `rc.conf` file, like so:
+## Edit our `/etc/rc.conf` file, like so:
 ##
 ## ```
-## HOSTNAME="<HOSTNAME>"
-##
-## # Set RTC to UTC or localtime.
-## HARDWARECLOCK="UTC"
-##
-## # Set timezone, availables timezones at /usr/share/zoneinfo.
-## TIMEZONE="Europe/Amsterdam"
-## 
-## # Keymap to load, see loadkeys(8).
-## KEYMAP="us-acentos"
-## 
-## # Console font to load, see setfont(8).
-## #FONT="lat9w-16"
-##
-## # Console map to load, see setfont(8).
-## #FONT_MAP=
-##
-## # Font unimap to load, see setfont(8).
-## #FONT_UNIMAP=
-## 
-## # Kernel modules to load, delimited by blanks.
-## #MODULES=""
+#end-output
+(cat <<:end-output
+#begin-output
+HOSTNAME="<HOSTNAME>"
+
+# Set RTC to UTC or localtime.
+HARDWARECLOCK="UTC"
+
+# Set timezone, availables timezones at /usr/share/zoneinfo.
+TIMEZONE="Europe/Amsterdam"
+ 
+# Keymap to load, see loadkeys(8).
+KEYMAP="us-acentos"
+ 
+# Console font to load, see setfont(8).
+#FONT="lat9w-16"
+
+# Console map to load, see setfont(8).
+#FONT_MAP=
+
+# Font unimap to load, see setfont(8).
+#FONT_UNIMAP=
+ 
+# Kernel modules to load, delimited by blanks.
+#MODULES=""
+:end-output
+) | sed \
+	-e 's!<HOSTNAME>!'"$syshost"'!' \
+	> /mnt/etc/rc.conf 
+(cat <<:end-output
+#begin-output
 ## ```
 ##
 ## Also, modify the `/etc/fstab`:
 ##
 ## ```
-## #
-## # See fstab(5).
-## #
-## # <file system>	<dir>	<type>	<options>		<dump>	<pass>
-## tmpfs		/tmp	tmpfs	defaults,nosuid,nodev   0       0
-## LABEL=EFI	/boot	vfat	rw,fmask=0133,dmask=0022,noatime,discard  0 2
-## LABEL=voidlinux	/	xfs	rw,relatime,discard	0 1
-## LABEL=swp0 	swap	swap	defaults		0 0
+#
+# See fstab(5).
+#
+# <file system>	<dir>	<type>	<options>		<dump>	<pass>
+tmpfs		/tmp	tmpfs	defaults,nosuid,nodev   0       0
+LABEL=EFI	/boot	vfat	rw,fmask=0133,dmask=0022,noatime,discard  0 2
+LABEL=voidlinux	/	xfs	rw,relatime,discard	0 1
+LABEL=swp0 	swap	swap	defaults		0 0
+_EOF_
+:end-output
+) > /mnt/etc/fstab
+#begin-output
 ## ```
 ## 
 ## For a removable drive I include the line:
@@ -395,10 +417,16 @@ cp -L /etc/resolv.conf /mnt/etc/
 ## `en_US.UTF-8 UTF-8`
 ## 
 ## Or whatever locale you want to use.  And run:
-## 
+##
+#end-output
+if check_opt glibc "$@" ; then
+#begin-output
 ## ```
-## xbps-reconfigure -f glibc-locales
+$run xbps-reconfigure -f glibc-locales
 ## ```
+#end-output
+fi
+#begin-output
 ## 
 ## ## Set-up UEFI boot
 ## 
@@ -416,14 +444,19 @@ cp -L /etc/resolv.conf /mnt/etc/
 ## Copy from the `zip file` the file `refind-bin-{version}/refind/refind_x64.efi` to
 ## `/boot/EFI/BOOT/BOOTX64.EFI`.
 ## 
-## The version I am using right now can be found here: [v0.11.4 BOOTX64.EFI](https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/BOOTX64.EFI)
-## 
+## The version I am using right now can be found here: [v0.11.4 BOOTX64.EFI]($repourl/BOOTX64.EFI)
+##
 ## Create kernel options files `/boot/cmdline`:
 ## 
 ## ```
 ## root=LABEL=voidlinux ro quiet
 ## 
 ## ```
+#end-output
+mkdir -p /mnt/boot/EFI/BOOT
+wget -O/mnt/boot/EFI/BOOT/BOOTX64.EFI $repourl/BOOTX64.EFI
+echo "root=LABEL=voidlinux ro quiet" > /mnt/boot/cmdline
+#begin-output
 ## 
 ## For my hardware I had to add the option:
 ## 
@@ -434,23 +467,23 @@ cp -L /etc/resolv.conf /mnt/etc/
 ## 
 ## Create the following script as `/boot/mkmenu.sh`
 ## 
-## <script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/mkmenu.sh?footer=minimal"></script>
+## <script src="https://gist-it.appspot.com/$repourl/mkmenu.sh?footer=minimal"></script>
 ## 
 ## Add the following scripts to: 
 ## 
 ## - `/etc/kernel.d/post-install/99-refind`
 ## - `/etc/kernel.d/post-remove/99-refind`
 ## 
-## <script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/hook.sh?footer=minimal"></script>
-## 
-## ```
-## wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/hook.sh | tee /etc/kernel.d/post-{install,remove}/99-refind
-## chmod 755 /etc/kernel.d/post-{install,remove}/99-refind
-## ```
+## <script src="https://gist-it.appspot.com/$repourl/hook.sh?footer=minimal"></script>
 ## 
 ## Make sure they are executable.  This is supposed to re-create
 ## menu entries whenever the kernel gets upgraded.
-## 
+##
+#end-output
+wget -O/mnt/boot/mkmenu.sh $repourl/mkmenu.sh
+wget -O- $repourl/hook.sh | tee /mnt/etc/kernel.d/post-{install,remove}/99-refind
+chmod 755 /mnt/etc/kernel.d/post-{install,remove}/99-refind
+#begin-output
 ## We need to have a look at `/lib/modules` to get our Linux kernel version
 ## 
 ## ```
@@ -470,7 +503,12 @@ cp -L /etc/resolv.conf /mnt/etc/
 ## ```
 ## xbps-reconfigure -f linux4.19
 ## ```
-## 
+##
+#end-output
+kver=$($run xbps-query linux | awk '$1 == "pkgver:" { print $2 }' | sed -e 's/linux-//' -e 's/_.*$//')
+$run xbps-reconfigure -f linux${kver}
+#begin-output
+##
 ## If you need to manually prepare boot files:
 ## 
 ## ```
@@ -484,7 +522,7 @@ cp -L /etc/resolv.conf /mnt/etc/
 ## 
 ## ```
 ## exit
-umount -R /mnt
+## umount -R /mnt
 ## reboot
 ## ```
 ## 
@@ -509,6 +547,20 @@ umount -R /mnt
 ## ln -s /etc/sv/{acpid,chronyd,cgmanager,crond,uuidd,statd,rcpbind,autofs} /var/service
 ## ln -s /etc/sv/{consolekit,lxdm,polkitd,rtkit} /var/service
 ## ```
+#end-output
+common_svcs="sshd acpid chronyd cgmanager crond uuidd statd rpcbind autofs"
+if check_opt noxwin "$@" ; then
+  net_svcs="dhcpd"
+  ws_svcs=""
+else
+  net_svcs="dbus NetworkManager"
+  ws_svcs="consolekit lxdm polkitd rtkit"
+fi
+for svc in $common_svcs $net_svcs $ws_svcs
+do
+  ln -s /etc/sv/$svc /mnt/etc/runit/runsvdir/default/
+done
+#begin-output
 ## 
 ## Creating new users:
 ## 
@@ -531,15 +583,62 @@ umount -R /mnt
 ## # %wheel ALL=(ALL) ALL
 ## ```
 ## 
+#end-output
+echo "%admins ALL=(ALL) ALL" >> /mnt/etc/sudoers
+#begin-output
 ## 
 ## ## Logging
 ## 
-## 
 ## Source: [Logging](https://voidlinux.org/faq/#Logging)
 ## 
-## Commands:
-## 
-## <script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/setup-socklog.sh?footer=minimal"></script>
+## Optional:
+##
+## ```
+## usermod -aG socklog <your username>
+## ```
+##
+## Because I like to have just a single directory for everything and use
+## `grep`, I do the following:
+##
+## ```
+## rm -rf /var/log/socklog/?*
+## mkdir /var/log/socklog/everything
+## ln -s socklog/everything/current /var/log/messages.log
+## ```
+#end-output
+find /mnt/var/log/socklog -maxdepth 1 -mindepth 1 -print0 | xargs -0 rm -rf
+mkdir /mnt/var/log/socklog/everything
+ln -s socklog/everything/current /mnt/var/log/messages.log
+#begin-output
+##
+## Create the file `/var/log/socklog/everything/config` with these
+## contents:
+##
+## ```
+## +*
+## u172.17.1.8:514
+## ```
+##
+## Enable daemons...
+##
+## ```
+## ln -s /etc/sv/socklog-unix /var/service/
+## ln -s /etc/sv/nanoklogd /var/service/
+## ```
+##
+## Reload `svlogd` (if it was already running)
+##
+## ```
+## killall -1 svlogd
+##
+#end-output
+mkdir -p /mnt/var/log/socklog/everything
+cat > /mnt/var/log/socklog/everything/config <<-_EOF_
+	+*
+	u172.17.1.8:514
+	_EOF_
+ln -s /etc/sv/{socklog-unix,nanoklogd} /mnt/etc/runit/runsvdir/default/
+#begin-output
 ## 
 ## ## Tweaks and Bug-fixes
 ## 
@@ -548,13 +647,11 @@ umount -R /mnt
 ## This patch prevents the /etc/acpi/handler.sh to handle the power button
 ## instead, letting the Desktop Environment handle the event.
 ## 
-## <script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/acpi-handler.patch?footer=minimal"></script>
-## 
-## ```
-## wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/acpi-handler.patch | patch -b -z -void -d /etc/acpi
-## # or
-## wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/acpi-handler.patch | sudo patch -b -z -void -d /etc/acpi
-## ```
+## <script src="https://gist-it.appspot.com/$repourl/acpi-handler.patch?footer=minimal"></script>
+##
+#end-output
+wget -O- $repourl/acpi-handler.patch | patch -b -z -void -d /mnt/etc/acpi
+#begin-output
 ## 
 ## ### `rtkit` spamming logs
 ## 
