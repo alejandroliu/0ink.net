@@ -34,6 +34,8 @@ Script usage:
 	- noxwin : do not insall X11 related packages
 	  desktop=no ; do not install desktop environment
 	  desktop=mate : Install MATE dekstop environment
+	  rsync.host=host : rsync backup server
+	  rsync.secret=secret : rsync backup pre-shared-key
 ```
 
 ## Initial set-up
@@ -222,7 +224,6 @@ tmpfs		/tmp	tmpfs	defaults,nosuid,nodev   0       0
 LABEL=EFI	/boot	vfat	rw,fmask=0133,dmask=0022,noatime,discard  0 2
 LABEL=voidlinux	/	xfs	rw,relatime,discard	0 1
 LABEL=swp0 	swap	swap	defaults		0 0
-_EOF_
 ```
 
 For a removable drive I include the line:
@@ -301,13 +302,13 @@ Which should return something akin to:
 ```
 drwxr-xr-x  3 root root   21 Jan 31 15:22 .
 drwxr-xr-x 23 root root 8192 Jan 31 15:22 ..
-drwxr-xr-x  3 root root 4096 Jan 31 15:22 4.19.4_1
+drwxr-xr-x  3 root root 4096 Jan 31 15:22 5.2.13_1
 ```
 
 And this script to create boot files:
 
 ```
-xbps-reconfigure -f linux4.19
+xbps-reconfigure -f linux5.2
 ```
 
 
@@ -410,7 +411,111 @@ Reload `svlogd` (if it was already running)
 
 ```
 killall -1 svlogd
+```
 
+
+## System backups
+
+For [void linux][void] I prefer to re-install instead to do a full
+backup.  A few selected files are backed-up.  This is done with this
+[script](https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/rsvault.sh)
+
+To install, copy that script to `/usr/local/sbin` and make it
+executable.
+
+Create a cronjob in `/etc/cron.daily/rsvault` to enable.
+
+Configure server information in `/etc/rsync.cfg`
+
+```
+rsync_host="<server>"
+rsync_passwd="<passwd>
+```
+
+Make sure you set permissions accordingly:
+
+- `chmod 600 /etc/rsync.cfg`
+
+Create hardlinks to files that you would like to protect in
+`/etc/rsync.vault`.  For example:
+
+- `/etc/crypttab`
+- `/crypto_keyfile.bin`
+- `/etc/hosts` #: if using for ad blocking
+
+Alternatively, you can do a full backup with this
+[script](https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/os-backup.sh).
+
+
+## Identd server
+
+I am using this [identd server](https://raw.githubusercontent.com/TortugaLabs/autonom/master/an_identd.py)to support
+a simple Single-Sign-On scheme.
+
+```
+mkdir -p /etc/sv/an_identd/log
+wget -O/usr/local/sbin/an_identd https://raw.githubusercontent.com/TortugaLabs/autonom/master/an_identd.py
+wget -O/etc/sv/an_identd/run https://raw.githubusercontent.com/TortugaLabs/autonom/master/etc-sv-an_identd/run
+wget -O/etc/sv/an_identd/log/run https://raw.githubusercontent.com/TortugaLabs/autonom/master/etc-sv-an_identd/log/run
+chmod 755 /usr/local/sbin/an_identd $mnt/etc/sv/an_identd/run $mnt/etc/sv/an_identd/log/run
+ln -s /etc/sv/an_identd /var/service
+```
+
+## Configure keyboard
+
+Create configuration file: `/etc/X11/xorg.conf.d/30-keyboard.conf`
+
+```
+Section "InputClass"
+    Identifier "keyboard-all"
+    Option "XkbLayout" "us"
+    # Option "XkbModel" "pc105"
+    # Option "XkbVariant" "altgr-intl"
+    Option "XkbVariant" "intl"
+    # MatchIsKeyboard "on"
+```
+
+This makes the `intl` for the `XkbVariant` the system-wide default.
+
+Since, as a programmer I prefer the `altgr-intl` variant, then I
+run this in my de desktop environment startup to override the
+default:
+
+```
+setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl
+```
+
+## Tweak LXDM
+
+MATE under Void Linux uses [LXDM][lxdm] as the Display Manager in the LiveCD.
+
+Configuration is located in `/etc/lxdm/lxdm.conf`.
+
+Things to change:
+
+- `[base]`
+  - `session=/usr/bin/mate-session`
+  - Change the default session to a suitable default (the system
+    default is LXDE).
+- `[display]`
+  - `lang=0`
+- `[userlist]`
+  - `disable=1`
+
+
+After the user logs on, [lxdm][lxdm] seems to run `/etc/lxdm/Xsession`
+to set-up the session.  Amongst other things, [lxdm][lxdm] sources
+all of the following files, in order:
+
+- `/etc/profile`
+- `~/.profile`
+- `/etc/xprofile`
+- `~/.xprofile`
+
+These files can be used to set session environment variables and to
+start services which must set certain environment variables in order
+for clients in the session to be able to use the service, like
+ssh-agent.
 
 ## Tweaks and Bug-fixes
 
@@ -422,7 +527,7 @@ instead, letting the Desktop Environment handle the event.
 <script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/acpi-handler.patch?footer=minimal"></script>
 
 
-### `rtkit` spamming logs
+### rtkit spamming logs
 
 Apparently, `rtkit` requres an `rtkit` user to exist.  Otherwise it
 will spam the logs with error messages.  To correct use this command:
@@ -455,4 +560,5 @@ To enable this I had to create/tweak the PolKit rules...
  [void-uefi]: https://wiki.voidlinux.org/Installation_on_UEFI,_via_chroot "Install void linux on UEFI via chroot"
  [mate]: https://mate-desktop.org/ "MATE Desktop environment"
  [getting-refind]: http://www.rodsbooks.com/refind/getting.html "rEFInd download page"
+ [lxdm]: https://wiki.lxde.org/en/LXDM "LXDM Display Manager"
 
