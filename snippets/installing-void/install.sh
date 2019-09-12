@@ -4,6 +4,10 @@ set -euf -o pipefail
 script=$(readlink -f "$0")
 
 repourl=https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void
+identdurl=https://raw.githubusercontent.com/TortugaLabs/autonom/master
+mnt=/mnt
+hmnt="$mnt"
+svcdir="$mnt/etc/runit/runsvdir/default"
 
 if [ $# -eq 0 ] ; then
   # Show documentation...
@@ -29,8 +33,12 @@ if [ $# -eq 0 ] ; then
 	-e 's/^://' \
     | sed \
 	-e 's!$repourl!'"$repourl!" \
+	-e 's!$identdurl!'"$identdurl!" \
 	-e 's!$0!installer.sh!' \
-	-e 's!$run!!'
+	-e 's!$run!!' \
+	-e 's!$mnt!!' \
+	-e 's!$hmnt!'"$hmnt!" \
+	-e 's!$svcdir!/var/service!'
   exit 0
 fi
 
@@ -97,6 +105,8 @@ if [ $# -lt 2 ] ; then
 	- noxwin : do not insall X11 related packages
 	  desktop=no ; do not install desktop environment
 	  desktop=mate : Install MATE dekstop environment
+	  rsync.host=host : rsync backup server
+	  rsync.secret=secret : rsync backup pre-shared-key
 #end-output
 	_EOF_
   exit 1
@@ -107,7 +117,7 @@ shift 2
 
 if [ -d "$sysdev" ] ; then
   echo "$sysdev: is a directory"
-  [ $(readlink -f "$sysdev") = "/mnt" ] && die 5 "Can not use /mnt"
+  [ $(readlink -f "$sysdev") = "$mnt" ] && die 5 "Can not use $mnt"
 elif [ -b "$sysdev" ] ; then
   echo "$sysdev: is a block device"
   mounts=$(mount | grep '^'"$sysdev"| wc -l) || :
@@ -195,12 +205,12 @@ fi
 #end-output
 if [ -b "$sysdev" ] ; then
 #begin-output
-mount "${sysdev}3" /mnt
-mkdir /mnt/boot
-mount "${sysdev}1" /mnt/boot
+mount "${sysdev}3" $hmnt
+mkdir $hmnt/boot
+mount "${sysdev}1" $hmnt/boot
 #end-output
 elif [ -d "$sysdev" ] ; then
-  mount --rbind "$sysdev" "/mnt"
+  mount --rbind "$sysdev" "$mnt"
 fi
 #begin-output
 ## ```
@@ -212,12 +222,12 @@ fi
 ## For musl-libc
 ##
 ## ```
-## env XBPS_ARCH=x86_64-musl xbps-install -S -R http://alpha.de.repo.voidlinux.org/current/musl -r /mnt base-system grub-x86_64-efi
+## env XBPS_ARCH=x86_64-musl xbps-install -S -R http://alpha.de.repo.voidlinux.org/current/musl -r $hmnt base-system grub-x86_64-efi
 ## ```
 ##
 ## For glibc (untested)
 ## ```
-## env XBPS_ARCH=x86_64 xbps-install -S -R http://alpha.de.repo.voidlinux.org/current -r /mnt base-system grub-x86_64-efi
+## env XBPS_ARCH=x86_64 xbps-install -S -R http://alpha.de.repo.voidlinux.org/current -r $hmnt base-system grub-x86_64-efi
 ## ```
 ##
 ## But actually, for the package list I have been using these lists:
@@ -241,9 +251,9 @@ fi
 desktop=$(check_opt desktop "$@") || :
 [ -z "$desktop" ] && desktop=mate
 
-run="chroot /mnt"
+run="chroot $mnt"
 
-env XBPS_ARCH="$arch" xbps-install -S -R "$voidurl" -r /mnt $(
+env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $mnt $(
   (wget -O- "$repourl/swlist.txt" 
   if ! check_opt noxwin "$@" >/dev/null 2>&1 ; then
     wget -O- "$repourl/swlist-xwin.txt"
@@ -278,7 +288,7 @@ env XBPS_ARCH="$arch" xbps-install -S -R "$voidurl" -r /mnt $(
 ## unrar
 ## ```
 #end-output
-env XBPS_ARCH="$arch" xbps-install -S -R "$voidurl" -r /mnt intel-ucode unrar
+env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $mnt intel-ucode unrar
 #begin-output
 ##
 ## ## Enter the void chroot
@@ -286,12 +296,12 @@ env XBPS_ARCH="$arch" xbps-install -S -R "$voidurl" -r /mnt intel-ucode unrar
 ## Upon completion of the install, we set up our chroot jail, and chroot into our mounted filesystem:
 ##
 ## ```
-mount -t proc proc /mnt/proc
-mount -t sysfs sys /mnt/sys
-mount -o bind /dev /mnt/dev
-mount -t devpts pts /mnt/dev/pts
-cp -L /etc/resolv.conf /mnt/etc/
-## chroot /mnt bash -il
+mount -t proc proc $hmnt/proc
+mount -t sysfs sys $hmnt/sys
+mount -o bind /dev $hmnt/dev
+mount -t devpts pts $hmnt/dev/pts
+cp -L /etc/resolv.conf $hmnt/etc/
+## chroot $hmnt bash -il
 ## ```
 ##
 ## In order to verify our install, we can have a look at the directory structure:
@@ -330,6 +340,9 @@ $run ls -la
 ## While chrooted, we create the password for the root user, and set root access permissions:
 ##
 ## ```
+#end-output
+echo Enter password for root user...
+#begin-output
 $run passwd root
 $run chown root:root /
 $run chmod 755 /
@@ -346,7 +359,7 @@ $run xbps-alternatives --set bash
 ## ```
 ## echo <HOSTNAME> > /etc/hostname
 #end-output
-echo $syshost > /mnt/etc/hostname
+echo $syshost > $mnt/etc/hostname
 #begin-output
 ## ```
 ##
@@ -381,14 +394,16 @@ KEYMAP="us-acentos"
 :end-output
 ) | sed \
 	-e 's!<HOSTNAME>!'"$syshost"'!' \
-	> /mnt/etc/rc.conf 
-(cat <<:end-output
+	> $mnt/etc/rc.conf 
 #begin-output
 ## ```
 ##
 ## Also, modify the `/etc/fstab`:
 ##
 ## ```
+#end-output
+(cat <<:end-output
+#begin-output
 #
 # See fstab(5).
 #
@@ -397,9 +412,8 @@ tmpfs		/tmp	tmpfs	defaults,nosuid,nodev   0       0
 LABEL=EFI	/boot	vfat	rw,fmask=0133,dmask=0022,noatime,discard  0 2
 LABEL=voidlinux	/	xfs	rw,relatime,discard	0 1
 LABEL=swp0 	swap	swap	defaults		0 0
-_EOF_
 :end-output
-) > /mnt/etc/fstab
+) > $mnt/etc/fstab
 #begin-output
 ## ```
 ## 
@@ -453,9 +467,9 @@ fi
 ## 
 ## ```
 #end-output
-mkdir -p /mnt/boot/EFI/BOOT
-wget -O/mnt/boot/EFI/BOOT/BOOTX64.EFI $repourl/BOOTX64.EFI
-echo "root=LABEL=voidlinux ro quiet" > /mnt/boot/cmdline
+mkdir -p $mnt/boot/EFI/BOOT
+wget -O$mnt/boot/EFI/BOOT/BOOTX64.EFI $repourl/BOOTX64.EFI
+echo "root=LABEL=voidlinux ro quiet" > $mnt/boot/cmdline
 #begin-output
 ## 
 ## For my hardware I had to add the option:
@@ -480,9 +494,9 @@ echo "root=LABEL=voidlinux ro quiet" > /mnt/boot/cmdline
 ## menu entries whenever the kernel gets upgraded.
 ##
 #end-output
-wget -O/mnt/boot/mkmenu.sh $repourl/mkmenu.sh
-wget -O- $repourl/hook.sh | tee /mnt/etc/kernel.d/post-{install,remove}/99-refind
-chmod 755 /mnt/etc/kernel.d/post-{install,remove}/99-refind
+wget -O$mnt/boot/mkmenu.sh $repourl/mkmenu.sh
+wget -O- $repourl/hook.sh | tee $mnt/etc/kernel.d/post-{install,remove}/99-refind
+chmod 755 $mnt/etc/kernel.d/post-{install,remove}/99-refind
 #begin-output
 ## We need to have a look at `/lib/modules` to get our Linux kernel version
 ## 
@@ -495,13 +509,13 @@ chmod 755 /mnt/etc/kernel.d/post-{install,remove}/99-refind
 ## ```
 ## drwxr-xr-x  3 root root   21 Jan 31 15:22 .
 ## drwxr-xr-x 23 root root 8192 Jan 31 15:22 ..
-## drwxr-xr-x  3 root root 4096 Jan 31 15:22 4.19.4_1
+## drwxr-xr-x  3 root root 4096 Jan 31 15:22 5.2.13_1
 ## ```
 ## 
 ## And this script to create boot files:
 ## 
 ## ```
-## xbps-reconfigure -f linux4.19
+## xbps-reconfigure -f linux5.2
 ## ```
 ##
 #end-output
@@ -522,7 +536,7 @@ $run xbps-reconfigure -f linux${kver}
 ## 
 ## ```
 ## exit
-## umount -R /mnt
+## umount -R $hmnt
 ## reboot
 ## ```
 ## 
@@ -558,7 +572,7 @@ else
 fi
 for svc in $common_svcs $net_svcs $ws_svcs
 do
-  ln -s /etc/sv/$svc /mnt/etc/runit/runsvdir/default/
+  ln -s /etc/sv/$svc $svcdir
 done
 #begin-output
 ## 
@@ -584,7 +598,7 @@ done
 ## ```
 ## 
 #end-output
-echo "%admins ALL=(ALL) ALL" >> /mnt/etc/sudoers
+echo "%admins ALL=(ALL) ALL" >> $mnt/etc/sudoers
 #begin-output
 ## 
 ## ## Logging
@@ -606,9 +620,9 @@ echo "%admins ALL=(ALL) ALL" >> /mnt/etc/sudoers
 ## ln -s socklog/everything/current /var/log/messages.log
 ## ```
 #end-output
-find /mnt/var/log/socklog -maxdepth 1 -mindepth 1 -print0 | xargs -0 rm -rf
-mkdir /mnt/var/log/socklog/everything
-ln -s socklog/everything/current /mnt/var/log/messages.log
+find $mnt/var/log/socklog -maxdepth 1 -mindepth 1 -print0 | xargs -0 rm -rf
+mkdir $mnt/var/log/socklog/everything
+ln -s socklog/everything/current $mnt/var/log/messages.log
 #begin-output
 ##
 ## Create the file `/var/log/socklog/everything/config` with these
@@ -630,16 +644,149 @@ ln -s socklog/everything/current /mnt/var/log/messages.log
 ##
 ## ```
 ## killall -1 svlogd
+## ```
 ##
 #end-output
-mkdir -p /mnt/var/log/socklog/everything
-cat > /mnt/var/log/socklog/everything/config <<-_EOF_
+mkdir -p $mnt/var/log/socklog/everything
+cat > $mnt/var/log/socklog/everything/config <<-_EOF_
 	+*
 	u172.17.1.8:514
 	_EOF_
-ln -s /etc/sv/{socklog-unix,nanoklogd} /mnt/etc/runit/runsvdir/default/
+ln -s /etc/sv/{socklog-unix,nanoklogd} $svcdir
 #begin-output
-## 
+##
+## ## System backups
+##
+## For [void linux][void] I prefer to re-install instead to do a full
+## backup.  A few selected files are backed-up.  This is done with this
+## [script]($repourl/rsvault.sh)
+##
+## To install, copy that script to `/usr/local/sbin` and make it
+## executable.
+##
+## Create a cronjob in `/etc/cron.daily/rsvault` to enable.
+##
+## Configure server information in `/etc/rsync.cfg`
+##
+## ```
+## rsync_host="<server>"
+## rsync_passwd="<passwd>
+## ```
+##
+## Make sure you set permissions accordingly:
+##
+## - `chmod 600 /etc/rsync.cfg`
+##
+## Create hardlinks to files that you would like to protect in
+## `/etc/rsync.vault`.  For example:
+##
+## - `/etc/crypttab`
+## - `/crypto_keyfile.bin`
+## - `/etc/hosts` #: if using for ad blocking
+##
+## Alternatively, you can do a full backup with this
+## [script]($repourl/os-backup.sh).
+##
+#end-output
+if check_opt "rsync.secret" "$@" ; then
+  rsync_host=$(check_opt "rsync.host" "$@") || rsync_host=vms3 # default rsync server
+  wget -O$mnt/usr/local/sbin/rsvault $repourl/rsvault.sh
+  printf '#!/bin/sh\n/usr/local/sbin/rsvault\n' > $mnt/etc/cron.daily/rsvault
+  cat > $mnt/etc/rsync.cfg <<-_EOF_
+	rsync_passwd=$(check_opt "rsync.secret" "$@")
+	rsync_host=$rsync_host
+	_EOF_
+  chmod 600 $mnt/etc/rsync.cfg
+  chmod 755 $mnt/usr/local/sbin/rsvault $mnt/etc/cron.daily/rsvault
+  mkdir -p $mnt/etc/rsync.vault
+fi
+#begin-output
+##
+## ## Identd server
+##
+## I am using this [identd server]($identdurl/an_identd.py)to support
+## a simple Single-Sign-On scheme.
+##
+## ```
+mkdir -p $mnt/etc/sv/an_identd/log
+wget -O$mnt/usr/local/sbin/an_identd $identdurl/an_identd.py
+wget -O$mnt/etc/sv/an_identd/run $identdurl/etc-sv-an_identd/run
+wget -O$mnt/etc/sv/an_identd/log/run $identdurl/etc-sv-an_identd/log/run
+chmod 755 $mnt/usr/local/sbin/an_identd $mnt/etc/sv/an_identd/run $mnt/etc/sv/an_identd/log/run
+ln -s /etc/sv/an_identd $svcdir
+## ```
+##
+## ## Configure keyboard
+##
+## Create configuration file: `/etc/X11/xorg.conf.d/30-keyboard.conf`
+##
+## ```
+#end-output
+if [ -d $mnt/etc/X11 ] ; then
+  mkdir -p $mnt/etc/X11/xorg.conf.d
+  cat >$mnt/etc/X11/xorg.conf.d/30-keyboard.conf <<:end-output
+#begin-output  
+Section "InputClass"
+    Identifier "keyboard-all"
+    Option "XkbLayout" "us"
+    # Option "XkbModel" "pc105"
+    # Option "XkbVariant" "altgr-intl"
+    Option "XkbVariant" "intl"
+    # MatchIsKeyboard "on"
+:end-output
+fi
+#begin-output  
+## ```
+##
+## This makes the `intl` for the `XkbVariant` the system-wide default.
+##
+## Since, as a programmer I prefer the `altgr-intl` variant, then I
+## run this in my de desktop environment startup to override the
+## default:
+##
+## ```
+## setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl
+## ```
+##
+## ## Tweak LXDM
+##
+## MATE under Void Linux uses [LXDM][lxdm] as the Display Manager in the LiveCD.
+##
+## Configuration is located in `/etc/lxdm/lxdm.conf`.
+##
+## Things to change:
+##
+## - `[base]`
+##   - `session=/usr/bin/mate-session`
+##   - Change the default session to a suitable default (the system
+##     default is LXDE).
+## - `[display]`
+##   - `lang=0`
+## - `[userlist]`
+##   - `disable=1`
+##
+#end-output
+sed \
+    -i-void \
+    -e 's/lang=.*/lang=0/' \
+    -e '/session=/a session=/usr/bin/mate-session' \
+    $mnt/etc/lxdm/lxdm.conf
+#begin-output
+##
+## After the user logs on, [lxdm][lxdm] seems to run `/etc/lxdm/Xsession`
+## to set-up the session.  Amongst other things, [lxdm][lxdm] sources
+## all of the following files, in order:
+##
+## - `/etc/profile`
+## - `~/.profile`
+## - `/etc/xprofile`
+## - `~/.xprofile`
+##
+## These files can be used to set session environment variables and to
+## start services which must set certain environment variables in order
+## for clients in the session to be able to use the service, like
+## ssh-agent.
+##
 ## ## Tweaks and Bug-fixes
 ## 
 ## ### power button handling
@@ -650,10 +797,10 @@ ln -s /etc/sv/{socklog-unix,nanoklogd} /mnt/etc/runit/runsvdir/default/
 ## <script src="https://gist-it.appspot.com/$repourl/acpi-handler.patch?footer=minimal"></script>
 ##
 #end-output
-wget -O- $repourl/acpi-handler.patch | patch -b -z -void -d /mnt/etc/acpi
+wget -O- $repourl/acpi-handler.patch | patch -b -z -void -d $mnt/etc/acpi
 #begin-output
 ## 
-## ### `rtkit` spamming logs
+## ### rtkit spamming logs
 ## 
 ## Apparently, `rtkit` requres an `rtkit` user to exist.  Otherwise it
 ## will spam the logs with error messages.  To correct use this command:
@@ -686,5 +833,19 @@ wget -O- $repourl/acpi-handler.patch | patch -b -z -void -d /mnt/etc/acpi
 ##  [void-uefi]: https://wiki.voidlinux.org/Installation_on_UEFI,_via_chroot "Install void linux on UEFI via chroot"
 ##  [mate]: https://mate-desktop.org/ "MATE Desktop environment"
 ##  [getting-refind]: http://www.rodsbooks.com/refind/getting.html "rEFInd download page"
+##  [lxdm]: https://wiki.lxde.org/en/LXDM "LXDM Display Manager"
 ## 
 #end-output
+cat <<__EOF__
+Manual post installation tasks:
+
+- Check /boot/cmdline and make sure nothing else is missing
+- Create users
+$(
+  if check_opt "rsync.secret" "$@" ; then
+    echo "- Create backup hardlinks in /etc/rsync.vault"
+  fi
+)
+- don't forget to unmount
+  # umount -R $mnt
+__EOF__

@@ -11,7 +11,7 @@ gvfs-smb
 caja-open-terminal
 
 # Just the web browser
-firefox-esr
+firefox-esr gst-libav
 
 
 
