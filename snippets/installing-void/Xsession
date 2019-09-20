@@ -1,0 +1,92 @@
+#!/bin/sh
+#
+# Install as /etc/X11/Xsession
+#
+# Loosely based on: [LighDM Session script](https://github.com/canonical/lightdm/blob/master/debian/lightdm-session)
+#
+if [ -f $HOME/.xsession-errors ] ; then
+  rm -f $HOME/.xsession-errors.old
+  mv -v $HOME/.xsession-errors $HOME/.xsession-errors.old
+fi
+exec > $HOME/.xsession-errors 2>&1 </dev/null
+
+# Load profile
+for file in "/etc/profile" "$HOME/.profile" "/etc/xprofile" "$HOME/.xprofile"; do
+  [ -f "$file" && . "$file"
+done
+
+# Load resources
+if type xrdb >/dev/null 2>&1; then
+  xresourcedir="/etc/X11/Xresources"
+  if [ -d "$xresourcedir" ]; then
+    for file in $xresourcedir/*; do
+      echo "Loading resource: $file"
+      xrdb -merge "$file"
+    done
+  fi
+  xresourcefile="$HOME/.Xresources"
+  if [ -f "$xresourcefile" ]; then
+    echo "Loading resource: $xresourcefile"
+    xrdb -merge "$xresourcefile"
+  fi
+fi
+
+# Load keymaps
+if type setxkbmap >/dev/null 2>&1; then
+  for file in "/etc/X11/Xkbmap" "$HOME/.Xkbmap"; do
+    if [ -f "$file" ]; then
+      echo "Loading keymap: $file"
+      setxkbmap `cat "$file"`
+      XKB_IN_USE=yes
+    fi
+  done
+fi
+
+# Load xmodmap if not using XKB
+if type xmodmap >/dev/null 2>&1; then
+  if [ -z "$XKB_IN_USE" ]; then
+    for file in "/etc/X11/Xmodmap" "$HOME/.Xmodmap"; do
+      if [ -f "$file" ]; then
+       echo "Loading modmap: $file"
+       xmodmap "$file"
+      fi
+    done
+  fi
+fi
+
+unset XKB_IN_USE
+
+# Run all system xinitrc shell scripts.
+xinitdir="/etc/X11/xinit/xinitrc.d"
+if [ -d "$xinitdir" ]; then
+  for script in $xinitdir/*; do
+    echo "Loading xinit script $script"
+    if [ -x "$script" -a ! -d "$script" ]; then
+      . "$script"
+    fi
+  done
+fi
+
+# Load Xsession scripts
+# OPTIONFILE, USERXSESSION, USERXSESSIONRC and ALTUSERXSESSION are required
+# by the scripts to work
+xsessionddir="/etc/X11/Xsession.d"
+OPTIONFILE=/etc/X11/Xsession.options
+USERXSESSION=$HOME/.xsession
+USERXSESSIONRC=$HOME/.xsessionrc
+ALTUSERXSESSION=$HOME/.Xsession
+
+if [ -d "$xsessionddir" ]; then
+  for i in $(find "$xsessionddir" -mindepth 1 -maxdepth 1 -type f) ; do
+    script="$xsessionddir/$i"
+    echo "Loading X session script $script"
+    if [ -r "$script"  -a -f "$script" ] && expr "$i" : '^[[:alnum:]_-]\+$' > /dev/null; then
+      . "$script"
+    fi
+  done
+fi
+
+echo "X session wrapper complete, running session $@"
+
+exec "$@"
+
