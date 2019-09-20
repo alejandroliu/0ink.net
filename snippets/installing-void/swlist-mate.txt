@@ -1,7 +1,7 @@
 # MATE desktop environment
-lxdm
 mate
 mate-extra
+mate-tweak
 network-manager-applet
 udisks2
 gnome-keyring

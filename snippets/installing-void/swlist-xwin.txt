@@ -5,6 +5,8 @@ xorg-input-drivers
 xorg-minimal
 xorg-video-drivers
 ConsoleKit2
+slim
+lxdm	# Replace with slim later
 
 # default fonts
 dejavu-fonts-ttf
