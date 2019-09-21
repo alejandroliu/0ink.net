@@ -1,5 +1,6 @@
 #!/bin/bash
 #
+#
 set -euf -o pipefail
 script=$(readlink -f "$0")
 
@@ -103,10 +104,14 @@ if [ $# -lt 2 ] ; then
 	- mem=memory : memory size, defaults computed from /proc/meminfo
 	- glibc : Do a glibc install
 	- noxwin : do not insall X11 related packages
-	  desktop=no ; do not install desktop environment
-	  desktop=mate : Install MATE dekstop environment
-	  rsync.host=host : rsync backup server
-	  rsync.secret=secret : rsync backup pre-shared-key
+	- desktop=no ; do not install desktop environment
+	- desktop=mate : Install MATE dekstop environment
+	- rsync.host=host : rsync backup server
+	- rsync.secret=secret : rsync backup pre-shared-key
+	- passwd=password : root password (prompt if not specified)
+	- enc-passwd=encrypted : encrypted root password.
+	- ovl=tar.gz : tarball containing additional files
+	- pkgs=file : text file containing additional software to install
 #end-output
 	_EOF_
   exit 1
@@ -128,6 +133,19 @@ elif [ -b "$sysdev" ] ; then
 else
   echo "$sysdev: does not exist!"
 fi
+
+if pw=$(check_opt "enc-passwd" "$@") ; then
+  pwenc="false"
+  pwline="$pw"
+elif pw=$(check_opt "passwd" "$@") ; then
+  pwenc="true"
+  pwline="$pw"
+else
+  read -p "Enter root passwd: " pw
+  pwenc="true"
+  pwline="$pw"
+fi
+  
 
 #begin-output
 ## ```
@@ -253,13 +271,16 @@ desktop=$(check_opt desktop "$@") || :
 
 run="chroot $mnt"
 
-env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $mnt $(
+echo y | env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $mnt $(
   (wget -O- "$repourl/swlist.txt" 
   if ! check_opt noxwin "$@" >/dev/null 2>&1 ; then
     wget -O- "$repourl/swlist-xwin.txt"
     if is_valid_desktop "$desktop" ; then
-      wget -O- "$repourl/swlist-$desktop.txt" | sed -e 's/#.*$//'
+      wget -O- "$repourl/swlist-$desktop.txt"
     fi
+  fi
+  if pkgs=$(check_opt pkgs "$@") ; then
+    [ -f "$pkgs" ] && cat "$pkgs"
   fi
   )| sed -e 's/#.*$//'
 )
@@ -339,11 +360,15 @@ $run ls -la
 ##
 ## While chrooted, we create the password for the root user, and set root access permissions:
 ##
-## ```
 #end-output
-echo Enter password for root user...
+if $pwenc ; then
+  printf "$pwline\n$pwline\n" | $run passwd root
+else
+  $run usermod --password "$pwline" root
+fi
 #begin-output
-$run passwd root
+## ```
+## passwd root
 $run chown root:root /
 $run chmod 755 /
 ## ```
@@ -559,20 +584,21 @@ $run xbps-reconfigure -f linux${kver}
 ## ln -s /etc/sv/NetworkManager /var/service
 ## ln -s /etc/sv/sshd /var/service
 ## ln -s /etc/sv/{acpid,chronyd,cgmanager,crond,uuidd,statd,rcpbind,autofs} /var/service
-## ln -s /etc/sv/{consolekit,lxdm,polkitd,rtkit} /var/service
+## ln -s /etc/sv/{consolekit,lxdm} /var/service
 ## ```
 #end-output
-common_svcs="sshd acpid chronyd cgmanager crond uuidd statd rpcbind autofs"
+common_svcs="sshd acpid chronyd crond uuidd statd rpcbind autofs"
 if check_opt noxwin "$@" ; then
-  net_svcs="dhcpd"
+  net_svcs="dhcpcd"
   ws_svcs=""
 else
   net_svcs="dbus NetworkManager"
-  ws_svcs="consolekit lxdm polkitd rtkit"
+  #ws_svcs="consolekit lxdm polkitd rtkit"
+  ws_svcs="consolekit slim"
 fi
 for svc in $common_svcs $net_svcs $ws_svcs
 do
-  ln -s /etc/sv/$svc $svcdir
+  [ -d /etc/sv/$svc ] && ln -s /etc/sv/$svc $svcdir
 done
 #begin-output
 ## 
@@ -733,6 +759,7 @@ Section "InputClass"
     # Option "XkbVariant" "altgr-intl"
     Option "XkbVariant" "intl"
     # MatchIsKeyboard "on"
+EndSection
 :end-output
 fi
 #begin-output  
@@ -766,11 +793,13 @@ fi
 ##   - `disable=1`
 ##
 #end-output
-sed \
-    -i-void \
-    -e 's/lang=.*/lang=0/' \
-    -e '/session=/a session=/usr/bin/mate-session' \
-    $mnt/etc/lxdm/lxdm.conf
+if [ -f $mnt/etc/lxdm/lxdm.conf ] ; then
+  sed \
+	-i-void \
+	-e 's/lang=.*/lang=0/' \
+	-e '/session=/a session=/usr/bin/mate-session' \
+	$mnt/etc/lxdm/lxdm.conf
+fi
 #begin-output
 ##
 ## After the user logs on, [lxdm][lxdm] seems to run `/etc/lxdm/Xsession`
@@ -786,6 +815,22 @@ sed \
 ## start services which must set certain environment variables in order
 ## for clients in the session to be able to use the service, like
 ## ssh-agent.
+##
+## ## Using SLIM
+##
+## I have switched to [SLiM][SLiM] as the display manager.  This is
+## configured in `/etc/slim.conf`.
+##
+#end-output
+if [ -f $mnt/etc/slim.conf ] ; then
+  sed \
+	-i-void \
+	-e 's!^login_cmd.*!login_cmd exec /bin/sh -l /etc/X11/Xsession %session!' \
+	$mnt/etc/slim.conf
+  mkdir -p $mnt/etc/X11
+  wget -O$mnt/etc/X11/Xsession $repourl/Xsession
+fi
+#begin-output
 ##
 ## ## Tweaks and Bug-fixes
 ## 
@@ -834,18 +879,29 @@ wget -O- $repourl/acpi-handler.patch | patch -b -z -void -d $mnt/etc/acpi
 ##  [mate]: https://mate-desktop.org/ "MATE Desktop environment"
 ##  [getting-refind]: http://www.rodsbooks.com/refind/getting.html "rEFInd download page"
 ##  [lxdm]: https://wiki.lxde.org/en/LXDM "LXDM Display Manager"
+##  [SLiM]: https://github.com/iwamatsu/slim "Simple Login Manager"
 ## 
 #end-output
+
+# customization stuff...
+if ovl=$(check_opt ovl "$@") ; then
+  tar -C $mnt -zxvf "$ovl"
+fi
+
 cat <<__EOF__
 Manual post installation tasks:
 
 - Check /boot/cmdline and make sure nothing else is missing
-- Create users
+  - Update and run: chroot $mnt xbps-reconfigure -f linux5.2
+- Create users or run tlrealm.sh script
 $(
-  if check_opt "rsync.secret" "$@" ; then
+  if check_opt "rsync.secret" "$@" >/dev/null 2>&1 ; then
     echo "- Create backup hardlinks in /etc/rsync.vault"
+    echo "- Make sure the shared secret is properly configured"
   fi
 )
 - don't forget to unmount
   # umount -R $mnt
 __EOF__
+
+
