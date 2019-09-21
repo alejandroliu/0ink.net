@@ -280,7 +280,11 @@ echo y | env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $mnt $(
     fi
   fi
   if pkgs=$(check_opt pkgs "$@") ; then
-    [ -f "$pkgs" ] && cat "$pkgs"
+    if [ -f "$pkgs" ] ; then
+      cat "$pkgs"
+    else
+      wget -O- "$pkgs"
+    fi
   fi
   )| sed -e 's/#.*$//'
 )
@@ -368,7 +372,7 @@ else
 fi
 #begin-output
 ## ```
-## passwd root
+##  passwd root
 $run chown root:root /
 $run chmod 755 /
 ## ```
@@ -596,10 +600,16 @@ else
   #ws_svcs="consolekit lxdm polkitd rtkit"
   ws_svcs="consolekit slim"
 fi
+echo -n 'Enabling services:'
 for svc in $common_svcs $net_svcs $ws_svcs
 do
-  [ -d /etc/sv/$svc ] && ln -s /etc/sv/$svc $svcdir
+  s='!'
+  if [ -d $mnt/etc/sv/$svc ] ; then
+    ln -s /etc/sv/$svc $svcdir && s=''
+  fi
+  echo -n " $s$svc"
 done
+echo ''
 #begin-output
 ## 
 ## Creating new users:
@@ -775,47 +785,6 @@ fi
 ## setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl
 ## ```
 ##
-## ## Tweak LXDM
-##
-## MATE under Void Linux uses [LXDM][lxdm] as the Display Manager in the LiveCD.
-##
-## Configuration is located in `/etc/lxdm/lxdm.conf`.
-##
-## Things to change:
-##
-## - `[base]`
-##   - `session=/usr/bin/mate-session`
-##   - Change the default session to a suitable default (the system
-##     default is LXDE).
-## - `[display]`
-##   - `lang=0`
-## - `[userlist]`
-##   - `disable=1`
-##
-#end-output
-if [ -f $mnt/etc/lxdm/lxdm.conf ] ; then
-  sed \
-	-i-void \
-	-e 's/lang=.*/lang=0/' \
-	-e '/session=/a session=/usr/bin/mate-session' \
-	$mnt/etc/lxdm/lxdm.conf
-fi
-#begin-output
-##
-## After the user logs on, [lxdm][lxdm] seems to run `/etc/lxdm/Xsession`
-## to set-up the session.  Amongst other things, [lxdm][lxdm] sources
-## all of the following files, in order:
-##
-## - `/etc/profile`
-## - `~/.profile`
-## - `/etc/xprofile`
-## - `~/.xprofile`
-##
-## These files can be used to set session environment variables and to
-## start services which must set certain environment variables in order
-## for clients in the session to be able to use the service, like
-## ssh-agent.
-##
 ## ## Using SLIM
 ##
 ## I have switched to [SLiM][SLiM] as the display manager.  This is
@@ -878,7 +847,6 @@ wget -O- $repourl/acpi-handler.patch | patch -b -z -void -d $mnt/etc/acpi
 ##  [void-uefi]: https://wiki.voidlinux.org/Installation_on_UEFI,_via_chroot "Install void linux on UEFI via chroot"
 ##  [mate]: https://mate-desktop.org/ "MATE Desktop environment"
 ##  [getting-refind]: http://www.rodsbooks.com/refind/getting.html "rEFInd download page"
-##  [lxdm]: https://wiki.lxde.org/en/LXDM "LXDM Display Manager"
 ##  [SLiM]: https://github.com/iwamatsu/slim "Simple Login Manager"
 ## 
 #end-output

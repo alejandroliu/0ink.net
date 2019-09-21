@@ -32,10 +32,14 @@ Script usage:
 	- mem=memory : memory size, defaults computed from /proc/meminfo
 	- glibc : Do a glibc install
 	- noxwin : do not insall X11 related packages
-	  desktop=no ; do not install desktop environment
-	  desktop=mate : Install MATE dekstop environment
-	  rsync.host=host : rsync backup server
-	  rsync.secret=secret : rsync backup pre-shared-key
+	- desktop=no ; do not install desktop environment
+	- desktop=mate : Install MATE dekstop environment
+	- rsync.host=host : rsync backup server
+	- rsync.secret=secret : rsync backup pre-shared-key
+	- passwd=password : root password (prompt if not specified)
+	- enc-passwd=encrypted : encrypted root password.
+	- ovl=tar.gz : tarball containing additional files
+	- pkgs=file : text file containing additional software to install
 ```
 
 ## Initial set-up
@@ -348,7 +352,7 @@ ln -s /etc/sv/dbus /var/service
 ln -s /etc/sv/NetworkManager /var/service
 ln -s /etc/sv/sshd /var/service
 ln -s /etc/sv/{acpid,chronyd,cgmanager,crond,uuidd,statd,rcpbind,autofs} /var/service
-ln -s /etc/sv/{consolekit,lxdm,polkitd,rtkit} /var/service
+ln -s /etc/sv/{consolekit,lxdm} /var/service
 ```
 
 Creating new users:
@@ -473,6 +477,7 @@ Section "InputClass"
     # Option "XkbVariant" "altgr-intl"
     Option "XkbVariant" "intl"
     # MatchIsKeyboard "on"
+EndSection
 ```
 
 This makes the `intl` for the `XkbVariant` the system-wide default.
@@ -485,37 +490,11 @@ default:
 setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl
 ```
 
-## Tweak LXDM
+## Using SLIM
 
-MATE under Void Linux uses [LXDM][lxdm] as the Display Manager in the LiveCD.
+I have switched to [SLiM][SLiM] as the display manager.  This is
+configured in `/etc/slim.conf`.
 
-Configuration is located in `/etc/lxdm/lxdm.conf`.
-
-Things to change:
-
-- `[base]`
-  - `session=/usr/bin/mate-session`
-  - Change the default session to a suitable default (the system
-    default is LXDE).
-- `[display]`
-  - `lang=0`
-- `[userlist]`
-  - `disable=1`
-
-
-After the user logs on, [lxdm][lxdm] seems to run `/etc/lxdm/Xsession`
-to set-up the session.  Amongst other things, [lxdm][lxdm] sources
-all of the following files, in order:
-
-- `/etc/profile`
-- `~/.profile`
-- `/etc/xprofile`
-- `~/.xprofile`
-
-These files can be used to set session environment variables and to
-start services which must set certain environment variables in order
-for clients in the session to be able to use the service, like
-ssh-agent.
 
 ## Tweaks and Bug-fixes
 
@@ -560,5 +539,5 @@ To enable this I had to create/tweak the PolKit rules...
  [void-uefi]: https://wiki.voidlinux.org/Installation_on_UEFI,_via_chroot "Install void linux on UEFI via chroot"
  [mate]: https://mate-desktop.org/ "MATE Desktop environment"
  [getting-refind]: http://www.rodsbooks.com/refind/getting.html "rEFInd download page"
- [lxdm]: https://wiki.lxde.org/en/LXDM "LXDM Display Manager"
+ [SLiM]: https://github.com/iwamatsu/slim "Simple Login Manager"
 
