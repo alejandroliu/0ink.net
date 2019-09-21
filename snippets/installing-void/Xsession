@@ -12,7 +12,7 @@ exec > $HOME/.xsession-errors 2>&1 </dev/null
 
 # Load profile
 for file in "/etc/profile" "$HOME/.profile" "/etc/xprofile" "$HOME/.xprofile"; do
-  [ -f "$file" && . "$file"
+  [ -f "$file" ] && . "$file"
 done
 
 # Load resources
