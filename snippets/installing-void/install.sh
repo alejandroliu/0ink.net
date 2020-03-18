@@ -101,7 +101,7 @@ if [ $# -lt 2 ] ; then
 	- _hostname_: Hostname to use
 
 	Options:
-	- mem=memory : memory size, defaults computed from /proc/meminfo
+	- mem=memory : memory size, defaults computed from /proc/meminfo, uses numfmt to parse values
 	- glibc : Do a glibc install
 	- noxwin : do not insall X11 related packages
 	- desktop=no ; do not install desktop environment
@@ -168,7 +168,7 @@ fi
 
 mem=$(check_opt mem "$@") || :
 if [ -n "$mem" ] ; then
-  mem=$(numfmt --from-iec --to-unit=1024 "$mem")
+  mem=$(numfmt --from=iec --to-unit=1024 "$mem")
   [ -z "$mem" ] && die 1 "Invalid number for mem"
 else
   mem=$(awk '$1 == "MemTotal:" { print $2 }' /proc/meminfo)
@@ -798,6 +798,7 @@ if [ -f $mnt/etc/slim.conf ] ; then
 	$mnt/etc/slim.conf
   mkdir -p $mnt/etc/X11
   wget -O$mnt/etc/X11/Xsession $repourl/Xsession
+  chmod 755 $mnt/etc/X11/Xsession
 fi
 #begin-output
 ##
