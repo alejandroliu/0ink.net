@@ -36,3 +36,16 @@ can play `mp4` files.
 
 
  [void]: https://voidlinux.org "Void Linux"
+
+Punch list:
+
+- [ ] Printer/Scanner
+- [ ] RedShift
+- [ ] SafeEyes
+- [ ] ownCLoud
+- [ ] Chat
+- [ ] Screen Saver
+- [ ] Keyboard
+- [ ] xbindkeys
+
+
