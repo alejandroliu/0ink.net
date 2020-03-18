@@ -2,6 +2,8 @@
 #
 # Simple boot menu generator
 #
+# Updates a REFIND and SYSLINUX menus
+#
 set -euf -o pipefail
 
 bootdir=$(cd $(dirname $0) && pwd)
@@ -24,6 +26,7 @@ find_kernels() {
 
 find_kernels
 
+echo "Creating REFIND menu"
 (
   echo "scanfor manual"
   echo "timeout 3"
@@ -35,12 +38,30 @@ find_kernels
     echo "  loader /vmlinuz-$kver"
     echo "  initrd /initramfs-$kver.img"
     if [ -f "$bootdir/cmdline-$kver" ] ; then
-      echo "  options" \"$(cat "$bootdir/cmdline-$kver")\"
+      echo "  options \"$(cat "$bootdir/cmdline-$kver")\""
     else
-      echo "  options" \"$def_cmdline\"
+      echo "  options \"$def_cmdline\""
     fi
     echo "}"
   done
 ) > "$bootdir/EFI/BOOT/refind.conf"
 
+echo "Creating syslinux menu"
+(
+  echo "DEFAULT linux-$(find_kernels | head -1)"
+  echo "TIMEOUT 30"
+
+  for kver in $(find_kernels)
+  do
+    echo "LABEL linux-$kver"
+    echo "  KERNEL vmlinuz-$kver"
+    echo "  INITRD initramfs-$kver.img"
+    if [ -f "$bootdir/cmdline-$kver" ] ; then
+      echo "  APPEND $(cat "$bootdir/cmdline-$kver")"
+    else
+      echo "  APPEND $def_cmdline"
+    fi
+    echo ""
+  done
+) > "$bootdir/syslinux.cfg"
 
