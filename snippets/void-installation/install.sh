@@ -834,6 +834,14 @@ fi
 ## I have switched to [SLiM][SLiM] as the display manager.  This is
 ## configured in `/etc/slim.conf`.
 ##
+## Specifically, I update the login_cmd to be the following:
+##
+## ```
+## login_cmd exec /bin/sh -l /etc/X11/Xsession %session
+## ```
+##
+## And have a custom [Xsession]($repourl/Xsession) script.
+##
 #end-output
 if [ -f $mnt/etc/slim.conf ] ; then
   sed \
@@ -847,7 +855,21 @@ fi
 #begin-output
 ##
 ## ## Tweaks and Bug-fixes
+##
+## ### power button handling
 ## 
+## This patch prevents the /etc/acpi/handler.sh to handle the power button
+## instead, letting the Desktop Environment handle the event.
+##
+## It does it by checking if the Desktop Environment power manager
+## (in this case `mate-power-manager`) is running.  If it is, then
+## it will exit.
+## 
+## <script src="https://gist-it.appspot.com/$repourl/acpi-handler.patch?footer=minimal"></script>
+##
+#end-output
+wget -O- $repourl/acpi-handler.patch | patch -b -z -void -d $mnt/etc/acpi
+#begin-output
 ## ### rtkit spamming logs
 ## 
 ## Apparently, `rtkit` requres an `rtkit` user to exist.  Otherwise it

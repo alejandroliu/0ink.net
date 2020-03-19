@@ -1,17 +1,17 @@
---- handler.sh-void	2019-09-07 10:33:23.532671912 +0200
-+++ handler.sh	2019-09-07 11:21:39.369708027 +0200
+--- handler.sh-void	2019-08-24 22:17:29.000000000 +0200
++++ handler.sh	2020-03-19 23:08:49.753978989 +0100
 @@ -1,6 +1,15 @@
  #!/bin/sh
  # Default acpi script that takes an entry for all actions
  
-+# Ignore things if running in a Desktop session
-+if type ck-list-sessions ; then
-+  x11_displays=$(ck-list-sessions | grep "x11-display-device = '/dev" | wc -l)
-+  if [ $x11_displays -gt 0 ] ; then
-+    echo "In a X11 session, ignore this..."
++# Ignore things if running Desktop power-manager
++for mgr in mate-power-manager
++do
++  if [ -n "$(pidof $mgr)" ] ; then
++    echo "$mgr is running ... (let it handle ACPI events)"
 +    exit 0
 +  fi
-+fi
++done
 +
  # NOTE: This is a 2.6-centric script.  If you use 2.4.x, you'll have to
  #       modify it to not use /sys

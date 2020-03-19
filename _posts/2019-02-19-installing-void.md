@@ -421,8 +421,27 @@ setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl
 I have switched to [SLiM][SLiM] as the display manager.  This is
 configured in `/etc/slim.conf`.
 
+Specifically, I update the login_cmd to be the following:
+
+```
+login_cmd exec /bin/sh -l /etc/X11/Xsession %session
+```
+
+And have a custom [Xsession](https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/Xsession) script.
+
 
 ## Tweaks and Bug-fixes
+
+### power button handling
+
+This patch prevents the /etc/acpi/handler.sh to handle the power button
+instead, letting the Desktop Environment handle the event.
+
+It does it by checking if the Desktop Environment power manager
+(in this case `mate-power-manager`) is running.  If it is, then
+it will exit.
+
+<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/acpi-handler.patch?footer=minimal"></script>
 
 ### rtkit spamming logs
 
