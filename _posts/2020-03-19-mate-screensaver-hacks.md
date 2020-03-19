@@ -30,7 +30,7 @@ This simplifies the full process.  Just run the script (you may need to
 `sudo`) with the following options:
 
 - `$0 hacks [-e\|-d]`
-  - shows the list of hacks and its enabled|disabled status.
+  - shows the list of hacks and its enabled or disabled status.
   - the `-e` option will only show enabled hacks.
   - the `-d` option will only show disabled hacks.
 - `$0 enable [--all\|hacks]
