@@ -2,44 +2,49 @@
 title: Installing Void Linux
 ---
 
-I am making a switch to [void linux][void].  So far it has been working
-fine.  I like that it is very stream-lined and hardware support
-has been mostly fine.
+I made the switch to [void linux][void].  Except for compatibility
+issues around `glibc`, it works quite well.  Most compatibility
+I have worked around with a combination of `Flatpak`s, `chroot`s and
+`namespaces`.
+
+The high lights of [void linux][void]:
+
+- musl build - which is very lightweigth
+- Does not depend on `systemd`
+- a reasonable selection of software packages
 
 I have tweaked the installation on my computers to use UEFI and thus
 I am using [rEFInd][refind] instead of grub.  This is because it makes
-doing bare metal backups and restore just a simple file copy.  Using
-UEFI grub or my previous BIOS based boot process would require doing some
-EFI tricks or installing MBR and the like.  Right now, I just need
-to partition things right and copy things to the right location to
-have a working system.
+doing bare metal backups and restore just a simple file copy.
 
 My installation process roughly follows the [UEFI chroot install][void-uefi].
 
 This process is implemented in a script and can be found here:
 
-- [install.sh](https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/install.sh)
+- [install.sh](https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/install.sh)
 
 Script usage:
 
 ```
-	Usage: installer.sh _sdx_ _hostname_ [options]
+	Usage: installer.sh _/dev/sdx_ _hostname_ [options]
 
-	- _sdx_: Block device to install to
+	- _sdx_: Block device to install to or
+	  - --image=filepath[:size] to create a virtual disc image
+	  - --imgset=filebase[:size] to create a virtual filesystem image set
 	- _hostname_: Hostname to use
 
 	Options:
-	- mem=memory : memory size, defaults computed from /proc/meminfo
+	- mem=memory : memory size, defaults computed from /proc/meminfo, uses numfmt to parse values
 	- glibc : Do a glibc install
 	- noxwin : do not insall X11 related packages
-	- desktop=no ; do not install desktop environment
+	- nodesktop ; do not install desktop environment
 	- desktop=mate : Install MATE dekstop environment
-	- rsync.host=host : rsync backup server
-	- rsync.secret=secret : rsync backup pre-shared-key
 	- passwd=password : root password (prompt if not specified)
 	- enc-passwd=encrypted : encrypted root password.
 	- ovl=tar.gz : tarball containing additional files
 	- pkgs=file : text file containing additional software to install
+	- bios : create a BIOS boot system (needs syslinux)
+	- cache=path : use the file path for download cache
 ```
 
 ## Initial set-up
@@ -62,24 +67,25 @@ This is on a USB thumb drive.  The data I keep on an internal disk.
 Now we create the filesystems:
 
 ```
-sysdev=<block device>
-
-mkfs.vfat -F 32 -n EFI "${sysdev}1"
-mkswap -L swp0 "${sysdev}2"
-mkfs.xfs -f -L voidlinux "${sysdev}3"
+mkfs.vfat -F 32 -n EFI /dev/xda1
+mkswap -L swp0 /dev/xda2
+mkfs.xfs -f -L voidlinux /dev/xda3
 ```
+
 
 We're now ready to mount the volumes, making any necessary mount point directories along the way (the sequence is important, yes):
 
 ```
-mount "${sysdev}3" /mnt
+mount /dev/xda3 /mnt
 mkdir /mnt/boot
-mount "${sysdev}1" /mnt/boot
+mount /dev/xda1 /mnt/boot
+```
+
 ```
 
 ## Installing Void
 
-So we do a targetted install:
+So we do a targeted install:
 
 For musl-libc
 
@@ -94,19 +100,19 @@ env XBPS_ARCH=x86_64 xbps-install -S -R http://alpha.de.repo.voidlinux.org/curre
 
 But actually, for the package list I have been using these lists:
 
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/swlist.txt?footer=minimal"></script>
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/swlist-xwin.txt?footer=minimal"></script>
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/swlist-mate.txt?footer=minimal"></script>
+<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/swlist.txt?footer=minimal"></script>
+<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/swlist-xwin.txt?footer=minimal"></script>
+<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/swlist-mate.txt?footer=minimal"></script>
 
 This installs a [MATE][mate] desktop environment.
 
 ### Software selection notes
 
 - For time synchronisation (ntp) we ae choosing `chrony` as it is
- reputed to be more secure that `ntpd` and more compliant than
- `openntpd`.
+  reputed to be more secure that `ntpd` and more compliant than
+  `openntpd`.
 - We are using the default configuration, which should be OK.  Uses
- `pool.ntp.org` for the time server which would use a suitable
+  `pool.ntp.org` for the time server which would use a suitable
   default.
 - For `cron` we are using `dcron`.  It is full featured (i.e.
   compatibnle with `cron` and it can handle power-off situations,
@@ -117,11 +123,17 @@ This installs a [MATE][mate] desktop environment.
 
 ## nonfree software
 
-Install:
+To enable non-free software, needed for `intel-ucode` and `unrar`,
+you need to do the following:
 
 ```
-intel-ucode
-unrar
+env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r /mnt void-repo-nonfree
+```
+
+And then install non-free software:
+
+```
+env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r /mnt intel-ucode unrar
 ```
 
 ## Enter the void chroot
@@ -222,7 +234,7 @@ Also, modify the `/etc/fstab`:
 ```
 #
 # See fstab(5).
-#
+
 # <file system>	<dir>	<type>	<options>		<dump>	<pass>
 tmpfs		/tmp	tmpfs	defaults,nosuid,nodev   0       0
 LABEL=EFI	/boot	vfat	rw,fmask=0133,dmask=0022,noatime,discard  0 2
@@ -236,7 +248,9 @@ For a removable drive I include the line:
 LABEL=volume	/media/blahblah xfs	rw,relatime,nofail 0 0
 ```
 
-The important setting here is **nofail**.
+The important setting here is **nofail**.  When the drive is
+available it gets mounted.  If not, the **nofail** prevents
+this to cause the boot sequence to stop.
 
 If using `glibc` you can modify `/etc/default/libc-locales` and
 uncomment:
@@ -265,7 +279,7 @@ mkdir /boot/EFI/BOOT
 Copy from the `zip file` the file `refind-bin-{version}/refind/refind_x64.efi` to
 `/boot/EFI/BOOT/BOOTX64.EFI`.
 
-The version I am using right now can be found here: [v0.11.4 BOOTX64.EFI](https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/BOOTX64.EFI)
+The version I am using right now can be found here: [v0.11.4 BOOTX64.EFI](https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/BOOTX64.EFI)
 
 Create kernel options files `/boot/cmdline`:
 
@@ -283,14 +297,14 @@ For my hardware I had to add the option:
 
 Create the following script as `/boot/mkmenu.sh`
 
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/mkmenu.sh?footer=minimal"></script>
+<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/mkmenu.sh?footer=minimal"></script>
 
 Add the following scripts to:
 
 - `/etc/kernel.d/post-install/99-refind`
 - `/etc/kernel.d/post-remove/99-refind`
 
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/hook.sh?footer=minimal"></script>
+<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/hook.sh?footer=minimal"></script>
 
 Make sure they are executable.  This is supposed to re-create
 menu entries whenever the kernel gets upgraded.
@@ -377,93 +391,6 @@ Uncomment:
 ```
 
 
-## Logging
-
-Source: [Logging](https://voidlinux.org/faq/#Logging)
-
-Optional:
-
-```
-usermod -aG socklog <your username>
-```
-
-Because I like to have just a single directory for everything and use
-`grep`, I do the following:
-
-```
-rm -rf /var/log/socklog/?*
-mkdir /var/log/socklog/everything
-ln -s socklog/everything/current /var/log/messages.log
-```
-
-Create the file `/var/log/socklog/everything/config` with these
-contents:
-
-```
-+*
-u172.17.1.8:514
-```
-
-Enable daemons...
-
-```
-ln -s /etc/sv/socklog-unix /var/service/
-ln -s /etc/sv/nanoklogd /var/service/
-```
-
-Reload `svlogd` (if it was already running)
-
-```
-killall -1 svlogd
-```
-
-
-## System backups
-
-For [void linux][void] I prefer to re-install instead to do a full
-backup.  A few selected files are backed-up.  This is done with this
-[script](https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/rsvault.sh)
-
-To install, copy that script to `/usr/local/sbin` and make it
-executable.
-
-Create a cronjob in `/etc/cron.daily/rsvault` to enable.
-
-Configure server information in `/etc/rsync.cfg`
-
-```
-rsync_host="<server>"
-rsync_passwd="<passwd>
-```
-
-Make sure you set permissions accordingly:
-
-- `chmod 600 /etc/rsync.cfg`
-
-Create hardlinks to files that you would like to protect in
-`/etc/rsync.vault`.  For example:
-
-- `/etc/crypttab`
-- `/crypto_keyfile.bin`
-- `/etc/hosts` #: if using for ad blocking
-
-Alternatively, you can do a full backup with this
-[script](https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/os-backup.sh).
-
-
-## Identd server
-
-I am using this [identd server](https://raw.githubusercontent.com/TortugaLabs/autonom/master/an_identd.py)to support
-a simple Single-Sign-On scheme.
-
-```
-mkdir -p /etc/sv/an_identd/log
-wget -O/usr/local/sbin/an_identd https://raw.githubusercontent.com/TortugaLabs/autonom/master/an_identd.py
-wget -O/etc/sv/an_identd/run https://raw.githubusercontent.com/TortugaLabs/autonom/master/etc-sv-an_identd/run
-wget -O/etc/sv/an_identd/log/run https://raw.githubusercontent.com/TortugaLabs/autonom/master/etc-sv-an_identd/log/run
-chmod 755 /usr/local/sbin/an_identd $mnt/etc/sv/an_identd/run $mnt/etc/sv/an_identd/log/run
-ln -s /etc/sv/an_identd /var/service
-```
 
 ## Configure keyboard
 
@@ -498,14 +425,6 @@ configured in `/etc/slim.conf`.
 
 ## Tweaks and Bug-fixes
 
-### power button handling
-
-This patch prevents the /etc/acpi/handler.sh to handle the power button
-instead, letting the Desktop Environment handle the event.
-
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/acpi-handler.patch?footer=minimal"></script>
-
-
 ### rtkit spamming logs
 
 Apparently, `rtkit` requres an `rtkit` user to exist.  Otherwise it
@@ -530,7 +449,7 @@ were not available using the [MATE][mate] desktop.
 
 To enable this I had to create/tweak the PolKit rules...
 
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/tweak-polkit-rules.sh?footer=minimal"></script>
+<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/_attic_/tweak-polkit-rules.sh?footer=minimal"></script>
 
 * * *
 
