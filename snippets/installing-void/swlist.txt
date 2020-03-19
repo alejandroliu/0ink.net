@@ -13,10 +13,8 @@ wget
 unzip
 zip
 
-void-repo-nonfree	# need for intel-ucode and unrar
 autofs			# for NFS and automounting
 nfs-utils
-socklog-void		# needed for logging
 cryptsetup		# encrypted LUKS filesystem
 chrony			# ntp client
 dcron			# cron support
