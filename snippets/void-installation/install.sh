@@ -351,7 +351,6 @@ fi
 
 
 #begin-output
-## ```
 ##
 ## ## Installing Void
 ##

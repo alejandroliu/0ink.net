@@ -81,7 +81,6 @@ mkdir /mnt/boot
 mount /dev/xda1 /mnt/boot
 ```
 
-```
 
 ## Installing Void
 
