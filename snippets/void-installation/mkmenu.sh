@@ -26,25 +26,27 @@ find_kernels() {
 
 find_kernels
 
-echo "Creating REFIND menu"
-(
-  echo "scanfor manual"
-  echo "timeout 3"
-  echo "default_selection 1"
+if [ -d "$bootdir/EFI/BOOT" ] ; then
+  echo "Creating REFIND menu"
+  (
+    echo "scanfor manual"
+    echo "timeout 3"
+    echo "default_selection 1"
 
-  for kver in $(find_kernels)
-  do
-    echo "menuentry \"linux-$kver\" {"
-    echo "  loader /vmlinuz-$kver"
-    echo "  initrd /initramfs-$kver.img"
-    if [ -f "$bootdir/cmdline-$kver" ] ; then
-      echo "  options \"$(cat "$bootdir/cmdline-$kver")\""
-    else
-      echo "  options \"$def_cmdline\""
-    fi
-    echo "}"
-  done
-) > "$bootdir/EFI/BOOT/refind.conf"
+    for kver in $(find_kernels)
+    do
+      echo "menuentry \"linux-$kver\" {"
+      echo "  loader /vmlinuz-$kver"
+      echo "  initrd /initramfs-$kver.img"
+      if [ -f "$bootdir/cmdline-$kver" ] ; then
+        echo "  options \"$(cat "$bootdir/cmdline-$kver")\""
+      else
+        echo "  options \"$def_cmdline\""
+      fi
+      echo "}"
+    done
+  ) > "$bootdir/EFI/BOOT/refind.conf"
+fi
 
 echo "Creating syslinux menu"
 (
