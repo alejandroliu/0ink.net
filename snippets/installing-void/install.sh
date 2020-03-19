@@ -95,9 +95,11 @@ is_valid_desktop() {
 if [ $# -lt 2 ] ; then
   cat <<-_EOF_
 #begin-output
-	Usage: $0 _sdx_ _hostname_ [options]
+	Usage: $0 _/dev/sdx_ _hostname_ [options]
 	
-	- _sdx_: Block device to install to
+	- _sdx_: Block device to install to or
+	  - --image=filepath[:size] to create a virtual disc image
+	  - --imgset=filebase[:size] to create a virtual filesystem image set
 	- _hostname_: Hostname to use
 
 	Options:
@@ -112,6 +114,8 @@ if [ $# -lt 2 ] ; then
 	- enc-passwd=encrypted : encrypted root password.
 	- ovl=tar.gz : tarball containing additional files
 	- pkgs=file : text file containing additional software to install
+	- bios : create a BIOS boot system (needs syslinux)
+	- cache=path : use the file path for download cache
 #end-output
 	_EOF_
   exit 1
@@ -120,19 +124,61 @@ sysdev="$1"
 syshost="$2"
 shift 2
 
-if [ -d "$sysdev" ] ; then
-  echo "$sysdev: is a directory"
-  [ $(readlink -f "$sysdev") = "$mnt" ] && die 5 "Can not use $mnt"
-elif [ -b "$sysdev" ] ; then
-  echo "$sysdev: is a block device"
-  mounts=$(mount | grep '^'"$sysdev"| wc -l) || :
-  if [ $mounts -gt 0 ] ; then
-    echo "$sysdev: is in use!"
-    exit 1
-  fi
+mem=$(check_opt mem "$@") || :
+if [ -n "$mem" ] ; then
+  mem=$(numfmt --from=iec --to-unit=1024 "$mem")
+  [ -z "$mem" ] && die 1 "Invalid number for mem"
 else
-  echo "$sysdev: does not exist!"
+  mem=$(awk '$1 == "MemTotal:" { print $2 }' /proc/meminfo)
 fi
+
+case "$sysdev" in
+--image=*)
+  # The sysdev is actually a virtual disk image...
+  imgname=${sysdev#--image=}
+  imgset=false
+  if (echo "$imgname" | grep -q :) ; then
+    imgsz=$(numfmt --to-unit=1024 --from=iec $(echo "$imgname" | cut -d: -f2 ))
+    imgname=$(echo "$imgname" | cut -d: -f1)
+  else
+    imgsz=$(expr $(numfmt --to-unit=1024 --from=iec 500M) + $(numfmt --to-unit=1024 --from=iec 4G) + $(expr $mem + $(expr $mem / 2)) + 1024)
+  fi
+  echo "$imgname: ${imgsz}K"
+  truncate -s 0 "$imgname" # Make sure this is zero size so we can create a sparse file
+  truncate -s "${imgsz}K" "$imgname"
+  ;;
+--imgset=*)
+  # the sysdev is a virtual filesystem image set
+  imgname=${sysdev#--imgset=}
+  imgset=true
+  if (echo "$imgname" | grep -q :) ; then
+    imgsz=$(numfmt --to-unit=1024 --from=iec $(echo "$imgname" | cut -d: -f2 ))
+    imgname=$(echo "$imgname" | cut -d: -f1)
+  else
+    imgsz=$(numfmt --to-unit=1024 --from=iec 4G)
+  fi
+  echo "$imgname: ${imgsz}K"
+  truncate -s 0 "${imgname}1"
+  truncate -s 0 "${imgname}2"
+  truncate -s 0 "${imgname}3"
+  ;;
+*)
+  imgname=""
+  if [ -d "$sysdev" ] ; then
+    echo "$sysdev: is a directory"
+    [ $(readlink -f "$sysdev") = "$mnt" ] && die 5 "Can not use $mnt"
+  elif [ -b "$sysdev" ] ; then
+    echo "$sysdev: is a block device"
+    mounts=$(mount | grep '^'"$sysdev"| wc -l) || :
+    if [ $mounts -gt 0 ] ; then
+      echo "$sysdev: is in use!"
+      exit 1
+    fi
+  else
+    echo "$sysdev: does not exist!"
+  fi
+  ;;
+esac
 
 if pw=$(check_opt "enc-passwd" "$@") ; then
   pwenc="false"
@@ -166,35 +212,74 @@ fi
 ## 3. *Rest of drive* `Linux filesystem`, Root file system
 #end-output
 
-mem=$(check_opt mem "$@") || :
-if [ -n "$mem" ] ; then
-  mem=$(numfmt --from=iec --to-unit=1024 "$mem")
-  [ -z "$mem" ] && die 1 "Invalid number for mem"
-else
-  mem=$(awk '$1 == "MemTotal:" { print $2 }' /proc/meminfo)
-fi
 
+partition_sys() {
+  local csize="$1" drive="$2"
+  local swapsz=$(expr $mem + $(expr $mem / 2))
+  local uefisz=$(numfmt --to-unit=1024 --from=iec 500M)
+  local rootsz=$(numfmt --to-unit=1024 --from=iec 4G)
+  local req=$(expr $uefisz + $swapsz + $rootsz)
+  local syslinux_lib=/usr/lib/syslinux
 
-# Partition block device...
-if [ -b "$sysdev" ] ; then
-  csize=$(expr $(blockdev --getsz "$sysdev") / 2) # Size of block device in K's
-  swapsz=$(expr $mem + $(expr $mem / 2))
-  uefisz=$(numfmt --to-unit=1024 --from=iec 500M)
-  rootsz=$(numfmt --to-unit=1024 --from=iec 4G)
-  req=$(expr $uefisz + $swapsz + $rootsz)
-  
   #~ echo csize=$(numfmt --to=iec --from=iec ${csize}K)
   #~ echo req=$(numfmt --to=iec --from=iec ${req}K)
 
-  [ $req -gt $csize ] && die 2 "$sysdev is too small ($(numfmt --to=iec --from=iec ${csize}K) < $(numfmt --to=iec --from=iec ${req}K))" || :
-  sfdisk "$sysdev" <<-_EOF_
-	label: gpt
+  # Partition block device...
+  [ $req -gt $csize ] && die 2 "$drive is too small ($(numfmt --to=iec --from=iec ${csize}K) < $(numfmt --to=iec --from=iec ${req}K))" || :
 
-	,${uefisz}K,U,*
-	,${swapsz}K,S,
-	,,L,
+  if ! check_opt bios "$@" ; then
+    echo "Using DOS disklabel for BIOS boot"
+    sfdisk_label=dos
+  else
+    echo "Using GPT disklabel for UEFI boot"
+    sfdisk_label=gpt
+  fi
+  
+  sfdisk "$drive" <<-_EOF_
+	  label: ${sfdisk_label}
+
+	  ,${uefisz}K,U,*
+	  ,${swapsz}K,S,
+	  ,,L,
 	_EOF_
-  sleep 1
+
+  if check_opt bios "$@" ; then
+    # BIOS: Install MBR
+    echo "Installing BIOS MBR for $drive"
+    dd bs=440 count=1 conv=notrunc if=$syslinux_lib/mbr.bin of="${drive}"
+    sleep 1
+  fi
+}
+
+if [ -n "$imgname" ] ; then
+  if $imgset ; then
+    syspart1="${imgname}1"
+    syspart2="${imgname}2"
+    syspart3="${imgname}3"
+    truncate -s 500M "$syspart1"
+    truncate -s $(expr $mem + $(expr $mem / 2))K "$syspart2"
+    truncate -s ${imgsz}K "$syspart3"
+  else
+    echo "Setting up virtual disc image: $imgname"
+    partition_sys "$imgsz" "$imgname"
+
+    loops=$(kpartx -a -v "$imgname" | awk '{print $3}')
+    syspart1=/dev/mapper/$(echo "$loops" | head -1)
+    syspart2=/dev/mapper/$(echo "$loops" | head -2 | tail -1)
+    syspart3=/dev/mapper/$(echo "$loops" | head -3 | tail -1)
+  fi
+  do_mkfs=true
+elif [ -b "$sysdev" ] ; then
+  echo "Partitioning physical disc: $sysdev"
+  partition_sys $(expr $(blockdev --getsz "$sysdev") / 2) "$sysdev"
+
+  syspart1="${sysdev}1"
+  syspart2="${sysdev}2"
+  syspart3="${sysdev}3"
+
+  do_mkfs=true
+else
+  do_mkfs=false
 fi
 
 #begin-output
@@ -207,13 +292,23 @@ fi
 ## sysdev=<block device>
 ##
 #end-output
-if [ -b "$sysdev" ] ; then
+
+if $do_mkfs ; then
+echo "Making filesystems"
 #begin-output
-mkfs.vfat -F 32 -n EFI "${sysdev}1"
-mkswap -L swp0 "${sysdev}2"
-mkfs.xfs -f -L voidlinux "${sysdev}3"
+mkfs.vfat -F 32 -n EFI "${syspart1}"
+mkswap -L swp0 "${syspart2}"
+mkfs.xfs -f -L voidlinux "${syspart3}"
 #end-output
+
+  ### WE DO A BIOS COMPATIBLE THING WITH SYSLINUX
+  if check_opt bios "$@" ; then
+    echo "Installing SYSLINUX for BIOS boot on $syspart1"
+    syslinux --install --force "$syspart1" || :
+  fi
 fi
+
+
 #begin-output
 ## ```
 ##
@@ -221,12 +316,27 @@ fi
 ##
 ## ```
 #end-output
-if [ -b "$sysdev" ] ; then
+if $do_mkfs ; then
 #begin-output
-mount "${sysdev}3" $hmnt
+mount "${syspart3}" $hmnt
 mkdir $hmnt/boot
-mount "${sysdev}1" $hmnt/boot
+mount "${syspart1}" $hmnt/boot
 #end-output
+
+#
+# Use/Re-use a download cache
+#
+if cache=$(check_opt cache "$@") ; then
+  if [ -d "$cache" ] ; then
+    mkdir -m 0755 $hmnt/var
+    mkdir -m 0700 $hmnt/var/cache $hmnt/var/cache/xbps
+    mount --bind "$cache" $hmnt/var/cache/xbps
+  else
+    echo "$cache : cache dir does not exist"
+  fi
+fi
+
+
 elif [ -d "$sysdev" ] ; then
   mount --rbind "$sysdev" "$mnt"
 fi
@@ -496,9 +606,16 @@ fi
 ## 
 ## ```
 #end-output
-mkdir -p $mnt/boot/EFI/BOOT
-wget -O$mnt/boot/EFI/BOOT/BOOTX64.EFI $repourl/BOOTX64.EFI
+
+# Default Kernel command line
 echo "root=LABEL=voidlinux ro quiet" > $mnt/boot/cmdline
+
+if ! check_opt bios "$@" ; then
+  echo "Installing UEFI files" 
+  mkdir -p $mnt/boot/EFI/BOOT
+  wget -O$mnt/boot/EFI/BOOT/BOOTX64.EFI $repourl/BOOTX64.EFI
+fi
+
 #begin-output
 ## 
 ## For my hardware I had to add the option:
@@ -523,9 +640,19 @@ echo "root=LABEL=voidlinux ro quiet" > $mnt/boot/cmdline
 ## menu entries whenever the kernel gets upgraded.
 ##
 #end-output
-wget -O$mnt/boot/mkmenu.sh $repourl/mkmenu.sh
-wget -O- $repourl/hook.sh | tee $mnt/etc/kernel.d/post-{install,remove}/99-refind
-chmod 755 $mnt/etc/kernel.d/post-{install,remove}/99-refind
+
+if ! check_opt bios "$@" ; then
+  echo "Installing refind menu generator (for UEFI boot)"
+  wget -O$mnt/boot/mkmenu.sh $repourl/mkmenu.sh
+  wget -O- $repourl/hook.sh | tee $mnt/etc/kernel.d/post-{install,remove}/99-refind
+  chmod 755 $mnt/etc/kernel.d/post-{install,remove}/99-refind
+else
+  echo "Installing syslinux menu generator (for BIOS boot)"
+  wget -O$mnt/boot/mkmenu.sh $repourl/sysmenu.sh
+  wget -O- $repourl/hook.sh | tee $mnt/etc/kernel.d/post-{install,remove}/99-syslinux
+  chmod 755 $mnt/etc/kernel.d/post-{install,remove}/99-syslinux
+fi
+
 #begin-output
 ## We need to have a look at `/lib/modules` to get our Linux kernel version
 ## 
@@ -861,7 +988,7 @@ cat <<__EOF__
 Manual post installation tasks:
 
 - Check /boot/cmdline and make sure nothing else is missing
-  - Update and run: chroot $mnt xbps-reconfigure -f linux5.2
+  - Update and run: chroot $mnt xbps-reconfigure -f linux${kver}
 - Create users or run tlrealm.sh script
 $(
   if check_opt "rsync.secret" "$@" >/dev/null 2>&1 ; then
@@ -871,6 +998,11 @@ $(
 )
 - don't forget to unmount
   # umount -R $mnt
+$(
+  if [ -n "$imgname" ] ; then
+    echo "  # kpartx -d -v $imgname"
+  fi  
+)
 __EOF__
 
 
