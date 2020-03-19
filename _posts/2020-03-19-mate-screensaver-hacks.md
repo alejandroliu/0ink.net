@@ -29,14 +29,14 @@ For my computers I use this script:
 This simplifies the full process.  Just run the script (you may need to
 `sudo`) with the following options:
 
-- `$0 hacks [-e|-d]`
+- `$0 hacks [-e\|-d]`
   - shows the list of hacks and its enabled|disabled status.
   - the `-e` option will only show enabled hacks.
   - the `-d` option will only show disabled hacks.
-- `$0 enable [--all|hacks]
+- `$0 enable [--all\|hacks]
   - enable the specified hacks.
   - Use `--all` to enable all available hacks (excluding blacklisted hacks)
-- `$0 disable [--all|hacks]
+- `$0 disable [--all\|hacks]
   - disable the specified hacks.
   - Use `--all` to disable all available hacks
 
