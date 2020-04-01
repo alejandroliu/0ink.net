@@ -646,7 +646,11 @@ fi
 #end-output
 
 # Default Kernel command line
-echo "root=LABEL=$sysfsname3 ro quiet" > $mnt/boot/cmdline
+if $do_mkfs ; then
+  echo "root=LABEL=$sysfsname3 ro quiet" > $mnt/boot/cmdline
+else
+  echo "root=LABEL=voidlinux ro quiet" > $mnt/boot/cmdline
+fi
 
 if ! check_opt bios "$@" ; then
   echo "Installing UEFI files" 
