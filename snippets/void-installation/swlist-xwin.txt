@@ -11,6 +11,5 @@ slim
 dejavu-fonts-ttf
 terminus-font
 font-misc-misc
-# font-adobe-100dpi
 ipafont-fonts-otf
 
