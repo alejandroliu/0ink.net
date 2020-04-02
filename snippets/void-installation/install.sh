@@ -84,7 +84,7 @@ is_valid_desktop() {
 ## - Does not depend on `systemd`
 ## - a reasonable selection of software packages
 ##
-## I have tweaked the installation on my computers to use UEFI and thus 
+## I have tweaked the installation on my computers to use UEFI and thus
 ## I am using [rEFInd][refind] instead of grub.  This is because it makes
 ## doing bare metal backups and restore just a simple file copy.
 ##
@@ -102,7 +102,7 @@ if [ $# -lt 2 ] ; then
   cat <<-_EOF_
 #begin-output
 	Usage: $0 _/dev/sdx_ _hostname_ [options]
-	
+
 	- _sdx_: Block device to install to or
 	  - --image=filepath[:size] to create a virtual disc image
 	  - --imgset=filebase[:size] to create a virtual filesystem image set
@@ -117,6 +117,7 @@ if [ $# -lt 2 ] ; then
 	- passwd=password : root password (prompt if not specified)
 	- enc-passwd=encrypted : encrypted root password.
 	- ovl=tar.gz : tarball containing additional files
+	- post=script : run a post install script
 	- pkgs=file : text file containing additional software to install
 	- bios : create a BIOS boot system (needs syslinux)
 	- cache=path : use the file path for download cache
@@ -195,7 +196,7 @@ else
   pwenc="true"
   pwline="$pw"
 fi
-  
+
 
 #begin-output
 ## ```
@@ -238,7 +239,7 @@ partition_sys() {
     echo "Using GPT disklabel for UEFI boot"
     sfdisk_label=gpt
   fi
-  
+
   sfdisk "$drive" <<-_EOF_
 	  label: ${sfdisk_label}
 
@@ -301,7 +302,8 @@ fi
 #end-output
 
 if $do_mkfs ; then
-echo "Making filesystems"
+  sleep 3
+  echo "Making filesystems"
   sysfsname1="EFI$RANDOM"
   mkfs.vfat -F 32 -n "$sysfsname1" "${syspart1}"
   sysfsname2="swp$RANDOM"
@@ -319,14 +321,14 @@ fi
 
 #begin-output
 ##
-## We're now ready to mount the volumes, making any necessary mount point directories along the way (the sequence is important, yes): 
+## We're now ready to mount the volumes, making any necessary mount point directories along the way (the sequence is important, yes):
 ##
 ## ```
 ## mount /dev/xda3 $hmnt
 ## mkdir $hmnt/boot
 ## mount /dev/xda1 $hmnt/boot
 ## ```
-## 
+##
 #end-output
 if $do_mkfs ; then
   mount "${syspart3}" $hmnt
@@ -362,7 +364,7 @@ fi
 ## env XBPS_ARCH=x86_64-musl xbps-install -S -R http://alpha.de.repo.voidlinux.org/current/musl -r $hmnt base-system grub-x86_64-efi
 ## ```
 ##
-## For glibc (untested)
+## For glibc
 ## ```
 ## env XBPS_ARCH=x86_64 xbps-install -S -R http://alpha.de.repo.voidlinux.org/current -r $hmnt base-system grub-x86_64-efi
 ## ```
@@ -387,14 +389,14 @@ else
 fi
 desktop=$(check_opt desktop "$@") || :
 [ -z "$desktop" ] && desktop=mate
-if ! check_opt nodesktop "$@" >/dev/null 2>&1 ; then
+if check_opt nodesktop "$@" >/dev/null 2>&1 ; then
   desktop=no
 fi
 
 run="chroot $mnt"
 
 echo y | env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $mnt $(
-  (wget -O- "$repourl/swlist.txt" 
+  (wget -O- "$repourl/swlist.txt"
   if ! check_opt noxwin "$@" >/dev/null 2>&1 ; then
     wget -O- "$repourl/swlist-xwin.txt"
     if is_valid_desktop "$desktop" ; then
@@ -426,20 +428,33 @@ echo y | env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $mnt $(
 ## - Includes `autofs` and `nfs-utils` for network filesystems and
 ##   automount support.
 ##
-## ## nonfree software
+## ## nonfree software and other repositories
 ##
-## To enable non-free software, needed for `intel-ucode` and `unrar`,
-## you need to do the following:
+## Additional repositories are available to support either
+## non-free software and in the case of glibc, multilib (32 bit)
+## binaries.
 ##
-## ```
-env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $hmnt void-repo-nonfree
-## ```
-##
-## And then install non-free software:
+## To enable under the musl version:
 ##
 ## ```
-env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $hmnt intel-ucode unrar
+## env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $hmnt void-repo-nonfree
 ## ```
+##
+## For glibc:
+##
+## ```
+## env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $hmnt void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
+## ```
+##
+## Then you can install non-free software.
+##
+#end-output
+if ! check_opt glibc "$@" ; then
+ env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $hmnt void-repo-nonfree
+else
+  env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $hmnt void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
+fi
+#begin-output
 ##
 ## ## Enter the void chroot
 ##
@@ -530,10 +545,10 @@ HARDWARECLOCK="UTC"
 
 # Set timezone, availables timezones at /usr/share/zoneinfo.
 TIMEZONE="Europe/Amsterdam"
- 
+
 # Keymap to load, see loadkeys(8).
 KEYMAP="us-acentos"
- 
+
 # Console font to load, see setfont(8).
 #FONT="lat9w-16"
 
@@ -542,13 +557,13 @@ KEYMAP="us-acentos"
 
 # Font unimap to load, see setfont(8).
 #FONT_UNIMAP=
- 
+
 # Kernel modules to load, delimited by blanks.
 #MODULES=""
 :end-output
 ) | sed \
 	-e 's!<HOSTNAME>!'"$syshost"'!' \
-	> $mnt/etc/rc.conf 
+	> $mnt/etc/rc.conf
 #begin-output
 ## ```
 ##
@@ -591,22 +606,22 @@ else
   ) > $mnt/etc/fstab
 fi
 #begin-output
-## 
+##
 ## For a removable drive I include the line:
-## 
+##
 ## ```
 ## LABEL=volume	/media/blahblah xfs	rw,relatime,nofail 0 0
 ## ```
-## 
+##
 ## The important setting here is **nofail**.  When the drive is
 ## available it gets mounted.  If not, the **nofail** prevents
 ## this to cause the boot sequence to stop.
-## 
+##
 ## If using `glibc` you can modify `/etc/default/libc-locales` and
 ## uncomment:
-## 
+##
 ## `en_US.UTF-8 UTF-8`
-## 
+##
 ## Or whatever locale you want to use.  And run:
 ##
 #end-output
@@ -618,30 +633,30 @@ $run xbps-reconfigure -f glibc-locales
 #end-output
 fi
 #begin-output
-## 
+##
 ## ## Set-up UEFI boot
-## 
+##
 ## Download the [rEFInd][refind] zip binary from:
-## 
+##
 ## * [rEFInd download][getting-refind]
-## 
+##
 ## Set-up the boot partition:
-## 
+##
 ## ```
 ## mkdir /boot/EFI
 ## mkdir /boot/EFI/BOOT
 ## ```
-## 
+##
 ## Copy from the `zip file` the file `refind-bin-{version}/refind/refind_x64.efi` to
 ## `/boot/EFI/BOOT/BOOTX64.EFI`.
-## 
+##
 ## The version I am using right now can be found here: [v0.11.4 BOOTX64.EFI]($repourl/BOOTX64.EFI)
 ##
 ## Create kernel options files `/boot/cmdline`:
-## 
+##
 ## ```
 ## root=LABEL=voidlinux ro quiet
-## 
+##
 ## ```
 #end-output
 
@@ -653,31 +668,31 @@ else
 fi
 
 if ! check_opt bios "$@" ; then
-  echo "Installing UEFI files" 
+  echo "Installing UEFI files"
   mkdir -p $mnt/boot/EFI/BOOT
   wget -O$mnt/boot/EFI/BOOT/BOOTX64.EFI $repourl/BOOTX64.EFI
 fi
 
 #begin-output
-## 
+##
 ## For my hardware I had to add the option:
-## 
+##
 ## - `intel_iommu=igfx_off`
 ##   - To work around some strange bug.
 ## - `i915.enable_ips=0`
 ##   - fixes a power saving mode problem on 4.1-rc6+
-## 
+##
 ## Create the following script as `/boot/mkmenu.sh`
-## 
+##
 ## <script src="https://gist-it.appspot.com/$repourl/mkmenu.sh?footer=minimal"></script>
-## 
-## Add the following scripts to: 
-## 
+##
+## Add the following scripts to:
+##
 ## - `/etc/kernel.d/post-install/99-refind`
 ## - `/etc/kernel.d/post-remove/99-refind`
-## 
+##
 ## <script src="https://gist-it.appspot.com/$repourl/hook.sh?footer=minimal"></script>
-## 
+##
 ## Make sure they are executable.  This is supposed to re-create
 ## menu entries whenever the kernel gets upgraded.
 ##
@@ -690,21 +705,21 @@ chmod 755 $mnt/etc/kernel.d/post-{install,remove}/99-bootmenu
 
 #begin-output
 ## We need to have a look at `/lib/modules` to get our Linux kernel version
-## 
+##
 ## ```
 ## ls -la /lib/modules
 ## ```
-## 
+##
 ## Which should return something akin to:
-## 
+##
 ## ```
 ## drwxr-xr-x  3 root root   21 Jan 31 15:22 .
 ## drwxr-xr-x 23 root root 8192 Jan 31 15:22 ..
 ## drwxr-xr-x  3 root root 4096 Jan 31 15:22 5.2.13_1
 ## ```
-## 
+##
 ## And this script to create boot files:
-## 
+##
 ## ```
 ## xbps-reconfigure -f linux5.2
 ## ```
@@ -715,36 +730,36 @@ $run xbps-reconfigure -f linux${kver}
 #begin-output
 ##
 ## If you need to manually prepare boot files:
-## 
+##
 ## ```
 ## # update dracut
 ## dracut --force --kver 4.19.4_1
 ## # update refind menu
 ## bash /boot/mkmenu.sh
 ## ```
-## 
+##
 ## We are now ready to boot into [Void][void].
-## 
+##
 ## ```
 ## exit
 ## umount -R $hmnt
 ## reboot
 ## ```
-## 
+##
 ## ## Post install
-## 
+##
 ## After the first boot, we need to activate services:
-## 
+##
 ## Command line set-up:
-## 
+##
 ## ```
 ## ln -s /etc/sv/dhcpcd /var/service
 ## ln -s /etc/sv/sshd /var/service
 ## ln -s /etc/sv/{acpid,chronyd,cgmanager,crond,uuidd,statd,rcpbind,autofs} /var/service
 ## ```
-## 
+##
 ## Full workstation set-up:
-## 
+##
 ## ```
 ## ln -s /etc/sv/dbus /var/service
 ## ln -s /etc/sv/NetworkManager /var/service
@@ -773,32 +788,32 @@ do
 done
 echo ''
 #begin-output
-## 
+##
 ## Creating new users:
-## 
+##
 ## ```
 ## useradd -m -s /bin/bash -U -G wheel,users,audio,video,cdrom,input newuser
 ## passwd newuser
 ## ```
-## 
+##
 ## Note: The `wheel` user group allows the user to escalate to root.
-## 
+##
 ## Configure sudo:
-## 
+##
 ## ```
 ## visudo
 ## ```
-## 
+##
 ## Uncomment:
-## 
+##
 ## ```
 ## # %wheel ALL=(ALL) ALL
 ## ```
-## 
+##
 #end-output
 echo "%admins ALL=(ALL) ALL" >> $mnt/etc/sudoers
 #begin-output
-## 
+##
 
 ## ## Configure keyboard
 ##
@@ -809,7 +824,7 @@ echo "%admins ALL=(ALL) ALL" >> $mnt/etc/sudoers
 if [ -d $mnt/etc/X11 ] ; then
   mkdir -p $mnt/etc/X11/xorg.conf.d
   cat >$mnt/etc/X11/xorg.conf.d/30-keyboard.conf <<:end-output
-#begin-output  
+#begin-output
 Section "InputClass"
     Identifier "keyboard-all"
     Option "XkbLayout" "us"
@@ -820,7 +835,7 @@ Section "InputClass"
 EndSection
 :end-output
 fi
-#begin-output  
+#begin-output
 ## ```
 ##
 ## This makes the `intl` for the `XkbVariant` the system-wide default.
@@ -861,59 +876,62 @@ fi
 ## ## Tweaks and Bug-fixes
 ##
 ## ### power button handling
-## 
+##
 ## This patch prevents the /etc/acpi/handler.sh to handle the power button
 ## instead, letting the Desktop Environment handle the event.
 ##
 ## It does it by checking if the Desktop Environment power manager
 ## (in this case `mate-power-manager`) is running.  If it is, then
 ## it will exit.
-## 
+##
 ## <script src="https://gist-it.appspot.com/$repourl/acpi-handler.patch?footer=minimal"></script>
 ##
 #end-output
 wget -O- $repourl/acpi-handler.patch | patch -b -z -void -d $mnt/etc/acpi
 #begin-output
 ## ### rtkit spamming logs
-## 
+##
 ## Apparently, `rtkit` requres an `rtkit` user to exist.  Otherwise it
 ## will spam the logs with error messages.  To correct use this command:
-## 
+##
 ## ```
 ## useradd -r -s /sbin/nologin rtkit
 ## ```
-## 
+##
 ## ## Old Notes
-## 
+##
 ## ### PolKit rule tweaks
-## 
+##
 ## Testing as of 2019-09-07, the following does not seem to be needed
 ## any longer.  I left it here just for reference (in case it breaks
 ## again.
-## 
+##
 ## * * *
-## 
+##
 ## OK, in my case, `shutdown`, `reboot` and local media access functions
 ## were not available using the [MATE][mate] desktop.
-## 
+##
 ## To enable this I had to create/tweak the PolKit rules...
-## 
+##
 ## <script src="https://gist-it.appspot.com/$repourl/_attic_/tweak-polkit-rules.sh?footer=minimal"></script>
-## 
+##
 ## * * *
-## 
+##
 ##  [void]: https://voidlinux.org "Void Linux"
 ##  [refind]: http://www.rodsbooks.com/refind/ "rEFInd bootloader"
 ##  [void-uefi]: https://wiki.voidlinux.org/Installation_on_UEFI,_via_chroot "Install void linux on UEFI via chroot"
 ##  [mate]: https://mate-desktop.org/ "MATE Desktop environment"
 ##  [getting-refind]: http://www.rodsbooks.com/refind/getting.html "rEFInd download page"
 ##  [SLiM]: https://github.com/iwamatsu/slim "Simple Login Manager"
-## 
+##
 #end-output
 
 # customization stuff...
 if ovl=$(check_opt ovl "$@") ; then
   tar -C $mnt -zxvf "$ovl"
+fi
+if post=$(check_opt post "$@") ; then
+  "$post" $mnt "$kver"
 fi
 
 cat <<__EOF__
@@ -926,7 +944,7 @@ Manual post installation tasks:
 $(
   if [ -n "$imgname" ] ; then
     echo "  # kpartx -d -v $imgname"
-  fi  
+  fi
 )
 __EOF__
 
