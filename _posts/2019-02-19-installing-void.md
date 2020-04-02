@@ -42,6 +42,7 @@ Script usage:
 	- passwd=password : root password (prompt if not specified)
 	- enc-passwd=encrypted : encrypted root password.
 	- ovl=tar.gz : tarball containing additional files
+	- post=script : run a post install script
 	- pkgs=file : text file containing additional software to install
 	- bios : create a BIOS boot system (needs syslinux)
 	- cache=path : use the file path for download cache
@@ -92,7 +93,7 @@ For musl-libc
 env XBPS_ARCH=x86_64-musl xbps-install -S -R http://alpha.de.repo.voidlinux.org/current/musl -r /mnt base-system grub-x86_64-efi
 ```
 
-For glibc (untested)
+For glibc
 ```
 env XBPS_ARCH=x86_64 xbps-install -S -R http://alpha.de.repo.voidlinux.org/current -r /mnt base-system grub-x86_64-efi
 ```
@@ -120,20 +121,26 @@ This installs a [MATE][mate] desktop environment.
 - Includes `autofs` and `nfs-utils` for network filesystems and
   automount support.
 
-## nonfree software
+## nonfree software and other repositories
 
-To enable non-free software, needed for `intel-ucode` and `unrar`,
-you need to do the following:
+Additional repositories are available to support either
+non-free software and in the case of glibc, multilib (32 bit)
+binaries.
+
+To enable under the musl version:
 
 ```
 env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r /mnt void-repo-nonfree
 ```
 
-And then install non-free software:
+For glibc:
 
 ```
-env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r /mnt intel-ucode unrar
+env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r /mnt void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
 ```
+
+Then you can install non-free software.
+
 
 ## Enter the void chroot
 
