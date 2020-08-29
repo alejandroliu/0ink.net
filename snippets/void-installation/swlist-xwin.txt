@@ -4,7 +4,7 @@ xauth
 xorg-input-drivers
 xorg-minimal
 xorg-video-drivers
-ConsoleKit2
+# ConsoleKit2
 slim
 
 # default fonts
