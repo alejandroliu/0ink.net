@@ -875,6 +875,25 @@ fi
 ##
 ## ## Tweaks and Bug-fixes
 ##
+## ### /etc/machine-id or /var/lib/dbus/machine-id
+##
+## Because we don't use `systemd`, we need to create `/etc/machine-id`
+## and `/var/lib/dbus/machine-id`.
+## manually.  This is only needed for desktop systems.
+##
+## See [this article][machineid] for more
+## info.
+##
+#end-output
+if is_valid_desktop "$desktop" ; then
+#begin-output
+## ```
+  dbus-uuidgen | tee $mnt/etc/machine-id /var/lib/dbus/machine-id
+## ```
+#end-output
+fi
+#begin-output
+
 ## ### power button handling
 ##
 ## This patch prevents the /etc/acpi/handler.sh to handle the power button
@@ -923,6 +942,7 @@ wget -O- $repourl/acpi-handler.patch | patch -b -z -void -d $mnt/etc/acpi
 ##  [mate]: https://mate-desktop.org/ "MATE Desktop environment"
 ##  [getting-refind]: http://www.rodsbooks.com/refind/getting.html "rEFInd download page"
 ##  [SLiM]: https://github.com/iwamatsu/slim "Simple Login Manager"
+##  [machienid]: https://wiki.debian.org/MachineId
 ##
 #end-output
 

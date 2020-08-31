@@ -439,6 +439,19 @@ And have a custom [Xsession](https://github.com/alejandroliu/0ink.net/raw/master
 
 ## Tweaks and Bug-fixes
 
+### /etc/machine-id or /var/lib/dbus/machine-id
+
+Because we don't use `systemd`, we need to create `/etc/machine-id`
+and `/var/lib/dbus/machine-id`.
+manually.  This is only needed for desktop systems.
+
+See [this article][machineid] for more
+info.
+
+```
+  dbus-uuidgen | tee /etc/machine-id /var/lib/dbus/machine-id
+```
+
 ### power button handling
 
 This patch prevents the /etc/acpi/handler.sh to handle the power button
@@ -484,4 +497,5 @@ To enable this I had to create/tweak the PolKit rules...
  [mate]: https://mate-desktop.org/ "MATE Desktop environment"
  [getting-refind]: http://www.rodsbooks.com/refind/getting.html "rEFInd download page"
  [SLiM]: https://github.com/iwamatsu/slim "Simple Login Manager"
+ [machienid]: https://wiki.debian.org/MachineId
 
