@@ -1,0 +1,91 @@
+#!/bin/bash
+set -euf -o pipefail
+#
+# Simple script to cycle PA outputs
+#
+if [ -f $HOME/.patogglerc ] ; then
+  . $HOME/.patogglerc
+fi
+
+# determine sinks and default sinks...
+pa_get_sinks() {
+  local list_sinks_output=$(pacmd list-sinks | grep index:)
+  pa_sinks=$(cut -d: -f2 <<<"$list_sinks_output" | sed -e 's/^\s*//')
+  pa_default_sink=$(grep '*' <<<"$list_sinks_output" | cut -d: -f2  | sed -e 's/^\s*//')
+}
+
+pa_sync_name() {
+  pacmd list-sinks | awk '
+	BEGIN { output = 0 }
+	$0 ~ /index:/ { output = 0 }
+	$0 ~ /index: '"$1"'/ { output = 1 }
+	$1 == "name:" { if (output) print $2 }
+  '
+}
+
+pa_next_sink() {
+  local current="$1" ; shift
+
+  for q in "$@"
+  do
+    if [ -z "$current" ] ; then
+      echo $q
+      return
+    fi
+    if [ "$(echo "$q" | cut -d'|' -f1)" = "$current" ] ; then
+      # OK... found it...
+      current=""
+      continue
+    fi
+  done
+  echo "$1"
+}
+
+pa_redirect_inputs() {
+  local new_sink="$1" ; shift
+
+  local input
+  pacmd list-sink-inputs | grep index: | cut -d: -f2- | sed -e 's/^\s*//' | while read input
+  do
+    pacmd move-sink-input "$input" "$new_sink"
+  done
+}
+
+pa_current_profile() {
+  pacmd list-cards | awk '$1 == "active" && $2 == "profile:" { print substr($3,2,length($3)-2) }'
+}
+
+msg() {
+  if type notify-send >/dev/null 2>&1 ; then
+    notify-send "Audio toggle" "$*"
+  else
+    echo "$0: $*" 1>&2
+  fi
+}
+
+if [ -n "${TOGGLE_PROFILES:-}" ] ; then
+  # Toggle profiles instead of cycling to syncs...
+  pa_card=0
+  current=$(pa_current_profile)
+  next=$(pa_next_sink "$current" $TOGGLE_PROFILES)
+  #~ echo current=$current
+  #~ echo next=$next
+  #~ exit
+  msg "Using profile: $(echo $next | cut -d'|' -f2)"
+  pacmd set-card-profile $pa_card $(echo $next | cut -d'|' -f1)
+else
+  pa_get_sinks
+  next_sink=$(pa_next_sink "$pa_default_sink" $pa_sinks)
+  if [ $next_sink -eq $pa_default_sink ] ; then
+    msg "No next available sink"
+    #~ exit 1
+  fi
+  msg "Switching to $(pa_sync_name $next_sink)"
+  pacmd set-default-sink $next_sink
+  pa_redirect_inputs $next_sink
+fi
+
+
+
+
+
