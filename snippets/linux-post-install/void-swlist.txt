@@ -1,0 +1,75 @@
+#
+# Download this with:
+#
+#	wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/linux-post-install/void-swlist.txt | sed -e 's/#.*$//'
+#
+# use:
+#	xbps-query -m
+#
+# To see the list of "manually" installed packages
+#
+
+git			# I need this to interact with github
+
+tcl			# gui scripts
+tk
+
+geany			# text editor and IDE
+geany-plugins
+geany-plugins-extra
+
+mplayer			# media support
+ffmpeg
+vlc
+eyeD3
+ImageMagick
+
+parcellite xdotool
+
+gst-libav		# void-linux add mp4 support to firefox
+# synergy-gui		# software kvm switch
+libreoffice		# Office applications
+mypaint			# MSPaint like
+simple-scan xsane	# scanner support
+
+xorg-apps		# Basic X apps
+mesa-demos
+xterm
+tigervnc
+
+font-bh-ttf		# Additional fonts
+noto-fonts-ttf
+
+syslinux mtools		# misc script for working with USB boot drives
+
+# php
+# jq
+# asciidoc | ruby-asciidoctor
+# gcc
+# make
+# ltrace
+# strace
+# tcpdump
+# luakit
+# clamav			# anti virus
+
+owncloudclient		# sync with nextcloud/owncloud
+bootiso			# Create USB boot discs from ISOs
+cadaver			# modify NextCloud from CLI
+catimg feh		# barebones img viewers
+darkhttpd		# light weight web server
+pandoc			# create md to epub
+pidgin pidgin-sipe avahi	# chat app
+redshift-gtk		# blue blocker
+safeeyes xprintidle	# eye care
+
+# streamripper		# copy internet radio
+
+wmctrl			# windows scripting
+xscreensaver		# cross DE screen saver
+rcm			# dot file manager
+xbindkeys		# hot keys
+
+# this is needed for AH fotoservice integration
+xdg-utils snappy
+

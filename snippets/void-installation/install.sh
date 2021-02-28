@@ -106,6 +106,7 @@ if [ $# -lt 2 ] ; then
 	- _sdx_: Block device to install to or
 	  - --image=filepath[:size] to create a virtual disc image
 	  - --imgset=filebase[:size] to create a virtual filesystem image set
+	  - --dir=dirpath to create a directory
 	- _hostname_: Hostname to use
 
 	Options:
@@ -121,10 +122,24 @@ if [ $# -lt 2 ] ; then
 	- pkgs=file : text file containing additional software to install
 	- bios : create a BIOS boot system (needs syslinux)
 	- cache=path : use the file path for download cache
+	- xen : do some xen specific tweaks
 #end-output
 	_EOF_
   exit 1
 fi
+#begin-output
+## ```
+##
+## ### Command line examples
+##
+## - sudo sh install.sh --dir=$HOME/vx9 vx9 mem=4G glibc passwd=1234567890 cache=$HOME/void-cache xen
+## - sudo sh install.sh --dir=$HOME/vx1 vx1 mem=4G glibc passwd=1234567890 cache=$HOME/void-cache xen
+## - sudo sh install.sh --dir=$HOME/vx11 vx11 mem=4G       passwd=1234567890 cache=$HOME/void-cache xen
+##
+#end-output
+
+
+
 sysdev="$1"
 syshost="$2"
 shift 2
@@ -166,6 +181,13 @@ case "$sysdev" in
   truncate -s 0 "${imgname}1"
   truncate -s 0 "${imgname}2"
   truncate -s 0 "${imgname}3"
+  ;;
+--dir=*)
+  # Create a directory...
+  imgname=""
+  sysdev="${sysdev#--dir=}"
+  [ $(readlink -f "$sysdev") = "$mnt" ] && die 5 "Can not use $mnt"
+  mkdir "$sysdev"
   ;;
 *)
   imgname=""
@@ -232,7 +254,7 @@ partition_sys() {
   # Partition block device...
   [ $req -gt $csize ] && die 2 "$drive is too small ($(numfmt --to=iec --from=iec ${csize}K) < $(numfmt --to=iec --from=iec ${req}K))" || :
 
-  if ! check_opt bios "$@" ; then
+  if check_opt bios "$@" ; then
     echo "Using DOS disklabel for BIOS boot"
     sfdisk_label=dos
   else
@@ -395,6 +417,22 @@ fi
 
 run="chroot $mnt"
 
+extra_pkgs() {
+  local fp pkgs=$(check_opt pkgs "$@") || return 0
+
+  for fp in $(echo $pkgs | tr , ' ')
+  do
+    if [ -f "$fp" ] ; then
+      cat "$fp"
+      continue
+    fi
+    case "$fp" in
+      http://*|https://*|ftp://*) wget -O- "$fp" ; continue ;;
+    esac
+    echo "$fp"
+  done
+}
+
 echo y | env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $mnt $(
   (wget -O- "$repourl/swlist.txt"
   if ! check_opt noxwin "$@" >/dev/null 2>&1 ; then
@@ -403,13 +441,7 @@ echo y | env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $mnt $(
       wget -O- "$repourl/swlist-$desktop.txt"
     fi
   fi
-  if pkgs=$(check_opt pkgs "$@") ; then
-    if [ -f "$pkgs" ] ; then
-      cat "$pkgs"
-    else
-      wget -O- "$pkgs"
-    fi
-  fi
+  extra_pkgs "$@"
   )| sed -e 's/#.*$//'
 )
 #begin-output
@@ -581,7 +613,7 @@ KEYMAP="us-acentos"
 ## ```
 #end-output
 if $do_mkfs ; then
-(cat <<-_EOF_
+  (cat <<-_EOF_
 	#
 	# See fstab(5).
 	#
@@ -590,6 +622,18 @@ if $do_mkfs ; then
 	LABEL=$sysfsname1	/boot	vfat	rw,fmask=0133,dmask=0022,noatime,discard  0 2
 	LABEL=$sysfsname3	/	xfs	rw,relatime,discard	0 1
 	LABEL=$sysfsname2 	swap	swap	defaults		0 0
+	_EOF_
+  ) > $mnt/etc/fstab
+elif check_opt xen "$@" ; then
+  (cat <<-_EOF_
+	#
+	# See fstab(5).
+	#
+	# <file system>	<dir>	<type>	<options>		<dump>	<pass>
+	tmpfs		/tmp	tmpfs	defaults,nosuid,nodev   0       0
+	/dev/xvda	/	xfs	rw,relatime,discard	0 1
+	#/dev/xvdb	/home	xfs	rw,relatime,discard	0 2
+	#/dev/xvdc	swap	swap 	defaults		0 0
 	_EOF_
   ) > $mnt/etc/fstab
 else
@@ -663,6 +707,8 @@ fi
 # Default Kernel command line
 if $do_mkfs ; then
   echo "root=LABEL=$sysfsname3 ro quiet" > $mnt/boot/cmdline
+elif check_opt xen "$@" ; then
+  echo "root=/dev/xvda ro" > $mnt/boot/cmdline
 else
   echo "root=LABEL=voidlinux ro quiet" > $mnt/boot/cmdline
 fi
@@ -787,6 +833,7 @@ do
   echo -n " $s$svc"
 done
 echo ''
+
 #begin-output
 ##
 ## Creating new users:
@@ -917,6 +964,46 @@ wget -O- $repourl/acpi-handler.patch | patch -b -z -void -d $mnt/etc/acpi
 ## useradd -r -s /sbin/nologin rtkit
 ## ```
 ##
+## ### xen tweaks
+##
+## For xen we need to make some adjustments...
+##
+## 1. Tweak block device references.
+##    - `/etc/fstab` : mount xvda and other devices
+##    - `/boot/cmdline` : get the right xvda root device
+## 2. Enable disable services
+##    - Disable: `slim`, `agetty-ttyX`
+##    - Enable: `agetty-hvc0`
+##    - Decide if you want to use `NetworkManager` or `dhcpcd`.
+##
+## Normally, I would create a tarball image to transfer over, in order
+## for the image to work properly you need to save `capabilities`.
+##
+#end-output
+if check_opt xen "$@" ; then
+  echo "Applying xen specific service tweaks"
+  for svc in slim
+  do
+    rm -f "$svcdir/$svc"
+  done
+  for notty in $(seq 1 9)
+  do
+    rm -f "$svcdir/agetty-tty$notty"
+  done
+  con=hvc0
+  rm -f "$svcdir/agetty-$con"
+  ln -s /etc/sv/agetty-$con "$svcdir/agetty-$con"
+
+  # Saving capabilities...
+  echo "Saving capabilities"
+  find "$mnt" -xdev -printf '%y %p\n' | sed -e "s!^\\(.\\) $mnt/!\\1 !" | (while read t fpath
+  do
+    [ x"$t" != x"f" ] && continue
+    echo "$fpath"
+  done) | tr '\n' '\0' | ( cd "$mnt" ; xargs -0 getcap ) > $mnt/.caps
+fi
+#begin-output
+
 ## ## Old Notes
 ##
 ## ### PolKit rule tweaks
@@ -969,3 +1056,11 @@ $(
 __EOF__
 
 
+#
+# re-image
+#
+# - /etc/hostname
+# - /etc/rc.conf : HOSTNAME=xxxx
+# - /etc/shadow : passwords?
+# - /etc/machine-id and /var/lib/dbus/machine-id
+#     dbus-uuidgen | tee $mnt/etc/machine-id /var/lib/dbus/machine-id
