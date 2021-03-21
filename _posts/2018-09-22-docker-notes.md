@@ -16,6 +16,13 @@ Optional: (docker compose)
 1. apk add py-pip
 2. pip install docker-compose
 
+* * *
+
+Note 2021-03-21: When I tested this, the `daemon.json` did not
+work!  Your mileage may vary.
+
+* * *
+
 Recommended for user namespace isolation (not sure if this works)
 
 Also is good to use data mode (persistent /var) as most docker data is stored there.
@@ -26,14 +33,15 @@ addgroup -S dockremap
 echo dockremap:100000:65535 | tee /etc/subuid
 echo dockremap:100000:65535 | tee /etc/suguid
 ```
+
 In `/etc/docker/daemon.json`:
 
 ```
-{  
+{
         "userns-remap": "dockremap"
 }
 ```
-For more info [docker docks](https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file)
+For more info [docker docs](https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file)
 
 ## Test docker:
 
@@ -59,7 +67,7 @@ docker run --mount 'type=volume,src=VOL_NAME,volume-driver=local,dst=/LOCAL-MNT,
 - NFS mounting (pre 17.06)
     - `you@host > mount server:/dir /path/to/mount/point`
     - `you@host > docker run -v /path/to/mount/point:/path/to/mount/point`
-- `docker run -p 4000:80` : Forward port 4000 to 80. 
+- `docker run -p 4000:80` : Forward port 4000 to 80.
    So host listens on port 4000 and everything is forwarded to port 80 on the container.
 
 ## Make your own docker image, quick example
