@@ -13,8 +13,9 @@ See [wiki](https://wiki.alpinelinux.org/wiki/Docker)  For Alpine Linux > 3.8
 
 Optional: (docker compose)
 
-1. apk add py-pip
-2. pip install docker-compose
+```
+apk add docker-compose
+```
 
 * * *
 
@@ -31,7 +32,7 @@ Also is good to use data mode (persistent /var) as most docker data is stored th
 adduser -SDHs /sbin/nologin dockremap
 addgroup -S dockremap
 echo dockremap:100000:65535 | tee /etc/subuid
-echo dockremap:100000:65535 | tee /etc/suguid
+echo dockremap:100000:65535 | tee /etc/subgid
 ```
 
 In `/etc/docker/daemon.json`:
@@ -70,6 +71,17 @@ docker run --mount 'type=volume,src=VOL_NAME,volume-driver=local,dst=/LOCAL-MNT,
 - `docker run -p 4000:80` : Forward port 4000 to 80.
    So host listens on port 4000 and everything is forwarded to port 80 on the container.
 
+## Alpine Linux relocating /var/lib/docker
+
+In the file `/etc/conf.d/docker` you can add additional command line
+options in:
+
+`DOCKER_OPTS`
+
+In particular you can use the `-g` option.
+
+See [linuxconfig.org article](https://linuxconfig.org/how-to-move-docker-s-default-var-lib-docker-to-another-directory-on-ubuntu-debian-linux)
+
 ## Make your own docker image, quick example
 
 - [Run the app](https://docs.docker.com/get-started/part2/#run-the-app)
@@ -86,6 +98,8 @@ docker run --mount 'type=volume,src=VOL_NAME,volume-driver=local,dst=/LOCAL-MNT,
 ## Better way to create container images:
 
 - [Updating containers](https://serversforhackers.com/c/updating-containers)
+
+
 
 
 ## Just use them...
