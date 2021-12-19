@@ -35,7 +35,9 @@ if [ -d "$bootdir/EFI/BOOT" ] ; then
 
     for kver in $(find_kernels)
     do
-      echo "menuentry \"linux-$kver\" {"
+      date=$(date --reference="$bootdir/vmlinuz-$kver" +"%Y-%m-%d")
+
+      echo "menuentry \"linux-$kver ($date)\" {"
       echo "  loader /vmlinuz-$kver"
       echo "  initrd /initramfs-$kver.img"
       if [ -f "$bootdir/cmdline-$kver" ] ; then
@@ -55,7 +57,9 @@ echo "Creating syslinux menu"
 
   for kver in $(find_kernels)
   do
-    echo "LABEL linux-$kver"
+    date=$(date --reference="$bootdir/vmlinuz-$kver" +"%Y-%m-%d")
+
+    echo "LABEL linux-$kver ($date)"
     echo "  KERNEL vmlinuz-$kver"
     echo "  INITRD initramfs-$kver.img"
     if [ -f "$bootdir/cmdline-$kver" ] ; then
