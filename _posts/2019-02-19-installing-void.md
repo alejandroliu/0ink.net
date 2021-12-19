@@ -21,7 +21,7 @@ My installation process roughly follows the [UEFI chroot install][void-uefi].
 
 This process is implemented in a script and can be found here:
 
-- [install.sh](https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/install.sh)
+- [install.sh](https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/install.sh)
 
 Script usage:
 
@@ -31,6 +31,7 @@ Script usage:
 	- _sdx_: Block device to install to or
 	  - --image=filepath[:size] to create a virtual disc image
 	  - --imgset=filebase[:size] to create a virtual filesystem image set
+	  - --dir=dirpath to create a directory
 	- _hostname_: Hostname to use
 
 	Options:
@@ -46,6 +47,15 @@ Script usage:
 	- pkgs=file : text file containing additional software to install
 	- bios : create a BIOS boot system (needs syslinux)
 	- cache=path : use the file path for download cache
+	- xen : do some xen specific tweaks
+```
+
+### Command line examples
+
+- sudo sh install.sh --dir=$HOME/vx9 vx9 mem=4G glibc passwd=1234567890 cache=$HOME/void-cache xen
+- sudo sh install.sh --dir=$HOME/vx1 vx1 mem=4G glibc passwd=1234567890 cache=$HOME/void-cache xen
+- sudo sh install.sh --dir=$HOME/vx11 vx11 mem=4G       passwd=1234567890 cache=$HOME/void-cache xen
+
 ```
 
 ## Initial set-up
@@ -100,9 +110,9 @@ env XBPS_ARCH=x86_64 xbps-install -S -R http://alpha.de.repo.voidlinux.org/curre
 
 But actually, for the package list I have been using these lists:
 
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/swlist.txt?footer=minimal"></script>
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/swlist-xwin.txt?footer=minimal"></script>
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/swlist-mate.txt?footer=minimal"></script>
+<script src="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/swlist.txt"></script>
+<script src="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/swlist-xwin.txt?footer=minimal"></script>
+<script src="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/swlist-mate.txt?footer=minimal"></script>
 
 This installs a [MATE][mate] desktop environment.
 
@@ -285,7 +295,7 @@ mkdir /boot/EFI/BOOT
 Copy from the `zip file` the file `refind-bin-{version}/refind/refind_x64.efi` to
 `/boot/EFI/BOOT/BOOTX64.EFI`.
 
-The version I am using right now can be found here: [v0.11.4 BOOTX64.EFI](https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/BOOTX64.EFI)
+The version I am using right now can be found here: [v0.11.4 BOOTX64.EFI](https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/BOOTX64.EFI)
 
 Create kernel options files `/boot/cmdline`:
 
@@ -303,14 +313,14 @@ For my hardware I had to add the option:
 
 Create the following script as `/boot/mkmenu.sh`
 
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/mkmenu.sh?footer=minimal"></script>
+<script src="$embedurlhttps://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/mkmenu.sh"></script>
 
 Add the following scripts to:
 
 - `/etc/kernel.d/post-install/99-refind`
 - `/etc/kernel.d/post-remove/99-refind`
 
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/hook.sh?footer=minimal"></script>
+<script src="$embedurlhttps://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/hook.sh"></script>
 
 Make sure they are executable.  This is supposed to re-create
 menu entries whenever the kernel gets upgraded.
@@ -434,7 +444,7 @@ Specifically, I update the login_cmd to be the following:
 login_cmd exec /bin/sh -l /etc/X11/Xsession %session
 ```
 
-And have a custom [Xsession](https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/Xsession) script.
+And have a custom [Xsession](https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/Xsession) script.
 
 
 ## Tweaks and Bug-fixes
@@ -461,7 +471,7 @@ It does it by checking if the Desktop Environment power manager
 (in this case `mate-power-manager`) is running.  If it is, then
 it will exit.
 
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/acpi-handler.patch?footer=minimal"></script>
+<script src="$embedurlhttps://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/acpi-handler.patch"></script>
 
 ### rtkit spamming logs
 
@@ -471,6 +481,22 @@ will spam the logs with error messages.  To correct use this command:
 ```
 useradd -r -s /sbin/nologin rtkit
 ```
+
+### xen tweaks
+
+For xen we need to make some adjustments...
+
+1. Tweak block device references.
+   - `/etc/fstab` : mount xvda and other devices
+   - `/boot/cmdline` : get the right xvda root device
+2. Enable disable services
+   - Disable: `slim`, `agetty-ttyX`
+   - Enable: `agetty-hvc0`
+   - Decide if you want to use `NetworkManager` or `dhcpcd`.
+
+Normally, I would create a tarball image to transfer over, in order
+for the image to work properly you need to save `capabilities`.
+
 
 ## Old Notes
 
@@ -487,7 +513,7 @@ were not available using the [MATE][mate] desktop.
 
 To enable this I had to create/tweak the PolKit rules...
 
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/_attic_/tweak-polkit-rules.sh?footer=minimal"></script>
+<script src="$embedurlhttps://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/_attic_/tweak-polkit-rules.sh"></script>
 
 * * *
 

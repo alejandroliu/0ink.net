@@ -4,7 +4,8 @@
 set -euf -o pipefail
 script=$(readlink -f "$0")
 
-repourl=https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation
+repourl="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation"
+embedurl="https://tortugalabs.github.io/embed-like-gist/embed.js?style=paraiso-light&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target="
 mnt=/mnt
 hmnt="$mnt"
 svcdir="$mnt/etc/runit/runsvdir/default"
@@ -393,9 +394,9 @@ fi
 ##
 ## But actually, for the package list I have been using these lists:
 ##
-## <script src="https://gist-it.appspot.com/$repourl/swlist.txt?footer=minimal"></script>
-## <script src="https://gist-it.appspot.com/$repourl/swlist-xwin.txt?footer=minimal"></script>
-## <script src="https://gist-it.appspot.com/$repourl/swlist-mate.txt?footer=minimal"></script>
+## <script src="$repourl/swlist.txt"></script>
+## <script src="$repourl/swlist-xwin.txt?footer=minimal"></script>
+## <script src="$repourl/swlist-mate.txt?footer=minimal"></script>
 ##
 ## This installs a [MATE][mate] desktop environment.
 ##
@@ -730,14 +731,14 @@ fi
 ##
 ## Create the following script as `/boot/mkmenu.sh`
 ##
-## <script src="https://gist-it.appspot.com/$repourl/mkmenu.sh?footer=minimal"></script>
+## <script src="$embedurl$repourl/mkmenu.sh"></script>
 ##
 ## Add the following scripts to:
 ##
 ## - `/etc/kernel.d/post-install/99-refind`
 ## - `/etc/kernel.d/post-remove/99-refind`
 ##
-## <script src="https://gist-it.appspot.com/$repourl/hook.sh?footer=minimal"></script>
+## <script src="$embedurl$repourl/hook.sh"></script>
 ##
 ## Make sure they are executable.  This is supposed to re-create
 ## menu entries whenever the kernel gets upgraded.
@@ -950,7 +951,7 @@ fi
 ## (in this case `mate-power-manager`) is running.  If it is, then
 ## it will exit.
 ##
-## <script src="https://gist-it.appspot.com/$repourl/acpi-handler.patch?footer=minimal"></script>
+## <script src="$embedurl$repourl/acpi-handler.patch"></script>
 ##
 #end-output
 wget -O- $repourl/acpi-handler.patch | patch -b -z -void -d $mnt/etc/acpi
@@ -1019,7 +1020,7 @@ fi
 ##
 ## To enable this I had to create/tweak the PolKit rules...
 ##
-## <script src="https://gist-it.appspot.com/$repourl/_attic_/tweak-polkit-rules.sh?footer=minimal"></script>
+## <script src="$embedurl$repourl/_attic_/tweak-polkit-rules.sh"></script>
 ##
 ## * * *
 ##

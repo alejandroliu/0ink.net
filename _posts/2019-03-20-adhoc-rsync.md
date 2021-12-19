@@ -15,23 +15,24 @@ Copy these scripts on the remote server.  Make sure they are executable.
 
 - Remote CLI
 
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/adhoc-rsync/recv-nc?footer=minimal"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=paraiso-light&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/adhoc-rsync/recv-nc"></script>
 
 - Remote Helper script
 
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/adhoc-rsync/recv?footer=minimal"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=paraiso-light&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/adhoc-rsync/recv"></script>
 
 # Local scripts
 
-Copy these scripts on the local server.  Make sure they are executable 
+Copy these scripts on the local server.  Make sure they are executable
 
 - Local CLI
 
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/adhoc-rsync/send?footer=minimal"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=paraiso-light&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/adhoc-rsync/send"></script>
 
-- Local Helpr Script
 
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/adhoc-rsync/send-nc?footer=minimal"></script>
+- Local Helper Script
+
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=paraiso-light&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/adhoc-rsync/send-nc"></script>
 
 # Usage
 
@@ -91,9 +92,4 @@ total size is 5,869  speedup is 26.80
 rsync error: syntax or usage error (code 1) at main.c(1189) [sender=3.1.3]
 $
 ```
-
-<!--
-<script src="https://gist-it.appspot.com/
-?footer=minimal"></script>
--->
 

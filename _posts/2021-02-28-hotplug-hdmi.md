@@ -50,7 +50,7 @@ Essentially, we are waiting for the monitor configuration to change
 and when that happens we will run a script. This is accomplish with
 the following rules file (99-xwin-hotplug.rules):
 
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/xwin-hotplug/99-xwin-hotplug.rules?footer=minimal"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=paraiso-light&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/xwin-hotplug/99-xwin-hotplug.rules"></script>
 
 # Running xrandr
 
@@ -66,7 +66,7 @@ The script that is kicked off by [udev][udev] does the following:
 
 See script:
 
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/xwin-hotplug/xwin-hotplug?footer=minimal"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=paraiso-light&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/raw/master/snippets/xwin-hotplug/xwin-hotplug"></script>
 
 # See Also
 

@@ -87,7 +87,7 @@ This implements the login pager URL
         # If the user is not logged in, redirect them to login URL
         location @error401 {
           return 302 https://$host/login/?url=https://$http_host$request_uri;
-        }         
+        }
 ```
 In this example, the login page is on the same reverse proxy, but
 it doesn't have to be that way.
@@ -130,19 +130,19 @@ the user is redirected to the original URL.
 
 This is implemented using the following script:
 
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/nginx_mod_authrequest/auth1.py?footer=minimal"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=paraiso-light&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/nginx_mod_authrequest/auth1.py"></script>
 
 This makes uses of the [bottle][bottlepy] micro framework.
 
 It implements four routes:
 
-1. `GET /hello`  
+1. `GET /hello`
    This is just a demo URL used for testing.  Only shows the request headers.
-2. `GET /login/`  
+2. `GET /login/`
    This is the login page entry point.
-3. `POST /login/`  
+3. `POST /login/`
    This is the handler for the login page.
-4. `GET /auth`  
+4. `GET /auth`
    This is the sub-request handler.
 
 For the demo, we are not really doing any login handling.  You only
@@ -172,7 +172,7 @@ server or to even implement authentications not supported by
 
 This may seem silly since [nginx][nginx] supports [basic authentication][basicauth]
 out of the box.  The use case for this is when you have a cluster of nginx
-front ends, and you want all of them to authenticate against a central 
+front ends, and you want all of them to authenticate against a central
 identity server.  Furthermore, since the URI can be passed, a more sophisticated
 access control can be implemented.  Finally, additional values can be passed
 through headers, such as group names, tokens, etc.
@@ -211,7 +211,7 @@ Sub-request configuration:
 
 The python implementation (again, using [bottle][bottlepy]):
 
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/nginx_mod_authrequest/auth2.py?footer=minimal"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=paraiso-light&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/nginx_mod_authrequest/auth2.py"></script>
 
 Like in the previous example, we are not doing any user/password verification.  We are only
 checking if username and password are matching.
@@ -228,7 +228,7 @@ same as in the [Basic][basicauth] authentication.
 
 The implentation in python (using [bottle][bottlepy] framework):
 
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/nginx_mod_authrequest/auth3.py?footer=minimal"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=paraiso-light&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/nginx_mod_authrequest/auth3.py"></script>
 
 
 * * *

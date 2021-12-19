@@ -42,7 +42,7 @@ sudo env XBPS_ARCH=x86_64 xbps-install --repository=http://alpha.de.repo.voidlin
 
 Once this is set-up you need a small program to kick off the `glibc` executables.  I copied this one:
 
-<script src="https://gist-it.appspot.com/https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-glibc-in-musl/glibc.c?footer=minimal"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=paraiso-light&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-glibc-in-musl/glibc.c"></script>
 
 To compile and install:
 
