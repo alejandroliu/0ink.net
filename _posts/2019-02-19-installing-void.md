@@ -313,14 +313,14 @@ For my hardware I had to add the option:
 
 Create the following script as `/boot/mkmenu.sh`
 
-<script src="$embedurlhttps://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/mkmenu.sh"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/mkmenu.sh"></script>
 
 Add the following scripts to:
 
 - `/etc/kernel.d/post-install/99-refind`
 - `/etc/kernel.d/post-remove/99-refind`
 
-<script src="$embedurlhttps://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/hook.sh"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/hook.sh"></script>
 
 Make sure they are executable.  This is supposed to re-create
 menu entries whenever the kernel gets upgraded.
@@ -471,7 +471,7 @@ It does it by checking if the Desktop Environment power manager
 (in this case `mate-power-manager`) is running.  If it is, then
 it will exit.
 
-<script src="$embedurlhttps://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/acpi-handler.patch"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/acpi-handler.patch"></script>
 
 ### rtkit spamming logs
 
@@ -513,7 +513,7 @@ were not available using the [MATE][mate] desktop.
 
 To enable this I had to create/tweak the PolKit rules...
 
-<script src="$embedurlhttps://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/_attic_/tweak-polkit-rules.sh"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/_attic_/tweak-polkit-rules.sh"></script>
 
 * * *
 

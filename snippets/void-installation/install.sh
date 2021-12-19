@@ -5,7 +5,7 @@ set -euf -o pipefail
 script=$(readlink -f "$0")
 
 repourl="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation"
-embedurl="https://tortugalabs.github.io/embed-like-gist/embed.js?style=paraiso-light&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target="
+embedurl="https://tortugalabs.github.io/embed-like-gist/embed.js?target="
 mnt=/mnt
 hmnt="$mnt"
 svcdir="$mnt/etc/runit/runsvdir/default"
@@ -34,6 +34,7 @@ if [ $# -eq 0 ] ; then
 	-e 's/^://' \
     | sed \
 	-e 's!$repourl!'"$repourl!" \
+	-e 's!$embedurl!'"$embedurl!" \
 	-e 's!$0!installer.sh!' \
 	-e 's!$run!!' \
 	-e 's!$mnt!!' \
