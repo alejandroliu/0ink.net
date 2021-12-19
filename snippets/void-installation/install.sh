@@ -5,7 +5,9 @@ set -euf -o pipefail
 script=$(readlink -f "$0")
 
 repourl="https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation"
-embedurl="https://tortugalabs.github.io/embed-like-gist/embed.js?target="
+embedopts='?style=github\&showBorder=on\&showLineNumbers=on\&showFileMeta=on\&showCopy=on\&fetchFromJsDelivr=on\&'
+embedurl="https://tortugalabs.github.io/embed-like-gist/embed.js${embedopts}target="
+
 mnt=/mnt
 hmnt="$mnt"
 svcdir="$mnt/etc/runit/runsvdir/default"
