@@ -4,7 +4,7 @@
 set -euf -o pipefail
 script=$(readlink -f "$0")
 
-repourl="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation"
+repourl="https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation"
 embedurl="https://tortugalabs.github.io/embed-like-gist/embed.js?target="
 mnt=/mnt
 hmnt="$mnt"
