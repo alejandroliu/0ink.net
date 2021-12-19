@@ -21,7 +21,7 @@ My installation process roughly follows the [UEFI chroot install][void-uefi].
 
 This process is implemented in a script and can be found here:
 
-- [install.sh](https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/install.sh)
+- [install.sh](https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/install.sh)
 
 Script usage:
 
@@ -110,9 +110,9 @@ env XBPS_ARCH=x86_64 xbps-install -S -R http://alpha.de.repo.voidlinux.org/curre
 
 But actually, for the package list I have been using these lists:
 
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?target=https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/swlist.txt"></script>
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?target=https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/swlist-xwin.txt?footer=minimal"></script>
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?target=https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/swlist-mate.txt?footer=minimal"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/swlist.txt"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/swlist-xwin.txt?footer=minimal"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/swlist-mate.txt?footer=minimal"></script>
 
 This installs a [MATE][mate] desktop environment.
 
@@ -295,7 +295,7 @@ mkdir /boot/EFI/BOOT
 Copy from the `zip file` the file `refind-bin-{version}/refind/refind_x64.efi` to
 `/boot/EFI/BOOT/BOOTX64.EFI`.
 
-The version I am using right now can be found here: [v0.11.4 BOOTX64.EFI](https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/BOOTX64.EFI)
+The version I am using right now can be found here: [v0.11.4 BOOTX64.EFI](https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/BOOTX64.EFI)
 
 Create kernel options files `/boot/cmdline`:
 
@@ -313,14 +313,14 @@ For my hardware I had to add the option:
 
 Create the following script as `/boot/mkmenu.sh`
 
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?target=https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/mkmenu.sh"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/mkmenu.sh"></script>
 
 Add the following scripts to:
 
 - `/etc/kernel.d/post-install/99-refind`
 - `/etc/kernel.d/post-remove/99-refind`
 
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?target=https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/hook.sh"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/hook.sh"></script>
 
 Make sure they are executable.  This is supposed to re-create
 menu entries whenever the kernel gets upgraded.
@@ -444,7 +444,7 @@ Specifically, I update the login_cmd to be the following:
 login_cmd exec /bin/sh -l /etc/X11/Xsession %session
 ```
 
-And have a custom [Xsession](https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/Xsession) script.
+And have a custom [Xsession](https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/Xsession) script.
 
 
 ## Tweaks and Bug-fixes
@@ -471,7 +471,7 @@ It does it by checking if the Desktop Environment power manager
 (in this case `mate-power-manager`) is running.  If it is, then
 it will exit.
 
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?target=https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/acpi-handler.patch"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/acpi-handler.patch"></script>
 
 ### rtkit spamming logs
 
@@ -513,7 +513,7 @@ were not available using the [MATE][mate] desktop.
 
 To enable this I had to create/tweak the PolKit rules...
 
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?target=https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/_attic_/tweak-polkit-rules.sh"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/_attic_/tweak-polkit-rules.sh"></script>
 
 * * *
 

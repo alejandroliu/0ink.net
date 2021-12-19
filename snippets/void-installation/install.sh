@@ -12,6 +12,8 @@ svcdir="$mnt/etc/runit/runsvdir/default"
 
 if [ $# -eq 0 ] ; then
   # Show documentation...
+  repourl=$(echo "$repourl"|sed -e 's!/raw/!/blob/!')
+
   sed -e 's/^/:/' "$script" | (
     output=":"
     while read ln
