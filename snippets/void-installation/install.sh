@@ -223,7 +223,7 @@ fi
 
 
 #begin-output
-## ```
+##
 ##
 ## ## Initial set-up
 ##
@@ -395,9 +395,9 @@ fi
 ##
 ## But actually, for the package list I have been using these lists:
 ##
-## <script src="$repourl/swlist.txt"></script>
-## <script src="$repourl/swlist-xwin.txt?footer=minimal"></script>
-## <script src="$repourl/swlist-mate.txt?footer=minimal"></script>
+## <script src="$embedurl$repourl/swlist.txt"></script>
+## <script src="$embedurl$repourl/swlist-xwin.txt?footer=minimal"></script>
+## <script src="$embedurl$repourl/swlist-mate.txt?footer=minimal"></script>
 ##
 ## This installs a [MATE][mate] desktop environment.
 ##
