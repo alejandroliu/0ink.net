@@ -1,3 +1,5 @@
+
+
 ## And then install non-free software:
 ##
 ## ```
@@ -68,59 +70,4 @@ ln -s /etc/sv/an_identd $svcdir
 ## ```
 ##
 
-## ## Logging
-##
-## Source: [Logging](https://voidlinux.org/faq/#Logging)
-##
-## Optional:
-socklog-void		# needed for logging
-##
-## ```
-## usermod -aG socklog <your username>
-## ```
-##
-## Because I like to have just a single directory for everything and use
-## `grep`, I do the following:
-##
-## ```
-## rm -rf /var/log/socklog/?*
-## mkdir /var/log/socklog/everything
-## ln -s socklog/everything/current /var/log/messages.log
-## ```
-#end-output
-find $mnt/var/log/socklog -maxdepth 1 -mindepth 1 -print0 | xargs -0 rm -rf
-mkdir $mnt/var/log/socklog/everything
-ln -s socklog/everything/current $mnt/var/log/messages.log
-#begin-output
-##
-## Create the file `/var/log/socklog/everything/config` with these
-## contents:
-##
-## ```
-## +*
-## u<syslog-server-ip>:514
-## ```
-##
-## Enable daemons...
-##
-## ```
-## ln -s /etc/sv/socklog-unix /var/service/
-## ln -s /etc/sv/nanoklogd /var/service/
-## ```
-##
-## Reload `svlogd` (if it was already running)
-##
-## ```
-## killall -1 svlogd
-## ```
-##
-#end-output
-mkdir -p $mnt/var/log/socklog/everything
-# We configure to a blacklist IP so that there is somethign there.
-# we need to re-configure later...
-cat > $mnt/var/log/socklog/everything/config <<-_EOF_
-	+*
-	u0.0.0.0:514
-	_EOF_
-ln -s /etc/sv/{socklog-unix,nanoklogd} $svcdir
-##
+
