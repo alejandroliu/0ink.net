@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Linux HDMI hotplug</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="The point of this article is to document I workaround that I came up with to handle a HDMI KVM switch. What happens is that if my Linux PC is..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/linux-hdmi-hotplug.html" rel="bookmark"
+           title="Permalink to Linux HDMI hotplug">Linux HDMI hotplug</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2021-02-28T00:00:00+01:00">
+                Published: Sun 28 February 2021
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <p>The point of this article is to document I workaround that I came
+up with to handle a HDMI KVM switch.</p>
+<p>What happens is that if my Linux PC is turned on while the KVM switch
+is selecting the other PC, it fails to initialize the display, so
+when you switch back to the Linux PC, no display is shown.</p>
+<p>The trick for this to work is to the use of <a href="https://wiki.debian.org/udev">udev</a> and <a href="https://xorg-team.pages.debian.net/xorg/howto/use-xrandr.html">xrandr</a>.</p>
+<p>We use <a href="https://wiki.debian.org/udev">udev</a> to detect the monitor being plugged in, and we use
+<a href="https://xorg-team.pages.debian.net/xorg/howto/use-xrandr.html">xrandr</a> to tell X windows to update the display.</p>
+<h1>Figuring out udev</h1>
+<p>First in the agenda is to figure out what kind of event we should
+be looking at.  For that, we use the command:</p>
+<div class="highlight"><pre><span></span><code>udevadm monitor
+</code></pre></div>
+
+<p>With that we can determine what kind of <a href="https://wiki.debian.org/udev">udev</a> events to look
+for (if any).</p>
+<p>Next we need to figure out what keys we need to match.  Unfortunately
+there is some guess work required as you need to figure out the <code>/dev</code>
+device path, whereas <code>udevadm monitor</code> shows a <code>/devices/</code> path.</p>
+<p>However, you manage, you need to use the following command:</p>
+<div class="highlight"><pre><span></span><code>udevadm info --query=all --name=/dev/dri/card0 --attribute-walk
+</code></pre></div>
+
+<p>This will show possible attributes in the <a href="https://wiki.debian.org/udev">udev</a> rules key
+format.</p>
+<p>Once we know the keys to use, we can know create the rules files.</p>
+<p>Rules are located in two locations:</p>
+<ul>
+<li><code>/usr/lib/udev/rules.d/</code> : for system default rules</li>
+<li><code>/etc/udev/rules.d/</code> : for local specific rules</li>
+</ul>
+<p>Essentially, we are waiting for the monitor configuration to change
+and when that happens we will run a script. This is accomplish with
+the following rules file (99-xwin-hotplug.rules):</p>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=paraiso-light&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/xwin-hotplug/99-xwin-hotplug.rules"></script>
+
+<h1>Running xrandr</h1>
+<p>The script that is kicked off by <a href="https://wiki.debian.org/udev">udev</a> does the following:</p>
+<ol>
+<li>Check if <code>Xorg</code> is running.</li>
+<li>Assumes <code>DISPLAY</code> is <code>:0.0</code> (only one local display!) and tries to
+   determine a suitable <code>XAUTHORITY</code> file.</li>
+<li>Run <a href="https://xorg-team.pages.debian.net/xorg/howto/use-xrandr.html">xrandr</a> to try to determine what is the <code>connected</code>
+   display.</li>
+<li>Calls <code>xrandr --output "$monitor" --auto</code> to re-configure the display</li>
+<li>Run <code>xrefresh</code> for good measure.</li>
+</ol>
+<p>See script:</p>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=paraiso-light&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/raw/master/snippets/xwin-hotplug/xwin-hotplug"></script>
+
+<h1>See Also</h1>
+<ul>
+<li><a href="https://www.thegeekdiary.com/beginners-guide-to-udev-in-linux/">Beginners guide to udev</a></li>
+<li><a href="https://linuxconfig.org/tutorial-on-how-to-write-basic-udev-rules-in-linux">Tutorial on how to write basic udev rules</a></li>
+<li><a href="https://opensource.com/article/18/11/udev">Intro to udev</a></li>
+</ul>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

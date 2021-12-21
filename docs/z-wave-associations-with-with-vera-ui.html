@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Z-Wave Associations with With Vera UI</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="I couldn't find any to the point documentation on how to do this, so I am writing this. The way I understand Z-Wave associations work is that once..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/z-wave-associations-with-with-vera-ui.html" rel="bookmark"
+           title="Permalink to Z-Wave Associations with With Vera UI">Z-Wave Associations with With Vera UI</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-03-01T00:00:00+01:00">
+                Published: Fri 01 March 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <p>I couldn't find any to the point documentation on how to do this,
+so I am writing this.</p>
+<p>The way I understand Z-Wave associations work is that once devices
+are in the same Z-Wave network, a device can directly send
+a command to another device without intervention of the Hub
+or controller.</p>
+<p>For this to really work the master device sending commands must
+support this functionality.  This varies from device to device,
+so you must look up the documentation of the master device and
+find the supported associations groups.  In a nutshell, you look-up
+what each association group is for, and then you add to that group
+the slave devices that will receive the Z-wave commands from the
+master.</p>
+<p>So for example, a <code>TKB-Home TZ55D</code> Wall mounted dimmer/switch
+with two buttons has the
+following association groups:</p>
+<ul>
+<li>Group 1: Control device using the left button.</li>
+<li>Group 2: Control device using the right button.</li>
+<li>Group 3: Control device using the right button after a double tap.</li>
+<li>Group 4: Control device so that it follows the switch state.</li>
+</ul>
+<p>So this dimmer/switch has two buttons, the left button is used for
+local control.  The right button can be used to control devices
+associated to groups 2 and 3.</p>
+<p>In the Vera UI7 this is done as follows:</p>
+<ol>
+<li>Go to the <code>Devices</code> list.</li>
+<li>Locate the <em>master</em> device in the list and click it <code>settings</code>
+   button.</li>
+<li>Click <code>Device Options</code>.</li>
+<li>Under <em>Associations</em>, enter the <code>Group ID</code> from the documentation
+   as explained above, and click <code>Add group</code>.
+   You may need to click <code>Back</code> and enter <code>Device Options</code> again
+   for the group to be visible.</li>
+<li>Once the desired <code>Group ID</code> is available, click on the <code>Set</code>
+   button.</li>
+<li>Click the Z-Wave devices checkbox to add them to the group.
+   Leave the entry field next to the device is to enter sub-device
+   ids.  This is used for multichannel devices.  For example, an
+   RGBW controller may have multiple channels to control the
+   different color LEDs.  Check the <em>slave</em> device documentation
+   for the valid sub-channel IDs to use.</li>
+</ol>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

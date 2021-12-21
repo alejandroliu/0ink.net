@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Using CloudFlare</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="So I have signed up 0ink.net to use the CloudFlare service. CloudFlare is a reverse proxy service that is supposed to speed up and improve web..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/using-cloudflare.html" rel="bookmark"
+           title="Permalink to Using CloudFlare">Using CloudFlare</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-07-01T00:00:00+02:00">
+                Published: Mon 01 July 2013
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <p>So I have signed up <code>0ink.net</code> to use the <a href="http://www.cloudflare.com" title="CloudFlare">CloudFlare</a> service.</p>
+<p><img alt="CFLogo" src="{{ site.url }}/images/2013/cf-logo-v-rgb.png"></p>
+<p><a href="http://www.cloudflare.com" title="CloudFlare">CloudFlare</a> is a reverse proxy service that is supposed to speed up and improve web server security.</p>
+<p>This is done by:</p>
+<ul>
+<li>globally distributed reverse proxy cache <a href="http://www.cloudflare.com/system-status.html" title="Cloudflare status">network</a></li>
+<li>filters incoming request for attacks</li>
+<li>optimize content (i.e. compressing, removing redundnat text, etc).</li>
+<li>improving retrieving of web pages that have multiple components.</li>
+</ul>
+<p>For it to work they need to take over your DNS service. That means that your DNS records resolve to <a href="http://www.cloudflare.com" title="CloudFlare">CloudFlare</a> servers. So when editing your DNS records, the <a href="http://www.cloudflare.com" title="CloudFlare">CloudFlare</a> DNS editor has an extra settings that allows you to control if that DNS entry would use the <a href="http://www.cloudflare.com" title="CloudFlare">CloudFlare</a> network or not.</p>
+<p>So if you want to be able to access your web server (i.e. www) for <code>ftp</code> or <code>ssh</code>, then you need<br>
+to create an additinional CNAME record that points to the web server but set to by-pass the <a href="http://www.cloudflare.com" title="CloudFlare">CloudFlare</a> network.</p>
+<p>Some tips on what to do after install cloudflare can be found <a href="http://blog.cloudflare.com/top-tips-after-installing-cloudflare" title="Tips on using Cloudflare">here</a>.</p>
+<p>This is handy command to test if your web-server is having problems but not <a href="http://www.cloudflare.com" title="CloudFlare">CloudFlare</a></p>
+<div class="highlight"><pre><span></span><code> curl -v -A firefox/4.0 -H &#39;Host: yourdomain.com&#39; YourServerIP
+</code></pre></div>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

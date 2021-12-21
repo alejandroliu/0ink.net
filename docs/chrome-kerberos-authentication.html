@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Chrome Kerberos Authentication</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="date: 2013-12-02 To config chrome to use kerberos authentication you need to start the application the following parameter: auth-server-whitelist..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/chrome-kerberos-authentication.html" rel="bookmark"
+           title="Permalink to Chrome Kerberos Authentication">Chrome Kerberos Authentication</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-12-02T00:00:00+01:00">
+                Published: Mon 02 December 2013
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <h2>date: 2013-12-02</h2>
+<p>To config chrome to use kerberos authentication you need to start the application the following parameter:</p>
+<ul>
+<li>auth-server-whitelist - Allowed FQDN - Set the FQDN of the IdP Server. Example:
+
+chrome --auth-server-whitelist="*aai-logon.domain-a.com"</p></li>
+<li><p>auth-negotiate-delegate-whitelist - For which FQDN credential delegation will be allowed.</p></li>
+</ul>
+
+<p>References:
+
+<ul>
+<li><a href="http://www.chromium.org/developers/design-documents/http-authentication">HTTP Authentication</a></li>
+<li><a href="http://kurt.seifried.org/2012/11/24/google-chrome-and-kerberos-on-linux/">Google Chrome &amp; Kerberos</a></li>
+</ul>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

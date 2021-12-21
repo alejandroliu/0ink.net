@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>undup</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="So, after a long while, I wrote a new C language program. As usual, the same things that I dislike about C programming popped up, specifically the..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/undup.html" rel="bookmark"
+           title="Permalink to undup">undup</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-11-30T00:00:00+01:00">
+                Published: Mon 30 November 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <p>So, after a long while, I wrote a new C language program. As usual,
+the same things that I dislike about C programming popped up,
+specifically the need for low level data structures and manual
+memory management.</p>
+<p>I did learn some new things:</p>
+<ul>
+<li><a href="https://github.com/troydhanson/uthash/">uthash</a> : I have used this library before, but there were a few new features that I did not know before, specifically it not only includes the hash library, but also some other <em>high level</em> structures that were quite handy.</li>
+<li>Unit testing : So I started using <a href="https://github.com/danfis/cu/">cu</a>, a C unit testing library. Frst time I write a program with integrated unit-testing. I can see its usefulness, but it does feel like a lot of work. For a casual programmer like myself, does feel like an over-kill.</li>
+<li>Continuous integration with <a href="http://travis-ci.org/alejandroliu/undup">Travis-CI</a> : For this project I tried using a CI tool. I chose <a href="http://travis-ci.org/">Travis-CI</a> because it integrates with <a href="http://github.com/">GitHub</a>. This only makes sense with unit testing. Once again, for a casual programmer like myself, it feels like a bit too much, but I can see how it would be useful if you have multiple contributors to the same project repository.</li>
+<li>Creating binaries for a Zyxel NSA 325 v2 : So I got the NSA 325v2 SDK, and I am cross compiling for it. Quite straightforward, but still, something new.</li>
+<li>An interesting feature of this code, is that, when possible, it is object oriented.</li>
+</ul>
+<p>Anyway, this project can be found in github:</p>
+<ul>
+<li><a href="https://github.com/alejandroliu/undup">Undup github repository</a></li>
+</ul>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

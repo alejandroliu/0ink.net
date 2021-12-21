@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Media Tips</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="This is an article about different media (and more specifically) video files can be manipulated. This is just for historical purposes as now..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/media-tips.html" rel="bookmark"
+           title="Permalink to Media Tips">Media Tips</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-06-02T00:00:00+02:00">
+                Published: Sun 02 June 2013
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <p>This is an article about different media (and more specifically)
+video files can be manipulated.</p>
+<p>This is just for historical purposes as now almost everything can be
+done using <code>ffmpeg</code> and the right options.</p>
+<ul>
+<li><a href="http://code.google.com/p/mp4v2/">libmp4v2</a> contains:<ul>
+<li>mp4art - to extract a picture (or coverart from mp4)</li>
+<li>mp4info - to get meta data from mp4 streams</li>
+<li>mp4tags - to set metadata and picture.</li>
+</ul>
+</li>
+<li>qt-fastload to move index to the front and making mp4 streamable</li>
+<li>When encoding:<ul>
+<li>Change max GOP or IDR to around 5 seconds.</li>
+<li>2-pass avg bitrate: 800 or even 500...</li>
+</ul>
+</li>
+</ul>
+<h1>Concatenating files:</h1>
+<h2>ffmpeg</h2>
+<p>ffmpeg has a feature concat, like</p>
+<div class="highlight"><pre><span></span><code>ffmpeg -i concat:&quot;video1.ts|video2.ts&quot;
+</code></pre></div>
+
+<p>There is also a "concat" video filter that may be useful. See
+<a href="http://ffmpeg.org/trac/ffmpeg/wiki/How%20to%20concatenate%20%28join,%20merge%29%20media%20files">http://ffmpeg.org/trac/ffmpeg/wiki/How%20to%20concatenate%20%28join,%20merge%29%20media%20files</a></p>
+<h2>gpac</h2>
+<p>An alternative is <a href="http://gpac.wp.mines-telecom.fr/">gpac</a>. One command
+it includes is MP4Box to concatenate MP4s</p>
+<div class="highlight"><pre><span></span><code>mp4box -cat sbd0.mp4 -cat sbd1.mp4 -new sbd.mp4
+</code></pre></div>
+
+<h2>AviDemux</h2>
+<p>Of course the avidemux GUI can append files.</p>
+<h2>Final notes</h2>
+<p>So far I have not been able to create a reliable media concat recipe.</p>
+<h1>Media Gain</h1>
+<p><a href="http://mp3gain.sourceforge.net/">mp3gain</a> can be used to normalize
+volume levels (without re-encoding). Accomplish this by using
+<a href="http://en.wikipedia.org/wiki/ReplayGain">ReplayGain</a> that needs to be
+supported by player. (XBMC claims to supports this).</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

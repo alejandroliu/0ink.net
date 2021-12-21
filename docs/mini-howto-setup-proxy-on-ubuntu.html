@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>'Mini-Howto: Setup proxy on Ubuntu'</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="A quick and dirty mini-howto to setup a proxy on Ubuntu. This is meant mostly for doing quick setup of a proxy on a cloud environment. Install..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/mini-howto-setup-proxy-on-ubuntu.html" rel="bookmark"
+           title="Permalink to 'Mini-Howto: Setup proxy on Ubuntu'">'Mini-Howto: Setup proxy on Ubuntu'</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-07-02T00:00:00+02:00">
+                Published: Tue 02 July 2013
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <p>A quick and dirty mini-howto to setup a proxy on Ubuntu.
+This is meant mostly for doing quick setup of a proxy
+on a cloud environment.</p>
+<p><img alt="logo-ubuntu_su-orange-hex" src="{{ site.url }}/images/2013/logo-ubuntu_su-orange-hex.jpg"></p>
+<ol>
+<li>Install Squid with the following command at the Linux command prompt:<br>
+<code>sudo apt-get install squid</code></li>
+<li>Edit the Squid config file in <code>/etc/squid</code> adding these lines:<br>
+<code>http_access allow local_net</code><br>
+<code>acl local_net src 10.10.0.0/255.255.0.0</code></li>
+<li>Save the file, exit the editor and restart Squid. You are now ready to configure your browser to use the proxy server.</li>
+<li>Click "Tools," "Options," "Advanced," "Network" and "Settings" in Firefox, which is the normal Ubuntu Linux browser. Select "Manual Proxy Configuration," enter the IP address of your proxy server, enter port 3128 in the Port field and then click "OK."</li>
+</ol>
+<p>References:</p>
+<ul>
+<li><a href="http://science.opposingviews.com/set-up-secure-proxy-server-ubuntu-linux-23184.html">http://science.opposingviews.com/set-up-secure-proxy-server-ubuntu-linux-23184.html</a> by Alan Hughes</li>
+</ul>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

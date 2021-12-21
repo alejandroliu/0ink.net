@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Alpine Boot switcher</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="I boot from a USB boot drive using UEFI. Because of the UEFI boot, it just a matter of copying the files from the alpine ISO to a USB thumbdrive..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/alpine-boot-switcher.html" rel="bookmark"
+           title="Permalink to Alpine Boot switcher">Alpine Boot switcher</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-10-04T00:00:00+02:00">
+                Published: Sun 04 October 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <p>I boot from a USB boot drive using UEFI.  Because of the UEFI boot,
+it just a matter of copying the files from the <a href="https://alpinelinux.org/">alpine</a>
+ISO to a USB thumbdrive VFAT32 partition.  Partition may be set to
+EFI (but this doesn't seem to be required).</p>
+<p>Since I would like to switch between different <a href="https://alpinelinux.org/">alpine</a> versions,
+I wrote a script to let me have multiple <a href="https://alpinelinux.org/">alpine</a> versions and
+switch between them.  The boot partition can be kept <code>ro</code> as the script
+will automatically remount <code>rw</code>.</p>
+<p>In your boot/EFI partition, you need to have these two scripts:</p>
+<ul>
+<li><a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/alpine-boot-switcher/select.sh">select.sh</a></li>
+<li><a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/alpine-boot-switcher/fixup.sh">fixup.sh</a></li>
+</ul>
+<p>The <code>select.sh</code> script is the main script.  <code>fixup.sh</code> is called from
+<code>select.sh</code> to tweak the boot command line parameters.  I use it to add
+<code>dom0_mem=2048M</code> arguments to the boot command line so that <code>xen</code>
+reserves memory for guests.</p>
+<h1>Usage:</h1>
+<h2>Install an ISO image</h2>
+<p>Download a iso image from the <a href="https://alpinelinux.org/">alpine</a> repository and enter:</p>
+<div class="highlight"><pre><span></span><code>sh select.sh --install &lt;iso-file&gt;
+</code></pre></div>
+
+<p>This will extract the contents of the <code>&lt;iso-file&gt;</code> and use <code>fixup.sh</code>
+to apply any necessary tweaks.  The new ISO file will be placed
+in a directory named according to the alpine version.</p>
+<h2>Enabling a version</h2>
+<div class="highlight"><pre><span></span><code>sh select.sh &lt;directory&gt;
+</code></pre></div>
+
+<p>Makes the <a href="https://alpinelinux.org/">alpine</a> version in <code>&lt;directory&gt;</code> the current active
+version for boot.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Git recipes</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="A collection of small useful recipes for using with Git. Rewriting history Rolling back the last commit if nobody has pulled your remote repo yet,..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/git-recipes.html" rel="bookmark"
+           title="Permalink to Git recipes">Git recipes</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-05-23T00:00:00+02:00">
+                Published: Thu 23 May 2013
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <p>A collection of small useful recipes for using with <code>Git</code>.</p>
+<h1>Rewriting history</h1>
+<h2>Rolling back the last commit</h2>
+<p>if nobody has pulled your remote repo yet, you can change your branch HEAD and force push it to said remote repo:</p>
+<div class="highlight"><pre><span></span><code>git reset --hard HEAD^
+git push -f
+</code></pre></div>
+
+<h1>Restoring changes</h1>
+<p>So in the event that you want to go back to a previous version of a file. First you must identify the version using:</p>
+<div class="highlight"><pre><span></span><code>git log $file
+</code></pre></div>
+
+<p>Once you know which commit to go to, do:</p>
+<div class="highlight"><pre><span></span><code>git checkout $hash $file
+</code></pre></div>
+
+<p>Then</p>
+<div class="highlight"><pre><span></span><code>git commit $file
+</code></pre></div>
+
+<h1>User friendly version ids</h1>
+<p>Creating version ids Use:</p>
+<div class="highlight"><pre><span></span><code> git describe
+</code></pre></div>
+
+<p>Gives:</p>
+<div class="highlight"><pre><span></span><code> $tag-$commit_count-$hash
+</code></pre></div>
+
+<p>However for this to work, you need to have a good tag set and a good tag naming convention.</p>
+<h1>Branches</h1>
+<p>Main branch names:</p>
+<ul>
+<li>master - The main branch. Source code of HEAD always reflects production-ready status.</li>
+<li>develop or dev - Main dev branch. HEAD always reflects state with the latest development changes for the next release. This can sometimes be called the "integration branch" and used to generate automatic nightly builds.</li>
+</ul>
+<p>Also a variety of supporting branches to aid parallel development between team members, ease tracking of features, prepare for production releases and to assist in quickly fixing live production problems. Unlike the main branches, these branches always have a limited life time, since they will be removed eventually. Creating a new branch:</p>
+<div class="highlight"><pre><span></span><code> git checkout -b new_branch develop
+ # Creates a branch called &quot;new_branch&quot; from &quot;develop&quot; and switches to it
+  git push -u origin new_branch
+  # Pushes &quot;new_branch&quot; to the remote repo
+</code></pre></div>
+
+<p>Listing branches</p>
+<div class="highlight"><pre><span></span><code> git branch      # List all local branches
+ git branch -a  # List local and remote branches
+</code></pre></div>
+
+<p>Merging branches</p>
+<div class="highlight"><pre><span></span><code> git checkout dev
+ # Switches to branch that will receive the commits...
+ git merge --no-ff &quot;feature_branch&quot;
+ # makes the a single commit (instead of replaying all the commits from the feature branch)
+</code></pre></div>
+
+<p>Deleting branches</p>
+<div class="highlight"><pre><span></span><code><span class="nv">git</span> <span class="nv">branch</span> <span class="o">-</span><span class="nv">d</span> <span class="nv">branch_name</span>    # <span class="nv">Only</span> <span class="nv">local</span> <span class="nv">branches</span>
+<span class="nv">git</span> <span class="nv">push</span> <span class="nv">origin</span> <span class="o">--</span><span class="nv">delete</span> <span class="nv">branch_name</span> # <span class="nv">Remote</span> <span class="nv">branch</span>
+<span class="nv">git</span> <span class="nv">push</span> <span class="nv">origin</span> :<span class="nv">branch_name</span> # <span class="nv">Old</span> <span class="nv">format</span> <span class="k">for</span> <span class="nv">deleting</span>... <span class="nv">prefix</span> <span class="nv">with</span> <span class="s2">&quot;</span><span class="s">:</span><span class="s2">&quot;</span>
+</code></pre></div>
+
+<p>Clean-up delete branches in remote repo from local repo...</p>
+<div class="highlight"><pre><span></span><code>git branch --delete branch
+git remote prune origin
+</code></pre></div>
+
+<h1>Tagging</h1>
+<h2>Creating tags</h2>
+<p>Tag releases with</p>
+<div class="highlight"><pre><span></span><code>git tag -a $tagname -m &quot;$descr&quot;
+</code></pre></div>
+
+<p>This creates an annotated tag that has full meta data content and it is favored by Git describe.</p>
+<h2>Temporary snapshots</h2>
+<div class="highlight"><pre><span></span><code>git tag $tagname
+</code></pre></div>
+
+<p>These are lightweight tag that are associated to a specific commit.</p>
+<h2>Sharing tags</h2>
+<p>By default are not pushed. They need to be exported with:</p>
+<div class="highlight"><pre><span></span><code>git push origin $tagname
+</code></pre></div>
+
+<p>or</p>
+<div class="highlight"><pre><span></span><code>git push origin --tags
+</code></pre></div>
+
+<h2>To pull tags (if there aren't any)</h2>
+<div class="highlight"><pre><span></span><code>git fetch --tags
+</code></pre></div>
+
+<h2>Deleting tags</h2>
+<div class="highlight"><pre><span></span><code>git tag -d $tagname    # Local tags
+git push --delete origin $tagname # Remote tags
+git push origin :refs/tags/$tagname   # Remote tags (OLD VERSION)
+</code></pre></div>
+
+<h2>Rename a tag:</h2>
+<div class="highlight"><pre><span></span><code>git tag new old
+git tag -d old
+git push origin :refs/tags/old
+</code></pre></div>
+
+<h1>Setting up GIT</h1>
+<div class="highlight"><pre><span></span><code>git config --global user.name &quot;user&quot;
+git config --global user.email &quot;email&quot;
+</code></pre></div>
+
+<p>Other settings:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[http]</span>
+  <span class="na">sslVerify</span> <span class="o">=</span> <span class="s">false</span>
+  <span class="na">proxy</span> <span class="o">=</span> <span class="s">http://10.47.142.30:8080/</span>
+<span class="k">[user]</span>
+  <span class="na">email</span> <span class="o">=</span> <span class="s">alejandro_liu@hotmail.com</span>
+  <span class="na">name</span> <span class="o">=</span> <span class="s">alex</span>
+</code></pre></div>
+
+<h2>Using ~/.netrc for persistent authentication</h2>
+<p>Create a file called <code>.netrc</code> in your home directory. Make sure you sets permissions <code>600</code> so that it is only readable by user. With Windows, create a file <code>_netrc</code> in your home directory. You may need to define a %HOME% environment variable. In Windows 7 you can use:</p>
+<div class="highlight"><pre><span></span><code>setx HOME %USERPROFILE%
+</code></pre></div>
+
+<p>or</p>
+<div class="highlight"><pre><span></span><code>set HOME=%HOMEDRIVE%%HOMEPATH%
+</code></pre></div>
+
+<p>The contents of <code>.netrc</code> (or <code>_netrc</code>) are as follows:</p>
+<div class="highlight"><pre><span></span><code>|machine $system
+|   login $user
+|   password $pwd
+|machine $system
+|   login $user
+|   password $pwd
+</code></pre></div>
+
+<h1>Creating new repositories</h1>
+<div class="highlight"><pre><span></span><code><span class="n">mkdir</span><span class="w"> </span><span class="o">~/</span><span class="n">hello</span><span class="o">-</span><span class="n">world</span><span class="w"></span>
+<span class="n">cd</span><span class="w"> </span><span class="o">~/</span><span class="n">hello</span><span class="o">-</span><span class="n">world</span><span class="w"></span>
+<span class="n">git</span><span class="w"> </span><span class="n">init</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="n">Creates</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">empty</span><span class="w"> </span><span class="n">repository</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="o">~/</span><span class="n">hello</span><span class="o">-</span><span class="n">world</span><span class="w"></span>
+<span class="n">touch</span><span class="w"> </span><span class="k">file</span><span class="w"></span>
+<span class="n">git</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">file</span><span class="w"></span>
+<span class="n">git</span><span class="w"> </span><span class="k">commit</span><span class="w"> </span><span class="o">-</span><span class="n">m</span><span class="w"> </span><span class="s1">&#39;first commit&#39;</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="n">Creates</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">commits</span><span class="w"> </span><span class="n">locally</span><span class="w"></span>
+<span class="n">git</span><span class="w"> </span><span class="n">remote</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="err">&#39;</span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="err">$</span><span class="k">user</span><span class="err">:$</span><span class="n">passwd</span><span class="nv">@github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="err">$</span><span class="k">user</span><span class="o">/</span><span class="n">hello</span><span class="o">-</span><span class="n">world</span><span class="p">.</span><span class="n">git</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="n">Creates</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">remote</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">push</span><span class="o">/</span><span class="n">pull</span><span class="w"></span>
+<span class="n">git</span><span class="w"> </span><span class="n">push</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="n">master</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="n">Send</span><span class="w"> </span><span class="n">commits</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">remote</span><span class="w"></span>
+</code></pre></div>
+
+<p>Creating a bare repo:</p>
+<div class="highlight"><pre><span></span><code>mkdir templ
+cd templ
+echo &quot;Initial commit&quot; &amp;gt; README.md
+git add README.md
+git commit -m&quot;Initial commit&quot;
+git clone --bare .
+</code></pre></div>
+
+<h1>Vendor Branches</h1>
+<p>Set-up</p>
+<div class="highlight"><pre><span></span><code>unzip wordpress-2.3.zip
+cd wordpress 
+# Note, unzip creates this directory...
+git init
+git add .
+git commit -m &#39;Import wordpress 2.3&#39;
+git tag v2.3
+git branch upstream
+# Create the upstream branch used to track new vendor releases
+</code></pre></div>
+
+<p>When a new release comes out:</p>
+<div class="highlight"><pre><span></span><code>cd wordpress
+git checkout upstream
+rm -r *
+# Delete all files in the main directory but doesn&#39;t touch dot files (like .git)
+(cd .. &amp;amp;&amp;amp; unzip wordpress-2.3.1.zip)
+git add .
+git commit -a -m &#39;Import wordpress 2.3.1&#39;
+git tag v2.3.1
+git checkout master
+git merge upstream
+</code></pre></div>
+
+<p>A variation of vendor branches is to sync with an upstream fork in github. Read this guide on how to do that: <a href="https://help.github.com/articles/syncing-a-fork/">Syncing a fork on github</a></p>
+<h1>GIT through patches</h1>
+<p>Creating a patch:</p>
+<div class="highlight"><pre><span></span><code> ... <span class="nv">prepare</span> <span class="nv">a</span> <span class="nv">new</span> <span class="nv">branch</span> <span class="nv">to</span> <span class="nv">keep</span> <span class="nv">work</span> <span class="nv">separate</span> ...
+ <span class="nv">git</span> <span class="nv">checkout</span> <span class="o">-</span><span class="nv">b</span> <span class="nv">mybranch</span>
+ ... <span class="k">do</span> <span class="nv">work</span> ...
+ <span class="nv">git</span> <span class="nv">commit</span> <span class="o">-</span><span class="nv">a</span>
+ .. <span class="nv">create</span> <span class="nv">the</span> <span class="nv">patch</span> <span class="nv">from</span> <span class="nv">branch</span> <span class="s2">&quot;</span><span class="s">master</span><span class="s2">&quot;</span>...
+ <span class="nv">git</span> <span class="nv">format</span><span class="o">-</span><span class="nv">patch</span> <span class="nv">master</span> <span class="o">--</span><span class="nv">stdout</span> <span class="o">&amp;</span><span class="nv">gt</span><span class="c1">; file.patch</span>
+</code></pre></div>
+
+<p>To apply patch..</p>
+<div class="highlight"><pre><span></span><code> ... <span class="k">show</span> <span class="nv">what</span> <span class="nv">the</span> <span class="nv">patch</span> <span class="nv">file</span> <span class="nv">will</span> <span class="k">do</span> ...
+ <span class="nv">git</span> <span class="nv">apply</span> <span class="o">--</span><span class="nv">stat</span> <span class="nv">file</span>.<span class="nv">patch</span>
+ .. <span class="nv">displays</span> <span class="nv">issues</span> <span class="nv">the</span> <span class="nv">patch</span> <span class="nv">might</span> <span class="nv">cause</span>...
+ <span class="nv">git</span> <span class="nv">apply</span> <span class="o">--</span><span class="nv">check</span> <span class="nv">file</span>.<span class="nv">patch</span>
+ .. <span class="nv">apply</span> <span class="nv">with</span> <span class="nv">am</span> <span class="ss">(</span><span class="nv">so</span> <span class="nv">you</span> <span class="nv">can</span> <span class="nv">sign</span><span class="o">-</span><span class="nv">off</span><span class="ss">)</span>
+ <span class="nv">git</span> <span class="nv">am</span> <span class="o">--</span><span class="nv">signoff</span> <span class="o">&amp;</span><span class="nv">lt</span><span class="c1">; file.patch</span>
+</code></pre></div>
+
+<h1>Maintenance</h1>
+<div class="highlight"><pre><span></span><code>git fsck
+git gc --prune=now     # Clean-up
+git remote prune origin # Clean-up stale references to deleted remote objects
+</code></pre></div>
+
+<h1>Submodules</h1>
+<p>Add submodules to a project:</p>
+<div class="highlight"><pre><span></span><code>git submodule add $repo_url $dir
+</code></pre></div>
+
+<p>Clone a project with submodules:</p>
+<div class="highlight"><pre><span></span><code>git clone $repo_url
+cd $repo
+git submodule init
+git submodule update
+</code></pre></div>
+
+<p>Or in a single command (Git &gt;1.6.5):</p>
+<div class="highlight"><pre><span></span><code>git clone --recursive $repo_url
+</code></pre></div>
+
+<p>For already cloned (Git &gt;1.6.5):</p>
+<div class="highlight"><pre><span></span><code>git clone $repo_url
+cd $repo
+git submodule update --init --recursive
+</code></pre></div>
+
+<p>To keep a submodule up-to-date:</p>
+<div class="highlight"><pre><span></span><code>git pull
+git submodule update
+</code></pre></div>
+
+<p>Remove sub-modules:</p>
+<div class="highlight"><pre><span></span><code>git submodule deinit $submodule
+git rm $submodule # No trailing slash!
+</code></pre></div>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

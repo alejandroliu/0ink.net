@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Parsing JSON in Shell scripts</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="date: 2013-09-06 This can be simple by using jq. This is a command line JSON processor. Here are a couple of examples of what can be done: $ cat..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/parsing-json-in-shell-scripts.html" rel="bookmark"
+           title="Permalink to Parsing JSON in Shell scripts">Parsing JSON in Shell scripts</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-09-06T00:00:00+02:00">
+                Published: Fri 06 September 2013
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <h2>date: 2013-09-06</h2>
+<p>This can be simple by using <a href="http://stedolan.github.io/jq/">jq</a>.</p>
+<p>This is a command line JSON processor.  Here are a couple of examples of what can be done:</p>
+<pre><code>$ cat json.txt
+
+{
+        "name": "Google",
+        "location":
+                {
+                        "street": "1600 Amphitheatre Parkway",
+                        "city": "Mountain View",
+                        "state": "California",
+                        "country": "US"
+                },
+        "employees":
+                [
+                        {
+                                "name": "Michael",
+                                "division": "Engineering"
+                        },
+                        {
+                                "name": "Laura",
+                                "division": "HR"
+                        },
+                        {
+                                "name": "Elise",
+                                "division": "Marketing"
+                        }
+                ]
+}
+</code></pre>
+
+<p>To parse a JSON object:</p>
+<pre><code>jq '.name' &lt; json.txt
+
+"Google"
+</code></pre>
+
+<p>To parse a nested JSON object:</p>
+<pre><code>$ jq '.location.city' &lt; json.txt
+
+"Mountain View"
+</code></pre>
+
+<p>To parse a JSON array:</p>
+<pre><code>$ jq '.employees[0].name' &lt; json.txt
+
+"Michael"
+</code></pre>
+
+<p>To extract specific fields from a JSON object:</p>
+<pre><code>$ jq '.location | {street, city}' &lt; json.txt
+
+{
+  "city": "Mountain View",
+  "street": "1600 Amphitheatre Parkway"
+}
+</code></pre>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

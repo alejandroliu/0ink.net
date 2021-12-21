@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Resizing Virtual Disks with virsh</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="I am currently using libvirt for managing my VMs. For virtual discs I am using LVM2 volumes. On a regular basis I need to resize these virtual..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/resizing-virtual-disks-with-virsh.html" rel="bookmark"
+           title="Permalink to Resizing Virtual Disks with virsh">Resizing Virtual Disks with virsh</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-03-10T00:00:00+01:00">
+                Published: Sun 10 March 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <p>I am currently using <code>libvirt</code> for managing my VMs.  For virtual discs
+I am using <code>LVM2</code> volumes.  On a regular basis I need to resize
+these virtual discs, but not that often that I can do this from
+memory.  This is a short procedure to do this:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">ls</span> <span class="o">-</span><span class="nv">l</span> <span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">vgX</span><span class="o">/</span><span class="nv">lvX</span>      # <span class="nv">note</span> <span class="nv">down</span> <span class="nv">the</span> <span class="nv">major</span><span class="o">/</span><span class="nv">minor</span> <span class="nv">numbers</span> <span class="k">for</span> <span class="nv">later</span>
+<span class="nv">lvextend</span> <span class="o">-</span><span class="nv">L</span> <span class="o">+</span><span class="mi">50</span><span class="nv">G</span> <span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">vgX</span><span class="o">/</span><span class="nv">lvX</span>   # <span class="nv">adding</span> <span class="mi">50</span><span class="nv">GB</span> <span class="nv">to</span> <span class="nv">this</span> <span class="nv">volume</span>
+<span class="nv">cat</span> <span class="o">/</span><span class="nv">proc</span><span class="o">/</span><span class="nv">partitions</span>        # <span class="nv">look</span> <span class="nv">up</span> <span class="nv">the</span> <span class="nv">size</span> <span class="ss">(</span><span class="nv">in</span> <span class="nv">blocks</span><span class="ss">)</span> <span class="nv">using</span> <span class="nv">major</span><span class="o">/</span><span class="nv">minor</span> <span class="nv">numbers</span>
+<span class="nv">virsh</span> <span class="nv">blockresize</span> <span class="o">--</span><span class="nv">path</span> <span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">vgX</span><span class="o">/</span><span class="nv">lvX</span> <span class="o">--</span><span class="nv">size</span> <span class="nv">SIZE_FROM_PROC_PARTITIONS</span> <span class="nv">vmname</span>
+</code></pre></div>
+
+<p>Then on the running system you can do:</p>
+<div class="highlight"><pre><span></span><code>cat /proc/partitions        # Make sure that size is right
+xfs_growfs /mount/point     # On-line partition re-size
+</code></pre></div>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

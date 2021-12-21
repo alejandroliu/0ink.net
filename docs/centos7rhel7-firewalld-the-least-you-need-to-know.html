@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Centos7/RHEL7 FirewallD -- the least you need to know</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="This post is just a simple hints-tips to get something going with FirewallD without going into too much detail. Checking if you are using..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/centos7rhel7-firewalld-the-least-you-need-to-know.html" rel="bookmark"
+           title="Permalink to Centos7/RHEL7 FirewallD -- the least you need to know">Centos7/RHEL7 FirewallD -- the least you need to know</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-09-21T00:00:00+02:00">
+                Published: Mon 21 September 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <p>This post is just a simple hints-tips to get something going with FirewallD without going into too much detail.</p>
+<ol>
+<li>Checking if you are using <strong>firewalld</strong>:<ul>
+<li>firewall-cmd --state</li>
+</ul>
+</li>
+<li>Check your zones (needed later when opening ports):<ul>
+<li>firewall-cmd --get-default-zone</li>
+<li>firewall-cmd --get-active-zones</li>
+</ul>
+</li>
+<li>Checking what is active:<ul>
+<li>firewall-cmd --zone=public --list-all</li>
+</ul>
+</li>
+<li>Opening services:<ul>
+<li>firewall-cmd --zone=public --add-service=http Or alternatively:</li>
+<li>firewall-cmd --permanent --zone=public --add-service=http</li>
+<li>firewall-cmd --reload Services are defined in /usr/lib/firewalld/services and /etc/firewalld/services.</li>
+</ul>
+</li>
+<li>Opening ports:<ul>
+<li>firewall-cmd --permanent --zone=public --add-port=443/tcp</li>
+<li>firewall-cmd --reload</li>
+</ul>
+</li>
+</ol>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Building Signed APKs</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="Building signed APK's for Android is easy if you know what you are doing. This article goes over the preparation steps and the additional build..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/building-signed-apks.html" rel="bookmark"
+           title="Permalink to Building Signed APKs">Building Signed APKs</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2016-12-11T00:00:00+01:00">
+                Published: Sun 11 December 2016
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <p>Building signed APK's for Android is easy if you know what you
+are doing.</p>
+<p>This article goes over the preparation steps and the additional
+build instructions needed to created signed APKs.</p>
+<h2>Preparation</h2>
+<p>First you need to have a <code>keystore</code>.  Use this command:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="nv">keystore_file</span><span class="o">=</span><span class="s2">&quot;my_key_store.keystore&quot;</span>
+<span class="nv">key_name</span><span class="o">=</span><span class="s2">&quot;john_doe&quot;</span>
+<span class="nv">secret</span><span class="o">=</span><span class="s1">&#39;fake_password&#39;</span>
+<span class="nv">name</span><span class="o">=</span><span class="s1">&#39;John Doe&#39;</span>
+<span class="nv">dept</span><span class="o">=</span><span class="s1">&#39;Engineering&#39;</span>
+<span class="nv">org</span><span class="o">=</span><span class="s1">&#39;TLabs Inc&#39;</span>
+<span class="nv">place</span><span class="o">=</span><span class="s1">&#39;New York&#39;</span>
+<span class="nv">province</span><span class="o">=</span><span class="s1">&#39;NY&#39;</span>
+<span class="nv">country</span><span class="o">=</span><span class="s1">&#39;US&#39;</span>
+
+keytool -genkey -v -keystore <span class="s2">&quot;</span><span class="nv">$keystore_file</span><span class="s2">&quot;</span> -alias <span class="s2">&quot;key_name&quot;</span> -keyalg <span class="s2">&quot;RSA&quot;</span> -validity <span class="m">10000</span> -storepass <span class="s2">&quot;</span><span class="nv">$secret</span><span class="s2">&quot;</span> -keypass <span class="s2">&quot;</span><span class="nv">$secret</span><span class="s2">&quot;</span> <span class="p">&amp;</span>lt<span class="p">;&amp;</span>lt<span class="p">;</span>EOF
+<span class="nv">$name</span>
+<span class="nv">$dept</span>
+<span class="nv">$org</span>
+<span class="nv">$place</span>
+<span class="nv">$province</span>
+<span class="nv">$country</span>
+yes
+EOF
+</code></pre></div>
+
+<p>Remember the keystore file and passwords.</p>
+<h2>Build instructions</h2>
+<p>In your <code>build.gradle</code> you need the following:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">android</span> <span class="p">{</span>
+  <span class="nx">signingConfigs</span> <span class="p">{</span>
+    <span class="nx">release</span> <span class="p">{</span>
+      <span class="nx">storeFile</span> <span class="nx">file</span><span class="p">(</span><span class="s2">&quot;my_keystore.keystore&quot;</span><span class="p">)</span>
+      <span class="nx">storePassword</span> <span class="s2">&quot;{password}&quot;</span>
+      <span class="nx">keyAlias</span> <span class="s2">&quot;Key_Alias&quot;</span>
+      <span class="nx">keyPassword</span> <span class="s2">&quot;{password}&quot;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="nx">buildTypes</span> <span class="p">{</span>
+    <span class="nx">release</span> <span class="p">{</span>
+      <span class="nx">signingConfig</span> <span class="nx">signingConfigs</span><span class="p">.</span><span class="nx">release</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

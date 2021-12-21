@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Resizing a Linux RAID</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="date: 2014-06-04 It is possible to migrate the whole array to larger drives (e.g. 250 GB to 1 TB) by replacing one by one. In the end the number..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/resizing-a-linux-raid.html" rel="bookmark"
+           title="Permalink to Resizing a Linux RAID">Resizing a Linux RAID</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-06-04T00:00:00+02:00">
+                Published: Wed 04 June 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <h2>date: 2014-06-04</h2>
+<p>It is possible to migrate the whole array to larger drives
+(e.g. 250 GB to 1 TB) by replacing one by one. In the end the number
+of devices will be the same, the data will remain intact, and you will
+have more space available to you.</p>
+<h3>Extending an existing RAID array</h3>
+<p>In order to increase the usable size of the array, you must increase
+the size of all disks in that array. Depending on the size of your
+disks, this may take days to complete. It is also important to note
+that while the array undergoes the resync process, it is vulnerable
+to irrecoverable failure if another drive were to fail. It would (of
+course) be a wise idea to completely back up your data before continuing.</p>
+<p>First, choose a drive and completely remove it from the array</p>
+<div class="highlight"><pre><span></span><code><span class="nv">mdadm</span> <span class="o">-</span><span class="nv">f</span> <span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">md0</span> <span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">sdd1</span>
+<span class="nv">mdadm</span> <span class="o">-</span><span class="nv">r</span> <span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">md0</span> <span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">sdd1</span>
+````
+
+<span class="k">Next</span>, <span class="nv">partition</span> <span class="nv">the</span> <span class="nv">new</span> <span class="nv">drive</span> <span class="nv">so</span> <span class="nv">that</span> <span class="nv">you</span> <span class="nv">are</span> <span class="nv">using</span> <span class="nv">the</span> <span class="nv">amount</span> <span class="nv">of</span>
+<span class="nv">space</span> <span class="nv">you</span> <span class="nv">will</span> <span class="nv">eventually</span> <span class="nv">use</span> <span class="nv">on</span> <span class="nv">all</span> <span class="nv">new</span> <span class="nv">disks</span>. <span class="k">For</span> <span class="nv">example</span>, <span class="k">if</span> <span class="nv">you</span>
+<span class="nv">are</span> <span class="nv">going</span> <span class="nv">from</span> <span class="mi">100</span> <span class="nv">GB</span> <span class="nv">drives</span> <span class="nv">to</span> <span class="mi">250</span> <span class="nv">GB</span> <span class="nv">drives</span>, <span class="nv">you</span> <span class="nv">will</span> <span class="nv">want</span> <span class="nv">to</span>
+<span class="nv">partition</span> <span class="nv">the</span> <span class="nv">new</span> <span class="mi">250</span> <span class="nv">GB</span> <span class="nv">drive</span> <span class="nv">to</span> <span class="nv">use</span> <span class="mi">250</span> <span class="nv">GB</span>, <span class="nv">not</span> <span class="mi">100</span> <span class="nv">GB</span>. <span class="nv">Also</span>,
+<span class="nv">remember</span> <span class="nv">to</span> <span class="nv">set</span> <span class="nv">the</span> <span class="nv">partition</span> <span class="nv">type</span> <span class="nv">to</span> <span class="o">**</span><span class="mi">0</span><span class="nv">xDA</span><span class="o">**</span> \<span class="o">-</span> <span class="nv">Non</span><span class="o">-</span><span class="nv">fs</span> <span class="nv">data</span> <span class="ss">(</span><span class="nv">or</span>
+<span class="o">**</span><span class="mi">0</span><span class="nv">xFD</span><span class="o">**</span>, <span class="nv">Linux</span> <span class="nv">raid</span> <span class="nv">autodetect</span> <span class="k">if</span> <span class="nv">you</span> <span class="nv">are</span> <span class="nv">still</span> <span class="nv">using</span> <span class="nv">the</span> <span class="nv">deprecated</span>
+<span class="nv">autodetect</span><span class="ss">)</span>.
+</code></pre></div>
+
+<p>fdisk /dev/sde</p>
+<div class="highlight"><pre><span></span><code>Now add the new disk to the array:
+</code></pre></div>
+
+<p>mdadm --add /dev/md0 /dev/sde1</p>
+<div class="highlight"><pre><span></span><code>Allow the resync to fully complete before continuing. You will now
+have to repeat the above steps for ***each**\* disk in your array.
+Once all of the drives in your array have been replaced with larger
+drives, we can grow the space on the array by issuing:
+</code></pre></div>
+
+<p>mdadm --grow /dev/md0 --size=max</p>
+<div class="highlight"><pre><span></span><code><span class="nv">The</span> <span class="nv">array</span> <span class="nv">now</span> <span class="nv">represents</span> <span class="nv">one</span> <span class="nv">disk</span> <span class="nv">using</span> <span class="nv">all</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">new</span> <span class="nv">available</span> <span class="nv">space</span>.
+
+<span class="k">If</span> <span class="nv">the</span> <span class="nv">array</span> <span class="nv">has</span> <span class="nv">a</span> <span class="nv">write</span><span class="o">-</span><span class="nv">intent</span> <span class="nv">bitmap</span>, <span class="nv">it</span> <span class="nv">is</span> <span class="nv">strongly</span> <span class="nv">recommended</span> <span class="nv">that</span>
+<span class="nv">you</span> <span class="nv">remove</span> <span class="nv">the</span> <span class="nv">bitmap</span> <span class="o">**</span><span class="nv">before</span><span class="o">**</span> <span class="nv">increasing</span> <span class="nv">the</span> <span class="nv">size</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">array</span>.
+<span class="nv">Failure</span> <span class="nv">to</span> <span class="nv">observe</span> <span class="nv">this</span> <span class="nv">precaution</span> <span class="nv">can</span> <span class="nv">lead</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">destruction</span> <span class="nv">of</span> <span class="nv">the</span>
+<span class="nv">array</span> <span class="k">if</span> <span class="nv">the</span> <span class="nv">existing</span> <span class="nv">bitmap</span> <span class="nv">is</span> <span class="nv">insufficiently</span> <span class="nv">large</span>, <span class="nv">especially</span> <span class="k">if</span>
+<span class="nv">the</span> <span class="nv">increased</span> <span class="nv">array</span> <span class="nv">size</span> <span class="nv">necessitates</span> <span class="nv">a</span> <span class="nv">change</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">bitmap</span><span class="s1">&#39;</span><span class="s">s chunksize.</span>
+</code></pre></div>
+
+<p>mdadm --grow /dev/mdX --bitmap none
+ mdadm --grow /dev/mdX --size max
+ mdadm --wait /dev/mdX
+ mdadm --grow /dev/mdX --bitmap internal</p>
+<div class="highlight"><pre><span></span><code><span class="n">If</span> <span class="n">the</span> <span class="n">system</span> <span class="n">relies</span> <span class="n">on</span> <span class="n">the</span> <span class="n">disks</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">array</span> <span class="k">for</span> <span class="n">booting</span> <span class="n">the</span> <span class="n">OS</span>
+<span class="p">(</span><span class="n">a</span> <span class="n">common</span> <span class="n">approach</span> <span class="k">is</span> <span class="n">to</span> <span class="n">keep</span> <span class="o">/</span><span class="n">boot</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">RAID</span> <span class="mi">1</span> <span class="n">array</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">e</span><span class="o">.</span> <span class="n">md0</span><span class="p">,</span>
+<span class="n">across</span> <span class="n">all</span> <span class="n">the</span> <span class="n">disks</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">array</span><span class="p">)</span> <span class="n">then</span> <span class="n">you</span> <span class="n">might</span> <span class="n">need</span> <span class="n">to</span> <span class="n">manually</span>
+<span class="n">reinstall</span> <span class="n">the</span> <span class="n">bootloader</span> <span class="n">on</span> <span class="n">each</span> <span class="n">of</span> <span class="n">the</span> <span class="n">new</span> <span class="n">disks</span><span class="p">,</span> <span class="n">because</span> <span class="n">the</span> <span class="n">array</span>
+<span class="n">synchronization</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">sync</span> <span class="n">the</span> <span class="n">MBR</span><span class="o">.</span> <span class="n">This</span> <span class="n">should</span> <span class="n">be</span> <span class="n">done</span> <span class="n">directly</span>
+<span class="n">on</span> <span class="n">each</span> <span class="n">disk</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">on</span> <span class="n">the</span> <span class="n">array</span> <span class="n">itself</span> <span class="p">(</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">mdX</span><span class="p">),</span> <span class="ow">and</span> <span class="k">is</span> <span class="n">safe</span> <span class="n">to</span>
+<span class="n">do</span> <span class="n">with</span> <span class="n">the</span> <span class="n">array</span> <span class="n">online</span><span class="o">.</span> <span class="n">For</span> <span class="n">example</span><span class="p">,</span> <span class="n">to</span> <span class="n">re</span><span class="o">-</span><span class="n">install</span> <span class="n">GRUB</span> <span class="n">on</span> <span class="n">the</span>
+<span class="n">first</span> <span class="n">disk</span><span class="p">:</span>
+</code></pre></div>
+
+<p>grub
+grub&gt; root (hd0,0)
+grub&gt; setup (hd0)</p>
+<div class="highlight"><pre><span></span><code><span class="n">You</span> <span class="n">need</span> <span class="n">to</span> <span class="n">repeat</span> <span class="n">this</span> <span class="k">for</span> <span class="n">each</span> <span class="n">new</span> <span class="n">disk</span> <span class="n">that</span> <span class="n">should</span> <span class="n">contain</span> <span class="n">the</span>
+<span class="n">bootloader</span><span class="o">.</span> <span class="n">If</span> <span class="n">you</span> <span class="n">forget</span> <span class="n">to</span> <span class="n">do</span> <span class="n">so</span><span class="p">,</span> <span class="ow">and</span> <span class="n">find</span> <span class="n">that</span> <span class="n">you</span> <span class="n">cannot</span> <span class="n">boot</span>
+<span class="n">the</span> <span class="n">system</span> <span class="n">after</span> <span class="n">replacing</span> <span class="n">all</span> <span class="n">the</span> <span class="n">disks</span><span class="p">,</span> <span class="n">you</span> <span class="n">can</span> <span class="n">boot</span> <span class="n">from</span> <span class="n">a</span> <span class="n">rescue</span>
+<span class="n">CD</span><span class="o">/</span><span class="n">DVD</span><span class="o">/</span><span class="n">USB</span> <span class="ow">in</span> <span class="n">order</span> <span class="n">to</span> <span class="n">install</span> <span class="n">the</span> <span class="n">bootloader</span> <span class="k">as</span> <span class="n">instructed</span> <span class="n">above</span><span class="o">.</span>
+
+<span class="c1">### Extending the filesystem</span>
+
+<span class="n">Now</span> <span class="n">that</span> <span class="n">you</span> <span class="n">have</span> <span class="n">expanded</span> <span class="n">the</span> <span class="n">underlying</span> <span class="n">partition</span><span class="p">,</span> <span class="n">you</span> <span class="n">must</span> <span class="n">now</span>
+<span class="n">resize</span> <span class="n">your</span> <span class="n">filesystem</span> <span class="n">to</span> <span class="n">take</span> <span class="n">advantage</span> <span class="n">of</span> <span class="n">it</span><span class="o">.</span>
+
+<span class="n">You</span> <span class="n">may</span> <span class="n">want</span> <span class="n">to</span> <span class="n">perform</span> <span class="n">an</span> <span class="n">fsck</span> <span class="n">on</span> <span class="n">the</span> <span class="n">file</span> <span class="n">system</span> <span class="n">first</span> <span class="n">to</span> <span class="n">make</span> <span class="n">sure</span>
+<span class="n">there</span> <span class="n">are</span> <span class="n">no</span> <span class="n">underlying</span> <span class="n">issues</span> <span class="n">before</span> <span class="n">attempting</span> <span class="n">to</span> <span class="n">resize</span> <span class="n">the</span> <span class="n">file</span> <span class="n">system</span>
+</code></pre></div>
+
+<p>fsck /dev/md0</p>
+<div class="highlight"><pre><span></span><code><span class="k">For</span> <span class="nv">an</span> <span class="nv">ext2</span><span class="o">/</span><span class="nv">ext3</span> <span class="nv">filesystem</span>:
+</code></pre></div>
+
+<p>resize2fs /dev/md0</p>
+<div class="highlight"><pre><span></span><code><span class="k">For</span> <span class="nv">a</span> <span class="nv">reiserfs</span> <span class="nv">filesystem</span>:
+</code></pre></div>
+
+<p>resize_reiserfs /dev/md0</p>
+<div class="highlight"><pre><span></span><code><span class="nv">Please</span> <span class="nv">see</span> <span class="nv">filesystem</span> <span class="nv">documentation</span> <span class="k">for</span> <span class="nv">other</span> <span class="nv">filesystems</span>.
+
+### <span class="nv">LVM</span>: <span class="nv">Growing</span> <span class="nv">the</span> <span class="nv">PV</span>
+
+<span class="nv">LVM</span> <span class="ss">(</span><span class="nv">logical</span> <span class="nv">volume</span> <span class="nv">manager</span><span class="ss">)</span> <span class="nv">abstracts</span> <span class="nv">a</span> <span class="nv">logical</span> <span class="nv">volume</span>
+<span class="ss">(</span><span class="nv">that</span> <span class="nv">a</span> <span class="nv">filesystem</span> <span class="nv">sits</span> <span class="nv">on</span><span class="ss">)</span> <span class="nv">from</span> <span class="nv">the</span> <span class="nv">physical</span> <span class="nv">disk</span>. <span class="k">If</span> <span class="nv">you</span> <span class="nv">are</span> <span class="nv">used</span>
+<span class="nv">to</span> <span class="nv">LVM</span> <span class="k">then</span> <span class="nv">you</span> <span class="nv">are</span> <span class="nv">likely</span> <span class="nv">used</span> <span class="nv">to</span> <span class="nv">growing</span> <span class="nv">LVs</span> <span class="ss">(</span><span class="nv">logical</span> <span class="nv">volumes</span><span class="ss">)</span>, <span class="nv">but</span>
+<span class="nv">what</span> <span class="nv">we</span> <span class="nv">grow</span> <span class="nv">here</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">PV</span> <span class="ss">(</span><span class="nv">physical</span> <span class="nv">volume</span><span class="ss">)</span> <span class="nv">that</span> <span class="nv">sits</span> <span class="nv">on</span> <span class="nv">the</span>
+<span class="nv">_md_</span> <span class="nv">device</span> <span class="ss">(</span><span class="nv">RAID</span> <span class="nv">array</span><span class="ss">)</span>.
+
+<span class="k">For</span> <span class="nv">further</span> <span class="nv">LVM</span> <span class="nv">documentation</span>, <span class="nv">please</span> <span class="nv">see</span> <span class="nv">the</span>
+[<span class="nv">Linux</span> <span class="nv">LVM</span> <span class="nv">HOWTO</span>]<span class="ss">(</span><span class="nv">http</span>:<span class="o">//</span><span class="nv">tldp</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">HOWTO</span><span class="o">/</span><span class="nv">LVM</span><span class="o">-</span><span class="nv">HOWTO</span><span class="o">/</span><span class="ss">)</span>
+
+<span class="nv">Growing</span> <span class="nv">the</span> <span class="nv">physical</span> <span class="nv">volume</span> <span class="nv">is</span> <span class="nv">trivial</span>:
+</code></pre></div>
+
+<p>pvresize /dev/md0</p>
+<div class="highlight"><pre><span></span><code>A before-and-after example is:
+</code></pre></div>
+
+<p>root@barcelona:~# pvdisplay
+  --- Physical volume ---
+  PV Name               /dev/md0
+  VG Name               server1_vg
+  PV Size               931.01 GB / not usable 558.43 GB
+  Allocatable           yes
+  PE Size (KByte)       4096
+  Total PE              95379
+  Free PE               42849
+  Allocated PE          52530
+  PV UUID               BV0mGK-FRtQ-KTLv-aW3I-TllW-Pkiz-3yVPd1</p>
+<p>root@barcelona:~# pvresize /dev/md0
+  Physical volume "/dev/md0" changed
+  1 physical volume(s) resized / 0 physical volume(s) not resized</p>
+<p>root@barcelona:~# pvdisplay
+  --- Physical volume ---
+  PV Name               /dev/md0
+  VG Name               server1_vg
+  PV Size               931.01 GB / not usable 1.19 MB
+  Allocatable           yes
+  PE Size (KByte)       4096
+  Total PE              238337
+  Free PE               185807
+  Allocated PE          52530
+  PV UUID               BV0mGK-FRtQ-KTLv-aW3I-TllW-Pkiz-3yVPd1</p>
+<div class="highlight"><pre><span></span><code><span class="nv">The</span> <span class="nv">above</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">PV</span> <span class="nv">part</span> <span class="nv">after</span> <span class="nv">md0</span> <span class="nv">was</span> <span class="nv">grown</span> <span class="nv">from</span> <span class="o">~</span><span class="mi">400</span><span class="nv">GB</span> <span class="nv">to</span> <span class="o">~</span><span class="mi">930</span><span class="nv">GB</span>
+<span class="ss">(</span><span class="nv">a</span> <span class="mi">400</span><span class="nv">GB</span> <span class="nv">disk</span> <span class="nv">to</span> <span class="nv">a</span> <span class="mi">1</span><span class="nv">TB</span> <span class="nv">disk</span><span class="ss">)</span>. <span class="nv">Note</span> <span class="nv">the</span> <span class="nv">_PV</span> <span class="nv">Size_</span> <span class="nv">descriptions</span> <span class="nv">before</span>
+<span class="nv">and</span> <span class="nv">after</span>.
+
+<span class="nv">Once</span> <span class="nv">the</span> <span class="nv">PV</span> <span class="nv">has</span> <span class="nv">been</span> <span class="nv">grown</span> <span class="ss">(</span><span class="nv">and</span> <span class="nv">hence</span> <span class="nv">the</span> <span class="nv">size</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">VG</span>, <span class="nv">volume</span>
+<span class="nv">group</span>, <span class="nv">will</span> <span class="nv">have</span> <span class="nv">increased</span><span class="ss">)</span>, <span class="nv">you</span> <span class="nv">can</span> <span class="nv">increase</span> <span class="nv">the</span> <span class="nv">size</span> <span class="nv">of</span> <span class="nv">an</span> <span class="nv">LV</span>
+<span class="ss">(</span><span class="nv">logical</span> <span class="nv">volume</span><span class="ss">)</span>, <span class="nv">and</span> <span class="k">then</span> <span class="nv">finally</span> <span class="nv">the</span> <span class="nv">filesystem</span>, <span class="nv">eg</span>:
+</code></pre></div>
+
+<p>lvextend -L +50G -n home_lv server1_vg
+resize2fs /dev/server1_vg/home_lv
+```</p>
+<p>The above grows the <em>home_lv</em> logical volume in the <em>server1_vg</em> 
+volume group by 50GB. It then grows the ext2/ext3 filesystem on that
+LV to the full size of the LV, as per <em>Extending the filesystem</em> above.</p>
+<p>Source: <a href="https://raid.wiki.kernel.org/index.php/Growing" title="Raid Wiki">https://raid.wiki.kernel.org/index.php/Growing</a></p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Archiving DVDs and CDs</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="Since now I have a Android TV I put away my HTPC and with that the capability to view DVDs or listen CDs directly. So I converted my entire CD and..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/archiving-dvds-and-cds.html" rel="bookmark"
+           title="Permalink to Archiving DVDs and CDs">Archiving DVDs and CDs</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2016-12-05T00:00:00+01:00">
+                Published: Mon 05 December 2016
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <p>Since now I have a Android TV I put away my HTPC and with that the capability to view DVDs or
+listen CDs directly.</p>
+<p>So I converted my entire CD and DVD library to media files and stored in my home NAS.</p>
+<p>Since we are talking hundreds of DVDs and CDs, I was using some tools.</p>
+<h1>CD ripping</h1>
+<p>For CD ripping, pretty much everything can be done with <a href="https://abcde.einval.com/wiki/">abcde</a>.
+I would use the following command:</p>
+<div class="highlight"><pre><span></span><code>abcde -G -k -o mp3 -x
+</code></pre></div>
+
+<p>Options:</p>
+<ul>
+<li><code>-G</code> : Get album art.</li>
+<li><code>-k</code> : Keep <code>wav</code> after encoding.  This is not really necessary.</li>
+<li><code>-o mp3</code> : Output to <code>mp3</code>.</li>
+<li><code>-x</code> : Eject the CD after all tracks have been read.</li>
+</ul>
+<p>Afterwards I would use <a href="http://eyed3.nicfit.net/">eyeD3</a> to embed the
+cover art and tweak things.  (Note under <a href="http://archlinux.org">archlinux</a>,
+<code>eyeD3</code> is installed from the <code>python2-eyed3</code> package).</p>
+<h3>To add cover art:</h3>
+<div class="highlight"><pre><span></span><code>eyeD3 --add-image=&quot;$cover_file&quot;:FRONT_COVER *.mp3
+</code></pre></div>
+
+<h1>DVD Ripping</h1>
+<p>For DVD Ripping I was using a couple of homegrown scripts.  These can be found on
+<a href="https://github.com/alejandroliu/MediaArchiving">github</a>.</p>
+<p>I started using <a href="http://vobcopy.org/download/release_notes_and_download.shtml">vobcopy</a>,
+but if I were to do this again I would use <a href="http://dvdbackup.sourceforge.net/">dvdbackup</a>
+with the <code>-M</code> option.  <code>vobcopy</code> is quite old and probably is orphaned by now.</p>
+<h2>Scripts for archiving media</h2>
+<p>Scripts:</p>
+<ul>
+<li>archive-dvd : Create an iso image from a DVD.</li>
+<li>alltitles : Extract titles/chapters from a DVD.</li>
+<li>auto.sh : Used to transcode titles/chapters extracted by <code>alltitles</code></li>
+</ul>
+<h3>archive-dvd</h3>
+<p>This script uses <code>vobcopy</code> and <code>mkisofs</code> to create an ISO file.
+Just run the script and insert a DVD, you will get an ISO file
+in return.</p>
+<h3>alltitles</h3>
+<p>Usage:</p>
+<div class="highlight"><pre><span></span><code><span class="o">[</span><span class="n">option_vars</span><span class="o">]</span><span class="w"> </span><span class="n">sh</span><span class="w"> </span><span class="n">alltitles</span><span class="w"> </span><span class="o">[</span><span class="n">chapter</span><span class="o">]</span><span class="w"></span>
+</code></pre></div>
+
+<p>Option vars:</p>
+<ul>
+<li>drive=[device-path] defaults to /dev/sr0</li>
+<li>titles="01 02 03 ..." defaults to all titles in DVD (as listed by
+  lsdvd)<br>
+  You can also specify titles as:<br>
+<code>title="01,1-4 01,5-8"</code><br>
+  This will create two files, one with track 1, chaptes one trough
+  four (inclusive)
+  and another one with track 1, chapters five through eigth (inclusive)</li>
+</ul>
+<p>Command options:</p>
+<p>chapter: Leave blank for all chapters, otherwise:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="nv">chapter</span> [$<span class="nv">start</span><span class="o">-</span><span class="mh">$e</span><span class="nv">nd</span>]
+</code></pre></div>
+
+<p>Will dump starting from $start until $end. (or end)
+If you only want to extract chapter 7 by itself, use -chapter 7-7</p>
+<h3>auto.sh</h3>
+<p>Usage:</p>
+<div class="highlight"><pre><span></span><code><span class="n">sh</span><span class="w"> </span><span class="err">$</span><span class="mi">0</span><span class="w"> </span><span class="o">[</span><span class="n">options</span><span class="o">]</span><span class="w"></span>
+</code></pre></div>
+
+<p>vob files must be the ones extracted from <code>alltitles</code>.</p>
+<p>Options:</p>
+<ul>
+<li>--preview|-p : Only encode 30 seconds from 4 minutes in</li>
+<li>--copy|-c : Do only copy</li>
+<li>--interlace|-i : Force interlace filter</li>
+<li>--no-interlace|+i : Disables interlace filter</li>
+</ul>
+<h2>Dependancies</h2>
+<ul>
+<li>libdvdcss (or equivalent).<br>
+  This is used by the dvdread library to decode CSS protected DVDs.</li>
+<li>libdvdread<br>
+  This is used to read DVD by a number of binaries.</li>
+<li><a href="http://vobcopy.org/download/release_notes_and_download.shtml">vobcopy</a><br>
+  Used by <code>archive-dvd</code> to extract the data that will be used to create
+  the ISO image.  Uses <code>libdvdread</code>.</li>
+<li>udisks or udisks2<br>
+  Used by the scripts to detect when a CD/DVD is inserted.</li>
+<li>cdrkit
+  Used to create the iso images by <code>archive-dvd</code>.</li>
+<li>lsdvd<br>
+  Used by <code>alltitles.sh</code> to get track information.</li>
+<li>mplayer<br>
+  Used by <code>alltitles.sh</code> to extract DVD titles/chapters.</li>
+<li>ffmpeg<br>
+  Used by <code>alltitles.sh</code> to encode video.</li>
+</ul>
+<h2>Some useful commands</h2>
+<p>Using <code>mplayer</code> to play extract:</p>
+<div class="highlight"><pre><span></span><code>mplayer -dvd-device /dev/sr0 dvd://$title -chapter $chapter-$chapter -dumpstream -dumpfile ~/$title.VOB
+</code></pre></div>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

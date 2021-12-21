@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Python Virtual Environments</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="This is the least you need to know to get to use a Python virtual environment. What is a Virtual Environment At its core, the main purpose of..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/python-virtual-environments.html" rel="bookmark"
+           title="Permalink to Python Virtual Environments">Python Virtual Environments</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-05-01T00:00:00+02:00">
+                Published: Wed 01 May 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <p>This is the least you need to know to get to use a Python virtual
+environment.</p>
+<h2>What is a Virtual Environment</h2>
+<p>At its core, the main purpose of Python virtual environments is to
+create an isolated environment for Python projects. This means that
+each project can have its own dependencies, regardless of what
+dependencies every other project has.</p>
+<p>The great thing about this is that there are no limits to the number
+of environments you can have since they're just directories containing
+a few scripts.</p>
+<h2>Pre-requisites</h2>
+<p>While <code>venv</code> is part of <code>python3</code>, for <code>python2</code> you need to install
+<code>virtualenv</code>.</p>
+<ul>
+<li>void-linux: <code>python-virtualenv</code></li>
+</ul>
+<h2>Create</h2>
+<p>To create a new virtual environment:</p>
+<h3>Python2</h3>
+<div class="highlight"><pre><span></span><code>mkdir folder
+virtualenv folder
+</code></pre></div>
+
+<p>If you want to inherit system global packages in your virtual
+environment use this instead:</p>
+<div class="highlight"><pre><span></span><code>mkdir folder
+virtualenv --system-site-packages folder
+</code></pre></div>
+
+<h3>Python3</h3>
+<div class="highlight"><pre><span></span><code>mkdir folder
+python3 -m venv folder
+</code></pre></div>
+
+<p>If you want to inherit system global packages in your virtual
+environment use this instead:</p>
+<div class="highlight"><pre><span></span><code>mkdir folder
+python3 -m venv --system-site-packages folder
+</code></pre></div>
+
+<p>I prefer to use the <code>--system-site-packages</code> option, that way
+I can have <code>binary</code> modules using the host's package manager.
+This is in order to avoid having a compiler in the host system.</p>
+<h2>Activate</h2>
+<p>To activate a virtual environment:</p>
+<div class="highlight"><pre><span></span><code>. &lt;folder&gt;/bin/activate
+</code></pre></div>
+
+<p>Pay attention that we are using <code>.</code> to source the script in
+the current interpreter.</p>
+<h2>De-Activate</h2>
+<p>To de-activate:</p>
+<div class="highlight"><pre><span></span><code>deactivate
+</code></pre></div>
+
+<h2>Run from a script</h2>
+<p>To use the virtual environment from a script (i.e. running
+as a background daemon) you need to add these to the
+beginning of your python script:</p>
+<div class="highlight"><pre><span></span><code>activate_this = &#39;/path/to/virtualenv/bin/activate_this.py&#39;
+execfile(activate_this, dict(__file__=activate_this))
+</code></pre></div>
+
+<p>Or from a shell cript:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/sh</span>
+<span class="nb">source</span> name_Env/bin/activate
+<span class="c1"># virtualenv is now active.</span>
+<span class="nb">exec</span> python script.py <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+</code></pre></div>
+</td></tr></table>
+<h2>References</h2>
+<p>For more information see:</p>
+<ul>
+<li><a href="https://docs.python.org/3/library/venv.html">Python3 venv</a></li>
+<li><a href="https://docs.python-guide.org/dev/virtualenvs/">pipenv &amp; virtual environments</a></li>
+<li><a href="https://realpython.com/python-virtual-environments-a-primer/">virtual env primer</a></li>
+</ul>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

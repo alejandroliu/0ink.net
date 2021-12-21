@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Upload to OpenWRT</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="Base 64 decoding: coreutils-base64 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20#!/usr/local/bin/haserl --upload-limit=4096 --upload-dir=/tmp..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/upload-to-openwrt.html" rel="bookmark"
+           title="Permalink to Upload to OpenWRT">Upload to OpenWRT</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-07-11T00:00:00+02:00">
+                Published: Sat 11 July 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <p>Base 64 decoding: <code>coreutils-base64</code></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/local/bin/haserl --upload-limit=4096 --upload-dir=/tmp 
+content-type: text/html
+
+<span class="nt">&lt;html&gt;&lt;body&gt;</span>
+<span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">&quot;</span><span class="cp">&lt;%</span> <span class="n">echo</span> <span class="o">-</span><span class="n">n</span> <span class="vg">$SCRIPT_NAME</span> <span class="cp">%&gt;</span><span class="s">&quot;</span> <span class="na">method=</span><span class="s">POST</span> <span class="na">enctype=</span><span class="s">&quot;multipart/form-data&quot;</span> <span class="nt">&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">file</span> <span class="na">name=</span><span class="s">uploadfile</span><span class="nt">&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">submit</span> <span class="na">value=</span><span class="s">GO</span><span class="nt">&gt;</span>
+<span class="nt">&lt;br&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">if</span> <span class="nb">test</span> <span class="o">-</span><span class="n">n</span> <span class="s2">&quot;$HASERL_uploadfile_path&quot;</span><span class="p">;</span> <span class="k">then</span> <span class="cp">%&gt;</span>
+        <span class="nt">&lt;p&gt;</span>
+        You uploaded a file named <span class="nt">&lt;b&gt;</span><span class="cp">&lt;%</span> <span class="n">echo</span> <span class="o">-</span><span class="n">n</span> <span class="vg">$FORM_uploadfile_name</span> <span class="cp">%&gt;</span><span class="nt">&lt;/b&gt;</span>, and it was
+        temporarily stored on the server as <span class="nt">&lt;i&gt;</span><span class="cp">&lt;%</span> <span class="n">echo</span> <span class="vg">$HASERL_uploadfile_path</span> <span class="cp">%&gt;</span><span class="nt">&lt;/i&gt;</span>.  The
+        file was <span class="cp">&lt;%</span> <span class="n">cat</span> <span class="vg">$HASERL_uploadfile_path</span> <span class="o">|</span> <span class="n">wc</span> <span class="o">-</span><span class="n">c</span> <span class="cp">%&gt;</span> bytes long.<span class="nt">&lt;/p&gt;</span>
+        <span class="cp">&lt;%</span> <span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="vg">$HASERL_uploadfile_path</span> <span class="cp">%&gt;</span><span class="nt">&lt;p&gt;</span>Don&#39;t worry, the file has just been deleted
+        from the web server.<span class="nt">&lt;/p&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">else</span> <span class="cp">%&gt;</span>
+        You haven&#39;t uploaded a file yet.
+<span class="cp">&lt;%</span> <span class="n">fi</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+<span class="nt">&lt;/body&gt;&lt;/html&gt;</span>
+</code></pre></div>
+</td></tr></table>
+<p><a href="http://haserl.sourceforge.net/manpage.html">haserl man page</a></p>
+<p>Uploader tool: <a href="https://curl.haxx.se/docs/httpscripting.html#File_Upload_POST">post</a></p>
+<p>Disable/Relocate cgi-bin</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

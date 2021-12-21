@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Kerberos Client</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="This simple mini how-to goes over the configuration of a linux system so it can use a Kerberos Realm server for authentication. Make sure you have..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/kerberos-client.html" rel="bookmark"
+           title="Permalink to Kerberos Client">Kerberos Client</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-02-06T00:00:00+01:00">
+                Published: Fri 06 February 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <p>This simple mini how-to goes over the configuration of a
+linux system so it can use a Kerberos Realm server
+for authentication.</p>
+<ol>
+<li>Make sure you have the pam_krb5 rpm files installed. You can check this by running the <code>rpm -qa | grep pam</code> command and seeing whether the pam_krb5 rpm files are listed. If they aren't, you can typically download them in an update of the Linux or Unix operating system that you are running.</li>
+<li>
+<p>Add the line to the "/etc/pam.d/system-auth" part of the auth section of Kerberos. Add it after the "pam_unix.so" line:</p>
+<div class="highlight"><pre><span></span><code>auth sufficient /lib/security/pam_krb5.so use_first_pass forwardable
+</code></pre></div>
+
+</li>
+<li>
+<p>Add the line to the "/etc/pam.d/system-auth" part of the password section of Kerberos. Add it after the "pam_unix.so" line:</p>
+<div class="highlight"><pre><span></span><code>password sufficient /lib/security/pam_krb5.so use_authtok
+</code></pre></div>
+
+</li>
+<li>
+<p>Add the line to the "/etc/pam.d/system-auth" part of the session section of Kerberos. Add it after the "pam_unix.so" line:</p>
+<div class="highlight"><pre><span></span><code>session optional /lib/security/pam_krb5.so
+</code></pre></div>
+
+</li>
+</ol>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Enable local file caching for NFS share on Linux</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="In Linux, there is a caching filesystem called FS-Cache which enables file caching for network file systems such as NFS. FS-Cache is built into..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/enable-local-file-caching-for-nfs-share-on-linux.html" rel="bookmark"
+           title="Permalink to Enable local file caching for NFS share on Linux">Enable local file caching for NFS share on Linux</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-10-07T00:00:00+02:00">
+                Published: Mon 07 October 2013
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <p>In Linux, there is a caching filesystem called <code>FS-Cache</code> which enables
+file caching for network file systems such as NFS. <code>FS-Cache</code> is built
+into the Linux kernel 2.6.30 and higher. In order for <code>FS-Cache</code> to
+operate, it needs cache back-end which provides actual storage for
+caching. One such cache back-end is <code>cachefiles</code>. Therefore, once you
+set up <code>cachefiles</code>, it will automatically enable file caching for NFS shares.</p>
+<h1>Requirements</h1>
+<p>One requirement for setting up <code>cachefiles</code> is that local filesystem support user-defined extended file attributes (i.e., <code>xattr</code>), because <code>cachefiles</code> use <code>xattr</code> to store extra information for cache maintenance. If your local filesystem is ext4-type, you don't need to worry about this since <code>xattr</code> is enabled in ext4 by default. However, if you are using ext3 filesystem, then you need to mount the local filesystem with "user_xattr" option. To do so, edit /etc/mtab to add "user_xattr" mount option to the disk partition that will be used by <code>cachefiles</code> for file caching. For example, assuming that /dev/hda1 is such a partition:</p>
+<hr>
+<div class="highlight"><pre><span></span><code>/dev/hda1 / ext3 rw,user_xattr  0 0
+</code></pre></div>
+
+<hr>
+<p>After modifying /etc/fstab, reload it by running:</p>
+<div class="highlight"><pre><span></span><code>$ sudo mount -o remount / 
+</code></pre></div>
+
+<h1>Configure CacheFiles</h1>
+<p>In order to set up cache back-end using <code>cachefiles</code>, you need to install <code>cachefilesd</code>, a userspace daemon for managing <code>cachefiles</code>. To install <code>cachefilesd</code> on Ubuntu or Debian:</p>
+<div class="highlight"><pre><span></span><code>$ sudo apt-get install cachefilesd
+</code></pre></div>
+
+<p>To install <code>cachefilesd</code> on CentOS, Fedora or RedHat:</p>
+<div class="highlight"><pre><span></span><code>$ sudo yum install cachefilesd
+$ sudo chkconfig cachefilesd on
+</code></pre></div>
+
+<p>After installation, enable <code>cachefilesd</code> by editing its configuration file as follows.</p>
+<div class="highlight"><pre><span></span><code>$ sudo vi /etc/default/cachefilesd
+</code></pre></div>
+
+<hr>
+<div class="highlight"><pre><span></span><code>RUN=yes
+</code></pre></div>
+
+<hr>
+<p>Next, mount a remote NFS share with <code>fsc</code> option:</p>
+<div class="highlight"><pre><span></span><code> $ sudo vi /etc/fstab
+</code></pre></div>
+
+<hr>
+<div class="highlight"><pre><span></span><code> 192.168.1.13:/home/xmodulo /mnt nfs rw,hard,intr,fsc
+</code></pre></div>
+
+<hr>
+<p>Alternatively, if you mount the remote NFS share from the command line, specify <code>fsc</code> as a command-line option:</p>
+<div class="highlight"><pre><span></span><code>$ sudo mount -t nfs <span class="m">192</span>.168.1.13:/home/xmodulo /mnt -o fsc
+</code></pre></div>
+
+<p>Finally, restart <code>cachefilesd</code>:</p>
+<div class="highlight"><pre><span></span><code>$ sudo service cachefilesd restart
+</code></pre></div>
+
+<p>At this point, file caching should be enabled for the mounted NFS share, which means that previously accessed files in the mounted NFS share will be retrieved from local file cache. If you want to flush NFS file cache for any reason, simply restart <code>cachefilesd</code>.</p>
+<div class="highlight"><pre><span></span><code> $ sudo service cachefilesd restart 
+</code></pre></div>
+
+<p>Source: <a href="http://xmodulo.com/2013/06/how-to-enable-local-file-caching-for-nfs-share-on-linux.html">xmodule.com</a></p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Native Kerberos Authentication with SSH</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="This article is about integrating OpenSSH in a kerberos environment. Allthough OpenSSH can provide passwordless logins (through Public/Private..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/native-kerberos-authentication-with-ssh.html" rel="bookmark"
+           title="Permalink to Native Kerberos Authentication with SSH">Native Kerberos Authentication with SSH</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-05-27T00:00:00+02:00">
+                Published: Mon 27 May 2013
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <p>This article is about integrating OpenSSH in a kerberos environment.
+Allthough OpenSSH can provide passwordless logins (through Public/Private
+keys), it is not a true SSO set-up.  This article makes use of
+Kerberos TGT service to implement a true SSO configuration for OpenSSH.</p>
+<h1>Pre-requisites</h1>
+<p>First off, you'll need to make sure that the OpenSSH server's Kerberos configuration (in <code>/etc/krb5.conf</code>) is correct and works, and that the server's keytab (typically <code>/etc/krb5.keytab</code>) contains an entry for <code>host/fqdn@REALM</code> (case-sensitive). I won't go into details on how this is done again; instead, I'll refer you to any one of the recent Kerberos-related articles (like <a href="http://blog.scottlowe.org/2006/08/08/linux-active-directory-and-windows-server-2003-r2-revisited/">this one</a>, <a href="http://blog.scottlowe.org/2006/08/15/solaris-10-and-active-directory-integration/">this one</a>, or <a href="http://blog.scottlowe.org/2006/08/21/more-on-kerberos-authentication-against-active-directory/">even this one</a>). Just be sure that you can issue a <code>kinit -k host/fqdn@REALM</code> and get back a Kerberos ticket without having specify a password. (This tells you that the keytab is working as expected.)</p>
+<h1>Configuring the SSH Server</h1>
+<p>Configure `/etc/ssh/sshd_config with the following:</p>
+<div class="highlight"><pre><span></span><code> KerberosAuthentication yes
+ KerberosTicketCleanup yes
+ GSSAPIAuthentication yes
+ GSSAPICleanupCredentials yes
+ UseDNS yes
+ UsePAM no
+</code></pre></div>
+
+<p>If <code>UseDNS</code> is set to <code>Yes</code>, the ssh server does a reverse host lookup to find the name of the connecting client. This is necessary when host-based authentication is used or when you want last login information to display host names rather than IP addresses. <em>Note:</em> Some ssh sessions stall when performing reverse name lookups because the DNS servers are unreachable. If this happens, you can skip the DNS lookups by setting <code>UseDNS</code> to <code>no</code>. If <code>UseDNS</code> is not explicitly set in the <code>/etc/ssh/sshd_config</code> file, the default value is <code>UseDNS yes</code>.</p>
+<h1>Configuring the SSH Client</h1>
+<p>Edit <code>/etc/ssh/ssh_config</code>, and change the file accordingly. For example, we want to enable Kerberos mechanism for all Hosts:</p>
+<div class="highlight"><pre><span></span><code> Host *
+      ....
+      GSSAPIAuthentication yes
+      GSSAPIDelegateCredentials yes
+</code></pre></div>
+
+<p>or to enable to specific domains:</p>
+<div class="highlight"><pre><span></span><code>Host *.example.com
+  GSSAPIAuthentication yes
+  GSSAPIDelegateCredentials yes
+</code></pre></div>
+
+<p>This limits GSSAPI authentication to only those hosts in the <code>example.com</code> domain. Modify the domain to be the appropriate domain for your network.</p>
+<h1>Testing the Configuration</h1>
+<p>Obtain a valid Kerberos ticket <code>kinit username</code> from the command line. Once you have a ticket, you should be able to simply <code>ssh fqdn.of.server</code> and you will get logged in, without getting prompted for a password. If you get prompted for a password, go back and double-check your keytab, your SSH daemon configuration, and the time configuration on your OpenSSH server. Because Kerberos requires time synchronization, differences of greater than 5 minutes will cause the authentication to fail.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

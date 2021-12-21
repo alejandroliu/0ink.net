@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Stupid SSL tricks</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="Some hints and tips foor doing SSL related things: Netcat for SSL This command lets you connect to a SSL server (a-la netcat): cat request.txt |..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/stupid-ssl-tricks.html" rel="bookmark"
+           title="Permalink to Stupid SSL tricks">Stupid SSL tricks</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2021-12-21T00:00:00+01:00">
+                Published: Tue 21 December 2021
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <p>Some hints and tips foor doing SSL related things:</p>
+<h1>Netcat for SSL</h1>
+<p>This command lets you connect to a SSL server (a-la netcat):</p>
+<div class="highlight"><pre><span></span><code><span class="nv">cat</span> <span class="nv">request</span>.<span class="nv">txt</span> <span class="o">|</span> <span class="nv">openssl</span> <span class="nv">s_client</span> <span class="o">-</span><span class="k">connect</span> <span class="nv">server</span>:<span class="mi">443</span>
+</code></pre></div>
+
+<h1>Creating self-signed certificates</h1>
+<p>This is a single command to generate a self-signed certificate:</p>
+<div class="highlight"><pre><span></span><code>openssl req -new \
+      -newkey rsa:4096 \
+      -days 365 \
+      -nodes -x509 \
+      -subj &quot;/C=NL/ST=ZH/L=Den Haag/O=HomeBase/CN=$fqdn&quot; \
+      -keyout $ca_root/$fqdn/$fqdn.key \
+      -out $ca_root/$fqdn/$fqdn.cer
+</code></pre></div>
+
+<p>This is unlike other recipes where you create a <code>csr</code> and <code>key</code>
+first and then create the <code>certificate</code>.</p>
+<h1>Checking and verifying certificates</h1>
+<ul>
+<li>Check certificate</li>
+<li><code>openssl x509 -in server.crt -text -noout</code></li>
+<li>Check SSL key and verify consistency</li>
+<li><code>openssl rsa -in server.key -check</code></li>
+<li>Check CSR and print CSR data</li>
+<li><code>openssl req -text -noout -verify -in server.csr</code></li>
+<li>Verify that certificate and key matches:</li>
+<li><code>openssl x509 -noout -modulus -in server.crt| openssl md5</code></li>
+<li><code>openssl rsa -noout -modulus -in server.key| openssl md5</code></li>
+<li>Check SSL Certificate expiration date</li>
+<li><code>openssl x509 -dates -noout -in hydssl.cer</code></li>
+</ul>
+<h1>Check SSL connection</h1>
+<ul>
+<li>Tests connectivity to an HTTPS service:</li>
+<li><code>openssl s_client -connect &lt;hostname&gt;:443</code></li>
+<li>Prints all certificates in the certificate chain presented by the
+  SSL service. Useful when troubleshooting missing intermediate CA
+  certificate issues.</li>
+<li><code>openssl s_client -connect &lt;hostname&gt;:&lt;port&gt; -showcerts</code></li>
+<li>Forces TLSv1 and DTLSv1.</li>
+<li><code>openssl s_client -connect &lt;hostname&gt;:&lt;port&gt; -tls1</code></li>
+<li><code>openssl s_client -connect &lt;hostname&gt;:&lt;port&gt; -dtls1</code></li>
+<li>Forces a specific cipher. This option is useful in testing enabled
+  SSL ciphers. Use the <code>openssl ciphers</code> command to see a list of
+  available ciphers for OpenSSL.</li>
+<li><code>openssl s_client -connect &lt;hostname&gt;:&lt;port&gt; -cipher DHE-RSA-AES256-SHA</code></li>
+</ul>
+<p>For troubleshooting connection and SSL handshake problems, see the
+following:</p>
+<ul>
+<li>If there is a connection problem reaching the domain, the OpenSSL
+  <code>s_client -connect</code> command waits until a timeout occurs and prints
+  an error, such as <code>connect: Operation timed out</code>.</li>
+<li>If you use the OpenSSL client to connect to a non-SSL service, the
+  client connects but the SSL handshake doesn't happen. <code>CONNECTED (00000003)</code> prints as soon as a socket
+  opens, but the client waits until a timeout occurs and prints an
+  error message, such as <code>44356:error:140790E5:SSL routines:SSL23_WRITE:ssl handshake failure:/SourceCache/OpenSSL098/OpenSSL098-47.1/src/ssl/s23_lib.c:182:.</code></li>
+</ul>
+<p>After disabling a weak cipher, you can verify if it has been disabled
+or not with the following command.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">openssl</span> <span class="nv">s_client</span> <span class="o">-</span><span class="k">connect</span> <span class="nv">google</span>.<span class="nv">com</span>:<span class="mi">443</span> <span class="o">-</span><span class="nv">cipher</span> <span class="nv">EXP</span><span class="o">-</span><span class="nv">RC4</span><span class="o">-</span><span class="nv">MD5</span>
+</code></pre></div>
+
+<h1>Check SSL certificates on a remote server:</h1>
+<ul>
+<li>Check who has issued the SSL certificate:</li>
+<li><code>echo | openssl s_client -servername howtouselinux.com -connect howtouselinux.com:443 2&gt;/dev/null | openssl x509 -noout -issuer</code></li>
+<li>Check whom the SSL certificate is issued to:</li>
+<li><code>echo | openssl s_client -servername howtouselinux.com -connect howtouselinux.com:443 2&gt;/dev/null | openssl x509 -noout -subject</code></li>
+<li>Check for what dates the SSL certificate is valid:</li>
+<li><code>echo | openssl s_client -servername howtouselinux.com -connect howtouselinux.com:443 2&gt;/dev/null | openssl x509 -noout -dates</code></li>
+<li>Show the SHA1 fingerprint of the SSL certificate:</li>
+<li><code>echo | openssl s_client -servername www.howtouselinux.com -connect www.howtouselinux.com:443 2&gt;/dev/null | openssl x509 -noout -fingerprint</code></li>
+<li>Extract all information from the SSL certificate (decoded)</li>
+<li><code>echo | openssl s_client -servername www.howtouselinux.com -connect www.howtouselinux.com:443 2&gt;/dev/null | openssl x509 -noout -text</code></li>
+<li>Show the SSL certificate itself (encoded):</li>
+<li><code>echo | openssl s_client -servername howtouselinux.com -connect howtouselinux.com:443 2&gt;/dev/null | openssl x509</code></li>
+</ul>
+<h1>Becoming your own <code>CA</code></h1>
+<p>The easiest way is to use <a href="https://github.com/FiloSottile/mkcert">mkcert</a>.  <a href="https://github.com/FiloSottile/mkcert">mkcert</a> is a
+command line tool that automates most of the activities related
+a CA.</p>
+<p>Otherwise, <a href="https://deliciousbrains.com/ssl-certificate-authority-for-local-https-development/">this article</a> by Brad Touesnard explains
+the process fully.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

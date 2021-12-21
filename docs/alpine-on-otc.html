@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Alpine on OTC</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="These are just random thoughts nothing really was implemented. Alpine Linux image preparation: jq and other deps to /apks/x86_64 /etc/local.d/..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/alpine-on-otc.html" rel="bookmark"
+           title="Permalink to Alpine on OTC">Alpine on OTC</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-08-29T00:00:00+02:00">
+                Published: Wed 29 August 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <p>These are just random thoughts nothing really was implemented.</p>
+<p>Alpine Linux image</p>
+<ul>
+<li>
+<p>preparation: jq and other deps to <code>/apks/x86_64</code></p>
+</li>
+<li>
+<p><code>/etc/local.d/</code>
+    <code>cloud-init-lite</code></p>
+</li>
+<li>
+<p>if <code>/etc/network/intefaces</code> exists we abort</p>
+</li>
+<li><code>apk add --force-non-repository /path oniguruma,jq</code> .. restore <code>/etc/apk/world</code></li>
+<li><code>udhcpc -b -p /var/run/udhcpc.eth0.pid -i eth0</code></li>
+<li>install <code>openssh</code> and start it</li>
+<li><code>wget</code> meta data and create <code>/root/.ssh/authorized_keys</code></li>
+<li><code>wget -O- http://169.254.169.254/openstack/YYYY-MM-DD/meta_data.json</code></li>
+</ul>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Using a NAS200 as a Print server</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="Last weekend I had a small weekend project to move my All-In-One Printer/Scanner from my Xen host server to a spare NAS200 I had lying around...." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/using-a-nas200-as-a-print-server.html" rel="bookmark"
+           title="Permalink to Using a NAS200 as a Print server">Using a NAS200 as a Print server</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-10-22T00:00:00+02:00">
+                Published: Tue 22 October 2013
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <p>Last weekend I had a small weekend project to move my All-In-One Printer/Scanner from my Xen host server to a spare NAS200 I had lying around. Since the NAS200 has a i486 compatible CPU, and I had been able to run a CentOS 5 distro before, I figure it would make a good server with low power consumption.</p>
+<p><img alt="nas200" src="{{ site.url }}/images/2013/linksys-nas200.jpg"></p>
+<p>For that I updated my <a href="http://nascc.sf.net">NASCC firmware</a> so that it would boot a USB key, and update my CentOS image creation <a href="https://sourceforge.net/p/nascc/wiki/centos/">script</a>. This worked well, I was able to boot CentOS without <em>that much</em> effort altogether.</p>
+<p>I myself have an <a href="http://www.cnet.com.au/epson-stylus-cx5500-339283304.htm">Epson Stylus CX5500</a> which unfortunately only comes with <a href="http://download.ebz.epson.net/dsc/search/01/search/?OSC=LX">binary drivers</a>. This was not much of a problem since the NAS200 has a i486 compatible CPU. I find this is relatively unique among different NAS models.</p>
+<p>Alas, the performance was quite disappointing. I should be used to the NAS200 underperforming. But really, this was truly sad. I did not bother to test the printing, but I did try scanning with it. Running <code>scanimage</code> to scan a single page was taking over 15 minutes before I hit <code>Ctrl+C</code>.</p>
+<p>It was an idea, but the results were so sub par. The only take-aways of this are:</p>
+<ul>
+<li>I was able to run open source as well as binary blobs on a NAS200 relatively easily.</li>
+<li>I was able to use CentOS5 pretty much out-of-the box. No recompiles required. Did notice though that <code>cups</code> would seg-fault. My guess is that the i386 package some how got some i686 optimizations on it.</li>
+<li>My <a href="https://sourceforge.net/projects/nascc/files/LEC/">Linux Ethernet Console</a> made a very good network console. I was able to troubleshoot some very early boot problems with it.</li>
+<li>NAS200 performance for scanning was abysmal.</li>
+</ul>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

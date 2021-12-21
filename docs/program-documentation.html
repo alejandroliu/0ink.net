@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Program Documentation</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="So these are my ideas on how to document projects. There are three types of documentation types: User guides Targetted and end-users of the..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/program-documentation.html" rel="bookmark"
+           title="Permalink to Program Documentation">Program Documentation</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-05-29T00:00:00+02:00">
+                Published: Wed 29 May 2013
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <p>So these are my ideas on how to document projects. There are three types of documentation types:</p>
+<ol>
+<li>User guides<br>
+    Targetted and end-users of the software and people who want a brief overview.</li>
+<li>Man pages<br>
+    Again targetted at end-users but also sysadmins. Usually to address a specific feature.</li>
+<li>API level documentation/reference guide.<br>
+    Targetted at programmers enhancing, maintaining the software.</li>
+</ol>
+<p>To generate I would use different tools. In general we would like to embed with source code.</p>
+<h1>User Guides</h1>
+<p>Either as a stand alone document or embedded in the code. My default
+tool is to use <a href="http://en.wikipedia.org/wiki/Markdown">Markdown</a> as can
+be easily be converted to HTML or PDF as needed.</p>
+<h1>Man pages</h1>
+<p>Use <code>manify</code>. Embedded in the source code.</p>
+<h1>API reference documentation</h1>
+<p>We need generation tools. So the candidates are:</p>
+<ul>
+<li>C :<ul>
+<li><a href="http://www.khm.de/~rudi/ZehDok/">zehdok</a></li>
+<li><a href="https://github.com/angelortega/mp_doccer">mp_doccer</a></li>
+</ul>
+</li>
+<li>php : Multiples<ul>
+<li><a href="http://www.phpdoc.org/">phpdoc</a>: The main one</li>
+<li><a href="https://github.com/peej/phpdoctor">peej's phpdoctor</a></li>
+<li><a href="http://www.apigen.org/">ApiGen</a> : more modern alternative.</li>
+<li><a href="https://github.com/victorjonsson/PHP-Markdown-Documentation-Generator">PHP Markdown doc generator</a></li>
+</ul>
+</li>
+<li>perl : <a href="http://juerd.nl/site.plp/perlpodtut">pod</a></li>
+<li>python : <a href="http://docs.python.org/2/library/pydoc.html">pydoc</a></li>
+<li>tcl : <a href="http://tcl.jtang.org/tcldoc/tcldoc/">tcldoc</a> or <a href="http://www.doxygen.org">doctools</a></li>
+<li>java : <a href="http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html">javadoc</a></li>
+<li>javascript : <a href="http://code.google.com/p/jsdoc-toolkit/">jsdoc-toolkit</a></li>
+<li>Shell script: <a href="https://github.com/alejandroliu/ashlib/blob/master/shdoc">shdoc</a></li>
+</ul>
+<p>Multi languages:</p>
+<ul>
+<li><a href="http://www.doxygen.org">doxygen</a>: C, Objective-C, C#, PHP, Java, Python, IDL (Corba, Microsoft, and UNO/OpenOffice flavors), Fortran, VHDL, Tcl, and to some extent D.</li>
+<li><a href="http://rfsber.home.xs4all.nl/Robo/?">ROBODoc</a>: Virtually anything.</li>
+</ul>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

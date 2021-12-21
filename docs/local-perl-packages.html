@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Local Perl packages</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="Determine what is the local PERL5LIB configuration: LIB=$( for d in `tr : ' ' <<<$PERL5LIB do if [ -w $d ] ; then echo $d break fi done)..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/local-perl-packages.html" rel="bookmark"
+           title="Permalink to Local Perl packages">Local Perl packages</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-05-15T00:00:00+02:00">
+                Published: Wed 15 May 2013
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <p>Determine what is the local PERL5LIB configuration:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">LIB</span><span class="o">=</span>$<span class="ss">(</span>
+  <span class="k">for</span> <span class="nv">d</span> <span class="nv">in</span> `<span class="nv">tr</span> : <span class="s1">&#39;</span><span class="s"> </span><span class="s1">&#39;</span> <span class="o">&lt;&lt;&lt;</span>$<span class="nv">PERL5LIB</span>
+  <span class="k">do</span>
+    <span class="k">if</span> [ <span class="o">-</span><span class="nv">w</span> <span class="mh">$d</span> ] <span class="c1">; then</span>
+      <span class="nv">echo</span> <span class="mh">$d</span>
+    <span class="k">break</span>
+  <span class="nv">fi</span>
+  <span class="nv">done</span><span class="ss">)</span>
+<span class="nv">PREFIX</span><span class="o">=</span>`<span class="k">dirname</span> $<span class="nv">LIB</span>`
+</code></pre></div>
+
+<p>Install sequence</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#PREFIX=$HOME/cpan</span>
+<span class="cp">#LIB=$HOME/cpan/lib</span>
+<span class="n">tar</span><span class="w"> </span><span class="n">zxvf</span><span class="w"> </span><span class="n">$perl</span><span class="o">-</span><span class="n">mod</span><span class="o">-</span><span class="n">tar</span><span class="w"></span>
+<span class="n">cd</span><span class="w"> </span><span class="n">$unpacked</span><span class="o">-</span><span class="n">src</span><span class="o">-</span><span class="n">dir</span><span class="w"></span>
+<span class="n">perl</span><span class="w"> </span><span class="n">Makefile</span><span class="p">.</span><span class="n">PL</span><span class="w"> </span><span class="n">PREFIX</span><span class="o">=</span><span class="n">$PREFIX</span><span class="w"> </span><span class="n">LIB</span><span class="o">=</span><span class="n">$LIB</span><span class="w"> </span><span class="s">&quot;$@&quot;</span><span class="w"></span>
+<span class="n">make</span><span class="w"></span>
+<span class="n">make</span><span class="w"> </span><span class="n">test</span><span class="w"></span>
+<span class="n">make</span><span class="w"> </span><span class="n">install</span><span class="w"></span>
+</code></pre></div>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

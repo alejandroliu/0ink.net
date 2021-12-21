@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>PulseAudio hints and tricks</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="PulseAudio is nowadays the default sound system in many Linux distributions. It lets you do a number of useful things. PulseAudio comes with a..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">0ink.net</a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/pulseaudio-hints-and-tricks.html" rel="bookmark"
+           title="Permalink to PulseAudio hints and tricks">PulseAudio hints and tricks</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-10-03T00:00:00+02:00">
+                Published: Sat 03 October 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <p><a href="https://www.freedesktop.org/wiki/Software/PulseAudio/">PulseAudio</a> is nowadays the default sound system in many Linux
+distributions.  It lets you do a number of useful things.</p>
+<p><a href="https://www.freedesktop.org/wiki/Software/PulseAudio/">PulseAudio</a> comes with a handy command line utility <code>pacmd</code> to do a
+number of things.</p>
+<h1><code>pacmd</code> commands</h1>
+<ul>
+<li>pacmd exit</li>
+<li>pacmd help</li>
+<li>pacmd list-(modules|sinks|sources|clients|cards|samples)</li>
+<li>pacmd list-(sink-inputs|source-outputs)</li>
+<li>pacmd stat</li>
+<li>pacmd info</li>
+<li>pacmd load-module NAME [ARGS ...]</li>
+<li>pacmd unload-module NAME|#N</li>
+<li>pacmd describe-module NAME</li>
+<li>pacmd set-(sink|source)-volume NAME|#N VOLUME</li>
+<li>pacmd set-(sink-input|source-output)-volume #N VOLUME</li>
+<li>pacmd set-(sink|source)-mute NAME|#N 1|0</li>
+<li>pacmd set-(sink-input|source-output)-mute #N 1|0</li>
+<li>pacmd update-(sink|source)-proplist NAME|#N KEY=VALUE</li>
+<li>pacmd update-(sink-input|source-output)-proplist #N KEY=VALUE</li>
+<li>pacmd set-default-(sink|source) NAME|#N</li>
+<li>pacmd kill-(client|sink-input|source-output) #N</li>
+<li>pacmd play-sample NAME SINK|#N</li>
+<li>pacmd remove-sample NAME</li>
+<li>pacmd load-sample NAME FILENAME</li>
+<li>pacmd load-sample-lazy NAME FILENAME</li>
+<li>pacmd load-sample-dir-lazy PATHNAME</li>
+<li>pacmd play-file FILENAME SINK|#N</li>
+<li>pacmd dump</li>
+<li>pacmd move-(sink-input|source-output) #N SINK|SOURCE</li>
+<li>pacmd suspend-(sink|source) NAME|#N 1|0</li>
+<li>pacmd suspend 1|0</li>
+<li>pacmd set-card-profile CARD PROFILE</li>
+<li>pacmd set-(sink|source)-port NAME|#N PORT</li>
+<li>pacmd set-port-latency-offset CARD-NAME|CARD-#N PORT OFFSET</li>
+<li>pacmd set-log-target TARGET</li>
+<li>pacmd set-log-level NUMERIC-LEVEL</li>
+<li>pacmd set-log-meta 1|0</li>
+<li>pacmd set-log-time 1|0</li>
+<li>pacmd set-log-backtrace FRAMES</li>
+</ul>
+<h1>Changing audio output from the command line</h1>
+<p>For this I use the <code>pacmd</code> utility and manipulate the <code>sink</code> inputs.
+For already running streams, the <code>move-sink-input</code> needs to be used.</p>
+<p>I have a PC with a weird configuration and requires me to switch
+profiles instead.</p>
+<p>Get the current active profile:</p>
+<div class="highlight"><pre><span></span><code>pacmd list-cards | grep &#39;active profile&#39;
+</code></pre></div>
+
+<p>Set the active profile:</p>
+<div class="highlight"><pre><span></span><code>pacmd set-card-profile #card #profile#
+</code></pre></div>
+
+<p>Example commands:</p>
+<div class="highlight"><pre><span></span><code>pacmd set-card-profile 0 output:analog-stereo+input:analog-stereo
+pacmd set-card-profile 0 output:hdmi-stereo+input:analog-stereo
+</code></pre></div>
+
+<p>All that logic is in a script <a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/pa-hints/patoggle">here</a>
+or download from this <a href="https://github.com/alejandroliu/0ink.net/raw/master/snippets/pa-hints/patoggle">link</a>.</p>
+<h1>MATE control crashing status icon</h1>
+<p>For some reason the sound control icon in the notification bar gets
+lost for me.  To make it re-appear use this command:</p>
+<div class="highlight"><pre><span></span><code>mate-volume-control-status-icon
+</code></pre></div>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.iliu.net">Familia</a></li>
+                            <li><a href="https://github.com/alejandroliu/0ink.net">github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
