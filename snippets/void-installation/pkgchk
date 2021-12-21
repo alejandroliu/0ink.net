@@ -1,0 +1,45 @@
+#!/bin/sh
+
+if [ $# -eq 0 ] ; then
+  echo "Usage: $0 {file lists}"
+  exit 1
+fi
+
+swcat() {
+  cat "$@" | sed -e 's/#.*$//'|tr ' \t' '\n\n' | sort -u
+}
+mkft() {
+  while read ll
+  do
+    echo "ft[\"$ll\"]=\"$ll\";"
+  done
+}
+xbpscat() {
+  xbps-query -m | awk -vFS=- -vOFS=- '{ NF=NF-1;print}'
+}
+
+
+xbps-query -m | awk -vFS=- -vOFS=- '
+  BEGIN {
+    '"$(swcat "$@"|mkft)"'
+  }
+  {
+    line = $0
+    NF=NF-1
+    if (!($0 in ft)) {
+      print "+ " line
+    }
+  }
+'
+swcat "$@" | awk '
+  BEGIN {
+    '"$(xbpscat|mkft)"'
+  }
+  {
+    if (!($0 in ft)) {
+      print "- " $0
+    }
+  }
+'
+
+
