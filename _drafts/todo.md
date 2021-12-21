@@ -2,22 +2,13 @@
 
 ## 0ink.net
 
-- write an article on using rsync batch mode and lvm snapshots
-- mate tricks: change background from cli
-    - `dconf write /org/mate/desktop/background/picture-filename "'PATH-TO-JPEG'"`
-- article: - https://github.com/azure/azurite
-- [How To Upload Music To Google Music On Linux](https://www.addictivetips.com/ubuntu-linux-tips/upload-music-to-google-music-on-linux/) Try and write about it!
-- SSL NetCat
-    - $ cat request.txt | nc -w 5 <someserver> 80
-    - $ cat request.txt | openssl s_client -connect server:443
-- Google bookmarks: https://code.google.com/p/gmarks-android/wiki/BookmarksAPI
-    - http://www.mmartins.com/mmartins/googlebookmarksapi/
-    - https://addons.mozilla.org/en-US/firefox/addon/fess-google-bookmark-extens/
-- Links
-   * MediaServer (UPnP/DLNA)
-   * Options (<http://www.linuxlinks.com/article/2014011110033786/UPnPServers.html>):
+- Mirror https://deliciousbrains.com/ssl-certificate-authority-for-local-https-development/
+  And change the link in posts/2021-12-21.ssl-tips.md
 
-testing
+## My Punch list:
 
-
-
+- [ ] Printer/Scanner
+- [ ] RedShift
+- [ ] SafeEyes
+- [ ] ownCLoud
+- [ ] Chat
