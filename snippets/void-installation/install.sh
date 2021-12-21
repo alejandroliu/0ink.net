@@ -739,11 +739,11 @@ else
   echo "root=LABEL=voidlinux ro quiet" > $mnt/boot/cmdline
 fi
 
-if ! check_opt bios "$@" ; then
-  echo "Installing UEFI files"
-  mkdir -p $mnt/boot/EFI/BOOT
-  repofile BOOTX64.EFI $mnt/boot/EFI/BOOT/BOOTX64.EFI
-fi
+# Removed the "if ! check_opt bios "$@"" test as
+# it is safe to always install these files...
+echo "Installing UEFI files"
+mkdir -p $mnt/boot/EFI/BOOT
+repofile BOOTX64.EFI $mnt/boot/EFI/BOOT/BOOTX64.EFI
 
 #begin-output
 ##
