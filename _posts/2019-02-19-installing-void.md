@@ -35,7 +35,7 @@ Script usage:
 	- _hostname_: Hostname to use
 
 	Options:
-	- mem=memory : memory size, defaults computed from /proc/meminfo, uses numfmt to parse values
+	- swap=kbs : swap size, defaults computed from /proc/meminfo, uses numfmt to parse values
 	- glibc : Do a glibc install
 	- noxwin : do not insall X11 related packages
 	- nodesktop ; do not install desktop environment
@@ -52,9 +52,9 @@ Script usage:
 
 ### Command line examples
 
-- sudo sh install.sh --dir=$HOME/vx9 vx9 mem=4G glibc passwd=1234567890 cache=$HOME/void-cache xen
-- sudo sh install.sh --dir=$HOME/vx1 vx1 mem=4G glibc passwd=1234567890 cache=$HOME/void-cache xen
-- sudo sh install.sh --dir=$HOME/vx11 vx11 mem=4G       passwd=1234567890 cache=$HOME/void-cache xen
+- sudo sh install.sh --dir=$HOME/vx9 vx9 swap=4G glibc passwd=1234567890 cache=$HOME/void-cache xen
+- sudo sh install.sh --dir=$HOME/vx1 vx1 swap=4G glibc passwd=1234567890 cache=$HOME/void-cache xen
+- sudo sh install.sh --dir=$HOME/vx11 vx11 swap=4G       passwd=1234567890 cache=$HOME/void-cache xen
 
 
 

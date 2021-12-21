@@ -3,6 +3,7 @@
 #
 set -euf -o pipefail
 script=$(readlink -f "$0")
+mydir=$(dirname "$script")
 
 repourl="https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation"
 embedopts='?style=github\&showBorder=on\&showLineNumbers=on\&showFileMeta=on\&showCopy=on\&fetchFromJsDelivr=on\&'
@@ -74,6 +75,23 @@ is_valid_desktop() {
   return 1
 }
 
+repofile() {
+  # Check if the file is next us or we need to download it...
+  if [ -f "$mydir/$1" ] ; then
+    if [ $# -eq 2 ] ; then
+      cat "$mydir/$1" > "$2"
+    else
+      cat "$mydir/$1"
+    fi
+  else
+    if [ $# -eq 2 ] ; then
+      output="$2"
+    else
+      output="$1"
+    fi
+    wget -O"$output" "$repourl/$1"
+  fi
+}
 #begin-output
 ## ---
 ## title: Installing Void Linux
@@ -116,7 +134,7 @@ if [ $# -lt 2 ] ; then
 	- _hostname_: Hostname to use
 
 	Options:
-	- mem=memory : memory size, defaults computed from /proc/meminfo, uses numfmt to parse values
+	- swap=kbs : swap size, defaults computed from /proc/meminfo, uses numfmt to parse values
 	- glibc : Do a glibc install
 	- noxwin : do not insall X11 related packages
 	- nodesktop ; do not install desktop environment
@@ -138,9 +156,9 @@ fi
 ##
 ## ### Command line examples
 ##
-## - sudo sh install.sh --dir=$HOME/vx9 vx9 mem=4G glibc passwd=1234567890 cache=$HOME/void-cache xen
-## - sudo sh install.sh --dir=$HOME/vx1 vx1 mem=4G glibc passwd=1234567890 cache=$HOME/void-cache xen
-## - sudo sh install.sh --dir=$HOME/vx11 vx11 mem=4G       passwd=1234567890 cache=$HOME/void-cache xen
+## - sudo sh install.sh --dir=$HOME/vx9 vx9 swap=4G glibc passwd=1234567890 cache=$HOME/void-cache xen
+## - sudo sh install.sh --dir=$HOME/vx1 vx1 swap=4G glibc passwd=1234567890 cache=$HOME/void-cache xen
+## - sudo sh install.sh --dir=$HOME/vx11 vx11 swap=4G       passwd=1234567890 cache=$HOME/void-cache xen
 ##
 #end-output
 
@@ -150,12 +168,12 @@ sysdev="$1"
 syshost="$2"
 shift 2
 
-mem=$(check_opt mem "$@") || :
-if [ -n "$mem" ] ; then
-  mem=$(numfmt --from=iec --to-unit=1024 "$mem")
-  [ -z "$mem" ] && die 1 "Invalid number for mem"
+swap=$(check_opt swap "$@") || :
+if [ -n "$swap" ] ; then
+  swap=$(numfmt --from=iec --to-unit=1024 "$mem")
+  [ -z "$swap" ] && die 1 "Invalid number for swap size"
 else
-  mem=$(awk '$1 == "MemTotal:" { print $2 }' /proc/meminfo)
+  swap=$(awk '$1 == "MemTotal:" { print int($2*2) }' /proc/meminfo)
 fi
 
 case "$sysdev" in
@@ -167,7 +185,7 @@ case "$sysdev" in
     imgsz=$(numfmt --to-unit=1024 --from=iec $(echo "$imgname" | cut -d: -f2 ))
     imgname=$(echo "$imgname" | cut -d: -f1)
   else
-    imgsz=$(expr $(numfmt --to-unit=1024 --from=iec 500M) + $(numfmt --to-unit=1024 --from=iec 4G) + $(expr $mem + $(expr $mem / 2)) + 1024)
+    imgsz=$(expr $(numfmt --to-unit=1024 --from=iec 500M) + $(numfmt --to-unit=1024 --from=iec 4G) + $swap)
   fi
   echo "$imgname: ${imgsz}K"
   truncate -s 0 "$imgname" # Make sure this is zero size so we can create a sparse file
@@ -248,7 +266,7 @@ fi
 
 partition_sys() {
   local csize="$1" drive="$2"
-  local swapsz=$(expr $mem + $(expr $mem / 2))
+  local swapsz=$swap
   local uefisz=$(numfmt --to-unit=1024 --from=iec 500M)
   local rootsz=$(numfmt --to-unit=1024 --from=iec 4G)
   local req=$(expr $uefisz + $swapsz + $rootsz)
@@ -290,7 +308,7 @@ if [ -n "$imgname" ] ; then
     syspart2="${imgname}2"
     syspart3="${imgname}3"
     truncate -s 500M "$syspart1"
-    truncate -s $(expr $mem + $(expr $mem / 2))K "$syspart2"
+    truncate -s ${swap}K "$syspart2"
     truncate -s ${imgsz}K "$syspart3"
   else
     echo "Setting up virtual disc image: $imgname"
@@ -440,11 +458,13 @@ extra_pkgs() {
 }
 
 echo y | env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $mnt $(
-  (wget -O- "$repourl/swlist.txt"
+  (
+  repofile swlist.txt
+
   if ! check_opt noxwin "$@" >/dev/null 2>&1 ; then
-    wget -O- "$repourl/swlist-xwin.txt"
+    repofile swlist-xwin.txt
     if is_valid_desktop "$desktop" ; then
-      wget -O- "$repourl/swlist-$desktop.txt"
+      repofile swlist-$desktop.txt
     fi
   fi
   extra_pkgs "$@"
@@ -722,7 +742,7 @@ fi
 if ! check_opt bios "$@" ; then
   echo "Installing UEFI files"
   mkdir -p $mnt/boot/EFI/BOOT
-  wget -O$mnt/boot/EFI/BOOT/BOOTX64.EFI $repourl/BOOTX64.EFI
+  repofile BOOTX64.EFI $mnt/boot/EFI/BOOT/BOOTX64.EFI
 fi
 
 #begin-output
@@ -751,8 +771,10 @@ fi
 #end-output
 
 echo "Installinng boot menu generator"
-wget -O$mnt/boot/mkmenu.sh $repourl/mkmenu.sh
-wget -O- $repourl/hook.sh | tee $mnt/etc/kernel.d/post-{install,remove}/99-bootmenu
+repofile mkmenu.sh $mnt/boot/mkmenu.sh
+(
+  repofile hook.sh
+) | tee $mnt/etc/kernel.d/post-{install,remove}/99-bootmenu
 chmod 755 $mnt/etc/kernel.d/post-{install,remove}/99-bootmenu
 
 #begin-output
@@ -959,7 +981,9 @@ fi
 ## <script src="$embedurl$repourl/acpi-handler.patch"></script>
 ##
 #end-output
-wget -O- $repourl/acpi-handler.patch | patch -b -z -void -d $mnt/etc/acpi
+(
+  repofile acpi-handler.patch
+) | patch -b -z -void -d $mnt/etc/acpi
 #begin-output
 ## ### rtkit spamming logs
 ##
