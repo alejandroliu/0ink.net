@@ -19,11 +19,11 @@ With pin positions are counted from _left to right_ with the _contacts facing_ y
 |Brown|8|Brown|
 
 
-![wiring1]({{ site.url }}/images/2013/wiring1.jpg)
+![wiring1](/images/2013/wiring1.jpg)
 
 Cut the outer insulation and order the wires (right), cut for equal length (not shown), and insert into plug (left)
 
-![wiring1]({{ site.url }}/images/2013/wiring2.jpg)
+![wiring1](/images/2013/wiring2.jpg)
 
 Check that the wires go to the end of the plug by seeing if you can see each wire at the end, preferably see its copper reflecting (left).
 

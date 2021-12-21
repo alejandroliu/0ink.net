@@ -36,4 +36,4 @@ Essentially it requires pairing a Raspberry Pi with a
 On the software side of things you need
 [rpi\_gpio\_ntp](http://vanheusden.com/time/rpi_gpio_ntp/)
 
-![pi-gps-shield-2013-10-15-1533-44-b]({{ site.url }}/images/2014/Pi-GPS-shield-2013-10-15-1533-44-b.jpg)
+![pi-gps-shield-2013-10-15-1533-44-b](/images/2014/Pi-GPS-shield-2013-10-15-1533-44-b.jpg)

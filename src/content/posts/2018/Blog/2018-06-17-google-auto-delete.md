@@ -69,12 +69,12 @@ and not simply check "Select all". Most of us would happily share our
 Google Photo collections with our next of kin, after all, but would
 prefer to take our search histories private. 
 
-![google-auto-delete-1]({{ site.url }}/images/2018/google-auto-delete-1.png)
+![google-auto-delete-1](/images/2018/google-auto-delete-1.png)
 
 The final step is the weightiest one: selecting whether or not your
 Google account will be wiped upon the completion of the timeout period.
 
-![google-auto-delete-2]({{ site.url }}/images/2018/google-auto-delete-2.png)
+![google-auto-delete-2](/images/2018/google-auto-delete-2.png)
 
 There is no option to partially delete the data, so make this very
 binary decision with care. You cannot, for example, wipe your search

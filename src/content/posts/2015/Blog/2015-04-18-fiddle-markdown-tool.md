@@ -28,7 +28,7 @@ date: 2015-04-18
 
 For a quick and simple Markdown Preview:
 
-![oudpno5sb9dfgfkvpvgw]({{ site.url }}/images/2015/oudpno5sb9dfgfkvpvgw.png)
+![oudpno5sb9dfgfkvpvgw](/images/2015/oudpno5sb9dfgfkvpvgw.png)
 
 [Fiddle](https://fiddle.md/)
 

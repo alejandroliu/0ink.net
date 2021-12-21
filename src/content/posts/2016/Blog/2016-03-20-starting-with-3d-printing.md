@@ -41,7 +41,7 @@ So what I did myself is design a soap dish. The one we had in our shower was gla
 
 This was the end result:
 
-![dish]({{ site.url }}/images/2016/soapdish.png)
+![dish](/images/2016/soapdish.png)
 
 Some learning points for this:
 

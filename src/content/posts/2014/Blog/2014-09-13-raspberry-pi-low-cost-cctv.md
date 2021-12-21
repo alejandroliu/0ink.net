@@ -29,7 +29,7 @@ A good tutorial on creating a low cost surveillance camera using
 the raspberry Pi camera module and one of thos fake surveillance
 camera things.
 
-![FJJOOSJHO7X6PIT.MEDIUM]({{ site.url }}/images/2014/FJJOOSJHO7X6PIT.MEDIUM.jpg)
+![FJJOOSJHO7X6PIT.MEDIUM](/images/2014/FJJOOSJHO7X6PIT.MEDIUM.jpg)
 
 [Instructables](http://www.instructables.com/id/Raspberry-Pi-as-low-cost-HD-surveillance-camera/) has a good tutorial on creating a low cost surveillance camera.
 

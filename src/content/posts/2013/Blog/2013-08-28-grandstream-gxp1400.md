@@ -27,7 +27,7 @@ date: 2013-08-28
 
 [Grandstream GXP1400](http://www.grandstream.com/products/ip-voice-telephony/enterprise-ip-phones/product/gxp1400/1405)
 
-![gs]({{ site.url }}/images/2013/gxp1400.jpg)
+![gs](/images/2013/gxp1400.jpg)
 
 The other day I replaced an analog phone with a Grandstream GXP1400 IP phone. I think it is a great value phone. It is one of the cheapest I could find yet supports all the features I was looking.
 

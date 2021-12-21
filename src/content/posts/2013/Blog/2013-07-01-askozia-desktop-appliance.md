@@ -25,7 +25,7 @@ title: Askozia Desktop Appliance
 date: 2013-07-01
 ---
 
-![Askozia Logo]({{ site.url }}/images/2013/askozia_logo.png)
+![Askozia Logo](/images/2013/askozia_logo.png)
 
 So last weekend finally had some time to work with a [Askozia](http://askozia.com/ "Askozia PBX") Desktop Appliance.
 

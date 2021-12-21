@@ -27,7 +27,7 @@ date: 2013-07-01
 
 So I have signed up `0ink.net` to use the [CloudFlare](http://www.cloudflare.com "CloudFlare") service.
 
-![CFLogo]({{ site.url }}/images/2013/cf-logo-v-rgb.png)
+![CFLogo](/images/2013/cf-logo-v-rgb.png)
 
 [CloudFlare](http://www.cloudflare.com "CloudFlare") is a reverse proxy service that is supposed to speed up and improve web server security.
 

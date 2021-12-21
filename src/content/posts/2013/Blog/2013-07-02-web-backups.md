@@ -25,7 +25,7 @@ title: Web Backups
 date: 2013-07-02
 ---
 
-![cfback]({{ site.url}}/images/2013/bb-images.jpg)
+![cfback](/images/2013/bb-images.jpg)
 
 As usual with any IT system backups are important. This does not change when using a free shared hosting provider. Because it is free, one would argue it is even more important.
 

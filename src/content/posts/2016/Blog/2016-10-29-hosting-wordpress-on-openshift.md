@@ -25,7 +25,7 @@ title: Hosting WordPress on OpenShift
 date: 2016-10-29
 ---
 
-![openshift]({{ site.url }}/images/2016/img_0423.jpg)
+![openshift](/images/2016/img_0423.jpg)
 
 So I finally moved my WordPress web sites to OpenShift.   
 

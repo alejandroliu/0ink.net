@@ -29,7 +29,7 @@ So finally took the time to try out a Raspberry Pi. For this weekend project wan
 Essentially, I wanted to recreate/enhance the functionality of a
 [TL-WR702N](http://www.tp-link.com/en/products/details/?model=TL-WR702N).
 
-![tl-wr702n-01]({{ site.url }}/images/2014/TL-WR720N-01.jpg)
+![tl-wr702n-01](/images/2014/TL-WR720N-01.jpg)
 
 The TL-WR702N Nano Router is a neat device but being closed, can not be customized to what I wanted. It can be used in
 the following modes:
@@ -54,7 +54,7 @@ So the Pi, is a mini computer that can be loaded with any software you want. The
 *   Raspberry-Pi Model-B  
     ![Raspberry Pi](https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Raspberry_Pi_B%2B_top.jpg/300px-Raspberry_Pi_B%2B_top.jpg)
 *   WIFI stick (2 units)  
-    ![WIFI]({{ site.url }}/images/2014/993655_LB_00_FB.EPS_250.jpg)
+    ![WIFI](/images/2014/993655_LB_00_FB.EPS_250.jpg)
 
 For the software I am using:
 

@@ -41,19 +41,19 @@ the Start menu entry for the Disk Management tool. This procedure works the same
 any version of Windows (though in Windows XP and Vista, you'd need to launch Disk Management
 through the Administrative Tools item in the Control Panel).
 
-![sud_1]({{ site.url }}/images/2017/sud_1.png)
+![sud_1](/images/2017/sud_1.png)
 
 Windows will scan and then display all the drives connected to your PC in the Disk Management
 window. Right-click the USB drive to which you want to assign a persistent drive letter and
 then click `Change Drive Letter and Paths.`
 
 
-![sud_2]({{ site.url }}/images/2017/sud_2.png)
+![sud_2](/images/2017/sud_2.png)
 
 The `Change Drive Letter and Paths` window the selected drive's current drive letter. To
 change the drive letter, click `Change.`
 
-![sud_3]({{ site.url }}/images/2017/sud_3.png)
+![sud_3](/images/2017/sud_3.png)
 
 In the `Change Drive Letter or Path` window that opens, make sure the `Assign the following
 drive letter` option is selected and then use the drop-down menu to select a new drive letter.
@@ -63,19 +63,19 @@ NOTE: We suggest picking a drive letter between M and Z, because earlier drive l
 still get assigned to drives that don't always show up in File Explorer-like optical and
 removable card drives. M through Z are almost never used on most Windows systems.
 
-![sud_4]({{ site.url }}/images/2017/sud_4.png)
+![sud_4](/images/2017/sud_4.png)
 
 Windows will display a warning letting you know that some apps might rely on drive letters
 to run properly. For the most part, you won't have to worry about this. But if you do have
 any apps in which you've specified another drive letter for this drive, you may need to
 change them. Click `Yes` to continue.
 
-![sud_5]({{ site.url }}/images/2017/sud_5.png)
+![sud_5](/images/2017/sud_5.png)
 
 Back in the main Disk Management window, you should see the new drive letter assigned to the
 drive. You can now close the Disk Management window.
 
-![sud_6]({{ site.url }}/images/2017/sud_6.png)
+![sud_6](/images/2017/sud_6.png)
 
 From now on, when you disconnect and reconnect the drive, that new drive letter should persist.
 You can also now use fixed paths for that drive in apps `such as back up apps` that may require them.

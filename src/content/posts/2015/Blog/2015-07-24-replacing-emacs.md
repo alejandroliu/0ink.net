@@ -25,7 +25,7 @@ title: Replacing Emacs with Atom
 date: 2015-07-24
 ---
 
-![atom]({{ site.url }}/images/2015/atom.png)
+![atom](/images/2015/atom.png)
 
 As an old UNIX guy I have been using
 [emacs](https://www.gnu.org/software/emacs/emacs.html) for years.

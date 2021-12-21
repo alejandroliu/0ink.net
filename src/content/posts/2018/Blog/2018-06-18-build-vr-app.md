@@ -38,14 +38,14 @@ using Chrome or Firefox on your mobile phone.
 Put your phone into [Google Cardboard](https://vr.google.com/cardboard/)
 and stare at a menu square to switch the 360-degree scene.
 
-![vr-in-15mins-1]({{ site.url }}/images/2018/vr-in-15min-1.png)
+![vr-in-15mins-1](/images/2018/vr-in-15min-1.png)
 
 ## Fork it
 
 Fork the [sample repository from GitHub](https://github.com/theta360developers/360gallery).
 Change directory into the repo.
 
-![vr-in-15mins-2]({{ site.url }}/images/2018/vr-in-15min-2.png)
+![vr-in-15mins-2](/images/2018/vr-in-15min-2.png)
 
 If you have 360-degree images, you can drop them into the img/
 sub-directory. If you don't have 360-degree images, you can get
@@ -58,7 +58,7 @@ I took at a meetup in San Francisco.
 The menus in the headset are standard images that are 240x240 pixels.
 A-Frame handles the perspective shifts for you automatically.
 
-![vr-in-15mins-3]({{ site.url }}/images/2018/vr-in-15min-3.png)
+![vr-in-15mins-3](/images/2018/vr-in-15min-3.png)
 
 ## Edit code
 

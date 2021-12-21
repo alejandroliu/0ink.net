@@ -48,7 +48,7 @@ most about it is the first impression that you get when it launches:
 clean, simple, with an interface that's familiar and easy to navigate.
 Quite reminiscent of Visio, in fact:
 
-![dia-1]({{ site.url }}/images/2018/dia-1.png)
+![dia-1](/images/2018/dia-1.png)
 
 You'll be able to create your first diagram in mere minutes.
 Drag-and-drop a few symbols onto the canvas, then connect them using
@@ -76,7 +76,7 @@ LibreOffice is far from perfect, but it's a respectable option for
 fans of open source software. The app that should interest you is
 *LibreOffice Draw*, the Visio counterpart in this office suite.
 
-![draw-1]({{ site.url }}/images/2018/draw-1.png)
+![draw-1](/images/2018/draw-1.png)
 
 LibreOffice Draw supplies two things for you: shapes and lines. You
 use the shapes to represent diagram entities, and you use the lines to

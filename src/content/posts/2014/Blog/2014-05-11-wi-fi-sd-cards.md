@@ -27,7 +27,7 @@ date: 2014-05-11
 
 My latest weekend project. Making a normal digital camera WIFI enabled.
 
-![list_WIFISD.png]({{ site.url }}/images/2014/list_WIFISD.png)
+![list_WIFISD.png](/images/2014/list_WIFISD.png)
 
 With the [Transcend Wi-Fi SD Card](http://www.transcend-info.com/products/Catlist.asp?FldNo=24) you can convert any digital camera into a Wi-Fi enable camera.
 

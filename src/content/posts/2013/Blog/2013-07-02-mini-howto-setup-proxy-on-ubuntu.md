@@ -29,7 +29,7 @@ A quick and dirty mini-howto to setup a proxy on Ubuntu.
 This is meant mostly for doing quick setup of a proxy
 on a cloud environment.
 
-![logo-ubuntu_su-orange-hex]({{ site.url }}/images/2013/logo-ubuntu_su-orange-hex.jpg)
+![logo-ubuntu_su-orange-hex](/images/2013/logo-ubuntu_su-orange-hex.jpg)
 
 
 1.  Install Squid with the following command at the Linux command prompt:  

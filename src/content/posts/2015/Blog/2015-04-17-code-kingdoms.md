@@ -34,7 +34,7 @@ most of the puzzles require kids to use code elements to solve the
 puzzles. At first this is through dragging-and-dropping code snippets,
 but as they progress, kids will be typing in code themselves.
 
-![pugw1qoceliykwmnprbt]({{ site.url }}/images/2015/pugw1qoceliykwmnprbt.png)
+![pugw1qoceliykwmnprbt](/images/2015/pugw1qoceliykwmnprbt.png)
 
 Besides teaching actual JavaScript through play, Code Kingdoms
 also helps kids develop problem-solving skills and the encouragement
