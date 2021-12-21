@@ -12,6 +12,10 @@ rsync
 wget
 unzip
 zip
+xtools
+dos2unix
+bridge-utils
+
 
 autofs			# for NFS and automounting
 nfs-utils
@@ -19,3 +23,10 @@ cryptsetup		# encrypted LUKS filesystem
 chrony			# ntp client
 dcron			# cron support
 
+# Additional utilities
+dmidecode
+acpi
+smartmontools
+
+# More utils
+screen

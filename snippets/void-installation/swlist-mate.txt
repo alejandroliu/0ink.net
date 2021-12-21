@@ -9,11 +9,19 @@ gvfs-afc
 gvfs-mtp
 gvfs-smb
 caja-open-terminal
+paprefs
 
 # Just the web browser
 firefox-esr gst-libav
+gst-libav		# void-linux: add mp4 support to firefox
 
-
-
+parcellite xdotool
+xdg-utils
+wmctrl			# windows scripting
+xscreensaver		# cross DE screen saver
+fortune-mod
+fortune-mod-void
+xbindkeys		# hot keys
+x11vnc
 
 

@@ -8,15 +8,26 @@
 #
 # To see the list of "manually" installed packages
 #
-
 git			# I need this to interact with github
+hub
+rcm			# dot file manager
 
 tcl			# gui scripts
 tk
 
+VeraCrypt		# Encrypted drives
+
+flatpak			# application distrib
+xdg-desktop-portal
+xdg-desktop-portal-gtk
+xdg-user-dirs
+xdg-user-dirs-gtk
+
 geany			# text editor and IDE
 geany-plugins
 geany-plugins-extra
+micro			# Another CLI text editor
+xclip
 
 mplayer			# media support
 ffmpeg
@@ -24,52 +35,54 @@ vlc
 eyeD3
 ImageMagick
 
-parcellite xdotool
+catimg feh viu		# barebones img viewers
 
-gst-libav		# void-linux add mp4 support to firefox
-# synergy-gui		# software kvm switch
 libreoffice		# Office applications
-mypaint			# MSPaint like
-simple-scan xsane	# scanner support
+azpainter		# MSPaint like
+simple-scan		# scanner support
+calibre			# e-book management
+cups			# Printer support
+hplip-gui		# Printer+scanner support for HP
 
+redshift-gtk		# blue blocker
+safeeyes xprintidle	# eye care
 xorg-apps		# Basic X apps
 mesa-demos
 xterm
 tigervnc
+glxinfo
+glmark2
 
 font-bh-ttf		# Additional fonts
 noto-fonts-ttf
 
 syslinux mtools		# misc script for working with USB boot drives
 
+atf			# dev support
+kyua
+jq
 # php
-# jq
-# asciidoc | ruby-asciidoctor
 # gcc
 # make
 # ltrace
 # strace
 # tcpdump
 # luakit
-# clamav			# anti virus
 
-owncloudclient		# sync with nextcloud/owncloud
-bootiso			# Create USB boot discs from ISOs
-cadaver			# modify NextCloud from CLI
-catimg feh		# barebones img viewers
-darkhttpd		# light weight web server
-pandoc			# create md to epub
-pidgin pidgin-sipe avahi	# chat app
-redshift-gtk		# blue blocker
-safeeyes xprintidle	# eye care
+# asciidoc | ruby-asciidoctor ?
+# bootiso			# Create USB boot discs from ISOs
+# darkhttpd		# light weight web server
+# pandoc			# create md to epub
 
-# streamripper		# copy internet radio
+# pidgin pidgin-sipe avahi	# chat app
 
-wmctrl			# windows scripting
-xscreensaver		# cross DE screen saver
-rcm			# dot file manager
-xbindkeys		# hot keys
+#python-pip
+#python3-Markdown
+#python3-bottle
+#python3-tkinter
+#python3-yaml
 
-# this is needed for AH fotoservice integration
-xdg-utils snappy
-
+#qemu
+#libvirt
+#virt-manager
+#virt-manager-tools
