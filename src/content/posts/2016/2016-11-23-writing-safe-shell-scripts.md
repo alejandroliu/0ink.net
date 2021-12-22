@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Writing Safe Shell scripts
 date: 2016-11-23
+tags: configuration, directory, python, scripts, security, settings, tools
+revised: 2021-12-22
 ---
 
 Writing shell scripts leaves a lot of room to make mistakes, in ways that will cause

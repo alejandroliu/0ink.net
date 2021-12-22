@@ -1,6 +1,8 @@
 ---
 title: Windows Account Lockouts
 date: 2018-07-19
+tags: network, password, windows
+revised: 2021-12-22
 ---
 
 To prevent windows lockouts the following can be done:

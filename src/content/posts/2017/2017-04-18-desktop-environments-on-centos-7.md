@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Desktop environments on Centos 7
 date: 2017-04-18
+tags: desktop
+revised: 2021-12-22
 ---
 
 These are commands to install different Desktop environments

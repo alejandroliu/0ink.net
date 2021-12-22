@@ -1,6 +1,8 @@
 ---
 title: game lists
 date: 2016-10-12
+tags: power
+revised: 2021-12-22
 ---
 
 

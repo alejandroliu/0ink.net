@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Native Kerberos Authentication with SSH
 date: 2013-05-27
+tags: authentication, configuration, domain, information, login, network, password, service
+revised: 2021-12-22
 ---
 
 This article is about integrating OpenSSH in a kerberos environment.

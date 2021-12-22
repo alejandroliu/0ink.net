@@ -1,6 +1,8 @@
 ---
 title: Installing Void Linux
 date: 2019-02-19
+tags: backups, boot, configuration, desktop, device, directory, drive, filesystem, installation, linux, login, manager, network, partition, password, power, scripts, software, sudo
+revised: 2021-12-22
 ---
 
 I made the switch to [void linux][void].  Except for compatibility

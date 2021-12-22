@@ -1,6 +1,8 @@
 ---
 title: Enable syslog with void
 date: 2021-12-21
+tags: desktop, directory, linux, service
+revised: 2021-12-22
 ---
 
 In [void][void] Linux, the default is without logging.  Most

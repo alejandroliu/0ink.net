@@ -1,6 +1,8 @@
 ---
 title: VNC desktop
 date: 2017-11-12
+tags: authentication, desktop, login, security
+revised: 2021-12-22
 ---
 
 IDEA:

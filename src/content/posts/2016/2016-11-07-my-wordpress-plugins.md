@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: My WordPress plugins
 date: 2016-11-07
+tags: backup, wordpress
+revised: 2021-12-22
 ---
 
 For my own purposes I have written a number of WordPress plugins.

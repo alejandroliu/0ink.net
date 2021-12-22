@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Building Signed APKs
 date: 2016-12-11
+tags: android
+revised: 2021-12-22
 ---
 
 Building signed APK's for Android is easy if you know what you

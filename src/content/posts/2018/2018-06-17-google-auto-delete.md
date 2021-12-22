@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Set your google account to automatically delete
 date: 2018-06-17
+tags: feature, information, manager, settings
+revised: 2021-12-22
 ---
 
 Want to share your family photos after your death, but take your

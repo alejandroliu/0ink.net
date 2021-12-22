@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Open Source Alternatives to Visio
 date: 2018-06-11
+tags: desktop, drive, feature, software, tools
+revised: 2021-12-22
 ---
 
 Need to create diagrams, flowcharts, circuits, or other kinds of

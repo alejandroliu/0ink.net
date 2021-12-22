@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: atratus project
 date: 2013-06-05
+tags: idea, linux, windows
+revised: 2021-12-22
 ---
 
 

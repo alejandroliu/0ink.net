@@ -4,6 +4,16 @@
 {% block extra_meta %}
 
 	<meta name="description" content="{{ article.summary|striptags }}">
+	<meta name="int-title" content="{{ article.title|striptags }}">
+	{% if article.tags %}
+	<meta name="tags" content="{{ article.tags|join(', ') }}">
+	{% endif %}
+	{% if article.date %}
+	<meta name="date" content="{{ article.date }}">
+	{% endif %}
+	{% if article.revised %}
+	<meta name="revised" content="{{ article.revised }}">
+	{% endif %}
 
 {% if PELICAN_SIMPLEGREY_TWITTER_CARD_ACCOUNT %}
 	<meta name="twitter:card" content="summary">

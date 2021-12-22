@@ -1,6 +1,8 @@
 ---
 title: Z-Wave Associations with With Vera UI
 date: 2019-03-01
+tags: device, network
+revised: 2021-12-22
 ---
 
 I couldn't find any to the point documentation on how to do this,

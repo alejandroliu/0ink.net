@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Media Tips
 date: 2013-06-02
+tags: feature
+revised: 2021-12-22
 ---
 
 This is an article about different media (and more specifically)

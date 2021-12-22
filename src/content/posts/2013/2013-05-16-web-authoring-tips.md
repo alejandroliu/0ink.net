@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: On-line Web Authoring Resources
 date: 2013-05-16
+tags: scripts, tools, wordpress
+revised: 2021-12-22
 ---
 
 A collection of links for Web-Authoring.  This focuses on using

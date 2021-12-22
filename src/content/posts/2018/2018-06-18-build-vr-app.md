@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Build a VR app in 15 minutes
 date: 2018-06-18
+tags: application, browser, desktop, directory, git, github
+revised: 2021-12-22
 ---
 
 In 15 minutes, you can develop a virtual reality application and run

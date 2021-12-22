@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "1"
 title: Wi-Fi Sd Cards
 date: 2014-05-11
+tags: linux, scripts
+revised: 2021-12-22
 ---
 
 My latest weekend project. Making a normal digital camera WIFI enabled.

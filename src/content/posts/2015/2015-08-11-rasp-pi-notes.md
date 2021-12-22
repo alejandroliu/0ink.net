@@ -1,6 +1,8 @@
 ---
 title: Raspberry pi notes
 date: 2015-08-11
+tags: raspberry
+revised: 2021-12-22
 ---
 
 # raspberry pi shops

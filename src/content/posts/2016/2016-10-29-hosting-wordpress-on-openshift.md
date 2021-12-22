@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Hosting WordPress on OpenShift
 date: 2016-10-29
+tags: backups, cloud, drive, github, integration, scripts, storage, wordpress
+revised: 2021-12-22
 ---
 
 ![openshift](/images/2016/img_0423.jpg)

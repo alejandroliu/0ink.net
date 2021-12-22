@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: ArchLinux tips
 date: 2013-05-27
+tags: boot, configuration, directory, installation, linux, network, settings, setup
+revised: 2021-12-22
 ---
 
 A bunch of recipes useful for an ArchLinux system environment.

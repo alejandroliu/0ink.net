@@ -23,7 +23,8 @@ AUTHOR_FEED_RSS = None
 LINKS = (
           ('Repo','https://github.com/alejandroliu/0ink.net'),
           ('Alejandro','https://alejandro.iliu.net/'),
-          #('Tags','/tags.html'),
+          ('Tags','/tags.html'),
+          ('sitemap','/sitemap.html'),
         )
 LOGO_IMG = '/images/2021/0ink.png'
 DISPLAY_PAGES_ON_MENU = True
@@ -51,9 +52,13 @@ ARTICLE_URL = 'posts/{date:%Y}/{slug}.html'
 ARTICLE_SAVE_AS = 'posts/{date:%Y}/{slug}.html'
 PAGE_URL = 'pages/{slug}.html'
 PAGE_SAVE_AS = 'pages/{slug}.html'
+CATEGORY_URL = 'category/c{slug}.html'
+CATEGORY_SAVE_AS = 'category/c{slug}.html'
+
+WITH_FUTURE_DATES = False
 
 # Pagination
-DEFAULT_PAGINATION = 10
+DEFAULT_PAGINATION = 20
 
 THEME = 'themes/pelican-simplegrey'
 

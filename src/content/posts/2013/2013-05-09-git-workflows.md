@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Git Workflows
 date: 2013-05-09
+tags: computer, feature, git, integration, remote, setup
+revised: 2021-12-22
 ---
 
 This article describes my personal `git` Workflow.

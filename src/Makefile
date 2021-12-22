@@ -46,7 +46,9 @@ help:
 	@echo '                                                                          '
 
 html:
+	python3 hax.py --tags=tagcloud $(INPUTDIR)/pages/*.md $(INPUTDIR)/posts/*/*.md
 	"$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
+	python3 sitemap.py --strip=2 --prefix=https://0ink.net/ --xml=$(OUTPUTDIR)/sitemap.xml --html=$(OUTPUTDIR)/sitemap.html ../docs/pages/*.html ../docs/posts/*/*.html
 
 clean:
 	[ ! -d "$(OUTPUTDIR)" ] || rm -rf "$(OUTPUTDIR)"

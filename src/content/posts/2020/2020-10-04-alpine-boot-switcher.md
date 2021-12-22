@@ -1,6 +1,8 @@
 ---
 title: Alpine Boot switcher
 date: 2020-10-04
+tags: boot, directory, drive, partition
+revised: 2021-12-22
 ---
 
 I boot from a USB boot drive using UEFI.  Because of the UEFI boot,

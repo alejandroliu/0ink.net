@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Git Tutorials
 date: 2013-05-28
+tags: git
+revised: 2021-12-22
 ---
 
 Reference for Git tutorials

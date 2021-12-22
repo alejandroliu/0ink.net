@@ -24,6 +24,8 @@ comment_count: "0"
 title: Backing up GMail
 
 date: 2013-08-28
+tags: backup, python, software
+revised: 2021-12-22
 ---
 
 The other day I found <a href="http://gmvault.org/index.html">Gmvault</a>.

@@ -1,6 +1,8 @@
 ---
 title: Retropie
 date: 2018-03-01
+tags: backup, boot, git, power, sudo
+revised: 2021-12-22
 ---
 
 - DVD player

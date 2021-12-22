@@ -1,6 +1,8 @@
 ---
 title: clipping ideas
 date: 2015-12-11
+tags: address, markdown, wordpress
+revised: 2021-12-22
 ---
 
 - Divide into

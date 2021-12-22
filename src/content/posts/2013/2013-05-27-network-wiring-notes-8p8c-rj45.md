@@ -1,6 +1,8 @@
 ---
 title: Network wiring notes - 8P8C / RJ45
 date: 2013-05-27
+tags: computer, network, power, speed
+revised: 2021-12-22
 ---
 
 What you were probably looking forT568A/B (10-BASE-T and 100-BASE-TX):

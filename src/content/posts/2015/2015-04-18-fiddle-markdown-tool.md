@@ -24,6 +24,8 @@ comment_count: "0"
 title: Fiddle Markdown Tool
 
 date: 2015-04-18
+tags: markdown
+revised: 2021-12-22
 ---
 
 For a quick and simple Markdown Preview:

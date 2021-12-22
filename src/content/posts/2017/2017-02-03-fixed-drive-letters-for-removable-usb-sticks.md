@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Fixed drive letters for removable USB sticks
 date: 2017-02-03
+tags: backup, drive, management, tools, windows
+revised: 2021-12-22
 ---
 
 

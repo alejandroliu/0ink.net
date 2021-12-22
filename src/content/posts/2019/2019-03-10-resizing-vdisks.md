@@ -1,6 +1,8 @@
 ---
 title: Resizing Virtual Disks with virsh
 date: 2019-03-10
+tags: partition
+revised: 2021-12-22
 ---
 
 I am currently using `libvirt` for managing my VMs.  For virtual discs

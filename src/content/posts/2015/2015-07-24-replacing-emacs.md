@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "1"
 title: Replacing Emacs with Atom
 date: 2015-07-24
+tags: editor, markdown
+revised: 2021-12-22
 ---
 
 ![atom](/images/2015/atom.png)

@@ -45,168 +45,12 @@
 
 <article class="summary">
 <div class="metadata">
-  <time datetime="2019-05-10T00:00:00+02:00" pubdate>Fri 10 May 2019</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  in <a href="/category/2019.html">2019</a>
-</div>  <div>
-    <h2>
-      <a href="/posts/2019/2019-05-10-nginx_mod_authrequest.html" rel="bookmark" title="Permalink to nginx's auth_request_module howto">nginx's auth_request_module howto</a>
-    </h2>
-    <p><p>This article tries to supplement the <a href="http://nginx.org/en/">nginx</a> documentations
-regarding the <a href="http://nginx.org/en/docs/http/ngx_http_auth_request_module.html">auth_request</a> module
-and how to <a href="https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-subrequest-authentication/">configure</a> it.  In my opinion, that documentation
-is a bit incomplete.</p>
-<h1>What is the nginx's <a href="http://nginx.org/en/docs/http/ngx_http_auth_request_module.html">auth_request</a> module</h1>
-<p>The documentation for this module says, it implements client
-authorization based on the result of a subrequest.</p>
-<p>This …</p></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2019-05-01T00:00:00+02:00" pubdate>Wed 01 May 2019</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  in <a href="/category/2019.html">2019</a>
-</div>  <div>
-    <h2>
-      <a href="/posts/2019/2019-05-01-python-venv.html" rel="bookmark" title="Permalink to Python Virtual Environments">Python Virtual Environments</a>
-    </h2>
-    <p><p>This is the least you need to know to get to use a Python virtual
-environment.</p>
-<h2>What is a Virtual Environment</h2>
-<p>At its core, the main purpose of Python virtual environments is to
-create an isolated environment for Python projects. This means that
-each project can have its own dependencies …</p></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2019-04-20T00:00:00+02:00" pubdate>Sat 20 April 2019</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  in <a href="/category/2019.html">2019</a>
-</div>  <div>
-    <h2>
-      <a href="/posts/2019/2019-04-20-secure-erase.html" rel="bookmark" title="Permalink to Secure erase of disc drives">Secure erase of disc drives</a>
-    </h2>
-    <p><p>This article is about erasing disc drives securely.  Specially for SSD
-drives, writing zeros or random data to discs is not good enough and
-counterproductive.</p>
-<p>One way to do secure erase (for disposal) is to begin with an encrypted
-disc.  However, after the fact the following options are possible:</p>
-<h1>ATA …</h1></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2019-04-10T00:00:00+02:00" pubdate>Wed 10 April 2019</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  in <a href="/category/2019.html">2019</a>
-</div>  <div>
-    <h2>
-      <a href="/posts/2019/2019-04-10-void-musl-with-glibc.html" rel="bookmark" title="Permalink to Co-existing GLIBC binaries with Void-Linux MUSL edition">Co-existing GLIBC binaries with Void-Linux MUSL edition</a>
-    </h2>
-    <p><p>I am running <a href="https://voidlinux.org/">void-linux</a> at home with <code>musl</code> as the standard
-C library.</p>
-<p>While most things work well, there is a number of programs that
-do not and must be using <code>glibc</code> counterparts.</p>
-<p>To enable this I followed this guide here: <a href="https://blog.w1r3.net/2017/09/23/live-switching-void-linux-from-glibc-to-musl.html">Live switching Void Linux from glibc to musl</a>.</p>
-<p>To …</p></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2019-04-01T00:00:00+02:00" pubdate>Mon 01 April 2019</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  in <a href="/category/2019.html">2019</a>
-</div>  <div>
-    <h2>
-      <a href="/posts/2019/2019-04-01-availability-calculations.html" rel="bookmark" title="Permalink to Calculate system availability">Calculate system availability</a>
-    </h2>
-    <p><p>To calculate the availability of redundant systems you can
-use this formula:</p>
-<div class="highlight"><pre><span></span><code>total_avail = 1-(1 - single_avail) ^ (number_of_nodes)
-</code></pre></div>
-
-<form action="">
-<table>
-  <tr><td>Nodes:</td><td> <input type="number" id="nodes" name="nodes" min="1" maxlength="4" value="2" onchange="myCalculation();" /></td></tr>
-  <tr><td>Single component availability (%):</td><td><input type="number" id="savail" name="savail" min="0.10" step="any" maxlength="10" value="99.00" onchange="myCalculation();" /></td></tr>
-  <tr><td>Total Availability (%): </td><td><input name="total" id="total" type="number" maxlength="20" min="0" placeholder="00.00" readonly="true" /> </td></tr>
-</table>
-</form>
-
-<script>
-function myCalculation() {
-var nodes = parseInt(document.getElementById('nodes').value,10);
-var sava = parseFloat(document.getElementById('savail').value);
-var result = (1-(1-sava/100.0)**(nodes))*100
-document.getElementById …</script></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2019-03-20T00:00:00+01:00" pubdate>Wed 20 March 2019</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  in <a href="/category/2019.html">2019</a>
-</div>  <div>
-    <h2>
-      <a href="/posts/2019/2019-03-20-adhoc-rsync.html" rel="bookmark" title="Permalink to Ad-Hoc rsync daemons">Ad-Hoc rsync daemons</a>
-    </h2>
-    <p><p>The other day I needed to copy a bunch of files between to servers
-in my home network.  Because of the volume I wanted to copy the files
-without having to go through <code>ssh</code>'s encryption overhead.  So I
-figured I could use <code>netcat</code> for the data transport.</p>
-<p>To do …</p></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2019-03-10T00:00:00+01:00" pubdate>Sun 10 March 2019</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  in <a href="/category/2019.html">2019</a>
-</div>  <div>
-    <h2>
-      <a href="/posts/2019/2019-03-10-resizing-vdisks.html" rel="bookmark" title="Permalink to Resizing Virtual Disks with virsh">Resizing Virtual Disks with virsh</a>
-    </h2>
-    <p><p>I am currently using <code>libvirt</code> for managing my VMs.  For virtual discs
-I am using <code>LVM2</code> volumes.  On a regular basis I need to resize
-these virtual discs, but not that often that I can do this from
-memory.  This is a short procedure to do this:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">ls</span> <span class="o">-</span><span class="nv">l</span> <span class="o">/</span><span class="nv">dev …</span></code></pre></div></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2019-03-01T00:00:00+01:00" pubdate>Fri 01 March 2019</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  in <a href="/category/2019.html">2019</a>
-</div>  <div>
-    <h2>
-      <a href="/posts/2019/2019-03-01-z-wave-associations-with-vera.html" rel="bookmark" title="Permalink to Z-Wave Associations with With Vera UI">Z-Wave Associations with With Vera UI</a>
-    </h2>
-    <p><p>I couldn't find any to the point documentation on how to do this,
-so I am writing this.</p>
-<p>The way I understand Z-Wave associations work is that once devices
-are in the same Z-Wave network, a device can directly send
-a command to another device without intervention of the Hub …</p></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
   <time datetime="2019-02-28T00:00:00+01:00" pubdate>Thu 28 February 2019</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  in <a href="/category/2019.html">2019</a>
-</div>  <div>
+  in <a href="/category/c2019.html">2019</a>
+<p class="tags">tagged <a href="/tag/backup.html">backup</a>, <a href="/tag/boot.html">boot</a>, <a href="/tag/device.html">device</a>, <a href="/tag/filesystem.html">filesystem</a>, <a href="/tag/idea.html">idea</a>, <a href="/tag/partition.html">partition</a></p></div>  <div>
     <h2>
       <a href="/posts/2019/2019-02-28-encrypting-fs-in-void.html" rel="bookmark" title="Permalink to Encrypting FileSystem in Void Linux">Encrypting FileSystem in Void Linux</a>
     </h2>
@@ -223,8 +67,8 @@ be overwritten consistently.</p>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  in <a href="/category/2019.html">2019</a>
-</div>  <div>
+  in <a href="/category/c2019.html">2019</a>
+<p class="tags">tagged <a href="/tag/backups.html">backups</a>, <a href="/tag/boot.html">boot</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/desktop.html">desktop</a>, <a href="/tag/device.html">device</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/drive.html">drive</a>, <a href="/tag/filesystem.html">filesystem</a>, <a href="/tag/installation.html">installation</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/login.html">login</a>, <a href="/tag/manager.html">manager</a>, <a href="/tag/network.html">network</a>, <a href="/tag/partition.html">partition</a>, <a href="/tag/password.html">password</a>, <a href="/tag/power.html">power</a>, <a href="/tag/scripts.html">scripts</a>, <a href="/tag/software.html">software</a>, <a href="/tag/sudo.html">sudo</a></p></div>  <div>
     <h2>
       <a href="/posts/2019/2019-02-19-installing-void.html" rel="bookmark" title="Permalink to Installing Void Linux">Installing Void Linux</a>
     </h2>
@@ -237,10 +81,412 @@ I have worked around with a combination of <code>Flatpak</code>s, <code>chroot</
 <li>musl build - which is very lightweigth</li>
 <li>Does not depend on <code>systemd …</code></li></ul></p>
   </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2019-02-11T00:00:00+01:00" pubdate>Mon 11 February 2019</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2019.html">2019</a>
+<p class="tags">tagged <a href="/tag/desktop.html">desktop</a>, <a href="/tag/manager.html">manager</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2019/2019-02-11-my-linux-shortcuts.html" rel="bookmark" title="Permalink to My Linux Keyboard Shortcuts">My Linux Keyboard Shortcuts</a>
+    </h2>
+    <p><p>In general we try to be similar to MS-Windows shortcuts.</p>
+<p>Default bindings (in MATE)</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alt + F4</td>
+<td>Close the active item, or exit the active program</td>
+</tr>
+<tr>
+<td>Alt + Tab</td>
+<td>Switch between open items</td>
+</tr>
+<tr>
+<td>Ctrl + Alt + Tab</td>
+<td>Use the arrow keys to switch between open items</td>
+</tr>
+<tr>
+<td>Alt + Esc</td>
+<td>Cycle through items …</td></tr></tbody></table></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2019-02-10T00:00:00+01:00" pubdate>Sun 10 February 2019</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2019.html">2019</a>
+<p class="tags">tagged <a href="/tag/desktop.html">desktop</a>, <a href="/tag/management.html">management</a>, <a href="/tag/manager.html">manager</a>, <a href="/tag/windows.html">windows</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2019/2019-02-10-windows-shortcuts.html" rel="bookmark" title="Permalink to Global Windows Keyboard Shorcuts">Global Windows Keyboard Shorcuts</a>
+    </h2>
+    <p><p>Common Window Management Shortcuts</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alt + F4</td>
+<td>Close the active item, or exit the active program</td>
+</tr>
+<tr>
+<td>Alt + Tab</td>
+<td>Switch between open items</td>
+</tr>
+<tr>
+<td>Ctrl + Alt + Tab</td>
+<td>Use the arrow keys to switch between open items</td>
+</tr>
+<tr>
+<td>Alt + Esc</td>
+<td>Cycle through items in the order in which they were opened</td>
+</tr>
+<tr>
+<td>Ctrl + Esc …</td></tr></tbody></table></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2019-01-08T00:00:00+01:00" pubdate>Tue 08 January 2019</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2019.html">2019</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2019/2019-01-08-simplenote-clients.html" rel="bookmark" title="Permalink to Third Party SimpleNote clients">Third Party SimpleNote clients</a>
+    </h2>
+    <p><p>An inventory of simplenote clients:</p>
+<p>SimpleNote clients:</p>
+<ul>
+<li><a href="https://github.com/insanum/sncli">sncli</a></li>
+<li><a href="https://github.com/cpbotha/nvpy">nvpy</a></li>
+<li><a href="https://github.com/brittohalloran/notestack">notestack</a></li>
+<li><a href="https://github.com/dotemacs/simplenote.el">simplenote.el</a></li>
+<li><a href="https://github.com/carlo/simplenote-js">simplenote-js</a></li>
+<li><a href="https://www.npmjs.com/package/simplenote-sync">simplenote-sync</a></li>
+<li><a href="https://www.npmjs.com/package/simplenote">simplenote pkg</a></li>
+</ul>
+<p>Current plan is to use a <code>webapp</code> wrapper for the actual
+simplenote web site.</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2018-09-22T00:00:00+02:00" pubdate>Sat 22 September 2018</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2018.html">2018</a>
+<p class="tags">tagged <a href="/tag/boot.html">boot</a>, <a href="/tag/installation.html">installation</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/service.html">service</a>, <a href="/tag/ubuntu.html">ubuntu</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2018/2018-09-22-docker-notes.html" rel="bookmark" title="Permalink to Docker on Alpine Linux">Docker on Alpine Linux</a>
+    </h2>
+    <p><p>Alpine Linux Quick installation</p>
+<p>See <a href="https://wiki.alpinelinux.org/wiki/Docker">wiki</a>  For Alpine Linux &gt; 3.8</p>
+<ol>
+<li>Un-comment community repo from <code>/etc/apk/repositories</code></li>
+<li>apk add docker</li>
+<li>rc-update add docker boot</li>
+<li>service docker start</li>
+</ol>
+<p>Optional: (docker compose)</p>
+<div class="highlight"><pre><span></span><code>apk add docker-compose
+</code></pre></div>
+
+<hr>
+<p>Note 2021-03-21: When I tested this, the <code>daemon.json</code> did not
+work!  Your mileage may vary …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2018-08-29T00:00:00+02:00" pubdate>Wed 29 August 2018</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2018.html">2018</a>
+<p class="tags">tagged <a href="/tag/linux.html">linux</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2018/2018-08-29-alpine-on-otc.html" rel="bookmark" title="Permalink to Alpine on OTC">Alpine on OTC</a>
+    </h2>
+    <p><p>These are just random thoughts nothing really was implemented.</p>
+<p>Alpine Linux image</p>
+<ul>
+<li>
+<p>preparation: jq and other deps to <code>/apks/x86_64</code></p>
+</li>
+<li>
+<p><code>/etc/local.d/</code>
+    <code>cloud-init-lite</code></p>
+</li>
+<li>
+<p>if <code>/etc/network/intefaces</code> exists we abort</p>
+</li>
+<li><code>apk add --force-non-repository /path oniguruma,jq</code> .. restore <code>/etc/apk/world</code></li>
+<li><code>udhcpc -b -p /var/run/udhcpc.eth0.pid -i …</code></li></ul></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2018-07-19T00:00:00+02:00" pubdate>Thu 19 July 2018</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2018.html">2018</a>
+<p class="tags">tagged <a href="/tag/network.html">network</a>, <a href="/tag/password.html">password</a>, <a href="/tag/windows.html">windows</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2018/2018-07-19-locking-account.html" rel="bookmark" title="Permalink to Windows Account Lockouts">Windows Account Lockouts</a>
+    </h2>
+    <p><p>To prevent windows lockouts the following can be done:</p>
+<ul>
+<li>Delete Internet Explorer browsing history</li>
+<li>Run the following:</li>
+<li>Open Start --&gt; Search filed--&gt; Type in Run --&gt; rundll32.exe keymgr.dll, KRShowKeyMgr --&gt; Delete</li>
+<li>Disconnect network shares</li>
+<li>Change password</li>
+</ul></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2018-07-11T00:00:00+02:00" pubdate>Wed 11 July 2018</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2018.html">2018</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2018/2018-07-11-awk-vs-grep.html" rel="bookmark" title="Permalink to Skipping grep when using AWK">Skipping grep when using AWK</a>
+    </h2>
+    <p><p>Over the years, We've seen many people use this pattern (filter-map):</p>
+<div class="highlight"><pre><span></span><code>$ <span class="o">[</span>data is generated<span class="o">]</span> <span class="p">|</span> grep something <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span>
+</code></pre></div>
+
+<p>but it can be shortened to:</p>
+<div class="highlight"><pre><span></span><code>$ <span class="o">[</span>data is generated<span class="o">]</span> <span class="p">|</span> awk <span class="s1">&#39;/something/ {print $2}&#39;</span>
+</code></pre></div>
+
+<h1>You (probably) don't need grep</h1>
+<p>Following this logic, you can replace a simple grep with:</p>
+<div class="highlight"><pre><span></span><code>$ <span class="o">[</span>data is generated …</code></pre></div></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2018-07-04T00:00:00+02:00" pubdate>Wed 04 July 2018</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2018.html">2018</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2018/2018-07-04-naming-schemes.html" rel="bookmark" title="Permalink to Naming Schemes">Naming Schemes</a>
+    </h2>
+    <p><p>This web site contains list of names of different topics.  This
+can be used for naming schemes:</p>
+<p><a href="https://namingschemes.com/Main_Page">Naming Schemes</a></p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2018-06-18T00:00:00+02:00" pubdate>Mon 18 June 2018</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2018.html">2018</a>
+<p class="tags">tagged <a href="/tag/application.html">application</a>, <a href="/tag/browser.html">browser</a>, <a href="/tag/desktop.html">desktop</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/git.html">git</a>, <a href="/tag/github.html">github</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2018/2018-06-18-build-vr-app.html" rel="bookmark" title="Permalink to Build a VR app in 15 minutes">Build a VR app in 15 minutes</a>
+    </h2>
+    <p><p>In 15 minutes, you can develop a virtual reality application and run
+it in a web browser, on a VR headset, or with <a href="https://vr.google.com/daydream/">Google Daydream</a>.
+The key is <a href="https://aframe.io/">A-Frame</a>, an open source toolkit built
+by the <a href="https://mozvr.com/">Mozilla VR Team</a>.</p>
+<h2>Test It</h2>
+<p>Open <a href="https://theta360developers.github.io/360gallery/">this link</a>
+using Chrome or Firefox on your …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2018-06-17T00:00:00+02:00" pubdate>Sun 17 June 2018</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2018.html">2018</a>
+<p class="tags">tagged <a href="/tag/feature.html">feature</a>, <a href="/tag/information.html">information</a>, <a href="/tag/manager.html">manager</a>, <a href="/tag/settings.html">settings</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2018/2018-06-17-google-auto-delete.html" rel="bookmark" title="Permalink to Set your google account to automatically delete">Set your google account to automatically delete</a>
+    </h2>
+    <p><p>Want to share your family photos after your death, but take your
+search history to the grave? All that and more is possible with
+Google's Inactive Account Manager.</p>
+<h2>How You Can Control Your Information After Death</h2>
+<p>It's not nice to think about, but one day, you will die, along with …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2018-06-16T00:00:00+02:00" pubdate>Sat 16 June 2018</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2018.html">2018</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2018/2018-06-16-html-entities.html" rel="bookmark" title="Permalink to HTML Entities">HTML Entities</a>
+    </h2>
+    <p><p>(remember the ampersand at the start and the semi-colon at the end of each "tag")</p>
+<p>| &Aacute; | &amp;Aacute; |
+| &aacute; | &amp;aacute; |
+| &Agrave; | &amp;Agrave; |
+| &Acirc; | &amp;Acirc; |
+| &agrave; | &amp;agrave; |
+| &Acirc; | &amp;Acirc; |
+| &acirc; | &amp;acirc; |
+| &Auml; | &amp;Auml; |
+| &auml; | &amp;auml; |
+| &Atilde; | &amp;Atilde; |
+| &atilde; | &amp;atilde; |
+| &Aring; | &amp;Aring; |
+| &aring; | &amp;aring; |
+| &AElig; | &amp;AElig; |
+| &aelig; | &amp;aelig; |
+| &Ccedil; | &amp;Ccedil; |
+| &ccedil; | &amp;ccedil; |
+| &ETH; …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2018-06-15T00:00:00+02:00" pubdate>Fri 15 June 2018</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2018.html">2018</a>
+<p class="tags">tagged <a href="/tag/android.html">android</a>, <a href="/tag/browser.html">browser</a>, <a href="/tag/desktop.html">desktop</a>, <a href="/tag/github.html">github</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/manager.html">manager</a>, <a href="/tag/password.html">password</a>, <a href="/tag/security.html">security</a>, <a href="/tag/service.html">service</a>, <a href="/tag/tools.html">tools</a>, <a href="/tag/windows.html">windows</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2018/2018-06-15-password-managers.html" rel="bookmark" title="Permalink to 3 Open Source Password Managers">3 Open Source Password Managers</a>
+    </h2>
+    <p><p>Keep your data and accounts safe by using a secure open source
+password manager to store unique, complex passwords.</p>
+<p>Maintaining complex, unique passwords for each site and service you
+use is among the most common pieces of advice that security
+professionals provide to the public every year.</p>
+<p>Yet no matter …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2018-06-14T00:00:00+02:00" pubdate>Thu 14 June 2018</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2018.html">2018</a>
+<p class="tags">tagged <a href="/tag/centos.html">centos</a>, <a href="/tag/device.html">device</a>, <a href="/tag/drive.html">drive</a>, <a href="/tag/filesystem.html">filesystem</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/partition.html">partition</a>, <a href="/tag/privacy.html">privacy</a>, <a href="/tag/security.html">security</a>, <a href="/tag/sudo.html">sudo</a>, <a href="/tag/tools.html">tools</a>, <a href="/tag/ubuntu.html">ubuntu</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2018/2018-06-14-linux-disk-encryption.html" rel="bookmark" title="Permalink to How to encrypt linux partitions with LUKS">How to encrypt linux partitions with LUKS</a>
+    </h2>
+    <p><p>There are plenty of reasons why people would need to encrypt a
+partition. Whether they're rooted it in privacy, security, or
+confidentiality, setting up a basic encrypted partition on a Linux
+system is fairly easy. This is especially true when using LUKS, since
+its functionality is built directly into the …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2018-06-11T00:00:00+02:00" pubdate>Mon 11 June 2018</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2018.html">2018</a>
+<p class="tags">tagged <a href="/tag/desktop.html">desktop</a>, <a href="/tag/drive.html">drive</a>, <a href="/tag/feature.html">feature</a>, <a href="/tag/software.html">software</a>, <a href="/tag/tools.html">tools</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2018/2018-06-11-visio-alternatives.html" rel="bookmark" title="Permalink to Open Source Alternatives to Visio">Open Source Alternatives to Visio</a>
+    </h2>
+    <p><p>Need to create diagrams, flowcharts, circuits, or other kinds of
+entity-relationship models? Microsoft Visio is without a doubt the
+best software for that, but that doesn't mean it's the best choice
+<em>for you.</em></p>
+<p>Visio may be the industry standard in the corporate world, but it
+comes with a huge drawback …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2018-06-10T00:00:00+02:00" pubdate>Sun 10 June 2018</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2018.html">2018</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2018/2018-06-10-documentation-tips.html" rel="bookmark" title="Permalink to 10 tips for maiking documentation crystal clear">10 tips for maiking documentation crystal clear</a>
+    </h2>
+    <p><p>So you've some written excellent documentation. Now what? Now it's
+time to go back and edit it. When you first sit down to write your
+documentation, you want to focus on what you're trying to say instead
+of how you're saying it, but once that first draft is done it's …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2018-06-07T00:00:00+02:00" pubdate>Thu 07 June 2018</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2018.html">2018</a>
+<p class="tags">tagged <a href="/tag/application.html">application</a>, <a href="/tag/editor.html">editor</a>, <a href="/tag/java.html">java</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2018/2018-06-07-ascii-art.html" rel="bookmark" title="Permalink to Ascii Art Tools">Ascii Art Tools</a>
+    </h2>
+    <p><p>Here are some resources dealling with ASCII art...</p>
+<ul>
+<li><a href="https://github.com/dhobsd/asciitosvg">AsciiToSVG</a> - PHP code
+  to convert ascii art into SVG.</li>
+<li><a href="http://asciiflow.com/">AsciiFlow</a> - Web App implement an ascii art
+  editor.</li>
+<li><a href="http://search.cpan.org/dist/App-Asciio/lib/App/Asciio.pm">Asciio</a>
+  A perl application allows you to draw ASCII diagrams in a modern
+  (but simple) graphical interface.</li>
+<li><a href="http://ditaa.sourceforge.net/">ditaa</a> - Java based ascii art to PNG
+  converter …</li></ul></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2018-06-06T00:00:00+02:00" pubdate>Wed 06 June 2018</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2018.html">2018</a>
+<p class="tags">tagged <a href="/tag/tools.html">tools</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2018/2018-06-06-web-app-build-tools.html" rel="bookmark" title="Permalink to 6 Cloud-Based Tools To Help You Build A Web App With Ease">6 Cloud-Based Tools To Help You Build A Web App With Ease</a>
+    </h2>
+    <p><p>In just a relatively short amount of time, building mobile apps has
+transformed from a process that included lots of knowledge in
+developing into something that almost anyone can do. Cloud-based tools
+are quickly becoming the norm for app developers, and these are some
+of the highest recommended tools, each …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2018-05-17T00:00:00+02:00" pubdate>Thu 17 May 2018</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2018.html">2018</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2018/2018-05-17-crash.html" rel="bookmark" title="Permalink to So the server crashed">So the server crashed</a>
+    </h2>
+    <p><p>Now we have to re-create things...</p></p>
+  </div>
 </article>
 <div class="pagination">
             <a href="/index.html">&laquo;</a>
-    Page 2 / 18
+    Page 2 / 10
         <a href="/index3.html">&raquo;</a>
 </div>
 
@@ -254,15 +500,16 @@ I have worked around with a combination of <code>Flatpak</code>s, <code>chroot</
 	        <nav>
 	          <h2>Years</h2>
 	          <ul>
-	              <li ><a href="/category/2021.html">2021</a></li>
-	              <li ><a href="/category/2020.html">2020</a></li>
-	              <li ><a href="/category/2019.html">2019</a></li>
-	              <li ><a href="/category/2018.html">2018</a></li>
-	              <li ><a href="/category/2017.html">2017</a></li>
-	              <li ><a href="/category/2016.html">2016</a></li>
-	              <li ><a href="/category/2015.html">2015</a></li>
-	              <li ><a href="/category/2014.html">2014</a></li>
-	              <li ><a href="/category/2013.html">2013</a></li>
+	              <li ><a href="/category/c2021.html">2021</a></li>
+	              <li ><a href="/category/c2020.html">2020</a></li>
+	              <li ><a href="/category/c2019.html">2019</a></li>
+	              <li ><a href="/category/c2018.html">2018</a></li>
+	              <li ><a href="/category/c2017.html">2017</a></li>
+	              <li ><a href="/category/c2016.html">2016</a></li>
+	              <li ><a href="/category/c2015.html">2015</a></li>
+	              <li ><a href="/category/c2014.html">2014</a></li>
+	              <li ><a href="/category/c2013.html">2013</a></li>
+	              <li ><a href="/category/c.html">...</a></li>
 	          </ul>
 	        </nav>
 
@@ -279,6 +526,8 @@ I have worked around with a combination of <code>Flatpak</code>s, <code>chroot</
 	            <ul>
 	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
 	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	                <li><a href="/tags.html">Tags</a></li>
+	                <li><a href="/sitemap.html">sitemap</a></li>
 	            </ul>
 	          </aside>
 	      </div>
@@ -288,7 +537,7 @@ I have worked around with a combination of <code>Flatpak</code>s, <code>chroot</
       <footer>
 
 		<p role="contentinfo">
-		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+		  © 2021 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
     	</p>
 
 	  </footer>

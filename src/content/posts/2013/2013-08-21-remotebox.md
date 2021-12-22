@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Remote VirtualBox
 date: 2013-08-21
+tags: browser, remote
+revised: 2021-12-22
 ---
 
 [RemoteBox](http://knobgoblin.org.uk/ "RemoteBox") is a Remote VirtualBox UI. It is similar [phpVirtualBox](http://sourceforge.net/projects/phpvirtualbox/ "phpVirtualBox") in that allows to manage VirtualBox remotely (on a potentially headless server). They differ in their requirements:

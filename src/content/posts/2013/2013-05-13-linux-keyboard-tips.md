@@ -10,6 +10,8 @@ guid: http://s12.pw/wp/?p=74
 post_type: post
 title: Linux Keyboard Tips
 date: 2013-05-13
+tags: computer, linux
+revised: 2021-12-22
 ---
 
 Miscellaneous hacks to use the keyboard under Linux.

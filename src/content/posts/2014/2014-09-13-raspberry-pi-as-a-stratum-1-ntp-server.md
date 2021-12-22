@@ -24,6 +24,8 @@ comment_count: "0"
 title: Raspberry Pi as a Stratum-1 NTP Server
 
 date: 2014-09-13
+tags: raspberry, software
+revised: 2021-12-22
 ---
 
 This is something I found:

@@ -1,6 +1,8 @@
 ---
 title: vr starting points
 date: 2016-11-06
+tags: linux
+revised: 2021-12-22
 ---
 
 - [vr boilerplate](https://github.com/borismus/webvr-boilerplate)

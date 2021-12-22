@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Grandstream GXP1400
 date: 2013-08-28
+tags: directory, remote
+revised: 2021-12-22
 ---
 
 [Grandstream GXP1400](http://www.grandstream.com/products/ip-voice-telephony/enterprise-ip-phones/product/gxp1400/1405)

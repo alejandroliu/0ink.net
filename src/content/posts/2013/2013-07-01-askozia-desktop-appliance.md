@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Askozia Desktop Appliance
 date: 2013-07-01
+tags: configuration, desktop, network, power, settings
+revised: 2021-12-22
 ---
 
 ![Askozia Logo](/images/2013/askozia_logo.png)

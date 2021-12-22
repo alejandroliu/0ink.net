@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "1"
 title: Side Load apps on Android TV
 date: 2017-01-10
+tags: android, browser, cloud, drive, manager, settings, storage
+revised: 2021-12-22
 ---
 
 So we bough a Philips 50PFK6540.  This is a 50" TV with

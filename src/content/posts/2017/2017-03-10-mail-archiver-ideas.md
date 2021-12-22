@@ -1,6 +1,8 @@
 ---
 title: Mail Archiver ideas
 date: 2017-03-10
+tags: address, information
+revised: 2021-12-22
 ---
 
 We use it for receiving junk e-mails (i.e. for those times where we need an e-mail address for sign-up to a service).

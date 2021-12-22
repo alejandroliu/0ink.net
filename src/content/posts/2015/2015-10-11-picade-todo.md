@@ -1,6 +1,8 @@
 ---
 title: Picade Todo
 date: 2015-10-11
+tags: java, power, python, setup
+revised: 2021-12-22
 ---
 
 1. [key mappings](http://forums.pimoroni.com/t/picade-pcb-emulator-key-mapping/922)

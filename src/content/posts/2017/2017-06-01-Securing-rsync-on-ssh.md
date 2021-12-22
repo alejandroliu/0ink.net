@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Securing rsync on ssh
 date: 2017-06-01
+tags: backup, directory, remote, security
+revised: 2021-12-22
 ---
 
 Reference: [positon.org](http://positon.org/rsync-command-restriction-over-ssh)

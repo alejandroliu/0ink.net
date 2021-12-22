@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Raspberry Pi Weekend project
 date: 2014-04-26
+tags: computer, device, filesystem, linux, power, raspberry, scripts, software
+revised: 2021-12-22
 ---
 
 So finally took the time to try out a Raspberry Pi. For this weekend project wanted to do something _relatively_ simple.

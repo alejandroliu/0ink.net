@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Raspberry Pi Thin Client
 date: 2015-08-17
+tags: raspberry
+revised: 2021-12-22
 ---
 
 Thin Client project want to create a very low price thin client over

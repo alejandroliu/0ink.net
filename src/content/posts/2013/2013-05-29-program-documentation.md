@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Program Documentation
 date: 2013-05-29
+tags: address, feature, java, javascript, markdown, python, software, tools
+revised: 2021-12-22
 ---
 
 So these are my ideas on how to document projects. There are three types of documentation types:

@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: 'Mini-Howto: Setup proxy on Ubuntu'
 date: 2013-07-02
+tags: address, browser, cloud, config, editor, linux, proxy, setup, ubuntu
+revised: 2021-12-22
 ---
 
 A quick and dirty mini-howto to setup a proxy on Ubuntu.

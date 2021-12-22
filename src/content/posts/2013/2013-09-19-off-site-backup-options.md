@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Off site backup options
 date: 2013-09-19
+tags: backups, cloud, drive, linux
+revised: 2021-12-22
 ---
 
 This is my working notes on doing off-site backups to the cloud.

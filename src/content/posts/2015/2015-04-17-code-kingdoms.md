@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Code Kingdoms
 date: 2015-04-17
+tags: javascript
+revised: 2021-12-22
 ---
 
 

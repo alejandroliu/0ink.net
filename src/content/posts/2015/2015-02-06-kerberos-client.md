@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Kerberos Client
 date: 2015-02-06
+tags: authentication, configuration, linux, password
+revised: 2021-12-22
 ---
 
 This simple mini how-to goes over the configuration of a

@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: 3 Open Source Password Managers
 date: 2018-06-15
+tags: android, browser, desktop, github, linux, manager, password, security, service, tools, windows
+revised: 2021-12-22
 ---
 
 Keep your data and accounts safe by using a secure open source

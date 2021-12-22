@@ -24,6 +24,8 @@ comment_count: "0"
 title: Lifehacker App Guides
 
 date: 2015-07-24
+tags: directory
+revised: 2021-12-22
 ---
 
 These two hyperlinks from Lifehacker are quite useful:

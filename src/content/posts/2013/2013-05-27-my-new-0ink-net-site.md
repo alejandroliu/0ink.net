@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: My new 0ink.net site
 date: 2013-05-27
+tags: backups, proxy, scripts, service, software
+revised: 2021-12-22
 ---
 
 

@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Using CloudFlare
 date: 2013-07-01
+tags: editor, network, proxy, security, service, settings, speed
+revised: 2021-12-22
 ---
 
 So I have signed up `0ink.net` to use the [CloudFlare](http://www.cloudflare.com "CloudFlare") service.

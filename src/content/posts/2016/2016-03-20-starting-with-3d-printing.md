@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Starting with 3D Printing
 date: 2016-03-20
+tags: application, browser, cloud, computer, service, software
+revised: 2021-12-22
 ---
 
 So I finally tried my hand at 3D printing. Obviously I did not buy at 3D printer. These are either quite expensive or you need to assemble them yourself, which I don't think is in my capacity level.

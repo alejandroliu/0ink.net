@@ -24,6 +24,8 @@ comment_count: "0"
 title: Another Markdown Editor
 
 date: 2015-04-30
+tags: markdown
+revised: 2021-12-22
 ---
 
 This one is GitHubFlavored markdown...

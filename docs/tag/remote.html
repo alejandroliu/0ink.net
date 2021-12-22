@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>remote - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+
+<h1>Post tagged: remote</h1>
+
+<article class="summary">
+<div class="metadata">
+  <time datetime="2021-12-21T00:00:00+01:00" pubdate>Tue 21 December 2021</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2021.html">2021</a>
+<p class="tags">tagged <a href="/tag/domain.html">domain</a>, <a href="/tag/information.html">information</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/service.html">service</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2021/2021-12-21-ssl-tips.html" rel="bookmark" title="Permalink to Stupid SSL tricks">Stupid SSL tricks</a>
+    </h2>
+    <p><p>Some hints and tips foor doing SSL related things:</p>
+<h1>Netcat for SSL</h1>
+<p>This command lets you connect to a SSL server (a-la netcat):</p>
+<div class="highlight"><pre><span></span><code><span class="nv">cat</span> <span class="nv">request</span>.<span class="nv">txt</span> <span class="o">|</span> <span class="nv">openssl</span> <span class="nv">s_client</span> <span class="o">-</span><span class="k">connect</span> <span class="nv">server</span>:<span class="mi">443</span>
+</code></pre></div>
+
+<h1>Creating self-signed certificates</h1>
+<p>This is a single command to generate a self-signed certificate:</p>
+<div class="highlight"><pre><span></span><code>openssl req -new \
+      -newkey rsa:4096 …</code></pre></div></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2019-03-20T00:00:00+01:00" pubdate>Wed 20 March 2019</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2019.html">2019</a>
+<p class="tags">tagged <a href="/tag/network.html">network</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/scripts.html">scripts</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2019/2019-03-20-adhoc-rsync.html" rel="bookmark" title="Permalink to Ad-Hoc rsync daemons">Ad-Hoc rsync daemons</a>
+    </h2>
+    <p><p>The other day I needed to copy a bunch of files between to servers
+in my home network.  Because of the volume I wanted to copy the files
+without having to go through <code>ssh</code>'s encryption overhead.  So I
+figured I could use <code>netcat</code> for the data transport.</p>
+<p>To do …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2018-01-30T00:00:00+01:00" pubdate>Tue 30 January 2018</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2018.html">2018</a>
+<p class="tags">tagged <a href="/tag/centos.html">centos</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/filesystem.html">filesystem</a>, <a href="/tag/information.html">information</a>, <a href="/tag/installation.html">installation</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/network.html">network</a>, <a href="/tag/partition.html">partition</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/service.html">service</a>, <a href="/tag/storage.html">storage</a>, <a href="/tag/sudo.html">sudo</a>, <a href="/tag/ubuntu.html">ubuntu</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2018/2018-01-30-cache-nfs-files.html" rel="bookmark" title="Permalink to using cachefiles on an Linux NFS share">using cachefiles on an Linux NFS share</a>
+    </h2>
+    <p><p>If you often mount and access a remote NFS share on your system, you
+will probably want to know how to improve NFS file access performance.
+One possibility is using file caching. In Linux, there is a caching
+filesystem called FS-Cache which enables file caching for network file
+systems such …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2017-06-01T00:00:00+02:00" pubdate>Thu 01 June 2017</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2017.html">2017</a>
+<p class="tags">tagged <a href="/tag/backup.html">backup</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/security.html">security</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2017/2017-06-01-securing-rsync-on-ssh.html" rel="bookmark" title="Permalink to Securing rsync on ssh">Securing rsync on ssh</a>
+    </h2>
+    <p><p>Reference: <a href="http://positon.org/rsync-command-restriction-over-ssh">positon.org</a></p>
+<p>You have 2 systems and you want to set up a secure backup with rsync + SSH of one system to the other.</p>
+<p>Very simply, you can use:</p>
+<div class="highlight"><pre><span></span><code><span class="k">backup</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="err">#</span><span class="w"> </span><span class="n">rsync</span><span class="w"> </span><span class="o">-</span><span class="n">avz</span><span class="w"> </span><span class="c1">--numeric-ids --delete root@myserver.example.com:/path/ /backup/myserver/</span>
+</code></pre></div>
+
+<p>To do the backup, you have …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2016-10-14T00:00:00+02:00" pubdate>Fri 14 October 2016</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2016.html">2016</a>
+<p class="tags">tagged <a href="/tag/application.html">application</a>, <a href="/tag/javascript.html">javascript</a>, <a href="/tag/remote.html">remote</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2016/2016-10-14-csr-ideas.html" rel="bookmark" title="Permalink to CSR ideas">CSR ideas</a>
+    </h2>
+    <p><p>Work improvements</p>
+<h1>NFR</h1>
+<ul>
+<li>Javascript single page application</li>
+<li>JS GUI</li>
+<li>Retargettable back-end:</li>
+<li>Local</li>
+<li>Remote</li>
+<li>Synchronization utility</li>
+<li>Multi-user (authentication?)</li>
+<li>Output Excel</li>
+<li>Output changes</li>
+</ul>
+<h1>FR</h1>
+<ul>
+<li>requirements</li>
+<li>roadmap objects</li>
+<li>release time lines</li>
+<li>indicators</li>
+<li>descriptive text</li>
+<li>Meta data</li>
+<li>attributes (i.e owner, reviewers, etc)</li>
+<li>versioning</li>
+<li>Milestone data</li>
+<li>Detail data</li>
+<li>release details</li>
+<li>line items</li>
+</ul></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2016-03-10T00:00:00+01:00" pubdate>Thu 10 March 2016</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2016.html">2016</a>
+<p class="tags">tagged <a href="/tag/application.html">application</a>, <a href="/tag/backup.html">backup</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/domain.html">domain</a>, <a href="/tag/git.html">git</a>, <a href="/tag/github.html">github</a>, <a href="/tag/installation.html">installation</a>, <a href="/tag/login.html">login</a>, <a href="/tag/password.html">password</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/settings.html">settings</a>, <a href="/tag/setup.html">setup</a>, <a href="/tag/wordpress.html">wordpress</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2016/2016-03-10-openshift-notes.html" rel="bookmark" title="Permalink to OpenShift notes">OpenShift notes</a>
+    </h2>
+    <p><p><strong>THIS IS FOR ARCHIVAL PURPOSES.  THIS IS OUT-OF-DATE</strong></p>
+<h2>backup OpenShift</h2>
+<div class="highlight"><pre><span></span><code><span class="nv">openshift</span> <span class="k">getenv</span><span class="ss">(</span><span class="nv">USER</span><span class="ss">)</span> <span class="nv">from</span> <span class="nv">OpenShift</span> <span class="nv">php</span>
+<span class="nv">ssh</span> <span class="nv">to</span> {<span class="nv">user</span>}@{<span class="nv">app</span><span class="o">-</span><span class="nv">domain</span>} <span class="nv">gear</span> <span class="nv">snapshot</span>  <span class="o">&gt;</span> <span class="nv">file</span>
+</code></pre></div>
+
+<p>Run gear app</p>
+<p>OpenShift migration further notes</p>
+<p>Encrypt a file using a supplied password :</p>
+<div class="highlight"><pre><span></span><code>$ openssl enc -aes-256-cbc -salt -in file.txt -out file.txt.enc -k …</code></pre></div></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2016-02-02T00:00:00+01:00" pubdate>Tue 02 February 2016</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2016.html">2016</a>
+<p class="tags">tagged <a href="/tag/address.html">address</a>, <a href="/tag/computer.html">computer</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/device.html">device</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/editor.html">editor</a>, <a href="/tag/management.html">management</a>, <a href="/tag/manager.html">manager</a>, <a href="/tag/network.html">network</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/security.html">security</a>, <a href="/tag/service.html">service</a>, <a href="/tag/settings.html">settings</a>, <a href="/tag/storage.html">storage</a>, <a href="/tag/tools.html">tools</a>, <a href="/tag/windows.html">windows</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2016/2016-02-02-windows-administration-from-the-command-line.html" rel="bookmark" title="Permalink to Windows administration from the command line">Windows administration from the command line</a>
+    </h2>
+    <p><p>Windows system administration is very mouse driven and to reach
+all tools you need to browse through Windows explorer.</p>
+<p>If you are like me and prefer to log on a limited privilege account and use Runas to perform admin tasks, you can open these consoles with the .msc file names …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-11-08T00:00:00+01:00" pubdate>Fri 08 November 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2013.html">2013</a>
+<p class="tags">tagged <a href="/tag/android.html">android</a>, <a href="/tag/application.html">application</a>, <a href="/tag/desktop.html">desktop</a>, <a href="/tag/editor.html">editor</a>, <a href="/tag/login.html">login</a>, <a href="/tag/manager.html">manager</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/settings.html">settings</a>, <a href="/tag/tools.html">tools</a>, <a href="/tag/wordpress.html">wordpress</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-11-08-my-must-have-android-apps.html" rel="bookmark" title="Permalink to My Must Have Android Apps">My Must Have Android Apps</a>
+    </h2>
+    <p><p>This is a list of my favorite Android Apps:</p>
+<h1>Essentials</h1>
+<ul>
+<li>Barcode Scanner - <a href="https://play.google.com/store/apps/details?id=com.google.zxing.client.android">Play Store</a> <a href="https://f-droid.org/repository/browse/?fdid=com.google.zxing.client.android">F-Droid</a></li>
+<li>Ghost Commander - <a href="https://f-droid.org/repository/browse/?fdid=com.ghostsq.commander">F-Droid</a></li>
+<li><a href="https://f-droid.org/">F-Droid</a> Alternative Application Manager. Usually Open source stuff with significantly less crap ware and ads.</li>
+</ul>
+<h1>Productivity</h1>
+<ul>
+<li>WordPress - <a href="http://market.android.com/details?id=org.wordpress.android">PlayS tore</a></li>
+<li>KeePassDroid - <a href="https://f-droid.org/repository/browse/?fdid=com.android.keepass">f-droid</a></li>
+<li>GoTasks - <a href="https://play.google.com/store/apps/details?id=com.mile.android.gotasks">Play Store</a></li>
+<li>Dropbox - <a href="https://play.google.com/store/apps/details?id=com.dropbox.android">Play Store</a></li>
+<li>Quickoffice - <a href="https://play.google.com/store/apps/details?id=com.quickoffice.android">Play Store</a></li>
+<li>SimpleNote - <a href="https://play.google.com/store/apps/details?id=com.automattic.simplenote">Play …</a></li></ul></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-10-07T00:00:00+02:00" pubdate>Mon 07 October 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2013.html">2013</a>
+<p class="tags">tagged <a href="/tag/centos.html">centos</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/filesystem.html">filesystem</a>, <a href="/tag/information.html">information</a>, <a href="/tag/installation.html">installation</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/network.html">network</a>, <a href="/tag/partition.html">partition</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/service.html">service</a>, <a href="/tag/storage.html">storage</a>, <a href="/tag/sudo.html">sudo</a>, <a href="/tag/ubuntu.html">ubuntu</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-10-07-enable-local-file-caching-for-nfs-share-on-linux.html" rel="bookmark" title="Permalink to Enable local file caching for NFS share on Linux">Enable local file caching for NFS share on Linux</a>
+    </h2>
+    <p><p>In Linux, there is a caching filesystem called <code>FS-Cache</code> which enables
+file caching for network file systems such as NFS. <code>FS-Cache</code> is built
+into the Linux kernel 2.6.30 and higher. In order for <code>FS-Cache</code> to
+operate, it needs cache back-end which provides actual storage for
+caching. One such …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-09-22T00:00:00+02:00" pubdate>Sun 22 September 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2013.html">2013</a>
+<p class="tags">tagged <a href="/tag/config.html">config</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/feature.html">feature</a>, <a href="/tag/git.html">git</a>, <a href="/tag/information.html">information</a>, <a href="/tag/integration.html">integration</a>, <a href="/tag/password.html">password</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/scripts.html">scripts</a>, <a href="/tag/software.html">software</a>, <a href="/tag/tools.html">tools</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-09-22-continous-integration-from-git.html" rel="bookmark" title="Permalink to Driving Continuous Integration from Git">Driving Continuous Integration from Git</a>
+    </h2>
+    <p><p><strong>Testing, code coverage, style enforcement are all check-in and merge
+requirements that can be automated and driven from Git.</strong></p>
+<p>If you're among the rising number of Git users out there, you're in
+luck: You can automate pieces of your development workflow with Git
+hooks. Hooks are a native Git mechanism …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-08-28T00:00:00+02:00" pubdate>Wed 28 August 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2013.html">2013</a>
+<p class="tags">tagged <a href="/tag/directory.html">directory</a>, <a href="/tag/remote.html">remote</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-08-28-grandstream-gxp1400.html" rel="bookmark" title="Permalink to Grandstream GXP1400">Grandstream GXP1400</a>
+    </h2>
+    <p><p><a href="http://www.grandstream.com/products/ip-voice-telephony/enterprise-ip-phones/product/gxp1400/1405">Grandstream GXP1400</a></p>
+<p><img alt="gs" src="/images/2013/gxp1400.jpg"></p>
+<p>The other day I replaced an analog phone with a Grandstream GXP1400 IP phone. I think it is a great value phone. It is one of the cheapest I could find yet supports all the features I was looking.</p>
+<p>Specifically I wanted a IP phone that could:</p>
+<ol>
+<li>Have …</li></ol></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-08-28T00:00:00+02:00" pubdate>Wed 28 August 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2013.html">2013</a>
+<p class="tags">tagged <a href="/tag/android.html">android</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/integration.html">integration</a>, <a href="/tag/network.html">network</a>, <a href="/tag/remote.html">remote</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-08-28-yealink-w52p.html" rel="bookmark" title="Permalink to Yealink W52P">Yealink W52P</a>
+    </h2>
+    <p><p><a href="http://www.yealink.com/product_info.aspx?ProductsCateID=308">Yealink W52P</a></p>
+<p><img alt="phone" src="/images/2013/W52PwebRpicture20X20CM-01590427430.jpg"></p>
+<p>So I was looking to replace my analog cordless phones mainly because I wanted to have a centralized way to maintain phonebooks. Right now I have two cordless phone that I have to manually enter phonebook entries on the two handsets independently.</p>
+<p>Initially I was thinking of getting …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-08-21T00:00:00+02:00" pubdate>Wed 21 August 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2013.html">2013</a>
+<p class="tags">tagged <a href="/tag/browser.html">browser</a>, <a href="/tag/remote.html">remote</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-08-21-remotebox.html" rel="bookmark" title="Permalink to Remote VirtualBox">Remote VirtualBox</a>
+    </h2>
+    <p><p><a href="http://knobgoblin.org.uk/" title="RemoteBox">RemoteBox</a> is a Remote VirtualBox UI. It is similar <a href="http://sourceforge.net/projects/phpvirtualbox/" title="phpVirtualBox">phpVirtualBox</a> in that allows to manage VirtualBox remotely (on a potentially headless server). They differ in their requirements:</p>
+<ul>
+<li><a href="http://knobgoblin.org.uk/" title="RemoteBox">RemoteBox</a> does not require much on the server, but you need to install it on the client.</li>
+<li><a href="http://sourceforge.net/projects/phpvirtualbox/" title="phpVirtualBox">phpVirtualBox</a> only requires a browser and …</li></ul></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-08-21T00:00:00+02:00" pubdate>Wed 21 August 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2013.html">2013</a>
+<p class="tags">tagged <a href="/tag/config.html">config</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/scripts.html">scripts</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-08-21-ssh-tricks.html" rel="bookmark" title="Permalink to SSH Tricks">SSH Tricks</a>
+    </h2>
+    <p><p>A bunch of stupid SSH tricks that can be useful somehow, somewhere...</p>
+<h2>Forcing either IPv4 or IPv6</h2>
+<p>This is for the scenario that you know which specific protocol works<br>
+to reach a particular host. Usually good to eliminate the delay<br>
+for SSH to figure out to switch IP protocols. For …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-05-27T00:00:00+02:00" pubdate>Mon 27 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2013.html">2013</a>
+<p class="tags">tagged <a href="/tag/directory.html">directory</a>, <a href="/tag/git.html">git</a>, <a href="/tag/github.html">github</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/setup.html">setup</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-05-27-mirroring-a-gitorious-repository-to-github.html" rel="bookmark" title="Permalink to Mirroring a Gitorious repository to GitHub">Mirroring a Gitorious repository to GitHub</a>
+    </h2>
+    <p><p>There is nothing special with <a href="http://github.com/">GitHub</a> and
+<a href="http://gitorious.com/">Gitorious</a> here. This technique would work
+exactly the same the other way around or with other servers.</p>
+<h1>In a nutshell</h1>
+<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">Inital</span><span class="w"> </span><span class="n">setup</span><span class="w"></span>
+<span class="n">git</span><span class="w"> </span><span class="n">clone</span><span class="w"> </span><span class="o">--</span><span class="n">mirror</span><span class="w"> </span><span class="nl">git</span><span class="p">:</span><span class="o">//</span><span class="n">gitorious</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">weasyprint</span><span class="o">/</span><span class="n">weasyprint</span><span class="p">.</span><span class="n">git</span><span class="w"> </span><span class="n">weasyprint</span><span class="w"></span>
+<span class="n">GIT_DIR</span><span class="o">=</span><span class="n">weasyprint</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="n">remote</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">github</span><span class="w"> </span><span class="n">git</span><span class="nv">@github</span><span class="p">.</span><span class="nl">com</span><span class="p">:</span><span class="n">SimonSapin</span><span class="o">/</span><span class="n">WeasyPrint …</span></code></pre></div></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-05-27T00:00:00+02:00" pubdate>Mon 27 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2013.html">2013</a>
+<p class="tags">tagged <a href="/tag/address.html">address</a>, <a href="/tag/computer.html">computer</a>, <a href="/tag/config.html">config</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/device.html">device</a>, <a href="/tag/domain.html">domain</a>, <a href="/tag/idea.html">idea</a>, <a href="/tag/management.html">management</a>, <a href="/tag/network.html">network</a>, <a href="/tag/password.html">password</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/setup.html">setup</a>, <a href="/tag/software.html">software</a>, <a href="/tag/speed.html">speed</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-05-27-remote-bridging.html" rel="bookmark" title="Permalink to Remote Bridging">Remote Bridging</a>
+    </h2>
+    <p><p>Sometimes we need to connect two or more geographically distrubuted ethernet networks to one broadcast domain. There can be two different office networks of some company which uses smb protocol partially based on broadcast network messages. Another example of such situation is computer cafes: a couple of computer cafes can …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-05-23T00:00:00+02:00" pubdate>Thu 23 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2013.html">2013</a>
+<p class="tags">tagged <a href="/tag/authentication.html">authentication</a>, <a href="/tag/config.html">config</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/feature.html">feature</a>, <a href="/tag/git.html">git</a>, <a href="/tag/github.html">github</a>, <a href="/tag/login.html">login</a>, <a href="/tag/password.html">password</a>, <a href="/tag/proxy.html">proxy</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/windows.html">windows</a>, <a href="/tag/wordpress.html">wordpress</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-05-23-git-recipes.html" rel="bookmark" title="Permalink to Git recipes">Git recipes</a>
+    </h2>
+    <p><p>A collection of small useful recipes for using with <code>Git</code>.</p>
+<h1>Rewriting history</h1>
+<h2>Rolling back the last commit</h2>
+<p>if nobody has pulled your remote repo yet, you can change your branch HEAD and force push it to said remote repo:</p>
+<div class="highlight"><pre><span></span><code>git reset --hard HEAD^
+git push -f
+</code></pre></div>
+
+<h1>Restoring changes</h1>
+<p>So in …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-05-19T00:00:00+02:00" pubdate>Sun 19 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2013.html">2013</a>
+<p class="tags">tagged <a href="/tag/config.html">config</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/feature.html">feature</a>, <a href="/tag/git.html">git</a>, <a href="/tag/integration.html">integration</a>, <a href="/tag/library.html">library</a>, <a href="/tag/markdown.html">markdown</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/setup.html">setup</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-05-19-issue-tracker.html" rel="bookmark" title="Permalink to Issue Tracker">Issue Tracker</a>
+    </h2>
+    <p><ul>
+<li>Use DVCS as backend (GIT)</li>
+<li>Output html</li>
+<li>markdown</li>
+<li>Prefer perl/python</li>
+<li>Mostly RO so to avoid merge conflicts.</li>
+</ul>
+<h2>DITZ + git integration</h2>
+<p>Adding Markdown</p>
+<ul>
+<li><code>lib/html.rb</code> contains the functions that generate HTML</li>
+<li>*.rhtml contain templates and call functions in <code>lib/html.rb</code> to generate (and format) output.</li>
+</ul>
+<p>Note, if working …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-05-09T00:00:00+02:00" pubdate>Thu 09 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/c2013.html">2013</a>
+<p class="tags">tagged <a href="/tag/computer.html">computer</a>, <a href="/tag/feature.html">feature</a>, <a href="/tag/git.html">git</a>, <a href="/tag/integration.html">integration</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/setup.html">setup</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-05-09-git-workflows.html" rel="bookmark" title="Permalink to Git Workflows">Git Workflows</a>
+    </h2>
+    <p><p>This article describes my personal <code>git</code> Workflow.</p>
+<h2>Start working on a Topic Branch</h2>
+<p>This when we are implementing a new feature. Assumes that you have a working git repo.</p>
+<div class="highlight"><pre><span></span><code>git checkout -b &quot;topic&quot; dev
+git push -u origin &quot;topic&quot;
+</code></pre></div>
+
+<p>From a different computer, you may want to work on an …</p></p>
+  </div>
+</article>
+<div class="pagination">
+    Page 1 / 1
+</div>
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/c2021.html">2021</a></li>
+	              <li ><a href="/category/c2020.html">2020</a></li>
+	              <li ><a href="/category/c2019.html">2019</a></li>
+	              <li ><a href="/category/c2018.html">2018</a></li>
+	              <li ><a href="/category/c2017.html">2017</a></li>
+	              <li ><a href="/category/c2016.html">2016</a></li>
+	              <li ><a href="/category/c2015.html">2015</a></li>
+	              <li ><a href="/category/c2014.html">2014</a></li>
+	              <li ><a href="/category/c2013.html">2013</a></li>
+	              <li ><a href="/category/c.html">...</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	                <li><a href="/tags.html">Tags</a></li>
+	                <li><a href="/sitemap.html">sitemap</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2021 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

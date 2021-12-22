@@ -1,6 +1,8 @@
 ---
 title: Secure erase of disc drives
 date: 2019-04-20
+tags: address, computer, device, drive, feature, password, security, storage, sudo
+revised: 2021-12-22
 ---
 
 This article is about erasing disc drives securely.  Specially for SSD

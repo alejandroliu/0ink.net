@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Web Backups
 date: 2013-07-02
+tags: backup, backups, library, power, scripts, storage, wordpress
+revised: 2021-12-22
 ---
 
 ![cfback](/images/2013/bb-images.jpg)

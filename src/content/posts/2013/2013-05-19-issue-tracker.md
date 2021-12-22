@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Issue Tracker
 date: 2013-05-19
+tags: config, configuration, directory, feature, git, integration, library, markdown, remote, setup
+revised: 2021-12-22
 ---
 
 *   Use DVCS as backend (GIT)

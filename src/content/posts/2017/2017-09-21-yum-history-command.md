@@ -23,6 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Rollback with YUM History Command
 date: 2017-09-21
+tags: backup, backups, centos, git, information, library, linux, login, management, manager, security
+revised: 2021-12-22
 ---
 
 From [2daygeek.com](https://www.2daygeek.com/rollback-fallback-updates-downgrade-packages-centos-rhel-fedora/)

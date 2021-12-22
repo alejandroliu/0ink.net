@@ -1,6 +1,8 @@
 ---
 title: Markdown Javascript editors
 date: 2015-11-11
+tags: editor, markdown
+revised: 2021-12-22
 ---
 
 
