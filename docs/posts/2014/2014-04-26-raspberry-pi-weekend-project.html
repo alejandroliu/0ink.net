@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>Raspberry Pi Weekend project - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="So finally took the time to try out a Raspberry Pi. For this weekend project wanted to do something relatively simple. Essentially, I wanted to recreate/enhance the functionality of a TL-WR702N. The TL-WR702N Nano Router is a neat device but being closed, can not be customized to what I …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>Raspberry Pi Weekend project</h1>
+
+<div class="metadata">
+  <time datetime="2014-04-26T00:00:00+02:00" pubdate>Sat 26 April 2014</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2014.html">2014</a>
+</div>
+		<p>So finally took the time to try out a Raspberry Pi. For this weekend project wanted to do something <em>relatively</em> simple.
+Essentially, I wanted to recreate/enhance the functionality of a
+<a href="http://www.tp-link.com/en/products/details/?model=TL-WR702N">TL-WR702N</a>.</p>
+<p><img alt="tl-wr702n-01" src="/images/2014/TL-WR720N-01.jpg"></p>
+<p>The TL-WR702N Nano Router is a neat device but being closed, can not be customized to what I wanted. It can be used in
+the following modes:</p>
+<ul>
+<li>AP</li>
+<li>Client</li>
+<li>Repeater</li>
+<li>Router</li>
+<li>Bridge</li>
+</ul>
+<p>Specifically I was interested in the bridge mode. However, rather
+than bridging from one SSID to another SSID, I wanted to <em>route/nat</em>
+between the two. So in theory, should be simple to implement (as the
+hardware should have all the necessary components) but not allowed by
+the software.</p>
+<h1>Enter the Raspberry Pi.</h1>
+<p>So the Pi, is a mini computer that can be loaded with any software you want. The B-model, has a built-in Ethernet and USB ports to plug-in <em>two</em> WIFI adaptors. For this functionality I am using the following:</p>
+<ul>
+<li>Raspberry-Pi Model-B<br>
+<img alt="Raspberry Pi" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Raspberry_Pi_B%2B_top.jpg/300px-Raspberry_Pi_B%2B_top.jpg"></li>
+<li>WIFI stick (2 units)<br>
+<img alt="WIFI" src="/images/2014/993655_LB_00_FB.EPS_250.jpg"></li>
+</ul>
+<p>For the software I am using:</p>
+<ul>
+<li><a href="https://github.com/gamaral/rpi-buildroot">Raspberry Pi buildroot</a></li>
+<li><a href="http://www.realtek.com.tw/downloads/downloadsView.aspx?Langid=1&amp;PNid=21&amp;PFid=48&amp;Level=5&amp;Conn=4&amp;DownTypeID=3&amp;GetDown=false&amp;Downloads=true">hostapd-rtl8192cu from Realtek</a><br>
+    You need to get the RTL8188CUS package for Linux.</li>
+</ul>
+<p>So you need two WIFI adaptors, as one will not work as master and slave at the same time. Essentially, one WIFI interface will act as the client WIFI station. The other WIFI interface acts as a WIFI hotspot. I chose to use <code>buildroot</code> instead of a normal Linux distro like <a href="http://www.raspbian.org/">Raspbian</a> or <a href="http://archlinuxarm.org/platforms/armv6/raspberry-pi">Arch Linux Arm</a> because I wanted to run it as an embedded system. Normal Linux distro's are supposed to be properly <em>shutdown</em> and would complain when you simply yank the power cord. The <code>buildroot</code> image I have is customized so that the file system is always mounted read-only. It will switch to read-write only to write persistent data and then switch back to read-only. The normal <code>hostapd</code> that comes with <code>buildroot</code> is the normal open source project and does not come with the <code>rtl8192cu</code> driver. You need to download and build the <code>Realtek</code> version. For this to work, I did the following:</p>
+<ol>
+<li>
+<p>Create a start-up scripts that set the whole thing up.</p>
+<ul>
+<li>sets-up the filesystem</li>
+<li>starts <code>syslog</code>, <code>sshd</code>, <code>rngd</code></li>
+<li>sets-up <code>eth0</code> and <code>wlan0</code> to be configured by <code>ifplugd</code></li>
+<li>starts <code>wpa_supplicant</code> on <code>wlan0</code></li>
+<li>starts <code>httpd</code></li>
+<li>start and configure <code>wlan1</code> as an Access Point.</li>
+<li>start and configure <code>dnsmasq</code> for DNS and DHCP.</li>
+<li>Wrote a small web UI to configure the WIFI client.</li>
+</ul>
+</li>
+</ol>
+<p>All this stuff can be found in <a href="https://github.com/alejandroliu/harpy">github</a>.</p>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li class="active"><a href="/category/2014.html">2014</a></li>
+	              <li ><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

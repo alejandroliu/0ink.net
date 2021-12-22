@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>2013 - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+
+<h1>Articles posted on 2013</h1>
+
+<article class="summary">
+<div class="metadata">
+  <time datetime="2013-05-15T00:00:00+02:00" pubdate>Wed 15 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-05-15-perl-tips.html" rel="bookmark" title="Permalink to Local Perl packages">Local Perl packages</a>
+    </h2>
+    <p><p>Determine what is the local PERL5LIB configuration:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">LIB</span><span class="o">=</span>$<span class="ss">(</span>
+  <span class="k">for</span> <span class="nv">d</span> <span class="nv">in</span> `<span class="nv">tr</span> : <span class="s1">&#39;</span><span class="s"> </span><span class="s1">&#39;</span> <span class="o">&lt;&lt;&lt;</span>$<span class="nv">PERL5LIB</span>
+  <span class="k">do</span>
+    <span class="k">if</span> [ <span class="o">-</span><span class="nv">w</span> <span class="mh">$d</span> ] <span class="c1">; then</span>
+      <span class="nv">echo</span> <span class="mh">$d</span>
+    <span class="k">break</span>
+  <span class="nv">fi</span>
+  <span class="nv">done</span><span class="ss">)</span>
+<span class="nv">PREFIX</span><span class="o">=</span>`<span class="k">dirname</span> $<span class="nv">LIB</span>`
+</code></pre></div>
+
+<p>Install sequence</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#PREFIX=$HOME/cpan</span>
+<span class="cp">#LIB=$HOME/cpan/lib</span>
+<span class="n">tar</span><span class="w"> </span><span class="n">zxvf</span><span class="w"> </span><span class="n">$perl</span><span class="o">-</span><span class="n">mod</span><span class="o">-</span><span class="n">tar</span><span class="w"></span>
+<span class="n">cd</span><span class="w"> </span><span class="n">$unpacked</span><span class="o">-</span><span class="n">src</span><span class="o">-</span><span class="n">dir</span><span class="w"></span>
+<span class="n">perl</span><span class="w"> </span><span class="n">Makefile</span><span class="p">.</span><span class="n">PL</span><span class="w"> </span><span class="n">PREFIX</span><span class="o">=</span><span class="n">$PREFIX</span><span class="w"> </span><span class="n">LIB …</span></code></pre></div></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-05-15T00:00:00+02:00" pubdate>Wed 15 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-05-15-we-are-back.html" rel="bookmark" title="Permalink to We are back...">We are back...</a>
+    </h2>
+    <p><p>After a long time in <strong>Limbo</strong> we are back with <code>0ink.net</code> as a live
+site.</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-05-13T00:00:00+02:00" pubdate>Mon 13 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-05-13-bash-tips.html" rel="bookmark" title="Permalink to Bash Tips">Bash Tips</a>
+    </h2>
+    <p><p>Some bash one-liners:</p>
+<div class="highlight"><pre><span></span><code>echo <span class="cp">${</span><span class="err">!</span><span class="n">X</span><span class="o">*</span><span class="cp">}</span>
+</code></pre></div>
+
+<p>Will print all the names of variables whos name starts with <code>X</code>. To
+output the contents of a variable so it can be parsed by<br>
+bash</p>
+<div class="highlight"><pre><span></span><code>declare -p VARNAME
+</code></pre></div>
+
+<h1>Pattern Matching</h1>
+<div class="highlight"><pre><span></span><code>Operator: <span class="cp">${</span><span class="n">foo</span><span class="c1">#t*is</span><span class="cp">}</span>
+</code></pre></div>
+
+<p>Function: deletes the shortest possible match from the left</p>
+<div class="highlight"><pre><span></span><code>Operator …</code></pre></div></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-05-13T00:00:00+02:00" pubdate>Mon 13 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-05-13-linux-keyboard-tips.html" rel="bookmark" title="Permalink to Linux Keyboard Tips">Linux Keyboard Tips</a>
+    </h2>
+    <p><p>Miscellaneous hacks to use the keyboard under Linux.</p>
+<h1>Turn number pad into a mouse controller</h1>
+<p>This comes in handy when working at a <strong>colo</strong> or someplace where you
+don't have a mouse and then find yourself needing to use <em>X11</em>. Press
+the following key combo:</p>
+<div class="highlight"><pre><span></span><code>Ctrl-Shift-Numlock
+</code></pre></div>
+
+<p>Now the number pad …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-05-09T00:00:00+02:00" pubdate>Thu 09 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-05-09-git-workflows.html" rel="bookmark" title="Permalink to Git Workflows">Git Workflows</a>
+    </h2>
+    <p><p>This article describes my personal <code>git</code> Workflow.</p>
+<h2>Start working on a Topic Branch</h2>
+<p>This when we are implementing a new feature. Assumes that you have a working git repo.</p>
+<div class="highlight"><pre><span></span><code>git checkout -b &quot;topic&quot; dev
+git push -u origin &quot;topic&quot;
+</code></pre></div>
+
+<p>From a different computer, you may want to work on an …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-05-09T00:00:00+02:00" pubdate>Thu 09 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-05-09-keep-e-mail-private.html" rel="bookmark" title="Permalink to Keep e-mail private">Keep e-mail private</a>
+    </h2>
+    <p><h2>date: 2013-05-09</h2>
+<p>This is a handy tip.</p>
+<p>If you don't want to give out your real email address to register for
+a site and don't want to go through the hassle of creating a spam
+email address, just point your browser to
+<a href="https://www.guerrillamail.com/">Guerrilla Mail</a>
+upon loading the page you'll have …</p></p>
+  </div>
+</article>
+<div class="pagination">
+            <a href="/category/20136.html">&laquo;</a>
+    Page 7 / 7
+</div>
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li class="active"><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

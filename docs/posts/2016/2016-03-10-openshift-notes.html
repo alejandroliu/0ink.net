@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>OpenShift notes - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="THIS IS FOR ARCHIVAL PURPOSES. THIS IS OUT-OF-DATE backup OpenShift openshift getenv(USER) from OpenShift php ssh to {user}@{app-domain} gear snapshot > file Run gear app OpenShift migration further notes Encrypt a file using a supplied password : $ openssl enc -aes-256-cbc -salt -in file.txt -out file.txt.enc -k …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>OpenShift notes</h1>
+
+<div class="metadata">
+  <time datetime="2016-03-10T00:00:00+01:00" pubdate>Thu 10 March 2016</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2016.html">2016</a>
+</div>
+		<p><strong>THIS IS FOR ARCHIVAL PURPOSES.  THIS IS OUT-OF-DATE</strong></p>
+<h2>backup OpenShift</h2>
+<div class="highlight"><pre><span></span><code><span class="nv">openshift</span> <span class="k">getenv</span><span class="ss">(</span><span class="nv">USER</span><span class="ss">)</span> <span class="nv">from</span> <span class="nv">OpenShift</span> <span class="nv">php</span>
+<span class="nv">ssh</span> <span class="nv">to</span> {<span class="nv">user</span>}@{<span class="nv">app</span><span class="o">-</span><span class="nv">domain</span>} <span class="nv">gear</span> <span class="nv">snapshot</span>  <span class="o">&gt;</span> <span class="nv">file</span>
+</code></pre></div>
+
+<p>Run gear app</p>
+<p>OpenShift migration further notes</p>
+<p>Encrypt a file using a supplied password :</p>
+<div class="highlight"><pre><span></span><code>$ openssl enc -aes-256-cbc -salt -in file.txt -out file.txt.enc -k PASS
+</code></pre></div>
+
+<p>Decrypt a file using a supplied password :</p>
+<div class="highlight"><pre><span></span><code>$ openssl enc -aes-256-cbc -d -in file.txt.enc -out file.txt -k PASS
+</code></pre></div>
+
+<p>Add script to tar plugin, then rhc a SSH key into account,
+ssh to account and tar x data...</p>
+<ol>
+<li>get target directory</li>
+<li>clean-up target directory</li>
+<li>extract new contents</li>
+</ol>
+<p>Probably can use deploy as an example...</p>
+<ul>
+<li>need to list images that have been uploaded to S3.</li>
+<li>need to convert imgsrc references...</li>
+</ul>
+<p>? wordpress filters vs hooks ?</p>
+<p>Sample stuff:</p>
+<ul>
+<li><a href="https://codex.wordpress.org/Writing_a_Plugin#Saving_Plugin_Data_to_the_Database">writing a plugin</a></li>
+<li><a href="https://www.sitepoint.com/working-with-databases-in-wordpress/">working with database</a></li>
+<li><a href="https://premium.wpmudev.org/blog/creating-database-tables-for-plugins/">creating database</a></li>
+</ul>
+<p>Skeleton</p>
+<ul>
+<li><a href="https://github.com/convissor/oop-plugin-template-solution">plugin template</a></li>
+<li><a href="http://wordpress.stackexchange.com/questions/44708/using-a-plugin-class-inside-a-template">plugin class</a></li>
+<li><a href="http://www.yaconiello.com/blog/how-to-write-wordpress-plugin/">how to write wordpress plugin</a></li>
+</ul>
+<p><a href="http://wordpress.stackexchange.com/questions/35931/how-can-i-edit-post-data-before-it-is-saved">Mangle data when saving</a></p>
+<p><a href="https://codex.wordpress.org/Post_Types">post types</a>
+... perhaps we add an S3 flag to the post type: Attachment</p>
+<h1>WordPress</h1>
+<p>Standard Customizations:</p>
+<ol>
+<li>Appearance</li>
+<li>Set theme</li>
+<li>Site Identity</li>
+<li>Header &amp; Background iamge</li>
+<li>Menus: Set-up top bar?</li>
+<li>Settings</li>
+<li>General Settings<ol>
+<li>Membership: Not anyone can register</li>
+<li>Timezone UTC</li>
+<li>Date/Time Format</li>
+</ol>
+</li>
+<li>Reading<ol>
+<li>For each article in the feed: Show full text</li>
+</ol>
+</li>
+<li>Discussion<ol>
+<li>Users must be registered to comment.  Not fill out name+email</li>
+<li>Comments author must have previously approved comment</li>
+</ol>
+</li>
+<li>Permalinks<ol>
+<li>Month and name</li>
+</ol>
+</li>
+</ol>
+<p>Plugins</p>
+<ul>
+<li>Front Page Category</li>
+<li>Customizer, Front Page Categories, select what to show</li>
+<li>Collapsing category list</li>
+<li>Customizer, Widgets, Categories, customize...</li>
+<li>bbPress</li>
+<li>NO anonymous posting</li>
+<li>WP Social Login</li>
+<li>Bouncer</li>
+<li>Allow Username change</li>
+<li>Rich Revies</li>
+<li>Integrate user accounts</li>
+</ul>
+<h1>OpenShift Recipe</h1>
+<p>The official deploy tool <a href="https://github.com/travis-ci/dpl">dpl</a> does not 
+seem to work with secondary branches.</p>
+<h2>Pre-requisistes</h2>
+<ol>
+<li>Install git</li>
+<li>Install RHC command line</li>
+<li>yum install epel-release</li>
+<li>yum install rubygem-rhc</li>
+<li>Install Travis command line</li>
+<li>yum install epel-release</li>
+<li>yum install ruby-devel rubygem-ffi (maybe others)</li>
+<li>gem install travis -v 1.8.2 --no-rdoc --no-ri</li>
+<li>A github, travis-ci and opens</li>
+</ol>
+<h2>Preparing Repo</h2>
+<p>This section can be skipped if we already have a github repo.</p>
+<ol>
+<li>Fork <a href="https://github.com/openshift/wordpress-example.git">wordpress-example</a></li>
+<li>Create any additional branches as needed.</li>
+<li>Configure travis-ci by creating a basic <code>.travis.yml</code></li>
+<li>language: php</li>
+<li>php:</li>
+<li>
+<ul>
+<li>'5.4'</li>
+</ul>
+</li>
+<li>script: true</li>
+<li>Since <code>travis setup openshift</code> doesn't work, we need to use the DIY
+   deploy script.  So make a copy of it.  And configure:</li>
+<li>env:</li>
+<li>_ global:</li>
+<li>__ OPENSHIFT_USER=$username</li>
+<li>__ OPENSHIFT_SECRET=$secret<ol>
+<li>Obviously the secret should be encrypted using:<ul>
+<li>travis encrypt OPENSHIFT_SECRET=$secret [--add env.global]</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>script:</li>
+<li>
+<ul>
+<li>sh deploy.sh</li>
+</ul>
+</li>
+<li>diydeploy:</li>
+<li>
+<ul>
+<li>deploy $branch:$openshift_app ... initially empty...</li>
+</ul>
+</li>
+</ol>
+<h2>Deploying Repo to OpenShift App</h2>
+<ol>
+<li>Create a new Application from the Openshift
+   <a href="https://www.openshift.com/">console</a>.</li>
+<li>Use (WordPress 4)</li>
+<li>Just leave initial repo to the default</li>
+<li>Decide on scaling options.</li>
+<li>DO NOT GO THROUGH SITE INSTALL YET!</li>
+<li>Add the $branch:$openshift_app to the <code>.travis.yml</code>, and push so
+   travis-ci will deploy.</li>
+<li>Tweak configuration:</li>
+<li>force https through .htaccess.</li>
+<li>Enable MULTISITE (if needed)</li>
+<li>Enable custom domain</li>
+<li>Create Domain Name (on DNS) and add custom domain in OpenShift</li>
+<li>Add Certificate to OpenShift (self-signed or maybe CloudFlare)<ul>
+<li>openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 3650 -nodes</li>
+</ul>
+</li>
+<li>Wait for DNS to propagate</li>
+<li>Log-on to the site and go through installation.</li>
+<li>Verify that URLs use https:<ul>
+<li>Dashboard -&gt; Settings -&gt; General</li>
+<li>Verify in Permalinks that https is used.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p>Fork syncing</p>
+<div class="highlight"><pre><span></span><code>   <span class="nt">-</span> <span class="nt">Clone</span> <span class="nt">repo</span>
+   <span class="nt">-</span> <span class="nt">Configure</span> <span class="nt">a</span> <span class="nt">remote</span> <span class="nt">fork</span>
+     <span class="nt">1</span><span class="o">.</span> <span class="nt">git</span> <span class="nt">remote</span> <span class="nt">-v</span>
+     <span class="nt">2</span><span class="o">.</span> <span class="nt">git</span> <span class="nt">remote</span> <span class="nt">add</span> <span class="nt">upstream</span> <span class="nt">https</span><span class="o">://</span><span class="nt">github</span><span class="p">.</span><span class="nc">com</span><span class="o">/</span><span class="nt">openshift</span><span class="o">/</span><span class="nt">wordpress-example</span><span class="p">.</span><span class="nc">git</span>
+   <span class="nt">-</span> <span class="nt">Syncing</span> <span class="nt">a</span> <span class="nt">fork</span>
+     <span class="nt">1</span><span class="o">.</span> <span class="nt">git</span> <span class="nt">fetch</span> <span class="nt">upstream</span>
+     <span class="nt">2</span><span class="o">.</span> <span class="nt">git</span> <span class="nt">checkout</span> <span class="nt">master</span>
+     <span class="nt">3</span><span class="o">.</span> <span class="nt">git</span> <span class="nt">merge</span> <span class="nt">upstream</span><span class="o">/</span><span class="nt">master</span>
+
+
+
+
+      <span class="o">//</span><span class="nt">define</span><span class="o">(</span><span class="s1">&#39;DOMAIN_CURRENT_SITE&#39;</span><span class="o">,</span> <span class="s1">&#39;dev.iliu.net&#39;</span><span class="o">);</span>
+      <span class="nt">if</span> <span class="o">($</span><span class="nt">_SERVER</span><span class="cp">[</span><span class="s1">&#39;SERVER_NAME&#39;</span><span class="cp">]</span> <span class="o">!=</span> <span class="s1">&#39;dev.iliu.net&#39;</span><span class="o">)</span> <span class="p">{</span>
+         <span class="err">define(&#39;DOMAIN_CURRENT_SITE&#39;,</span> <span class="err">&#39;iliu.net&#39;)</span><span class="p">;</span>
+      <span class="p">}</span> <span class="nt">else</span> <span class="p">{</span>
+         <span class="err">define(&#39;DOMAIN_CURRENT_SITE&#39;,</span> <span class="err">&#39;dev.iliu.net&#39;)</span><span class="p">;</span>
+      <span class="p">}</span>
+</code></pre></div>
+
+<h1>openshift mailgun</h1>
+<p>Success! You're signed up and we just created your sandbox server sandboxf9dbaaa2f22a49a693955138381837e7.mailgun.org</p>
+<h1>Include the Autoloader (see "Libraries" for install instructions)</h1>
+<div class="highlight"><pre><span></span><code><span class="n">require</span> <span class="s1">&#39;vendor/autoload.php&#39;</span><span class="p">;</span>
+<span class="n">use</span> <span class="n">Mailgun</span>\<span class="n">Mailgun</span><span class="p">;</span>
+
+<span class="c1"># Instantiate the client.</span>
+<span class="o">$</span><span class="n">mgClient</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Mailgun</span><span class="p">(</span><span class="s1">&#39;key-xxxxxxxxxxxxxxxxxxxxxxxxx&#39;</span><span class="p">);</span>
+<span class="o">$</span><span class="n">domain</span> <span class="o">=</span> <span class="s2">&quot;sandboxf9dbaaa2f22a49a693955138381837e7.mailgun.org&quot;</span><span class="p">;</span>
+
+<span class="c1"># Make the call to the client.</span>
+<span class="o">$</span><span class="n">result</span> <span class="o">=</span> <span class="o">$</span><span class="n">mgClient</span><span class="o">-&gt;</span><span class="n">sendMessage</span><span class="p">(</span><span class="s2">&quot;$domain&quot;</span><span class="p">,</span>
+                  <span class="n">array</span><span class="p">(</span><span class="s1">&#39;from&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;Mailgun Sandbox &lt;postmaster@sandboxf9dbaaa2f22a49a693955138381837e7.mailgun.org&gt;&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;to&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;Alejandro Liu &lt;alejandro_liu@hotmail.com&gt;&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;subject&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Hello Alejandro Liu&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;text&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;Congratulations Alejandro Liu, you just sent an email with Mailgun!  You are truly awesome!  You can see a record of this email in your logs: https://mailgun.com/cp/log .  You can send up to 300 emails/day from this sandbox server.  Next, you should add your own domain so you can send 10,000 emails/month for free.&#39;</span><span class="p">));</span>
+</code></pre></div>
+
+<hr>
+<ul>
+<li><a href="https://blog.openshift.com/free-paas-email-server-with-roundcube/">free paas mail server</a></li>
+<li><a href="https://blog.openshift.com/email-in-the-cloud-with-mailgun/">mailgun</a></li>
+<li><a href="https://mailgun.com/signup?plan=free">mailgun plan</a></li>
+<li><a href="https://www.gregjs.com/linux/2015/forwarding-mail-to-your-gmail-account-with-mailgun/">forwarding with mailgun</a></li>
+</ul>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li class="active"><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li ><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

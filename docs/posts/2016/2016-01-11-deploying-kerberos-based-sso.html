@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>Deploying Kerberos based SSO - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="This article goes over how to implement Single-Sign-On on Linux. It goes over the integration around the Kerberos service and the applications, like for example FireFox. Pre-requisites Kerberos Domain Controller (KDC) User accounts in the KDC KDC based logins To make sure that this is working, login to your workstation …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>Deploying Kerberos based SSO</h1>
+
+<div class="metadata">
+  <time datetime="2016-01-11T00:00:00+01:00" pubdate>Mon 11 January 2016</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2016.html">2016</a>
+</div>
+		<p>This article goes over how to implement Single-Sign-On
+on Linux.  It goes over the integration around
+the Kerberos service and the applications, like for example
+FireFox.</p>
+<h2>Pre-requisites</h2>
+<ul>
+<li>Kerberos Domain Controller (KDC)</li>
+<li>User accounts in the KDC</li>
+<li>KDC based logins</li>
+</ul>
+<p>To make sure that this is working, login to your workstation using your kerberos password and use the command:</p>
+<div class="highlight"><pre><span></span><code>klist
+</code></pre></div>
+
+<p>This should show your principals assigned to you.</p>
+<div class="highlight"><pre><span></span><code><span class="n">Ticket</span><span class="w"> </span><span class="nl">cache</span><span class="p">:</span><span class="w"> </span><span class="k">FILE</span><span class="err">:</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">krb5cc_XXXX_ErVb5X</span><span class="w"></span>
+<span class="k">Default</span><span class="w"> </span><span class="nl">principal</span><span class="p">:</span><span class="w"> </span><span class="n">zzzz</span><span class="nv">@LOCALNET</span><span class="w"></span>
+
+<span class="n">Valid</span><span class="w"> </span><span class="n">starting</span><span class="w">       </span><span class="n">Expires</span><span class="w">              </span><span class="n">Service</span><span class="w"> </span><span class="n">principal</span><span class="w"></span>
+<span class="mi">01</span><span class="o">/</span><span class="mi">11</span><span class="o">/</span><span class="mi">2016</span><span class="w"> </span><span class="mi">15</span><span class="err">:</span><span class="mi">51</span><span class="err">:</span><span class="mi">35</span><span class="w">  </span><span class="mi">01</span><span class="o">/</span><span class="mi">12</span><span class="o">/</span><span class="mi">2016</span><span class="w"> </span><span class="mi">15</span><span class="err">:</span><span class="mi">51</span><span class="err">:</span><span class="mi">34</span><span class="w">  </span><span class="n">krbtgt</span><span class="o">/</span><span class="n">LOCALNET</span><span class="nv">@LOCALNET</span><span class="w"></span>
+</code></pre></div>
+
+<h2>Configuring Apache</h2>
+<ol>
+<li>Install any necessary modules on the server:<ul>
+<li><code>yum install mod_auth_kerb</code></li>
+</ul>
+</li>
+<li>Create a service principal for the web server (this needs to be done on the KDC.<ul>
+<li><code>kadmin.local -q "addprinc -randkey HTTP/www.example.com</code></li>
+</ul>
+</li>
+<li>Export the encpryption keys to a keytab:<ul>
+<li><code>kadmin.local -q "ktadd -k /tmp/http.keytab HTTP/www.example.com</code></li>
+</ul>
+</li>
+<li>Copy <code>/tmp/http.keytab</code> to the webserver at <code>/etc/httpd/http.keytab</code>.</li>
+<li>Set ownership and permissions:<ul>
+<li><code>chmod 600 /etc/httpd/http.keytab</code></li>
+<li><code>chown apache /etc/httpd/http.keytab</code></li>
+</ul>
+</li>
+<li>Enable authentication, configure this:<ul>
+<li><code>AuthType Kerberos</code></li>
+<li><code>AuthName "Acme Corporation"</code></li>
+<li><code>KrbMethodNegotiate on</code></li>
+<li><code>KrbMethodK5Passwd off</code></li>
+<li><code>Krb5Keytab /etc/httpd/http.keytab</code></li>
+<li><code>require valid-user</code></li>
+</ul>
+</li>
+<li>Re-start apache</li>
+</ol>
+<h2>Configure FireFox</h2>
+<ol>
+<li>Navigate to <code>about:config</code></li>
+<li>Search for: <code>negotiate-auth</code></li>
+<li>Double click on <code>network.negotiate-auth.trusted-uris</code>.</li>
+<li>Enter hostname's, URL prefixes, etc, separated by commas. Examples:<ul>
+<li>www.example.com</li>
+<li>http://www.example.com/</li>
+<li>.example.com</li>
+</ul>
+</li>
+</ol>
+<p>It is possible to configure this setting for all users by creating a global config file:</p>
+<ol>
+<li>Find configuration directory:<ul>
+<li><code>rpm -q firefox -l | grep preferences</code></li>
+</ul>
+</li>
+<li>Create a javascript file in that directory. (by convention, <code>autoconfig.js</code>; other file names will work, but for best results it should be early in the alphabet.)</li>
+<li>Add the following line:<ul>
+<li><code>pref("network.negotiate-auth.trusted-uris",".example.com");</code></li>
+</ul>
+</li>
+</ol>
+<h2>Configure OpenSSH server</h2>
+<ol>
+<li>Create a service principal for the host (this needs to be done on the KDC.<ul>
+<li><code>kadmin.local -q "addprinc -randkey host/shell.example.com</code></li>
+</ul>
+</li>
+<li>Export the encpryption keys to a keytab:<ul>
+<li><code>kadmin.local -q "ktadd -k /tmp/krb5.keytab host/shell.example.com</code></li>
+</ul>
+</li>
+<li>Copy <code>/tmp/krb5.keytab</code> to the host at: <code>/etc/krb5.keytab</code>.</li>
+<li>Set ownership and permissions:<ul>
+<li><code>chmod 600 /etc/krb5.keytab</code></li>
+<li><code>chown root /etc/krb5.keytab</code></li>
+</ul>
+</li>
+<li>Enable authentication, change these settings in <code>/etc/ssh/sshd_config</code>:<ul>
+<li><code>KerberosAuthentication yes</code></li>
+<li><code>GSSAPIAuthentication yes</code></li>
+<li><code>GSSAPICleanupCredentials yes</code></li>
+<li><code>UsePAM no</code> <em># This is not supported by RHEL7 and should be left as <code>yes</code></em></li>
+</ul>
+</li>
+<li>Restart <code>sshd</code>.</li>
+</ol>
+<h2>Configure OpenSSH clients</h2>
+<p>Configure <code>/etc/ssh_config</code> or <code>~/ssh/ssh_config</code>:</p>
+<div class="highlight"><pre><span></span><code>Host *.localnet
+  GSSAPIAuthentication yes
+  GSSAPIDelegateCredentials yes
+</code></pre></div>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li class="active"><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li ><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

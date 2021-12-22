@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>Stupid SSL tricks - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="Some hints and tips foor doing SSL related things: Netcat for SSL This command lets you connect to a SSL server (a-la netcat): cat request.txt | openssl s_client -connect server:443 Creating self-signed certificates This is a single command to generate a self-signed certificate: openssl req -new \ -newkey rsa:4096 …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>Stupid SSL tricks</h1>
+
+<div class="metadata">
+  <time datetime="2021-12-21T00:00:00+01:00" pubdate>Tue 21 December 2021</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2021.html">2021</a>
+</div>
+		<p>Some hints and tips foor doing SSL related things:</p>
+<h1>Netcat for SSL</h1>
+<p>This command lets you connect to a SSL server (a-la netcat):</p>
+<div class="highlight"><pre><span></span><code><span class="nv">cat</span> <span class="nv">request</span>.<span class="nv">txt</span> <span class="o">|</span> <span class="nv">openssl</span> <span class="nv">s_client</span> <span class="o">-</span><span class="k">connect</span> <span class="nv">server</span>:<span class="mi">443</span>
+</code></pre></div>
+
+<h1>Creating self-signed certificates</h1>
+<p>This is a single command to generate a self-signed certificate:</p>
+<div class="highlight"><pre><span></span><code>openssl req -new \
+      -newkey rsa:4096 \
+      -days 365 \
+      -nodes -x509 \
+      -subj &quot;/C=NL/ST=ZH/L=Den Haag/O=HomeBase/CN=$fqdn&quot; \
+      -keyout $ca_root/$fqdn/$fqdn.key \
+      -out $ca_root/$fqdn/$fqdn.cer
+</code></pre></div>
+
+<p>This is unlike other recipes where you create a <code>csr</code> and <code>key</code>
+first and then create the <code>certificate</code>.</p>
+<h1>Checking and verifying certificates</h1>
+<ul>
+<li>Check certificate</li>
+<li><code>openssl x509 -in server.crt -text -noout</code></li>
+<li>Check SSL key and verify consistency</li>
+<li><code>openssl rsa -in server.key -check</code></li>
+<li>Check CSR and print CSR data</li>
+<li><code>openssl req -text -noout -verify -in server.csr</code></li>
+<li>Verify that certificate and key matches:</li>
+<li><code>openssl x509 -noout -modulus -in server.crt| openssl md5</code></li>
+<li><code>openssl rsa -noout -modulus -in server.key| openssl md5</code></li>
+<li>Check SSL Certificate expiration date</li>
+<li><code>openssl x509 -dates -noout -in hydssl.cer</code></li>
+</ul>
+<h1>Check SSL connection</h1>
+<ul>
+<li>Tests connectivity to an HTTPS service:</li>
+<li><code>openssl s_client -connect &lt;hostname&gt;:443</code></li>
+<li>Prints all certificates in the certificate chain presented by the
+  SSL service. Useful when troubleshooting missing intermediate CA
+  certificate issues.</li>
+<li><code>openssl s_client -connect &lt;hostname&gt;:&lt;port&gt; -showcerts</code></li>
+<li>Forces TLSv1 and DTLSv1.</li>
+<li><code>openssl s_client -connect &lt;hostname&gt;:&lt;port&gt; -tls1</code></li>
+<li><code>openssl s_client -connect &lt;hostname&gt;:&lt;port&gt; -dtls1</code></li>
+<li>Forces a specific cipher. This option is useful in testing enabled
+  SSL ciphers. Use the <code>openssl ciphers</code> command to see a list of
+  available ciphers for OpenSSL.</li>
+<li><code>openssl s_client -connect &lt;hostname&gt;:&lt;port&gt; -cipher DHE-RSA-AES256-SHA</code></li>
+</ul>
+<p>For troubleshooting connection and SSL handshake problems, see the
+following:</p>
+<ul>
+<li>If there is a connection problem reaching the domain, the OpenSSL
+  <code>s_client -connect</code> command waits until a timeout occurs and prints
+  an error, such as <code>connect: Operation timed out</code>.</li>
+<li>If you use the OpenSSL client to connect to a non-SSL service, the
+  client connects but the SSL handshake doesn't happen. <code>CONNECTED (00000003)</code> prints as soon as a socket
+  opens, but the client waits until a timeout occurs and prints an
+  error message, such as <code>44356:error:140790E5:SSL routines:SSL23_WRITE:ssl handshake failure:/SourceCache/OpenSSL098/OpenSSL098-47.1/src/ssl/s23_lib.c:182:.</code></li>
+</ul>
+<p>After disabling a weak cipher, you can verify if it has been disabled
+or not with the following command.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">openssl</span> <span class="nv">s_client</span> <span class="o">-</span><span class="k">connect</span> <span class="nv">google</span>.<span class="nv">com</span>:<span class="mi">443</span> <span class="o">-</span><span class="nv">cipher</span> <span class="nv">EXP</span><span class="o">-</span><span class="nv">RC4</span><span class="o">-</span><span class="nv">MD5</span>
+</code></pre></div>
+
+<h1>Check SSL certificates on a remote server:</h1>
+<ul>
+<li>Check who has issued the SSL certificate:</li>
+<li><code>echo | openssl s_client -servername howtouselinux.com -connect howtouselinux.com:443 2&gt;/dev/null | openssl x509 -noout -issuer</code></li>
+<li>Check whom the SSL certificate is issued to:</li>
+<li><code>echo | openssl s_client -servername howtouselinux.com -connect howtouselinux.com:443 2&gt;/dev/null | openssl x509 -noout -subject</code></li>
+<li>Check for what dates the SSL certificate is valid:</li>
+<li><code>echo | openssl s_client -servername howtouselinux.com -connect howtouselinux.com:443 2&gt;/dev/null | openssl x509 -noout -dates</code></li>
+<li>Show the SHA1 fingerprint of the SSL certificate:</li>
+<li><code>echo | openssl s_client -servername www.howtouselinux.com -connect www.howtouselinux.com:443 2&gt;/dev/null | openssl x509 -noout -fingerprint</code></li>
+<li>Extract all information from the SSL certificate (decoded)</li>
+<li><code>echo | openssl s_client -servername www.howtouselinux.com -connect www.howtouselinux.com:443 2&gt;/dev/null | openssl x509 -noout -text</code></li>
+<li>Show the SSL certificate itself (encoded):</li>
+<li><code>echo | openssl s_client -servername howtouselinux.com -connect howtouselinux.com:443 2&gt;/dev/null | openssl x509</code></li>
+</ul>
+<h1>Becoming your own <code>CA</code></h1>
+<p>The easiest way is to use <a href="https://github.com/FiloSottile/mkcert">mkcert</a>.  <a href="https://github.com/FiloSottile/mkcert">mkcert</a> is a
+command line tool that automates most of the activities related
+a CA.</p>
+<p>Otherwise, <a href="https://deliciousbrains.com/ssl-certificate-authority-for-local-https-development/">this article</a> by Brad Touesnard explains
+the process fully.</p>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li class="active"><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li ><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

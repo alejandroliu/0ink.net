@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>Enable syslog with void - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="In void Linux, the default is without logging. Most cases it is OK for desktop use. If you want to enable syslog service in void, you need to install: socklog-void Also to let your user have access to the logs, use: usermod -aG socklog <your-username> Because I like to have …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>Enable syslog with void</h1>
+
+<div class="metadata">
+  <time datetime="2021-12-21T00:00:00+01:00" pubdate>Tue 21 December 2021</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2021.html">2021</a>
+</div>
+		<p>In <a href="https://voidlinux.org">void</a> Linux, the default is without logging.  Most
+cases it is OK for desktop use.</p>
+<p>If you want to enable <a href="https://en.wikipedia.org/wiki/Syslog">syslog</a> service in <a href="https://voidlinux.org">void</a>,
+you need to install:</p>
+<div class="highlight"><pre><span></span><code>socklog-void
+</code></pre></div>
+
+<p>Also to let your user have access to the logs, use:</p>
+<div class="highlight"><pre><span></span><code>usermod -aG socklog &lt;your-username&gt;
+</code></pre></div>
+
+<p>Because I like to have just a single directory for everything and use
+<code>grep</code>, I do the following:</p>
+<div class="highlight"><pre><span></span><code><span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">socklog</span><span class="o">/</span><span class="err">?</span><span class="o">*</span>
+<span class="n">mkdir</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">socklog</span><span class="o">/</span><span class="n">everything</span>
+<span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="n">socklog</span><span class="o">/</span><span class="n">everything</span><span class="o">/</span><span class="n">current</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">messages</span><span class="o">.</span><span class="n">log</span>
+</code></pre></div>
+
+<p>Create the file <code>/var/log/socklog/everything/config</code> with these
+contents:</p>
+<div class="highlight"><pre><span></span><code>+*
+u&lt;syslog-server-ip&gt;:514
+</code></pre></div>
+
+<p>Enable daemons...</p>
+<div class="highlight"><pre><span></span><code><span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sv</span><span class="o">/</span><span class="n">socklog</span><span class="o">-</span><span class="n">unix</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">service</span><span class="o">/</span>
+<span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sv</span><span class="o">/</span><span class="n">nanoklogd</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">service</span><span class="o">/</span>
+</code></pre></div>
+
+<p>Reload <code>svlogd</code> (if it was already running)</p>
+<div class="highlight"><pre><span></span><code>killall -1 svlogd
+</code></pre></div>
+
+<h1>Reference:</h1>
+<ul>
+<li><a href="https://docs.voidlinux.org/config/services/logging.html">voidlinux logging</a></li>
+</ul>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li class="active"><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li ><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

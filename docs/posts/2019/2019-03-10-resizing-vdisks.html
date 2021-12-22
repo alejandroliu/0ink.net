@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>Resizing Virtual Disks with virsh - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="I am currently using libvirt for managing my VMs. For virtual discs I am using LVM2 volumes. On a regular basis I need to resize these virtual discs, but not that often that I can do this from memory. This is a short procedure to do this: ls -l /dev …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>Resizing Virtual Disks with virsh</h1>
+
+<div class="metadata">
+  <time datetime="2019-03-10T00:00:00+01:00" pubdate>Sun 10 March 2019</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2019.html">2019</a>
+</div>
+		<p>I am currently using <code>libvirt</code> for managing my VMs.  For virtual discs
+I am using <code>LVM2</code> volumes.  On a regular basis I need to resize
+these virtual discs, but not that often that I can do this from
+memory.  This is a short procedure to do this:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">ls</span> <span class="o">-</span><span class="nv">l</span> <span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">vgX</span><span class="o">/</span><span class="nv">lvX</span>      # <span class="nv">note</span> <span class="nv">down</span> <span class="nv">the</span> <span class="nv">major</span><span class="o">/</span><span class="nv">minor</span> <span class="nv">numbers</span> <span class="k">for</span> <span class="nv">later</span>
+<span class="nv">lvextend</span> <span class="o">-</span><span class="nv">L</span> <span class="o">+</span><span class="mi">50</span><span class="nv">G</span> <span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">vgX</span><span class="o">/</span><span class="nv">lvX</span>   # <span class="nv">adding</span> <span class="mi">50</span><span class="nv">GB</span> <span class="nv">to</span> <span class="nv">this</span> <span class="nv">volume</span>
+<span class="nv">cat</span> <span class="o">/</span><span class="nv">proc</span><span class="o">/</span><span class="nv">partitions</span>        # <span class="nv">look</span> <span class="nv">up</span> <span class="nv">the</span> <span class="nv">size</span> <span class="ss">(</span><span class="nv">in</span> <span class="nv">blocks</span><span class="ss">)</span> <span class="nv">using</span> <span class="nv">major</span><span class="o">/</span><span class="nv">minor</span> <span class="nv">numbers</span>
+<span class="nv">virsh</span> <span class="nv">blockresize</span> <span class="o">--</span><span class="nv">path</span> <span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">vgX</span><span class="o">/</span><span class="nv">lvX</span> <span class="o">--</span><span class="nv">size</span> <span class="nv">SIZE_FROM_PROC_PARTITIONS</span> <span class="nv">vmname</span>
+</code></pre></div>
+
+<p>Then on the running system you can do:</p>
+<div class="highlight"><pre><span></span><code>cat /proc/partitions        # Make sure that size is right
+xfs_growfs /mount/point     # On-line partition re-size
+</code></pre></div>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li class="active"><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li ><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>Web Backups - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="As usual with any IT system backups are important. This does not change when using a free shared hosting provider. Because it is free, one would argue it is even more important. For my wordpress web site I used something called cli-exporter. It let's you create "Wordpress" export files from …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>Web Backups</h1>
+
+<div class="metadata">
+  <time datetime="2013-07-02T00:00:00+02:00" pubdate>Tue 02 July 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>
+		<p><img alt="cfback" src="/images/2013/bb-images.jpg"></p>
+<p>As usual with any IT system backups are important. This does not change when using a free shared hosting provider. Because it is free, one would argue it is even more important.</p>
+<p>For my wordpress web site I used something called <a href="https://github.com/Automattic/WordPress-CLI-Exporter">cli-exporter</a>. It let's you create "Wordpress" export files from the command line so it can be run from <code>cron</code>. This is important because backups <em>have</em> to be automated.</p>
+<p>In addition to that, I copy the backup files to an off-site location. I do this by copying files using WebDAV to a storage provider. I did this by writing a simple script and using the PHP library <a href="http://code.google.com/p/sabredav/wiki/WebDAVClient">SabreDAV</a> which makes writing DAV clients quite easy.</p>
+<p>I myself don't mind using other people's Open Source code to do something. I was actually surprised that I was not able to find something that meet my criteria. However, thanks to the power of open source I was able to find something that fit the bill exactly.</p>
+<p>To make things more interesting, because I wanted to keep backup files as compressed Zip archives, my backup scripts did not work in one of the web hosts that I was using. They did not have the <code>zip</code> extensions enabled. This is surprising considering is quite standard. Luckily I was able to find a pure PHP library <a href="http://www.phpconcept.net/pclzip/">pclzip</a>.</p>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li class="active"><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

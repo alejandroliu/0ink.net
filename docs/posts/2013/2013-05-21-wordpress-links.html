@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>Wordpress links - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="This article describes how you creeate hyperlinks within Wordpress. There are a number of ways to do this, depending on the configuration and the types of data we are linking to. Linking Without Using Permalinks This actually works whether or not Permalinks are active. Using the numeric values found in …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>Wordpress links</h1>
+
+<div class="metadata">
+  <time datetime="2013-05-21T00:00:00+02:00" pubdate>Tue 21 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>
+		<p>This article describes how you creeate hyperlinks within
+Wordpress.  There are a number of ways to do this, depending
+on the configuration and the types of data we are linking to.</p>
+<h1>Linking Without Using Permalinks</h1>
+<p>This actually works whether or not Permalinks are active. Using the numeric values found in the ID column of the Posts, Categories, and Pages Administration, you can create links as follows.</p>
+<h2>Posts</h2>
+<p>To link to a Post, find the ID of the target post on the Posts administration panel, and insert it in place of the '123' in this link:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;index.php?p=123&quot;</span><span class="nt">&gt;</span>Post Title<span class="nt">&lt;/a&gt;</span>
+</code></pre></div>
+
+<h2>Categories</h2>
+<p>To link to a Category, find the ID of the target Category on the Categories administration panel, and insert it in place of the '7' in this link:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;index.php?cat=7&quot;</span><span class="nt">&gt;</span>Category Title<span class="nt">&lt;/a&gt;</span>
+</code></pre></div>
+
+<h2>Pages</h2>
+<p>To link to a Page, find the ID of the target Page on the Pages administration panel, and insert it in place of the '42' in this link:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;index.php?page_id=42&quot;</span><span class="nt">&gt;</span>Page title<span class="nt">&lt;/a&gt;</span>
+</code></pre></div>
+
+<h2>Date-based Archives</h2>
+<div class="highlight"><pre><span></span><code>Year: <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;index.php?m=2006&quot;</span><span class="nt">&gt;</span>2006<span class="nt">&lt;/a&gt;</span>
+Month: <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;index.php?m=200601&quot;</span><span class="nt">&gt;</span>Jan 2006<span class="nt">&lt;/a&gt;</span>
+Day: <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;index.php?m=20060101&quot;</span><span class="nt">&gt;</span>Jan 1, 2006<span class="nt">&lt;/a&gt;</span> 
+</code></pre></div>
+
+<h1>Linking Using Permalinks</h1>
+<p>If you have enabled permalinks, you have a few additional options for providing links that readers of your site will find a bit more user-friendly than the cryptic numbers. For posts, replace each Structure Tag in your permalink structure with the data appropriate to a post to construct a URL for that post. For example, if the permalink structure is:</p>
+<div class="highlight"><pre><span></span><code>/index.php/archives/%year%/%monthnum%/%day%/%postname%/
+</code></pre></div>
+
+<p>Replacing the Structure Tags with appropriate values may produce a URL that looks like this:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/index.php/archives/2005/04/22/my-sample-post/&quot;</span><span class="nt">&gt;</span>My Sample Post<span class="nt">&lt;/a&gt;</span>
+</code></pre></div>
+
+<p>To obtain an accurate URL for a post it may be easier to navigate to the post within the WordPress blog and then copy the URL from one of the blog links that WordPress generates. Review the information at Using Permalinks for more details on constructing URLs for individual posts.</p>
+<h2>Categories</h2>
+<p>To produce a link to a Category using permalinks, obtain the Category Base value from the Options &gt; Permalinks Administration Panel, and append the category name to the end. For example, to link to the category "testing" when the Category Base is "/index.php/categories", use the following link:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/index.php/categories/testing/&quot;</span><span class="nt">&gt;</span>category link<span class="nt">&lt;/a&gt;</span>
+</code></pre></div>
+
+<p>You can specify a link to a subcategory by using the subcategory directly (as above), or by specifying all parent categories before the category in the URL, like this:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/index.php/categories/parent_category/sub_category/&quot;</span><span class="nt">&gt;</span>subcategory link<span class="nt">&lt;/a&gt;</span>
+</code></pre></div>
+
+<h2>Pages</h2>
+<p>Pages have a hierarchy like Categories, and can have parents. If a Page is at the root level of the hierarchy, you can specify just the Page's "page slug" after the static part of your permalink structure:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/index.php/a-test-page&quot;</span><span class="nt">&gt;</span>a test page<span class="nt">&lt;/a&gt;</span>
+</code></pre></div>
+
+<p>Once again, the best way to verify that this is the correct URL is to navigate to the target Page on the blog and compare the URL to the one you want to use in the link.</p>
+<h2>Date-based Archives</h2>
+<div class="highlight"><pre><span></span><code>Year: <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/index.php/archives/2006&quot;</span><span class="nt">&gt;</span>2006<span class="nt">&lt;/a&gt;</span>
+Month: <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/index.php/archives/2006/01/&quot;</span><span class="nt">&gt;</span>Jan 2006<span class="nt">&lt;/a&gt;</span>
+Day: <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/index.php/archives/2006/01/01/&quot;</span><span class="nt">&gt;</span>Jan 1, 2006<span class="nt">&lt;/a&gt;</span>
+</code></pre></div>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li class="active"><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

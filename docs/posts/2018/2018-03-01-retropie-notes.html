@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>Retropie - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="DVD player Bluetooth receiver keyboard good keyboard bindings how to exit games convert probox into binding keys where are key codes saved Write image: gunzip < retropie-4.3-rpi2_rpi3.img.gz | sudo dd of=/dev/sde bs=4M Configure config.txt hdmi_force_hotplug=1 hdmi_drive=2 Boot and configure keyboard D-Pad => D-Pad start …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>Retropie</h1>
+
+<div class="metadata">
+  <time datetime="2018-03-01T00:00:00+01:00" pubdate>Thu 01 March 2018</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2018.html">2018</a>
+</div>
+		<ul>
+<li>DVD player</li>
+<li>Bluetooth receiver </li>
+<li>
+<p>keyboard </p>
+</li>
+<li>
+<p>good keyboard bindings</p>
+</li>
+<li>how to exit games</li>
+<li>convert probox into binding keys</li>
+<li>where are key codes saved</li>
+</ul>
+<hr>
+<ul>
+<li>Write image:</li>
+<li>gunzip &lt; retropie-4.3-rpi2_rpi3.img.gz | sudo dd of=/dev/sde bs=4M</li>
+<li>Configure config.txt</li>
+<li>hdmi_force_hotplug=1</li>
+<li>hdmi_drive=2</li>
+<li>Boot and configure keyboard</li>
+<li>D-Pad =&gt; D-Pad</li>
+<li>start : mike (F5)</li>
+<li>select : menu key</li>
+<li>A :  OK (enter)</li>
+<li>B : back</li>
+<li>X : vol-</li>
+<li>Y : vol+
+  ... skip all ...</li>
+<li>HotKey : power</li>
+<li>Configure SSH</li>
+<li>sudo raspi-config<ul>
+<li>Interfacing Options</li>
+<li>Enable SSH</li>
+</ul>
+</li>
+<li>Install Kodi</li>
+<li>?</li>
+</ul>
+<hr>
+<ul>
+<li>NFS</li>
+<li>nfs-common should be installed.</li>
+<li>sudo vi /etc/default/nfs-common</li>
+<li>activate statd</li>
+<li>Add systemctl start rpcbind|nfs-common to /etc/rc.local</li>
+<li>Doing systemctl enable resulted in a messed up system...</li>
+<li>sudo apt-get install autofs</li>
+<li>Enable /net hosts from /etc/auto.master ... pointing to /etc/auto.net<ul>
+<li>alvm1-xvdb1d -&gt; /net/alvm1/media/xvdb1/d</li>
+<li>alvm1-xvdb1m -&gt; /net/alvm1/media/xvdb1/m</li>
+<li>alvm1-xvdb1p -&gt; /net/alvm1/media/xvdb1/p</li>
+<li>alvm1-xvdc1p -&gt; /net/alvm1/media/xvdc1/p</li>
+<li>alvm1-xvdd1p -&gt; /net/alvm1/media/xvdd1/p</li>
+<li>ow1-v1 -&gt; /net/ow1/data/v1</li>
+<li>vs1-xvdb1 -&gt; /net/vs1/media/xvdb1</li>
+</ul>
+</li>
+<li><a href="https://afterthoughtsoftware.com/products/rasclock">RTC</a></li>
+<li>sudo raspi-config<ul>
+<li>Interfacing options</li>
+<li>I2C</li>
+</ul>
+</li>
+<li>Edit /boot/config.txt<ul>
+<li>dtoverlay=i2c-rtc,pcf2127</li>
+</ul>
+</li>
+<li><a href="https://mausberry-circuits.myshopify.com/pages/setup">Power control:mausberry</a><ul>
+<li>git clone https://github.com/t-richards/mausberry-switch.git</li>
+<li>autoreconf -i -f</li>
+<li>./configure</li>
+<li>make</li>
+<li>sudo make install</li>
+<li>Add also mausberry-switch &amp; to /etc/rc.local</li>
+</ul>
+</li>
+<li><a href="https://github.com/dillbyrne/es-cec-input">CEC control</a><ul>
+<li>sudo apt-get install cec-utils</li>
+<li>sudo apt-get install python-pip</li>
+<li>sudo pip install python-uinput</li>
+<li>git clone https://github.com/dillbyrne/es-cec-input.git</li>
+</ul>
+</li>
+<li>input</li>
+<li><a href="https://github.com/MerlijnWajer/uinput-mapper">uinput-mapper</a></li>
+<li><a href="http://blog.pi3g.com/2014/03/uinput-mapper-redirecting-keyboard-and-mouse-to-any-linux-system-using-a-raspberry-pi/">redirection HID using uinput-mapper</a></li>
+<li><a href="https://www.raspberrypi.org/forums/viewtopic.php?t=85299">forums</a></li>
+<li><a href="http://tjjr.fi/sw/python-uinput/">python-uinput</a></li>
+<li><a href="http://python-evdev.readthedocs.io/en/latest/tutorial.html#">python evdev</a></li>
+<li><a href="https://github.com/pyusb/pyusb">pytusb</a></li>
+</ul>
+<hr>
+<ul>
+<li><a href="https://mausberry-circuits.myshopify.com/pages/setup">mausberry setup</a></li>
+<li><a href="https://github.com/RetroPie/RetroPie-Setup/wiki/Running-ROMs-from-a-Network-Share">running ROMS from a share</a></li>
+</ul>
+<hr>
+<ul>
+<li>cron backup kodi</li>
+<li>document cec input</li>
+<li>re-do keyboard bindings</li>
+</ul>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li class="active"><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li ><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

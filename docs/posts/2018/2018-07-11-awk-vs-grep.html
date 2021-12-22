@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>Skipping grep when using AWK - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="Over the years, We've seen many people use this pattern (filter-map): $ [data is generated] | grep something | awk '{print $2}' but it can be shortened to: $ [data is generated] | awk '/something/ {print $2}' You (probably) don't need grep Following this logic, you can replace a simple grep with: $ [data is generated …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>Skipping grep when using AWK</h1>
+
+<div class="metadata">
+  <time datetime="2018-07-11T00:00:00+02:00" pubdate>Wed 11 July 2018</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2018.html">2018</a>
+</div>
+		<p>Over the years, We've seen many people use this pattern (filter-map):</p>
+<div class="highlight"><pre><span></span><code>$ <span class="o">[</span>data is generated<span class="o">]</span> <span class="p">|</span> grep something <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span>
+</code></pre></div>
+
+<p>but it can be shortened to:</p>
+<div class="highlight"><pre><span></span><code>$ <span class="o">[</span>data is generated<span class="o">]</span> <span class="p">|</span> awk <span class="s1">&#39;/something/ {print $2}&#39;</span>
+</code></pre></div>
+
+<h1>You (probably) don't need grep</h1>
+<p>Following this logic, you can replace a simple grep with:</p>
+<div class="highlight"><pre><span></span><code>$ <span class="o">[</span>data is generated<span class="o">]</span> <span class="p">|</span> awk <span class="s1">&#39;/something/&#39;</span>
+</code></pre></div>
+
+<p>This will <em>implicitly</em> print lines that match the regular expression.</p>
+<p>If you feel lost, Here are a series of posts about awk for you:</p>
+<ul>
+<li><a href="https://blog.jpalardy.com/posts/why-learn-awk/">Why Learn AWK</a></li>
+<li><a href="https://blog.jpalardy.com/posts/awk-tutorial-part-1/">Tutorial Part 1</a></li>
+<li><a href="https://blog.jpalardy.com/posts/awk-tutorial-part-2/">Tutorial Part 2</a></li>
+<li><a href="https://blog.jpalardy.com/posts/awk-tutorial-part-3/">Tutorial Part 3</a></li>
+</ul>
+<h1>Why would you want to do this?</h1>
+<p>There are a number of reasons:</p>
+<ul>
+<li>it's shorter to type</li>
+<li>it spawns one less process</li>
+<li>awk uses modern (read "Perl") regular expressions, by default - like <code>grep -E</code></li>
+<li>it's ready to "augment" with more awk</li>
+</ul>
+<h1>What about <code>grep -v</code>?</h1>
+<p><code>grep -v</code> can be done with:</p>
+<div class="highlight"><pre><span></span><code>$ <span class="o">[</span>data is generated<span class="o">]</span> <span class="p">|</span> awk <span class="s1">&#39;! /something/&#39;</span>
+</code></pre></div>
+
+<hr>
+<p>Reference: <a href="https://blog.jpalardy.com/posts/skip-grep-use-awk/">jpalardy.com</a></p>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li class="active"><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li ><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

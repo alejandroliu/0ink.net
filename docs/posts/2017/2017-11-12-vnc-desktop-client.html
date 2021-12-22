@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>VNC desktop - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="IDEA: Client connects > < server sends version string (Use 3.3 only) Client replies with actual verison string > < server sends security type; NONE Client send ClientInit (shared flag) > < sever sens ServerInit (server details) WxHxD Name === standard stuff === 2 VERSIONS kiosk unmodified vncviewer connects to a multiplexer screen server (in inetd mode …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>VNC desktop</h1>
+
+<div class="metadata">
+  <time datetime="2017-11-12T00:00:00+01:00" pubdate>Sun 12 November 2017</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2017.html">2017</a>
+</div>
+		<p>IDEA:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">Client</span> <span class="nv">connects</span> <span class="o">&gt;</span>
+        <span class="o">&lt;</span> <span class="nv">server</span> <span class="nv">sends</span> <span class="nv">version</span> <span class="nv">string</span> <span class="ss">(</span><span class="nv">Use</span> <span class="mi">3</span>.<span class="mi">3</span> <span class="nv">only</span><span class="ss">)</span>
+<span class="nv">Client</span> <span class="nv">replies</span> <span class="nv">with</span> <span class="nv">actual</span> <span class="nv">verison</span> <span class="nv">string</span> <span class="o">&gt;</span>
+        <span class="o">&lt;</span> <span class="nv">server</span> <span class="nv">sends</span> <span class="nv">security</span> <span class="nv">type</span><span class="c1">; NONE</span>
+<span class="nv">Client</span> <span class="k">send</span> <span class="nv">ClientInit</span> <span class="ss">(</span><span class="nv">shared</span> <span class="nv">flag</span><span class="ss">)</span> <span class="o">&gt;</span> 
+        <span class="o">&lt;</span> <span class="nv">sever</span> <span class="nv">sens</span> <span class="nv">ServerInit</span> <span class="ss">(</span><span class="nv">server</span> <span class="nv">details</span><span class="ss">)</span> <span class="nv">WxHxD</span> <span class="nv">Name</span>
+<span class="o">===</span> <span class="nv">standard</span> <span class="nv">stuff</span> <span class="o">===</span>
+</code></pre></div>
+
+<h2>2 VERSIONS</h2>
+<ul>
+<li>kiosk</li>
+<li>unmodified vncviewer connects to a multiplexer screen</li>
+<li>server (in inetd mode) first spawns a Xvnc (in inetd mode) which does a login authentication
+    and finds an existing desktop or spawns a new one
+    saves the port and exists</li>
+<li>server then connects to the new desktop port and does the VNC handshake.  Sends client
+    Desktop change and name change messages</li>
+<li>Forwards everything...</li>
+<li>command</li>
+<li>User points command to a server.</li>
+<li>Script selects a new port.</li>
+<li>Ssh to server, look for vnc session, or spawn new one.</li>
+<li>netcat to vnc session.</li>
+<li>Listen to to new port, and netcat to ssh.</li>
+<li>vncviewer to netcat port.</li>
+</ul>
+<p>We use only v3.3 because we don't want to mess with security types.  Security should be handled by SSH tunnel.</p>
+<p>Check if user can login</p>
+<ul>
+<li><a href="https://wiki.dovecot.org/AuthDatabase/CheckPassword">checkpassword</a></li>
+<li><a href="https://github.com/jonabbey/panda-imap/blob/master/src/osdep/unix/ckp_pam.c">unix pam</a></li>
+<li><a href="https://github.com/svarshavchik/courier/blob/master/courier-authlib/authpam.c">authpam</a></li>
+<li><a href="https://github.com/mozilla-b2g/busybox/blob/master/loginutils/login.c">busybox login</a></li>
+<li><a href="https://github.com/mingodad/citadel/blob/master/citadel/auth.c">citadel auth</a></li>
+<li><a href="http://www.linuxdevcenter.com/pub/a/linux/2002/04/04/PamModules.html">PamModules</a></li>
+</ul>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li class="active"><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li ><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

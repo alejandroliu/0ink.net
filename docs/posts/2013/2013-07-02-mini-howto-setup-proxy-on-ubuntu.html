@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>'Mini-Howto: Setup proxy on Ubuntu' - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="A quick and dirty mini-howto to setup a proxy on Ubuntu. This is meant mostly for doing quick setup of a proxy on a cloud environment. Install Squid with the following command at the Linux command prompt: sudo apt-get install squid Edit the Squid config file in /etc/squid adding …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>'Mini-Howto: Setup proxy on Ubuntu'</h1>
+
+<div class="metadata">
+  <time datetime="2013-07-02T00:00:00+02:00" pubdate>Tue 02 July 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>
+		<p>A quick and dirty mini-howto to setup a proxy on Ubuntu.
+This is meant mostly for doing quick setup of a proxy
+on a cloud environment.</p>
+<p><img alt="logo-ubuntu_su-orange-hex" src="/images/2013/logo-ubuntu_su-orange-hex.jpg"></p>
+<ol>
+<li>Install Squid with the following command at the Linux command prompt:<br>
+<code>sudo apt-get install squid</code></li>
+<li>Edit the Squid config file in <code>/etc/squid</code> adding these lines:<br>
+<code>http_access allow local_net</code><br>
+<code>acl local_net src 10.10.0.0/255.255.0.0</code></li>
+<li>Save the file, exit the editor and restart Squid. You are now ready to configure your browser to use the proxy server.</li>
+<li>Click "Tools," "Options," "Advanced," "Network" and "Settings" in Firefox, which is the normal Ubuntu Linux browser. Select "Manual Proxy Configuration," enter the IP address of your proxy server, enter port 3128 in the Port field and then click "OK."</li>
+</ol>
+<p>References:</p>
+<ul>
+<li><a href="http://science.opposingviews.com/set-up-secure-proxy-server-ubuntu-linux-23184.html">http://science.opposingviews.com/set-up-secure-proxy-server-ubuntu-linux-23184.html</a> by Alan Hughes</li>
+</ul>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li class="active"><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

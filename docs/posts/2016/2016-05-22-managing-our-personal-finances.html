@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>Managing our personal finances - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="During my last vacation I wanted to move how we manage our personal finances away from the ad-hoc spreadsheet that we had been using for the past few years. I envisioned something server side, so I wouldn't need to add software on my wife's computer. And initial quick run through …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>Managing our personal finances</h1>
+
+<div class="metadata">
+  <time datetime="2016-05-22T00:00:00+02:00" pubdate>Sun 22 May 2016</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2016.html">2016</a>
+</div>
+		<p>During my last vacation I wanted to move how we manage our personal
+finances away from the ad-hoc spreadsheet that we had been using for
+the past few years. I envisioned something server side, so I wouldn't
+need to add software on my wife's computer. And initial quick run
+through of server side software did not yield anything that interested
+me. In general I could only find <em>full</em> accounting applications, which
+would have been an over kill for personal finance/expense tracking. So
+then I checked through some desktop applications. I looked at the
+following:</p>
+<ul>
+<li><a href="http://homebank.free.fr/">HomeBank</a></li>
+<li><a href="http://www.grisbi.org/">Grisbi</a></li>
+</ul>
+<p>I found many others, but I only tried these two. The most common
+suggestion among Open Source advocates is <a href="https://www.gnucash.org/">GNU Cash</a>,
+but I did not try that because it was too big for my modest
+requirements. I installed these two but I was not able to get it to do
+what I wanted. Which was be able to import transactions from my back
+and entered into the the application. So I went back searching to the
+web this time looking for "personal finance" instead of "accounting"
+and found this web application (amongst others):</p>
+<ul>
+<li><a href="https://sourceforge.net/projects/pfmgr/">PFMGR</a></li>
+</ul>
+<p>So I installed it and was able to run it on my home server. (This was
+the first of these types of application that I managed to run, so I was
+initially happy). So, running it, it looked OK, had an AJAX based user
+interface, etc. Did not have anything in the way to import the data
+files from my bank, but since it is Open Source, I could easily make
+up something for it. So I modified it to include a page to import my
+bank data. This seemed to work OK. That's when the annoyances started.
+<strong>PFMGR</strong> author had an specific use case in mind, so it can track not
+only money accounts but share accounts. While nice, I did not have
+such investments, so that feature was unused, but it will show on the
+forms (annoying). A lot of the functionality of the software was around
+check reconciliation. Since I don't use checks, that is not useful for
+me at all. Finally, I couldn't get the reports to work at all, and the
+times that they did work, they did not give me the information that I
+wanted. I figured, since this is all open source I could just add/remove
+the features the way I wanted. Which curiously turned out I would remove
+all the features and just keep <strong>PFMGR</strong> as a simple CRUD application.
+So I figure I might as well toss it all out and find a small PHP
+Framework that could do CRUD. So I came across this tutorial:</p>
+<ul>
+<li><a href="https://foysalmamun.wordpress.com/2013/03/27/fat-free-crud-with-mvc-tutorial/">FatFree :: CRUD with MVC</a></li>
+</ul>
+<p>So it gives a gentle intro to the <a href="http://fatfreeframework.com/home">FatFreeFramework</a>.
+This was just what I was looking for. I can say for simple applications,
+this is perfect. I was able to get started into my own personal finance
+application. Did run into a few problems. Most of it around the fact that
+Fat-Free (aka as F3), although has a very gentle learning curve, and one
+can get things started very quickly, it did a few things that I was not
+expecting. Well, actually, for a novice programmer, it did things right.
+For somebody used to using PHP directly, I would add some code to escape
+and protect against invalid inputs, F3 was doing it automatically which
+caused me a few headaches until I realized what F3 was doing. My main
+problem with F3 is that my schema required a wide varchar column and
+that seemed to cause problem with its ORM mapper. Later I will write
+a simple test case and see if I can track down the issue.</p>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li class="active"><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li ><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

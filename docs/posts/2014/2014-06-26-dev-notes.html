@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>dev notes 2014 - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="Replacment for Make and Autoconf: MakeMe (If you don't have root but have Android 4+ you can use the command-line program adb from the Android SDK platform tools to make backups via a desktop computer) chromebook ides Dev Tools Alternative languages: D : better than C, but not over-the-top like C …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>dev notes 2014</h1>
+
+<div class="metadata">
+  <time datetime="2014-06-26T00:00:00+02:00" pubdate>Thu 26 June 2014</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2014.html">2014</a>
+</div>
+		<p>Replacment for Make and Autoconf:
+<a href="https://embedthis.com/makeme/">MakeMe</a></p>
+<p>(If you don't have root but have Android 4+ you can use the
+command-line program adb from the Android SDK platform tools to make
+backups via a desktop computer)</p>
+<p><a href="http://www.chromebookhq.com/five-best-online-ides-making-the-switch-to-a-chromebook/">chromebook ides</a></p>
+<h1>Dev Tools</h1>
+<p>Alternative languages:</p>
+<ul>
+<li>D : better than C, but not over-the-top like C++?  Covers only Win and Linux</li>
+<li>Vala : Kinda like C# but for Gnome.  Covers Win and Linux.  (Android maybe through NDK).</li>
+<li>Java: Kinda over the top and heavy.  Covers Win and Linux.  Android yes, but different GUI library.  iOS probably yes.</li>
+<li>Python: scripting language.  Win, Linux.  Android maybe... iOS maybe...</li>
+<li>Javascript: scripting language. ALL PLATFORMS.</li>
+</ul>
+<p>Other options:</p>
+<ul>
+<li>Python with <a href="http://kivy.org/">Kivy</a></li>
+<li><a href="http://haxe.org/">Haxe</a></li>
+</ul>
+<h1>Build Tools</h1>
+<ul>
+<li>MakeKit - autotools look &amp; feel but lighter</li>
+<li><a href="http://www.dervishd.net/libre-software-projects">mobs</a>: autoconf workalike.</li>
+</ul>
+<h1>Resources</h1>
+<ul>
+<li><a href="http://www.dervishd.net/libre-software-projects">libre projects</a> :
+  syslogd in perl, mobom perl modules.</li>
+</ul>
+<h1>My own Notes App</h1>
+<div class="highlight"><pre><span></span><code>JumpNote      +      OI Notpad
+(Background          (Tags support)
+Sync)
+          V
+     Simple Note backend
+          V
+        Tags UI
+     (Filter, modify tags)
+          V
+        Task UI
+          V
+        Widget
+</code></pre></div>
+
+<p>WebApp + Mobile Dev:
+- <a href="http://demux.vektorsoft.com/demux/">A Java framework that works on multiple platforms</a>
+- <a href="http://asterclick.drclue.net/WBEA.html">Allows for webapps on desktops</a>
+- PhoneGap
+- <a href="http://www.mobilexweb.com/emulators">Test mobile apps on desktop</a>
+- Javascript optimizer: 
+  - <a href="https://developers.google.com/closure/">closure</a>
+  - <a href="https://github.com/mishoo/UglifyJS">UglifyJS</a>
+- <a href="https://developer.mozilla.org/en/Rhino_JavaScript_Compiler">JS Compiler</a>
+- Java 2 JS Toolkits: 
+  - <a href="http://code.google.com/webtoolkit/">WebToolKit</a>
+  - <a href="http://j2s.sourceforge.net/">J2S</a>
+- Python 2 JS Toolkigs: 
+  <a href="http://pyjs.org/">PyJS</a>
+- JS Interpretr for command line: 
+  - <a href="https://developers.google.com/v8/">v8</a>
+  - <a href="http://en.wikipedia.org/wiki/Nodejs">NodeJS</a>
+- <a href="http://this-voice.org/alchemy/pride.html">Android Alternative IDE</a></p>
+<p>Documentation around Syncing...</p>
+<ul>
+<li><a href="http://ericmiles.wordpress.com/2010/09/22/connecting-the-dots-with-android-syncadapter/">sync adapter</a></li>
+<li><a href="http://developer.android.com/resources/samples/SampleSyncAdapter/index.html">Sample sync adapter</a></li>
+</ul>
+<p>Other Notes:</p>
+<ul>
+<li>Perki replacement that runs on Android.</li>
+<li>Use WebKit/PhoneGap + Javascript and HTML5</li>
+<li>Markdown library for Javascript</li>
+<li>Markdown editor for javscript</li>
+<li>TXGR converted to HTML5 Canvas</li>
+<li>How do we do background sync?</li>
+</ul>
+<p>More example code:</p>
+<ul>
+<li><a href="http://code.google.com/p/jumpnote/">jumpnote</a></li>
+<li><a href="http://www.java2s.com/Open-Source/Android/CatalogAndroid.htm">CatalogAndroid</a></li>
+</ul>
+<p>We want to have it for Android, Linux and Windows.</p>
+<ul>
+<li><a href="http://libreplanet.org/wiki/Group:Hardware/Howto_have_a_free_android_sdk">Free Android SDK</a></li>
+</ul>
+<p>We need to research:</p>
+<ul>
+<li>Alternative to freewrap</li>
+<li><a href="http://jsmooth.sourceforge.net/">jsmooth</a></li>
+<li><a href="http://launch4j.sourceforge.net/">launch4j</a></li>
+<li><a href="http://www.thisiscool.com/gcc_mingw.htm">gcc mingw</a></li>
+<li><a href="http://vertis.github.com/2007/06/24/native-java-with-gcj-and-swt.html">gcj+swt</a></li>
+<li><a href="http://winrun4j.sourceforge.net/">winrun4j</a></li>
+<li>Alternative to Canvas</li>
+<li><a href="http://www.piccolo2d.org/">piccolo2d</a></li>
+<li><a href="http://www.jhotdraw.org/">jhotdraw</a></li>
+<li><a href="http://www.manageability.org/blog/stuff/open-source-structured-graphics-libraries-in-java">Contains an overview of options...</a></li>
+<li><a href="http://jean-philippe.leboeuf.name/notebook/archives/000315.html">Another overview of options</a></li>
+<li>Which Toolkit to use (SWT, Swing, AWT, etc)</li>
+</ul>
+<p>A freewrap like tool for python:</p>
+<p><a href="http://freecode.com/projects/pyinstaller">pyiinstaller</a></p>
+<p>More Android Dev options:</p>
+<ul>
+<li>PhoneGAP</li>
+<li><a href="http://kivy.org/">Python, multi platform</a></li>
+<li><a href="https://code.google.com/p/android-python27/w/list">Python on android</a></li>
+</ul>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li class="active"><a href="/category/2014.html">2014</a></li>
+	              <li ><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

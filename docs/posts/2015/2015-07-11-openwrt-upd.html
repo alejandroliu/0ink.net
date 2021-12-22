@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>Upload to OpenWRT - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="Base 64 decoding: coreutils-base64 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20#!/usr/local/bin/haserl --upload-limit=4096 --upload-dir=/tmp content-type: text/html <html><body> <form action="<% echo -n $SCRIPT_NAME %>" method=POST enctype="multipart/form-data" > <input type=file …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>Upload to OpenWRT</h1>
+
+<div class="metadata">
+  <time datetime="2015-07-11T00:00:00+02:00" pubdate>Sat 11 July 2015</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2015.html">2015</a>
+</div>
+		<p>Base 64 decoding: <code>coreutils-base64</code></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/local/bin/haserl --upload-limit=4096 --upload-dir=/tmp 
+content-type: text/html
+
+<span class="nt">&lt;html&gt;&lt;body&gt;</span>
+<span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">&quot;</span><span class="cp">&lt;%</span> <span class="n">echo</span> <span class="o">-</span><span class="n">n</span> <span class="vg">$SCRIPT_NAME</span> <span class="cp">%&gt;</span><span class="s">&quot;</span> <span class="na">method=</span><span class="s">POST</span> <span class="na">enctype=</span><span class="s">&quot;multipart/form-data&quot;</span> <span class="nt">&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">file</span> <span class="na">name=</span><span class="s">uploadfile</span><span class="nt">&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">submit</span> <span class="na">value=</span><span class="s">GO</span><span class="nt">&gt;</span>
+<span class="nt">&lt;br&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">if</span> <span class="nb">test</span> <span class="o">-</span><span class="n">n</span> <span class="s2">&quot;$HASERL_uploadfile_path&quot;</span><span class="p">;</span> <span class="k">then</span> <span class="cp">%&gt;</span>
+        <span class="nt">&lt;p&gt;</span>
+        You uploaded a file named <span class="nt">&lt;b&gt;</span><span class="cp">&lt;%</span> <span class="n">echo</span> <span class="o">-</span><span class="n">n</span> <span class="vg">$FORM_uploadfile_name</span> <span class="cp">%&gt;</span><span class="nt">&lt;/b&gt;</span>, and it was
+        temporarily stored on the server as <span class="nt">&lt;i&gt;</span><span class="cp">&lt;%</span> <span class="n">echo</span> <span class="vg">$HASERL_uploadfile_path</span> <span class="cp">%&gt;</span><span class="nt">&lt;/i&gt;</span>.  The
+        file was <span class="cp">&lt;%</span> <span class="n">cat</span> <span class="vg">$HASERL_uploadfile_path</span> <span class="o">|</span> <span class="n">wc</span> <span class="o">-</span><span class="n">c</span> <span class="cp">%&gt;</span> bytes long.<span class="nt">&lt;/p&gt;</span>
+        <span class="cp">&lt;%</span> <span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="vg">$HASERL_uploadfile_path</span> <span class="cp">%&gt;</span><span class="nt">&lt;p&gt;</span>Don&#39;t worry, the file has just been deleted
+        from the web server.<span class="nt">&lt;/p&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">else</span> <span class="cp">%&gt;</span>
+        You haven&#39;t uploaded a file yet.
+<span class="cp">&lt;%</span> <span class="n">fi</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+<span class="nt">&lt;/body&gt;&lt;/html&gt;</span>
+</code></pre></div>
+</td></tr></table>
+<p><a href="http://haserl.sourceforge.net/manpage.html">haserl man page</a></p>
+<p>Uploader tool: <a href="https://curl.haxx.se/docs/httpscripting.html#File_Upload_POST">post</a></p>
+<p>Disable/Relocate cgi-bin</p>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li class="active"><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li ><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

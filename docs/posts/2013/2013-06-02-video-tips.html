@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>Media Tips - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="This is an article about different media (and more specifically) video files can be manipulated. This is just for historical purposes as now almost everything can be done using ffmpeg and the right options. libmp4v2 contains: mp4art - to extract a picture (or coverart from mp4) mp4info - to get meta data …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>Media Tips</h1>
+
+<div class="metadata">
+  <time datetime="2013-06-02T00:00:00+02:00" pubdate>Sun 02 June 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>
+		<p>This is an article about different media (and more specifically)
+video files can be manipulated.</p>
+<p>This is just for historical purposes as now almost everything can be
+done using <code>ffmpeg</code> and the right options.</p>
+<ul>
+<li><a href="http://code.google.com/p/mp4v2/">libmp4v2</a> contains:<ul>
+<li>mp4art - to extract a picture (or coverart from mp4)</li>
+<li>mp4info - to get meta data from mp4 streams</li>
+<li>mp4tags - to set metadata and picture.</li>
+</ul>
+</li>
+<li>qt-fastload to move index to the front and making mp4 streamable</li>
+<li>When encoding:<ul>
+<li>Change max GOP or IDR to around 5 seconds.</li>
+<li>2-pass avg bitrate: 800 or even 500...</li>
+</ul>
+</li>
+</ul>
+<h1>Concatenating files:</h1>
+<h2>ffmpeg</h2>
+<p>ffmpeg has a feature concat, like</p>
+<div class="highlight"><pre><span></span><code>ffmpeg -i concat:&quot;video1.ts|video2.ts&quot;
+</code></pre></div>
+
+<p>There is also a "concat" video filter that may be useful. See
+<a href="http://ffmpeg.org/trac/ffmpeg/wiki/How%20to%20concatenate%20%28join,%20merge%29%20media%20files">http://ffmpeg.org/trac/ffmpeg/wiki/How%20to%20concatenate%20%28join,%20merge%29%20media%20files</a></p>
+<h2>gpac</h2>
+<p>An alternative is <a href="http://gpac.wp.mines-telecom.fr/">gpac</a>. One command
+it includes is MP4Box to concatenate MP4s</p>
+<div class="highlight"><pre><span></span><code>mp4box -cat sbd0.mp4 -cat sbd1.mp4 -new sbd.mp4
+</code></pre></div>
+
+<h2>AviDemux</h2>
+<p>Of course the avidemux GUI can append files.</p>
+<h2>Final notes</h2>
+<p>So far I have not been able to create a reliable media concat recipe.</p>
+<h1>Media Gain</h1>
+<p><a href="http://mp3gain.sourceforge.net/">mp3gain</a> can be used to normalize
+volume levels (without re-encoding). Accomplish this by using
+<a href="http://en.wikipedia.org/wiki/ReplayGain">ReplayGain</a> that needs to be
+supported by player. (XBMC claims to supports this).</p>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li class="active"><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

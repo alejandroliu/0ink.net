@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>Picade Todo - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="key mappings look up and label default mappings { KEY_UP_ARROW, UP }, { KEY_DOWN_ARROW, DOWN }, { KEY_LEFT_ARROW, LEFT }, { KEY_RIGHT_ARROW, RIGHT }, { KEY_LEFT_CTRL, BTN_1 }, { KEY_LEFT_ALT, BTN_2 }, { ' ', BTN_3 }, { KEY_LEFT_SHIFT, BTN_4 }, { 'z', BTN_5 }, { 'x', BTN_6 }, { 's', START }, { 'c', COIN }, { KEY_RETURN, ENTER }, { KEY_ESC, ESCAPE }, /* Change these lines to set key bindings for VOL_UP and VOL_DN */ { 'u', VOL_UP }, { 'd', VOL_DN …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>Picade Todo</h1>
+
+<div class="metadata">
+  <time datetime="2015-10-11T00:00:00+02:00" pubdate>Sun 11 October 2015</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2015.html">2015</a>
+</div>
+		<ol>
+<li><a href="http://forums.pimoroni.com/t/picade-pcb-emulator-key-mapping/922">key mappings</a></li>
+<li>look up and label default mappings</li>
+</ol>
+<div class="highlight"><pre><span></span><code>  { <span class="nv">KEY_UP_ARROW</span>,    <span class="nv">UP</span>     },
+  { <span class="nv">KEY_DOWN_ARROW</span>,  <span class="nv">DOWN</span>   },
+  { <span class="nv">KEY_LEFT_ARROW</span>,  <span class="nv">LEFT</span>   },
+  { <span class="nv">KEY_RIGHT_ARROW</span>, <span class="nv">RIGHT</span>  },
+
+  { <span class="nv">KEY_LEFT_CTRL</span>,   <span class="nv">BTN_1</span>  },
+  { <span class="nv">KEY_LEFT_ALT</span>,    <span class="nv">BTN_2</span>  },
+  { <span class="s1">&#39;</span><span class="s"> </span><span class="s1">&#39;</span>,             <span class="nv">BTN_3</span>  },
+  { <span class="nv">KEY_LEFT_SHIFT</span>,  <span class="nv">BTN_4</span>  },
+  { <span class="s1">&#39;</span><span class="s">z</span><span class="s1">&#39;</span>,             <span class="nv">BTN_5</span>  },
+  { <span class="s1">&#39;</span><span class="s">x</span><span class="s1">&#39;</span>,             <span class="nv">BTN_6</span>  },
+
+  { <span class="s1">&#39;</span><span class="s">s</span><span class="s1">&#39;</span>,             <span class="nv">START</span>  },
+  { <span class="s1">&#39;</span><span class="s">c</span><span class="s1">&#39;</span>,             <span class="nv">COIN</span>   },
+  { <span class="nv">KEY_RETURN</span>,      <span class="nv">ENTER</span>  },
+  { <span class="nv">KEY_ESC</span>,         <span class="nv">ESCAPE</span> },
+
+  <span class="cm">/* Change these lines to set key bindings for VOL_UP and VOL_DN */</span>
+   { <span class="s1">&#39;</span><span class="s">u</span><span class="s1">&#39;</span>,      <span class="nv">VOL_UP</span>  },
+   { <span class="s1">&#39;</span><span class="s">d</span><span class="s1">&#39;</span>,      <span class="nv">VOL_DN</span> },
+</code></pre></div>
+
+<ol>
+<li>Properly secure pi to case</li>
+<li>Properly configure MAME</li>
+<li>SSH to picade</li>
+<li>Add roms to picade</li>
+<li>Add a external port to plugin controllers</li>
+<li>scrapping games How?</li>
+<li>netplay</li>
+<li>setup battery power</li>
+<li>Change the art work</li>
+<li>Properly install power button</li>
+<li><a href="http://picraftbukkit.webs.com/pi-minecraft-server-how-to">minecraft server</a></li>
+<li>Install Java and how to run minecraft on PC</li>
+<li>Add a HD for PS1 games <a href="https://shop.pimoroni.com/products/sata-hard-drive-to-usb-adapter">sata adapter</a></li>
+</ol>
+<h1>Wiring...</h1>
+<div class="highlight"><pre><span></span><code><span class="n">GPIO</span> <span class="o">---</span> <span class="mi">220</span><span class="n">Ohm</span> <span class="o">---</span> <span class="o">+</span><span class="n">LED</span><span class="o">-</span> <span class="o">---&gt;</span> <span class="n">GND</span>
+</code></pre></div>
+
+<p>Python</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">RPi.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
+
+<span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BCM</span><span class="p">)</span>
+<span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+<span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">GPIO</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+
+<span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">IN</span><span class="p">)</span>
+<span class="n">GPIO</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="mi">22</span><span class="p">)</span> <span class="o">==</span> <span class="nb">bool</span>
+</code></pre></div>
+
+<p>ASCIART</p>
+<div class="highlight"><pre><span></span><code>                            +--- 10 kOhm --- GND
+                            |
+                            |
+                            |      _-v
+GPIO -- 1 kOhm --+---+    +------ 3.3V
+</code></pre></div>
+
+<p><a href="https://www.arduino.cc/en/Tutorial/Button">button</a></p>
+<div class="highlight"><pre><span></span><code>GND -- 10K Ohm --+---+ SW +--- 5V
+                 |
+GPIO----------------+
+</code></pre></div>
+
+<p><a href="https://www.arduino.cc/en/Tutorial/JoyStick">joystic</a></p>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li class="active"><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li ><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>Using XScreenSaver Hacks with mate-screensaver - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="Here we explain how to use XScreenSaver EXCELLENT screensaver hack collection with the MATE screensaver applet. Install xscreensaver and mate-screensaver On my linux distribution this creates the following directories: /usr/libexec/xscreensaver: contains the screensaver hacks executables /usr/libexec/mate-screensaver : contains the mate-screensaver executables /usr/share/applications/screensavers : containes the …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>Using XScreenSaver Hacks with mate-screensaver</h1>
+
+<div class="metadata">
+  <time datetime="2020-03-19T00:00:00+01:00" pubdate>Thu 19 March 2020</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2020.html">2020</a>
+</div>
+		<p>Here we explain how to use <a href="https://www.jwz.org/xscreensaver/">XScreenSaver</a> <strong>EXCELLENT</strong>
+screensaver hack collection with the <a href="https://mate-desktop.org/">MATE</a> screensaver
+applet.</p>
+<ul>
+<li>Install <code>xscreensaver</code> and <code>mate-screensaver</code></li>
+<li>On my linux distribution this creates the following directories:</li>
+<li><code>/usr/libexec/xscreensaver</code>: contains the screensaver hacks executables</li>
+<li><code>/usr/libexec/mate-screensaver</code> : contains the <code>mate-screensaver</code> executables</li>
+<li><code>/usr/share/applications/screensavers</code> : containes the <code>dekstop</code> files</li>
+<li>Create a small script that will call the screensaver hack with the right
+  arguments.  Make sure this script is in the <code>/usr/libexec/mate-screensaver</code>
+  directory, as the <code>mate-screensaver</code> preferences will not accept any
+  executables that are not in the right places.</li>
+<li>Create a desktop file to call the screensaver hack.  Verify that
+  the <code>Exec</code> property contains the application with the right arguments
+  and the <code>TryExec</code> only contains a path to the script that you created
+  in the previous step.  The <code>mate-screensaver</code> preferences applet
+  will test if the file specified in <code>TryExec</code> is indeed executable.</li>
+<li>Restart <code>mate-screensaver</code>.  I usually logout and log back in.</li>
+</ul>
+<p>For my computers I use this script:</p>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=paraiso-light&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/mate-screensaver-hacks/installer.sh"></script>
+
+<p>This simplifies the full process.  Just run the script (you may need to
+<code>sudo</code>) with the following options:</p>
+<ul>
+<li><code>$0 hacks [-e\|-d]</code></li>
+<li>shows the list of hacks and its enabled or disabled status.</li>
+<li>the <code>-e</code> option will only show enabled hacks.</li>
+<li>the <code>-d</code> option will only show disabled hacks.</li>
+<li>`$0 enable [--all|hacks]</li>
+<li>enable the specified hacks.</li>
+<li>Use <code>--all</code> to enable all available hacks (excluding blacklisted hacks)</li>
+<li>`$0 disable [--all|hacks]</li>
+<li>disable the specified hacks.</li>
+<li>Use <code>--all</code> to disable all available hacks</li>
+</ul>
+<hr>
+<p>If you like <a href="https://www.jwz.org/xscreensaver/">XScreenSaver</a> and would like to see the same software
+on Windows, you should read <a href="https://www.jwz.org/xscreensaver/xscreensaver-windows.html">this article</a> from the
+<a href="https://www.jwz.org/xscreensaver/">XScreenSaver</a> author.</p>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li class="active"><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li ><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

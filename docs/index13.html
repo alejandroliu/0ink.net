@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+
+<article class="summary">
+<div class="metadata">
+  <time datetime="2013-09-19T00:00:00+02:00" pubdate>Thu 19 September 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-09-19-alarm-notification.html" rel="bookmark" title="Permalink to Alarm Notification">Alarm Notification</a>
+    </h2>
+    <p><p>This tutorial describes how to use the alarm manager to set alarms and how to use the notification framework to display them. In short, the sequence goes like this:</p>
+<ol>
+<li>In an Activity AlarmManager.set is called with a PendingIntent containing a Uri.</li>
+<li>When the alarm goes off, the Uri is …</li></ol></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-09-19T00:00:00+02:00" pubdate>Thu 19 September 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-09-19-off-site-backup-options.html" rel="bookmark" title="Permalink to Off site backup options">Off site backup options</a>
+    </h2>
+    <p><p>This is my working notes on doing off-site backups to the cloud.
+Still trying to figure out where to keep Offsite backups.</p>
+<p>These are the candidates:</p>
+<table>
+<thead>
+<tr>
+<th>Site</th>
+<th>Free Quota</th>
+<th>100GB/Yr</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AltDrive</td>
+<td>30 day</td>
+<td>USD 45</td>
+<td>Unlimited, Linux binary</td>
+</tr>
+<tr>
+<td>iDrive</td>
+<td>5GB</td>
+<td>USD 6</td>
+<td>Starts at 1TB, Linux binary, API …</td></tr></tbody></table></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-09-13T00:00:00+02:00" pubdate>Fri 13 September 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-09-13-did-vendors.html" rel="bookmark" title="Permalink to DID vendors">DID vendors</a>
+    </h2>
+    <p><p>So I have been researching DID vendors with limited success.  So far my
+leading candidates are:</p>
+<table>
+<thead>
+<tr>
+<th>Vendor</th>
+<th>Country</th>
+<th>Set-up fee</th>
+<th>Monthly fee</th>
+<th>Per-Minute</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sonetel</td>
+<td>NL</td>
+<td>EUR 1.40</td>
+<td>EUR 1.40</td>
+<td>EUR 0.01</td>
+</tr>
+<tr>
+<td>Sonetel</td>
+<td>Peru</td>
+<td>EUR 5.50</td>
+<td>EUR 5.50</td>
+<td>EUR 0.01</td>
+</tr>
+<tr>
+<td>Sonetel</td>
+<td>USA</td>
+<td>EUR 0.70 …</td></tr></tbody></table></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-09-06T00:00:00+02:00" pubdate>Fri 06 September 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-09-06-parsing-json-in-shell-scripts.html" rel="bookmark" title="Permalink to Parsing JSON in Shell scripts">Parsing JSON in Shell scripts</a>
+    </h2>
+    <p><h2>date: 2013-09-06</h2>
+<p>This can be simple by using <a href="http://stedolan.github.io/jq/">jq</a>.</p>
+<p>This is a command line JSON processor.  Here are a couple of examples of what can be done:</p>
+<pre><code>$ cat json.txt
+
+{
+        "name": "Google",
+        "location":
+                {
+                        "street": "1600 Amphitheatre Parkway",
+                        "city": "Mountain View",
+                        "state": "California",
+                        "country": "US"
+                },
+        "employees":
+                [
+                        {
+                                "name": "Michael",
+                                "division": "Engineering"
+                        },
+                        {
+                                "name …</code></pre></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-08-28T00:00:00+02:00" pubdate>Wed 28 August 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-08-28-backing-up-gmail.html" rel="bookmark" title="Permalink to Backing up GMail">Backing up GMail</a>
+    </h2>
+    <p><h2>date: 2013-08-28</h2>
+<p>The other day I found <a href="http://gmvault.org/index.html">Gmvault</a>.</p>
+<p>Gmvault is an open source Gmail backup software written in Python.</p>
+<p>This article provides a good overview on how it works (found it better than the Gmvault documentation):</p>
+<ul>
+<li><a href="http://xmodulo.com/2013/08/how-to-back-up-and-restore-gmail-account-on-linux.html">How to back up and restore Gmail account on Linux</a></li>
+</ul>
+
+<p>It uses IMAP to …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-08-28T00:00:00+02:00" pubdate>Wed 28 August 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-08-28-grandstream-gxp1400.html" rel="bookmark" title="Permalink to Grandstream GXP1400">Grandstream GXP1400</a>
+    </h2>
+    <p><p><a href="http://www.grandstream.com/products/ip-voice-telephony/enterprise-ip-phones/product/gxp1400/1405">Grandstream GXP1400</a></p>
+<p><img alt="gs" src="/images/2013/gxp1400.jpg"></p>
+<p>The other day I replaced an analog phone with a Grandstream GXP1400 IP phone. I think it is a great value phone. It is one of the cheapest I could find yet supports all the features I was looking.</p>
+<p>Specifically I wanted a IP phone that could:</p>
+<ol>
+<li>Have …</li></ol></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-08-28T00:00:00+02:00" pubdate>Wed 28 August 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-08-28-yealink-w52p.html" rel="bookmark" title="Permalink to Yealink W52P">Yealink W52P</a>
+    </h2>
+    <p><p><a href="http://www.yealink.com/product_info.aspx?ProductsCateID=308">Yealink W52P</a></p>
+<p><img alt="phone" src="/images/2013/W52PwebRpicture20X20CM-01590427430.jpg"></p>
+<p>So I was looking to replace my analog cordless phones mainly because I wanted to have a centralized way to maintain phonebooks. Right now I have two cordless phone that I have to manually enter phonebook entries on the two handsets independently.</p>
+<p>Initially I was thinking of getting …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-08-26T00:00:00+02:00" pubdate>Mon 26 August 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-08-26-box-com-promotions.html" rel="bookmark" title="Permalink to BOX.com promotions">BOX.com promotions</a>
+    </h2>
+    <p><p>This is a good link to keep an eye on: <a href="https://support.box.com/entries/22057282-box-promotions-faq">box.com promotions</a></p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-08-23T00:00:00+02:00" pubdate>Fri 23 August 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-08-23-alternative-to-dyndns.html" rel="bookmark" title="Permalink to Alternative to DynDNS">Alternative to DynDNS</a>
+    </h2>
+    <p><p><a href="http://linuxaria.com/howto/dynamic-dns-with-bash-afraid-org">linuxaria blog article</a> This article has a script how to use Dynamic DNS on <a href="http://freedns.afraid.org/">afraid.org</a>.</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-08-22T00:00:00+02:00" pubdate>Thu 22 August 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-08-22-assist.html" rel="bookmark" title="Permalink to assist">assist</a>
+    </h2>
+    <p><p>Assist is my <a href="http://www.archlinux.org/">archlinux</a> scripted installation script.</p>
+<ul>
+<li><a href="https://github.com/alejandroliu/assist">https://github.com/alejandroliu/assist</a></li>
+</ul>
+<p>By default it gives you a menu driven <a href="http://www.archlinux.org/">archlinux</a> installation with supposedly <em>sensible</em> defaults.</p>
+<p>It has command line hooks so that you can perform automated installs using bash scripts to customize it.</p>
+<p>It can be deployed from the …</p></p>
+  </div>
+</article>
+<div class="pagination">
+            <a href="/index12.html">&laquo;</a>
+    Page 13 / 18
+        <a href="/index14.html">&raquo;</a>
+</div>
+
+
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li ><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

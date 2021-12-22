@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+
+<article class="summary">
+<div class="metadata">
+  <time datetime="2013-06-06T00:00:00+02:00" pubdate>Thu 06 June 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-06-06-3-way-merging.html" rel="bookmark" title="Permalink to Upgrading pacman config files">Upgrading pacman config files</a>
+    </h2>
+    <p><p>So when upgrading software packages sometimes you need to merge changes. My recipe in <strong>archlinux</strong> is as follows:</p>
+<ol>
+<li>Look for <strong>*.pacnew</strong> files.</li>
+<li>Retrieve the original version (from /var/cache/pacman) from the old source package.</li>
+<li>Use a 3 way merge tool between old version, current file and the pacnew file …</li></ol></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-06-05T00:00:00+02:00" pubdate>Wed 05 June 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-06-05-atratus-project.html" rel="bookmark" title="Permalink to atratus project">atratus project</a>
+    </h2>
+    <p><p>The other day I came across this <a href="http://atratus.org/" title="Atratus project">project</a>. Looks an interesting idea. It is a project that lets you run unmodified Linux binaries on Windows. It is more similar to WINE than to for example coLinux. While I conceptually I understand how it would work at a low level, I …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-06-05T00:00:00+02:00" pubdate>Wed 05 June 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-06-05-libmspack.html" rel="bookmark" title="Permalink to libmspack">libmspack</a>
+    </h2>
+    <p><p>Recently I found this Open Source project. Apparently it recently
+gained support to unpack <strong>Exchange Offline Address Book</strong> files. What
+I don't know is after you unpack it, how would you use such a file.
+Intriguing but apparently falls a little bit short. Probably would need
+to try it out …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-06-02T00:00:00+02:00" pubdate>Sun 02 June 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-06-02-video-tips.html" rel="bookmark" title="Permalink to Media Tips">Media Tips</a>
+    </h2>
+    <p><p>This is an article about different media (and more specifically)
+video files can be manipulated.</p>
+<p>This is just for historical purposes as now almost everything can be
+done using <code>ffmpeg</code> and the right options.</p>
+<ul>
+<li><a href="http://code.google.com/p/mp4v2/">libmp4v2</a> contains:<ul>
+<li>mp4art - to extract a picture (or coverart from mp4)</li>
+<li>mp4info - to get meta data …</li></ul></li></ul></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-06-01T00:00:00+02:00" pubdate>Sat 01 June 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-06-01-diskless-archlinux.html" rel="bookmark" title="Permalink to Diskless Archlinux">Diskless Archlinux</a>
+    </h2>
+    <p><p><em>I am still to test this recipe</em></p>
+<h1>Server Configuration</h1>
+<p>First of all, we must install the following components:</p>
+<ul>
+<li>A DHCP server to assign IP addresses to our diskless nodes.</li>
+<li>A TFTP server to transfer the boot image (a requirement of all PXE option roms).</li>
+<li>A form of network storage (NFS …</li></ul></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-05-30T00:00:00+02:00" pubdate>Thu 30 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-05-30-openwrt-tips.html" rel="bookmark" title="Permalink to OpenWRT web">OpenWRT web</a>
+    </h2>
+    <p><p>Some useful tidbits to use when using the OpenWRT embedded web
+server (uHTTPD).</p>
+<h2>Embedded Lua</h2>
+<p>uHTTPd supports running Lua in-process, which can speed up Lua CGI
+scripts. It is unclear whether LuCI supports running in this embedded
+interpreter. LuCI seems to work fine (if not better) with the embedded
+Lua …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-05-29T00:00:00+02:00" pubdate>Wed 29 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-05-29-program-documentation.html" rel="bookmark" title="Permalink to Program Documentation">Program Documentation</a>
+    </h2>
+    <p><p>So these are my ideas on how to document projects. There are three types of documentation types:</p>
+<ol>
+<li>User guides<br>
+    Targetted and end-users of the software and people who want a brief overview.</li>
+<li>Man pages<br>
+    Again targetted at end-users but also sysadmins. Usually to address a specific feature.</li>
+<li>API level documentation …</li></ol></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-05-28T00:00:00+02:00" pubdate>Tue 28 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-05-28-git-tutorials.html" rel="bookmark" title="Permalink to Git Tutorials">Git Tutorials</a>
+    </h2>
+    <p><p>Reference for Git tutorials</p>
+<ul>
+<li><a href="http://linux.yyz.us/git-howto.html">http://linux.yyz.us/git-howto.html</a></li>
+<li><a href="http://git.or.cz/course/svn.html">http://git.or.cz/course/svn.html</a></li>
+<li><a href="http://spheredev.org/wiki/Git_for_the_lazy">http://spheredev.org/wiki/Git_for_the_lazy</a></li>
+<li><a href="http://www.kernel.org/pub/software/scm/git/docs/gittutorial.html">http://www.kernel.org/pub/software/scm/git/docs/gittutorial.html</a></li>
+<li><a href="http://www.kernel.org/pub/software/scm/git/docs/everyday.html">http://www.kernel.org/pub/software/scm/git/docs/everyday.html</a></li>
+<li><a href="https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial">https://git.wiki.kernel.org/index …</a></li></ul></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-05-27T00:00:00+02:00" pubdate>Mon 27 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-05-27-archlinux-tips.html" rel="bookmark" title="Permalink to ArchLinux tips">ArchLinux tips</a>
+    </h2>
+    <p><p>A bunch of recipes useful for an ArchLinux system environment.</p>
+<p>Mostly around system administration.</p>
+<h1>Custom Repos and Packages</h1>
+<p>In the repo directory, put all the packages in there.</p>
+<div class="highlight"><pre><span></span><code>repo-add ./custom.db.tar.gz ./*
+</code></pre></div>
+
+<p>Add to <code>pacman.conf</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[custom]</span>
+<span class="na">SigLevel</span> <span class="o">=</span> <span class="s">[Package|Databse]Never|Optional|Required</span>
+<span class="na">Server</span> <span class="o">=</span> <span class="s">path-to-repo</span>
+</code></pre></div>
+
+<p>See also <code>repo-remove</code>. A …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-05-27T00:00:00+02:00" pubdate>Mon 27 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-05-27-emacs-cheat-sheet.html" rel="bookmark" title="Permalink to Emacs Cheat Sheet">Emacs Cheat Sheet</a>
+    </h2>
+    <p><p>Quick reference article for how to use Emacs.  Yes, it is really
+old skool!</p>
+<h1>Cursor Motion</h1>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Cursor Motion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C-f</td>
+<td>Forward one character</td>
+</tr>
+<tr>
+<td>C-b</td>
+<td>Backward one character</td>
+</tr>
+<tr>
+<td>C-n</td>
+<td>Next line</td>
+</tr>
+<tr>
+<td>C-p</td>
+<td>Previous line</td>
+</tr>
+<tr>
+<td>C-a</td>
+<td>Beginning of line</td>
+</tr>
+<tr>
+<td>C-e</td>
+<td>End of line</td>
+</tr>
+<tr>
+<td>C-v</td>
+<td>Next screenful</td>
+</tr>
+<tr>
+<td>M-v</td>
+<td>Previous screenful</td>
+</tr>
+<tr>
+<td>M-&lt;</td>
+<td>Beginning of …</td></tr></tbody></table></p>
+  </div>
+</article>
+<div class="pagination">
+            <a href="/index14.html">&laquo;</a>
+    Page 15 / 18
+        <a href="/index16.html">&raquo;</a>
+</div>
+
+
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li ><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

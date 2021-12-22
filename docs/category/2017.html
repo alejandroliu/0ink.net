@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>2017 - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+
+<h1>Articles posted on 2017</h1>
+
+<article class="summary">
+<div class="metadata">
+  <time datetime="2017-11-12T00:00:00+01:00" pubdate>Sun 12 November 2017</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2017.html">2017</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2017/2017-11-12-vnc-desktop-client.html" rel="bookmark" title="Permalink to VNC desktop">VNC desktop</a>
+    </h2>
+    <p><p>IDEA:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">Client</span> <span class="nv">connects</span> <span class="o">&gt;</span>
+        <span class="o">&lt;</span> <span class="nv">server</span> <span class="nv">sends</span> <span class="nv">version</span> <span class="nv">string</span> <span class="ss">(</span><span class="nv">Use</span> <span class="mi">3</span>.<span class="mi">3</span> <span class="nv">only</span><span class="ss">)</span>
+<span class="nv">Client</span> <span class="nv">replies</span> <span class="nv">with</span> <span class="nv">actual</span> <span class="nv">verison</span> <span class="nv">string</span> <span class="o">&gt;</span>
+        <span class="o">&lt;</span> <span class="nv">server</span> <span class="nv">sends</span> <span class="nv">security</span> <span class="nv">type</span><span class="c1">; NONE</span>
+<span class="nv">Client</span> <span class="k">send</span> <span class="nv">ClientInit</span> <span class="ss">(</span><span class="nv">shared</span> <span class="nv">flag</span><span class="ss">)</span> <span class="o">&gt;</span> 
+        <span class="o">&lt;</span> <span class="nv">sever</span> <span class="nv">sens</span> <span class="nv">ServerInit</span> <span class="ss">(</span><span class="nv">server</span> <span class="nv">details</span><span class="ss">)</span> <span class="nv">WxHxD</span> <span class="nv">Name</span>
+<span class="o">===</span> <span class="nv">standard</span> <span class="nv">stuff</span> <span class="o">===</span>
+</code></pre></div>
+
+<h2>2 VERSIONS</h2>
+<ul>
+<li>kiosk</li>
+<li>unmodified vncviewer connects to a multiplexer screen</li>
+<li>server (in inetd mode …</li></ul></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2017-10-19T00:00:00+02:00" pubdate>Thu 19 October 2017</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2017.html">2017</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2017/2017-10-19-markdown-simplenote-editing.html" rel="bookmark" title="Permalink to SimpleNote/Markdown editor">SimpleNote/Markdown editor</a>
+    </h2>
+    <p><p><strong>We just load SimpleNote as a Desktop WebApp</strong></p>
+<ol>
+<li>Create first a basic markdown editor</li>
+<li>
+<p>styling</p>
+</li>
+<li>
+<p>Hack retext</p>
+</li>
+<li>add stuff for multiple views</li>
+<li>nvpy remixed with retext?</li>
+<li><a href="http://www.py2exe.org/">Wrapper python for Windows</a></li>
+</ol>
+<p>Another option:</p>
+<ul>
+<li>SimpleNote native app + editor</li>
+</ul>
+<p>Features:</p>
+<ul>
+<li>Search tags from a menu</li>
+<li>Search within document</li>
+<li>Poll website for changes</li>
+</ul>
+<p>Or …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2017-10-02T00:00:00+02:00" pubdate>Mon 02 October 2017</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2017.html">2017</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2017/2017-10-02-wordpress-plugins.html" rel="bookmark" title="Permalink to Interesting wordpress plugins">Interesting wordpress plugins</a>
+    </h2>
+    <p><ul>
+<li><a href="https://wordpress.org/plugins/restrict-categories/">restrict categories</a></li>
+<li><a href="https://wordpress.org/plugins/access-control-by-category/">access control by category</a></li>
+<li><a href="https://wordpress.org/plugins/s2member/">site member</a></li>
+<li><a href="https://wordpress.org/plugins/user-access-manager/">user access mgr</a></li>
+<li><a href="https://wordpress.org/plugins/paid-memberships-pro/">paid members</a></li>
+</ul></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2017-09-21T00:00:00+02:00" pubdate>Thu 21 September 2017</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2017.html">2017</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2017/2017-09-21-yum-history-command.html" rel="bookmark" title="Permalink to Rollback with YUM History Command">Rollback with YUM History Command</a>
+    </h2>
+    <p><p>From <a href="https://www.2daygeek.com/rollback-fallback-updates-downgrade-packages-centos-rhel-fedora/">2daygeek.com</a></p>
+<p>Server patching is one of the important task of Linux system administrator to make the system more stable and better performance. All the vendors used to release security/vulnerabilities patches very often, the affected package must be updated in order to limit any potential security risks.</p>
+<p>Yum …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2017-09-20T00:00:00+02:00" pubdate>Wed 20 September 2017</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2017.html">2017</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2017/2017-09-20-seedbox.html" rel="bookmark" title="Permalink to SeedBoxes">SeedBoxes</a>
+    </h2>
+    <p><p>A seedbox is a dedicated server at a high speed datacenter with a
+public IP address for the downloading and seeding of bittorrent files.
+Persons who have access to a seedbox can download these files to
+their personal computers at any time and from any place that has an
+internet …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2017-07-12T00:00:00+02:00" pubdate>Wed 12 July 2017</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2017.html">2017</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2017/2017-07-12-install-centos-notes.html" rel="bookmark" title="Permalink to Centos Install notes">Centos Install notes</a>
+    </h2>
+    <p><p>Set-up <code>local.repo</code></p>
+<p>yum installs:</p>
+<ul>
+<li>nfs-utils autofs</li>
+<li>@x11</li>
+<li>@xfce</li>
+<li>wget</li>
+<li>dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts</li>
+<li>xorg-x11-fonts-{Type1,misc,75dpi,100dpi}</li>
+<li>bitmap-console-fonts bitmap-fixed-fonts bitmap-fonts-compat bitmap-lucida-typewriter-fonts</li>
+<li>ucs-miscfixed-fonts urw-fonts</li>
+<li>open-sans-fonts</li>
+<li>webcore-fonts webcore-fonts-vista</li>
+<li>liberation-mono-fonts liberation-sans-fonts liberation-serif-fonts</li>
+<li>bitstream-vera-sans-fonts bitstream-vera-serif-fonts</li>
+<li>gnu-free-{mono,sans,serif}-fonts</li>
+<li>tk</li>
+<li>firefox</li>
+<li>mplayer ffmpeg alsa-utils </li>
+<li>xsensors xfce4-sensors-plugin</li>
+<li>keepassx</li>
+<li>git</li>
+</ul>
+<p><a href="https://blog.packagecloud.io/eng/2015/05/11/building-rpm-packages-with-mock/">Building RPM packages with …</a></p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2017-06-24T00:00:00+02:00" pubdate>Sat 24 June 2017</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2017.html">2017</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2017/2017-06-24-android-dev.html" rel="bookmark" title="Permalink to android development">android development</a>
+    </h2>
+    <p><p>Android devs</p>
+<h1>Install JAVA</h1>
+<div class="highlight"><pre><span></span><code>yum install java-1.8.0-openjdk java-1.8.0-openjdk-devel
+</code></pre></div>
+
+<h1>Install SDK Tools:</h1>
+<p>Download the sdk-tools zip from <a href="https://developer.android.com/studio/index.html#download">here</a></p>
+<div class="highlight"><pre><span></span><code>mkdir /opt/android
+cd /opt/android
+</code></pre></div>
+
+<p>The sdk should go under <code>/opt/android/tools</code></p>
+<div class="highlight"><pre><span></span><code><span class="n">unzip</span> <span class="n">sdk</span><span class="o">-</span><span class="n">tools</span><span class="o">.</span><span class="n">zip</span>
+<span class="n">sudo</span> <span class="n">chmod</span> <span class="n">a</span><span class="o">+</span><span class="n">x</span> <span class="o">$</span><span class="p">(</span><span class="n">sudo</span> <span class="n">find</span> <span class="o">.</span> <span class="o">-</span><span class="n">type</span> <span class="n">f</span> <span class="o">-</span><span class="n">executable</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>Create a …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2017-06-01T00:00:00+02:00" pubdate>Thu 01 June 2017</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2017.html">2017</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2017/2017-06-01-securing-rsync-on-ssh.html" rel="bookmark" title="Permalink to Securing rsync on ssh">Securing rsync on ssh</a>
+    </h2>
+    <p><p>Reference: <a href="http://positon.org/rsync-command-restriction-over-ssh">positon.org</a></p>
+<p>You have 2 systems and you want to set up a secure backup with rsync + SSH of one system to the other.</p>
+<p>Very simply, you can use:</p>
+<div class="highlight"><pre><span></span><code><span class="k">backup</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="err">#</span><span class="w"> </span><span class="n">rsync</span><span class="w"> </span><span class="o">-</span><span class="n">avz</span><span class="w"> </span><span class="c1">--numeric-ids --delete root@myserver.example.com:/path/ /backup/myserver/</span>
+</code></pre></div>
+
+<p>To do the backup, you have …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2017-04-18T00:00:00+02:00" pubdate>Tue 18 April 2017</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2017.html">2017</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2017/2017-04-18-desktop-environments-on-centos-7.html" rel="bookmark" title="Permalink to Desktop environments on Centos 7">Desktop environments on Centos 7</a>
+    </h2>
+    <p><p>These are commands to install different Desktop environments
+on Centos7</p>
+<h2>Gnome</h2>
+<div class="highlight"><pre><span></span><code>yum groupinstall &#39;GNOME Desktop&#39;
+</code></pre></div>
+
+<h2>KDE</h2>
+<div class="highlight"><pre><span></span><code>yum groupinstall &quot;KDE Plasma Workspaces&quot;
+</code></pre></div>
+
+<h2>Cinnamon</h2>
+<div class="highlight"><pre><span></span><code>yum install epel-release
+yum --enablerepo=epel install cinnamon
+</code></pre></div>
+
+<h2>MATE</h2>
+<div class="highlight"><pre><span></span><code>yum install epel-release
+yum --enablerepo=epel groupinstall &quot;MATE Desktop&quot;
+</code></pre></div>
+
+<h2>XFCE</h2>
+<div class="highlight"><pre><span></span><code>yum install epel-release
+yum --enablerepo=epel groupinstall XFCE
+</code></pre></div></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2017-04-12T00:00:00+02:00" pubdate>Wed 12 April 2017</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2017.html">2017</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2017/2017-04-12-telegram.html" rel="bookmark" title="Permalink to Telegram">Telegram</a>
+    </h2>
+    <p><p><a href="https://telegram.org/">Telegram</a> is a messenger designed to overcome
+the limitations of other messengers like WhatsApp or similar ones. It
+is different and better than other messengers on more than one level.
+A few of the important features that make it stand out among other
+messengers are:</p>
+<ul>
+<li><em>Open API</em>. This enables the …</li></ul></p>
+  </div>
+</article>
+<div class="pagination">
+    Page 1 / 2
+        <a href="/category/20172.html">&raquo;</a>
+</div>
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li class="active"><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li ><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

@@ -69,6 +69,7 @@ jq
 # tcpdump
 # luakit
 
+mdcat
 # asciidoc | ruby-asciidoctor ?
 # bootiso			# Create USB boot discs from ISOs
 # darkhttpd		# light weight web server

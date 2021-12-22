@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>CyberWorld 2017.1 - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="Development - travis cordova build - travis ionic build owx common muninlite (can it support plugins?) flock, pwgen, ifstat ow1 diags&tools: usbutils, netstat-nat sniffer: tcpdump[-mini] 317K/617K, libpcap 191K owX FW/NAT DNSMASQ: DHCP + DNS NTP server Dynamic DNS updating (mushu porker) NFS IPv6 tunnel Provisioning server: (PXE, TFTP, NFS …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>CyberWorld 2017.1</h1>
+
+<div class="metadata">
+  <time datetime="2017-01-20T00:00:00+01:00" pubdate>Fri 20 January 2017</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2017.html">2017</a>
+</div>
+		<p>Development
+- <a href="https://gist.github.com/qertis/acd71e14db4168832f3b67c75182af04/">travis cordova build</a>
+- <a href="https://github.com/svenlaater/travis-ci-ionic-yml">travis ionic build</a></p>
+<ul>
+<li>owx</li>
+<li>common<ul>
+<li>muninlite (can it support plugins?)</li>
+<li>flock, pwgen, ifstat</li>
+</ul>
+</li>
+<li>ow1<ul>
+<li>diags&amp;tools: usbutils, netstat-nat</li>
+<li>sniffer: tcpdump[-mini] 317K/617K, libpcap 191K</li>
+</ul>
+</li>
+<li>
+<p>owX</p>
+<ul>
+<li>FW/NAT</li>
+<li>DNSMASQ: DHCP + DNS</li>
+<li>NTP server</li>
+<li>Dynamic DNS updating (mushu porker)</li>
+<li>NFS</li>
+<li>IPv6 tunnel</li>
+<li>Provisioning server: (PXE, TFTP, NFS, HTTP, rpmgot, syslog?)</li>
+<li>TLR server: HTTP, file manipulation, HTTPS?</li>
+<li>USB storage</li>
+</ul>
+</li>
+<li>
+<p>owx - switches</p>
+</li>
+<li>cn1</li>
+<li>[ ] data scrubbing</li>
+<li>[ ] backups</li>
+<li>[ ] boot cd mirroring</li>
+<li>[ ] config backup to alvm1</li>
+<li>[ ] NFS mounting installable iso images</li>
+<li>alvm1 : Main file store<ul>
+<li>[x] file sharing (NFS, Samba, http)</li>
+<li>[ ] rsync backup target</li>
+<li>[ ] undup, backup puller</li>
+</ul>
+</li>
+<li>[ ] alvm2 : Backup file store<ul>
+<li>snapshot server (NFS)</li>
+<li>backuper</li>
+</ul>
+</li>
+<li>[ ] alvm3 : Transmission<ul>
+<li>Implemented as its own server because of the VPN</li>
+</ul>
+</li>
+<li>[ ] cvm1 : Main APP server</li>
+<li>[ ] alvm4 : X10 server<ul>
+<li>Implemented as its own server because VM only runs if HW is available</li>
+</ul>
+</li>
+<li>[ ] alvm5: DMZ Server<ul>
+<li>[ ] reverse proxy</li>
+<li>[ ] PocketMine<ul>
+<li>Muirfield</li>
+<li>Niños</li>
+</ul>
+</li>
+<li>[ ] asterisk</li>
+</ul>
+</li>
+<li>[ ] alvm6 : Scan&amp;Print server<ul>
+<li>Spin-off cvm1, because SELINUX exception.  Shouldn't connect to DMZ, nor X10</li>
+</ul>
+</li>
+</ul>
+<h2>DMZ Server Basic Alpine Linux install</h2>
+<ul>
+<li>Create dos partition on the data drive</li>
+<li>mkdosfs on partition and mount</li>
+<li>setup-alpine</li>
+<li>apk update</li>
+<li>lbu ci</li>
+</ul>
+<hr>
+<h2>Reverse Proxy</h2>
+<h3>install nginx</h3>
+<ul>
+<li>apk add nginx ?php-fpm?</li>
+<li>configure in /etc/nginx/nginx.conf (<a href="https://wiki.alpinelinux.org/wiki/OwnCloud#Nginx">Reference</a>)</li>
+<li>apk apache2-utils : for htpasswd command</li>
+<li>Add a proxy command:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    <span class="nt">location</span> <span class="o">/</span> <span class="p">{</span>
+      <span class="err">proxy_pass</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="err">$</span><span class="n">server</span><span class="o">/</span><span class="p">;</span>
+      <span class="err">auth_basic</span> <span class="err">&quot;Restricted&quot;</span><span class="p">;</span>
+      <span class="err">auth_basic_user_file</span> <span class="err">/etc/nginx/_htpasswd</span><span class="p">;</span>
+      <span class="err">proxy_set_header</span> <span class="err">X-Remote-User</span> <span class="err">$remote_user</span><span class="p">;</span>
+      <span class="err">proxy_pass_request_headers</span>      <span class="err">on</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div>
+
+<p>Variable Reference: <a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#variables">NGINX Docs</a></p>
+<hr>
+<h2>WebServer</h2>
+<ul>
+<li>PHP checks headers (passed by the reverse proxy), otherwise,</li>
+<li>use authd:</li>
+<li>If using selinux we need to set this boolean:</li>
+<li>setsebool -P httpd_can_network_connect on</li>
+<li>PHP Function on server to determine user:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="x">define(&#39;IDENT_PORT&#39;,113);</span>
+
+<span class="x">function identd_query($remote_ip,$remote_port,$local_port,$tout=3) {</span>
+<span class="x">  $remote_ip = &#39;localhost&#39;;</span>
+<span class="x">  $sock = @fsockopen($remote_ip,IDENT_PORT,$errno,$errstr,$tout);</span>
+<span class="x">  //print_r([$sock,$errno,$errstr]);</span>
+<span class="x">  if (!$sock) return FALSE;</span>
+<span class="x">  @fwrite($sock,$remote_port.&#39;,&#39;.$local_port.&quot;\r\n&quot;);</span>
+<span class="x">  $line = @fgets($sock,1000); // 1000 octets according to RFC1413</span>
+<span class="x">  fclose($socket);</span>
+<span class="x">  if (preg_match(&#39;/^\s*(\d+)\s*,\s*(\d+)\s*:\s*(\S+)\s*:\s*(\S+)\s*:\s*(\S+)\s*$/&#39;, $line,$mv)) {</span>
+<span class="x">    if ($mv[1] == $remote_port &amp;&amp; $mv[2] == $local_port &amp;&amp;</span>
+<span class="x">    $mv[3] == &#39;USERID&#39;) {</span>
+<span class="x">      return $mv[5];</span>
+<span class="x">    }</span>
+<span class="x">  }</span>
+<span class="x">  return FALSE;</span>
+<span class="x">}</span>
+</code></pre></div>
+
+<h2>Web Browser</h2>
+<p>For archlinux, install oidentd</p>
+<ul>
+<li>yum install authd</li>
+<li>check firewall port</li>
+<li>systemctl start authd.socket</li>
+<li>Enable authd.socket</li>
+<li>Add Override:</li>
+<li>/etc/systemd/system/auth@.service.d/override.conf<ul>
+<li>[Service]</li>
+<li>ExecStart=</li>
+<li>ExecStart=-/usr/sbin/in.authd -t60 --xerror</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>https://wiki.alpinelinux.org/wiki/LXC
+https://wiki.alpinelinux.org/wiki/Setting_up_a_basic_vserver</p>
+<hr>
+<p>browser -&gt; guac -&gt; xinetd|vncserver|x2go-client -&gt; x2go-server
+browser -&gt; revproxy -&gt; guac -&gt; xinetd|vncserver|x2go-client -&gt; x2go-server</p>
+<hr>
+<p>Check what Thin client software Tiny Core Linux supports otherwise Browser with Guacamole</p>
+<hr>
+<p>Server script (haserl) on OW1
+Show version and last update
+ Options: Delete Entry
+ Post update : Using wget</p>
+<hr>
+<p>Create a local pastebin (to add notes from SONY PRS-T2)
+https://wiki.alpinelinux.org/wiki/Pastebin</p>
+<hr>
+<h2>Configure a Windows VM</h2>
+<div class="highlight"><pre><span></span><code>./mxt.sh \
+vmcfg \
+vm=winvm1 \
+rem=&quot;win7 system&quot; \
+-serial \
+viridian=1 \
+boot=d \
+hd=1,16G \
+cdrom=3,/xendat/installers/Win7AIO.x32-x64.preact.iso
+</code></pre></div>
+
+<h2>Centos 7</h2>
+<p>Template preparation </p>
+<p>Configure serial console:</p>
+<ol>
+<li>Modify <code>/etc/default/grub</code><ul>
+<li>GRUB_TERMINAL_OUTPUT=serial</li>
+<li>GRUB_CMDLINE_LINUX=console=ttyS0 --rhgb</li>
+</ul>
+</li>
+<li>Run <code>grub2-mkconfig -o $d/grub.cfg</code> either on <code>/boot/efi/EFI</code> or <code>/boot/grub2</code></li>
+</ol>
+<p>Stop ssh and remove all ssh keys. </p>
+<p>Modify rc.local to run something once:</p>
+<ul>
+<li>change hostname (if possible?)</li>
+<li>remove all SSH keys (and reboot)</li>
+</ul>
+<p>Create a centos/xen template prep script. We pass it as a custom tar in xvdh.  Another option:</p>
+<ul>
+<li>Use a serial port (connected to UNIX socket)</li>
+<li><a href="http://xenbits.xen.org/docs/unstable/misc/channel.txt">Use a Xen PV channel</a></li>
+</ul>
+<p>We need to pass vm name. </p>
+<p><a href="http://www.certdepot.net/rhel7-get-started-systemd/">rhel7 and systemd</a></p>
+<p>Cfg script /etc/xen</p>
+<ol>
+<li>After block devices stanza</li>
+<li>Check if tar is there</li>
+<li>Append to the list</li>
+</ol>
+<p>Better to do <a href="http://silviud.blogspot.nl/2011/09/from-domu-read-xenstore-ec2-linode-etc.html?m=1">this</a></p>
+<h2>Notes</h2>
+<h3>munin</h3>
+<ul>
+<li><a href="http://munin-monitoring.org/wiki/HowToWritePlugins">plugin writing</a></li>
+<li>Monitored data using <a href="http://support.citrix.com/article/CTX127896">xentop</a></li>
+<li>CPU is done, what about vbd I/O or network I/O</li>
+<li>xen wiki on <a href="http://wiki.xenproject.org/wiki?title=Special%3ASearch&amp;search=xentop&amp;go=Go">xentop</a></li>
+</ul>
+<h2>Serial xen configuration</h2>
+<ul>
+<li>serial=/dev/ttyS0<br>
+   [Linux only] Use host tty, e.g. ‘/dev/ttyS0’. The host serial port parameters are set according to
+   the emulated ones.</li>
+<li>serial=unix:path[,server][,nowait]<br>
+   A unix domain socket is used instead of a tcp socket. The option works the
+   same as if you had specified -serial tcp except the unix domain socket path
+   is used for connections.<br>
+   The TCP Net Console has two modes of operation. It can send the serial
+   I/O to a location or wait for a connection from a location. By default the
+   TCP Net Console is sent to host at the port. If you use the server option
+   QEMU will wait for a client socket application to connect to the port before
+   continuing, unless the nowait option was specified. The nodelay option
+   disables the Nagle buffering algorithm. If host is omitted, 0.0.0.0 is assumed.
+   Only one TCP connection at a time is accepted. You can use telnet to connect 
+   to the corresponding character device.</li>
+</ul>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li class="active"><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li ><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

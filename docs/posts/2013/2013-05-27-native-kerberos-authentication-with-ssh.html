@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>Native Kerberos Authentication with SSH - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="This article is about integrating OpenSSH in a kerberos environment. Allthough OpenSSH can provide passwordless logins (through Public/Private keys), it is not a true SSO set-up. This article makes use of Kerberos TGT service to implement a true SSO configuration for OpenSSH. Pre-requisites First off, you'll need to make …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>Native Kerberos Authentication with SSH</h1>
+
+<div class="metadata">
+  <time datetime="2013-05-27T00:00:00+02:00" pubdate>Mon 27 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>
+		<p>This article is about integrating OpenSSH in a kerberos environment.
+Allthough OpenSSH can provide passwordless logins (through Public/Private
+keys), it is not a true SSO set-up.  This article makes use of
+Kerberos TGT service to implement a true SSO configuration for OpenSSH.</p>
+<h1>Pre-requisites</h1>
+<p>First off, you'll need to make sure that the OpenSSH server's Kerberos configuration (in <code>/etc/krb5.conf</code>) is correct and works, and that the server's keytab (typically <code>/etc/krb5.keytab</code>) contains an entry for <code>host/fqdn@REALM</code> (case-sensitive). I won't go into details on how this is done again; instead, I'll refer you to any one of the recent Kerberos-related articles (like <a href="http://blog.scottlowe.org/2006/08/08/linux-active-directory-and-windows-server-2003-r2-revisited/">this one</a>, <a href="http://blog.scottlowe.org/2006/08/15/solaris-10-and-active-directory-integration/">this one</a>, or <a href="http://blog.scottlowe.org/2006/08/21/more-on-kerberos-authentication-against-active-directory/">even this one</a>). Just be sure that you can issue a <code>kinit -k host/fqdn@REALM</code> and get back a Kerberos ticket without having specify a password. (This tells you that the keytab is working as expected.)</p>
+<h1>Configuring the SSH Server</h1>
+<p>Configure `/etc/ssh/sshd_config with the following:</p>
+<div class="highlight"><pre><span></span><code> KerberosAuthentication yes
+ KerberosTicketCleanup yes
+ GSSAPIAuthentication yes
+ GSSAPICleanupCredentials yes
+ UseDNS yes
+ UsePAM no
+</code></pre></div>
+
+<p>If <code>UseDNS</code> is set to <code>Yes</code>, the ssh server does a reverse host lookup to find the name of the connecting client. This is necessary when host-based authentication is used or when you want last login information to display host names rather than IP addresses. <em>Note:</em> Some ssh sessions stall when performing reverse name lookups because the DNS servers are unreachable. If this happens, you can skip the DNS lookups by setting <code>UseDNS</code> to <code>no</code>. If <code>UseDNS</code> is not explicitly set in the <code>/etc/ssh/sshd_config</code> file, the default value is <code>UseDNS yes</code>.</p>
+<h1>Configuring the SSH Client</h1>
+<p>Edit <code>/etc/ssh/ssh_config</code>, and change the file accordingly. For example, we want to enable Kerberos mechanism for all Hosts:</p>
+<div class="highlight"><pre><span></span><code> Host *
+      ....
+      GSSAPIAuthentication yes
+      GSSAPIDelegateCredentials yes
+</code></pre></div>
+
+<p>or to enable to specific domains:</p>
+<div class="highlight"><pre><span></span><code>Host *.example.com
+  GSSAPIAuthentication yes
+  GSSAPIDelegateCredentials yes
+</code></pre></div>
+
+<p>This limits GSSAPI authentication to only those hosts in the <code>example.com</code> domain. Modify the domain to be the appropriate domain for your network.</p>
+<h1>Testing the Configuration</h1>
+<p>Obtain a valid Kerberos ticket <code>kinit username</code> from the command line. Once you have a ticket, you should be able to simply <code>ssh fqdn.of.server</code> and you will get logged in, without getting prompted for a password. If you get prompted for a password, go back and double-check your keytab, your SSH daemon configuration, and the time configuration on your OpenSSH server. Because Kerberos requires time synchronization, differences of greater than 5 minutes will cause the authentication to fail.</p>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li class="active"><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

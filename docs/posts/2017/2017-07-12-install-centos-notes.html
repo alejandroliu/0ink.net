@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>Centos Install notes - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="Set-up local.repo yum installs: nfs-utils autofs @x11 @xfce wget dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts xorg-x11-fonts-{Type1,misc,75dpi,100dpi} bitmap-console-fonts bitmap-fixed-fonts bitmap-fonts-compat bitmap-lucida-typewriter-fonts ucs-miscfixed-fonts urw-fonts open-sans-fonts webcore-fonts webcore-fonts-vista liberation-mono-fonts liberation-sans-fonts liberation-serif-fonts bitstream-vera-sans-fonts bitstream-vera-serif-fonts gnu-free-{mono,sans,serif}-fonts tk firefox mplayer ffmpeg alsa-utils xsensors xfce4-sensors-plugin keepassx git Building RPM packages with …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>Centos Install notes</h1>
+
+<div class="metadata">
+  <time datetime="2017-07-12T00:00:00+02:00" pubdate>Wed 12 July 2017</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2017.html">2017</a>
+</div>
+		<p>Set-up <code>local.repo</code></p>
+<p>yum installs:</p>
+<ul>
+<li>nfs-utils autofs</li>
+<li>@x11</li>
+<li>@xfce</li>
+<li>wget</li>
+<li>dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts</li>
+<li>xorg-x11-fonts-{Type1,misc,75dpi,100dpi}</li>
+<li>bitmap-console-fonts bitmap-fixed-fonts bitmap-fonts-compat bitmap-lucida-typewriter-fonts</li>
+<li>ucs-miscfixed-fonts urw-fonts</li>
+<li>open-sans-fonts</li>
+<li>webcore-fonts webcore-fonts-vista</li>
+<li>liberation-mono-fonts liberation-sans-fonts liberation-serif-fonts</li>
+<li>bitstream-vera-sans-fonts bitstream-vera-serif-fonts</li>
+<li>gnu-free-{mono,sans,serif}-fonts</li>
+<li>tk</li>
+<li>firefox</li>
+<li>mplayer ffmpeg alsa-utils </li>
+<li>xsensors xfce4-sensors-plugin</li>
+<li>keepassx</li>
+<li>git</li>
+</ul>
+<p><a href="https://blog.packagecloud.io/eng/2015/05/11/building-rpm-packages-with-mock/">Building RPM packages with mock</a>
+and <a href="https://github.com/perfsonar/project/wiki/CentOS-Mock-Overview">Centos mock overview</a></p>
+<p><a href="https://fedoraproject.org/wiki/Using_Mock_to_test_package_builds#Building_packages_that_depend_on_packages_not_in_a_repository">Using mock with fedora</a></p>
+<p><a href="http://blog.packagecloud.io/eng/2015/05/11/building-rpm-packages-with-mock/">packaging rpms with mock</a></p>
+<p><a href="https://gist.github.com/oussemos/cf81d86a446544bfa9c92f3576306aff">Adding trusted certs…</a> or <a href="https://access.redhat.com/solutions/1549003">rehat solution</a></p>
+<p><a href="http://www.devdungeon.com/content/how-use-ssl-sockets-php">php using ssl</a></p>
+<p><a href="https://www.tecmint.com/install-google-chrome-on-redhat-centos-fedora-linux/">Chrome on Centos7</a> from <a href="https://www.google.com/linuxrepositories/">google repos</a>.</p>
+<h2>travis ci installation</h2>
+<ul>
+<li>Install ruby (must be greater than 1.9.3, 2.0.0 recomended)</li>
+<li>Additional dependencies (through yum)</li>
+<li>ruby-ffi</li>
+</ul>
+<p>As normal user:</p>
+<ul>
+<li><code>gem install travis -v 1.8.8 --no-rdoc --no-ri</code></li>
+</ul>
+<p>For a new application...</p>
+<div class="highlight"><pre><span></span><code>travis enable
+travis settings builds_only_with_travis_yml -t
+</code></pre></div>
+
+<p><a href="https://github.com/proot-me/PRoot/releases">PRoot</a></p>
+<p>project
+  -module: centos/alpine
+      -module: proot</p>
+<ul>
+<li>
+<p><a href="https://docs.travis-ci.com/user/customizing-the-build/">travis ci custom build</a></p>
+</li>
+<li>
+<p>install: install any dependencies required</p>
+</li>
+<li>script: run the build script</li>
+</ul>
+<h1>Nameing conventions</h1>
+<p>Naming tmXXXXYYYYRRRR</p>
+<ul>
+<li>tmc7r1 : centos 7 template</li>
+<li>tmwin7r1 : not using these, I think it is better to do fresh install...</li>
+<li>tmal3r1 :  alpine linux template. </li>
+<li>after boot:<ol>
+<li>mount xvda1 on /media/xvda1 and run setup-alpine</li>
+<li>modify /etc/inittab /etc/securetty to allow ttyS0 (console) login</li>
+<li>may need to switch cdrom as needed.</li>
+</ol>
+</li>
+</ul>
+<p>Sample vm names:</p>
+<ul>
+<li>winvm1 : windows vm</li>
+<li>cvm2 : centos vm</li>
+<li>alvm3 : alpine linux vm</li>
+</ul>
+<p>More complete guides: </p>
+<ul>
+<li><a href="https://wiki.alpinelinux.org/wiki/Linux_Router_with_VPN_on_a_Raspberry_Pi">Rasperry Pi router</a></li>
+<li><a href="https://wiki.alpinelinux.org/wiki/How-To_Alpine_Wall">AWall</a></li>
+<li><a href="https://wiki.alpinelinux.org/wiki/Nginx">webserver + php</a></li>
+<li><a href="https://wiki.alpinelinux.org/wiki/Configure_Networking">Networking</a></li>
+<li><a href="https://egustafson.github.io/ipv6-dhcpv6.html">DNSMasq IPv6 stuff</a></li>
+<li><a href="https://hveem.no/using-dnsmasq-for-dhcpv6">Another DNSmasq + ipv6</a></li>
+</ul>
+<p>Second wifi on OpenWrt</p>
+<p>-
+ <a href="https://cucumberwifi.io/community/tutorials/openwrt-adding-second-ssid.html">cucumber-wifi</a>
+- <a href="https://www.smallbusinesstech.net/more-complicated-instructions/openwrt/hosting-two-wifi-networks-on-one-openwrt-router">smalltech</a></p>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li class="active"><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li ><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

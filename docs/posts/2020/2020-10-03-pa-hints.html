@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>PulseAudio hints and tricks - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="PulseAudio is nowadays the default sound system in many Linux distributions. It lets you do a number of useful things. PulseAudio comes with a handy command line utility pacmd to do a number of things. pacmd commands pacmd exit pacmd help pacmd list-(modules|sinks|sources|clients|cards|samples) pacmd …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>PulseAudio hints and tricks</h1>
+
+<div class="metadata">
+  <time datetime="2020-10-03T00:00:00+02:00" pubdate>Sat 03 October 2020</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2020.html">2020</a>
+</div>
+		<p><a href="https://www.freedesktop.org/wiki/Software/PulseAudio/">PulseAudio</a> is nowadays the default sound system in many Linux
+distributions.  It lets you do a number of useful things.</p>
+<p><a href="https://www.freedesktop.org/wiki/Software/PulseAudio/">PulseAudio</a> comes with a handy command line utility <code>pacmd</code> to do a
+number of things.</p>
+<h1><code>pacmd</code> commands</h1>
+<ul>
+<li>pacmd exit</li>
+<li>pacmd help</li>
+<li>pacmd list-(modules|sinks|sources|clients|cards|samples)</li>
+<li>pacmd list-(sink-inputs|source-outputs)</li>
+<li>pacmd stat</li>
+<li>pacmd info</li>
+<li>pacmd load-module NAME [ARGS ...]</li>
+<li>pacmd unload-module NAME|#N</li>
+<li>pacmd describe-module NAME</li>
+<li>pacmd set-(sink|source)-volume NAME|#N VOLUME</li>
+<li>pacmd set-(sink-input|source-output)-volume #N VOLUME</li>
+<li>pacmd set-(sink|source)-mute NAME|#N 1|0</li>
+<li>pacmd set-(sink-input|source-output)-mute #N 1|0</li>
+<li>pacmd update-(sink|source)-proplist NAME|#N KEY=VALUE</li>
+<li>pacmd update-(sink-input|source-output)-proplist #N KEY=VALUE</li>
+<li>pacmd set-default-(sink|source) NAME|#N</li>
+<li>pacmd kill-(client|sink-input|source-output) #N</li>
+<li>pacmd play-sample NAME SINK|#N</li>
+<li>pacmd remove-sample NAME</li>
+<li>pacmd load-sample NAME FILENAME</li>
+<li>pacmd load-sample-lazy NAME FILENAME</li>
+<li>pacmd load-sample-dir-lazy PATHNAME</li>
+<li>pacmd play-file FILENAME SINK|#N</li>
+<li>pacmd dump</li>
+<li>pacmd move-(sink-input|source-output) #N SINK|SOURCE</li>
+<li>pacmd suspend-(sink|source) NAME|#N 1|0</li>
+<li>pacmd suspend 1|0</li>
+<li>pacmd set-card-profile CARD PROFILE</li>
+<li>pacmd set-(sink|source)-port NAME|#N PORT</li>
+<li>pacmd set-port-latency-offset CARD-NAME|CARD-#N PORT OFFSET</li>
+<li>pacmd set-log-target TARGET</li>
+<li>pacmd set-log-level NUMERIC-LEVEL</li>
+<li>pacmd set-log-meta 1|0</li>
+<li>pacmd set-log-time 1|0</li>
+<li>pacmd set-log-backtrace FRAMES</li>
+</ul>
+<h1>Changing audio output from the command line</h1>
+<p>For this I use the <code>pacmd</code> utility and manipulate the <code>sink</code> inputs.
+For already running streams, the <code>move-sink-input</code> needs to be used.</p>
+<p>I have a PC with a weird configuration and requires me to switch
+profiles instead.</p>
+<p>Get the current active profile:</p>
+<div class="highlight"><pre><span></span><code>pacmd list-cards | grep &#39;active profile&#39;
+</code></pre></div>
+
+<p>Set the active profile:</p>
+<div class="highlight"><pre><span></span><code>pacmd set-card-profile #card #profile#
+</code></pre></div>
+
+<p>Example commands:</p>
+<div class="highlight"><pre><span></span><code>pacmd set-card-profile 0 output:analog-stereo+input:analog-stereo
+pacmd set-card-profile 0 output:hdmi-stereo+input:analog-stereo
+</code></pre></div>
+
+<p>All that logic is in a script <a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/pa-hints/patoggle">here</a>
+or download from this <a href="https://github.com/alejandroliu/0ink.net/raw/master/snippets/pa-hints/patoggle">link</a>.</p>
+<h1>MATE control crashing status icon</h1>
+<p>For some reason the sound control icon in the notification bar gets
+lost for me.  To make it re-appear use this command:</p>
+<div class="highlight"><pre><span></span><code>mate-volume-control-status-icon
+</code></pre></div>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li class="active"><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li ><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>nginx's auth_request_module howto - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="This article tries to supplement the nginx documentations regarding the auth_request module and how to configure it. In my opinion, that documentation is a bit incomplete. What is the nginx's auth_request module The documentation for this module says, it implements client authorization based on the result of a subrequest. This …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>nginx's auth_request_module howto</h1>
+
+<div class="metadata">
+  <time datetime="2019-05-10T00:00:00+02:00" pubdate>Fri 10 May 2019</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2019.html">2019</a>
+</div>
+		<p>This article tries to supplement the <a href="http://nginx.org/en/">nginx</a> documentations
+regarding the <a href="http://nginx.org/en/docs/http/ngx_http_auth_request_module.html">auth_request</a> module
+and how to <a href="https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-subrequest-authentication/">configure</a> it.  In my opinion, that documentation
+is a bit incomplete.</p>
+<h1>What is the nginx's <a href="http://nginx.org/en/docs/http/ngx_http_auth_request_module.html">auth_request</a> module</h1>
+<p>The documentation for this module says, it implements client
+authorization based on the result of a subrequest.</p>
+<p>This means that when you make an HTTP request to a protected URL,
+<a href="http://nginx.org/en/">nginx</a> performs an internal subrequest to a defined
+authorization URL. If the result of the subrequest is HTTP 2xx,
+<a href="http://nginx.org/en/">nginx</a> proxies the original HTTP request to the backend server.
+If the result of the subrequest is HTTP 401 or 403, access to the
+backend server is denied.</p>
+<p>By configuring <a href="http://nginx.org/en/">nginx</a>, you can redirect those 401s or 403s to
+a login page where the user is authenticated and then redirected to
+the original destination.</p>
+<p>The entire authorization subrequest process is then repeated, but
+because the user is now authenticated the subrequest returns HTTP 200
+and the original HTTP request is proxied to the backend server.</p>
+<h1>Configuring <a href="http://nginx.org/en/">nginx</a></h1>
+<p>In your <a href="http://nginx.org/en/">nginx</a> configuration...</p>
+<p>This block configures the web server area that will be protected:</p>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="n">location</span><span class="w"> </span><span class="o">/</span><span class="n">hello</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">          </span><span class="n">error_page</span><span class="w"> </span><span class="mi">401</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">@error401</span><span class="p">;</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="k">Specific</span><span class="w"> </span><span class="n">login</span><span class="w"> </span><span class="n">page</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">use</span><span class="w"></span>
+<span class="w">          </span><span class="n">auth_request</span><span class="w"> </span><span class="o">/</span><span class="n">auth</span><span class="p">;</span><span class="w">       </span><span class="err">#</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">sub</span><span class="o">-</span><span class="n">request</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">use</span><span class="w"></span>
+<span class="w">          </span><span class="n">auth_request_set</span><span class="w"> </span><span class="err">$</span><span class="n">username</span><span class="w"> </span><span class="err">$</span><span class="n">upstream_http_x_username</span><span class="p">;</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">Make</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">sub</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">available</span><span class="w"></span>
+<span class="w">          </span><span class="n">auth_request_set</span><span class="w"> </span><span class="err">$</span><span class="n">sid</span><span class="w"> </span><span class="err">$</span><span class="n">upstream_http_x_session</span><span class="p">;</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="n">send</span><span class="w"> </span><span class="n">what</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">needed</span><span class="w"></span>
+
+<span class="w">          </span><span class="n">proxy_pass</span><span class="w"> </span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">sample</span><span class="p">.</span><span class="nl">com</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">hello</span><span class="p">;</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">actual</span><span class="w"> </span><span class="n">location</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">protected</span><span class="w"> </span><span class="k">data</span><span class="w"></span>
+<span class="w">          </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="k">Host</span><span class="w"> </span><span class="err">$</span><span class="k">host</span><span class="p">;</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">Custom</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">authentication</span><span class="w"> </span><span class="n">related</span><span class="w"> </span><span class="k">data</span><span class="w"></span>
+<span class="w">          </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">X</span><span class="o">-</span><span class="n">Remote</span><span class="o">-</span><span class="k">User</span><span class="w"> </span><span class="err">$</span><span class="n">username</span><span class="p">;</span><span class="w"></span>
+<span class="w">          </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">X</span><span class="o">-</span><span class="n">Remote</span><span class="o">-</span><span class="n">SID</span><span class="w"> </span><span class="err">$</span><span class="n">sid</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
+</code></pre></div>
+
+<ul>
+<li><code>error_page 401</code> defines the custom login page to use (if any).
+  In theory, for a REST API, would be possible to authenticate
+  using a provided <code>token</code> header which makes the login page
+  unnecesary.</li>
+<li><code>auth_request /auth</code> defines that this location needs authentication
+  and defines the sub-request location to use.</li>
+<li><code>auth_request_set</code> can be used to get data from the subrequest
+  headers and make it available later (like for instance, to a
+  backend content server using custom headers.</li>
+<li><code>proxy_pass</code> defines the actual backend content server.</li>
+<li><code>proxy_set_header</code> defines custom header used to pass information
+  to the content backend server.</li>
+</ul>
+<p>This block configures the authentication sub-request server:</p>
+<div class="highlight"><pre><span></span><code>        <span class="nt">location</span> <span class="o">=</span> <span class="o">/</span><span class="nt">auth</span> <span class="p">{</span>
+          <span class="err">proxy_pass</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">auth-server</span><span class="o">.</span><span class="n">sample</span><span class="o">.</span><span class="n">com</span><span class="o">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">auth</span><span class="p">;</span>   <span class="err">#</span> <span class="err">authentication</span> <span class="err">server</span>
+          <span class="err">proxy_pass_request_body</span> <span class="err">off</span><span class="p">;</span>              <span class="err">#</span> <span class="err">no</span> <span class="err">data</span> <span class="err">is</span> <span class="err">being</span> <span class="err">transferred...</span>
+          <span class="err">proxy_set_header</span> <span class="err">Content-Length</span> <span class="err">&#39;0&#39;</span><span class="p">;</span>
+          <span class="err">proxy_set_header</span> <span class="err">Host</span> <span class="err">$host</span><span class="p">;</span>              <span class="err">#</span> <span class="err">Custom</span> <span class="err">headers</span> <span class="err">with</span> <span class="err">authentication</span> <span class="err">related</span> <span class="err">data</span>
+          <span class="err">proxy_set_header</span> <span class="err">X-Origin-URI</span> <span class="err">$request_uri</span><span class="p">;</span>
+          <span class="err">proxy_set_header</span> <span class="err">X-Forwarded-Host</span> <span class="err">$host</span><span class="p">;</span>
+        <span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li><code>proxy_pass</code> where the sub request should be handled.</li>
+<li><code>proxy_pass_request_body off</code> and <code>proxy_set_header Content-Length 0</code> are
+  used to supress the content body and only sends the headers to the
+  authentication server.</li>
+<li><code>proxy_set_header</code> additional details being send to the sub request.
+  For example, the <code>X-Origin-URI</code>.</li>
+</ul>
+<p>This implements the login pager URL</p>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">logged</span><span class="w"> </span><span class="ow">in</span><span class="p">,</span><span class="w"> </span><span class="n">redirect</span><span class="w"> </span><span class="n">them</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">login</span><span class="w"> </span><span class="n">URL</span><span class="w"></span>
+<span class="w">        </span><span class="n">location</span><span class="w"> </span><span class="nv">@error401</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">          </span><span class="k">return</span><span class="w"> </span><span class="mi">302</span><span class="w"> </span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="err">$</span><span class="k">host</span><span class="o">/</span><span class="n">login</span><span class="o">/</span><span class="vm">?</span><span class="n">url</span><span class="o">=</span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="err">$</span><span class="n">http_host</span><span class="err">$</span><span class="n">request_uri</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
+</code></pre></div>
+
+<p>In this example, the login page is on the same reverse proxy, but
+it doesn't have to be that way.</p>
+<p>The actual login page:</p>
+<div class="highlight"><pre><span></span><code>        <span class="nt">location</span> <span class="o">/</span><span class="nt">login</span><span class="o">/</span> <span class="p">{</span>
+          <span class="err">proxy_pass</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">auth-server</span><span class="o">.</span><span class="n">sample</span><span class="o">.</span><span class="n">com</span><span class="o">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">login</span><span class="o">/</span><span class="p">;</span> <span class="err">#</span> <span class="err">Where</span> <span class="err">the</span> <span class="err">login</span> <span class="err">happens</span>
+          <span class="err">proxy_set_header</span> <span class="err">X-My-Real-IP</span> <span class="err">$remote_addr</span><span class="p">;</span>       <span class="err">#</span> <span class="err">Additional</span> <span class="err">parameters</span> <span class="err">to</span> <span class="err">send</span> <span class="err">to</span> <span class="err">login</span> <span class="err">page</span>
+          <span class="err">proxy_set_header</span> <span class="err">X-My-Real-Port</span> <span class="err">$remote_port</span><span class="p">;</span>
+          <span class="err">proxy_set_header</span> <span class="err">X-My-Server-Port</span> <span class="err">$server_port</span><span class="p">;</span>
+        <span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li><code>proxy_pass</code> points to where the login script runs</li>
+<li><code>proxy_set_header</code> can be used to pass additional fields that may
+  be needed by the login script.  To implement for example,
+  <code>$remote_addr</code> based access rules.</li>
+</ul>
+<p>So in this particular example, we are referring to a server with
+<strong>TWO</strong> locations:</p>
+<ol>
+<li><code>http://auth-server.sample.com:8080/auth</code> - The sub-request URI which is not visible
+   outside but handles the sub-request.</li>
+<li><code>http://auth-server.sample.com:8080/login/</code> - The login URI which handles the
+   login conversation.</li>
+</ol>
+<h1>The Authentication Server</h1>
+<p>This is where the <a href="http://nginx.org/en/">nginx</a> documentation falls a bit short, there
+is no actual authentication server example to refer to.</p>
+<p>In my example, we have a simple authentication workflow.  When an
+unauthenticated user hits the server, the sub-request is called
+and checks (and fails) for a session cookie.</p>
+<p>The user is then re-directed to the login page, where the actual
+login takes place.  If succesful, a session cookie is set and
+the user is redirected to the original URL.</p>
+<p>This is implemented using the following script:</p>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=paraiso-light&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/nginx_mod_authrequest/auth1.py"></script>
+
+<p>This makes uses of the <a href="https://bottlepy.org/">bottle</a> micro framework.</p>
+<p>It implements four routes:</p>
+<ol>
+<li><code>GET /hello</code>
+   This is just a demo URL used for testing.  Only shows the request headers.</li>
+<li><code>GET /login/</code>
+   This is the login page entry point.</li>
+<li><code>POST /login/</code>
+   This is the handler for the login page.</li>
+<li><code>GET /auth</code>
+   This is the sub-request handler.</li>
+</ol>
+<p>For the demo, we are not really doing any login handling.  You only
+need to make the username the same as the password to login.  Anything
+else is a login failure.</p>
+<p>When the user succesfully logs in, we set a cookie.  Because the
+login URL and the protected resource (<code>/hello</code> URL) are in the
+same cookie scope, we can use cookie set by the login page
+as the verification token in the sub-request.</p>
+<p>Note that the login page can be as simple or as complex as it is
+needed.  For example, it is possible to implement a <a href="https://en.wikipedia.org/wiki/Security_Assertion_Markup_Language">SAML</a>,
+<a href="https://openid.net/connect/">OpenID Connect</a>, or any Single-Sign-On workflow
+available.</p>
+<p>Alternatively, two factor authentication could be implemented here.
+The possibilities are endless.</p>
+<p>An interesting use of the <a href="http://nginx.org/en/docs/http/ngx_http_auth_request_module.html">auth_request</a>
+module would be to delegate <a href="https://en.wikipedia.org/wiki/Basic_access_authentication">Basic Authentication</a> to a different
+server or to even implement authentications not supported by
+<a href="http://nginx.org/en/">nginx</a> like for example a simple Token-Bearer header or
+<a href="https://en.wikipedia.org/wiki/Digest_access_authentication">Digest authentication</a></p>
+<h2>basic authentication</h2>
+<p>This may seem silly since <a href="http://nginx.org/en/">nginx</a> supports <a href="https://en.wikipedia.org/wiki/Basic_access_authentication">basic authentication</a>
+out of the box.  The use case for this is when you have a cluster of nginx
+front ends, and you want all of them to authenticate against a central
+identity server.  Furthermore, since the URI can be passed, a more sophisticated
+access control can be implemented.  Finally, additional values can be passed
+through headers, such as group names, tokens, etc.</p>
+<h3>nginx configuration</h3>
+<p>Protected Resource:</p>
+<div class="highlight"><pre><span></span><code>        <span class="nt">location</span> <span class="o">/</span><span class="nt">hello</span> <span class="p">{</span>
+          <span class="err">auth_request</span> <span class="err">/auth</span><span class="p">;</span>       <span class="err">#</span> <span class="err">The</span> <span class="err">sub-request</span> <span class="err">to</span> <span class="err">use</span>
+          <span class="err">auth_request_set</span> <span class="err">$username</span> <span class="err">$upstream_http_x_username</span><span class="p">;</span> <span class="err">#</span> <span class="err">Make</span> <span class="err">the</span> <span class="err">sub</span> <span class="err">request</span> <span class="err">data</span> <span class="err">available</span>
+
+          <span class="err">proxy_pass</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">sample</span><span class="o">.</span><span class="n">com</span><span class="o">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">hello</span><span class="p">;</span>  <span class="err">#</span> <span class="err">actual</span> <span class="err">location</span> <span class="err">of</span> <span class="err">protected</span> <span class="err">data</span>
+          <span class="err">proxy_set_header</span> <span class="err">X-Forwarded-Host</span> <span class="err">$host</span><span class="p">;</span>  <span class="err">#</span> <span class="err">Custom</span> <span class="err">headers</span> <span class="err">with</span> <span class="err">authentication</span> <span class="err">related</span> <span class="err">data</span>
+          <span class="err">proxy_set_header</span> <span class="err">X-Remote-User</span> <span class="err">$username</span><span class="p">;</span>
+        <span class="p">}</span>
+</code></pre></div>
+
+<p><strong>NOTE:</strong> unlike the previous example, we do not need to provide a @error401 page.</p>
+<p>Sub-request configuration:</p>
+<div class="highlight"><pre><span></span><code>        <span class="nt">location</span> <span class="o">=</span> <span class="o">/</span><span class="nt">auth</span> <span class="p">{</span>
+          <span class="err">proxy_pass</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">auth-server</span><span class="o">.</span><span class="n">sample</span><span class="o">.</span><span class="n">com</span><span class="o">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">auth</span><span class="p">;</span>   <span class="err">#</span> <span class="err">authentication</span> <span class="err">server</span>
+          <span class="err">proxy_pass_request_body</span> <span class="err">off</span><span class="p">;</span>              <span class="err">#</span> <span class="err">no</span> <span class="err">data</span> <span class="err">is</span> <span class="err">being</span> <span class="err">transferred...</span>
+          <span class="err">proxy_set_header</span> <span class="err">Content-Length</span> <span class="err">&#39;0&#39;</span><span class="p">;</span>
+          <span class="err">proxy_set_header</span> <span class="err">Host</span> <span class="err">$host</span><span class="p">;</span>              <span class="err">#</span> <span class="err">Custom</span> <span class="err">headers</span> <span class="err">with</span> <span class="err">authentication</span> <span class="err">related</span> <span class="err">data</span>
+          <span class="err">proxy_set_header</span> <span class="err">X-Origin-URI</span> <span class="err">$request_uri</span><span class="p">;</span>
+          <span class="err">proxy_set_header</span> <span class="err">X-Forwarded-Host</span> <span class="err">$host</span><span class="p">;</span>
+        <span class="p">}</span>
+</code></pre></div>
+
+<h3>authentication server</h3>
+<p>The python implementation (again, using <a href="https://bottlepy.org/">bottle</a>):</p>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=paraiso-light&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/nginx_mod_authrequest/auth2.py"></script>
+
+<p>Like in the previous example, we are not doing any user/password verification.  We are only
+checking if username and password are matching.</p>
+<p>Unlike the previous example, all the authentication is handled by a single route (<code>/auth</code>).
+It returns 'WWW-Authenticate' to prompt the user for a password.  And if it sees
+an <code>Authorization</code> header, it would validate it.</p>
+<h2>digest authentication</h2>
+<p>This implements <a href="https://en.wikipedia.org/wiki/Digest_access_authentication">digest</a> authentication for <a href="http://nginx.org/en/">nginx</a> using the
+<a href="http://nginx.org/en/docs/http/ngx_http_auth_request_module.html">auth request module</a>.  The nginx configuration is the
+same as in the <a href="https://en.wikipedia.org/wiki/Basic_access_authentication">Basic</a> authentication.</p>
+<p>The implentation in python (using <a href="https://bottlepy.org/">bottle</a> framework):</p>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=paraiso-light&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/nginx_mod_authrequest/auth3.py"></script>
+
+<hr>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li class="active"><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li ><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

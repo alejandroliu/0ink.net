@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>Using CloudFlare - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="So I have signed up 0ink.net to use the CloudFlare service. CloudFlare is a reverse proxy service that is supposed to speed up and improve web server security. This is done by: globally distributed reverse proxy cache network filters incoming request for attacks optimize content (i.e. compressing, removing …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>Using CloudFlare</h1>
+
+<div class="metadata">
+  <time datetime="2013-07-01T00:00:00+02:00" pubdate>Mon 01 July 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2013.html">2013</a>
+</div>
+		<p>So I have signed up <code>0ink.net</code> to use the <a href="http://www.cloudflare.com" title="CloudFlare">CloudFlare</a> service.</p>
+<p><img alt="CFLogo" src="/images/2013/cf-logo-v-rgb.png"></p>
+<p><a href="http://www.cloudflare.com" title="CloudFlare">CloudFlare</a> is a reverse proxy service that is supposed to speed up and improve web server security.</p>
+<p>This is done by:</p>
+<ul>
+<li>globally distributed reverse proxy cache <a href="http://www.cloudflare.com/system-status.html" title="Cloudflare status">network</a></li>
+<li>filters incoming request for attacks</li>
+<li>optimize content (i.e. compressing, removing redundnat text, etc).</li>
+<li>improving retrieving of web pages that have multiple components.</li>
+</ul>
+<p>For it to work they need to take over your DNS service. That means that your DNS records resolve to <a href="http://www.cloudflare.com" title="CloudFlare">CloudFlare</a> servers. So when editing your DNS records, the <a href="http://www.cloudflare.com" title="CloudFlare">CloudFlare</a> DNS editor has an extra settings that allows you to control if that DNS entry would use the <a href="http://www.cloudflare.com" title="CloudFlare">CloudFlare</a> network or not.</p>
+<p>So if you want to be able to access your web server (i.e. www) for <code>ftp</code> or <code>ssh</code>, then you need<br>
+to create an additinional CNAME record that points to the web server but set to by-pass the <a href="http://www.cloudflare.com" title="CloudFlare">CloudFlare</a> network.</p>
+<p>Some tips on what to do after install cloudflare can be found <a href="http://blog.cloudflare.com/top-tips-after-installing-cloudflare" title="Tips on using Cloudflare">here</a>.</p>
+<p>This is handy command to test if your web-server is having problems but not <a href="http://www.cloudflare.com" title="CloudFlare">CloudFlare</a></p>
+<div class="highlight"><pre><span></span><code> curl -v -A firefox/4.0 -H &#39;Host: yourdomain.com&#39; YourServerIP
+</code></pre></div>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li class="active"><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

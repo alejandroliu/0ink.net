@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>HP Envy 4504 Set-up - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="I bought a HP Envy 4504. Overall I am happy with it. This is how I configure it so I can use with Linux. This mini howto applies to ArchLinux, void linux and Centos/RedHat distributions. Installation Archlinux: cups, hplip, python2, sane Centos: cups, hplip, hplip-gui, sane Some optional dependancies …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>HP Envy 4504 Set-up</h1>
+
+<div class="metadata">
+  <time datetime="2015-02-06T00:00:00+01:00" pubdate>Fri 06 February 2015</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2015.html">2015</a>
+</div>
+		<p>I bought a HP Envy 4504.  Overall I am happy with it.  This is how
+I configure it so I can use with Linux.</p>
+<p>This mini howto applies to ArchLinux, void linux and Centos/RedHat distributions.</p>
+<h2>Installation</h2>
+<p>Archlinux:</p>
+<div class="highlight"><pre><span></span><code>cups, hplip, python2, sane
+</code></pre></div>
+
+<p>Centos:</p>
+<div class="highlight"><pre><span></span><code>cups, hplip, hplip-gui, sane
+</code></pre></div>
+
+<p>Some optional dependancies may be needed.</p>
+<p>void linux:</p>
+<div class="highlight"><pre><span></span><code>hplip-gui
+</code></pre></div>
+
+<p>And for scanning, install:</p>
+<p>simple-scan and/or xsane</p>
+<h2>Configuration Arch Linux and Centos/RedHat</h2>
+<div class="highlight"><pre><span></span><code>sudo systemctl enable cups
+sudo systemctl start cups
+sudo hp-setup
+</code></pre></div>
+
+<p>hp-setup -i Select "Network", and "Advanced Options -&gt; Manual Discovery" Printer: npr1 PPD File:</p>
+<div class="highlight"><pre><span></span><code>/usr/share/ppd/HP/hp-envy_4500_series.ppd
+</code></pre></div>
+
+<p>Uncoment <code>hpaio</code> from <code>/etc/sane/dll.conf</code>.</p>
+<h2>void linux configuration</h2>
+<p>These are void linux specific settings:</p>
+<p>enable cups:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sv</span><span class="o">/</span><span class="n">cupsd</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">service</span>
+</code></pre></div>
+
+<p>uncompress PPD file (otherwise it is not recognized)</p>
+<div class="highlight"><pre><span></span><code>gunzip /usr/share/ppd/HP/hp-envy_4500_series.ppd.gz
+</code></pre></div>
+
+<p>We need to hack the install <code>/usr/share/hplip/prnt/cups.py</code>
+so that it runs:</p>
+<div class="highlight"><pre><span></span><code><span class="gd">--- cups.py.orig    2019-02-05 22:44:34.000000000 +0100</span>
+<span class="gi">+++ cups.py 2019-02-19 11:45:00.793904202 +0100</span>
+<span class="gu">@@ -324,14 +324,17 @@</span>
+                         except AttributeError: # happens on some boxes with provider: style ppds (foomatic: etc)
+                             path = ppd
+                         else:
+<span class="gd">-                            if not os.path.exists(path):</span>
+<span class="gd">-                                try:</span>
+<span class="gd">-                                    path = os.path.join(cups_ppd_path, ppd)</span>
+<span class="gd">-                                except AttributeError:</span>
+<span class="gd">-                                    path = ppd</span>
+<span class="gd">-                                else:</span>
+<span class="gd">-                                    if not os.path.exists(path):</span>
+<span class="gd">-                                        path = ppd # foomatic: or some other driver</span>
+<span class="gi">+                            log.debug(cups_ppd_path)</span>
+<span class="gi">+                            log.debug(ppd)</span>
+<span class="gi">+                            #if not os.path.exists(path):</span>
+<span class="gi">+                            #    try:</span>
+<span class="gi">+                            #        path = os.path.join(cups_ppd_path, ppd)</span>
+<span class="gi">+                            #    except AttributeError:</span>
+<span class="gi">+                            #        path = ppd</span>
+<span class="gi">+                            #    else:</span>
+<span class="gi">+                            #        if not os.path.exists(path):</span>
+<span class="gi">+                            #            path = ppd # foomatic: or some other driver</span>
+<span class="gi">+                            path = ppd # foomatic: or some other driver</span>
+
+                     ppds[path] = desc
+                     #log.debug(&quot;%s: %s&quot; % (path, desc))
+</code></pre></div>
+
+<p>Add printer (run with <code>sudo</code>):</p>
+<div class="highlight"><pre><span></span><code>print_host=npr1
+hp-setup $print_host
+</code></pre></div>
+
+<p>For scanning, uncoment <code>hpaio</code> from <code>/etc/sane/dll.conf</code>.</p>
+<h2>Tweaks</h2>
+<p>Some commands:</p>
+<div class="highlight"><pre><span></span><code>lpstat -p
+cupsenable printer
+</code></pre></div>
+
+<p>Also since it is a WIFI printer no  To prevent thisrmally it will go into sleep/power
+save mode. This means if you then try to print from cups it will fail
+(printer is asleep). Subsequent prints should work but now cupsd has
+flagged the printer as paused.  To prevent this you should run this
+command as root:</p>
+<div class="highlight"><pre><span></span><code>lpadmin -p ENVY_4500 -o printer-error-policy=retry-job
+</code></pre></div>
+
+<p>More configuration commands:</p>
+<ul>
+<li>Set default paper size:</li>
+<li><code>echo a4 &gt; /etc/papersize</code></li>
+</ul>
+<hr>
+<ul>
+<li>2020-03-09 : Removed:</li>
+<li>To prevent this you should configure
+    the default <code>ErrorPolicy</code> in <code>/etc/cups/cupsd.conf</code> by adding in the top
+    scope: "ErrorPolicy retry-job"</li>
+<li>References: <a href="https://superuser.com/questions/280396/how-to-resume-cups-printer-from-command-line">superuser.com</a></li>
+<li>2019-02-19 : Added <a href="http://voidlinux.org">void linux</a> instructions.</li>
+</ul>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li class="active"><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li ><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

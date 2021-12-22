@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>android development - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="Android devs Install JAVA yum install java-1.8.0-openjdk java-1.8.0-openjdk-devel Install SDK Tools: Download the sdk-tools zip from here mkdir /opt/android cd /opt/android The sdk should go under /opt/android/tools unzip sdk-tools.zip sudo chmod a+x $(sudo find . -type f -executable ) Create a …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>android development</h1>
+
+<div class="metadata">
+  <time datetime="2017-06-24T00:00:00+02:00" pubdate>Sat 24 June 2017</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2017.html">2017</a>
+</div>
+		<p>Android devs</p>
+<h1>Install JAVA</h1>
+<div class="highlight"><pre><span></span><code>yum install java-1.8.0-openjdk java-1.8.0-openjdk-devel
+</code></pre></div>
+
+<h1>Install SDK Tools:</h1>
+<p>Download the sdk-tools zip from <a href="https://developer.android.com/studio/index.html#download">here</a></p>
+<div class="highlight"><pre><span></span><code>mkdir /opt/android
+cd /opt/android
+</code></pre></div>
+
+<p>The sdk should go under <code>/opt/android/tools</code></p>
+<div class="highlight"><pre><span></span><code><span class="n">unzip</span> <span class="n">sdk</span><span class="o">-</span><span class="n">tools</span><span class="o">.</span><span class="n">zip</span>
+<span class="n">sudo</span> <span class="n">chmod</span> <span class="n">a</span><span class="o">+</span><span class="n">x</span> <span class="o">$</span><span class="p">(</span><span class="n">sudo</span> <span class="n">find</span> <span class="o">.</span> <span class="o">-</span><span class="n">type</span> <span class="n">f</span> <span class="o">-</span><span class="n">executable</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>Create a <code>/etc/profile.d</code> or just modify <code>PATH</code> directly</p>
+<div class="highlight"><pre><span></span><code><span class="n">ANDROID_HOME</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">android</span>
+<span class="o">$</span><span class="n">ANDROID_HOME</span><span class="o">/</span><span class="n">tools</span><span class="o">/</span><span class="n">bin</span><span class="p">:</span><span class="o">$</span><span class="n">ANDROID_HOME</span><span class="o">/</span><span class="n">platform</span><span class="o">-</span><span class="n">tools</span><span class="p">:</span><span class="o">$</span><span class="n">ANDROID_HOME</span><span class="o">/</span><span class="n">tools</span>
+</code></pre></div>
+
+<p>Then run:</p>
+<div class="highlight"><pre><span></span><code><span class="n">sudo</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">android</span><span class="o">/</span><span class="n">tools</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">sdkmanager</span> <span class="n">tools</span>
+</code></pre></div>
+
+<p>This refreshes the tools and makes sure some basic stuff is there.</p>
+<h1>SDK Manager packages</h1>
+<div class="highlight"><pre><span></span><code>sdkmanager --list
+</code></pre></div>
+
+<p>TO check the list and install (use sudo...)</p>
+<div class="highlight"><pre><span></span><code><span class="n">build</span><span class="o">-</span><span class="n">tools</span><span class="p">;</span><span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span>
+<span class="n">platforms</span><span class="p">;</span><span class="n">android</span><span class="o">-&lt;</span><span class="n">version</span><span class="o">&gt;</span>
+ <span class="s1">&#39;system-images;android-19;google_apis;x86&#39;</span>
+</code></pre></div>
+
+<p>Install latest, and others as required</p>
+<p>This is needed by cordova and some applications:</p>
+<h2>Gradle</h2>
+<p>Choose binary only <a href="https://gradle.org/releases">releases</a></p>
+<div class="highlight"><pre><span></span><code>cd /opt
+unzip gradle-bin.zip
+ln -s gradle-&lt;version&gt; gradle
+</code></pre></div>
+
+<p>Add gradle bin to <code>PATH</code></p>
+<p>When creating AVDs need to tweak config.ini (inside $HOME/.android/avd/<name>.avd</p>
+<div class="highlight"><pre><span></span><code>hw.gpu.enabled=yes
+hw.gpu.mode=host
+</code></pre></div>
+
+<hr>
+<h1>CORDOVA INSTALL</h1>
+<div class="highlight"><pre><span></span><code>sudo yum install nodejs npm (From EPEL)
+sudo npm install -g cordova
+sudo npm install -g typescript (Optional)
+</code></pre></div>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li ><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li class="active"><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li ><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

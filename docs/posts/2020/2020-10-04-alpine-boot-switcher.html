@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>Alpine Boot switcher - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="I boot from a USB boot drive using UEFI. Because of the UEFI boot, it just a matter of copying the files from the alpine ISO to a USB thumbdrive VFAT32 partition. Partition may be set to EFI (but this doesn't seem to be required). Since I would like to …">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>Alpine Boot switcher</h1>
+
+<div class="metadata">
+  <time datetime="2020-10-04T00:00:00+02:00" pubdate>Sun 04 October 2020</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  in <a href="/category/2020.html">2020</a>
+</div>
+		<p>I boot from a USB boot drive using UEFI.  Because of the UEFI boot,
+it just a matter of copying the files from the <a href="https://alpinelinux.org/">alpine</a>
+ISO to a USB thumbdrive VFAT32 partition.  Partition may be set to
+EFI (but this doesn't seem to be required).</p>
+<p>Since I would like to switch between different <a href="https://alpinelinux.org/">alpine</a> versions,
+I wrote a script to let me have multiple <a href="https://alpinelinux.org/">alpine</a> versions and
+switch between them.  The boot partition can be kept <code>ro</code> as the script
+will automatically remount <code>rw</code>.</p>
+<p>In your boot/EFI partition, you need to have these two scripts:</p>
+<ul>
+<li><a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/alpine-boot-switcher/select.sh">select.sh</a></li>
+<li><a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/alpine-boot-switcher/fixup.sh">fixup.sh</a></li>
+</ul>
+<p>The <code>select.sh</code> script is the main script.  <code>fixup.sh</code> is called from
+<code>select.sh</code> to tweak the boot command line parameters.  I use it to add
+<code>dom0_mem=2048M</code> arguments to the boot command line so that <code>xen</code>
+reserves memory for guests.</p>
+<h1>Usage:</h1>
+<h2>Install an ISO image</h2>
+<p>Download a iso image from the <a href="https://alpinelinux.org/">alpine</a> repository and enter:</p>
+<div class="highlight"><pre><span></span><code>sh select.sh --install &lt;iso-file&gt;
+</code></pre></div>
+
+<p>This will extract the contents of the <code>&lt;iso-file&gt;</code> and use <code>fixup.sh</code>
+to apply any necessary tweaks.  The new ISO file will be placed
+in a directory named according to the alpine version.</p>
+<h2>Enabling a version</h2>
+<div class="highlight"><pre><span></span><code>sh select.sh &lt;directory&gt;
+</code></pre></div>
+
+<p>Makes the <a href="https://alpinelinux.org/">alpine</a> version in <code>&lt;directory&gt;</code> the current active
+version for boot.</p>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li ><a href="/category/2021.html">2021</a></li>
+	              <li class="active"><a href="/category/2020.html">2020</a></li>
+	              <li ><a href="/category/2019.html">2019</a></li>
+	              <li ><a href="/category/2018.html">2018</a></li>
+	              <li ><a href="/category/2017.html">2017</a></li>
+	              <li ><a href="/category/2016.html">2016</a></li>
+	              <li ><a href="/category/2015.html">2015</a></li>
+	              <li ><a href="/category/2014.html">2014</a></li>
+	              <li ><a href="/category/2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2013 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+    	</p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>
