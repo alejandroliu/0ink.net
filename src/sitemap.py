@@ -84,18 +84,21 @@ def gen_html(urls, prefix):
     else:
       sect[sname] = [ fpath ]
 
-  for ss in sect:
+  for ss in sorted(sect):
     html.append('  <h2>{section}</h2>'.format(section=ss))
     html.append('  <ul>')
+
+    if ss == 'posts': sect[ss].sort(reverse=True)
+
     for fpath in sect[ss]:
       html.append('   <li>')
       html.append('    <a href="{prefix}{path}">{title}</a>'.format(
                   prefix=prefix, path=sitemap[fpath]['fpath'],
                   title=sitemap[fpath]['int-title']))
       if 'revised' in sitemap[fpath]:
-        html.append('    <em>({date})</em>'.format(date=sitemap[fpath]['revised']))
+        html.append('    <em>(updated {date})</em>'.format(date=sitemap[fpath]['revised']))
       elif 'date' in sitemap[fpath]:
-        html.append('    <em>({date})</em>'.format(date=sitemap[fpath]['date']))
+        html.append('    <em>(posted {date})</em>'.format(date=sitemap[fpath]['date']))
       if 'description' in sitemap[fpath]:
         html.append('    <br>{desc}'.format(desc=sitemap[fpath]['description']))
       html.append('   </li>')
@@ -122,10 +125,11 @@ if __name__ == "__main__":
 
   sitemap = {}
 
-  for html in args.files:
+  for fpath in args.files:
     # ~ itxt = read_file(pg)
-    ret = read_meta(html,args.strip)
-    sitemap[html] = ret
+    if '/1111/' in fpath: continue
+    ret = read_meta(fpath,args.strip)
+    sitemap[fpath] = ret
 
   if args.xml:
     sitemap_xml = gen_xml(sitemap,args.prefix)

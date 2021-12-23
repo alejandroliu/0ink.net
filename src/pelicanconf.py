@@ -45,6 +45,7 @@ STATIC_PATHS = [
 EXTRA_PATH_METADATA = {
     'extras/favicon.ico': {'path': 'favicon.ico'},  # and this
     'extras/CNAME': {'path': 'CNAME'},
+    'extras/robots.txt': {'path': 'robots.txt'},
 }
 
 SLUGIFY_SOURCE = 'basename'
