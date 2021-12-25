@@ -504,7 +504,9 @@ echo y | env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $mnt $(
 ## env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $hmnt void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
 ## ```
 ##
-## Then you can install non-free software.
+## Then you can install non-free software, like:
+##
+## <script src="$embedurl$repourl/swlist-nonfree.txt"></script>
 ##
 #end-output
 if ! check_opt glibc "$@" ; then
@@ -512,6 +514,10 @@ if ! check_opt glibc "$@" ; then
 else
   env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $hmnt void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
 fi
+env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $hmnt $(
+  repofile swlist-nonfree.txt | sed -e 's/#.*$//'
+)
+
 #begin-output
 ##
 ## ## Enter the void chroot
@@ -839,7 +845,7 @@ $run xbps-reconfigure -f linux${kver}
 ## ln -s /etc/sv/NetworkManager /var/service
 ## ln -s /etc/sv/sshd /var/service
 ## ln -s /etc/sv/{acpid,chronyd,cgmanager,crond,uuidd,statd,rcpbind,autofs} /var/service
-## ln -s /etc/sv/{consolekit,lxdm} /var/service
+## ln -s /etc/sv/{consolekit,xdm} /var/service
 ## ```
 #end-output
 common_svcs="sshd acpid chronyd crond uuidd statd rpcbind autofs"
@@ -849,7 +855,7 @@ if check_opt noxwin "$@" ; then
 else
   net_svcs="dbus NetworkManager"
   #ws_svcs="consolekit lxdm polkitd rtkit"
-  ws_svcs="consolekit slim"
+  ws_svcs="consolekit xdm"
 fi
 echo -n 'Enabling services:'
 for svc in $common_svcs $net_svcs $ws_svcs
@@ -921,30 +927,73 @@ fi
 ##
 ## ```
 ## setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl
-## ```
-##
-## ## Using SLIM
-##
-## I have switched to [SLiM][SLiM] as the display manager.  This is
-## configured in `/etc/slim.conf`.
-##
-## Specifically, I update the login_cmd to be the following:
 ##
 ## ```
-## login_cmd exec /bin/sh -l /etc/X11/Xsession %session
+##
+## ## Using xdm
+##
+## I have switched to [xdm][xdm] as my display manager.  This is
+## configured in `/etc/X11/xdm/xdm-config`.
+##
+## Specifically, I update the Xsession setting to be the following:
+##
+## ```
+## ! DisplayManager*session:		/usr/lib64/X11/xdm/Xsession
+## DisplayManager*session:		/etc/X11/Xsession
+##
 ## ```
 ##
-## And have a custom [Xsession]($repourl/Xsession) script.
+## And have a custom [Xsession]($repourl/xdm/Xsession) script in
+## `/etc/X11/Xsession`.
+##
+## Particularly important is the fact that the default Xsession
+## script is not able to start a `mate` or `xfce4` sessions
+## until you add the command:
+##
+## ```
+## xhost +local:
+##
+## ```
+##
+## Apparently there is somewhat of an issue in the way `xauth`
+## is handled.
+##
+## **NOTE:** _Doing `xhost +local:` is hardly a best practice
+## when it comes to security._
+##
+## ### Spicing up XDM
+##
+## Allthough [xdm][xdm] is fairly old-school, there are
+## still some opportunities to add some eye-candy to
+## it.  For that, we change the `setup` and `startup` scripts
+## `Xsetup_0` and `GiveConsole` into custom scripts:
+##
+## - [Xsetup_0]($repourl/xdm/Xsetup_0)
+## - [GiveConsole]($repourl/xdm/GiveConsole)
+##
+## Unfortunately, it only works for applications that draw
+## directly to the root window as it is not possible to control
+## overlapping windows.  For example, running `cmatrix` on
+## a `xterm` window covers the login widget.
+##
+## On the other hand, the [xscreensaver][xs] collection of screen
+## hacks seem to accept the `-root` parameter, which can be used
+## to kick off the hack, drawing on the root window.
 ##
 #end-output
-if [ -f $mnt/etc/slim.conf ] ; then
+if [ -f $mnt/etc/X11/xdm/xdm-config ] ; then
   sed \
 	-i-void \
-	-e 's!^login_cmd.*!login_cmd exec /bin/sh -l /etc/X11/Xsession %session!' \
-	$mnt/etc/slim.conf
-  mkdir -p $mnt/etc/X11
-  wget -O$mnt/etc/X11/Xsession $repourl/Xsession
-  chmod 755 $mnt/etc/X11/Xsession
+	-e 's!^DisplayManager.*session:.*$!DisplayManager*session:	/etc/X11/xdm/Xsession!' \
+	-e 's!^DisplayManager._0.setup:.*$!DisplayManager._0.setup:	/etc/X11/xdm/Xsetup_0!' \
+	-e 's!^DisplayManager._0.startup:.*$!DisplayManager._0.startup:	/etc/X11/xdm/GiveConsole!' \
+	$mnt/etc/X11/xdm/xdm-config
+  for f in Xsession Xsetup_0 GiveConsole
+  do
+    repofile xdm/$f $mnt/etc/X11/xdm/$f
+    chmod 755 $mnt/etc/X11/xdm/$f
+  done
+  env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $hmnt xsnow
 fi
 #begin-output
 ##
@@ -1051,6 +1100,29 @@ fi
 ##
 ## <script src="$embedurl$repourl/_attic_/tweak-polkit-rules.sh"></script>
 ##
+## ## Using SLIM
+##
+## I have switched to [SLiM][SLiM] as the display manager.  This is
+## configured in `/etc/slim.conf`.
+##
+## Specifically, I update the login_cmd to be the following:
+##
+## ```
+## login_cmd exec /bin/sh -l /etc/X11/Xsession %session
+## ```
+##
+##
+#end-output
+if [ -f $mnt/etc/slim.conf ] ; then
+  sed \
+	-i-void \
+	-e 's!^login_cmd.*!login_cmd exec /bin/sh -l /etc/X11/Xsession %session!' \
+	$mnt/etc/slim.conf
+  mkdir -p $mnt/etc/X11
+  wget -O$mnt/etc/X11/Xsession $repourl/Xsession
+  chmod 755 $mnt/etc/X11/Xsession
+fi
+
 ## * * *
 ##
 ##  [void]: https://voidlinux.org "Void Linux"
@@ -1060,6 +1132,8 @@ fi
 ##  [getting-refind]: http://www.rodsbooks.com/refind/getting.html "rEFInd download page"
 ##  [SLiM]: https://github.com/iwamatsu/slim "Simple Login Manager"
 ##  [machienid]: https://wiki.debian.org/MachineId
+##  [xdm]: https://en.wikipedia.org/wiki/XDM_(display_manager)
+##  [xs]: https://www.jwz.org/xscreensaver/
 ##
 #end-output
 

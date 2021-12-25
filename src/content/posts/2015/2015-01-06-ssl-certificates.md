@@ -22,7 +22,6 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: SSL Certificates
-
 date: 2015-01-06
 ---
 

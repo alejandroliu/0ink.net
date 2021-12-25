@@ -6,7 +6,7 @@
 	<meta name="author" content="Alejandro Liu">
 
 
-	<meta name="description" content="date: 2013-09-06 This can be simple by using jq. This is a command line JSON processor. Here are a couple of examples of what can be done: $ cat json.txt { "name": "Google", "location": { "street": "1600 Amphitheatre Parkway", "city": "Mountain View", "state": "California", "country": "US" }, "employees": [ { "name": "Michael", "division": "Engineering" }, { "name …">
+	<meta name="description" content="This can be simple by using jq. This is a command line JSON processor. Here are a couple of examples of what can be done: $ cat json.txt { "name": "Google", "location": { "street": "1600 Amphitheatre Parkway", "city": "Mountain View", "state": "California", "country": "US" }, "employees": [ { "name": "Michael", "division": "Engineering" }, { "name": "Laura", "division …">
 	<meta name="int-title" content="Parsing JSON in Shell scripts">
 	<meta name="date" content="2013-09-06 00:00:00+02:00">
 
@@ -15,14 +15,16 @@
 	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
 
 
+    <link href="/feeds/atom.xml" type="application/atom+xml" rel="alternate" title="0ink.net Atom Feed" />
+    <link href="/feeds/rss.xml" type="application/rss+xml" rel="alternate" title="0ink.net RSS Feed" />
 </head>
 
 <body>
-
     <div class="container">
 
 	  <header role="banner">
 	    <div class="feeds">
+	        <a href="/feeds/atom.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="atom feed" title="atom feed"/></a>
 	    </div>
 		<nav class="pages">
 			    <a href="/pages/about.html">About</a>
@@ -58,8 +60,7 @@
     </address>
   in <a href="/category/c2013.html">2013</a>
 </div>
-		<h2>date: 2013-09-06</h2>
-<p>This can be simple by using <a href="http://stedolan.github.io/jq/">jq</a>.</p>
+		<p>This can be simple by using <a href="http://stedolan.github.io/jq/">jq</a>.</p>
 <p>This is a command line JSON processor.  Here are a couple of examples of what can be done:</p>
 <pre><code>$ cat json.txt
 
@@ -165,7 +166,10 @@
 
 		<p role="contentinfo">
 		  © 2021 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
-    	</p>
+		  <span class="feeds">
+		    <a href="/feeds/rss.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="rss feed" title="rss feed"/></a>
+		  </span>
+		  </p>
 
 	  </footer>
 

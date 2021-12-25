@@ -23,8 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Remote Bridging
 date: 2013-05-27
-tags: address, computer, config, configuration, device, domain, idea, management, network, password, remote, setup, software, speed
-revised: 2021-12-22
+tags: address, computer, config, configuration, device, domain, encryption, idea, management, network, password, remote, setup, software, speed
+revised: 2021-12-23
 ---
 
 

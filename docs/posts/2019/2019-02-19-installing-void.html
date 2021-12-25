@@ -6,25 +6,26 @@
 	<meta name="author" content="Alejandro Liu">
 
 
-	<meta name="description" content="I made the switch to void linux. Except for compatibility issues around glibc, it works quite well. Most compatibility I have worked around with a combination of Flatpaks, chroots and namespaces. The high lights of void linux: musl build - which is very lightweigth Does not depend on systemd …">
+	<meta name="description" content="I made the switch to [void linux][void]. Except for compatibility issues around glibc, it works quite well. Most compatibility I have worked around with a combination of Flatpaks, chroots and namespaces. The high lights of [void linux][void]: musl build - which is very lightweigth Does not depend …">
 	<meta name="int-title" content="Installing Void Linux">
-	<meta name="tags" content="backups, boot, configuration, desktop, device, directory, drive, filesystem, installation, linux, login, manager, network, partition, password, power, scripts, software, sudo">
+	<meta name="tags" content="backups, boot, configuration, desktop, device, directory, drive, filesystem, installation, linux, login, manager, network, partition, password, power, scripts, security, software, sudo, windows">
 	<meta name="date" content="2019-02-19 00:00:00+01:00">
-	<meta name="revised" content="2021-12-22">
 
 
 	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
 	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
 
 
+    <link href="/feeds/atom.xml" type="application/atom+xml" rel="alternate" title="0ink.net Atom Feed" />
+    <link href="/feeds/rss.xml" type="application/rss+xml" rel="alternate" title="0ink.net RSS Feed" />
 </head>
 
 <body>
-
     <div class="container">
 
 	  <header role="banner">
 	    <div class="feeds">
+	        <a href="/feeds/atom.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="atom feed" title="atom feed"/></a>
 	    </div>
 		<nav class="pages">
 			    <a href="/pages/about.html">About</a>
@@ -59,21 +60,21 @@
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
   in <a href="/category/c2019.html">2019</a>
-<p class="tags">tagged <a href="/tag/backups.html">backups</a>, <a href="/tag/boot.html">boot</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/desktop.html">desktop</a>, <a href="/tag/device.html">device</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/drive.html">drive</a>, <a href="/tag/filesystem.html">filesystem</a>, <a href="/tag/installation.html">installation</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/login.html">login</a>, <a href="/tag/manager.html">manager</a>, <a href="/tag/network.html">network</a>, <a href="/tag/partition.html">partition</a>, <a href="/tag/password.html">password</a>, <a href="/tag/power.html">power</a>, <a href="/tag/scripts.html">scripts</a>, <a href="/tag/software.html">software</a>, <a href="/tag/sudo.html">sudo</a></p></div>
-		<p>I made the switch to <a href="https://voidlinux.org" title="Void Linux">void linux</a>.  Except for compatibility
+<p class="tags">tagged <a href="/tag/backups.html">backups</a>, <a href="/tag/boot.html">boot</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/desktop.html">desktop</a>, <a href="/tag/device.html">device</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/drive.html">drive</a>, <a href="/tag/filesystem.html">filesystem</a>, <a href="/tag/installation.html">installation</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/login.html">login</a>, <a href="/tag/manager.html">manager</a>, <a href="/tag/network.html">network</a>, <a href="/tag/partition.html">partition</a>, <a href="/tag/password.html">password</a>, <a href="/tag/power.html">power</a>, <a href="/tag/scripts.html">scripts</a>, <a href="/tag/security.html">security</a>, <a href="/tag/software.html">software</a>, <a href="/tag/sudo.html">sudo</a>, <a href="/tag/windows.html">windows</a></p></div>
+		<p>I made the switch to [void linux][void].  Except for compatibility
 issues around <code>glibc</code>, it works quite well.  Most compatibility
 I have worked around with a combination of <code>Flatpak</code>s, <code>chroot</code>s and
 <code>namespaces</code>.</p>
-<p>The high lights of <a href="https://voidlinux.org" title="Void Linux">void linux</a>:</p>
+<p>The high lights of [void linux][void]:</p>
 <ul>
 <li>musl build - which is very lightweigth</li>
 <li>Does not depend on <code>systemd</code></li>
 <li>a reasonable selection of software packages</li>
 </ul>
 <p>I have tweaked the installation on my computers to use UEFI and thus
-I am using <a href="http://www.rodsbooks.com/refind/" title="rEFInd bootloader">rEFInd</a> instead of grub.  This is because it makes
+I am using [rEFInd][refind] instead of grub.  This is because it makes
 doing bare metal backups and restore just a simple file copy.</p>
-<p>My installation process roughly follows the <a href="https://wiki.voidlinux.org/Installation_on_UEFI,_via_chroot" title="Install void linux on UEFI via chroot">UEFI chroot install</a>.</p>
+<p>My installation process roughly follows the [UEFI chroot install][void-uefi].</p>
 <p>This process is implemented in a script and can be found here:</p>
 <ul>
 <li><a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/install.sh">install.sh</a></li>
@@ -149,7 +150,7 @@ mount /dev/xda1 /mnt/boot
 <script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/swlist-xwin.txt?footer=minimal"></script>
 <script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/swlist-mate.txt?footer=minimal"></script>
 
-<p>This installs a <a href="https://mate-desktop.org/" title="MATE Desktop environment">MATE</a> desktop environment.</p>
+<p>This installs a [MATE][mate] desktop environment.</p>
 <h3>Software selection notes</h3>
 <ul>
 <li>For time synchronisation (ntp) we ae choosing <code>chrony</code> as it is
@@ -177,7 +178,9 @@ binaries.</p>
 <div class="highlight"><pre><span></span><code>env XBPS_ARCH=&quot;$arch&quot; xbps-install -y -S -R &quot;$voidurl&quot; -r /mnt void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
 </code></pre></div>
 
-<p>Then you can install non-free software.</p>
+<p>Then you can install non-free software, like:</p>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/swlist-nonfree.txt"></script>
+
 <h2>Enter the void chroot</h2>
 <p>Upon completion of the install, we set up our chroot jail, and chroot into our mounted filesystem:</p>
 <div class="highlight"><pre><span></span><code>mount -t proc proc /mnt/proc
@@ -282,9 +285,9 @@ uncomment:</p>
 </code></pre></div>
 
 <h2>Set-up UEFI boot</h2>
-<p>Download the <a href="http://www.rodsbooks.com/refind/" title="rEFInd bootloader">rEFInd</a> zip binary from:</p>
+<p>Download the [rEFInd][refind] zip binary from:</p>
 <ul>
-<li><a href="http://www.rodsbooks.com/refind/getting.html" title="rEFInd download page">rEFInd download</a></li>
+<li>[rEFInd download][getting-refind]</li>
 </ul>
 <p>Set-up the boot partition:</p>
 <div class="highlight"><pre><span></span><code>mkdir /boot/EFI
@@ -338,7 +341,7 @@ dracut --force --kver 4.19.4_1
 bash /boot/mkmenu.sh
 </code></pre></div>
 
-<p>We are now ready to boot into <a href="https://voidlinux.org" title="Void Linux">Void</a>.</p>
+<p>We are now ready to boot into [Void][void].</p>
 <div class="highlight"><pre><span></span><code><span class="k">exit</span>
 <span class="nv">umount</span> <span class="o">-</span><span class="nv">R</span> <span class="o">/</span><span class="nv">mnt</span>
 <span class="nv">reboot</span>
@@ -357,7 +360,7 @@ bash /boot/mkmenu.sh
 <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sv</span><span class="o">/</span><span class="n">NetworkManager</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">service</span>
 <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sv</span><span class="o">/</span><span class="n">sshd</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">service</span>
 <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sv</span><span class="o">/</span><span class="p">{</span><span class="n">acpid</span><span class="p">,</span><span class="n">chronyd</span><span class="p">,</span><span class="n">cgmanager</span><span class="p">,</span><span class="n">crond</span><span class="p">,</span><span class="n">uuidd</span><span class="p">,</span><span class="n">statd</span><span class="p">,</span><span class="n">rcpbind</span><span class="p">,</span><span class="n">autofs</span><span class="p">}</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">service</span>
-<span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sv</span><span class="o">/</span><span class="p">{</span><span class="n">consolekit</span><span class="p">,</span><span class="n">lxdm</span><span class="p">}</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">service</span>
+<span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sv</span><span class="o">/</span><span class="p">{</span><span class="n">consolekit</span><span class="p">,</span><span class="n">xdm</span><span class="p">}</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">service</span>
 </code></pre></div>
 
 <p>Creating new users:</p>
@@ -393,14 +396,42 @@ default:</p>
 <div class="highlight"><pre><span></span><code><span class="n">setxkbmap</span> <span class="o">-</span><span class="n">rules</span> <span class="n">evdev</span> <span class="o">-</span><span class="n">model</span> <span class="n">evdev</span> <span class="o">-</span><span class="n">layout</span> <span class="n">us</span> <span class="o">-</span><span class="n">variant</span> <span class="n">altgr</span><span class="o">-</span><span class="n">intl</span>
 </code></pre></div>
 
-<h2>Using SLIM</h2>
-<p>I have switched to <a href="https://github.com/iwamatsu/slim" title="Simple Login Manager">SLiM</a> as the display manager.  This is
-configured in <code>/etc/slim.conf</code>.</p>
-<p>Specifically, I update the login_cmd to be the following:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">login_cmd</span> <span class="k">exec</span> <span class="o">/</span><span class="nv">bin</span><span class="o">/</span><span class="nv">sh</span> <span class="o">-</span><span class="nv">l</span> <span class="o">/</span><span class="nv">etc</span><span class="o">/</span><span class="nv">X11</span><span class="o">/</span><span class="nv">Xsession</span> <span class="o">%</span><span class="nv">session</span>
+<h2>Using xdm</h2>
+<p>I have switched to [xdm][xdm] as my display manager.  This is
+configured in <code>/etc/X11/xdm/xdm-config</code>.</p>
+<p>Specifically, I update the Xsession setting to be the following:</p>
+<div class="highlight"><pre><span></span><code>! DisplayManager*session:       /usr/lib64/X11/xdm/Xsession
+DisplayManager*session:     /etc/X11/Xsession
 </code></pre></div>
 
-<p>And have a custom <a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/Xsession">Xsession</a> script.</p>
+<p>And have a custom <a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/xdm/Xsession">Xsession</a> script in
+<code>/etc/X11/Xsession</code>.</p>
+<p>Particularly important is the fact that the default Xsession
+script is not able to start a <code>mate</code> or <code>xfce4</code> sessions
+until you add the command:</p>
+<div class="highlight"><pre><span></span><code>xhost +local:
+</code></pre></div>
+
+<p>Apparently there is somewhat of an issue in the way <code>xauth</code>
+is handled.</p>
+<p><strong>NOTE:</strong> <em>Doing <code>xhost +local:</code> is hardly a best practice
+when it comes to security.</em></p>
+<h3>Spicing up XDM</h3>
+<p>Allthough [xdm][xdm] is fairly old-school, there are
+still some opportunities to add some eye-candy to
+it.  For that, we change the <code>setup</code> and <code>startup</code> scripts
+<code>Xsetup_0</code> and <code>GiveConsole</code> into custom scripts:</p>
+<ul>
+<li><a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/xdm/Xsetup_0">Xsetup_0</a></li>
+<li><a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/xdm/GiveConsole">GiveConsole</a></li>
+</ul>
+<p>Unfortunately, it only works for applications that draw
+directly to the root window as it is not possible to control
+overlapping windows.  For example, running <code>cmatrix</code> on
+a <code>xterm</code> window covers the login widget.</p>
+<p>On the other hand, the [xscreensaver][xs] collection of screen
+hacks seem to accept the <code>-root</code> parameter, which can be used
+to kick off the hack, drawing on the root window.</p>
 <h2>Tweaks and Bug-fixes</h2>
 <h3>/etc/machine-id or /var/lib/dbus/machine-id</h3>
 <p>Because we don't use <code>systemd</code>, we need to create <code>/etc/machine-id</code>
@@ -445,11 +476,16 @@ any longer.  I left it here just for reference (in case it breaks
 again.</p>
 <hr>
 <p>OK, in my case, <code>shutdown</code>, <code>reboot</code> and local media access functions
-were not available using the <a href="https://mate-desktop.org/" title="MATE Desktop environment">MATE</a> desktop.</p>
+were not available using the [MATE][mate] desktop.</p>
 <p>To enable this I had to create/tweak the PolKit rules...</p>
 <script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/_attic_/tweak-polkit-rules.sh"></script>
 
-<hr>
+<h2>Using SLIM</h2>
+<p>I have switched to [SLiM][SLiM] as the display manager.  This is
+configured in <code>/etc/slim.conf</code>.</p>
+<p>Specifically, I update the login_cmd to be the following:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">login_cmd</span> <span class="k">exec</span> <span class="o">/</span><span class="nv">bin</span><span class="o">/</span><span class="nv">sh</span> <span class="o">-</span><span class="nv">l</span> <span class="o">/</span><span class="nv">etc</span><span class="o">/</span><span class="nv">X11</span><span class="o">/</span><span class="nv">Xsession</span> <span class="o">%</span><span class="nv">session</span>
+</code></pre></div>
 
 	</article>
 
@@ -499,7 +535,10 @@ were not available using the <a href="https://mate-desktop.org/" title="MATE Des
 
 		<p role="contentinfo">
 		  © 2021 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
-    	</p>
+		  <span class="feeds">
+		    <a href="/feeds/rss.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="rss feed" title="rss feed"/></a>
+		  </span>
+		  </p>
 
 	  </footer>
 

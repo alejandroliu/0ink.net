@@ -47,8 +47,17 @@ help:
 
 html:
 	python3 hax.py --tags=tagcloud $(INPUTDIR)/pages/*.md $(INPUTDIR)/posts/*/*.md
+#~ 	[ -d $$(pwd)/.venv ] || ( python3 -m venv --system-site-packages $$(pwd)/.venv ; \
+#~ 	  .  $$(pwd)/.venv/bin/activate ; \
+#~ 	  pip install pelican-liquid-tags mdx_include)
+#~ 	env PYTHONPATH="$$(cd .venv/lib/python*/site-packages && pwd)" \
+#~ 	  "$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
 	"$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
 	python3 sitemap.py --strip=2 --prefix=https://0ink.net/ --xml=$(OUTPUTDIR)/sitemap.xml --html=$(OUTPUTDIR)/sitemap.html ../docs/pages/*.html ../docs/posts/*/*.html
+	# Fix links in site feeds...
+	sed -i -e 's!<link>/!<link>https://0ink.net/!g' "$(OUTPUTDIR)/feeds/rss.xml"
+	sed -i -e 's!<link href="/!<link href="https://0ink.net/!g' "$(OUTPUTDIR)/feeds/atom.xml"
+	> $(OUTPUTDIR)/.nojekyll
 
 clean:
 	[ ! -d "$(OUTPUTDIR)" ] || rm -rf "$(OUTPUTDIR)"

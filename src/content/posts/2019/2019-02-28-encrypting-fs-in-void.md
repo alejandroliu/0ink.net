@@ -1,8 +1,8 @@
 ---
 title: Encrypting FileSystem in Void Linux
 date: 2019-02-28
-tags: backup, boot, device, filesystem, idea, partition
-revised: 2021-12-22
+tags: backup, boot, device, encryption, filesystem, idea, partition
+revised: 2021-12-23
 ---
 
 The point of this recipe is to create a encrypted file sytem

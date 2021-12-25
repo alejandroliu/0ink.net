@@ -23,8 +23,8 @@ post_mime_type: ""
 comment_count: "0"
 title: Let's Encrypt
 date: 2015-12-04
-tags: configuration, domain, git, service, software
-revised: 2021-12-22
+tags: configuration, domain, encryption, git, service, software
+revised: 2021-12-23
 ---
 
 This is a service that let's you get SSL certificates for HTTPS. These certificates are trusted by major browsers. See [Let's Encrypt](https://letsencrypt.org/about/) This is a barebones _howto_ to get SSL certificates:

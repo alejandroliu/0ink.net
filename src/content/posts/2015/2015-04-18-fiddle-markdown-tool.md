@@ -22,7 +22,6 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Fiddle Markdown Tool
-
 date: 2015-04-18
 tags: markdown
 revised: 2021-12-22

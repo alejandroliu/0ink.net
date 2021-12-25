@@ -42,6 +42,7 @@ def load_post(text):
     elif state == HEADER:
       line = line.strip().split(':',1)
       if len(line) == 0: continue
+      if line[0] == '': continue
       if len(line) == 1:
         msg[HEADER][line[0]] = None
       else:
@@ -80,6 +81,18 @@ def tokenize(txt):
   # ~ pprint(tokens)
   return tokens
 
+def read_tags(txt):
+  if isinstance(txt,list): txt = ' '.join(txt)
+  tags = {}
+  for t in txt.split():
+    j = t.split('=',1)
+    if len(j) == 0: continue
+    if len(j) == 1:
+      if j[0] == '': continue
+      j.append(j[0])
+    tags[j[0]] = j[1]
+  return tags
+
 def analize_tags(minstr, minqs, articles):
   tagcloud = {}
 
@@ -102,12 +115,12 @@ def analize_tags(minstr, minqs, articles):
     print('{count}:{tag}'.format(count=tagcloud[t],tag=t))
 
 def autotag(msgbody):
-  ret = []
+  ret = {}
   tokens = tokenize(msgbody)
   for t in tagcloud:
     if t in tokens:
-      ret.append(t)
-  return sorted(ret)
+      ret[tagcloud[t]] = 1
+  return sorted(ret.keys())
 
 
 if __name__ == "__main__":
@@ -120,14 +133,15 @@ if __name__ == "__main__":
   args = cli.parse_args()
   # ~ sys.stderr.write(str(args)+'\n')
 
-  if args.tags: tagcloud = tokenize(read_file(args.tags))
+  if args.tags: tagcloud = read_tags(read_file(args.tags))
 
   for pg in args.articles:
     itxt = read_file(pg)
     msg = load_post(itxt)
     check_git(msg,pg)
-    tags = sorted(autotag(msg[BODY]))
-    if len(tags): msg[HEADER]['tags'] = ', '.join(tags)
+    if tagcloud:
+      tags = autotag(msg[BODY])
+      if len(tags): msg[HEADER]['tags'] = ', '.join(tags)
     otxt = dump_post(msg)
 
     if otxt != itxt:

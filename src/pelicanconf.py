@@ -58,15 +58,17 @@ CATEGORY_SAVE_AS = 'category/c{slug}.html'
 
 WITH_FUTURE_DATES = False
 
+# Generate feeds:
+FEED_ALL_ATOM = 'feeds/atom.xml'
+FEED_ALL_RSS = 'feeds/rss.xml'
+
 # Pagination
 DEFAULT_PAGINATION = 20
 
 THEME = 'themes/pelican-simplegrey'
-
-# ~ THEME = 'pelican-themes/gum' # styling is a little off
-# ~ THEME = 'pelican-themes/Just-Read' # nav is wacked
 # ~ THEME = 'pelican-themes/pelican-sober' # Maybe
 
 SEARCH_SITE="0ink.net"
 SEARCH_PREFILL="Search with DuckDuckGo"
 
+# ~ PLUGINS=['liquid_tags']

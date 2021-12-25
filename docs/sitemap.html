@@ -11,6 +11,7 @@
   <ul>
    <li><a href="/">Home</a></li>
    <li><a href="/sitemap.xml">XML Sitemap</a></li>
+   <li><a href="/archives.html">Archives</a></li>
   </ul>
   <h2>pages</h2>
   <ul>
@@ -28,13 +29,18 @@
   <h2>posts</h2>
   <ul>
    <li>
+    <a href="/posts/2021/2021-12-23-dvtm.html">DVTM</a>
+    <em>(updated 2021-12-23)</em>
+    <br>The other day I found dvtm. Looking at it, it looks very nice. It appeals to me because I am particularly fond of text user interfaces. At the end I choose not to use it because: terminal support was less than 100% useful. At the end of the day using …
+   </li>
+   <li>
     <a href="/posts/2021/2021-12-22-pelican.html">Migration to Pelican</a>
     <em>(updated 2021-12-23)</em>
     <br>Finally got fedup with github pages and its jekyll static site generator. Essentially things would break without any particular reason and there would be nearly no way to tell what went wrong. I addition, it was not easy to test changes before making them public. So I switched to pelican …
    </li>
    <li>
     <a href="/posts/2021/2021-12-22-git-crypt.html">Storing secrets in git</a>
-    <em>(updated 2021-12-22)</em>
+    <em>(updated 2021-12-23)</em>
    </li>
    <li>
     <a href="/posts/2021/2021-12-21-void-syslog.html">Enable syslog with void</a>
@@ -43,7 +49,7 @@
    </li>
    <li>
     <a href="/posts/2021/2021-12-21-ssl-tips.html">Stupid SSL tricks</a>
-    <em>(updated 2021-12-22)</em>
+    <em>(updated 2021-12-23)</em>
     <br>Some hints and tips foor doing SSL related things: Netcat for SSL This command lets you connect to a SSL server (a-la netcat): cat request.txt | openssl s_client -connect server:443 Creating self-signed certificates This is a single command to generate a self-signed certificate: openssl req -new \ -newkey rsa:4096 …
    </li>
    <li>
@@ -57,7 +63,7 @@
    </li>
    <li>
     <a href="/posts/2021/2021-12-20-geany.html">Replacing emacs...</a>
-    <em>(updated 2021-12-22)</em>
+    <em>(updated 2021-12-23)</em>
     <br>So after over 30 years of using GNU emacs I have switched to a more modern options. So I am using: Geany: For use in a Window environment (both X11 and MSWIN) micro: For command line use vi: For small environments Geany Geany is a nice programer's text editor. I …
    </li>
    <li>
@@ -112,7 +118,7 @@
    </li>
    <li>
     <a href="/posts/2019/2019-03-20-adhoc-rsync.html">Ad-Hoc rsync daemons</a>
-    <em>(updated 2021-12-22)</em>
+    <em>(updated 2021-12-23)</em>
     <br>The other day I needed to copy a bunch of files between to servers in my home network. Because of the volume I wanted to copy the files without having to go through ssh's encryption overhead. So I figured I could use netcat for the data transport. To do …
    </li>
    <li>
@@ -127,13 +133,13 @@
    </li>
    <li>
     <a href="/posts/2019/2019-02-28-encrypting-fs-in-void.html">Encrypting FileSystem in Void Linux</a>
-    <em>(updated 2021-12-22)</em>
+    <em>(updated 2021-12-23)</em>
     <br>The point of this recipe is to create a encrypted file sytem so that when the disc is disposed, it does not need to be securely erased. This is particularly important for SSD devices since because of block remapping (for wear levelling) data can't be overwritten consistently. The idea is …
    </li>
    <li>
     <a href="/posts/2019/2019-02-19-installing-void.html">Installing Void Linux</a>
-    <em>(updated 2021-12-22)</em>
-    <br>I made the switch to void linux. Except for compatibility issues around glibc, it works quite well. Most compatibility I have worked around with a combination of Flatpaks, chroots and namespaces. The high lights of void linux: musl build - which is very lightweigth Does not depend on systemd …
+    <em>(posted 2019-02-19 00:00:00+01:00)</em>
+    <br>I made the switch to [void linux][void]. Except for compatibility issues around glibc, it works quite well. Most compatibility I have worked around with a combination of Flatpaks, chroots and namespaces. The high lights of [void linux][void]: musl build - which is very lightweigth Does not depend …
    </li>
    <li>
     <a href="/posts/2019/2019-02-11-my-linux-shortcuts.html">My Linux Keyboard Shortcuts</a>
@@ -191,12 +197,12 @@
    </li>
    <li>
     <a href="/posts/2018/2018-06-15-password-managers.html">3 Open Source Password Managers</a>
-    <em>(updated 2021-12-22)</em>
+    <em>(updated 2021-12-23)</em>
     <br>Keep your data and accounts safe by using a secure open source password manager to store unique, complex passwords. Maintaining complex, unique passwords for each site and service you use is among the most common pieces of advice that security professionals provide to the public every year. Yet no matter …
    </li>
    <li>
     <a href="/posts/2018/2018-06-14-linux-disk-encryption.html">How to encrypt linux partitions with LUKS</a>
-    <em>(updated 2021-12-22)</em>
+    <em>(updated 2021-12-23)</em>
     <br>There are plenty of reasons why people would need to encrypt a partition. Whether they're rooted it in privacy, security, or confidentiality, setting up a basic encrypted partition on a Linux system is fairly easy. This is especially true when using LUKS, since its functionality is built directly into the …
    </li>
    <li>
@@ -266,7 +272,7 @@
    </li>
    <li>
     <a href="/posts/2017/2017-07-12-install-centos-notes.html">Centos Install notes</a>
-    <em>(updated 2021-12-22)</em>
+    <em>(updated 2021-12-23)</em>
     <br>Set-up local.repo yum installs: nfs-utils autofs @x11 @xfce wget dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts xorg-x11-fonts-{Type1,misc,75dpi,100dpi} bitmap-console-fonts bitmap-fixed-fonts bitmap-fonts-compat bitmap-lucida-typewriter-fonts ucs-miscfixed-fonts urw-fonts open-sans-fonts webcore-fonts webcore-fonts-vista liberation-mono-fonts liberation-sans-fonts liberation-serif-fonts bitstream-vera-sans-fonts bitstream-vera-serif-fonts gnu-free-{mono,sans,serif}-fonts tk firefox mplayer ffmpeg alsa-utils xsensors xfce4-sensors-plugin keepassx git Building RPM packages with …
    </li>
    <li>
@@ -341,7 +347,7 @@
    </li>
    <li>
     <a href="/posts/2016/2016-11-15-editor-evaluation.html">editor to replace emacs</a>
-    <em>(updated 2021-12-22)</em>
+    <em>(updated 2021-12-23)</em>
     <br>At the end, I switched to geany GUI TextAdept Bluefish Editor editra gedit Console sanos editor eFTE Tilde TCL/TK TKE moodit msedit Windows only nodepad++ Crimson or Emerald Editors Macros Split Views Interactive search File Browser? Smart indent Parenthesis matching Syntax: PHP, Markdown, C, Java, JavaScript, HTML, C++ UTF8 …
    </li>
    <li>
@@ -406,17 +412,17 @@
    </li>
    <li>
     <a href="/posts/2016/2016-03-10-openshift-notes.html">OpenShift notes</a>
-    <em>(updated 2021-12-22)</em>
+    <em>(updated 2021-12-23)</em>
     <br>THIS IS FOR ARCHIVAL PURPOSES. THIS IS OUT-OF-DATE backup OpenShift openshift getenv(USER) from OpenShift php ssh to {user}@{app-domain} gear snapshot > file Run gear app OpenShift migration further notes Encrypt a file using a supplied password : $ openssl enc -aes-256-cbc -salt -in file.txt -out file.txt.enc -k …
    </li>
    <li>
     <a href="/posts/2016/2016-02-02-windows-administration-from-the-command-line.html">Windows administration from the command line</a>
-    <em>(updated 2021-12-22)</em>
+    <em>(updated 2021-12-23)</em>
     <br>Windows system administration is very mouse driven and to reach all tools you need to browse through Windows explorer. If you are like me and prefer to log on a limited privilege account and use Runas to perform admin tasks, you can open these consoles with the .msc file names …
    </li>
    <li>
     <a href="/posts/2016/2016-01-11-deploying-kerberos-based-sso.html">Deploying Kerberos based SSO</a>
-    <em>(updated 2021-12-22)</em>
+    <em>(updated 2021-12-23)</em>
     <br>This article goes over how to implement Single-Sign-On on Linux. It goes over the integration around the Kerberos service and the applications, like for example FireFox. Pre-requisites Kerberos Domain Controller (KDC) User accounts in the KDC KDC based logins To make sure that this is working, login to your workstation …
    </li>
    <li>
@@ -426,7 +432,7 @@
    </li>
    <li>
     <a href="/posts/2015/2015-12-04-lets-encrypt.html">Let's Encrypt</a>
-    <em>(updated 2021-12-22)</em>
+    <em>(updated 2021-12-23)</em>
     <br>This is a service that let's you get SSL certificates for HTTPS. These certificates are trusted by major browsers. See Let's Encrypt This is a barebones howto to get SSL certificates: git clone https://github.com/letsencrypt/letsencrypt cd letsencrypt This contains the client software for let's encrypt. ./letsencrypt-auto certonly …
    </li>
    <li>
@@ -471,8 +477,8 @@
    </li>
    <li>
     <a href="/posts/2015/2015-07-24-lifehacker-app-guides.html">Lifehacker App Guides</a>
-    <em>(posted 2015-07-24 00:00:00+02:00)</em>
-    <br>date: 2015-07-24 tags: directory revised: 2021-12-22 These two hyperlinks from Lifehacker are quite useful: iPhone App Guide Android App Guide
+    <em>(updated 2021-12-22)</em>
+    <br>These two hyperlinks from Lifehacker are quite useful: iPhone App Guide Android App Guide
    </li>
    <li>
     <a href="/posts/2015/2015-07-11-openwrt-upd.html">Upload to OpenWRT</a>
@@ -485,8 +491,8 @@
    </li>
    <li>
     <a href="/posts/2015/2015-04-30-another-markdown-editor.html">Another Markdown Editor</a>
-    <em>(posted 2015-04-30 00:00:00+02:00)</em>
-    <br>date: 2015-04-30 tags: markdown revised: 2021-12-22 This one is GitHubFlavored markdown... markdown editor
+    <em>(updated 2021-12-22)</em>
+    <br>This one is GitHubFlavored markdown... markdown editor
    </li>
    <li>
     <a href="/posts/2015/2015-04-19-web-links.html">Web Links</a>
@@ -495,8 +501,8 @@
    </li>
    <li>
     <a href="/posts/2015/2015-04-18-fiddle-markdown-tool.html">Fiddle Markdown Tool</a>
-    <em>(posted 2015-04-18 00:00:00+02:00)</em>
-    <br>date: 2015-04-18 tags: markdown revised: 2021-12-22 For a quick and simple Markdown Preview: Fiddle
+    <em>(updated 2021-12-22)</em>
+    <br>For a quick and simple Markdown Preview: Fiddle
    </li>
    <li>
     <a href="/posts/2015/2015-04-17-code-kingdoms.html">Code Kingdoms</a>
@@ -521,12 +527,12 @@
    <li>
     <a href="/posts/2015/2015-01-06-ssl-certificates.html">SSL Certificates</a>
     <em>(posted 2015-01-06 00:00:00+01:00)</em>
-    <br>date: 2015-01-06 So it is is a more dangerous world out there. You can start securing web sites using self signed certificates. Another option is to: Use CloudFlare. This will use a CF certificate from the CF CDN to the web site, while using a self-signed certificate between the CF …
+    <br>So it is is a more dangerous world out there. You can start securing web sites using self signed certificates. Another option is to: Use CloudFlare. This will use a CF certificate from the CF CDN to the web site, while using a self-signed certificate between the CF CDN to …
    </li>
    <li>
     <a href="/posts/2015/2015-01-06-mardownifier.html">Convert HTML to Markdown</a>
     <em>(posted 2015-01-06 00:00:00+01:00)</em>
-    <br>date: 2015-01-06 These web sites convert to Markdown: Mardownifier: Convert the given URL to-markdown: Convert HTML snippets turndown
+    <br>These web sites convert to Markdown: Mardownifier: Convert the given URL to-markdown: Convert HTML snippets turndown
    </li>
    <li>
     <a href="/posts/2014/2014-09-13-raspberry-pi-low-cost-cctv.html">Raspberry Pi - Low cost CCTV</a>
@@ -535,13 +541,13 @@
    </li>
    <li>
     <a href="/posts/2014/2014-09-13-raspberry-pi-as-a-stratum-1-ntp-server.html">Raspberry Pi as a Stratum-1 NTP Server</a>
-    <em>(posted 2014-09-13 00:00:00+02:00)</em>
-    <br>date: 2014-09-13 tags: raspberry, software revised: 2021-12-22 This is something I found: http://www.satsignal.eu/ntp/Raspberry-Pi-NTP.html Essentially it requires pairing a Raspberry Pi with a NTPI Raspberry Pi GPS addon board On the software side of things you need rpi_gpio_ntp
+    <em>(updated 2021-12-23)</em>
+    <br>This is something I found: http://www.satsignal.eu/ntp/Raspberry-Pi-NTP.html Essentially it requires pairing a Raspberry Pi with a NTPI Raspberry Pi GPS addon board On the software side of things you need rpi_gpio_ntp
    </li>
    <li>
     <a href="/posts/2014/2014-09-13-incredible-pbx-for-raspbx.html">Incredible PBX for RasPBX</a>
-    <em>(posted 2014-09-13 00:00:00+02:00)</em>
-    <br>date: 2014-09-13 tags: raspberry revised: 2021-12-22 This is a link to IncrediblePBX for RasPBX. Looks like bundles to run Asterisk PBX'es on a Raspberry Pi. Neat.
+    <em>(updated 2021-12-22)</em>
+    <br>This is a link to IncrediblePBX for RasPBX. Looks like bundles to run Asterisk PBX'es on a Raspberry Pi. Neat.
    </li>
    <li>
     <a href="/posts/2014/2014-06-26-dev-notes.html">dev notes 2014</a>
@@ -550,8 +556,8 @@
    </li>
    <li>
     <a href="/posts/2014/2014-06-04-resizing-a-linux-raid.html">Resizing a Linux RAID</a>
-    <em>(posted 2014-06-04 00:00:00+02:00)</em>
-    <br>date: 2014-06-04 tags: boot, device, drive, filesystem, idea, linux, partition, setup revised: 2021-12-22 It is possible to migrate the whole array to larger drives (e.g. 250 GB to 1 TB) by replacing one by one. In the end the number of devices will be the same, the data will …
+    <em>(updated 2021-12-22)</em>
+    <br>It is possible to migrate the whole array to larger drives (e.g. 250 GB to 1 TB) by replacing one by one. In the end the number of devices will be the same, the data will remain intact, and you will have more space available to you. Extending an …
    </li>
    <li>
     <a href="/posts/2014/2014-05-11-wi-fi-sd-cards.html">Wi-Fi Sd Cards</a>
@@ -566,12 +572,12 @@
    <li>
     <a href="/posts/2014/2014-03-11-dvd-archiving.html">DVD archiving</a>
     <em>(posted 2014-03-11 00:00:00+01:00)</em>
-    <br>date: 2014-03-11 This is my simple procedure for backing up my DVD movies: Examine the DVD: dvdbackup -i /dev/sr0 -I Create a full backup: dvdbackup -i /dev/dvd -o ~ -M Creating an ISO: mkisofs -dvd-video -udf -o ~/dvd.iso ~/movie_name Testing the newly created ISO: mplayer dvd:// -dvd-device ~/dvd …
+    <br>This is my simple procedure for backing up my DVD movies: Examine the DVD: dvdbackup -i /dev/sr0 -I Create a full backup: dvdbackup -i /dev/dvd -o ~ -M Creating an ISO: mkisofs -dvd-video -udf -o ~/dvd.iso ~/movie_name Testing the newly created ISO: mplayer dvd:// -dvd-device ~/dvd.iso
    </li>
    <li>
     <a href="/posts/2014/2014-01-26-private-vs-personal.html">Private vs. Personal</a>
-    <em>(posted 2014-01-26 00:00:00+01:00)</em>
-    <br>date: 2014-01-26 tags: information revised: 2021-12-22 In Microsoft Outlook has the option to tag e-mails with a sensitivity tag. Technically this is fairly meaningless. However sometimes I like to use them. The confidential tag is quite self explanatory. I always confuse what is the difference between private and personal. So …
+    <em>(updated 2021-12-22)</em>
+    <br>In Microsoft Outlook has the option to tag e-mails with a sensitivity tag. Technically this is fairly meaningless. However sometimes I like to use them. The confidential tag is quite self explanatory. I always confuse what is the difference between private and personal. So here is one possibility... Personal information …
    </li>
    <li>
     <a href="/posts/2013/2013-12-23-cleaning-up-outlook-calendar.html">Cleaning-up Outlook Calendar</a>
@@ -580,26 +586,26 @@
    </li>
    <li>
     <a href="/posts/2013/2013-12-02-chrome-kerberos-authentication.html">Chrome Kerberos Authentication</a>
-    <em>(posted 2013-12-02 00:00:00+01:00)</em>
+    <em>(updated 2021-12-22)</em>
    </li>
    <li>
     <a href="/posts/2013/2013-11-30-deploying-chrome-extensions.html">Deploying Chrome Extensions</a>
     <em>(posted 2013-11-30 00:00:00+01:00)</em>
-    <br>date: 2013-11-30 The following links outline how to deploy Chrome extensions in a enterprise manner: Installing Chrome Extensions Other Deployment Options Force Installing Extensions
+    <br>The following links outline how to deploy Chrome extensions in a enterprise manner: Installing Chrome Extensions Other Deployment Options Force Installing Extensions
    </li>
    <li>
     <a href="/posts/2013/2013-11-08-my-must-have-android-apps.html">My Must Have Android Apps</a>
-    <em>(updated 2021-12-22)</em>
+    <em>(updated 2021-12-23)</em>
     <br>This is a list of my favorite Android Apps: Essentials Barcode Scanner - Play Store F-Droid Ghost Commander - F-Droid F-Droid Alternative Application Manager. Usually Open source stuff with significantly less crap ware and ads. Productivity WordPress - PlayS tore KeePassDroid - f-droid GoTasks - Play Store Dropbox - Play Store Quickoffice - Play Store SimpleNote - Play …
    </li>
    <li>
     <a href="/posts/2013/2013-11-01-wp-cron-and-cron.html">wp-cron and cron</a>
-    <em>(posted 2013-11-01 00:00:00+01:00)</em>
+    <em>(updated 2021-12-22)</em>
    </li>
    <li>
     <a href="/posts/2013/2013-10-31-using-wget-with-given-ipvhost.html">Using wget with given IP/vhost</a>
     <em>(posted 2013-10-31 00:00:00+01:00)</em>
-    <br>date: 2013-10-31 This is one neat trick. For vhosts you can connect with an IP yet provide the right host name with the following: wget http://1.1.1.1/ --header 'Host: www.example.com'
+    <br>This is one neat trick. For vhosts you can connect with an IP yet provide the right host name with the following: wget http://1.1.1.1/ --header 'Host: www.example.com'
    </li>
    <li>
     <a href="/posts/2013/2013-10-22-using-nas-200.html">Using a NAS200 as a Print server</a>
@@ -618,12 +624,12 @@
    </li>
    <li>
     <a href="/posts/2013/2013-09-30-sdf-org.html">sdf.org</a>
-    <em>(posted 2013-09-30 00:00:00+02:00)</em>
-    <br>date: 2013-09-30 tags: computer, information, software revised: 2021-12-22 sdf.org This one is an interesting site. The Super Dimension Fortress is a networked community of free software authors, teachers, librarians, students, researchers, hobbyists, computer enthusiasts, the aural and visually impaired. It is operated as a recognized non-profit 501(c)(7 …
+    <em>(updated 2021-12-22)</em>
+    <br>sdf.org This one is an interesting site. The Super Dimension Fortress is a networked community of free software authors, teachers, librarians, students, researchers, hobbyists, computer enthusiasts, the aural and visually impaired. It is operated as a recognized non-profit 501(c)(7) and is supported by its members. Our mission …
    </li>
    <li>
     <a href="/posts/2013/2013-09-22-continous-integration-from-git.html">Driving Continuous Integration from Git</a>
-    <em>(updated 2021-12-22)</em>
+    <em>(updated 2021-12-23)</em>
     <br>Testing, code coverage, style enforcement are all check-in and merge requirements that can be automated and driven from Git. If you're among the rising number of Git users out there, you're in luck: You can automate pieces of your development workflow with Git hooks. Hooks are a native Git mechanism …
    </li>
    <li>
@@ -657,8 +663,8 @@
    </li>
    <li>
     <a href="/posts/2013/2013-08-28-backing-up-gmail.html">Backing up GMail</a>
-    <em>(posted 2013-08-28 00:00:00+02:00)</em>
-    <br>date: 2013-08-28 tags: backup, python, software revised: 2021-12-22 The other day I found Gmvault. Gmvault is an open source Gmail backup software written in Python. This article provides a good overview on how it works (found it better than the Gmvault documentation): How to back up and restore Gmail account …
+    <em>(updated 2021-12-22)</em>
+    <br>The other day I found Gmvault. Gmvault is an open source Gmail backup software written in Python. This article provides a good overview on how it works (found it better than the Gmvault documentation): How to back up and restore Gmail account on Linux It uses IMAP to connect to …
    </li>
    <li>
     <a href="/posts/2013/2013-08-26-box-com-promotions.html">BOX.com promotions</a>
@@ -720,7 +726,7 @@
    </li>
    <li>
     <a href="/posts/2013/2013-06-24-cipherusb.html">CipherUSB</a>
-    <em>(updated 2021-12-22)</em>
+    <em>(updated 2021-12-23)</em>
     <br>This is an interesting concept. Essentially is an Encryption dongle that encrypts stuff between your PC and your USB mass storage device. Addonics Product: CipherUSB.
    </li>
    <li>
@@ -765,7 +771,7 @@
    </li>
    <li>
     <a href="/posts/2013/2013-05-27-remote-bridging.html">Remote Bridging</a>
-    <em>(updated 2021-12-22)</em>
+    <em>(updated 2021-12-23)</em>
     <br>Sometimes we need to connect two or more geographically distrubuted ethernet networks to one broadcast domain. There can be two different office networks of some company which uses smb protocol partially based on broadcast network messages. Another example of such situation is computer cafes: a couple of computer cafes can …
    </li>
    <li>
@@ -887,8 +893,8 @@
    </li>
    <li>
     <a href="/posts/2013/2013-05-09-keep-e-mail-private.html">Keep e-mail private</a>
-    <em>(posted 2013-05-09 00:00:00+02:00)</em>
-    <br>date: 2013-05-09 tags: address, browser revised: 2021-12-22 This is a handy tip. If you don't want to give out your real email address to register for a site and don't want to go through the hassle of creating a spam email address, just point your browser to Guerrilla Mail upon …
+    <em>(updated 2021-12-22)</em>
+    <br>This is a handy tip. If you don't want to give out your real email address to register for a site and don't want to go through the hassle of creating a spam email address, just point your browser to Guerrilla Mail upon loading the page you'll have an automatically …
    </li>
    <li>
     <a href="/posts/2013/2013-05-09-git-workflows.html">Git Workflows</a>

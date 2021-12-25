@@ -73,6 +73,10 @@ footer {
   font-size: 0.8em;
 }
 
+footer .feeds {
+  float: right;
+  text-align: right;
+}
 
 /* Header */
 

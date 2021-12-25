@@ -1,15 +1,52 @@
-TODO:
+# README
 
-- Adding extensions?
-  - https://github.com/neurobin/mdx_include
-  - markdown include
+- hax.py : Script that reads posts/pages and updates its
+  meta-data headers.  It does autotagging based on the
+  tagcloud file.
+- tagcloud : contains list of words to check for auto tagging.
+  Note, it accepts entries like:
+  - {something}={tag}
+- this is used to have multiple matches to the same tag as to
+  improve tag counts.
+
+# known issues or non-issues
+
+- Installing pelican-plugins and markdown extensions is
+  a bit wonky but it seems to work.
+- Adding pelican plugins:
+  - [shortcodes](https://github.com/getpelican/pelican-plugins/tree/master/shortcodes)
+  - [optimize images](https://github.com/getpelican/pelican-plugins/tree/master/optimize_images)
+  - [liquid_tags](https://github.com/pelican-plugins/liquid-tags)
+  - [graphviz](https://github.com/pelican-plugins/graphviz) :
+    note that `liquid_tags` does some of this already.
+  - [filetime from git](https://github.com/getpelican/pelican-plugins/tree/master/filetime_from_git):
+    nice, but it is not what I am looking for.
+- Adding markdown extensions:
+  - [markdown include](https://github.com/neurobin/mdx_include)
+  - [blockdiag](https://github.com/gisce/markdown-blockdiag)
+  - [aafigure](https://github.com/mbarkhau/markdown-aafigure)
+  - [svgbob](https://github.com/mbarkhau/markdown-svgbob)
+  - [mermaid](https://github.com/oruelle/md_mermaid)
+  - [list of markdown extensions](https://python-markdown.github.io/extensions/)
+
+# TODO
+
+- Make sure internal links are properly set-up
+- Feature
+  - shortcodes
+  - ascii graphics
+
 - Post processing posts
   - $txt$ -> <expansion>
   - <code:embed="/snippets/">
   - <code:embed="http">
-    - convert to <pre> blocks with syntax highlighter
-    -  xbps-query -Rs highlight
-  - ? create SVG from <pre> sections
-    - https://github.com/blampe/goat
+  - convert to <pre> blocks with syntax highlighter
+  -  xbps-query -Rs highlight
+- ? create SVG from <pre> sections
+  - https://github.com/blampe/goat
 
-
+```
+export PYTHONPATH=$(pwd)/.venv/lib/python3.10/site-packages
+py -m venv --system-site-packages .venv
+( . .venv/bin/activate ; pip install ???)
+```

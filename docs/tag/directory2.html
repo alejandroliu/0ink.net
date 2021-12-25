@@ -10,14 +10,16 @@
 	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
 
 
+    <link href="/feeds/atom.xml" type="application/atom+xml" rel="alternate" title="0ink.net Atom Feed" />
+    <link href="/feeds/rss.xml" type="application/rss+xml" rel="alternate" title="0ink.net RSS Feed" />
 </head>
 
 <body>
-
     <div class="container">
 
 	  <header role="banner">
 	    <div class="feeds">
+	        <a href="/feeds/atom.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="atom feed" title="atom feed"/></a>
 	    </div>
 		<nav class="pages">
 			    <a href="/pages/about.html">About</a>
@@ -47,10 +49,54 @@
 
 <article class="summary">
 <div class="metadata">
+  <time datetime="2013-05-27T00:00:00+02:00" pubdate>Mon 27 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2021-12-22</p>
+  in <a href="/category/c2013.html">2013</a>
+<p class="tags">tagged <a href="/tag/directory.html">directory</a>, <a href="/tag/git.html">git</a>, <a href="/tag/github.html">github</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/setup.html">setup</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-05-27-mirroring-a-gitorious-repository-to-github.html" rel="bookmark" title="Permalink to Mirroring a Gitorious repository to GitHub">Mirroring a Gitorious repository to GitHub</a>
+    </h2>
+    <p><p>There is nothing special with <a href="http://github.com/">GitHub</a> and
+<a href="http://gitorious.com/">Gitorious</a> here. This technique would work
+exactly the same the other way around or with other servers.</p>
+<h1>In a nutshell</h1>
+<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">Inital</span><span class="w"> </span><span class="n">setup</span><span class="w"></span>
+<span class="n">git</span><span class="w"> </span><span class="n">clone</span><span class="w"> </span><span class="o">--</span><span class="n">mirror</span><span class="w"> </span><span class="nl">git</span><span class="p">:</span><span class="o">//</span><span class="n">gitorious</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">weasyprint</span><span class="o">/</span><span class="n">weasyprint</span><span class="p">.</span><span class="n">git</span><span class="w"> </span><span class="n">weasyprint</span><span class="w"></span>
+<span class="n">GIT_DIR</span><span class="o">=</span><span class="n">weasyprint</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="n">remote</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">github</span><span class="w"> </span><span class="n">git</span><span class="nv">@github</span><span class="p">.</span><span class="nl">com</span><span class="p">:</span><span class="n">SimonSapin</span><span class="o">/</span><span class="n">WeasyPrint …</span></code></pre></div></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-05-23T00:00:00+02:00" pubdate>Thu 23 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2021-12-22</p>
+  in <a href="/category/c2013.html">2013</a>
+<p class="tags">tagged <a href="/tag/authentication.html">authentication</a>, <a href="/tag/config.html">config</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/feature.html">feature</a>, <a href="/tag/git.html">git</a>, <a href="/tag/github.html">github</a>, <a href="/tag/login.html">login</a>, <a href="/tag/password.html">password</a>, <a href="/tag/proxy.html">proxy</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/windows.html">windows</a>, <a href="/tag/wordpress.html">wordpress</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-05-23-git-recipes.html" rel="bookmark" title="Permalink to Git recipes">Git recipes</a>
+    </h2>
+    <p><p>A collection of small useful recipes for using with <code>Git</code>.</p>
+<h1>Rewriting history</h1>
+<h2>Rolling back the last commit</h2>
+<p>if nobody has pulled your remote repo yet, you can change your branch HEAD and force push it to said remote repo:</p>
+<div class="highlight"><pre><span></span><code>git reset --hard HEAD^
+git push -f
+</code></pre></div>
+
+<h1>Restoring changes</h1>
+<p>So in …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
   <time datetime="2013-05-22T00:00:00+02:00" pubdate>Wed 22 May 2013</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
+  <p>Updated: 2021-12-22</p>
   in <a href="/category/c2013.html">2013</a>
 <p class="tags">tagged <a href="/tag/backup.html">backup</a>, <a href="/tag/computer.html">computer</a>, <a href="/tag/desktop.html">desktop</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/library.html">library</a>, <a href="/tag/software.html">software</a>, <a href="/tag/tools.html">tools</a>, <a href="/tag/windows.html">windows</a></p></div>  <div>
     <h2>
@@ -66,6 +112,7 @@
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
+  <p>Updated: 2021-12-22</p>
   in <a href="/category/c2013.html">2013</a>
 <p class="tags">tagged <a href="/tag/address.html">address</a>, <a href="/tag/computer.html">computer</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/domain.html">domain</a>, <a href="/tag/login.html">login</a>, <a href="/tag/manager.html">manager</a>, <a href="/tag/password.html">password</a>, <a href="/tag/scripts.html">scripts</a>, <a href="/tag/security.html">security</a>, <a href="/tag/setup.html">setup</a>, <a href="/tag/windows.html">windows</a></p></div>  <div>
     <h2>
@@ -83,6 +130,7 @@ added to the AD …</p></p>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
+  <p>Updated: 2021-12-22</p>
   in <a href="/category/c2013.html">2013</a>
 <p class="tags">tagged <a href="/tag/config.html">config</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/feature.html">feature</a>, <a href="/tag/git.html">git</a>, <a href="/tag/integration.html">integration</a>, <a href="/tag/library.html">library</a>, <a href="/tag/markdown.html">markdown</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/setup.html">setup</a></p></div>  <div>
     <h2>
@@ -154,7 +202,10 @@ added to the AD …</p></p>
 
 		<p role="contentinfo">
 		  © 2021 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
-    	</p>
+		  <span class="feeds">
+		    <a href="/feeds/rss.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="rss feed" title="rss feed"/></a>
+		  </span>
+		  </p>
 
 	  </footer>
 

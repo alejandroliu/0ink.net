@@ -72,6 +72,7 @@ def gen_html(urls, prefix):
   html.append('  <ul>')
   html.append('   <li><a href="/">Home</a></li>')
   html.append('   <li><a href="/sitemap.xml">XML Sitemap</a></li>')
+  html.append('   <li><a href="/archives.html">Archives</a></li>')
   html.append('  </ul>')
 
   sect = {}

@@ -69,7 +69,9 @@ jq
 # tcpdump
 # luakit
 
+pelican				# static site generator
 mdcat
+
 # asciidoc | ruby-asciidoctor ?
 # bootiso			# Create USB boot discs from ISOs
 # darkhttpd		# light weight web server
@@ -78,10 +80,10 @@ mdcat
 # pidgin pidgin-sipe avahi	# chat app
 
 #python-pip
-#python3-Markdown
 #python3-bottle
 #python3-tkinter
-#python3-yaml
+python3-yaml
+python3-Markdown
 
 #qemu
 #libvirt

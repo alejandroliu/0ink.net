@@ -6,7 +6,7 @@
 	<meta name="author" content="Alejandro Liu">
 
 
-	<meta name="description" content="date: 2013-10-31 This is one neat trick. For vhosts you can connect with an IP yet provide the right host name with the following: wget http://1.1.1.1/ --header 'Host: www.example.com'">
+	<meta name="description" content="This is one neat trick. For vhosts you can connect with an IP yet provide the right host name with the following: wget http://1.1.1.1/ --header 'Host: www.example.com'">
 	<meta name="int-title" content="Using wget with given IP/vhost">
 	<meta name="date" content="2013-10-31 00:00:00+01:00">
 
@@ -15,14 +15,16 @@
 	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
 
 
+    <link href="/feeds/atom.xml" type="application/atom+xml" rel="alternate" title="0ink.net Atom Feed" />
+    <link href="/feeds/rss.xml" type="application/rss+xml" rel="alternate" title="0ink.net RSS Feed" />
 </head>
 
 <body>
-
     <div class="container">
 
 	  <header role="banner">
 	    <div class="feeds">
+	        <a href="/feeds/atom.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="atom feed" title="atom feed"/></a>
 	    </div>
 		<nav class="pages">
 			    <a href="/pages/about.html">About</a>
@@ -58,8 +60,7 @@
     </address>
   in <a href="/category/c2013.html">2013</a>
 </div>
-		<h2>date: 2013-10-31</h2>
-<p>This is one neat trick.  For vhosts you can connect with an IP yet provide the right host name with the following:</p>
+		<p>This is one neat trick.  For vhosts you can connect with an IP yet provide the right host name with the following:</p>
 <pre><code> wget http://1.1.1.1/  --header 'Host: www.example.com'
 </code></pre>
 
@@ -111,7 +112,10 @@
 
 		<p role="contentinfo">
 		  © 2021 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
-    	</p>
+		  <span class="feeds">
+		    <a href="/feeds/rss.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="rss feed" title="rss feed"/></a>
+		  </span>
+		  </p>
 
 	  </footer>
 

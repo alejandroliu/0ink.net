@@ -1,8 +1,6 @@
 ---
 title: Installing Void Linux
-date: 2019-02-19
-tags: backups, boot, configuration, desktop, device, directory, drive, filesystem, installation, linux, login, manager, network, partition, password, power, scripts, software, sudo
-revised: 2021-12-22
+tags: backups, boot, configuration, desktop, device, directory, drive, filesystem, installation, linux, login, manager, network, partition, password, power, scripts, security, software, sudo, windows
 ---
 
 I made the switch to [void linux][void].  Except for compatibility
@@ -152,7 +150,9 @@ For glibc:
 env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r /mnt void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
 ```
 
-Then you can install non-free software.
+Then you can install non-free software, like:
+
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/swlist-nonfree.txt"></script>
 
 
 ## Enter the void chroot
@@ -385,7 +385,7 @@ ln -s /etc/sv/dbus /var/service
 ln -s /etc/sv/NetworkManager /var/service
 ln -s /etc/sv/sshd /var/service
 ln -s /etc/sv/{acpid,chronyd,cgmanager,crond,uuidd,statd,rcpbind,autofs} /var/service
-ln -s /etc/sv/{consolekit,lxdm} /var/service
+ln -s /etc/sv/{consolekit,xdm} /var/service
 ```
 
 Creating new users:
@@ -434,20 +434,58 @@ default:
 
 ```
 setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl
-```
-
-## Using SLIM
-
-I have switched to [SLiM][SLiM] as the display manager.  This is
-configured in `/etc/slim.conf`.
-
-Specifically, I update the login_cmd to be the following:
 
 ```
-login_cmd exec /bin/sh -l /etc/X11/Xsession %session
+
+## Using xdm
+
+I have switched to [xdm][xdm] as my display manager.  This is
+configured in `/etc/X11/xdm/xdm-config`.
+
+Specifically, I update the Xsession setting to be the following:
+
+```
+! DisplayManager*session:		/usr/lib64/X11/xdm/Xsession
+DisplayManager*session:		/etc/X11/Xsession
+
 ```
 
-And have a custom [Xsession](https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/Xsession) script.
+And have a custom [Xsession](https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/xdm/Xsession) script in
+`/etc/X11/Xsession`.
+
+Particularly important is the fact that the default Xsession
+script is not able to start a `mate` or `xfce4` sessions
+until you add the command:
+
+```
+xhost +local:
+
+```
+
+Apparently there is somewhat of an issue in the way `xauth`
+is handled.
+
+**NOTE:** _Doing `xhost +local:` is hardly a best practice
+when it comes to security._
+
+### Spicing up XDM
+
+Allthough [xdm][xdm] is fairly old-school, there are
+still some opportunities to add some eye-candy to
+it.  For that, we change the `setup` and `startup` scripts
+`Xsetup_0` and `GiveConsole` into custom scripts:
+
+- [Xsetup_0](https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/xdm/Xsetup_0)
+- [GiveConsole](https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/xdm/GiveConsole)
+
+Unfortunately, it only works for applications that draw
+directly to the root window as it is not possible to control
+overlapping windows.  For example, running `cmatrix` on
+a `xterm` window covers the login widget.
+
+On the other hand, the [xscreensaver][xs] collection of screen
+hacks seem to accept the `-root` parameter, which can be used
+to kick off the hack, drawing on the root window.
 
 
 ## Tweaks and Bug-fixes
@@ -518,13 +556,15 @@ To enable this I had to create/tweak the PolKit rules...
 
 <script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/_attic_/tweak-polkit-rules.sh"></script>
 
-* * *
+## Using SLIM
 
- [void]: https://voidlinux.org "Void Linux"
- [refind]: http://www.rodsbooks.com/refind/ "rEFInd bootloader"
- [void-uefi]: https://wiki.voidlinux.org/Installation_on_UEFI,_via_chroot "Install void linux on UEFI via chroot"
- [mate]: https://mate-desktop.org/ "MATE Desktop environment"
- [getting-refind]: http://www.rodsbooks.com/refind/getting.html "rEFInd download page"
- [SLiM]: https://github.com/iwamatsu/slim "Simple Login Manager"
- [machienid]: https://wiki.debian.org/MachineId
+I have switched to [SLiM][SLiM] as the display manager.  This is
+configured in `/etc/slim.conf`.
+
+Specifically, I update the login_cmd to be the following:
+
+```
+login_cmd exec /bin/sh -l /etc/X11/Xsession %session
+```
+
 

@@ -15,14 +15,16 @@
 	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
 
 
+    <link href="/feeds/atom.xml" type="application/atom+xml" rel="alternate" title="0ink.net Atom Feed" />
+    <link href="/feeds/rss.xml" type="application/rss+xml" rel="alternate" title="0ink.net RSS Feed" />
 </head>
 
 <body>
-
     <div class="container">
 
 	  <header role="banner">
 	    <div class="feeds">
+	        <a href="/feeds/atom.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="atom feed" title="atom feed"/></a>
 	    </div>
 		<nav class="pages">
 			    <a href="/pages/about.html">About</a>
@@ -128,7 +130,10 @@ document.getElementById('total').value = result
 
 		<p role="contentinfo">
 		  © 2021 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
-    	</p>
+		  <span class="feeds">
+		    <a href="/feeds/rss.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="rss feed" title="rss feed"/></a>
+		  </span>
+		  </p>
 
 	  </footer>
 

@@ -1,8 +1,8 @@
 ---
 title: OpenShift notes
 date: 2016-03-10
-tags: application, backup, directory, domain, git, github, installation, login, password, remote, settings, setup, wordpress
-revised: 2021-12-22
+tags: application, backup, directory, domain, encryption, git, github, installation, login, openssl, password, remote, settings, setup, wordpress
+revised: 2021-12-23
 ---
 
 **THIS IS FOR ARCHIVAL PURPOSES.  THIS IS OUT-OF-DATE**

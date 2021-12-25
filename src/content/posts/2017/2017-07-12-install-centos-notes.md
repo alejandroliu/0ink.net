@@ -1,8 +1,8 @@
 ---
 title: Centos Install notes
 date: 2017-07-12
-tags: application, centos, git, installation, linux, login, settings, windows
-revised: 2021-12-22
+tags: application, browser, centos, git, installation, linux, login, settings, windows
+revised: 2021-12-23
 ---
 
 Set-up `local.repo`

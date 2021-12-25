@@ -23,17 +23,13 @@
 </head>
 
 <body>
-{{ FEED_ATOM }}
     <div class="container">
 
 	  <header role="banner">
 	    <div class="feeds">
 	      {% if FEED_ALL_ATOM %}
-	        <a href="{{ SITEURL }}/{{ FEED_ALL_ATOM }}" rel="alternate"><img src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/icons/feed-32px.png" alt="atom feed"/></a>
+	        <a href="{{ SITEURL }}/{{ FEED_ALL_ATOM }}" rel="alternate"><img src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/icons/feed-32px.png" alt="atom feed" title="atom feed"/></a>
 	      {% endif %}
-          {% if FEED_ALL_RSS %}
-            <a href="{{ SITEURL }}/{{ FEED_ALL_RSS }}" rel="alternate"><img src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/icons/feed-32px.png" alt="rss feed"/></a>
-          {% endif %}
 	    </div>
 	    {% if DISPLAY_PAGES_ON_MENU %}
 	      {% if pages %}
@@ -113,7 +109,12 @@
 
 		<p role="contentinfo">
 		  © 2021 {{ AUTHOR }} - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
-    	</p>
+		  {% if FEED_ALL_RSS %}
+		  <span class="feeds">
+		    <a href="{{ SITEURL }}/{{ FEED_ALL_RSS }}" rel="alternate"><img src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/icons/feed-32px.png" alt="rss feed" title="rss feed"/></a>
+		  </span>
+		  {% endif %}
+		  </p>
 
 	  </footer>
 

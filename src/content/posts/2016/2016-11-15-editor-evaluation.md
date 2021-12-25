@@ -1,8 +1,8 @@
 ---
 title: editor to replace emacs
 date: 2016-11-15
-tags: java, javascript, linux, markdown, windows
-revised: 2021-12-22
+tags: geany, java, javascript, linux, markdown, windows
+revised: 2021-12-23
 ---
 
 At the end, I switched to [geany](http://www.geany.org/)

@@ -13,6 +13,7 @@
  </url>
  <url>
   <loc>https://0ink.net/posts/2013/2013-05-09-keep-e-mail-private.html</loc>
+  <lastmod>2021-12-22</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2013/2013-05-13-bash-tips.html</loc>
@@ -103,7 +104,7 @@
  </url>
  <url>
   <loc>https://0ink.net/posts/2013/2013-05-27-remote-bridging.html</loc>
-  <lastmod>2021-12-22</lastmod>
+  <lastmod>2021-12-23</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2013/2013-05-28-git-tutorials.html</loc>
@@ -139,7 +140,7 @@
  </url>
  <url>
   <loc>https://0ink.net/posts/2013/2013-06-24-cipherusb.html</loc>
-  <lastmod>2021-12-22</lastmod>
+  <lastmod>2021-12-23</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2013/2013-07-01-askozia-desktop-appliance.html</loc>
@@ -189,6 +190,7 @@
  </url>
  <url>
   <loc>https://0ink.net/posts/2013/2013-08-28-backing-up-gmail.html</loc>
+  <lastmod>2021-12-22</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2013/2013-08-28-grandstream-gxp1400.html</loc>
@@ -214,10 +216,11 @@
  </url>
  <url>
   <loc>https://0ink.net/posts/2013/2013-09-22-continous-integration-from-git.html</loc>
-  <lastmod>2021-12-22</lastmod>
+  <lastmod>2021-12-23</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2013/2013-09-30-sdf-org.html</loc>
+  <lastmod>2021-12-22</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2013/2013-10-07-enable-local-file-caching-for-nfs-share-on-linux.html</loc>
@@ -236,16 +239,18 @@
  </url>
  <url>
   <loc>https://0ink.net/posts/2013/2013-11-01-wp-cron-and-cron.html</loc>
+  <lastmod>2021-12-22</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2013/2013-11-08-my-must-have-android-apps.html</loc>
-  <lastmod>2021-12-22</lastmod>
+  <lastmod>2021-12-23</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2013/2013-11-30-deploying-chrome-extensions.html</loc>
  </url>
  <url>
   <loc>https://0ink.net/posts/2013/2013-12-02-chrome-kerberos-authentication.html</loc>
+  <lastmod>2021-12-22</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2013/2013-12-23-cleaning-up-outlook-calendar.html</loc>
@@ -253,6 +258,7 @@
  </url>
  <url>
   <loc>https://0ink.net/posts/2014/2014-01-26-private-vs-personal.html</loc>
+  <lastmod>2021-12-22</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2014/2014-03-11-dvd-archiving.html</loc>
@@ -267,6 +273,7 @@
  </url>
  <url>
   <loc>https://0ink.net/posts/2014/2014-06-04-resizing-a-linux-raid.html</loc>
+  <lastmod>2021-12-22</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2014/2014-06-26-dev-notes.html</loc>
@@ -274,9 +281,11 @@
  </url>
  <url>
   <loc>https://0ink.net/posts/2014/2014-09-13-incredible-pbx-for-raspbx.html</loc>
+  <lastmod>2021-12-22</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2014/2014-09-13-raspberry-pi-as-a-stratum-1-ntp-server.html</loc>
+  <lastmod>2021-12-23</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2014/2014-09-13-raspberry-pi-low-cost-cctv.html</loc>
@@ -306,6 +315,7 @@
  </url>
  <url>
   <loc>https://0ink.net/posts/2015/2015-04-18-fiddle-markdown-tool.html</loc>
+  <lastmod>2021-12-22</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2015/2015-04-19-web-links.html</loc>
@@ -313,6 +323,7 @@
  </url>
  <url>
   <loc>https://0ink.net/posts/2015/2015-04-30-another-markdown-editor.html</loc>
+  <lastmod>2021-12-22</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2015/2015-06-11-org-notes.html</loc>
@@ -323,6 +334,7 @@
  </url>
  <url>
   <loc>https://0ink.net/posts/2015/2015-07-24-lifehacker-app-guides.html</loc>
+  <lastmod>2021-12-22</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2015/2015-07-24-online-ides.html</loc>
@@ -357,7 +369,7 @@
  </url>
  <url>
   <loc>https://0ink.net/posts/2015/2015-12-04-lets-encrypt.html</loc>
-  <lastmod>2021-12-22</lastmod>
+  <lastmod>2021-12-23</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2015/2015-12-11-clipping-notes.html</loc>
@@ -365,15 +377,15 @@
  </url>
  <url>
   <loc>https://0ink.net/posts/2016/2016-01-11-deploying-kerberos-based-sso.html</loc>
-  <lastmod>2021-12-22</lastmod>
+  <lastmod>2021-12-23</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2016/2016-02-02-windows-administration-from-the-command-line.html</loc>
-  <lastmod>2021-12-22</lastmod>
+  <lastmod>2021-12-23</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2016/2016-03-10-openshift-notes.html</loc>
-  <lastmod>2021-12-22</lastmod>
+  <lastmod>2021-12-23</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2016/2016-03-20-starting-with-3d-printing.html</loc>
@@ -423,7 +435,7 @@
  </url>
  <url>
   <loc>https://0ink.net/posts/2016/2016-11-15-editor-evaluation.html</loc>
-  <lastmod>2021-12-22</lastmod>
+  <lastmod>2021-12-23</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2016/2016-11-23-writing-safe-shell-scripts.html</loc>
@@ -485,7 +497,7 @@
  </url>
  <url>
   <loc>https://0ink.net/posts/2017/2017-07-12-install-centos-notes.html</loc>
-  <lastmod>2021-12-22</lastmod>
+  <lastmod>2021-12-23</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2017/2017-09-20-seedbox.html</loc>
@@ -538,11 +550,11 @@
  </url>
  <url>
   <loc>https://0ink.net/posts/2018/2018-06-14-linux-disk-encryption.html</loc>
-  <lastmod>2021-12-22</lastmod>
+  <lastmod>2021-12-23</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2018/2018-06-15-password-managers.html</loc>
-  <lastmod>2021-12-22</lastmod>
+  <lastmod>2021-12-23</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2018/2018-06-16-html-entities.html</loc>
@@ -586,11 +598,10 @@
  </url>
  <url>
   <loc>https://0ink.net/posts/2019/2019-02-19-installing-void.html</loc>
-  <lastmod>2021-12-22</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2019/2019-02-28-encrypting-fs-in-void.html</loc>
-  <lastmod>2021-12-22</lastmod>
+  <lastmod>2021-12-23</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2019/2019-03-01-z-wave-associations-with-vera.html</loc>
@@ -602,7 +613,7 @@
  </url>
  <url>
   <loc>https://0ink.net/posts/2019/2019-03-20-adhoc-rsync.html</loc>
-  <lastmod>2021-12-22</lastmod>
+  <lastmod>2021-12-23</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2019/2019-04-01-availability-calculations.html</loc>
@@ -644,7 +655,7 @@
  </url>
  <url>
   <loc>https://0ink.net/posts/2021/2021-12-20-geany.html</loc>
-  <lastmod>2021-12-22</lastmod>
+  <lastmod>2021-12-23</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2021/2021-12-21-ipv6-blues.html</loc>
@@ -656,7 +667,7 @@
  </url>
  <url>
   <loc>https://0ink.net/posts/2021/2021-12-21-ssl-tips.html</loc>
-  <lastmod>2021-12-22</lastmod>
+  <lastmod>2021-12-23</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2021/2021-12-21-void-syslog.html</loc>
@@ -664,10 +675,14 @@
  </url>
  <url>
   <loc>https://0ink.net/posts/2021/2021-12-22-git-crypt.html</loc>
-  <lastmod>2021-12-22</lastmod>
+  <lastmod>2021-12-23</lastmod>
  </url>
  <url>
   <loc>https://0ink.net/posts/2021/2021-12-22-pelican.html</loc>
+  <lastmod>2021-12-23</lastmod>
+ </url>
+ <url>
+  <loc>https://0ink.net/posts/2021/2021-12-23-dvtm.html</loc>
   <lastmod>2021-12-23</lastmod>
  </url>
 </urlset>

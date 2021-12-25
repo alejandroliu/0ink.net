@@ -3,12 +3,16 @@
 # Install as /etc/X11/Xsession
 #
 # Loosely based on: [LighDM Session script](https://github.com/canonical/lightdm/blob/master/debian/lightdm-session)
+# and xdm's Xsession scripts.
 #
-if [ -f $HOME/.xsession-errors ] ; then
-  rm -f $HOME/.xsession-errors.old
-  mv -v $HOME/.xsession-errors $HOME/.xsession-errors.old
+if [ -z "$(pidof xconsole)" ] ; then
+  # We only do this if xconsole doesn't exist
+  if [ -f $HOME/.xsession-errors ] ; then
+    rm -f $HOME/.xsession-errors.old
+    mv -v $HOME/.xsession-errors $HOME/.xsession-errors.old
+  fi
+  exec > $HOME/.xsession-errors 2>&1 </dev/null
 fi
-exec > $HOME/.xsession-errors 2>&1 </dev/null
 
 # Load profile
 for file in "/etc/profile" "$HOME/.profile" "/etc/xprofile" "$HOME/.xprofile"; do
@@ -67,26 +71,35 @@ if [ -d "$xinitdir" ]; then
   done
 fi
 
-# Load Xsession scripts
-# OPTIONFILE, USERXSESSION, USERXSESSIONRC and ALTUSERXSESSION are required
-# by the scripts to work
-xsessionddir="/etc/X11/Xsession.d"
-OPTIONFILE=/etc/X11/Xsession.options
-USERXSESSION=$HOME/.xsession
-USERXSESSIONRC=$HOME/.xsessionrc
-ALTUSERXSESSION=$HOME/.Xsession
+#
+# We need this so MATE and/or XFCE4 desktops can start succesfully!
+#
+xhost +local:
 
-if [ -d "$xsessionddir" ]; then
-  for i in $(find "$xsessionddir" -mindepth 1 -maxdepth 1 -type f) ; do
-    script="$xsessionddir/$i"
-    echo "Loading X session script $script"
-    if [ -r "$script"  -a -f "$script" ] && expr "$i" : '^[[:alnum:]_-]\+$' > /dev/null; then
-      . "$script"
-    fi
-  done
+#
+# Try the user's .xsession if it exists...
+if [ -f $HOME/.xsession ] ; then
+  . $HOME/.xsession
 fi
+#
+# If it did not exec'ed it will trt checking $HOME/.xdesktop
+# for a preferred desktop.
+#
 
-echo "X session wrapper complete, running session $@"
-
-exec "$@"
-
+if [ -f $HOME/.xdesktop ] ; then
+  # Customer selected desktop
+  desktop=$(cat $HOME/.xdesktop)
+else
+  if type mate-session >/dev/null 2>&1 ; then
+    if type ck-launch-session >/dev/null ; then
+      desktop="ck-launch-session mate-session"
+    else
+      desktop="mate-session"
+    fi
+  elif type xsm >/dev/null 2>&1 ; then
+    desktop=xsm
+  else
+    desktop=xterm
+  fi
+fi
+exec /bin/sh -l -c "exec $desktop"
