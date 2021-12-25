@@ -1,8 +1,6 @@
 ---
 title: JavaScript resources
-date: 2016-08-23
 tags: github, javascript
-revised: 2021-12-22
 ---
 
 - [Typescript](http://www.codeproject.com/Articles/756189/Master-Chief-CreateJS-TypeScript)

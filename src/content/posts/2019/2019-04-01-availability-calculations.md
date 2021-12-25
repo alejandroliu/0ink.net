@@ -1,6 +1,5 @@
 ---
 title: Calculate system availability
-date: 2019-04-01
 ---
 
 To calculate the availability of redundant systems you can

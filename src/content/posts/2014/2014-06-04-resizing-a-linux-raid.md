@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Resizing a Linux RAID
-date: 2014-06-04
 tags: boot, device, drive, filesystem, idea, linux, partition, setup
-revised: 2021-12-22
 ---
 
 It is possible to migrate the whole array to larger drives

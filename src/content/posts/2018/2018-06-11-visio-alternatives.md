@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Open Source Alternatives to Visio
-date: 2018-06-11
 tags: desktop, drive, feature, software, tools
-revised: 2021-12-22
 ---
 
 Need to create diagrams, flowcharts, circuits, or other kinds of
@@ -50,7 +48,7 @@ most about it is the first impression that you get when it launches:
 clean, simple, with an interface that's familiar and easy to navigate.
 Quite reminiscent of Visio, in fact:
 
-![dia-1](/images/2018/dia-1.png)
+![dia-1]({static}/images/2018/dia-1.png)
 
 You'll be able to create your first diagram in mere minutes.
 Drag-and-drop a few symbols onto the canvas, then connect them using
@@ -78,7 +76,7 @@ LibreOffice is far from perfect, but it's a respectable option for
 fans of open source software. The app that should interest you is
 *LibreOffice Draw*, the Visio counterpart in this office suite.
 
-![draw-1](/images/2018/draw-1.png)
+![draw-1]({static}/images/2018/draw-1.png)
 
 LibreOffice Draw supplies two things for you: shapes and lines. You
 use the shapes to represent diagram entities, and you use the lines to
@@ -88,7 +86,7 @@ desktop publishing or PDF editing).
 
 First you have to open the Drawing toolbar, which you can do through
 *View > Toolbars > Drawing*. Grid snapping is on by default, but you'll
-want to change the snapping sensitivity by going to 
+want to change the snapping sensitivity by going to
 *Tools > Options*, navigate to *LibreOffice Draw > Grid*, change the
 values under *Resolution* to your intended grid size, and change the
 values under *Subdivision* to *1*.

@@ -47,6 +47,7 @@ EXTRA_PATH_METADATA = {
     'extras/CNAME': {'path': 'CNAME'},
     'extras/robots.txt': {'path': 'robots.txt'},
 }
+FILENAME_METADATA = '(?P<date>\d{4}-\d{2}-\d{2})-(?P<postname>.*)'
 
 SLUGIFY_SOURCE = 'basename'
 ARTICLE_URL = 'posts/{date:%Y}/{slug}.html'
@@ -72,3 +73,6 @@ SEARCH_SITE="0ink.net"
 SEARCH_PREFILL="Search with DuckDuckGo"
 
 # ~ PLUGINS=['liquid_tags']
+PLUGINS=['filetime_from_git']
+PLUGIN_PATHS = [ 'plugins' ]
+

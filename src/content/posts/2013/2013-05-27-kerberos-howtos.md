@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Kerberos howtos
-date: 2013-05-27
 tags: authentication, backups, boot, configuration, directory, domain, network, password, service
-revised: 2021-12-22
 ---
 
 Kerberos is a network authentication protocol which works on the basis

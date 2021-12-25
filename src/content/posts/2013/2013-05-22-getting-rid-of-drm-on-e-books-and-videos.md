@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Getting rid of DRM on e-books and videos
-date: 2013-05-22
 tags: backup, computer, desktop, directory, library, software, tools, windows
-revised: 2021-12-22
 ---
 
 Instructions on how to remove DRM from E-Books and videos.

@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Chrome Kerberos Authentication
-date: 2013-12-02
 tags: application, authentication, config
-revised: 2021-12-22
 ---
 
 To config chrome to use kerberos authentication you need to start the application the following parameter:

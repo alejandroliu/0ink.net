@@ -1,8 +1,6 @@
 ---
 title: Global Windows Keyboard Shorcuts
-date: 2019-02-10
 tags: desktop, management, manager, windows
-revised: 2021-12-22
 ---
 
 Common Window Management Shortcuts

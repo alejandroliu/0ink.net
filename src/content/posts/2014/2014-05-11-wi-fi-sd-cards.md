@@ -22,14 +22,12 @@ post_type: post
 post_mime_type: ""
 comment_count: "1"
 title: Wi-Fi Sd Cards
-date: 2014-05-11
 tags: linux, scripts
-revised: 2021-12-22
 ---
 
 My latest weekend project. Making a normal digital camera WIFI enabled.
 
-![list_WIFISD.png](/images/2014/list_WIFISD.png)
+![list_WIFISD.png]({static}/images/2014/list_WIFISD.png)
 
 With the [Transcend Wi-Fi SD Card](http://www.transcend-info.com/products/Catlist.asp?FldNo=24) you can convert any digital camera into a Wi-Fi enable camera.
 

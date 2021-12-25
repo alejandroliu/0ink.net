@@ -1,8 +1,6 @@
 ---
 title: Co-existing GLIBC binaries with Void-Linux MUSL edition
-date: 2019-04-10
 tags: directory, library, linux, software, sudo
-revised: 2021-12-22
 ---
 
 I am running [void-linux](https://voidlinux.org/) at home with `musl` as the standard

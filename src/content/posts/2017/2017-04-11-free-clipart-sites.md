@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Free Clipart sites
-date: 2017-04-11
 tags: domain, library
-revised: 2021-12-22
 ---
 
 In 2014, Microsoft [killed and buried Clipart](https://www.makeuseof.com/tag/clip-art-gone-heres-find-free-images-instead/)

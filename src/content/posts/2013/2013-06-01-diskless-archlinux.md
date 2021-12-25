@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Diskless Archlinux
-date: 2013-06-01
 tags: address, boot, configuration, device, directory, filesystem, information, installation, linux, network, setup, software, storage
-revised: 2021-12-22
 ---
 
 _I am still to test this recipe_

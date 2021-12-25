@@ -1,8 +1,6 @@
 ---
 title: android development
-date: 2017-06-24
 tags: android, java, manager, sudo, tools
-revised: 2021-12-22
 ---
 
 Android devs

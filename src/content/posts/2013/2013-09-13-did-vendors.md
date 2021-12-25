@@ -22,7 +22,6 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: DID vendors
-date: 2013-09-13
 ---
 
 So I have been researching DID vendors with limited success.  So far my

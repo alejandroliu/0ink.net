@@ -1,6 +1,5 @@
 ---
 title: About
-date: 2019-06-13
 ---
 
 # Welcome to 0ink.net.

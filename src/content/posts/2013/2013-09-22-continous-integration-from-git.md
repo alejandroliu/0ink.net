@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Driving Continuous Integration from Git
-date: 2013-09-22
 tags: config, configuration, directory, feature, git, information, integration, password, remote, scripts, software, terminal, tools
-revised: 2021-12-23
 ---
 
 **Testing, code coverage, style enforcement are all check-in and merge

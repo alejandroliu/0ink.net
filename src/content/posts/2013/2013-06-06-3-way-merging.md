@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Upgrading pacman config files
-date: 2013-06-06
 tags: software
-revised: 2021-12-22
 ---
 
 So when upgrading software packages sometimes you need to merge changes. My recipe in **archlinux** is as follows:

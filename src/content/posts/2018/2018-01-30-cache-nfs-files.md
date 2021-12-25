@@ -1,8 +1,6 @@
 ---
 title: using cachefiles on an Linux NFS share
-date: 2018-01-30
 tags: centos, configuration, filesystem, information, installation, linux, network, partition, remote, service, storage, sudo, ubuntu
-revised: 2021-12-22
 ---
 
 

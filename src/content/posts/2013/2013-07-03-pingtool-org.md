@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: PingTool.org
-date: 2013-07-03
 tags: tools
-revised: 2021-12-22
 ---
 
 Another short and sweet. This web site provides a number of on-line

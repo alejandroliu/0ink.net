@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Online IDEs
-date: 2015-07-24
 tags: cloud
-revised: 2021-12-22
 ---
 
 If you want to move to the cloud and like to code like me, this is

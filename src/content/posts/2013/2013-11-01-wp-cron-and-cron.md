@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: wp-cron and cron
-date: 2013-11-01
 tags: wordpress
-revised: 2021-12-22
 ---
 
 Normal WordPress operation has a cron like functionality that runs scheduled tasks as users visit the blog.

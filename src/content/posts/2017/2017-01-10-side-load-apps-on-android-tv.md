@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "1"
 title: Side Load apps on Android TV
-date: 2017-01-10
 tags: android, browser, cloud, drive, manager, settings, storage
-revised: 2021-12-22
 ---
 
 So we bough a Philips 50PFK6540.  This is a 50" TV with
@@ -53,6 +51,6 @@ do this from the built-in browser.  So the procedure is as folows:
    Storage, etc...)
 4. Open the APK from ES File Explorer and install it.
 
-![Philips 50PFK6540](/images/2017/50PFK6540_12-IMS-nl_NL.png)
+![Philips 50PFK6540]({static}/images/2017/50PFK6540_12-IMS-nl_NL.png)
 
 

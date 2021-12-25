@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Wordpress links
-date: 2013-05-21
 tags: configuration, information, wordpress
-revised: 2021-12-22
 ---
 
 This article describes how you creeate hyperlinks within

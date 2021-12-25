@@ -22,7 +22,6 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Alternative to DynDNS
-date: 2013-08-23
 ---
 
 [linuxaria blog article](http://linuxaria.com/howto/dynamic-dns-with-bash-afraid-org) This article has a script how to use Dynamic DNS on [afraid.org](http://freedns.afraid.org/).

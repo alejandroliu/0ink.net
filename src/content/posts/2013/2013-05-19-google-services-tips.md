@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Cleaning up Google Calendar
-date: 2013-05-19
 tags: settings
-revised: 2021-12-22
 ---
 
 Recipe for cleaning a google calendar.

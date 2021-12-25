@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Another Markdown Editor
-date: 2015-04-30
 tags: markdown
-revised: 2021-12-22
 ---
 
 This one is GitHubFlavored markdown...

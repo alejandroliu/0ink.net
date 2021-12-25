@@ -1,8 +1,6 @@
 ---
 title: Using XScreenSaver Hacks with mate-screensaver
-date: 2020-03-19
 tags: application, desktop, directory, linux, software, windows
-revised: 2021-12-22
 ---
 
 Here we explain how to use [XScreenSaver][xscr] **EXCELLENT**

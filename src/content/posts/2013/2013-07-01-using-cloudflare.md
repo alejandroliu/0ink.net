@@ -22,14 +22,12 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Using CloudFlare
-date: 2013-07-01
 tags: editor, network, proxy, security, service, settings, speed
-revised: 2021-12-22
 ---
 
 So I have signed up `0ink.net` to use the [CloudFlare](http://www.cloudflare.com "CloudFlare") service.
 
-![CFLogo](/images/2013/cf-logo-v-rgb.png)
+![CFLogo]({static}/images/2013/cf-logo-v-rgb.png)
 
 [CloudFlare](http://www.cloudflare.com "CloudFlare") is a reverse proxy service that is supposed to speed up and improve web server security.
 
@@ -42,7 +40,7 @@ This is done by:
 
 For it to work they need to take over your DNS service. That means that your DNS records resolve to [CloudFlare](http://www.cloudflare.com "CloudFlare") servers. So when editing your DNS records, the [CloudFlare](http://www.cloudflare.com "CloudFlare") DNS editor has an extra settings that allows you to control if that DNS entry would use the [CloudFlare](http://www.cloudflare.com "CloudFlare") network or not.
 
-So if you want to be able to access your web server (i.e. www) for `ftp` or `ssh`, then you need  
+So if you want to be able to access your web server (i.e. www) for `ftp` or `ssh`, then you need
 to create an additinional CNAME record that points to the web server but set to by-pass the [CloudFlare](http://www.cloudflare.com "CloudFlare") network.
 
 Some tips on what to do after install cloudflare can be found [here](http://blog.cloudflare.com/top-tips-after-installing-cloudflare "Tips on using Cloudflare").

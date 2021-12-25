@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: OpenWRT web
-date: 2013-05-30
 tags: authentication, config, configuration, login, password, scripts, settings, speed
-revised: 2021-12-22
 ---
 
 Some useful tidbits to use when using the OpenWRT embedded web

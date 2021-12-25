@@ -22,7 +22,6 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: 10 tips for maiking documentation crystal clear
-date: 2018-06-10
 ---
 
 So you've some written excellent documentation. Now what? Now it's

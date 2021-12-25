@@ -1,6 +1,5 @@
 ---
 title: Skipping grep when using AWK
-date: 2018-07-11
 ---
 
 Over the years, We've seen many people use this pattern (filter-map):

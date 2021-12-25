@@ -22,37 +22,35 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Hosting WordPress on OpenShift
-date: 2016-10-29
 tags: backups, cloud, drive, github, integration, scripts, storage, wordpress
-revised: 2021-12-22
 ---
 
-![openshift](/images/2016/img_0423.jpg)
+![openshift]({static}/images/2016/img_0423.jpg)
 
-So I finally moved my WordPress web sites to OpenShift.   
+So I finally moved my WordPress web sites to OpenShift.
 
-OpenShift is a cloud based Platform-as-a-Service offering from RedHat.   And while there is a learning curve I would say that so far it works great.  
+OpenShift is a cloud based Platform-as-a-Service offering from RedHat.   And while there is a learning curve I would say that so far it works great.
 
 My implementation is a fully cloud based solution. Makes use of the following services:
 
 *   GitHub for code hosting
-*   Travis-CI for continuous integration.  
+*   Travis-CI for continuous integration.
 *   OpenShift (with autoscaling) for the database and web server
 *   CloudFlare
 *   Sirv.com for image hosting
 *   Facebook and G+ integration
 *   Google drive for cloud backups
 
-All the code can be examined on GitHub.  
+All the code can be examined on GitHub.
 
-For the WordPress hosting I started with the OpenShift WordPress QuickStart and added scripts to deploy directly from Github to OpenShift via Travis.  
+For the WordPress hosting I started with the OpenShift WordPress QuickStart and added scripts to deploy directly from Github to OpenShift via Travis.
 
-Actually Travis has that functionality built in but it was a little quirky for my use cases so I wrote my own.  
+Actually Travis has that functionality built in but it was a little quirky for my use cases so I wrote my own.
 
-On the OpenShift side, I added code to download add-ons (plugins and themes) automatically and to deploy from the same repo to multiple apps.  
+On the OpenShift side, I added code to download add-ons (plugins and themes) automatically and to deploy from the same repo to multiple apps.
 
 The rationale for this is to get addons installed automatically in the
-event of autoscaling while keeping the github commit log fairly tidy.  
+event of autoscaling while keeping the github commit log fairly tidy.
 
 Also created a couple of Wordpress plugins to:
 

@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Build a VR app in 15 minutes
-date: 2018-06-18
 tags: application, browser, desktop, directory, git, github
-revised: 2021-12-22
 ---
 
 In 15 minutes, you can develop a virtual reality application and run
@@ -40,14 +38,14 @@ using Chrome or Firefox on your mobile phone.
 Put your phone into [Google Cardboard](https://vr.google.com/cardboard/)
 and stare at a menu square to switch the 360-degree scene.
 
-![vr-in-15mins-1](/images/2018/vr-in-15min-1.png)
+![vr-in-15mins-1]({static}/images/2018/vr-in-15min-1.png)
 
 ## Fork it
 
 Fork the [sample repository from GitHub](https://github.com/theta360developers/360gallery).
 Change directory into the repo.
 
-![vr-in-15mins-2](/images/2018/vr-in-15min-2.png)
+![vr-in-15mins-2]({static}/images/2018/vr-in-15min-2.png)
 
 If you have 360-degree images, you can drop them into the img/
 sub-directory. If you don't have 360-degree images, you can get
@@ -60,7 +58,7 @@ I took at a meetup in San Francisco.
 The menus in the headset are standard images that are 240x240 pixels.
 A-Frame handles the perspective shifts for you automatically.
 
-![vr-in-15mins-3](/images/2018/vr-in-15min-3.png)
+![vr-in-15mins-3]({static}/images/2018/vr-in-15min-3.png)
 
 ## Edit code
 

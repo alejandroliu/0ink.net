@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Running Windows on Linux for Free
-date: 2013-08-21
 tags: password, windows
-revised: 2021-12-22
 ---
 
 Microsoft is now making available Windows VM image for testing Internet Explorer for free. You can find them at: [Modern IE testing](http://www.modern.ie/en-us) Currently the following versions are available:

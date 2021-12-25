@@ -1,6 +1,5 @@
 ---
 title: Third Party SimpleNote clients
-date: 2019-01-08
 ---
 
 An inventory of simplenote clients:

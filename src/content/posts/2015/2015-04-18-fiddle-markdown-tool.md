@@ -22,14 +22,12 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Fiddle Markdown Tool
-date: 2015-04-18
 tags: markdown
-revised: 2021-12-22
 ---
 
 For a quick and simple Markdown Preview:
 
-![oudpno5sb9dfgfkvpvgw](/images/2015/oudpno5sb9dfgfkvpvgw.png)
+![oudpno5sb9dfgfkvpvgw]({static}/images/2015/oudpno5sb9dfgfkvpvgw.png)
 
 [Fiddle](https://fiddle.md/)
 

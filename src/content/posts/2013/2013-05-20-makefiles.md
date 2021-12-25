@@ -22,7 +22,6 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Makefiles
-date: 2013-05-20
 ---
 
 Some notes on GNU Make.  I always have to look-up these in

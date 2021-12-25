@@ -22,14 +22,12 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Grandstream GXP1400
-date: 2013-08-28
 tags: directory, remote
-revised: 2021-12-22
 ---
 
 [Grandstream GXP1400](http://www.grandstream.com/products/ip-voice-telephony/enterprise-ip-phones/product/gxp1400/1405)
 
-![gs](/images/2013/gxp1400.jpg)
+![gs]({static}/images/2013/gxp1400.jpg)
 
 The other day I replaced an analog phone with a Grandstream GXP1400 IP phone. I think it is a great value phone. It is one of the cheapest I could find yet supports all the features I was looking.
 

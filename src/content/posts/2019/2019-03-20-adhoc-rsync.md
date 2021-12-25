@@ -1,8 +1,6 @@
 ---
 title: Ad-Hoc rsync daemons
-date: 2019-03-20
 tags: encryption, network, remote, scripts
-revised: 2021-12-23
 ---
 
 The other day I needed to copy a bunch of files between to servers

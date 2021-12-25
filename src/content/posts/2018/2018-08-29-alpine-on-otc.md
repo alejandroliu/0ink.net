@@ -1,8 +1,6 @@
 ---
 title: Alpine on OTC
-date: 2018-08-29
 tags: linux
-revised: 2021-12-22
 ---
 
 These are just random thoughts nothing really was implemented.

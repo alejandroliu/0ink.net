@@ -1,8 +1,6 @@
 ---
 title: Linux Post Install tasks
-date: 2021-12-21
 tags: browser, config, software
-revised: 2021-12-22
 ---
 
 These tips are for [void linux][void] as that is the distro

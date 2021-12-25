@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: First steps...
-date: 2013-05-16
 tags: android, management, service, software, wordpress
-revised: 2021-12-22
 ---
 
 So finally took the time to re-launch the `0ink` web site. This time used more off-the shelf software. So this site is just a another plain [wordpress powered](http://wordpress.org) site. Actually I have to thank my son for _introducing_ me to **wordpress.** What happened is that my son, who is only seven wanted to have his own  

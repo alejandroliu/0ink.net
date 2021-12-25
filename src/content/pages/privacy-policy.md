@@ -1,7 +1,5 @@
 ---
 title: Privacy Policy
-date: 2018-06-06
-revised: 2021-12-22
 tags: information, privacy
 ---
 

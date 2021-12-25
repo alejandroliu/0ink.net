@@ -22,7 +22,6 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: International Phonetic Alphabet
-date: 2013-05-21
 ---
 
 Phonetic Alphabet

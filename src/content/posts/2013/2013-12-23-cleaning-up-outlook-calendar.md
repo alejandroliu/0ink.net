@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Cleaning-up Outlook Calendar
-date: 2013-12-23
 tags: backup
-revised: 2021-12-22
 ---
 
 This is a procedure I go through at the end of the year

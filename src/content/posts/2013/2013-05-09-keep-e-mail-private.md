@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Keep e-mail private
-date: 2013-05-09
 tags: address, browser
-revised: 2021-12-22
 ---
 
 This is a handy tip.

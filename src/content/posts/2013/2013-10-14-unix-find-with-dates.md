@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: UNIX find with dates
-date: 2013-10-14
 tags: directory
-revised: 2021-12-22
 ---
 
 `-atime/-ctime/-mtime` the last time a files's _access time_, _file status_ and _modification time_, measured in days or minutes. Time interval in options `-ctime`, `-mtime` and `-atime` is an integer with optional sign.

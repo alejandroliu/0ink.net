@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Mirroring a Gitorious repository to GitHub
-date: 2013-05-27
 tags: directory, git, github, remote, setup
-revised: 2021-12-22
 ---
 
 There is nothing special with [GitHub](http://github.com/) and

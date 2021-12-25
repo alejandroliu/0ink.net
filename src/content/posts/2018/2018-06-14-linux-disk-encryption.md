@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: How to encrypt linux partitions with LUKS
-date: 2018-06-14
 tags: centos, device, drive, encryption, filesystem, linux, partition, privacy, security, sudo, tools, ubuntu
-revised: 2021-12-23
 ---
 
 There are plenty of reasons why people would need to encrypt a

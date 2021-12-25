@@ -22,7 +22,6 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Building chroots with yum
-date: 2016-11-14
 ---
 
 

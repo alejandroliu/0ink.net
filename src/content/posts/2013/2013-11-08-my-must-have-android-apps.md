@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: My Must Have Android Apps
-date: 2013-11-08
 tags: android, application, desktop, editor, login, manager, remote, settings, terminal, tools, wordpress
-revised: 2021-12-23
 ---
 
 This is a list of my favorite Android Apps:

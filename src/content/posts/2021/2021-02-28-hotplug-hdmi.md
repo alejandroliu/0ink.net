@@ -1,8 +1,6 @@
 ---
 title: Linux HDMI hotplug
-date: 2021-02-28
 tags: configuration, device, linux, windows
-revised: 2021-12-22
 ---
 
 The point of this article is to document I workaround that I came

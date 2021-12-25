@@ -22,7 +22,6 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: BOX.com promotions
-date: 2013-08-26
 ---
 
 

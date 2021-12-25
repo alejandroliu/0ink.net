@@ -1,8 +1,6 @@
 ---
 title: SimpleNote/Markdown editor
-date: 2017-10-19
 tags: desktop, editor, markdown, python
-revised: 2021-12-22
 ---
 
 **We just load SimpleNote as a Desktop WebApp**

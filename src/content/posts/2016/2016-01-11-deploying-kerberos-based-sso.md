@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Deploying Kerberos based SSO
-date: 2016-01-11
 tags: authentication, browser, config, configuration, directory, domain, integration, javascript, linux, login, password, service, settings
-revised: 2021-12-23
 ---
 
 This article goes over how to implement Single-Sign-On

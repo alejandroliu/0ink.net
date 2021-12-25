@@ -1,6 +1,5 @@
 ---
 title: Interesting wordpress plugins
-date: 2017-10-02
 ---
 
 - [restrict categories](https://wordpress.org/plugins/restrict-categories/)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Thu, 23 Dec 2021 00:00:00 +0100</lastBuildDate><item><title>DVTM</title><link>https://0ink.net/posts/2021/2021-12-23-dvtm.html</link><description>&lt;p&gt;The other day I found &lt;a href="http://www.brain-dump.org/projects/dvtm/"&gt;dvtm&lt;/a&gt;.  Looking at it, it
+<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Sat, 25 Dec 2021 21:59:49 +0100</lastBuildDate><item><title>DVTM</title><link>https://0ink.net/posts/2021/2021-12-23-dvtm.html</link><description>&lt;p&gt;The other day I found &lt;a href="http://www.brain-dump.org/projects/dvtm/"&gt;dvtm&lt;/a&gt;.  Looking at it, it
 looks very nice.  It appeals to me because I am particularly
 fond of text user interfaces.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="screencast" src="/images/2021/dvtm-screencast.gif"&gt;&lt;/p&gt;
@@ -690,8 +690,8 @@ a MariaDB or MySQL database up and running.&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://aframe.io/"&gt;Targetted for WebVR&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://babylonjs.com/"&gt;TypeScript?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Sun, 06 Nov 2016 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:None,2016-11-06:/posts/2016/2016-11-06-vr-startup.html</guid><category>2016</category><category>linux</category></item><item><title>Hosting WordPress on OpenShift</title><link>https://0ink.net/posts/2016/2016-10-29-hosting-wordpress-on-openshift.html</link><description>&lt;p&gt;&lt;img alt="openshift" src="/images/2016/img_0423.jpg"&gt;&lt;/p&gt;
-&lt;p&gt;So I finally moved my WordPress web sites to OpenShift.   &lt;/p&gt;
-&lt;p&gt;OpenShift is a cloud based Platform-as-a-Service offering from RedHat.   And while there is a learning curve I would say that so far it works great.  &lt;/p&gt;
+&lt;p&gt;So I finally moved my WordPress web sites to OpenShift.&lt;/p&gt;
+&lt;p&gt;OpenShift is a cloud based Platform-as-a-Service offering from RedHat.   And while there is a learning curve I would say that so far it works great.&lt;/p&gt;
 &lt;p&gt;My implementation is a fully cloud based solution. Makes use of the following services:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;GitHub …&lt;/li&gt;&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Sat, 29 Oct 2016 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:None,2016-10-29:/posts/2016/2016-10-29-hosting-wordpress-on-openshift.html</guid><category>2016</category><category>backups</category><category>cloud</category><category>drive</category><category>github</category><category>integration</category><category>scripts</category><category>storage</category><category>wordpress</category></item><item><title>CSR ideas</title><link>https://0ink.net/posts/2016/2016-10-14-csr-ideas.html</link><description>&lt;p&gt;Work improvements&lt;/p&gt;
@@ -1245,8 +1245,8 @@ This is meant mostly for doing quick setup of a proxy
 on a cloud environment.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="logo-ubuntu_su-orange-hex" src="/images/2013/logo-ubuntu_su-orange-hex.jpg"&gt;&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Install Squid with the following command at the Linux command prompt:&lt;br&gt;
-&lt;code&gt;sudo apt-get install squid&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Install Squid with the following command at the Linux command prompt:
+    &lt;code&gt;sudo apt-get install squid&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Edit the Squid config file in &lt;code&gt;/etc/squid&lt;/code&gt; adding …&lt;/li&gt;&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Tue, 02 Jul 2013 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:None,2013-07-02:/posts/2013/2013-07-02-mini-howto-setup-proxy-on-ubuntu.html</guid><category>2013</category><category>address</category><category>browser</category><category>cloud</category><category>config</category><category>editor</category><category>linux</category><category>proxy</category><category>setup</category><category>ubuntu</category></item><item><title>Web Backups</title><link>https://0ink.net/posts/2013/2013-07-02-web-backups.html</link><description>&lt;p&gt;&lt;img alt="cfback" src="/images/2013/bb-images.jpg"&gt;&lt;/p&gt;
 &lt;p&gt;As usual with any IT system backups are important. This does not change when using a free shared hosting provider. Because it is free, one would argue it is even more important.&lt;/p&gt;
 &lt;p&gt;For my wordpress web site I used something called &lt;a href="https://github.com/Automattic/WordPress-CLI-Exporter"&gt;cli-exporter&lt;/a&gt;. It let's you create "Wordpress" export files from …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Tue, 02 Jul 2013 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:None,2013-07-02:/posts/2013/2013-07-02-web-backups.html</guid><category>2013</category><category>backup</category><category>backups</category><category>library</category><category>power</category><category>scripts</category><category>storage</category><category>wordpress</category></item><item><title>Askozia Desktop Appliance</title><link>https://0ink.net/posts/2013/2013-07-01-askozia-desktop-appliance.html</link><description>&lt;p&gt;&lt;img alt="Askozia Logo" src="/images/2013/askozia_logo.png"&gt;&lt;/p&gt;

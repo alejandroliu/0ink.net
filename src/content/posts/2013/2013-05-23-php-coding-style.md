@@ -22,7 +22,6 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: PHP notes
-date: 2013-05-23
 ---
 
 Notes on doing different things within the PHP language.

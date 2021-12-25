@@ -1,8 +1,6 @@
 ---
 title: Docker on Alpine Linux
-date: 2018-09-22
 tags: boot, installation, linux, service, ubuntu
-revised: 2021-12-22
 ---
 
 Alpine Linux Quick installation

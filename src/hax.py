@@ -14,9 +14,9 @@ HEADER=0
 BODY=1
 tagcloud = None
 
-def today(t=None):
-  if t is None: t = time.time()
-  return time.strftime('%Y-%m-%d')
+# ~ def today(t=None):
+  # ~ if t is None: t = time.time()
+  # ~ return time.strftime('%Y-%m-%d')
 
 def read_file(fpath):
   with open(fpath,'r') as fp:
@@ -63,10 +63,10 @@ def dump_post(msg):
   txt += '\n'.join(msg[BODY])
   return txt
 
-def check_git(msg, fpath):
-  ret = subprocess.run(['git','status','--porcelain',fpath],capture_output=True)
-  if ret.returncode == 0 and len(ret.stdout):
-    msg[HEADER]['revised'] = today()
+# ~ def check_git(msg, fpath):
+  # ~ ret = subprocess.run(['git','status','--porcelain',fpath],capture_output=True)
+  # ~ if ret.returncode == 0 and len(ret.stdout):
+    # ~ msg[HEADER]['revised'] = today()
 
 clean_re = re.compile(r'\W|^(?=\d)')
 def clean(varStr):
@@ -138,7 +138,6 @@ if __name__ == "__main__":
   for pg in args.articles:
     itxt = read_file(pg)
     msg = load_post(itxt)
-    check_git(msg,pg)
     if tagcloud:
       tags = autotag(msg[BODY])
       if len(tags): msg[HEADER]['tags'] = ', '.join(tags)
@@ -149,31 +148,3 @@ if __name__ == "__main__":
       write_file(pg,otxt)
       sys.stderr.write('written {bytes:,}\n'.format(bytes=len(otxt)))
 
-    # ~ pprint(tokenize(msg[BODY]))
-
-  # ~ pprint(msg[HEADER])
-  # ~ pprint(txt)
-  # ~ pprint(dump_post(msg))
-
-  # ~ analize_tags(4,5,args.articles)
-
-
-
-  # ~ pprint()
-
-
-
-# ~ for pg in sys.argv[1:]:
-  # ~
-  # ~ pprint(msg[HEADER])
-  # ~ pprint(txt)
-  # ~ pprint(dump_post(msg))
-
-  # ~ msg = read_post(pg)
-  # ~ pprint(msg)
-
-
-
-  # ~ pprint(ret)
-  # ~ print(pg)
-  # ~ print('-----------------')

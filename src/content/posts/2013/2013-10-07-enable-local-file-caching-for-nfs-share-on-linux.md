@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Enable local file caching for NFS share on Linux
-date: 2013-10-07
 tags: centos, configuration, filesystem, information, installation, linux, network, partition, remote, service, storage, sudo, ubuntu
-revised: 2021-12-22
 ---
 
 In Linux, there is a caching filesystem called `FS-Cache` which enables

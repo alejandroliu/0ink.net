@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Managing our personal finances
-date: 2016-05-22
 tags: application, computer, desktop, feature, information, software
-revised: 2021-12-22
 ---
 
 During my last vacation I wanted to move how we manage our personal

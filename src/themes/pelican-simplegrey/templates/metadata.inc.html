@@ -5,8 +5,8 @@
       by <a class="url fn" href="{{ SITEURL }}/{{ article.author.url }}">{{ article.author }}</a>
     </address>
   {% endif %}
-  {% if article.revised %}
-  <p>Updated: {{ article.revised }}</p>
+  {% if article.modified %}
+  <p>Updated: {{ article.modified }}</p>
   {% endif %}
   in <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
   {% if article.tags %}<p class="tags">tagged {% for tag in article.tags %}<a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>{% if not loop.last%}, {% endif %}{% endfor %}</p>{% endif %}

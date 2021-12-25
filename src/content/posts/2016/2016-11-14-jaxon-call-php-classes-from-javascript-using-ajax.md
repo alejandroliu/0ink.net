@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: 'Jaxon: Call PHP classes from JavaScript using AJAX'
-date: 2016-11-14
 tags: integration, library
-revised: 2021-12-22
 ---
 
 

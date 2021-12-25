@@ -1,6 +1,5 @@
 ---
 title: HTML Entities
-date: 2018-06-16
 ---
 
 (remember the ampersand at the start and the semi-colon at the end of each "tag")

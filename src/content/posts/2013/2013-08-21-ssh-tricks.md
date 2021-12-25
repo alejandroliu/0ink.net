@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: SSH Tricks
-date: 2013-08-21
 tags: config, remote, scripts
-revised: 2021-12-22
 ---
 
 A bunch of stupid SSH tricks that can be useful somehow, somewhere...

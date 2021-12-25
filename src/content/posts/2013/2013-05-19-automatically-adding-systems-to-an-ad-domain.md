@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Automatically adding systems to an AD domain
-date: 2013-05-19
 tags: address, computer, configuration, directory, domain, login, manager, password, scripts, security, setup, windows
-revised: 2021-12-22
 ---
 
 When using virtualisation it is very common to create _template_ VMs

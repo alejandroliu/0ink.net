@@ -22,12 +22,10 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Web Backups
-date: 2013-07-02
 tags: backup, backups, library, power, scripts, storage, wordpress
-revised: 2021-12-22
 ---
 
-![cfback](/images/2013/bb-images.jpg)
+![cfback]({static}/images/2013/bb-images.jpg)
 
 As usual with any IT system backups are important. This does not change when using a free shared hosting provider. Because it is free, one would argue it is even more important.
 

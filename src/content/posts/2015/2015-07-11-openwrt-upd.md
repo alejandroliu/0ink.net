@@ -1,6 +1,5 @@
 ---
 title: Upload to OpenWRT
-date: 2015-07-11
 ---
 
 Base 64 decoding: `coreutils-base64`

@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Git recipes
-date: 2013-05-23
 tags: authentication, config, directory, feature, git, github, login, password, proxy, remote, windows, wordpress
-revised: 2021-12-22
 ---
 
 A collection of small useful recipes for using with `Git`.

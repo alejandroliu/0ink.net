@@ -22,7 +22,6 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: SATA/IDE warm plug/unplug
-date: 2013-05-18
 ---
 
 This is for SATA and IDE interfaces that do not automatically detect added/removed devices.

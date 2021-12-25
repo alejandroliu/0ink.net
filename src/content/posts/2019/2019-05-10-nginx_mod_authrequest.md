@@ -1,8 +1,6 @@
 ---
 title: nginx's auth_request_module howto
-date: 2019-05-10
 tags: authentication, configuration, information, login, password, proxy, python
-revised: 2021-12-22
 ---
 
 This article tries to supplement the [nginx][nginx] documentations

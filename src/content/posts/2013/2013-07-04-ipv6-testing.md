@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: IPv6 testing
-date: 2013-07-04
 tags: browser, network, tools
-revised: 2021-12-22
 ---
 
 When trying to get on-to the IPv6 Internet, here are a couple of links to do diagnostics:

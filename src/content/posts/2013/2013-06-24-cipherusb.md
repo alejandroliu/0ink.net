@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: CipherUSB
-date: 2013-06-24
 tags: device, encryption, storage
-revised: 2021-12-23
 ---
 
 This is an interesting concept. Essentially is an Encryption dongle

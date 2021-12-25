@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Raspberry Pi as a Stratum-1 NTP Server
-date: 2014-09-13
 tags: raspberry, software
-revised: 2021-12-23
 ---
 
 This is something I found:
@@ -37,4 +35,4 @@ Essentially it requires pairing a Raspberry Pi with a
 On the software side of things you need
 [rpi\_gpio\_ntp](http://vanheusden.com/time/rpi_gpio_ntp/)
 
-![pi-gps-shield-2013-10-15-1533-44-b](/images/2014/Pi-GPS-shield-2013-10-15-1533-44-b.jpg)
+![pi-gps-shield-2013-10-15-1533-44-b]({static}/images/2014/Pi-GPS-shield-2013-10-15-1533-44-b.jpg)

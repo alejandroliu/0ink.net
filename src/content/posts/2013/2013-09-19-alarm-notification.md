@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Alarm Notification
-date: 2013-09-19
 tags: device, information, manager
-revised: 2021-12-22
 ---
 
 This tutorial describes how to use the alarm manager to set alarms and how to use the notification framework to display them. In short, the sequence goes like this:

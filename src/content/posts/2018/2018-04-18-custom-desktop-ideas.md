@@ -1,8 +1,6 @@
 ---
 title: custom desktop ideas
-date: 2018-04-18
 tags: boot, browser, manager, windows
-revised: 2021-12-22
 ---
 
 - fast boot

@@ -1,8 +1,6 @@
 ---
 title: My Linux Keyboard Shortcuts
-date: 2019-02-11
 tags: desktop, manager
-revised: 2021-12-22
 ---
 
 In general we try to be similar to MS-Windows shortcuts.

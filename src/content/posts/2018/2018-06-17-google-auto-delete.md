@@ -22,9 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Set your google account to automatically delete
-date: 2018-06-17
 tags: feature, information, manager, settings
-revised: 2021-12-22
 ---
 
 Want to share your family photos after your death, but take your
@@ -69,14 +67,14 @@ this process). Then you need to specify what Google data you want to
 share with them. We'd encourage you to apply this step selectively,
 and not simply check "Select all". Most of us would happily share our
 Google Photo collections with our next of kin, after all, but would
-prefer to take our search histories private. 
+prefer to take our search histories private.
 
-![google-auto-delete-1](/images/2018/google-auto-delete-1.png)
+![google-auto-delete-1]({static}/images/2018/google-auto-delete-1.png)
 
 The final step is the weightiest one: selecting whether or not your
 Google account will be wiped upon the completion of the timeout period.
 
-![google-auto-delete-2](/images/2018/google-auto-delete-2.png)
+![google-auto-delete-2]({static}/images/2018/google-auto-delete-2.png)
 
 There is no option to partially delete the data, so make this very
 binary decision with care. You cannot, for example, wipe your search

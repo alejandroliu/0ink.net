@@ -1,8 +1,6 @@
 ---
 title: Network wiring notes - 8P8C / RJ45
-date: 2013-05-27
 tags: computer, network, power, speed
-revised: 2021-12-22
 ---
 
 What you were probably looking forT568A/B (10-BASE-T and 100-BASE-TX):
@@ -21,11 +19,11 @@ With pin positions are counted from _left to right_ with the _contacts facing_ y
 |Brown|8|Brown|
 
 
-![wiring1](/images/2013/wiring1.jpg)
+![wiring1]({static}/images/2013/wiring1.jpg)
 
 Cut the outer insulation and order the wires (right), cut for equal length (not shown), and insert into plug (left)
 
-![wiring1](/images/2013/wiring2.jpg)
+![wiring1]({static}/images/2013/wiring2.jpg)
 
 Check that the wires go to the end of the plug by seeing if you can see each wire at the end, preferably see its copper reflecting (left).
 
@@ -63,11 +61,11 @@ Connect:
 
 (If you're wiring a plug as a loopback, make sure you're not confused about which end is pin is pin 1). To create a loopback from a plug-with-cable you cut (that was wired according to 568A or 568B), this means:
 
-    Orange-white  to  Green-white 
+    Orange-white  to  Green-white
     Orange        to  Green
     Blue          to  Brown-white  (for a gBit loopback)
     Brown         to  Blue-white   (for a gBit loopback)
-    
+
 
 gBit loopback is a limited concept:
 ===================================

@@ -1,8 +1,6 @@
 ---
 title: Python Virtual Environments
-date: 2019-05-01
 tags: information, manager, python, scripts
-revised: 2021-12-22
 ---
 
 This is the least you need to know to get to use a Python virtual

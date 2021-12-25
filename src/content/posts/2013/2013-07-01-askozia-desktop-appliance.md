@@ -22,12 +22,10 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Askozia Desktop Appliance
-date: 2013-07-01
 tags: configuration, desktop, network, power, settings
-revised: 2021-12-22
 ---
 
-![Askozia Logo](/images/2013/askozia_logo.png)
+![Askozia Logo]({static}/images/2013/askozia_logo.png)
 
 So last weekend finally had some time to work with a [Askozia](http://askozia.com/ "Askozia PBX") Desktop Appliance.
 

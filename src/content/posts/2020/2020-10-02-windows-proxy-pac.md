@@ -1,6 +1,5 @@
 ---
 title: Getting the current proxy pac configuration
-date: 2020-10-02
 ---
 
 
