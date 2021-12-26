@@ -25,7 +25,11 @@ applet.
 
 For my computers I use this script:
 
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=paraiso-light&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/mate-screensaver-hacks/installer.sh"></script>
+
+```bash
+{! mate-screensaver-hacks/installer.sh !}
+```
+[mate-screensaver-hacks/installer.sh](${SNIPPETS}/mate-screensaver-hacks/installer.sh)
 
 This simplifies the full process.  Just run the script (you may need to
 `sudo`) with the following options:

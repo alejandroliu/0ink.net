@@ -319,3 +319,28 @@ li.tag-4 { font-size: 110%; margin: 0 1em; }
   }
 }
 
+
+/*** TOC styling ***/
+.toc {
+    font-size: small;
+    display: table;
+    width: auto;
+}
+
+/* TOC heading in bold */
+.toc .toctitle {
+    font-weight: bold;
+}
+
+/* No bullets for toc list, indentation of nested lists 1em */
+.toc ul {
+    list-style-type: none;
+    padding-left: 1rem;
+}
+
+/* Top level list has no indentation */
+.toc > ul {
+    /* no indentation */
+    padding-left: 0;
+    margin-top: 0;
+}

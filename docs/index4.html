@@ -47,11 +47,37 @@
 
 <article class="summary">
 <div class="metadata">
+  <time datetime="2017-01-24T00:00:00+01:00" pubdate>Tue 24 January 2017</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
+  in <a href="/category/c2017.html">2017</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2017/2017-01-24-xnest.html" rel="bookmark" title="Permalink to Xnest">Xnest</a>
+    </h2>
+    <p><p>This trick lets you run X-Windows within an X-Windows session.</p>
+<p>This is kinda like running VNC.  It is useful for testing scenarios.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/sh</span>
+Xnest :1 -name <span class="s2">&quot;Bla&quot;</span> -ac -geometry 800x600 <span class="p">&amp;</span>amp<span class="p">;</span>
+sleep <span class="m">1</span>
+<span class="nb">export</span> <span class="nv">DISPLAY</span><span class="o">=</span>:1
+<span class="nb">exec</span> xterm
+</code></pre></div>
+</td></tr></table></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
   <time datetime="2017-01-20T00:00:00+01:00" pubdate>Fri 20 January 2017</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 21:59:49.826445+01:00</p>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
   in <a href="/category/c2017.html">2017</a>
 <p class="tags">tagged <a href="/tag/application.html">application</a>, <a href="/tag/backup.html">backup</a>, <a href="/tag/backups.html">backups</a>, <a href="/tag/boot.html">boot</a>, <a href="/tag/browser.html">browser</a>, <a href="/tag/centos.html">centos</a>, <a href="/tag/config.html">config</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/device.html">device</a>, <a href="/tag/domain.html">domain</a>, <a href="/tag/drive.html">drive</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/network.html">network</a>, <a href="/tag/partition.html">partition</a>, <a href="/tag/proxy.html">proxy</a>, <a href="/tag/software.html">software</a>, <a href="/tag/storage.html">storage</a>, <a href="/tag/windows.html">windows</a></p></div>  <div>
     <h2>
@@ -89,7 +115,7 @@
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 21:59:49.825445+01:00</p>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
   in <a href="/category/c2017.html">2017</a>
 <p class="tags">tagged <a href="/tag/android.html">android</a>, <a href="/tag/browser.html">browser</a>, <a href="/tag/cloud.html">cloud</a>, <a href="/tag/drive.html">drive</a>, <a href="/tag/manager.html">manager</a>, <a href="/tag/settings.html">settings</a>, <a href="/tag/storage.html">storage</a></p></div>  <div>
     <h2>
@@ -107,7 +133,7 @@ possible until a recent (2016) update that enabled the <strong>"Install from Unk
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 21:59:49.825445+01:00</p>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
   in <a href="/category/c2016.html">2016</a>
 <p class="tags">tagged <a href="/tag/android.html">android</a></p></div>  <div>
     <h2>
@@ -117,7 +143,7 @@ possible until a recent (2016) update that enabled the <strong>"Install from Unk
 are doing.</p>
 <p>This article goes over the preparation steps and the additional
 build instructions needed to created signed APKs.</p>
-<h2>Preparation</h2>
+<h3 id="preparation">Preparation</h3>
 <p>First you need to have a <code>keystore</code>.  Use this command:</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 <span class="nv">keystore_file</span><span class="o">=</span><span class="s2">&quot;my_key_store.keystore&quot;</span>
@@ -130,7 +156,7 @@ build instructions needed to created signed APKs.</p>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 21:59:49.825445+01:00</p>
+  <p>Updated: 2021-12-26 20:37:18+01:00</p>
   in <a href="/category/c2016.html">2016</a>
 <p class="tags">tagged <a href="/tag/android.html">android</a>, <a href="/tag/information.html">information</a>, <a href="/tag/library.html">library</a>, <a href="/tag/scripts.html">scripts</a>, <a href="/tag/tools.html">tools</a></p></div>  <div>
     <h2>
@@ -147,7 +173,7 @@ listen CDs directly.</p>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 21:59:49.824445+01:00</p>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
   in <a href="/category/c2016.html">2016</a>
 <p class="tags">tagged <a href="/tag/configuration.html">configuration</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/python.html">python</a>, <a href="/tag/scripts.html">scripts</a>, <a href="/tag/security.html">security</a>, <a href="/tag/settings.html">settings</a>, <a href="/tag/tools.html">tools</a></p></div>  <div>
     <h2>
@@ -156,7 +182,7 @@ listen CDs directly.</p>
     <p><p>Writing shell scripts leaves a lot of room to make mistakes, in ways that will cause
 your scripts to break on certain input, or (if some input is untrusted) open up security
 vulnerabilities. Here are some tips on how to make your shell scripts safer.</p>
-<h1>Don't</h1>
+<h2 id="dont">Don't</h2>
 <p>The simplest step is …</p></p>
   </div>
 </article><article class="summary">
@@ -165,33 +191,33 @@ vulnerabilities. Here are some tips on how to make your shell scripts safer.</p>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 21:59:49.824445+01:00</p>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
   in <a href="/category/c2016.html">2016</a>
 <p class="tags">tagged <a href="/tag/geany.html">geany</a>, <a href="/tag/java.html">java</a>, <a href="/tag/javascript.html">javascript</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/markdown.html">markdown</a>, <a href="/tag/windows.html">windows</a></p></div>  <div>
     <h2>
       <a href="/posts/2016/2016-11-15-editor-evaluation.html" rel="bookmark" title="Permalink to editor to replace emacs">editor to replace emacs</a>
     </h2>
     <p><p>At the end, I switched to <a href="http://www.geany.org/">geany</a></p>
-<h1>GUI</h1>
+<h2 id="gui">GUI</h2>
 <ul>
 <li><a href="https://foicica.com/textadept/">TextAdept</a></li>
 <li><a href="http://bluefish.openoffice.nl/index.html">Bluefish Editor</a></li>
 <li><a href="http://editra.org/">editra</a></li>
 <li><a href="https://wiki.gnome.org/Apps/Gedit">gedit</a></li>
 </ul>
-<h1>Console</h1>
+<h2 id="console">Console</h2>
 <ul>
 <li><a href="http://www.jbox.dk/sanos/editor.htm">sanos editor</a></li>
 <li><a href="https://github.com/lanurmi/efte">eFTE</a></li>
 <li><a href="http://os.ghalkes.nl/tilde/">Tilde</a></li>
 </ul>
-<h1>TCL/TK</h1>
+<h2 id="tcltk">TCL/TK</h2>
 <ul>
 <li><a href="http://tke.sourceforge.net/">TKE</a></li>
 <li><a href="http://mooedit.sourceforge.net/">moodit</a></li>
 <li><a href="https://sites.google.com/site/msedit/home">msedit</a></li>
 </ul>
-<h1>Windows only</h1>
+<h2 id="windows-only">Windows only</h2>
 <ul>
 <li><a href="https://notepad-plus-plus.org/">nodepad++</a></li>
 <li>
@@ -214,7 +240,7 @@ vulnerabilities. Here are some tips on how to make your shell scripts safer.</p>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 21:59:49.822445+01:00</p>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
   in <a href="/category/c2016.html">2016</a>
 </div>  <div>
     <h2>
@@ -234,7 +260,7 @@ vulnerabilities. Here are some tips on how to make your shell scripts safer.</p>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 21:59:49.823445+01:00</p>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
   in <a href="/category/c2016.html">2016</a>
 <p class="tags">tagged <a href="/tag/integration.html">integration</a>, <a href="/tag/library.html">library</a></p></div>  <div>
     <h2>
@@ -249,7 +275,7 @@ vulnerabilities. Here are some tips on how to make your shell scripts safer.</p>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 21:59:49.823445+01:00</p>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
   in <a href="/category/c2016.html">2016</a>
 </div>  <div>
     <h2>
@@ -291,7 +317,7 @@ a MariaDB or MySQL database up and running.</p>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 21:59:49.822445+01:00</p>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
   in <a href="/category/c2016.html">2016</a>
 <p class="tags">tagged <a href="/tag/backup.html">backup</a>, <a href="/tag/wordpress.html">wordpress</a></p></div>  <div>
     <h2>
@@ -311,7 +337,7 @@ a MariaDB or MySQL database up and running.</p>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 21:59:49.822445+01:00</p>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
   in <a href="/category/c2016.html">2016</a>
 <p class="tags">tagged <a href="/tag/linux.html">linux</a></p></div>  <div>
     <h2>
@@ -343,7 +369,7 @@ a MariaDB or MySQL database up and running.</p>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 21:59:49.821445+01:00</p>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
   in <a href="/category/c2016.html">2016</a>
 <p class="tags">tagged <a href="/tag/backups.html">backups</a>, <a href="/tag/cloud.html">cloud</a>, <a href="/tag/drive.html">drive</a>, <a href="/tag/github.html">github</a>, <a href="/tag/integration.html">integration</a>, <a href="/tag/scripts.html">scripts</a>, <a href="/tag/storage.html">storage</a>, <a href="/tag/wordpress.html">wordpress</a></p></div>  <div>
     <h2>
@@ -362,14 +388,14 @@ a MariaDB or MySQL database up and running.</p>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 21:59:49.821445+01:00</p>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
   in <a href="/category/c2016.html">2016</a>
 <p class="tags">tagged <a href="/tag/application.html">application</a>, <a href="/tag/javascript.html">javascript</a>, <a href="/tag/remote.html">remote</a></p></div>  <div>
     <h2>
       <a href="/posts/2016/2016-10-14-csr-ideas.html" rel="bookmark" title="Permalink to CSR ideas">CSR ideas</a>
     </h2>
     <p><p>Work improvements</p>
-<h1>NFR</h1>
+<h2 id="nfr">NFR</h2>
 <ul>
 <li>Javascript single page application</li>
 <li>JS GUI</li>
@@ -381,7 +407,7 @@ a MariaDB or MySQL database up and running.</p>
 <li>Output Excel</li>
 <li>Output changes</li>
 </ul>
-<h1>FR</h1>
+<h2 id="fr">FR</h2>
 <ul>
 <li>requirements</li>
 <li>roadmap objects</li>
@@ -403,7 +429,7 @@ a MariaDB or MySQL database up and running.</p>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 21:59:49.820445+01:00</p>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
   in <a href="/category/c2016.html">2016</a>
 <p class="tags">tagged <a href="/tag/power.html">power</a></p></div>  <div>
     <h2>
@@ -428,7 +454,7 @@ a MariaDB or MySQL database up and running.</p>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 21:59:49.820445+01:00</p>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
   in <a href="/category/c2016.html">2016</a>
 <p class="tags">tagged <a href="/tag/github.html">github</a>, <a href="/tag/javascript.html">javascript</a></p></div>  <div>
     <h2>
@@ -464,13 +490,13 @@ a MariaDB or MySQL database up and running.</p>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 21:59:49.820445+01:00</p>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
   in <a href="/category/c2016.html">2016</a>
 <p class="tags">tagged <a href="/tag/android.html">android</a>, <a href="/tag/backups.html">backups</a>, <a href="/tag/desktop.html">desktop</a>, <a href="/tag/editor.html">editor</a>, <a href="/tag/java.html">java</a>, <a href="/tag/javascript.html">javascript</a>, <a href="/tag/library.html">library</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/management.html">management</a>, <a href="/tag/markdown.html">markdown</a>, <a href="/tag/python.html">python</a>, <a href="/tag/speed.html">speed</a>, <a href="/tag/tools.html">tools</a>, <a href="/tag/windows.html">windows</a></p></div>  <div>
     <h2>
       <a href="/posts/2016/2016-06-06-programming-2016.html" rel="bookmark" title="Permalink to Programming 2016">Programming 2016</a>
     </h2>
-    <p><h1>Programming 2016</h1>
+    <p><h2 id="programming-2016">Programming 2016</h2>
 <ol>
 <li>GWT and GWT on Mobile and Java servlets</li>
 <li>Generate Excel
@@ -508,7 +534,7 @@ a MariaDB or MySQL database up and running.</p>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 21:59:49.819445+01:00</p>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
   in <a href="/category/c2016.html">2016</a>
 <p class="tags">tagged <a href="/tag/application.html">application</a>, <a href="/tag/computer.html">computer</a>, <a href="/tag/desktop.html">desktop</a>, <a href="/tag/feature.html">feature</a>, <a href="/tag/information.html">information</a>, <a href="/tag/software.html">software</a></p></div>  <div>
     <h2>
@@ -526,7 +552,7 @@ through …</p></p>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 21:59:49.818445+01:00</p>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
   in <a href="/category/c2016.html">2016</a>
 <p class="tags">tagged <a href="/tag/application.html">application</a>, <a href="/tag/browser.html">browser</a>, <a href="/tag/cloud.html">cloud</a>, <a href="/tag/computer.html">computer</a>, <a href="/tag/service.html">service</a>, <a href="/tag/software.html">software</a></p></div>  <div>
     <h2>
@@ -541,14 +567,14 @@ through …</p></p>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 21:59:49.818445+01:00</p>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
   in <a href="/category/c2016.html">2016</a>
 <p class="tags">tagged <a href="/tag/application.html">application</a>, <a href="/tag/backup.html">backup</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/domain.html">domain</a>, <a href="/tag/encryption.html">encryption</a>, <a href="/tag/git.html">git</a>, <a href="/tag/github.html">github</a>, <a href="/tag/installation.html">installation</a>, <a href="/tag/login.html">login</a>, <a href="/tag/openssl.html">openssl</a>, <a href="/tag/password.html">password</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/settings.html">settings</a>, <a href="/tag/setup.html">setup</a>, <a href="/tag/wordpress.html">wordpress</a></p></div>  <div>
     <h2>
       <a href="/posts/2016/2016-03-10-openshift-notes.html" rel="bookmark" title="Permalink to OpenShift notes">OpenShift notes</a>
     </h2>
     <p><p><strong>THIS IS FOR ARCHIVAL PURPOSES.  THIS IS OUT-OF-DATE</strong></p>
-<h2>backup OpenShift</h2>
+<h3 id="backup-openshift">backup OpenShift</h3>
 <div class="highlight"><pre><span></span><code><span class="nv">openshift</span> <span class="k">getenv</span><span class="ss">(</span><span class="nv">USER</span><span class="ss">)</span> <span class="nv">from</span> <span class="nv">OpenShift</span> <span class="nv">php</span>
 <span class="nv">ssh</span> <span class="nv">to</span> {<span class="nv">user</span>}@{<span class="nv">app</span><span class="o">-</span><span class="nv">domain</span>} <span class="nv">gear</span> <span class="nv">snapshot</span>  <span class="o">&gt;</span> <span class="nv">file</span>
 </code></pre></div>
@@ -557,22 +583,6 @@ through …</p></p>
 <p>OpenShift migration further notes</p>
 <p>Encrypt a file using a supplied password :</p>
 <div class="highlight"><pre><span></span><code>$ openssl enc -aes-256-cbc -salt -in file.txt -out file.txt.enc -k …</code></pre></div></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2016-02-02T00:00:00+01:00" pubdate>Tue 02 February 2016</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2021-12-25 21:59:49.818445+01:00</p>
-  in <a href="/category/c2016.html">2016</a>
-<p class="tags">tagged <a href="/tag/address.html">address</a>, <a href="/tag/computer.html">computer</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/device.html">device</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/editor.html">editor</a>, <a href="/tag/management.html">management</a>, <a href="/tag/manager.html">manager</a>, <a href="/tag/network.html">network</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/security.html">security</a>, <a href="/tag/service.html">service</a>, <a href="/tag/settings.html">settings</a>, <a href="/tag/storage.html">storage</a>, <a href="/tag/terminal.html">terminal</a>, <a href="/tag/tools.html">tools</a>, <a href="/tag/windows.html">windows</a></p></div>  <div>
-    <h2>
-      <a href="/posts/2016/2016-02-02-windows-administration-from-the-command-line.html" rel="bookmark" title="Permalink to Windows administration from the command line">Windows administration from the command line</a>
-    </h2>
-    <p><p>Windows system administration is very mouse driven and to reach
-all tools you need to browse through Windows explorer.</p>
-<p>If you are like me and prefer to log on a limited privilege account and use Runas to perform admin tasks, you can open these consoles with the .msc file names …</p></p>
   </div>
 </article>
 <div class="pagination">

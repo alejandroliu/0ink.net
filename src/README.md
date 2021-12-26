@@ -11,40 +11,41 @@
 - [filetime from git](https://github.com/getpelican/pelican-plugins/tree/master/filetime_from_git):
   - this has been tweaked so that posts can also contain `date` or
     `filemeta_data` dates.
+- Added custom `markdown_mytags` markdown extension.  Features:
+  - ~~del~~
+  - ++ins++
+  - ??mark??
+  - ^^superscript^^
+  - ,,subscript,,
+  - [ ] checklists
+- mdx_vars: lets you do variable substitutions: ${var_name}
+- [markdown include](https://github.com/neurobin/mdx_include)
+- [blockdiag](https://github.com/gisce/markdown-blockdiag)
+- [aafigure](https://github.com/mbarkhau/markdown-aafigure)
 
 # known issues or non-issues
 
-- Installing pelican-plugins and markdown extensions is
-  a bit wonky but it seems to work.
 - Adding pelican plugins:
-  - [shortcodes](https://github.com/getpelican/pelican-plugins/tree/master/shortcodes)
-  - [optimize images](https://github.com/getpelican/pelican-plugins/tree/master/optimize_images)
-  - [liquid_tags](https://github.com/pelican-plugins/liquid-tags)
+  - [liquid_tags](https://github.com/pelican-plugins/liquid-tags) :
+    no.
   - [graphviz](https://github.com/pelican-plugins/graphviz) :
     note that `liquid_tags` does some of this already.
-- Adding markdown extensions:
-  - [markdown include](https://github.com/neurobin/mdx_include)
-  - [blockdiag](https://github.com/gisce/markdown-blockdiag)
-  - [aafigure](https://github.com/mbarkhau/markdown-aafigure)
-  - [svgbob](https://github.com/mbarkhau/markdown-svgbob)
-  - [mermaid](https://github.com/oruelle/md_mermaid)
-  - [list of markdown extensions](https://python-markdown.github.io/extensions/)
+- markdown extensions:
+  - [svgbob](https://github.com/mbarkhau/markdown-svgbob) :
+    Did not add this one as it requres an `svgbob` executable.
+    Using `aafigure` instead which is pure python.
+  - [mermaid](https://github.com/oruelle/md_mermaid) : no, as `aafigure` is sufficient
+  - [goat](https://github.com/blampe/goat) : no extension found
+- Enable plugins
+  - python3 -m venv --system-site-packages $(pwd)/.venv
+  - . .venv/bin/activate
+  - pip install ... plugins ...
+  - python3 /usr/bin/pelican-plugins -l
+
 
 # TODO
 
-- Make sure internal links are properly set-up
-- Feature
-  - shortcodes
-  - ascii graphics
 
-- Post processing posts
-  - $txt$ -> <expansion>
-  - <code:embed="/snippets/">
-  - <code:embed="http">
-  - convert to <pre> blocks with syntax highlighter
-  -  xbps-query -Rs highlight
-- ? create SVG from <pre> sections
-  - https://github.com/blampe/goat
 - Add priority to sitemap.xml based on age of articles:
   - 0.8 - 1.0 : home page, product info, landing pages
   - 0.4 - 0.7 : articles, blogs, faqs, etc
@@ -56,15 +57,5 @@
   - we add a header into the article and we use that, otherwise
     we use the modified date.
 
-- Enable plugins
-  - python3 -m venv --system-site-packages $(pwd)/.venv
-  - . .venv/bin/activate
-  - pip install ... plugins ...
-  - python3 /usr/bin/pelican-plugins -l
 
 
-```
-export PYTHONPATH=$(pwd)/.venv/lib/python3.10/site-packages
-py -m venv --system-site-packages .venv
-( . .venv/bin/activate ; pip install ???)
-```

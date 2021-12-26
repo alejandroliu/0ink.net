@@ -9,7 +9,7 @@
 	<meta name="description" content="Over the years, We've seen many people use this pattern (filter-map): $ [data is generated] | grep something | awk '{print $2}' but it can be shortened to: $ [data is generated] | awk '/something/ {print $2}' You (probably) don't need grep Following this logic, you can replace a simple grep with: $ [data is generated …">
 	<meta name="int-title" content="Skipping grep when using AWK">
 	<meta name="date" content="2018-07-11 00:00:00+02:00">
-	<meta name="modified" content="2021-12-25 21:59:49.838445+01:00">
+	<meta name="modified" content="2021-12-25 22:02:18+01:00">
 
 
 	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
@@ -59,7 +59,7 @@
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 21:59:49.838445+01:00</p>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
   in <a href="/category/c2018.html">2018</a>
 </div>
 		<p>Over the years, We've seen many people use this pattern (filter-map):</p>
@@ -70,7 +70,7 @@
 <div class="highlight"><pre><span></span><code>$ <span class="o">[</span>data is generated<span class="o">]</span> <span class="p">|</span> awk <span class="s1">&#39;/something/ {print $2}&#39;</span>
 </code></pre></div>
 
-<h1>You (probably) don't need grep</h1>
+<h2 id="you-probably-dont-need-grep">You (probably) don't need grep</h2>
 <p>Following this logic, you can replace a simple grep with:</p>
 <div class="highlight"><pre><span></span><code>$ <span class="o">[</span>data is generated<span class="o">]</span> <span class="p">|</span> awk <span class="s1">&#39;/something/&#39;</span>
 </code></pre></div>
@@ -83,7 +83,7 @@
 <li><a href="https://blog.jpalardy.com/posts/awk-tutorial-part-2/">Tutorial Part 2</a></li>
 <li><a href="https://blog.jpalardy.com/posts/awk-tutorial-part-3/">Tutorial Part 3</a></li>
 </ul>
-<h1>Why would you want to do this?</h1>
+<h2 id="why-would-you-want-to-do-this">Why would you want to do this?</h2>
 <p>There are a number of reasons:</p>
 <ul>
 <li>it's shorter to type</li>
@@ -91,7 +91,7 @@
 <li>awk uses modern (read "Perl") regular expressions, by default - like <code>grep -E</code></li>
 <li>it's ready to "augment" with more awk</li>
 </ul>
-<h1>What about <code>grep -v</code>?</h1>
+<h2 id="what-about-grep-v">What about <code>grep -v</code>?</h2>
 <p><code>grep -v</code> can be done with:</p>
 <div class="highlight"><pre><span></span><code>$ <span class="o">[</span>data is generated<span class="o">]</span> <span class="p">|</span> awk <span class="s1">&#39;! /something/&#39;</span>
 </code></pre></div>

@@ -106,13 +106,13 @@ doing bare metal backups and restore just a simple file copy.</p>
 <span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">xen</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">do</span><span class="w"> </span><span class="ow">some</span><span class="w"> </span><span class="n">xen</span><span class="w"> </span><span class="k">specific</span><span class="w"> </span><span class="n">tweaks</span><span class="w"></span>
 </code></pre></div>
 
-<h3>Command line examples</h3>
+<h4 id="command-line-examples">Command line examples</h4>
 <ul>
 <li>sudo sh install.sh --dir=$HOME/vx9 vx9 swap=4G glibc passwd=1234567890 cache=$HOME/void-cache xen</li>
 <li>sudo sh install.sh --dir=$HOME/vx1 vx1 swap=4G glibc passwd=1234567890 cache=$HOME/void-cache xen</li>
 <li>sudo sh install.sh --dir=$HOME/vx11 vx11 swap=4G       passwd=1234567890 cache=$HOME/void-cache xen</li>
 </ul>
-<h2>Initial set-up</h2>
+<h3 id="initial-set-up">Initial set-up</h3>
 <p>Boot using the void live CD and partition the target disk:</p>
 <div class="highlight"><pre><span></span><code>cfdisk -z /dev/xda
 </code></pre></div>
@@ -137,7 +137,7 @@ mkdir /mnt/boot
 mount /dev/xda1 /mnt/boot
 </code></pre></div>
 
-<h2>Installing Void</h2>
+<h3 id="installing-void">Installing Void</h3>
 <p>So we do a targeted install:</p>
 <p>For musl-libc</p>
 <div class="highlight"><pre><span></span><code>env XBPS_ARCH=x86_64-musl xbps-install -S -R http://alpha.de.repo.voidlinux.org/current/musl -r /mnt base-system grub-x86_64-efi
@@ -153,7 +153,7 @@ mount /dev/xda1 /mnt/boot
 <script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/swlist-mate.txt?footer=minimal"></script>
 
 <p>This installs a [MATE][mate] desktop environment.</p>
-<h3>Software selection notes</h3>
+<h4 id="software-selection-notes">Software selection notes</h4>
 <ul>
 <li>For time synchronisation (ntp) we ae choosing <code>chrony</code> as it is
   reputed to be more secure that <code>ntpd</code> and more compliant than
@@ -168,7 +168,7 @@ mount /dev/xda1 /mnt/boot
 <li>Includes <code>autofs</code> and <code>nfs-utils</code> for network filesystems and
   automount support.</li>
 </ul>
-<h2>nonfree software and other repositories</h2>
+<h3 id="nonfree-software-and-other-repositories">nonfree software and other repositories</h3>
 <p>Additional repositories are available to support either
 non-free software and in the case of glibc, multilib (32 bit)
 binaries.</p>
@@ -183,7 +183,7 @@ binaries.</p>
 <p>Then you can install non-free software, like:</p>
 <script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/swlist-nonfree.txt"></script>
 
-<h2>Enter the void chroot</h2>
+<h3 id="enter-the-void-chroot">Enter the void chroot</h3>
 <p>Upon completion of the install, we set up our chroot jail, and chroot into our mounted filesystem:</p>
 <div class="highlight"><pre><span></span><code>mount -t proc proc /mnt/proc
 mount -t sysfs sys /mnt/sys
@@ -286,7 +286,7 @@ uncomment:</p>
 <div class="highlight"><pre><span></span><code> xbps-reconfigure -f glibc-locales
 </code></pre></div>
 
-<h2>Set-up UEFI boot</h2>
+<h3 id="set-up-uefi-boot">Set-up UEFI boot</h3>
 <p>Download the [rEFInd][refind] zip binary from:</p>
 <ul>
 <li>[rEFInd download][getting-refind]</li>
@@ -349,7 +349,7 @@ bash /boot/mkmenu.sh
 <span class="nv">reboot</span>
 </code></pre></div>
 
-<h2>Post install</h2>
+<h3 id="post-install">Post install</h3>
 <p>After the first boot, we need to activate services:</p>
 <p>Command line set-up:</p>
 <div class="highlight"><pre><span></span><code><span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sv</span><span class="o">/</span><span class="n">dhcpcd</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">service</span>
@@ -379,7 +379,7 @@ passwd newuser
 <div class="highlight"><pre><span></span><code># %wheel ALL=(ALL) ALL
 </code></pre></div>
 
-<h2>Configure keyboard</h2>
+<h3 id="configure-keyboard">Configure keyboard</h3>
 <p>Create configuration file: <code>/etc/X11/xorg.conf.d/30-keyboard.conf</code></p>
 <div class="highlight"><pre><span></span><code>Section &quot;InputClass&quot;
     Identifier &quot;keyboard-all&quot;
@@ -398,7 +398,7 @@ default:</p>
 <div class="highlight"><pre><span></span><code><span class="n">setxkbmap</span> <span class="o">-</span><span class="n">rules</span> <span class="n">evdev</span> <span class="o">-</span><span class="n">model</span> <span class="n">evdev</span> <span class="o">-</span><span class="n">layout</span> <span class="n">us</span> <span class="o">-</span><span class="n">variant</span> <span class="n">altgr</span><span class="o">-</span><span class="n">intl</span>
 </code></pre></div>
 
-<h2>Using xdm</h2>
+<h3 id="using-xdm">Using xdm</h3>
 <p>I have switched to [xdm][xdm] as my display manager.  This is
 configured in <code>/etc/X11/xdm/xdm-config</code>.</p>
 <p>Specifically, I update the Xsession setting to be the following:</p>
@@ -418,7 +418,7 @@ until you add the command:</p>
 is handled.</p>
 <p><strong>NOTE:</strong> <em>Doing <code>xhost +local:</code> is hardly a best practice
 when it comes to security.</em></p>
-<h3>Spicing up XDM</h3>
+<h4 id="spicing-up-xdm">Spicing up XDM</h4>
 <p>Allthough [xdm][xdm] is fairly old-school, there are
 still some opportunities to add some eye-candy to
 it.  For that, we change the <code>setup</code> and <code>startup</code> scripts
@@ -434,8 +434,8 @@ a <code>xterm</code> window covers the login widget.</p>
 <p>On the other hand, the [xscreensaver][xs] collection of screen
 hacks seem to accept the <code>-root</code> parameter, which can be used
 to kick off the hack, drawing on the root window.</p>
-<h2>Tweaks and Bug-fixes</h2>
-<h3>/etc/machine-id or /var/lib/dbus/machine-id</h3>
+<h3 id="tweaks-and-bug-fixes">Tweaks and Bug-fixes</h3>
+<h4 id="etcmachine-id-or-varlibdbusmachine-id">/etc/machine-id or /var/lib/dbus/machine-id</h4>
 <p>Because we don't use <code>systemd</code>, we need to create <code>/etc/machine-id</code>
 and <code>/var/lib/dbus/machine-id</code>.
 manually.  This is only needed for desktop systems.</p>
@@ -444,7 +444,7 @@ info.</p>
 <div class="highlight"><pre><span></span><code>  <span class="n">dbus</span><span class="o">-</span><span class="n">uuidgen</span> <span class="o">|</span> <span class="n">tee</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">machine</span><span class="o">-</span><span class="n">id</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">dbus</span><span class="o">/</span><span class="n">machine</span><span class="o">-</span><span class="n">id</span>
 </code></pre></div>
 
-<h3>power button handling</h3>
+<h4 id="power-button-handling">power button handling</h4>
 <p>This patch prevents the /etc/acpi/handler.sh to handle the power button
 instead, letting the Desktop Environment handle the event.</p>
 <p>It does it by checking if the Desktop Environment power manager
@@ -452,13 +452,13 @@ instead, letting the Desktop Environment handle the event.</p>
 it will exit.</p>
 <script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/acpi-handler.patch"></script>
 
-<h3>rtkit spamming logs</h3>
+<h4 id="rtkit-spamming-logs">rtkit spamming logs</h4>
 <p>Apparently, <code>rtkit</code> requres an <code>rtkit</code> user to exist.  Otherwise it
 will spam the logs with error messages.  To correct use this command:</p>
 <div class="highlight"><pre><span></span><code>useradd -r -s /sbin/nologin rtkit
 </code></pre></div>
 
-<h3>xen tweaks</h3>
+<h4 id="xen-tweaks">xen tweaks</h4>
 <p>For xen we need to make some adjustments...</p>
 <ol>
 <li>Tweak block device references.</li>
@@ -471,8 +471,8 @@ will spam the logs with error messages.  To correct use this command:</p>
 </ol>
 <p>Normally, I would create a tarball image to transfer over, in order
 for the image to work properly you need to save <code>capabilities</code>.</p>
-<h2>Old Notes</h2>
-<h3>PolKit rule tweaks</h3>
+<h3 id="old-notes">Old Notes</h3>
+<h4 id="polkit-rule-tweaks">PolKit rule tweaks</h4>
 <p>Testing as of 2019-09-07, the following does not seem to be needed
 any longer.  I left it here just for reference (in case it breaks
 again.</p>
@@ -482,7 +482,7 @@ were not available using the [MATE][mate] desktop.</p>
 <p>To enable this I had to create/tweak the PolKit rules...</p>
 <script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/_attic_/tweak-polkit-rules.sh"></script>
 
-<h2>Using SLIM</h2>
+<h3 id="using-slim">Using SLIM</h3>
 <p>I have switched to [SLiM][SLiM] as the display manager.  This is
 configured in <code>/etc/slim.conf</code>.</p>
 <p>Specifically, I update the login_cmd to be the following:</p>

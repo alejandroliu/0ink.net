@@ -76,3 +76,40 @@ SEARCH_PREFILL="Search with DuckDuckGo"
 PLUGINS=['filetime_from_git']
 PLUGIN_PATHS = [ 'plugins' ]
 
+# Markdown configs...
+
+# ~ import markdown_del_ins
+
+MARKDOWN = {
+    'extension_configs': {
+        # Needed for code syntax highlighting
+        'markdown.extensions.codehilite': {
+            'css_class': 'highlight'
+        },
+        'markdown.extensions.extra': {},
+        'markdown.extensions.meta': {},
+        # This is for enabling the TOC generation
+        'markdown.extensions.toc': {
+            'title': 'Table of Contents',
+        },
+        'markdown_mytags': {},
+        'mdx_headdown': {
+            'offset': 1,
+        },
+        'markdown_blockdiag': {
+          'format': 'svg',
+        },
+        'markdown_aafigure': {
+          'tag_type': 'inline_svg',
+        },
+        'mdx_include': {
+          'base_path': 'include',
+        },
+        'mdx_vars': {
+          'vars': {
+            'SNIPPETS': 'https://github.com/alejandroliu/0ink.net/tree/master/snippets',
+          },
+        }
+    },
+    'output_format': 'html5',
+}

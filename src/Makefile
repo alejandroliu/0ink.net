@@ -1,5 +1,6 @@
 PY?=python3
-PELICAN?=pelican
+#~ PELICAN?=pelican
+PELICAN=env PYTHONPATH=$$(pwd)/mdx .venv/bin/run $$(which pelican)
 PELICANOPTS=
 
 BASEDIR=$(CURDIR)
@@ -44,12 +45,7 @@ help:
 
 html:
 	python3 hax.py --tags=tagcloud $(INPUTDIR)/pages/*.md $(INPUTDIR)/posts/*/*.md
-#~ 	[ -d $$(pwd)/.venv ] || ( python3 -m venv --system-site-packages $$(pwd)/.venv ; \
-#~ 	  .  $$(pwd)/.venv/bin/activate ; \
-#~ 	  pip install pelican-liquid-tags mdx_include)
-#~ 	env PYTHONPATH="$$(cd .venv/lib/python*/site-packages && pwd)" \
-#~ 	  "$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
-	"$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
+	$(PELICAN) "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
 	python3 sitemap.py --strip=2 --prefix=https://0ink.net/ --xml=$(OUTPUTDIR)/sitemap.xml --html=$(OUTPUTDIR)/sitemap.html ../docs/pages/*.html ../docs/posts/*/*.html
 	# Fix links in site feeds...
 	sed -i -e 's!<link>/!<link>https://0ink.net/!g' "$(OUTPUTDIR)/feeds/rss.xml"
@@ -60,16 +56,23 @@ clean:
 	[ ! -d "$(OUTPUTDIR)" ] || rm -rf "$(OUTPUTDIR)"
 
 regenerate:
-	"$(PELICAN)" -r "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
+	$(PELICAN) -r "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
 
 serve:
-	"$(PELICAN)" -l "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
+	$(PELICAN) -l "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
 
 devserver:
-	"$(PELICAN)" -lr "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
+	$(PELICAN) -lr "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
 
 setup:
-	@echo 'TODO'
-
+	[ ! -d .venv ] && python3 -m venv --system-site-packages .venv || :
+	( . .venv/bin/activate ; pip install \
+		markdown-aafigure Pillow \
+		markdown-blockdiag \
+		markdown-headdown \
+		mdx_include \
+	)
+	printf '#!/bin/sh\n. $$(dirname $$0)/activate\nexec $$(dirname $$0)/python "$$@"\n' > .venv/bin/run
+	chmod 755 .venv/bin/run
 
 .PHONY: html help clean regenerate serve devserver setup

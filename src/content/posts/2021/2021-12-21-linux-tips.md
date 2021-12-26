@@ -30,8 +30,10 @@ I am using nowadays.
 - Additional software (Tested on void linux):
   - Tip: use `sed -e 's/#.*$//'` to strip comments!
 
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=paraiso-light&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/swlist-extras.txt"></script>
+```
+{! void-installation/swlist-extras.txt !}
 
+```
 
 
  [void]: https://voidlinux.org "Void Linux"

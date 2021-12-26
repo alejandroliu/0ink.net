@@ -10,7 +10,7 @@
 	<meta name="int-title" content="Network wiring notes - 8P8C / RJ45">
 	<meta name="tags" content="computer, network, power, speed">
 	<meta name="date" content="2013-05-27 00:00:00+02:00">
-	<meta name="modified" content="2021-12-25 21:59:49.789446+01:00">
+	<meta name="modified" content="2021-12-25 22:02:18+01:00">
 
 
 	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
@@ -60,7 +60,7 @@
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 21:59:49.789446+01:00</p>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
   in <a href="/category/c2013.html">2013</a>
 <p class="tags">tagged <a href="/tag/computer.html">computer</a>, <a href="/tag/network.html">network</a>, <a href="/tag/power.html">power</a>, <a href="/tag/speed.html">speed</a></p></div>
 		<p>What you were probably looking forT568A/B (10-BASE-T and 100-BASE-TX):</p>
@@ -124,7 +124,7 @@
 <p><em>100Mbit ethernet</em> (Fast Ethernet, FE) uses only two pairs - pins 1, 2, 3, and 6, which in the standard wiring are the orange and green wire pairs.</p>
 <p>This means you could use the other wires for different things - e.g. one link and a phone (non-conflicting if you use the stand pins for each), or some more custom combination such as two links though one wire.</p>
 <p><em>Gigabit ethernet</em> uses all four pairs, so has no creative options.</p>
-<h1>On crossover cables</h1>
+<h2 id="on-crossover-cables">On crossover cables</h2>
 <p>Given the two plug colorings in 568-type wiring, cables wired with these can be:</p>
 <ul>
 <li>A <em>straight cable</em>, 568B-568B (or the functionally equivalent 568A-568A, but in terms of colors the B-B variant seems to be used everywhere, probably to avoid confusion)</li>
@@ -132,7 +132,7 @@
 </ul>
 <p>Gigabit ethernet doesn't need crossovers -- it decided to handle that case inside the NIC and switches rather than have you do it the cable. You use straight cables everywhere (NIC-switch-NIC and NIC-NIC).</p>
 <p>Gigabit crossovers are rumored to exist (crossing blue and brown in addition to orange and green), but they are unnecessary.</p>
-<h1>On Loopbacks</h1>
+<h2 id="on-loopbacks">On Loopbacks</h2>
 <p>Loopbacks connect a port to itself. This can be used to test whether a long cable and/or its wallplug is broken, and whether a switch/router port is broken (or perhaps dirty or corroded), both just by seeing whether the link light comes on.</p>
 <p>Connect:</p>
 <ul>
@@ -148,13 +148,13 @@
 <span class="nv">Brown</span>         <span class="nv">to</span>  <span class="nv">Blue</span><span class="o">-</span><span class="nv">white</span>   <span class="ss">(</span><span class="k">for</span> <span class="nv">a</span> <span class="nv">gBit</span> <span class="nv">loopback</span><span class="ss">)</span>
 </code></pre></div>
 
-<h1>gBit loopback is a limited concept:</h1>
+<h2 id="gbit-loopback-is-a-limited-concept">gBit loopback is a limited concept:</h2>
 <p>Gigabit NICs have crosstalk detection (detects how much signal interferes onto other wires), and will likely decide that the loopback is an extreme amount of crosstalk - any may not show link. Meaning it's often only useful on NICs which let you disable crosstalk detection. Gigabit switches may behave differently (but I'm not sure what the spec says or the real-world variation is)</p>
 <p>More notes on ethernet wiring</p>
 <p>The wiring used on 10Mbit, 100Mbit (specifically 10-BASE-T and 100-BASE-TX) ethernet over 8P8C (informally RJ45) plugs is defined by <em>TIA/EIA-568-B</em>, which define two plug wiring alternatives, 568A and 568B. Notice the lack of dashes; 568-B is the standard they are part of, 568-A a completely different standard (yes, that naming is stupidly confusing).</p>
 <p>Note that both 10Mbit and 100Mbit networking use only pair 2 and 3 (orange and green) in the standard (The blue pair is pair 1, orange is pair 2, green is pair 3, and brown is pair 4.)</p>
 <p>This means that Americans or anyone else using 4P/6P-style phone connectors can use fully wired cables (most are fully wired - relatively few (cheaper) cables are only two-pair for only Ethernet) to wire their house/company and have the same sockets be usable to plug in phones, a computer (or both with a trivial splitter). Various companies can use use this to make their wiring simpler.</p>
-<h1>Gigabit ethernet</h1>
+<h2 id="gigabit-ethernet">Gigabit ethernet</h2>
 <p>GBit ethernet can use cables wired 568-style, preferably rated Cat5e, or better.</p>
 <p>Specifically, you want straight wiring and four-pair cable. Most older cables are, so can be used at gBit speeds, as 1000-BASE-T uses all four pairs instead of just two.</p>
 <p>(If you press your own plugs, it is suggested that you keep the untwisted length as small as possible, to minimize near-end crosstalk)</p>
@@ -165,7 +165,7 @@
 <li>you can mix 10/100/1000 in your network, by replacing switches (handy for partial/gradual upgrades), without having to wire about the cabling.</li>
 </ul>
 <p>...as long as the cable is rated Cat5e (or better)</p>
-<h1>On cable standards (Cat5, etc.)</h1>
+<h2 id="on-cable-standards-cat5-etc">On cable standards (Cat5, etc.)</h2>
 <ul>
 <li>Cat5<ul>
 <li>rarely seen - it has fallen out of favour and is barely sold</li>
@@ -194,7 +194,7 @@
 <p>For example, Cat6 was made for 10gBit, most single computers don't have a source of data to actually use that speed, and even if they had, it's hard to get a 10gBit switch.</p>
 <p>Companies may want Cat6 (or perhaps Cat6a) for future compatibility, to be able to use gBit now and assuming that nothing replaces copper before the next update.</p>
 <p>Cat7 can go beyond 10gBit at short-ish distances, but chances are you won't be needing that any time soon. Only data centers might care.</p>
-<h1>Naming pendantics and telephony</h1>
+<h2 id="naming-pendantics-and-telephony">Naming pendantics and telephony</h2>
 <p>When we say RJ45, we often mean something like "Ethernet wiring on an 8P8C plug."</p>
 <p>RJ is the group of plugs that can be described by their positions and connectors, such as 8P8C in Ethernet, while RJ45 actually refers to a specific telephone wiring on the 8P-style plug (probably the most common one among several), while 8P8C refers to that plug itself and no specific wiring. Regardless, most people call the plug RJ45, regardless of wiring.</p>
 <p>Plugs may have fewer actually present conductors than they have positions, so 8P2C, 8P4C, 8P6C, 8P8C, 6P2C, 6P4C, 6P6C, 4P2C, 4P4C all exist.</p>

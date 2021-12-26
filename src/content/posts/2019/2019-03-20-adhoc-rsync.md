@@ -16,11 +16,18 @@ Copy these scripts on the remote server.  Make sure they are executable.
 
 - Remote CLI
 
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=paraiso-light&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/adhoc-rsync/recv-nc"></script>
+
+```bash
+{! adhoc-rsync/recv-nc !}
+```
+[adhoc-rsync/recv-nc](${SNIPPETS}/adhoc-rsync/recv-nc)
 
 - Remote Helper script
 
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=paraiso-light&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/adhoc-rsync/recv"></script>
+```bash
+{! adhoc-rsync/recv !}
+```
+[adhoc-rsync/recv](${SNIPPETS}/adhoc-rsync/recv)
 
 # Local scripts
 
@@ -28,12 +35,20 @@ Copy these scripts on the local server.  Make sure they are executable
 
 - Local CLI
 
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=paraiso-light&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/adhoc-rsync/send"></script>
+
+```bash
+{! adhoc-rsync/send !}
+```
+[adhoc-rsync/send](${SNIPPETS}/adhoc-rsync/send)
 
 
 - Local Helper Script
 
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=paraiso-light&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/adhoc-rsync/send-nc"></script>
+
+```bash
+{! adhoc-rsync/send-nc !}
+```
+[adhoc-rsync/send-nc](${SNIPPETS}/adhoc-rsync/send-nc)
 
 # Usage
 

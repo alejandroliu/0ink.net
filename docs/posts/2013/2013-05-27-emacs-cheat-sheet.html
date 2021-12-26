@@ -9,7 +9,7 @@
 	<meta name="description" content="Quick reference article for how to use Emacs. Yes, it is really old skool! Cursor Motion Key Cursor Motion C-f Forward one character C-b Backward one character C-n Next line C-p Previous line C-a Beginning of line C-e End of line C-v Next screenful M-v Previous screenful M-< Beginning of …">
 	<meta name="int-title" content="Emacs Cheat Sheet">
 	<meta name="date" content="2013-05-27 00:00:00+02:00">
-	<meta name="modified" content="2021-12-25 21:59:49.787446+01:00">
+	<meta name="modified" content="2021-12-25 22:02:18+01:00">
 
 
 	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
@@ -59,12 +59,12 @@
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 21:59:49.787446+01:00</p>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
   in <a href="/category/c2013.html">2013</a>
 </div>
 		<p>Quick reference article for how to use Emacs.  Yes, it is really
 old skool!</p>
-<h1>Cursor Motion</h1>
+<h2 id="cursor-motion">Cursor Motion</h2>
 <table>
 <thead>
 <tr>
@@ -151,7 +151,7 @@ old skool!</p>
 </tr>
 </tbody>
 </table>
-<h1>Text editing</h1>
+<h2 id="text-editing">Text editing</h2>
 <table>
 <thead>
 <tr>
@@ -214,7 +214,7 @@ old skool!</p>
 </tr>
 </tbody>
 </table>
-<h1>File Commands</h1>
+<h2 id="file-commands">File Commands</h2>
 <table>
 <thead>
 <tr>
@@ -257,7 +257,7 @@ old skool!</p>
 </tr>
 </tbody>
 </table>
-<h1>Buffers</h1>
+<h2 id="buffers">Buffers</h2>
 <table>
 <thead>
 <tr>
@@ -304,7 +304,7 @@ old skool!</p>
 </tr>
 </tbody>
 </table>
-<h1>Help</h1>
+<h2 id="help">Help</h2>
 <table>
 <thead>
 <tr>
@@ -351,7 +351,7 @@ old skool!</p>
 </tr>
 </tbody>
 </table>
-<h1>Misc</h1>
+<h2 id="misc">Misc</h2>
 <table>
 <thead>
 <tr>
@@ -386,7 +386,7 @@ old skool!</p>
 </tr>
 </tbody>
 </table>
-<h1>C-Mode Commands</h1>
+<h2 id="c-mode-commands">C-Mode Commands</h2>
 <table>
 <thead>
 <tr>
@@ -413,7 +413,7 @@ old skool!</p>
 </tr>
 </tbody>
 </table>
-<h1>Extended commands</h1>
+<h2 id="extended-commands">Extended commands</h2>
 <p>Enter <code>ESC</code> + <code>[</code> and enter this text:</p>
 <table>
 <thead>
@@ -473,7 +473,7 @@ old skool!</p>
 </tr>
 </tbody>
 </table>
-<h1>Tags</h1>
+<h2 id="tags">Tags</h2>
 <p>Use tags to navigate source code. It's not hard to set up. This takes advantage of a popular tool called "Exuberant Ctags" (AKA ctags, or etags) that scans your source code and indexes the symbols into a <code>TAGS</code> file. Note: emacs comes with a tool called "etags" that does almost the same thing as Exuberant Ctags. In cygwin, the "etags" binary is actually Exuberant Ctags. Confused yet? My advice is, ignore Emacs etags, and use Exuberant Ctags, whatever it happens to be called in your part of the universe. To generate a <code>TAGS</code> file, do this in the root of your code tree (stick this in a script or Makefile):</p>
 <div class="highlight"><pre><span></span><code><span class="c">#ETAGS=/cygdrive/c/emacs-21.3/bin/etags.exe</span>
 <span class="nv">ETAGS</span><span class="o">=</span>etags <span class="c1"># Exuberant ctags</span>
