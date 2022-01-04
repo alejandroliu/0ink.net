@@ -11,12 +11,6 @@ candy=""
 #candy="display -window root /home/alex/bg/event-horizon-2-1920×1080.jpg"
 
 case "$(date +%m)" in
-12)
-  candy="xsnow -snowflakes 50 -santa 2 -unsmooth"
-  ;;
-01)
-  candy="xsnow -snowflakes 50 -nosanta"
-  ;;
 02)
   candy="/usr/libexec/xscreensaver/xmatrix -root"
   ;;

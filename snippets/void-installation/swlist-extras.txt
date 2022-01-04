@@ -9,7 +9,8 @@
 # To see the list of "manually" installed packages
 #
 git			# I need this to interact with github
-hub
+git-crypt		# transparent git encryption
+github-cli
 rcm			# dot file manager
 
 tcl			# gui scripts
@@ -38,6 +39,7 @@ ImageMagick
 catimg feh viu		# barebones img viewers
 
 libreoffice		# Office applications
+dia			# vector drawings
 azpainter		# MSPaint like
 simple-scan		# scanner support
 calibre			# e-book management
@@ -72,10 +74,10 @@ jq
 pelican				# static site generator
 mdcat
 
-# asciidoc | ruby-asciidoctor ?
+asciidoc 			# alt: ruby-asciidoctor
 # bootiso			# Create USB boot discs from ISOs
-# darkhttpd		# light weight web server
-# pandoc			# create md to epub
+# darkhttpd			# light weight web server
+# pandoc			# convert md to epub
 
 # pidgin pidgin-sipe avahi	# chat app
 
@@ -84,6 +86,7 @@ mdcat
 #python3-tkinter
 python3-yaml
 python3-Markdown
+python3-GitPython
 
 #qemu
 #libvirt

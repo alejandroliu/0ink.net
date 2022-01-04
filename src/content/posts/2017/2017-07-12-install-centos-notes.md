@@ -1,6 +1,6 @@
 ---
 title: Centos Install notes
-tags: application, browser, centos, git, installation, linux, login, settings, windows
+tags: alpine, application, browser, centos, git, installation, linux, login, settings, windows
 ---
 
 Set-up `local.repo`

@@ -105,6 +105,7 @@ MARKDOWN = {
         'mdx_include': {
           'base_path': 'include',
         },
+        'mdx_graphviz': {},
         'mdx_vars': {
           'vars': {
             'SNIPPETS': 'https://github.com/alejandroliu/0ink.net/tree/master/snippets',

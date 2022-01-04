@@ -1,6 +1,6 @@
 ---
 title: Docker on Alpine Linux
-tags: boot, installation, linux, service, ubuntu
+tags: alpine, boot, installation, linux, service, ubuntu
 ---
 
 Alpine Linux Quick installation

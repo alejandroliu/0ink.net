@@ -1,6 +1,6 @@
 ---
 title: Alpine Boot switcher
-tags: boot, directory, drive, partition
+tags: alpine, boot, directory, drive, partition
 ---
 
 I boot from a USB boot drive using UEFI.  Because of the UEFI boot,

@@ -45,7 +45,9 @@
 
 # TODO
 
-
+- Add Title's from header to the tokenizer candidate
+- gh-actions integration:
+  - https://github.com/marketplace/actions/github-pages-action
 - Add priority to sitemap.xml based on age of articles:
   - 0.8 - 1.0 : home page, product info, landing pages
   - 0.4 - 0.7 : articles, blogs, faqs, etc

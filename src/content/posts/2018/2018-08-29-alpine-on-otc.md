@@ -1,6 +1,6 @@
 ---
 title: Alpine on OTC
-tags: linux
+tags: alpine, linux
 ---
 
 These are just random thoughts nothing really was implemented.

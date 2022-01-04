@@ -34,7 +34,7 @@ In your [nginx][nginx] configuration...
 
 This block configures the web server area that will be protected:
 
-```
+```nginx
         location /hello {
           error_page 401 = @error401;	# Specific login page to use
           auth_request /auth;		# The sub-request to use
@@ -46,6 +46,11 @@ This block configures the web server area that will be protected:
           proxy_set_header X-Remote-User $username;
           proxy_set_header X-Remote-SID $sid;
         }
+
+	location @error401 {
+          return 302 /login/?url=http://$http_host$request_uri;
+        }
+
 ```
 
 - `error_page 401` defines the custom login page to use (if any).
@@ -64,7 +69,7 @@ This block configures the web server area that will be protected:
 
 This block configures the authentication sub-request server:
 
-```
+```nginx
         location = /auth {
           proxy_pass http://auth-server.sample.com:8080/auth;	# authentication server
           proxy_pass_request_body off;				# no data is being transferred...
@@ -84,7 +89,7 @@ This block configures the authentication sub-request server:
 
 This implements the login pager URL
 
-```
+```nginx
         # If the user is not logged in, redirect them to login URL
         location @error401 {
           return 302 https://$host/login/?url=https://$http_host$request_uri;
@@ -95,7 +100,7 @@ it doesn't have to be that way.
 
 The actual login page:
 
-```
+```nginx
         location /login/ {
           proxy_pass http://auth-server.sample.com:8080/login/;	# Where the login happens
           proxy_set_header X-My-Real-IP $remote_addr;		# Additional parameters to send to login page
@@ -185,7 +190,7 @@ through headers, such as group names, tokens, etc.
 
 Protected Resource:
 
-```
+```nginx
         location /hello {
           auth_request /auth;		# The sub-request to use
           auth_request_set $username $upstream_http_x_username;	# Make the sub request data available
@@ -200,7 +205,7 @@ Protected Resource:
 
 Sub-request configuration:
 
-```
+```nginx
         location = /auth {
           proxy_pass http://auth-server.sample.com:8080/auth;	# authentication server
           proxy_pass_request_body off;				# no data is being transferred...

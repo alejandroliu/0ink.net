@@ -170,7 +170,7 @@ shift 2
 
 swap=$(check_opt swap "$@") || :
 if [ -n "$swap" ] ; then
-  swap=$(numfmt --from=iec --to-unit=1024 "$mem")
+  swap=$(numfmt --from=iec --to-unit=1024 "$swap")
   [ -z "$swap" ] && die 1 "Invalid number for swap size"
 else
   swap=$(awk '$1 == "MemTotal:" { print int($2*2) }' /proc/meminfo)
@@ -892,7 +892,8 @@ echo ''
 ## ```
 ##
 #end-output
-echo "%admins ALL=(ALL) ALL" >> $mnt/etc/sudoers
+echo "%admins ALL=(ALL) ALL" >> $mnt/etc/sudoers.d/admins
+chmod 440 $mnt/etc/sudoers.d/admins
 #begin-output
 ##
 
@@ -993,7 +994,6 @@ if [ -f $mnt/etc/X11/xdm/xdm-config ] ; then
     repofile xdm/$f $mnt/etc/X11/xdm/$f
     chmod 755 $mnt/etc/X11/xdm/$f
   done
-  env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $hmnt xsnow
 fi
 #begin-output
 ##
