@@ -76,9 +76,9 @@ you need to install:</p>
 
 <p>Because I like to have just a single directory for everything and use
 <code>grep</code>, I do the following:</p>
-<div class="highlight"><pre><span></span><code><span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">socklog</span><span class="o">/</span><span class="err">?</span><span class="o">*</span>
-<span class="n">mkdir</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">socklog</span><span class="o">/</span><span class="n">everything</span>
-<span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="n">socklog</span><span class="o">/</span><span class="n">everything</span><span class="o">/</span><span class="n">current</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">messages</span><span class="o">.</span><span class="n">log</span>
+<div class="highlight"><pre><span></span><code><span class="n">rm</span><span class="w"> </span><span class="o">-</span><span class="n">rf</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">socklog</span><span class="o">/</span><span class="err">?</span><span class="o">*</span><span class="w"></span>
+<span class="n">mkdir</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">socklog</span><span class="o">/</span><span class="n">everything</span><span class="w"></span>
+<span class="n">ln</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="n">socklog</span><span class="o">/</span><span class="n">everything</span><span class="o">/</span><span class="n">current</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">messages</span><span class="o">.</span><span class="n">log</span><span class="w"></span>
 </code></pre></div>
 
 <p>Create the file <code>/var/log/socklog/everything/config</code> with these
@@ -88,8 +88,8 @@ u&lt;syslog-server-ip&gt;:514
 </code></pre></div>
 
 <p>Enable daemons...</p>
-<div class="highlight"><pre><span></span><code><span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sv</span><span class="o">/</span><span class="n">socklog</span><span class="o">-</span><span class="n">unix</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">service</span><span class="o">/</span>
-<span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sv</span><span class="o">/</span><span class="n">nanoklogd</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">service</span><span class="o">/</span>
+<div class="highlight"><pre><span></span><code><span class="n">ln</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sv</span><span class="o">/</span><span class="n">socklog</span><span class="o">-</span><span class="n">unix</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">service</span><span class="o">/</span><span class="w"></span>
+<span class="n">ln</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sv</span><span class="o">/</span><span class="n">nanoklogd</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">service</span><span class="o">/</span><span class="w"></span>
 </code></pre></div>
 
 <p>Reload <code>svlogd</code> (if it was already running)</p>

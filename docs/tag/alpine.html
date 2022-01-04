@@ -2,7 +2,7 @@
 <html lang="">
 <head>
 	<meta charset="utf-8"/>
-	<title>ubuntu - 0ink.net</title>
+	<title>alpine - 0ink.net</title>
 	<meta name="author" content="Alejandro Liu">
 
 
@@ -45,9 +45,27 @@
 			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
 
 
-<h1>Post tagged: ubuntu</h1>
+<h1>Post tagged: alpine</h1>
 
 <article class="summary">
+<div class="metadata">
+  <time datetime="2020-10-04T00:00:00+02:00" pubdate>Sun 04 October 2020</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2022-01-04 18:38:11+01:00</p>
+  in <a href="/category/c2020.html">2020</a>
+<p class="tags">tagged <a href="/tag/alpine.html">alpine</a>, <a href="/tag/boot.html">boot</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/drive.html">drive</a>, <a href="/tag/partition.html">partition</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2020/2020-10-04-alpine-boot-switcher.html" rel="bookmark" title="Permalink to Alpine Boot switcher">Alpine Boot switcher</a>
+    </h2>
+    <p><p>I boot from a USB boot drive using UEFI.  Because of the UEFI boot,
+it just a matter of copying the files from the <a href="https://alpinelinux.org/">alpine</a>
+ISO to a USB thumbdrive VFAT32 partition.  Partition may be set to
+EFI (but this doesn't seem to be required).</p>
+<p>Since I would like to …</p></p>
+  </div>
+</article><article class="summary">
 <div class="metadata">
   <time datetime="2018-09-22T00:00:00+02:00" pubdate>Sat 22 September 2018</time>
     <address class="vcard author">
@@ -77,78 +95,106 @@ work!  Your mileage may vary …</p></p>
   </div>
 </article><article class="summary">
 <div class="metadata">
-  <time datetime="2018-06-14T00:00:00+02:00" pubdate>Thu 14 June 2018</time>
+  <time datetime="2018-08-29T00:00:00+02:00" pubdate>Wed 29 August 2018</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 22:02:18+01:00</p>
+  <p>Updated: 2022-01-04 18:38:11+01:00</p>
   in <a href="/category/c2018.html">2018</a>
-<p class="tags">tagged <a href="/tag/centos.html">centos</a>, <a href="/tag/device.html">device</a>, <a href="/tag/drive.html">drive</a>, <a href="/tag/encryption.html">encryption</a>, <a href="/tag/filesystem.html">filesystem</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/partition.html">partition</a>, <a href="/tag/privacy.html">privacy</a>, <a href="/tag/security.html">security</a>, <a href="/tag/sudo.html">sudo</a>, <a href="/tag/tools.html">tools</a>, <a href="/tag/ubuntu.html">ubuntu</a></p></div>  <div>
+<p class="tags">tagged <a href="/tag/alpine.html">alpine</a>, <a href="/tag/linux.html">linux</a></p></div>  <div>
     <h2>
-      <a href="/posts/2018/2018-06-14-linux-disk-encryption.html" rel="bookmark" title="Permalink to How to encrypt linux partitions with LUKS">How to encrypt linux partitions with LUKS</a>
+      <a href="/posts/2018/2018-08-29-alpine-on-otc.html" rel="bookmark" title="Permalink to Alpine on OTC">Alpine on OTC</a>
     </h2>
-    <p><p>There are plenty of reasons why people would need to encrypt a
-partition. Whether they're rooted it in privacy, security, or
-confidentiality, setting up a basic encrypted partition on a Linux
-system is fairly easy. This is especially true when using LUKS, since
-its functionality is built directly into the …</p></p>
+    <p><p>These are just random thoughts nothing really was implemented.</p>
+<p>Alpine Linux image</p>
+<ul>
+<li>
+<p>preparation: jq and other deps to <code>/apks/x86_64</code></p>
+</li>
+<li>
+<p><code>/etc/local.d/</code>
+    <code>cloud-init-lite</code></p>
+</li>
+<li>
+<p>if <code>/etc/network/intefaces</code> exists we abort</p>
+</li>
+<li><code>apk add --force-non-repository /path oniguruma,jq</code> .. restore <code>/etc/apk/world</code></li>
+<li><code>udhcpc -b -p /var/run/udhcpc.eth0.pid -i …</code></li></ul></p>
   </div>
 </article><article class="summary">
 <div class="metadata">
-  <time datetime="2018-01-30T00:00:00+01:00" pubdate>Tue 30 January 2018</time>
+  <time datetime="2017-07-12T00:00:00+02:00" pubdate>Wed 12 July 2017</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 22:02:18+01:00</p>
-  in <a href="/category/c2018.html">2018</a>
-<p class="tags">tagged <a href="/tag/centos.html">centos</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/filesystem.html">filesystem</a>, <a href="/tag/information.html">information</a>, <a href="/tag/installation.html">installation</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/network.html">network</a>, <a href="/tag/partition.html">partition</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/service.html">service</a>, <a href="/tag/storage.html">storage</a>, <a href="/tag/sudo.html">sudo</a>, <a href="/tag/ubuntu.html">ubuntu</a></p></div>  <div>
+  <p>Updated: 2022-01-04 18:38:11+01:00</p>
+  in <a href="/category/c2017.html">2017</a>
+<p class="tags">tagged <a href="/tag/alpine.html">alpine</a>, <a href="/tag/application.html">application</a>, <a href="/tag/browser.html">browser</a>, <a href="/tag/centos.html">centos</a>, <a href="/tag/git.html">git</a>, <a href="/tag/installation.html">installation</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/login.html">login</a>, <a href="/tag/settings.html">settings</a>, <a href="/tag/windows.html">windows</a></p></div>  <div>
     <h2>
-      <a href="/posts/2018/2018-01-30-cache-nfs-files.html" rel="bookmark" title="Permalink to using cachefiles on an Linux NFS share">using cachefiles on an Linux NFS share</a>
+      <a href="/posts/2017/2017-07-12-install-centos-notes.html" rel="bookmark" title="Permalink to Centos Install notes">Centos Install notes</a>
     </h2>
-    <p><p>If you often mount and access a remote NFS share on your system, you
-will probably want to know how to improve NFS file access performance.
-One possibility is using file caching. In Linux, there is a caching
-filesystem called FS-Cache which enables file caching for network file
-systems such …</p></p>
+    <p><p>Set-up <code>local.repo</code></p>
+<p>yum installs:</p>
+<ul>
+<li>nfs-utils autofs</li>
+<li>@x11</li>
+<li>@xfce</li>
+<li>wget</li>
+<li>dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts</li>
+<li>xorg-x11-fonts-{Type1,misc,75dpi,100dpi}</li>
+<li>bitmap-console-fonts bitmap-fixed-fonts bitmap-fonts-compat bitmap-lucida-typewriter-fonts</li>
+<li>ucs-miscfixed-fonts urw-fonts</li>
+<li>open-sans-fonts</li>
+<li>webcore-fonts webcore-fonts-vista</li>
+<li>liberation-mono-fonts liberation-sans-fonts liberation-serif-fonts</li>
+<li>bitstream-vera-sans-fonts bitstream-vera-serif-fonts</li>
+<li>gnu-free-{mono,sans,serif}-fonts</li>
+<li>tk</li>
+<li>firefox</li>
+<li>mplayer ffmpeg alsa-utils </li>
+<li>xsensors xfce4-sensors-plugin</li>
+<li>keepassx</li>
+<li>git</li>
+</ul>
+<p><a href="https://blog.packagecloud.io/eng/2015/05/11/building-rpm-packages-with-mock/">Building RPM packages with …</a></p></p>
   </div>
 </article><article class="summary">
 <div class="metadata">
-  <time datetime="2013-10-07T00:00:00+02:00" pubdate>Mon 07 October 2013</time>
+  <time datetime="2017-01-20T00:00:00+01:00" pubdate>Fri 20 January 2017</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 22:02:18+01:00</p>
-  in <a href="/category/c2013.html">2013</a>
-<p class="tags">tagged <a href="/tag/centos.html">centos</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/filesystem.html">filesystem</a>, <a href="/tag/information.html">information</a>, <a href="/tag/installation.html">installation</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/network.html">network</a>, <a href="/tag/partition.html">partition</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/service.html">service</a>, <a href="/tag/storage.html">storage</a>, <a href="/tag/sudo.html">sudo</a>, <a href="/tag/ubuntu.html">ubuntu</a></p></div>  <div>
+  <p>Updated: 2022-01-04 18:38:11+01:00</p>
+  in <a href="/category/c2017.html">2017</a>
+<p class="tags">tagged <a href="/tag/alpine.html">alpine</a>, <a href="/tag/application.html">application</a>, <a href="/tag/backup.html">backup</a>, <a href="/tag/backups.html">backups</a>, <a href="/tag/boot.html">boot</a>, <a href="/tag/browser.html">browser</a>, <a href="/tag/centos.html">centos</a>, <a href="/tag/config.html">config</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/device.html">device</a>, <a href="/tag/domain.html">domain</a>, <a href="/tag/drive.html">drive</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/network.html">network</a>, <a href="/tag/partition.html">partition</a>, <a href="/tag/proxy.html">proxy</a>, <a href="/tag/software.html">software</a>, <a href="/tag/storage.html">storage</a>, <a href="/tag/windows.html">windows</a></p></div>  <div>
     <h2>
-      <a href="/posts/2013/2013-10-07-enable-local-file-caching-for-nfs-share-on-linux.html" rel="bookmark" title="Permalink to Enable local file caching for NFS share on Linux">Enable local file caching for NFS share on Linux</a>
+      <a href="/posts/2017/2017-01-20-cyberworld-2017.html" rel="bookmark" title="Permalink to CyberWorld 2017.1">CyberWorld 2017.1</a>
     </h2>
-    <p><p>In Linux, there is a caching filesystem called <code>FS-Cache</code> which enables
-file caching for network file systems such as NFS. <code>FS-Cache</code> is built
-into the Linux kernel 2.6.30 and higher. In order for <code>FS-Cache</code> to
-operate, it needs cache back-end which provides actual storage for
-caching. One such …</p></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2013-07-02T00:00:00+02:00" pubdate>Tue 02 July 2013</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2021-12-25 22:02:18+01:00</p>
-  in <a href="/category/c2013.html">2013</a>
-<p class="tags">tagged <a href="/tag/address.html">address</a>, <a href="/tag/browser.html">browser</a>, <a href="/tag/cloud.html">cloud</a>, <a href="/tag/config.html">config</a>, <a href="/tag/editor.html">editor</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/proxy.html">proxy</a>, <a href="/tag/setup.html">setup</a>, <a href="/tag/ubuntu.html">ubuntu</a></p></div>  <div>
-    <h2>
-      <a href="/posts/2013/2013-07-02-mini-howto-setup-proxy-on-ubuntu.html" rel="bookmark" title="Permalink to 'Mini-Howto: Setup proxy on Ubuntu'">'Mini-Howto: Setup proxy on Ubuntu'</a>
-    </h2>
-    <p><p>A quick and dirty mini-howto to setup a proxy on Ubuntu.
-This is meant mostly for doing quick setup of a proxy
-on a cloud environment.</p>
-<p><img alt="logo-ubuntu_su-orange-hex" src="/images/2013/logo-ubuntu_su-orange-hex.jpg"></p>
-<ol>
-<li>Install Squid with the following command at the Linux command prompt:
-    <code>sudo apt-get install squid</code></li>
-<li>Edit the Squid config file in <code>/etc/squid</code> adding …</li></ol></p>
+    <p><p>Development
+- <a href="https://gist.github.com/qertis/acd71e14db4168832f3b67c75182af04/">travis cordova build</a>
+- <a href="https://github.com/svenlaater/travis-ci-ionic-yml">travis ionic build</a></p>
+<ul>
+<li>owx</li>
+<li>common<ul>
+<li>muninlite (can it support plugins?)</li>
+<li>flock, pwgen, ifstat</li>
+</ul>
+</li>
+<li>ow1<ul>
+<li>diags&amp;tools: usbutils, netstat-nat</li>
+<li>sniffer: tcpdump[-mini] 317K/617K, libpcap 191K</li>
+</ul>
+</li>
+<li>
+<p>owX</p>
+<ul>
+<li>FW/NAT</li>
+<li>DNSMASQ: DHCP + DNS</li>
+<li>NTP server</li>
+<li>Dynamic DNS updating (mushu porker)</li>
+<li>NFS</li>
+<li>IPv6 tunnel</li>
+<li>Provisioning server: (PXE, TFTP, NFS …</li></ul></li></ul></p>
   </div>
 </article>
 <div class="pagination">

@@ -84,8 +84,8 @@ be highly desirable. Install nfs-utils on the server.</p>
 
 <h3 id="nfsv4">NFSv4</h3>
 <p>You'll need to add the root of your arch installation to your NFS exports:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># vim /etc/exports</span>
-<span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">arch</span> <span class="o">*</span><span class="p">(</span><span class="n">rw</span><span class="p">,</span><span class="n">fsid</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">no_root_squash</span><span class="p">,</span><span class="n">no_subtree_check</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># vim /etc/exports</span><span class="w"></span>
+<span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">arch</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="n">rw</span><span class="p">,</span><span class="n">fsid</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">no_root_squash</span><span class="p">,</span><span class="n">no_subtree_check</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
 
 <p>Next, start NFS.</p>
@@ -93,8 +93,8 @@ be highly desirable. Install nfs-utils on the server.</p>
 </code></pre></div>
 
 <h3 id="nfsv3">NFSv3</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># vim /etc/exports</span>
-<span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">arch</span> <span class="o">*</span><span class="p">(</span><span class="n">rw</span><span class="p">,</span><span class="n">no_root_squash</span><span class="p">,</span><span class="n">no_subtree_check</span><span class="p">,</span><span class="n">sync</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># vim /etc/exports</span><span class="w"></span>
+<span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">arch</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="n">rw</span><span class="p">,</span><span class="n">no_root_squash</span><span class="p">,</span><span class="n">no_subtree_check</span><span class="p">,</span><span class="n">sync</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
 
 <p>Next, start NFSv3.</p>
@@ -135,19 +135,19 @@ installation as its root.</p>
 <p>Create a sparse file of at least 1 gigabyte, and create a btrfs
 filesystem on it (you can of course also use a real block device or
 LVM if you so desire).</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># truncate -s 1G /srv/arch.img</span>
-<span class="c1"># mkfs.btrfs /srv/arch.img</span>
-<span class="c1"># export root=/srv/arch</span>
-<span class="c1"># mkdir -p &quot;$root&quot;</span>
-<span class="c1"># mount -o loop,discard,compress=lzo /srv/arch.img &quot;$root&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># truncate -s 1G /srv/arch.img</span><span class="w"></span>
+<span class="c1"># mkfs.btrfs /srv/arch.img</span><span class="w"></span>
+<span class="c1"># export root=/srv/arch</span><span class="w"></span>
+<span class="c1"># mkdir -p &quot;$root&quot;</span><span class="w"></span>
+<span class="c1"># mount -o loop,discard,compress=lzo /srv/arch.img &quot;$root&quot;</span><span class="w"></span>
 </code></pre></div>
 
 <p>Note: Creating a separate filesystem is required for NBD but optional
 for NFS and can be skipped/ignored.</p>
 <h3 id="bootstrapping-installation">Bootstrapping installation</h3>
 <p>Install devtools and arch-install-scripts , and run mkarchroot.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># pacman -Syu devtools arch-install-scripts</span>
-<span class="c1"># mkarchroot -f &quot;$root&quot; base mkinitcpio-nfs-utils nfs-utils</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># pacman -Syu devtools arch-install-scripts</span><span class="w"></span>
+<span class="c1"># mkarchroot -f &quot;$root&quot; base mkinitcpio-nfs-utils nfs-utils</span><span class="w"></span>
 </code></pre></div>
 
 <p>Note: In all cases mkinitcpio-nfs-utils is still required--ipconfig used
@@ -182,7 +182,7 @@ the base mkinitcpio.conf, replace the nfsv3 module with nfsv4, replace
 net with net_nfs4, and add /sbin/mount.nfs4 to BINARIES.</p>
 <h4 id="nbd_2">NBD</h4>
 <p>The mkinitcpio-nbd package needs to be installed on the client.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># pacman --root &quot;$root&quot; --dbpath &quot;$root/var/lib/pacman&quot; -U mkinitcpio-nbd-0.4-1-any.pkg.tar</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># pacman --root &quot;$root&quot; --dbpath &quot;$root/var/lib/pacman&quot; -U mkinitcpio-nbd-0.4-1-any.pkg.tar</span><span class="w"></span>
 </code></pre></div>
 
 <p>You will then need to append nbd to your HOOKS array after net; net
@@ -241,9 +241,9 @@ multiple hosts don't mix unpredictably, and do the same with
 /var/spool/cups, so the 20 instances of cups using the same spool
 don't fight with each other and make 1,498 print jobs and eat an entire
 ream of paper (or worse: toner cartridge) overnight.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># vim &quot;$root/etc/fstab&quot;</span>
-<span class="n">tmpfs</span>   <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span>        <span class="n">tmpfs</span>     <span class="n">nodev</span><span class="p">,</span><span class="n">nosuid</span>    <span class="mi">0</span> <span class="mi">0</span>
-<span class="n">tmpfs</span>   <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">spool</span><span class="o">/</span><span class="n">cups</span> <span class="n">tmpfs</span>     <span class="n">nodev</span><span class="p">,</span><span class="n">nosuid</span>    <span class="mi">0</span> <span class="mi">0</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># vim &quot;$root/etc/fstab&quot;</span><span class="w"></span>
+<span class="n">tmpfs</span><span class="w">   </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="w">        </span><span class="n">tmpfs</span><span class="w">     </span><span class="n">nodev</span><span class="p">,</span><span class="n">nosuid</span><span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="n">tmpfs</span><span class="w">   </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">spool</span><span class="o">/</span><span class="n">cups</span><span class="w"> </span><span class="n">tmpfs</span><span class="w">     </span><span class="n">nodev</span><span class="p">,</span><span class="n">nosuid</span><span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
 </code></pre></div>
 
 <p>It would be best to configure software that has some sort of

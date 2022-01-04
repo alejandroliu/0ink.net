@@ -96,7 +96,7 @@ sudo hp-setup
 <h3 id="void-linux-configuration">void linux configuration</h3>
 <p>These are void linux specific settings:</p>
 <p>enable cups:</p>
-<div class="highlight"><pre><span></span><code><span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sv</span><span class="o">/</span><span class="n">cupsd</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">service</span>
+<div class="highlight"><pre><span></span><code><span class="n">ln</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sv</span><span class="o">/</span><span class="n">cupsd</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">service</span><span class="w"></span>
 </code></pre></div>
 
 <p>uncompress PPD file (otherwise it is not recognized)</p>
@@ -105,34 +105,34 @@ sudo hp-setup
 
 <p>We need to hack the install <code>/usr/share/hplip/prnt/cups.py</code>
 so that it runs:</p>
-<div class="highlight"><pre><span></span><code><span class="gd">--- cups.py.orig    2019-02-05 22:44:34.000000000 +0100</span>
-<span class="gi">+++ cups.py 2019-02-19 11:45:00.793904202 +0100</span>
-<span class="gu">@@ -324,14 +324,17 @@</span>
-                         except AttributeError: # happens on some boxes with provider: style ppds (foomatic: etc)
-                             path = ppd
-                         else:
-<span class="gd">-                            if not os.path.exists(path):</span>
-<span class="gd">-                                try:</span>
-<span class="gd">-                                    path = os.path.join(cups_ppd_path, ppd)</span>
-<span class="gd">-                                except AttributeError:</span>
-<span class="gd">-                                    path = ppd</span>
-<span class="gd">-                                else:</span>
-<span class="gd">-                                    if not os.path.exists(path):</span>
-<span class="gd">-                                        path = ppd # foomatic: or some other driver</span>
-<span class="gi">+                            log.debug(cups_ppd_path)</span>
-<span class="gi">+                            log.debug(ppd)</span>
-<span class="gi">+                            #if not os.path.exists(path):</span>
-<span class="gi">+                            #    try:</span>
-<span class="gi">+                            #        path = os.path.join(cups_ppd_path, ppd)</span>
-<span class="gi">+                            #    except AttributeError:</span>
-<span class="gi">+                            #        path = ppd</span>
-<span class="gi">+                            #    else:</span>
-<span class="gi">+                            #        if not os.path.exists(path):</span>
-<span class="gi">+                            #            path = ppd # foomatic: or some other driver</span>
-<span class="gi">+                            path = ppd # foomatic: or some other driver</span>
+<div class="highlight"><pre><span></span><code><span class="gd">--- cups.py.orig    2019-02-05 22:44:34.000000000 +0100</span><span class="w"></span>
+<span class="gi">+++ cups.py 2019-02-19 11:45:00.793904202 +0100</span><span class="w"></span>
+<span class="gu">@@ -324,14 +324,17 @@</span><span class="w"></span>
+<span class="w"> </span>                        except AttributeError: # happens on some boxes with provider: style ppds (foomatic: etc)<span class="w"></span>
+<span class="w"> </span>                            path = ppd<span class="w"></span>
+<span class="w"> </span>                        else:<span class="w"></span>
+<span class="gd">-                            if not os.path.exists(path):</span><span class="w"></span>
+<span class="gd">-                                try:</span><span class="w"></span>
+<span class="gd">-                                    path = os.path.join(cups_ppd_path, ppd)</span><span class="w"></span>
+<span class="gd">-                                except AttributeError:</span><span class="w"></span>
+<span class="gd">-                                    path = ppd</span><span class="w"></span>
+<span class="gd">-                                else:</span><span class="w"></span>
+<span class="gd">-                                    if not os.path.exists(path):</span><span class="w"></span>
+<span class="gd">-                                        path = ppd # foomatic: or some other driver</span><span class="w"></span>
+<span class="gi">+                            log.debug(cups_ppd_path)</span><span class="w"></span>
+<span class="gi">+                            log.debug(ppd)</span><span class="w"></span>
+<span class="gi">+                            #if not os.path.exists(path):</span><span class="w"></span>
+<span class="gi">+                            #    try:</span><span class="w"></span>
+<span class="gi">+                            #        path = os.path.join(cups_ppd_path, ppd)</span><span class="w"></span>
+<span class="gi">+                            #    except AttributeError:</span><span class="w"></span>
+<span class="gi">+                            #        path = ppd</span><span class="w"></span>
+<span class="gi">+                            #    else:</span><span class="w"></span>
+<span class="gi">+                            #        if not os.path.exists(path):</span><span class="w"></span>
+<span class="gi">+                            #            path = ppd # foomatic: or some other driver</span><span class="w"></span>
+<span class="gi">+                            path = ppd # foomatic: or some other driver</span><span class="w"></span>
 
-                     ppds[path] = desc
-                     #log.debug(&quot;%s: %s&quot; % (path, desc))
+<span class="w"> </span>                    ppds[path] = desc<span class="w"></span>
+<span class="w"> </span>                    #log.debug(&quot;%s: %s&quot; % (path, desc))<span class="w"></span>
 </code></pre></div>
 
 <p>Add printer (run with <code>sudo</code>):</p>

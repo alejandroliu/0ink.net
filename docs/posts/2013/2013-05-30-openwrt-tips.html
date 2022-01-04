@@ -70,22 +70,22 @@ server (uHTTPD).</p>
 scripts. It is unclear whether LuCI supports running in this embedded
 interpreter. LuCI seems to work fine (if not better) with the embedded
 Lua interpreter.</p>
-<div class="highlight"><pre><span></span><code><span class="n">root</span><span class="err">@</span><span class="n">OpenWrt</span><span class="p">:</span><span class="o">~</span><span class="c1"># opkg install uhttpd-mod-lua</span>
-<span class="n">Installing</span> <span class="n">uhttpd</span><span class="o">-</span><span class="n">mod</span><span class="o">-</span><span class="n">lua</span> <span class="p">(</span><span class="mi">18</span><span class="p">)</span> <span class="n">to</span> <span class="n">root</span><span class="o">...</span>
-<span class="n">Downloading</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">downloads</span><span class="o">.</span><span class="n">openwrt</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">snapshots</span><span class="o">/</span><span class="n">trunk</span><span class="o">/</span><span class="n">ar71xx</span><span class="o">/</span><span class="n">packages</span><span class="o">/</span><span class="n">uhttpd</span><span class="o">-</span><span class="n">mod</span><span class="o">-</span><span class="n">lua_18_ar71xx</span><span class="o">.</span><span class="n">ipk</span><span class="o">.</span>
-<span class="n">Configuring</span> <span class="n">uhttpd</span><span class="o">-</span><span class="n">mod</span><span class="o">-</span><span class="n">lua</span><span class="o">.</span>
-<span class="n">root</span><span class="err">@</span><span class="n">OpenWrt</span><span class="p">:</span><span class="o">~</span><span class="c1"># uci set uhttpd.main.lua_prefix=/lua</span>
-<span class="n">root</span><span class="err">@</span><span class="n">OpenWrt</span><span class="p">:</span><span class="o">~</span><span class="c1"># uci set uhttpd.main.lua_handler=/root/test.lua</span>
-<span class="n">root</span><span class="err">@</span><span class="n">OpenWrt</span><span class="p">:</span><span class="o">~</span><span class="c1"># cat /root/test.lua</span>
-<span class="n">function</span> <span class="n">handle_request</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
-        <span class="n">uhttpd</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;HTTP/1.0 200 OKrn&quot;</span><span class="p">)</span>
-        <span class="n">uhttpd</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;Content-Type: text/plainrnrn&quot;</span><span class="p">)</span>
-        <span class="n">uhttpd</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;Hello world.n&quot;</span><span class="p">)</span>
-<span class="n">end</span>
-<span class="n">root</span><span class="err">@</span><span class="n">OpenWrt</span><span class="p">:</span><span class="o">~</span><span class="c1"># /etc/init.d/uhttpd restart</span>
-<span class="n">root</span><span class="err">@</span><span class="n">OpenWrt</span><span class="p">:</span><span class="o">~</span><span class="c1"># wget -qO- http://127.0.0.1/lua/</span>
-<span class="n">Hello</span> <span class="n">world</span><span class="o">.</span>
-<span class="n">root</span><span class="err">@</span><span class="n">OpenWrt</span><span class="p">:</span><span class="o">~</span><span class="c1">#</span>
+<div class="highlight"><pre><span></span><code><span class="n">root</span><span class="err">@</span><span class="n">OpenWrt</span><span class="p">:</span><span class="o">~</span><span class="c1"># opkg install uhttpd-mod-lua</span><span class="w"></span>
+<span class="n">Installing</span><span class="w"> </span><span class="n">uhttpd</span><span class="o">-</span><span class="n">mod</span><span class="o">-</span><span class="n">lua</span><span class="w"> </span><span class="p">(</span><span class="mi">18</span><span class="p">)</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">root</span><span class="o">...</span><span class="w"></span>
+<span class="n">Downloading</span><span class="w"> </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">downloads</span><span class="o">.</span><span class="n">openwrt</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">snapshots</span><span class="o">/</span><span class="n">trunk</span><span class="o">/</span><span class="n">ar71xx</span><span class="o">/</span><span class="n">packages</span><span class="o">/</span><span class="n">uhttpd</span><span class="o">-</span><span class="n">mod</span><span class="o">-</span><span class="n">lua_18_ar71xx</span><span class="o">.</span><span class="n">ipk</span><span class="o">.</span><span class="w"></span>
+<span class="n">Configuring</span><span class="w"> </span><span class="n">uhttpd</span><span class="o">-</span><span class="n">mod</span><span class="o">-</span><span class="n">lua</span><span class="o">.</span><span class="w"></span>
+<span class="n">root</span><span class="err">@</span><span class="n">OpenWrt</span><span class="p">:</span><span class="o">~</span><span class="c1"># uci set uhttpd.main.lua_prefix=/lua</span><span class="w"></span>
+<span class="n">root</span><span class="err">@</span><span class="n">OpenWrt</span><span class="p">:</span><span class="o">~</span><span class="c1"># uci set uhttpd.main.lua_handler=/root/test.lua</span><span class="w"></span>
+<span class="n">root</span><span class="err">@</span><span class="n">OpenWrt</span><span class="p">:</span><span class="o">~</span><span class="c1"># cat /root/test.lua</span><span class="w"></span>
+<span class="n">function</span><span class="w"> </span><span class="n">handle_request</span><span class="p">(</span><span class="n">env</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">uhttpd</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;HTTP/1.0 200 OKrn&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">uhttpd</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;Content-Type: text/plainrnrn&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">uhttpd</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;Hello world.n&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="n">end</span><span class="w"></span>
+<span class="n">root</span><span class="err">@</span><span class="n">OpenWrt</span><span class="p">:</span><span class="o">~</span><span class="c1"># /etc/init.d/uhttpd restart</span><span class="w"></span>
+<span class="n">root</span><span class="err">@</span><span class="n">OpenWrt</span><span class="p">:</span><span class="o">~</span><span class="c1"># wget -qO- http://127.0.0.1/lua/</span><span class="w"></span>
+<span class="n">Hello</span><span class="w"> </span><span class="n">world</span><span class="o">.</span><span class="w"></span>
+<span class="n">root</span><span class="err">@</span><span class="n">OpenWrt</span><span class="p">:</span><span class="o">~</span><span class="c1">#</span><span class="w"></span>
 </code></pre></div>
 
 <p>Tested on Backfire 10.03.1 with uHTTPd 28.</p>
