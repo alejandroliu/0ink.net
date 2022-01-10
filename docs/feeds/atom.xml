@@ -1,5 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2022-01-04T18:38:11+01:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>Pelican Test page</title><link href="https://0ink.net/posts/2021/2021-12-26-pelican_tests.html" rel="alternate"></link><published>2021-12-26T00:00:00+01:00</published><updated>2022-01-04T18:38:11+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2021-12-26:/posts/2021/2021-12-26-pelican_tests.html</id><summary type="html">&lt;div class="toc"&gt;&lt;span class="toctitle"&gt;Table of Contents&lt;/span&gt;&lt;ul&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2022-01-10T17:29:50+01:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>lnbin</title><link href="https://0ink.net/posts/2022/2022-01-10-lnbin.html" rel="alternate"></link><published>2022-01-10T00:00:00+01:00</published><updated>2022-01-10T17:09:50+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-01-10:/posts/2022/2022-01-10-lnbin.html</id><summary type="html">&lt;p&gt;This is my &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/lnbin"&gt;lnbin&lt;/a&gt; script.&lt;/p&gt;
+&lt;p&gt;This is a program for managing symlink in a &lt;code&gt;/usr/local/bin&lt;/code&gt;
+directory.  It is similar to stow, lndir, cleanlinks and
+others.&lt;/p&gt;
+&lt;p&gt;The approach used by &lt;em&gt;lnbin&lt;/em&gt; is based on Stow, and it is to install
+each into its own tree, then use symbolic links …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is my &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/lnbin"&gt;lnbin&lt;/a&gt; script.&lt;/p&gt;
+&lt;p&gt;This is a program for managing symlink in a &lt;code&gt;/usr/local/bin&lt;/code&gt;
+directory.  It is similar to stow, lndir, cleanlinks and
+others.&lt;/p&gt;
+&lt;p&gt;The approach used by &lt;em&gt;lnbin&lt;/em&gt; is based on Stow, and it is to install
+each into its own tree, then use symbolic links to make its bin
+directory, so that the command can be in the executable path.&lt;/p&gt;
+&lt;p&gt;When run, &lt;em&gt;lnbin&lt;/em&gt; examines packages in &lt;code&gt;pkgs-dir&lt;/code&gt; and the
+&lt;code&gt;target&lt;/code&gt; directory (see OPTIONS), adding or removing links as
+needed.&lt;/p&gt;
+&lt;h2 id="sample-usage"&gt;Sample usage:&lt;/h2&gt;
+&lt;h3 id="pkg-installation"&gt;pkg installation&lt;/h3&gt;
+&lt;p&gt;The standard way to use &lt;em&gt;lnbin&lt;/em&gt; is:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;download source package&lt;/li&gt;
+&lt;li&gt;build and install package&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# extract archive&lt;/span&gt;
+tar zxvf archive-x.x.tar.gz
+&lt;span class="nb"&gt;cd&lt;/span&gt; archive-x.x
+&lt;span class="c1"&gt;# GNU autoconf&lt;/span&gt;
+./configure --prefix&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/usr/local/pkgs/archive-x.x&amp;quot;&lt;/span&gt;
+make
+&lt;span class="c1"&gt;# Package installation&lt;/span&gt;
+make install
+&lt;span class="c1"&gt;# ... or ...&lt;/span&gt;
+make install &lt;span class="nv"&gt;DESTDIR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/pkgs/archive-x.x
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;update symlinks in /usr/local&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /usr/local/bin
+lnbin -v update ../pkgs
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="removing-packages"&gt;Removing packages&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;rm -rf /usr/local/pkgs/archive-x.x
+&lt;span class="nb"&gt;cd&lt;/span&gt; /usr/local/bin
+lnbin -v update ../pkgs
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id="updating-symlinks"&gt;Updating symlinks&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;cd /usr/local/bin
+lnbin -v update ../pkgs
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This will add new links and/or remove obsolete links&lt;/p&gt;</content><category term="2022"></category><category term="directory"></category><category term="installation"></category></entry><entry><title>Meta Database</title><link href="https://0ink.net/posts/2022/2022-01-10-meta_db.html" rel="alternate"></link><published>2022-01-10T00:00:00+01:00</published><updated>2022-01-10T17:09:50+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-01-10:/posts/2022/2022-01-10-meta_db.html</id><summary type="html">&lt;p&gt;So I was looking for a way to version control database schemas,
+but I never found something that worked for me.  I found all
+these options that never seem to match what I wanted:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://freecode.com/projects/metabase"&gt;metabase&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/victorstanciu/dbv"&gt;dbv&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://deltasql.sourceforge.net/features.php"&gt;delta sql&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://propelorm.org/"&gt;Propel&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://phinx.org/"&gt;phinx&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.doctrine-project.org/"&gt;doctrine&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://redbeanphp.com/index.php"&gt;redbeanphp&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;At the end, I finally began doing the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;So I was looking for a way to version control database schemas,
+but I never found something that worked for me.  I found all
+these options that never seem to match what I wanted:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://freecode.com/projects/metabase"&gt;metabase&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/victorstanciu/dbv"&gt;dbv&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://deltasql.sourceforge.net/features.php"&gt;delta sql&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://propelorm.org/"&gt;Propel&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://phinx.org/"&gt;phinx&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.doctrine-project.org/"&gt;doctrine&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://redbeanphp.com/index.php"&gt;redbeanphp&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;At the end, I finally began doing the following.&lt;/p&gt;
+&lt;p&gt;The first schema release, I would create a file called:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;init-1.0.sql&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This would contain all the sql statements needed to initialize
+the database.  To indicate this is the current version I would
+create a symlink to it:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;init.sql -&amp;gt; init-1.0.sql&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The next schema update I would create file with the commands
+to transform the schema.  i.e. additional &lt;code&gt;CREATE DATABASE&lt;/code&gt; or
+&lt;code&gt;ALTER TABLE&lt;/code&gt; etc.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;upgrade-1.1.sql&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So actually, the &lt;code&gt;upgrade&lt;/code&gt; file would be the working version
+used for development.  For release then I would create a
+new &lt;code&gt;init&lt;/code&gt; file.  Either doing it manually or by doing:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;cat init-1.0.sql upgrade-1.1.sql &amp;gt; init-1.1.sql
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;To indicate that this is the current version, the symlink would
+be updated:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;init.sql -&amp;gt; init-1.1.sql&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="final-notes"&gt;Final notes&lt;/h2&gt;
+&lt;p&gt;This would end-up with a history of schema changes and scripts that
+could be used to upgrade the database schema from any version to
+any later version.&lt;/p&gt;</content><category term="2022"></category><category term="database"></category><category term="scripts"></category></entry><entry><title>nas ops cmd</title><link href="https://0ink.net/posts/2022/2022-01-05-ops.html" rel="alternate"></link><published>2022-01-05T00:00:00+01:00</published><updated>2022-01-10T17:09:50+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-01-05:/posts/2022/2022-01-05-ops.html</id><summary type="html">&lt;p&gt;This is my &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/opcmd"&gt;op&lt;/a&gt; script.&lt;/p&gt;
+&lt;p&gt;This is stupidly simple script to elevate priviledges in order to
+manage NFS shares on my QNAP NAS.&lt;/p&gt;
+&lt;p&gt;The idea is that NFS shares do &lt;code&gt;squash-root&lt;/code&gt; so admin access is
+disallowed through NFS.  This gives a convenient way to issue
+root level commands without using …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is my &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/opcmd"&gt;op&lt;/a&gt; script.&lt;/p&gt;
+&lt;p&gt;This is stupidly simple script to elevate priviledges in order to
+manage NFS shares on my QNAP NAS.&lt;/p&gt;
+&lt;p&gt;The idea is that NFS shares do &lt;code&gt;squash-root&lt;/code&gt; so admin access is
+disallowed through NFS.  This gives a convenient way to issue
+root level commands without using NFS but instead use &lt;code&gt;ssh&lt;/code&gt;
+(and ssh authentication) to do this, which should provide
+stronger security.&lt;/p&gt;
+&lt;p&gt;This script makes the following assumptions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;the user has a &lt;code&gt;ssh-key&lt;/code&gt; with admin access on the NAS.&lt;/li&gt;
+&lt;li&gt;NFS is mounted using &lt;code&gt;autofs&lt;/code&gt; and is on the &lt;code&gt;/net&lt;/code&gt; virtual folder.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The way it works is that it uses the current working directory
+when the command is launch.  It then resolves any symlink path and
+check is the directory is in the &lt;code&gt;/net/&lt;/code&gt; virtual folder so the
+NFS server is the second component of the path.&lt;/p&gt;</content><category term="2022"></category><category term="directory"></category><category term="idea"></category><category term="security"></category></entry><entry><title>Graphviz markdown extensions</title><link href="https://0ink.net/posts/2022/2022-01-04-graphviz.html" rel="alternate"></link><published>2022-01-04T00:00:00+01:00</published><updated>2022-01-10T17:09:50+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-01-04:/posts/2022/2022-01-04-graphviz.html</id><summary type="html">&lt;p&gt;I have enabled several extensions to my &lt;a href="https://github.com/getpelican/pelican"&gt;pelican&lt;/a&gt; website.&lt;/p&gt;
+&lt;p&gt;One that I wanted to include was &lt;a href="https://graphviz.org/"&gt;graphviz&lt;/a&gt;.  So, I searched
+for one and while I found a few, they somehow, did not work for me.&lt;/p&gt;
+&lt;p&gt;So I wrote my own: &lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/src/mdx/mdx_graphviz.py"&gt;mdx_graphviz&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It is quite straight forward.  You just need to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I have enabled several extensions to my &lt;a href="https://github.com/getpelican/pelican"&gt;pelican&lt;/a&gt; website.&lt;/p&gt;
+&lt;p&gt;One that I wanted to include was &lt;a href="https://graphviz.org/"&gt;graphviz&lt;/a&gt;.  So, I searched
+for one and while I found a few, they somehow, did not work for me.&lt;/p&gt;
+&lt;p&gt;So I wrote my own: &lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/src/mdx/mdx_graphviz.py"&gt;mdx_graphviz&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It is quite straight forward.  You just need to create blocks:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;dot&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;digraph&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;rankdir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;LR&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;Earth&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;peripheries&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;Mars&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;Earth&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Mars&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You can use this &lt;a href="http://magjac.com/graphviz-visual-editor/"&gt;Graphviz Visual Editor&lt;/a&gt; for a more
+interactive approach.&lt;/p&gt;</content><category term="2022"></category></entry><entry><title>Linux stuff</title><link href="https://0ink.net/posts/2022/2022-01-04-linuxstuff.html" rel="alternate"></link><published>2022-01-04T00:00:00+01:00</published><updated>2022-01-10T17:09:50+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-01-04:/posts/2022/2022-01-04-linuxstuff.html</id><summary type="html">&lt;h2 id="sudoers"&gt;Sudoers&lt;/h2&gt;
+&lt;p&gt;Since &lt;a href="https://www.sudo.ws/"&gt;sudo&lt;/a&gt; v1.9, it is possible to use the following
+statements:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;#includedir&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;@includedir&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is useful better for adding sudo rules rather than modifying
+the &lt;code&gt;/etc/sudoers&lt;/code&gt; file.&lt;/p&gt;
+&lt;p&gt;Make sure that the &lt;code&gt;includedir&lt;/code&gt; statement is the &lt;strong&gt;LAST&lt;/strong&gt; entry
+in &lt;code&gt;/etc/sudoers&lt;/code&gt; and the files in the directory:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;names …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;h2 id="sudoers"&gt;Sudoers&lt;/h2&gt;
+&lt;p&gt;Since &lt;a href="https://www.sudo.ws/"&gt;sudo&lt;/a&gt; v1.9, it is possible to use the following
+statements:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;#includedir&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;@includedir&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is useful better for adding sudo rules rather than modifying
+the &lt;code&gt;/etc/sudoers&lt;/code&gt; file.&lt;/p&gt;
+&lt;p&gt;Make sure that the &lt;code&gt;includedir&lt;/code&gt; statement is the &lt;strong&gt;LAST&lt;/strong&gt; entry
+in &lt;code&gt;/etc/sudoers&lt;/code&gt; and the files in the directory:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;names do not contain &lt;code&gt;.&lt;/code&gt; (dots)&lt;/li&gt;
+&lt;li&gt;ownership to &lt;code&gt;root&lt;/code&gt;:&lt;code&gt;root&lt;/code&gt; and permission is set to &lt;code&gt;0440&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;</content><category term="2022"></category><category term="sudo"></category></entry><entry><title>Pelican Test page</title><link href="https://0ink.net/posts/2021/2021-12-26-pelican_tests.html" rel="alternate"></link><published>2021-12-26T00:00:00+01:00</published><updated>2022-01-10T17:09:50+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2021-12-26:/posts/2021/2021-12-26-pelican_tests.html</id><summary type="html">&lt;div class="toc"&gt;&lt;span class="toctitle"&gt;Table of Contents&lt;/span&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href="#shortcodes"&gt;shortcodes&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#mytags"&gt;mytags&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#drawings"&gt;Drawings&lt;/a&gt;&lt;ul&gt;
@@ -226,7 +400,7 @@ I added.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;h2 id="my-mdx-variables"&gt;my mdx variables&lt;/h2&gt;
 &lt;p&gt;We use &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/adhoc-rsync/send-nc"&gt;snippets&lt;/a&gt; as an example.&lt;/p&gt;
-&lt;p&gt;How we handle missing ${VARS}.&lt;/p&gt;</content><category term="2021"></category><category term="address"></category><category term="browser"></category><category term="markdown"></category><category term="network"></category></entry><entry><title>DVTM</title><link href="https://0ink.net/posts/2021/2021-12-23-dvtm.html" rel="alternate"></link><published>2021-12-23T00:00:00+01:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2021-12-23:/posts/2021/2021-12-23-dvtm.html</id><summary type="html">&lt;p&gt;The other day I found &lt;a href="http://www.brain-dump.org/projects/dvtm/"&gt;dvtm&lt;/a&gt;.  Looking at it, it
+&lt;p&gt;How we handle missing ${VARS}.&lt;/p&gt;</content><category term="2021"></category><category term="address"></category><category term="browser"></category><category term="database"></category><category term="markdown"></category><category term="network"></category></entry><entry><title>DVTM</title><link href="https://0ink.net/posts/2021/2021-12-23-dvtm.html" rel="alternate"></link><published>2021-12-23T00:00:00+01:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2021-12-23:/posts/2021/2021-12-23-dvtm.html</id><summary type="html">&lt;p&gt;The other day I found &lt;a href="http://www.brain-dump.org/projects/dvtm/"&gt;dvtm&lt;/a&gt;.  Looking at it, it
 looks very nice.  It appeals to me because I am particularly
 fond of text user interfaces.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="screencast" src="/images/2021/dvtm-screencast.gif"&gt;&lt;/p&gt;
@@ -731,6 +905,11 @@ I am using nowadays.&lt;/p&gt;
 
 &lt;span class="n"&gt;pelican&lt;/span&gt;&lt;span class="w"&gt;             &lt;/span&gt;&lt;span class="c1"&gt;# static site generator&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="n"&gt;mdcat&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;python3&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;yaml&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;python3&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Markdown&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;python3&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;GitPython&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;graphviz&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
 
 &lt;span class="n"&gt;asciidoc&lt;/span&gt;&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="c1"&gt;# alt: ruby-asciidoctor&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="c1"&gt;# bootiso           # Create USB boot discs from ISOs&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
@@ -738,13 +917,6 @@ I am using nowadays.&lt;/p&gt;
 &lt;span class="c1"&gt;# pandoc            # convert md to epub&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
 &lt;span class="c1"&gt;# pidgin pidgin-sipe avahi  # chat app&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-
-&lt;span class="c1"&gt;#python-pip&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="c1"&gt;#python3-bottle&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="c1"&gt;#python3-tkinter&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;python3&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;yaml&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;python3&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Markdown&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;python3&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;GitPython&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
 &lt;span class="c1"&gt;#qemu&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="c1"&gt;#libvirt&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
@@ -2384,54 +2556,54 @@ root filesystem was destroyed.  It requires to have a backup of the
 &lt;li&gt;&lt;code&gt;xbps-reconfigure -f linux4.19&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Update boot menu entries:&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;bash /boot/mkmenu.sh&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><category term="2019"></category><category term="backup"></category><category term="boot"></category><category term="device"></category><category term="encryption"></category><category term="filesystem"></category><category term="idea"></category><category term="partition"></category></entry><entry><title>Installing Void Linux</title><link href="https://0ink.net/posts/2019/2019-02-19-installing-void.html" rel="alternate"></link><published>2019-02-19T00:00:00+01:00</published><updated>2021-12-25T01:32:48+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2019-02-19:/posts/2019/2019-02-19-installing-void.html</id><summary type="html">&lt;p&gt;I made the switch to [void linux][void].  Except for compatibility
+&lt;/ol&gt;</content><category term="2019"></category><category term="backup"></category><category term="boot"></category><category term="device"></category><category term="encryption"></category><category term="filesystem"></category><category term="idea"></category><category term="partition"></category></entry><entry><title>Installing Void Linux</title><link href="https://0ink.net/posts/2019/2019-02-19-installing-void.html" rel="alternate"></link><published>2019-02-19T00:00:00+01:00</published><updated>2022-01-10T17:29:50+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2019-02-19:/posts/2019/2019-02-19-installing-void.html</id><summary type="html">&lt;p&gt;I made the switch to &lt;a href="https://voidlinux.org" title="Void Linux"&gt;void linux&lt;/a&gt;.  Except for compatibility
 issues around &lt;code&gt;glibc&lt;/code&gt;, it works quite well.  Most compatibility
 I have worked around with a combination of &lt;code&gt;Flatpak&lt;/code&gt;s, &lt;code&gt;chroot&lt;/code&gt;s and
 &lt;code&gt;namespaces&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;The high lights of [void linux][void]:&lt;/p&gt;
+&lt;p&gt;The high lights of &lt;a href="https://voidlinux.org" title="Void Linux"&gt;void linux&lt;/a&gt;:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;musl build - which is very lightweigth&lt;/li&gt;
-&lt;li&gt;Does not depend …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;I made the switch to [void linux][void].  Except for compatibility
+&lt;li&gt;Does not depend on &lt;code&gt;systemd …&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;I made the switch to &lt;a href="https://voidlinux.org" title="Void Linux"&gt;void linux&lt;/a&gt;.  Except for compatibility
 issues around &lt;code&gt;glibc&lt;/code&gt;, it works quite well.  Most compatibility
 I have worked around with a combination of &lt;code&gt;Flatpak&lt;/code&gt;s, &lt;code&gt;chroot&lt;/code&gt;s and
 &lt;code&gt;namespaces&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;The high lights of [void linux][void]:&lt;/p&gt;
+&lt;p&gt;The high lights of &lt;a href="https://voidlinux.org" title="Void Linux"&gt;void linux&lt;/a&gt;:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;musl build - which is very lightweigth&lt;/li&gt;
 &lt;li&gt;Does not depend on &lt;code&gt;systemd&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;a reasonable selection of software packages&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I have tweaked the installation on my computers to use UEFI and thus
-I am using [rEFInd][refind] instead of grub.  This is because it makes
+I am using &lt;a href="http://www.rodsbooks.com/refind/" title="rEFInd bootloader"&gt;rEFInd&lt;/a&gt; instead of grub.  This is because it makes
 doing bare metal backups and restore just a simple file copy.&lt;/p&gt;
-&lt;p&gt;My installation process roughly follows the [UEFI chroot install][void-uefi].&lt;/p&gt;
+&lt;p&gt;My installation process roughly follows the &lt;a href="https://wiki.voidlinux.org/Installation_on_UEFI,_via_chroot" title="Install void linux on UEFI via chroot"&gt;UEFI chroot install&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This process is implemented in a script and can be found here:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/install.sh"&gt;install.sh&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Script usage:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;Usage&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;installer&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sdx_&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;_hostname_&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    Usage: installer.sh &lt;span class="ge"&gt;_/dev/sdx_&lt;/span&gt; &lt;span class="ge"&gt;_hostname_&lt;/span&gt; [options]
 
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;_sdx_&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Block&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;device&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;or&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nc"&gt;image&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;:size&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;create&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;virtual&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;disc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;image&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;imgset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;filebase&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;:size&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;create&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;virtual&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;filesystem&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;image&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;set&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;dirpath&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;create&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;directory&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;_hostname_&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Hostname&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;use&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+    &lt;span class="k"&gt;-&lt;/span&gt; &lt;span class="ge"&gt;_sdx_&lt;/span&gt;: Block device to install to or
+      &lt;span class="k"&gt;-&lt;/span&gt; --image=filepath[:size] to create a virtual disc image
+      &lt;span class="k"&gt;-&lt;/span&gt; --imgset=filebase[:size] to create a virtual filesystem image set
+      &lt;span class="k"&gt;-&lt;/span&gt; --dir=dirpath to create a directory
+    &lt;span class="k"&gt;-&lt;/span&gt; &lt;span class="ge"&gt;_hostname_&lt;/span&gt;: Hostname to use
 
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nl"&gt;Options&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;swap&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;kbs&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;swap&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;size&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;defaults&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;computed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;proc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;meminfo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;uses&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;numfmt&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;parse&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;values&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;glibc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Do&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;glibc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;noxwin&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;do&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;insall&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;X11&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;related&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;nodesktop&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;do&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;desktop&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;environment&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;desktop&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;mate&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Install&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;MATE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dekstop&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;environment&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;passwd&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;prompt&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;specified&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;enc&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;passwd&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;encrypted&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;encrypted&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ovl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gz&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;tarball&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;containing&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;additional&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;files&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;post&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;post&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pkgs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;file&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;text&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;file&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;containing&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;additional&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;software&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;bios&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;create&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;BIOS&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;boot&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;system&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;needs&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;syslinux&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cache&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;path&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;use&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;file&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;path&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;download&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cache&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;xen&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;do&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;some&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;xen&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;specific&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;tweaks&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+    Options:
+    &lt;span class="k"&gt;-&lt;/span&gt; swap=kbs : swap size, defaults computed from /proc/meminfo, uses numfmt to parse values
+    &lt;span class="k"&gt;-&lt;/span&gt; glibc : Do a glibc install
+    &lt;span class="k"&gt;-&lt;/span&gt; noxwin : do not insall X11 related packages
+    &lt;span class="k"&gt;-&lt;/span&gt; nodesktop ; do not install desktop environment
+    &lt;span class="k"&gt;-&lt;/span&gt; desktop=mate : Install MATE dekstop environment
+    &lt;span class="k"&gt;-&lt;/span&gt; passwd=password : root password (prompt if not specified)
+    &lt;span class="k"&gt;-&lt;/span&gt; enc-passwd=encrypted : encrypted root password.
+    &lt;span class="k"&gt;-&lt;/span&gt; ovl=tar.gz : tarball containing additional files
+    &lt;span class="k"&gt;-&lt;/span&gt; post=script : run a post install script
+    &lt;span class="k"&gt;-&lt;/span&gt; pkgs=file : text file containing additional software to install
+    &lt;span class="k"&gt;-&lt;/span&gt; bios : create a BIOS boot system (needs syslinux)
+    &lt;span class="k"&gt;-&lt;/span&gt; cache=path : use the file path for download cache
+    &lt;span class="k"&gt;-&lt;/span&gt; xen : do some xen specific tweaks
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h4 id="command-line-examples"&gt;Command line examples&lt;/h4&gt;
@@ -2454,7 +2626,7 @@ the following partitions:&lt;/p&gt;
 &lt;/ol&gt;
 &lt;p&gt;This is on a USB thumb drive.  The data I keep on an internal disk.&lt;/p&gt;
 &lt;p&gt;Now we create the filesystems:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;mkfs.vfat -F 32 -n EFI /dev/xda1
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;mkfs.vfat -F &lt;span class="m"&gt;32&lt;/span&gt; -n EFI /dev/xda1
 mkswap -L swp0 /dev/xda2
 mkfs.xfs -f -L voidlinux /dev/xda3
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -2468,11 +2640,11 @@ mount /dev/xda1 /mnt/boot
 &lt;h3 id="installing-void"&gt;Installing Void&lt;/h3&gt;
 &lt;p&gt;So we do a targeted install:&lt;/p&gt;
 &lt;p&gt;For musl-libc&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;env XBPS_ARCH=x86_64-musl xbps-install -S -R http://alpha.de.repo.voidlinux.org/current/musl -r /mnt base-system grub-x86_64-efi
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;env &lt;span class="nv"&gt;XBPS_ARCH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;x86_64-musl xbps-install -S -R http://alpha.de.repo.voidlinux.org/current/musl -r /mnt base-system grub-x86_64-efi
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;For glibc&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;env XBPS_ARCH=x86_64 xbps-install -S -R http://alpha.de.repo.voidlinux.org/current -r /mnt base-system grub-x86_64-efi
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;env &lt;span class="nv"&gt;XBPS_ARCH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;x86_64 xbps-install -S -R http://alpha.de.repo.voidlinux.org/current -r /mnt base-system grub-x86_64-efi
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;But actually, for the package list I have been using these lists:&lt;/p&gt;
@@ -2480,7 +2652,7 @@ mount /dev/xda1 /mnt/boot
 &lt;script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&amp;showBorder=on&amp;showLineNumbers=on&amp;showFileMeta=on&amp;showCopy=on&amp;fetchFromJsDelivr=on&amp;target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/swlist-xwin.txt?footer=minimal"&gt;&lt;/script&gt;
 &lt;script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&amp;showBorder=on&amp;showLineNumbers=on&amp;showFileMeta=on&amp;showCopy=on&amp;fetchFromJsDelivr=on&amp;target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/swlist-mate.txt?footer=minimal"&gt;&lt;/script&gt;
 
-&lt;p&gt;This installs a [MATE][mate] desktop environment.&lt;/p&gt;
+&lt;p&gt;This installs a &lt;a href="https://mate-desktop.org/" title="MATE Desktop environment"&gt;MATE&lt;/a&gt; desktop environment.&lt;/p&gt;
 &lt;h4 id="software-selection-notes"&gt;Software selection notes&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;For time synchronisation (ntp) we ae choosing &lt;code&gt;chrony&lt;/code&gt; as it is
@@ -2501,11 +2673,11 @@ mount /dev/xda1 /mnt/boot
 non-free software and in the case of glibc, multilib (32 bit)
 binaries.&lt;/p&gt;
 &lt;p&gt;To enable under the musl version:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;env XBPS_ARCH=&amp;quot;$arch&amp;quot; xbps-install -y -S -R &amp;quot;$voidurl&amp;quot; -r /mnt void-repo-nonfree
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;env &lt;span class="nv"&gt;XBPS_ARCH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$arch&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; xbps-install -y -S -R &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$voidurl&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; -r /mnt void-repo-nonfree
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;For glibc:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;env XBPS_ARCH=&amp;quot;$arch&amp;quot; xbps-install -y -S -R &amp;quot;$voidurl&amp;quot; -r /mnt void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;env &lt;span class="nv"&gt;XBPS_ARCH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$arch&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; xbps-install -y -S -R &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$voidurl&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; -r /mnt void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Then you can install non-free software, like:&lt;/p&gt;
@@ -2515,7 +2687,7 @@ binaries.&lt;/p&gt;
 &lt;p&gt;Upon completion of the install, we set up our chroot jail, and chroot into our mounted filesystem:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;mount -t proc proc /mnt/proc
 mount -t sysfs sys /mnt/sys
-mount -o bind /dev /mnt/dev
+mount -o &lt;span class="nb"&gt;bind&lt;/span&gt; /dev /mnt/dev
 mount -t devpts pts /mnt/dev/pts
 cp -L /etc/resolv.conf /mnt/etc/
 chroot /mnt bash -il
@@ -2526,34 +2698,34 @@ chroot /mnt bash -il
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;The output should look something akin to the following:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;total&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;drwxr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;xr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;4096&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Jan&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;27&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;drwxr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;xr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;4096&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Jan&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;..&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;lrwxrwxrwx&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Jan&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;26&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;drwxr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;xr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;127&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Jan&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;37&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;boot&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;drwxr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;xr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Jan&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;26&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;drwxr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;xr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;26&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;4096&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Jan&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;27&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;drwxr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;xr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Jan&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;26&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;lrwxrwxrwx&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Jan&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;26&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;lrwxrwxrwx&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Jan&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;26&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;lib32&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib32&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;lrwxrwxrwx&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Jan&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;26&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;lib64&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;drwxr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;xr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Jan&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;26&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;media&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;drwxr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;xr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Jan&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;26&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;mnt&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;drwxr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;xr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Jan&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;26&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;opt&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;drwxr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;xr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Jan&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;26&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;proc&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;drwxr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;---&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="mi"&gt;26&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Jan&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;39&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;drwxr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;xr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Jan&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;26&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;lrwxrwxrwx&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Jan&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;26&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sbin&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sbin&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;drwxr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;xr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Jan&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;26&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;drwxrwxrwt&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Jan&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;drwxr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;xr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;123&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Jan&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;26&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;drwxr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;xr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;150&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Jan&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;26&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;total 12
+drwxr-xr-x 16 root root 4096 Jan 17 15:27 .
+drwxr-xr-x  3 root root 4096 Jan 17 15:16 ..
+lrwxrwxrwx  1 root root    7 Jan 17 15:26 bin -&amp;gt; usr/bin
+drwxr-xr-x  4 root root  127 Jan 17 15:37 boot
+drwxr-xr-x  2 root root   17 Jan 17 15:26 dev
+drwxr-xr-x 26 root root 4096 Jan 17 15:27 etc
+drwxr-xr-x  2 root root    6 Jan 17 15:26 home
+lrwxrwxrwx  1 root root    7 Jan 17 15:26 lib -&amp;gt; usr/lib
+lrwxrwxrwx  1 root root    9 Jan 17 15:26 lib32 -&amp;gt; usr/lib32
+lrwxrwxrwx  1 root root    7 Jan 17 15:26 lib64 -&amp;gt; usr/lib
+drwxr-xr-x  2 root root    6 Jan 17 15:26 media
+drwxr-xr-x  2 root root    6 Jan 17 15:26 mnt
+drwxr-xr-x  2 root root    6 Jan 17 15:26 opt
+drwxr-xr-x  2 root root    6 Jan 17 15:26 proc
+drwxr-x---  2 root root   26 Jan 17 15:39 root
+drwxr-xr-x  3 root root   17 Jan 17 15:26 run
+lrwxrwxrwx  1 root root    8 Jan 17 15:26 sbin -&amp;gt; usr/sbin
+drwxr-xr-x  2 root root    6 Jan 17 15:26 sys
+drwxrwxrwt  2 root root    6 Jan 17 15:15 tmp
+drwxr-xr-x 11 root root  123 Jan 17 15:26 usr
+drwxr-xr-x 11 root root  150 Jan 17 15:26 var
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;While chrooted, we create the password for the root user, and set root access permissions:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt; passwd root
  chown root:root /
- chmod 755 /
+ chmod &lt;span class="m"&gt;755&lt;/span&gt; /
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Since I am a &lt;code&gt;bash&lt;/code&gt; convert, I would do this:&lt;/p&gt;
@@ -2561,39 +2733,39 @@ chroot /mnt bash -il
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Create the &lt;code&gt;hostname&lt;/code&gt; for the new install:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;echo &amp;lt;HOSTNAME&amp;gt; &amp;gt; /etc/hostname
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &amp;lt;HOSTNAME&amp;gt; &amp;gt; /etc/hostname
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Edit our &lt;code&gt;/etc/rc.conf&lt;/code&gt; file, like so:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;HOSTNAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;HOSTNAME&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;HOSTNAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;HOSTNAME&amp;gt;&amp;quot;&lt;/span&gt;
 
-&lt;span class="c1"&gt;# Set RTC to UTC or localtime.&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;HARDWARECLOCK&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;UTC&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="c1"&gt;# Set RTC to UTC or localtime.&lt;/span&gt;
+&lt;span class="nv"&gt;HARDWARECLOCK&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;UTC&amp;quot;&lt;/span&gt;
 
-&lt;span class="c1"&gt;# Set timezone, availables timezones at /usr/share/zoneinfo.&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;TIMEZONE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Europe/Amsterdam&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="c1"&gt;# Set timezone, availables timezones at /usr/share/zoneinfo.&lt;/span&gt;
+&lt;span class="nv"&gt;TIMEZONE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Europe/Amsterdam&amp;quot;&lt;/span&gt;
 
-&lt;span class="c1"&gt;# Keymap to load, see loadkeys(8).&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;KEYMAP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;us-acentos&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="c1"&gt;# Keymap to load, see loadkeys(8).&lt;/span&gt;
+&lt;span class="nv"&gt;KEYMAP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;us-acentos&amp;quot;&lt;/span&gt;
 
-&lt;span class="c1"&gt;# Console font to load, see setfont(8).&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="c1"&gt;#FONT=&amp;quot;lat9w-16&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="c1"&gt;# Console font to load, see setfont(8).&lt;/span&gt;
+&lt;span class="c1"&gt;#FONT=&amp;quot;lat9w-16&amp;quot;&lt;/span&gt;
 
-&lt;span class="c1"&gt;# Console map to load, see setfont(8).&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="c1"&gt;#FONT_MAP=&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="c1"&gt;# Console map to load, see setfont(8).&lt;/span&gt;
+&lt;span class="c1"&gt;#FONT_MAP=&lt;/span&gt;
 
-&lt;span class="c1"&gt;# Font unimap to load, see setfont(8).&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="c1"&gt;#FONT_UNIMAP=&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="c1"&gt;# Font unimap to load, see setfont(8).&lt;/span&gt;
+&lt;span class="c1"&gt;#FONT_UNIMAP=&lt;/span&gt;
 
-&lt;span class="c1"&gt;# Kernel modules to load, delimited by blanks.&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="c1"&gt;#MODULES=&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="c1"&gt;# Kernel modules to load, delimited by blanks.&lt;/span&gt;
+&lt;span class="c1"&gt;#MODULES=&amp;quot;&amp;quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Also, modify the &lt;code&gt;/etc/fstab&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;#
-# See fstab(5).
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;#&lt;/span&gt;
+&lt;span class="gh"&gt;# See fstab(5).&lt;/span&gt;
 
-# &amp;lt;file system&amp;gt; &amp;lt;dir&amp;gt;   &amp;lt;type&amp;gt;  &amp;lt;options&amp;gt;       &amp;lt;dump&amp;gt;  &amp;lt;pass&amp;gt;
+&lt;span class="gh"&gt;# &amp;lt;file system&amp;gt; &amp;lt;dir&amp;gt;   &amp;lt;type&amp;gt;  &amp;lt;options&amp;gt;       &amp;lt;dump&amp;gt;  &amp;lt;pass&amp;gt;&lt;/span&gt;
 tmpfs       /tmp    tmpfs   defaults,nosuid,nodev   0       0
 LABEL=EFI   /boot   vfat    rw,fmask=0133,dmask=0022,noatime,discard  0 2
 LABEL=voidlinux /   xfs rw,relatime,discard 0 1
@@ -2615,9 +2787,9 @@ uncomment:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h3 id="set-up-uefi-boot"&gt;Set-up UEFI boot&lt;/h3&gt;
-&lt;p&gt;Download the [rEFInd][refind] zip binary from:&lt;/p&gt;
+&lt;p&gt;Download the &lt;a href="http://www.rodsbooks.com/refind/" title="rEFInd bootloader"&gt;rEFInd&lt;/a&gt; zip binary from:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;[rEFInd download][getting-refind]&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.rodsbooks.com/refind/getting.html" title="rEFInd download page"&gt;rEFInd download&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Set-up the boot partition:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;mkdir /boot/EFI
@@ -2628,7 +2800,7 @@ mkdir /boot/EFI/BOOT
 &lt;code&gt;/boot/EFI/BOOT/BOOTX64.EFI&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;The version I am using right now can be found here: &lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/BOOTX64.EFI"&gt;v0.11.4 BOOTX64.EFI&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Create kernel options files &lt;code&gt;/boot/cmdline&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;root=LABEL=voidlinux ro quiet
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;root&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;LABEL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;voidlinux ro quiet
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;For my hardware I had to add the option:&lt;/p&gt;
@@ -2665,32 +2837,32 @@ drwxr-xr-x  3 root root 4096 Jan 31 15:22 5.2.13_1
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;If you need to manually prepare boot files:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# update dracut
-dracut --force --kver 4.19.4_1
-# update refind menu
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# update dracut&lt;/span&gt;
+dracut --force --kver &lt;span class="m"&gt;4&lt;/span&gt;.19.4_1
+&lt;span class="c1"&gt;# update refind menu&lt;/span&gt;
 bash /boot/mkmenu.sh
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;We are now ready to boot into [Void][void].&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;exit&lt;/span&gt;
-&lt;span class="nv"&gt;umount&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;R&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;mnt&lt;/span&gt;
-&lt;span class="nv"&gt;reboot&lt;/span&gt;
+&lt;p&gt;We are now ready to boot into &lt;a href="https://voidlinux.org" title="Void Linux"&gt;Void&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;exit&lt;/span&gt;
+umount -R /mnt
+reboot
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h3 id="post-install"&gt;Post install&lt;/h3&gt;
 &lt;p&gt;After the first boot, we need to activate services:&lt;/p&gt;
 &lt;p&gt;Command line set-up:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;ln&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sv&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dhcpcd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;service&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;ln&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sv&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sshd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;service&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;ln&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sv&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;acpid&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;chronyd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;cgmanager&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;crond&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;uuidd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;statd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;rcpbind&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;autofs&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;service&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ln -s /etc/sv/dhcpcd /var/service
+ln -s /etc/sv/sshd /var/service
+ln -s /etc/sv/&lt;span class="o"&gt;{&lt;/span&gt;acpid,chronyd,cgmanager,crond,uuidd,statd,rcpbind,autofs&lt;span class="o"&gt;}&lt;/span&gt; /var/service
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Full workstation set-up:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;ln&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sv&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dbus&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;service&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;ln&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sv&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;NetworkManager&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;service&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;ln&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sv&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sshd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;service&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;ln&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sv&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;acpid&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;chronyd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;cgmanager&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;crond&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;uuidd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;statd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;rcpbind&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;autofs&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;service&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;ln&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sv&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;consolekit&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;xdm&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;service&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ln -s /etc/sv/dbus /var/service
+ln -s /etc/sv/NetworkManager /var/service
+ln -s /etc/sv/sshd /var/service
+ln -s /etc/sv/&lt;span class="o"&gt;{&lt;/span&gt;acpid,chronyd,cgmanager,crond,uuidd,statd,rcpbind,autofs&lt;span class="o"&gt;}&lt;/span&gt; /var/service
+ln -s /etc/sv/&lt;span class="o"&gt;{&lt;/span&gt;consolekit,xdm&lt;span class="o"&gt;}&lt;/span&gt; /var/service
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Creating new users:&lt;/p&gt;
@@ -2704,34 +2876,34 @@ passwd newuser
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Uncomment:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# %wheel ALL=(ALL) ALL
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# %wheel ALL=(ALL) ALL&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h3 id="configure-keyboard"&gt;Configure keyboard&lt;/h3&gt;
 &lt;p&gt;Create configuration file: &lt;code&gt;/etc/X11/xorg.conf.d/30-keyboard.conf&lt;/code&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Section &amp;quot;InputClass&amp;quot;
-    Identifier &amp;quot;keyboard-all&amp;quot;
-    Option &amp;quot;XkbLayout&amp;quot; &amp;quot;us&amp;quot;
-    # Option &amp;quot;XkbModel&amp;quot; &amp;quot;pc105&amp;quot;
-    # Option &amp;quot;XkbVariant&amp;quot; &amp;quot;altgr-intl&amp;quot;
-    Option &amp;quot;XkbVariant&amp;quot; &amp;quot;intl&amp;quot;
-    # MatchIsKeyboard &amp;quot;on&amp;quot;
-EndSection
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="se"&gt;Section&lt;/span&gt; &lt;span class="se"&gt;&amp;quot;InputClass&amp;quot;&lt;/span&gt;
+    &lt;span class="nb"&gt;Identifier&lt;/span&gt; &lt;span class="no"&gt;&amp;quot;keyboard-all&amp;quot;&lt;/span&gt;
+    &lt;span class="nb"&gt;Option&lt;/span&gt; &lt;span class="no"&gt;&amp;quot;XkbLayout&amp;quot; &amp;quot;us&amp;quot;&lt;/span&gt;
+    &lt;span class="c"&gt;# Option &amp;quot;XkbModel&amp;quot; &amp;quot;pc105&amp;quot;&lt;/span&gt;
+    &lt;span class="c"&gt;# Option &amp;quot;XkbVariant&amp;quot; &amp;quot;altgr-intl&amp;quot;&lt;/span&gt;
+    &lt;span class="nb"&gt;Option&lt;/span&gt; &lt;span class="no"&gt;&amp;quot;XkbVariant&amp;quot; &amp;quot;intl&amp;quot;&lt;/span&gt;
+    &lt;span class="c"&gt;# MatchIsKeyboard &amp;quot;on&amp;quot;&lt;/span&gt;
+&lt;span class="se"&gt;EndSection&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;This makes the &lt;code&gt;intl&lt;/code&gt; for the &lt;code&gt;XkbVariant&lt;/code&gt; the system-wide default.&lt;/p&gt;
 &lt;p&gt;Since, as a programmer I prefer the &lt;code&gt;altgr-intl&lt;/code&gt; variant, then I
 run this in my de desktop environment startup to override the
 default:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;setxkbmap&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;rules&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;evdev&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;evdev&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;layout&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;us&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;variant&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;altgr&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;intl&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h3 id="using-xdm"&gt;Using xdm&lt;/h3&gt;
-&lt;p&gt;I have switched to [xdm][xdm] as my display manager.  This is
+&lt;p&gt;I have switched to &lt;a href="https://en.wikipedia.org/wiki/XDM_(display_manager)"&gt;xdm&lt;/a&gt; as my display manager.  This is
 configured in &lt;code&gt;/etc/X11/xdm/xdm-config&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Specifically, I update the Xsession setting to be the following:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;! DisplayManager*session:       /usr/lib64/X11/xdm/Xsession
-DisplayManager*session:     /etc/X11/Xsession
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;! DisplayManager*session&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;      /usr/lib64/X11/xdm/Xsession&lt;/span&gt;
+&lt;span class="n"&gt;DisplayManager*session&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;    /etc/X11/Xsession&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;And have a custom &lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/xdm/Xsession"&gt;Xsession&lt;/a&gt; script in
@@ -2747,7 +2919,7 @@ is handled.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt; &lt;em&gt;Doing &lt;code&gt;xhost +local:&lt;/code&gt; is hardly a best practice
 when it comes to security.&lt;/em&gt;&lt;/p&gt;
 &lt;h4 id="spicing-up-xdm"&gt;Spicing up XDM&lt;/h4&gt;
-&lt;p&gt;Allthough [xdm][xdm] is fairly old-school, there are
+&lt;p&gt;Allthough &lt;a href="https://en.wikipedia.org/wiki/XDM_(display_manager)"&gt;xdm&lt;/a&gt; is fairly old-school, there are
 still some opportunities to add some eye-candy to
 it.  For that, we change the &lt;code&gt;setup&lt;/code&gt; and &lt;code&gt;startup&lt;/code&gt; scripts
 &lt;code&gt;Xsetup_0&lt;/code&gt; and &lt;code&gt;GiveConsole&lt;/code&gt; into custom scripts:&lt;/p&gt;
@@ -2759,7 +2931,7 @@ it.  For that, we change the &lt;code&gt;setup&lt;/code&gt; and &lt;code&gt;star
 directly to the root window as it is not possible to control
 overlapping windows.  For example, running &lt;code&gt;cmatrix&lt;/code&gt; on
 a &lt;code&gt;xterm&lt;/code&gt; window covers the login widget.&lt;/p&gt;
-&lt;p&gt;On the other hand, the [xscreensaver][xs] collection of screen
+&lt;p&gt;On the other hand, the &lt;a href="https://www.jwz.org/xscreensaver/"&gt;xscreensaver&lt;/a&gt; collection of screen
 hacks seem to accept the &lt;code&gt;-root&lt;/code&gt; parameter, which can be used
 to kick off the hack, drawing on the root window.&lt;/p&gt;
 &lt;h3 id="tweaks-and-bug-fixes"&gt;Tweaks and Bug-fixes&lt;/h3&gt;
@@ -2769,7 +2941,7 @@ and &lt;code&gt;/var/lib/dbus/machine-id&lt;/code&gt;.
 manually.  This is only needed for desktop systems.&lt;/p&gt;
 &lt;p&gt;See [this article][machineid] for more
 info.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;dbus&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;uuidgen&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;tee&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;machine&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dbus&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;machine&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;  dbus-uuidgen &lt;span class="p"&gt;|&lt;/span&gt; tee /etc/machine-id /var/lib/dbus/machine-id
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h4 id="power-button-handling"&gt;power button handling&lt;/h4&gt;
@@ -2806,16 +2978,18 @@ any longer.  I left it here just for reference (in case it breaks
 again.&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;OK, in my case, &lt;code&gt;shutdown&lt;/code&gt;, &lt;code&gt;reboot&lt;/code&gt; and local media access functions
-were not available using the [MATE][mate] desktop.&lt;/p&gt;
+were not available using the &lt;a href="https://mate-desktop.org/" title="MATE Desktop environment"&gt;MATE&lt;/a&gt; desktop.&lt;/p&gt;
 &lt;p&gt;To enable this I had to create/tweak the PolKit rules...&lt;/p&gt;
 &lt;script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&amp;showBorder=on&amp;showLineNumbers=on&amp;showFileMeta=on&amp;showCopy=on&amp;fetchFromJsDelivr=on&amp;target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/_attic_/tweak-polkit-rules.sh"&gt;&lt;/script&gt;
 
 &lt;h3 id="using-slim"&gt;Using SLIM&lt;/h3&gt;
-&lt;p&gt;I have switched to [SLiM][SLiM] as the display manager.  This is
+&lt;p&gt;I have switched to &lt;a href="https://github.com/iwamatsu/slim" title="Simple Login Manager"&gt;SLiM&lt;/a&gt; as the display manager.  This is
 configured in &lt;code&gt;/etc/slim.conf&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Specifically, I update the login_cmd to be the following:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;login_cmd&lt;/span&gt; &lt;span class="k"&gt;exec&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;sh&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;l&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;X11&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;Xsession&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nv"&gt;session&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="2019"></category><category term="backups"></category><category term="boot"></category><category term="configuration"></category><category term="desktop"></category><category term="device"></category><category term="directory"></category><category term="drive"></category><category term="filesystem"></category><category term="installation"></category><category term="linux"></category><category term="login"></category><category term="manager"></category><category term="network"></category><category term="partition"></category><category term="password"></category><category term="power"></category><category term="scripts"></category><category term="security"></category><category term="software"></category><category term="sudo"></category><category term="windows"></category></entry><entry><title>My Linux Keyboard Shortcuts</title><link href="https://0ink.net/posts/2019/2019-02-11-my-linux-shortcuts.html" rel="alternate"></link><published>2019-02-11T00:00:00+01:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2019-02-11:/posts/2019/2019-02-11-my-linux-shortcuts.html</id><summary type="html">&lt;p&gt;In general we try to be similar to MS-Windows shortcuts.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr&gt;</content><category term="2019"></category><category term="backups"></category><category term="boot"></category><category term="configuration"></category><category term="desktop"></category><category term="device"></category><category term="directory"></category><category term="drive"></category><category term="filesystem"></category><category term="installation"></category><category term="linux"></category><category term="login"></category><category term="manager"></category><category term="network"></category><category term="partition"></category><category term="password"></category><category term="power"></category><category term="scripts"></category><category term="security"></category><category term="software"></category><category term="sudo"></category><category term="windows"></category></entry><entry><title>My Linux Keyboard Shortcuts</title><link href="https://0ink.net/posts/2019/2019-02-11-my-linux-shortcuts.html" rel="alternate"></link><published>2019-02-11T00:00:00+01:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2019-02-11:/posts/2019/2019-02-11-my-linux-shortcuts.html</id><summary type="html">&lt;p&gt;In general we try to be similar to MS-Windows shortcuts.&lt;/p&gt;
 &lt;p&gt;Default bindings (in MATE)&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -5181,7 +5355,7 @@ based PC.&lt;/p&gt;
 &lt;p&gt;Then, the website should automatically detect your Linux and show you
 the download link. Or you can select the one that suits your PC. Keep
 in mind the CPU architecture 32 bit or 64 bit. Click on Download.&lt;/p&gt;
-&lt;p&gt;From &lt;a href="http://www.linuxandubuntu.com/home/telegram-messenger-on-linux-telegram-linux"&gt;linuxandubuntu&lt;/a&gt;&lt;/p&gt;</content><category term="2017"></category><category term="cloud"></category><category term="desktop"></category><category term="linux"></category><category term="privacy"></category><category term="storage"></category><category term="windows"></category></entry><entry><title>Free Clipart sites</title><link href="https://0ink.net/posts/2017/2017-04-11-free-clipart-sites.html" rel="alternate"></link><published>2017-04-11T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2017-04-11:/posts/2017/2017-04-11-free-clipart-sites.html</id><summary type="html">&lt;p&gt;In 2014, Microsoft &lt;a href="https://www.makeuseof.com/tag/clip-art-gone-heres-find-free-images-instead/"&gt;killed and buried Clipart&lt;/a&gt;
+&lt;p&gt;From &lt;a href="http://www.linuxandubuntu.com/home/telegram-messenger-on-linux-telegram-linux"&gt;linuxandubuntu&lt;/a&gt;&lt;/p&gt;</content><category term="2017"></category><category term="cloud"></category><category term="desktop"></category><category term="linux"></category><category term="privacy"></category><category term="storage"></category><category term="windows"></category></entry><entry><title>Free Clipart sites</title><link href="https://0ink.net/posts/2017/2017-04-11-free-clipart-sites.html" rel="alternate"></link><published>2017-04-11T00:00:00+02:00</published><updated>2022-01-10T17:09:50+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2017-04-11:/posts/2017/2017-04-11-free-clipart-sites.html</id><summary type="html">&lt;p&gt;In 2014, Microsoft &lt;a href="https://www.makeuseof.com/tag/clip-art-gone-heres-find-free-images-instead/"&gt;killed and buried Clipart&lt;/a&gt;
 in the digital graveyard.&lt;/p&gt;
 &lt;p&gt;Clipart had outlived its usefulness as users relied more on search
 engines than Microsoft' somewhat limited supply through the Office
@@ -5221,7 +5395,7 @@ through them and bookmark the ones that meet your needs.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://school.discoveryeducation.com/clipart/"&gt;Discovery Education&lt;/a&gt; : Discovery is one of the more &lt;a href="https://www.makeuseof.com/tag/10-video-websites-kids-safe-fun/"&gt;kid-friendly websites&lt;/a&gt; you can visit on the web. Go straight to the space devoted for clip arts tucked away among their educational videos and curricular resources. The graphics are excellent and cover most of the categories (including animated clip arts) you would need to complete any school assignment. The designs are consistent because they are made by one designer.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://commons.wikimedia.org/wiki/Main_Page"&gt;Wikimedia Commons&lt;/a&gt; : This is arguably the largest collection of free images on the web. So far there are &lt;em&gt;38,205,390&lt;/em&gt; freely usable media files and it is always open for contribution from anyone in the world. Use the search box at the top to ferret the files you want to use. As a regular user, you can take advantage of the syndicated feeds to grab the latest images that come into the archive.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;From &lt;a href="http://www.makeuseof.com/tag/the-best-websites-for-free-clipart-downloads/"&gt;makeuseof&lt;/a&gt;&lt;/p&gt;</content><category term="2017"></category><category term="domain"></category><category term="library"></category></entry><entry><title>Kivy</title><link href="https://0ink.net/posts/2017/2017-03-19-kivy.html" rel="alternate"></link><published>2017-03-19T00:00:00+01:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2017-03-19:/posts/2017/2017-03-19-kivy.html</id><summary type="html">&lt;p&gt;Today I want to briefly write about &lt;a href="https://kivy.org/"&gt;kivy&lt;/a&gt;.  &lt;a href="https://kivy.org/"&gt;kivy&lt;/a&gt; is an
+&lt;p&gt;From &lt;a href="http://www.makeuseof.com/tag/the-best-websites-for-free-clipart-downloads/"&gt;makeuseof&lt;/a&gt;&lt;/p&gt;</content><category term="2017"></category><category term="database"></category><category term="domain"></category><category term="library"></category></entry><entry><title>Kivy</title><link href="https://0ink.net/posts/2017/2017-03-19-kivy.html" rel="alternate"></link><published>2017-03-19T00:00:00+01:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2017-03-19:/posts/2017/2017-03-19-kivy.html</id><summary type="html">&lt;p&gt;Today I want to briefly write about &lt;a href="https://kivy.org/"&gt;kivy&lt;/a&gt;.  &lt;a href="https://kivy.org/"&gt;kivy&lt;/a&gt; is an
 &lt;a href="https://www.python.org/"&gt;Python&lt;/a&gt; library intended for developing Mobile Apps.  It is a
 cross-platform library that runs on &lt;a href="https://www.android.com/"&gt;Android&lt;/a&gt;, &lt;a href="http://www.apple.com/ios/"&gt;iOS&lt;/a&gt;,
 &lt;a href="https://www.cs.helsinki.fi/linux/"&gt;Linux&lt;/a&gt;, &lt;a href="https://www.apple.com/macos/"&gt;OS X&lt;/a&gt; and &lt;a href="https://www.microsoft.com/en-us/windows"&gt;Windows&lt;/a&gt;.  It is licensed under
@@ -6047,7 +6221,7 @@ will reduce your chances of having bugs, and you should be sure to quote liberal
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;setarch i386 yum --releasever=6 --installroot=/chroot/jail32 -y install httpd
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="2016"></category></entry><entry><title>'Jaxon: Call PHP classes from JavaScript using AJAX'</title><link href="https://0ink.net/posts/2016/2016-11-14-jaxon-call-php-classes-from-javascript-using-ajax.html" rel="alternate"></link><published>2016-11-14T00:00:00+01:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2016-11-14:/posts/2016/2016-11-14-jaxon-call-php-classes-from-javascript-using-ajax.html</id><summary type="html">&lt;p&gt;&lt;a href="https://www.jaxon-php.org/" title="Jaxon PHP library"&gt;Jaxon&lt;/a&gt; is an open source PHP library for easily creating Ajax web applications. It allows into a web page to make direct Ajax calls to PHP classes that will in turn update its content, without reloading the entire page.&lt;/p&gt;
 &lt;p&gt;Jaxon implements a complete set of PHP functions to define the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://www.jaxon-php.org/" title="Jaxon PHP library"&gt;Jaxon&lt;/a&gt; is an open source PHP library for easily creating Ajax web applications. It allows into a web page to make direct Ajax calls to PHP classes that will in turn update its content, without reloading the entire page.&lt;/p&gt;
-&lt;p&gt;Jaxon implements a complete set of PHP functions to define the contents and properties of the web page. Several plugins exist to extend its functionalities and provide integration with various PHP frameworks and CMS.&lt;/p&gt;</content><category term="2016"></category><category term="integration"></category><category term="library"></category></entry><entry><title>MariaDB Quickest Quick start</title><link href="https://0ink.net/posts/2016/2016-11-14-mariadb-quickest-quick-start.html" rel="alternate"></link><published>2016-11-14T00:00:00+01:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2016-11-14:/posts/2016/2016-11-14-mariadb-quickest-quick-start.html</id><summary type="html">&lt;p&gt;This article outlines the bare minimum to get
+&lt;p&gt;Jaxon implements a complete set of PHP functions to define the contents and properties of the web page. Several plugins exist to extend its functionalities and provide integration with various PHP frameworks and CMS.&lt;/p&gt;</content><category term="2016"></category><category term="integration"></category><category term="library"></category></entry><entry><title>MariaDB Quickest Quick start</title><link href="https://0ink.net/posts/2016/2016-11-14-mariadb-quickest-quick-start.html" rel="alternate"></link><published>2016-11-14T00:00:00+01:00</published><updated>2022-01-10T17:09:50+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2016-11-14:/posts/2016/2016-11-14-mariadb-quickest-quick-start.html</id><summary type="html">&lt;p&gt;This article outlines the bare minimum to get
 a MariaDB or MySQL database up and running.&lt;/p&gt;
 &lt;p&gt;It covers a CentOS/RHEL and an ArchLinux installs.&lt;/p&gt;
 &lt;p&gt;Make sure your system is up to date:&lt;/p&gt;
@@ -6142,7 +6316,7 @@ a MariaDB or MySQL database up and running.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt; GRANT ALL PRIVILEGES ON bugzilla.* TO &amp;#39;warren&amp;#39;@&amp;#39;localhost&amp;#39; IDENTIFIED BY &amp;#39;mypass&amp;#39;;
  GRANT ALL PRIVILEGES ON killrate.* TO &amp;#39;pocketmine&amp;#39;@&amp;#39;%&amp;#39; IDENTIFIED BY &amp;#39;mypass&amp;#39;;
  FLUSH PRIVILEGES;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="2016"></category></entry><entry><title>My WordPress plugins</title><link href="https://0ink.net/posts/2016/2016-11-07-my-wordpress-plugins.html" rel="alternate"></link><published>2016-11-07T00:00:00+01:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2016-11-07:/posts/2016/2016-11-07-my-wordpress-plugins.html</id><summary type="html">&lt;p&gt;For my own purposes I have written a number of WordPress plugins.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="2016"></category><category term="database"></category></entry><entry><title>My WordPress plugins</title><link href="https://0ink.net/posts/2016/2016-11-07-my-wordpress-plugins.html" rel="alternate"></link><published>2016-11-07T00:00:00+01:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2016-11-07:/posts/2016/2016-11-07-my-wordpress-plugins.html</id><summary type="html">&lt;p&gt;For my own purposes I have written a number of WordPress plugins.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href="https://github.com/iliu-net/S3Copy"&gt;S3Copy&lt;/a&gt; - Makes backup copies of your pictures to an S3
    Compatible server.  I use &lt;a href="http://sirv.com"&gt;sirv.com&lt;/a&gt; myself.  It also mangles &lt;img /&gt; tags so
@@ -6174,7 +6348,7 @@ a MariaDB or MySQL database up and running.&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://playcanvas.com/"&gt;OpenSource Engine with Proprietary on-line dev tools&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://aframe.io/"&gt;Targetted for WebVR&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://babylonjs.com/"&gt;TypeScript?&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><category term="2016"></category><category term="linux"></category></entry><entry><title>Hosting WordPress on OpenShift</title><link href="https://0ink.net/posts/2016/2016-10-29-hosting-wordpress-on-openshift.html" rel="alternate"></link><published>2016-10-29T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2016-10-29:/posts/2016/2016-10-29-hosting-wordpress-on-openshift.html</id><summary type="html">&lt;p&gt;&lt;img alt="openshift" src="/images/2016/img_0423.jpg"&gt;&lt;/p&gt;
+&lt;/ul&gt;</content><category term="2016"></category><category term="linux"></category></entry><entry><title>Hosting WordPress on OpenShift</title><link href="https://0ink.net/posts/2016/2016-10-29-hosting-wordpress-on-openshift.html" rel="alternate"></link><published>2016-10-29T00:00:00+02:00</published><updated>2022-01-10T17:09:50+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2016-10-29:/posts/2016/2016-10-29-hosting-wordpress-on-openshift.html</id><summary type="html">&lt;p&gt;&lt;img alt="openshift" src="/images/2016/img_0423.jpg"&gt;&lt;/p&gt;
 &lt;p&gt;So I finally moved my WordPress web sites to OpenShift.&lt;/p&gt;
 &lt;p&gt;OpenShift is a cloud based Platform-as-a-Service offering from RedHat.   And while there is a learning curve I would say that so far it works great.&lt;/p&gt;
 &lt;p&gt;My implementation is a fully cloud based solution. Makes use of the following services:&lt;/p&gt;
@@ -6202,7 +6376,7 @@ event of autoscaling while keeping the github commit log fairly tidy.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Misc shortcodes and stuff&lt;/li&gt;
 &lt;li&gt;Automatically upload pictures to an S3 cloud storage (sivr.com in my case but this is configurable)&lt;/li&gt;
-&lt;/ul&gt;</content><category term="2016"></category><category term="backups"></category><category term="cloud"></category><category term="drive"></category><category term="github"></category><category term="integration"></category><category term="scripts"></category><category term="storage"></category><category term="wordpress"></category></entry><entry><title>CSR ideas</title><link href="https://0ink.net/posts/2016/2016-10-14-csr-ideas.html" rel="alternate"></link><published>2016-10-14T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2016-10-14:/posts/2016/2016-10-14-csr-ideas.html</id><content type="html">&lt;p&gt;Work improvements&lt;/p&gt;
+&lt;/ul&gt;</content><category term="2016"></category><category term="backups"></category><category term="cloud"></category><category term="database"></category><category term="drive"></category><category term="github"></category><category term="integration"></category><category term="scripts"></category><category term="storage"></category><category term="wordpress"></category></entry><entry><title>CSR ideas</title><link href="https://0ink.net/posts/2016/2016-10-14-csr-ideas.html" rel="alternate"></link><published>2016-10-14T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2016-10-14:/posts/2016/2016-10-14-csr-ideas.html</id><content type="html">&lt;p&gt;Work improvements&lt;/p&gt;
 &lt;h2 id="nfr"&gt;NFR&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Javascript single page application&lt;/li&gt;
@@ -6658,7 +6832,7 @@ Another overview of options&lt;/p&gt;
 &lt;li&gt;PhoneGAP&lt;/li&gt;
 &lt;li&gt;http://kivy.org/ Python, multi platform&lt;/li&gt;
 &lt;li&gt;https://code.google.com/p/android-python27/w/list - Python on android&lt;/li&gt;
-&lt;/ul&gt;</content><category term="2016"></category><category term="android"></category><category term="backups"></category><category term="desktop"></category><category term="editor"></category><category term="java"></category><category term="javascript"></category><category term="library"></category><category term="linux"></category><category term="management"></category><category term="markdown"></category><category term="python"></category><category term="speed"></category><category term="tools"></category><category term="windows"></category></entry><entry><title>Managing our personal finances</title><link href="https://0ink.net/posts/2016/2016-05-22-managing-our-personal-finances.html" rel="alternate"></link><published>2016-05-22T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2016-05-22:/posts/2016/2016-05-22-managing-our-personal-finances.html</id><summary type="html">&lt;p&gt;During my last vacation I wanted to move how we manage our personal
+&lt;/ul&gt;</content><category term="2016"></category><category term="android"></category><category term="backups"></category><category term="desktop"></category><category term="editor"></category><category term="java"></category><category term="javascript"></category><category term="library"></category><category term="linux"></category><category term="management"></category><category term="markdown"></category><category term="python"></category><category term="speed"></category><category term="tools"></category><category term="windows"></category></entry><entry><title>Managing our personal finances</title><link href="https://0ink.net/posts/2016/2016-05-22-managing-our-personal-finances.html" rel="alternate"></link><published>2016-05-22T00:00:00+02:00</published><updated>2022-01-10T17:09:50+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2016-05-22:/posts/2016/2016-05-22-managing-our-personal-finances.html</id><summary type="html">&lt;p&gt;During my last vacation I wanted to move how we manage our personal
 finances away from the ad-hoc spreadsheet that we had been using for
 the past few years. I envisioned something server side, so I wouldn't
 need to add software on my wife's computer. And initial quick run
@@ -6720,7 +6894,7 @@ and protect against invalid inputs, F3 was doing it automatically which
 caused me a few headaches until I realized what F3 was doing. My main
 problem with F3 is that my schema required a wide varchar column and
 that seemed to cause problem with its ORM mapper. Later I will write
-a simple test case and see if I can track down the issue.&lt;/p&gt;</content><category term="2016"></category><category term="application"></category><category term="computer"></category><category term="desktop"></category><category term="feature"></category><category term="information"></category><category term="software"></category></entry><entry><title>Starting with 3D Printing</title><link href="https://0ink.net/posts/2016/2016-03-20-starting-with-3d-printing.html" rel="alternate"></link><published>2016-03-20T00:00:00+01:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2016-03-20:/posts/2016/2016-03-20-starting-with-3d-printing.html</id><summary type="html">&lt;p&gt;So I finally tried my hand at 3D printing. Obviously I did not buy at 3D printer. These are either quite expensive or you need to assemble them yourself, which I don't think is in my capacity level.&lt;/p&gt;
+a simple test case and see if I can track down the issue.&lt;/p&gt;</content><category term="2016"></category><category term="application"></category><category term="computer"></category><category term="database"></category><category term="desktop"></category><category term="feature"></category><category term="information"></category><category term="software"></category></entry><entry><title>Starting with 3D Printing</title><link href="https://0ink.net/posts/2016/2016-03-20-starting-with-3d-printing.html" rel="alternate"></link><published>2016-03-20T00:00:00+01:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2016-03-20:/posts/2016/2016-03-20-starting-with-3d-printing.html</id><summary type="html">&lt;p&gt;So I finally tried my hand at 3D printing. Obviously I did not buy at 3D printer. These are either quite expensive or you need to assemble them yourself, which I don't think is in my capacity level.&lt;/p&gt;
 &lt;p&gt;To get started, you first need a 3D model to print. There …&lt;/p&gt;</summary><content type="html">&lt;p&gt;So I finally tried my hand at 3D printing. Obviously I did not buy at 3D printer. These are either quite expensive or you need to assemble them yourself, which I don't think is in my capacity level.&lt;/p&gt;
 &lt;p&gt;To get started, you first need a 3D model to print. There are several 3D models available in &lt;a href="http://www.thingiverse.com/"&gt;Thingieverse&lt;/a&gt;, however I actually wanted to make my own model. After all, that is the whole point of 3D printing. Custom made parts/objects that can be printed as needed.&lt;/p&gt;
 &lt;p&gt;To create a 3D model you need some 3D modelling software. For my very first model I opted for &lt;a href="https://www.tinkercad.com/"&gt;TinkerCAD&lt;/a&gt;. This is software that runs on the cloud that lets you create your own 3D models. This is particularly interesting because you don't need to install anything on your computer and it would essentially run on anything where a web browser runs.&lt;/p&gt;
@@ -6958,7 +7132,7 @@ seem to work with secondary branches.&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://blog.openshift.com/email-in-the-cloud-with-mailgun/"&gt;mailgun&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://mailgun.com/signup?plan=free"&gt;mailgun plan&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.gregjs.com/linux/2015/forwarding-mail-to-your-gmail-account-with-mailgun/"&gt;forwarding with mailgun&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><category term="2016"></category><category term="application"></category><category term="backup"></category><category term="directory"></category><category term="domain"></category><category term="encryption"></category><category term="git"></category><category term="github"></category><category term="installation"></category><category term="login"></category><category term="openssl"></category><category term="password"></category><category term="remote"></category><category term="settings"></category><category term="setup"></category><category term="wordpress"></category></entry><entry><title>Windows administration from the command line</title><link href="https://0ink.net/posts/2016/2016-02-02-windows-administration-from-the-command-line.html" rel="alternate"></link><published>2016-02-02T00:00:00+01:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2016-02-02:/posts/2016/2016-02-02-windows-administration-from-the-command-line.html</id><summary type="html">&lt;p&gt;Windows system administration is very mouse driven and to reach
+&lt;/ul&gt;</content><category term="2016"></category><category term="application"></category><category term="backup"></category><category term="directory"></category><category term="domain"></category><category term="encryption"></category><category term="git"></category><category term="github"></category><category term="installation"></category><category term="login"></category><category term="openssl"></category><category term="password"></category><category term="remote"></category><category term="settings"></category><category term="setup"></category><category term="wordpress"></category></entry><entry><title>Windows administration from the command line</title><link href="https://0ink.net/posts/2016/2016-02-02-windows-administration-from-the-command-line.html" rel="alternate"></link><published>2016-02-02T00:00:00+01:00</published><updated>2022-01-10T17:09:50+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2016-02-02:/posts/2016/2016-02-02-windows-administration-from-the-command-line.html</id><summary type="html">&lt;p&gt;Windows system administration is very mouse driven and to reach
 all tools you need to browse through Windows explorer.&lt;/p&gt;
 &lt;p&gt;If you are like me and prefer to log on a limited privilege account and use Runas to perform admin tasks, you can open these consoles with the .msc file names …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Windows system administration is very mouse driven and to reach
 all tools you need to browse through Windows explorer.&lt;/p&gt;
@@ -7013,7 +7187,7 @@ all tools you need to browse through Windows explorer.&lt;/p&gt;
 &lt;li&gt;uddi.msc: UDDI Services Managment&lt;/li&gt;
 &lt;li&gt;wmimgmt.msc: Windows Mangement Instumentation&lt;/li&gt;
 &lt;li&gt;winsmgmt.msc: WINS Server manager&lt;/li&gt;
-&lt;/ul&gt;</content><category term="2016"></category><category term="address"></category><category term="computer"></category><category term="configuration"></category><category term="device"></category><category term="directory"></category><category term="editor"></category><category term="management"></category><category term="manager"></category><category term="network"></category><category term="remote"></category><category term="security"></category><category term="service"></category><category term="settings"></category><category term="storage"></category><category term="terminal"></category><category term="tools"></category><category term="windows"></category></entry><entry><title>Deploying Kerberos based SSO</title><link href="https://0ink.net/posts/2016/2016-01-11-deploying-kerberos-based-sso.html" rel="alternate"></link><published>2016-01-11T00:00:00+01:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2016-01-11:/posts/2016/2016-01-11-deploying-kerberos-based-sso.html</id><summary type="html">&lt;p&gt;This article goes over how to implement Single-Sign-On
+&lt;/ul&gt;</content><category term="2016"></category><category term="address"></category><category term="computer"></category><category term="configuration"></category><category term="database"></category><category term="device"></category><category term="directory"></category><category term="editor"></category><category term="management"></category><category term="manager"></category><category term="network"></category><category term="remote"></category><category term="security"></category><category term="service"></category><category term="settings"></category><category term="storage"></category><category term="terminal"></category><category term="tools"></category><category term="windows"></category></entry><entry><title>Deploying Kerberos based SSO</title><link href="https://0ink.net/posts/2016/2016-01-11-deploying-kerberos-based-sso.html" rel="alternate"></link><published>2016-01-11T00:00:00+01:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2016-01-11:/posts/2016/2016-01-11-deploying-kerberos-based-sso.html</id><summary type="html">&lt;p&gt;This article goes over how to implement Single-Sign-On
 on Linux.  It goes over the integration around
 the Kerberos service and the applications, like for example
 FireFox.&lt;/p&gt;
@@ -9123,7 +9297,7 @@ a generous heap space is allocated to the process.&lt;/p&gt;
 revolutionize software development the way continuous integration
 has, but every time a task, practice or rule is automated, it's a
 win.&lt;/p&gt;
-&lt;p&gt;From &lt;a href="http://www.drdobbs.com/architecture-and-design/driving-continuous-integration-from-git/240161383"&gt;Dr. Dobbs Journal&lt;/a&gt;&lt;/p&gt;</content><category term="2013"></category><category term="config"></category><category term="configuration"></category><category term="directory"></category><category term="feature"></category><category term="git"></category><category term="information"></category><category term="integration"></category><category term="password"></category><category term="remote"></category><category term="scripts"></category><category term="software"></category><category term="terminal"></category><category term="tools"></category></entry><entry><title>Alarm Notification</title><link href="https://0ink.net/posts/2013/2013-09-19-alarm-notification.html" rel="alternate"></link><published>2013-09-19T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2013-09-19:/posts/2013/2013-09-19-alarm-notification.html</id><summary type="html">&lt;p&gt;This tutorial describes how to use the alarm manager to set alarms and how to use the notification framework to display them. In short, the sequence goes like this:&lt;/p&gt;
+&lt;p&gt;From &lt;a href="http://www.drdobbs.com/architecture-and-design/driving-continuous-integration-from-git/240161383"&gt;Dr. Dobbs Journal&lt;/a&gt;&lt;/p&gt;</content><category term="2013"></category><category term="config"></category><category term="configuration"></category><category term="directory"></category><category term="feature"></category><category term="git"></category><category term="information"></category><category term="integration"></category><category term="password"></category><category term="remote"></category><category term="scripts"></category><category term="software"></category><category term="terminal"></category><category term="tools"></category></entry><entry><title>Alarm Notification</title><link href="https://0ink.net/posts/2013/2013-09-19-alarm-notification.html" rel="alternate"></link><published>2013-09-19T00:00:00+02:00</published><updated>2022-01-10T17:09:50+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2013-09-19:/posts/2013/2013-09-19-alarm-notification.html</id><summary type="html">&lt;p&gt;This tutorial describes how to use the alarm manager to set alarms and how to use the notification framework to display them. In short, the sequence goes like this:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;In an Activity AlarmManager.set is called with a PendingIntent containing a Uri.&lt;/li&gt;
 &lt;li&gt;When the alarm goes off, the Uri is …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;This tutorial describes how to use the alarm manager to set alarms and how to use the notification framework to display them. In short, the sequence goes like this:&lt;/p&gt;
@@ -9188,7 +9362,7 @@ notification.defaults |= Notification.DEFAULT_VIBRATE;
 
 &lt;p&gt;In the onReceive method, read the database and re-install the alarms in the same way as was done at the top.&lt;/p&gt;
 &lt;h2 id="proximity-alerts"&gt;Proximity Alerts&lt;/h2&gt;
-&lt;p&gt;A similar mechanism can be used for proximity alerts. The LocationManager will fire an alert which is nearly identical to an alarm. The same mechanism to restore alerts can be used after rebooting the device.&lt;/p&gt;</content><category term="2013"></category><category term="device"></category><category term="information"></category><category term="manager"></category></entry><entry><title>Off site backup options</title><link href="https://0ink.net/posts/2013/2013-09-19-off-site-backup-options.html" rel="alternate"></link><published>2013-09-19T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2013-09-19:/posts/2013/2013-09-19-off-site-backup-options.html</id><summary type="html">&lt;p&gt;This is my working notes on doing off-site backups to the cloud.
+&lt;p&gt;A similar mechanism can be used for proximity alerts. The LocationManager will fire an alert which is nearly identical to an alarm. The same mechanism to restore alerts can be used after rebooting the device.&lt;/p&gt;</content><category term="2013"></category><category term="database"></category><category term="device"></category><category term="information"></category><category term="manager"></category></entry><entry><title>Off site backup options</title><link href="https://0ink.net/posts/2013/2013-09-19-off-site-backup-options.html" rel="alternate"></link><published>2013-09-19T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2013-09-19:/posts/2013/2013-09-19-off-site-backup-options.html</id><summary type="html">&lt;p&gt;This is my working notes on doing off-site backups to the cloud.
 Still trying to figure out where to keep Offsite backups.&lt;/p&gt;
 &lt;p&gt;These are the candidates:&lt;/p&gt;
 &lt;table&gt;
@@ -10024,7 +10198,7 @@ use the %H specifier in the puppet unit file:&lt;/p&gt;
 &lt;p&gt;Puppet-agent creates vardir and ssldir if they do not exist. If neither
 of these approaches are appropriate, the last sane option would be to
 create a systemd generator that creates a mount unit specific to the
-current host (specifiers are not allowed in mount units, unfortunately).&lt;/p&gt;</content><category term="2013"></category><category term="address"></category><category term="boot"></category><category term="configuration"></category><category term="device"></category><category term="directory"></category><category term="filesystem"></category><category term="information"></category><category term="installation"></category><category term="linux"></category><category term="network"></category><category term="setup"></category><category term="software"></category><category term="storage"></category></entry><entry><title>OpenWRT web</title><link href="https://0ink.net/posts/2013/2013-05-30-openwrt-tips.html" rel="alternate"></link><published>2013-05-30T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2013-05-30:/posts/2013/2013-05-30-openwrt-tips.html</id><summary type="html">&lt;p&gt;Some useful tidbits to use when using the OpenWRT embedded web
+current host (specifiers are not allowed in mount units, unfortunately).&lt;/p&gt;</content><category term="2013"></category><category term="address"></category><category term="boot"></category><category term="configuration"></category><category term="device"></category><category term="directory"></category><category term="filesystem"></category><category term="information"></category><category term="installation"></category><category term="linux"></category><category term="network"></category><category term="setup"></category><category term="software"></category><category term="storage"></category></entry><entry><title>OpenWRT web</title><link href="https://0ink.net/posts/2013/2013-05-30-openwrt-tips.html" rel="alternate"></link><published>2013-05-30T00:00:00+02:00</published><updated>2022-01-10T17:09:50+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2013-05-30:/posts/2013/2013-05-30-openwrt-tips.html</id><summary type="html">&lt;p&gt;Some useful tidbits to use when using the OpenWRT embedded web
 server (uHTTPD).&lt;/p&gt;
 &lt;h3 id="embedded-lua"&gt;Embedded Lua&lt;/h3&gt;
 &lt;p&gt;uHTTPd supports running Lua in-process, which can speed up Lua CGI
@@ -10143,7 +10317,7 @@ URL decoding  &lt;/p&gt;
 &lt;p&gt;Like Busybox HTTPd, the URL decoding of strings on the command line is supported through the -d switch:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="nv"&gt;@OpenWrt&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;uhttpd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;An%20URL%20encoded%20String%21%0a&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="n"&gt;An&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;URL&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;encoded&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="2013"></category><category term="authentication"></category><category term="config"></category><category term="configuration"></category><category term="login"></category><category term="password"></category><category term="scripts"></category><category term="settings"></category><category term="speed"></category></entry><entry><title>Program Documentation</title><link href="https://0ink.net/posts/2013/2013-05-29-program-documentation.html" rel="alternate"></link><published>2013-05-29T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2013-05-29:/posts/2013/2013-05-29-program-documentation.html</id><summary type="html">&lt;p&gt;So these are my ideas on how to document projects. There are three types of documentation types:&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="2013"></category><category term="authentication"></category><category term="config"></category><category term="configuration"></category><category term="database"></category><category term="login"></category><category term="password"></category><category term="scripts"></category><category term="settings"></category><category term="speed"></category></entry><entry><title>Program Documentation</title><link href="https://0ink.net/posts/2013/2013-05-29-program-documentation.html" rel="alternate"></link><published>2013-05-29T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2013-05-29:/posts/2013/2013-05-29-program-documentation.html</id><summary type="html">&lt;p&gt;So these are my ideas on how to document projects. There are three types of documentation types:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;User guides&lt;br&gt;
     Targetted and end-users of the software and people who want a brief overview.&lt;/li&gt;
@@ -10206,7 +10380,7 @@ be easily be converted to HTML or PDF as needed.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://www.kernel.org/pub/software/scm/git/docs/gittutorial.html"&gt;http://www.kernel.org/pub/software/scm/git/docs/gittutorial.html&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.kernel.org/pub/software/scm/git/docs/everyday.html"&gt;http://www.kernel.org/pub/software/scm/git/docs/everyday.html&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial"&gt;https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><category term="2013"></category><category term="git"></category></entry><entry><title>ArchLinux tips</title><link href="https://0ink.net/posts/2013/2013-05-27-archlinux-tips.html" rel="alternate"></link><published>2013-05-27T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2013-05-27:/posts/2013/2013-05-27-archlinux-tips.html</id><summary type="html">&lt;p&gt;A bunch of recipes useful for an ArchLinux system environment.&lt;/p&gt;
+&lt;/ul&gt;</content><category term="2013"></category><category term="git"></category></entry><entry><title>ArchLinux tips</title><link href="https://0ink.net/posts/2013/2013-05-27-archlinux-tips.html" rel="alternate"></link><published>2013-05-27T00:00:00+02:00</published><updated>2022-01-10T17:09:50+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2013-05-27:/posts/2013/2013-05-27-archlinux-tips.html</id><summary type="html">&lt;p&gt;A bunch of recipes useful for an ArchLinux system environment.&lt;/p&gt;
 &lt;p&gt;Mostly around system administration.&lt;/p&gt;
 &lt;h2 id="custom-repos-and-packages"&gt;Custom Repos and Packages&lt;/h2&gt;
 &lt;p&gt;In the repo directory, put all the packages in there.&lt;/p&gt;
@@ -10311,7 +10485,7 @@ comm -23 &amp;quot;&lt;span class="nv"&gt;$fs&lt;/span&gt;&amp;quot; &amp;quot;&
 &lt;p&gt;Manage pacman cache&lt;/p&gt;
 &lt;p&gt;paccache -h&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</content><category term="2013"></category><category term="boot"></category><category term="configuration"></category><category term="directory"></category><category term="installation"></category><category term="linux"></category><category term="network"></category><category term="settings"></category><category term="setup"></category></entry><entry><title>Emacs Cheat Sheet</title><link href="https://0ink.net/posts/2013/2013-05-27-emacs-cheat-sheet.html" rel="alternate"></link><published>2013-05-27T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2013-05-27:/posts/2013/2013-05-27-emacs-cheat-sheet.html</id><summary type="html">&lt;p&gt;Quick reference article for how to use Emacs.  Yes, it is really
+&lt;/ul&gt;</content><category term="2013"></category><category term="boot"></category><category term="configuration"></category><category term="database"></category><category term="directory"></category><category term="installation"></category><category term="linux"></category><category term="network"></category><category term="settings"></category><category term="setup"></category></entry><entry><title>Emacs Cheat Sheet</title><link href="https://0ink.net/posts/2013/2013-05-27-emacs-cheat-sheet.html" rel="alternate"></link><published>2013-05-27T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2013-05-27:/posts/2013/2013-05-27-emacs-cheat-sheet.html</id><summary type="html">&lt;p&gt;Quick reference article for how to use Emacs.  Yes, it is really
 old skool!&lt;/p&gt;
 &lt;h2 id="cursor-motion"&gt;Cursor Motion&lt;/h2&gt;
 &lt;table&gt;
@@ -12646,47 +12820,7 @@ Firefox org.mozilla.firefox 89.0    stable  system&lt;/p&gt;</content><category 
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;may&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;need&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;tracking:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xscreensaver&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mplayer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;arm_prefs&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;keys:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;netrc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;abuild&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gnupg&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;purple&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;special:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mozilla&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;thunderbird&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="..."></category></entry><entry><title>Metabase</title><link href="https://0ink.net/posts/1111/meta-database.html" rel="alternate"></link><published>1111-11-11T00:00:00+00:20</published><updated>2021-12-23T00:56:43+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,1111-11-11:/posts/1111/meta-database.html</id><summary type="html">&lt;p&gt;Options:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;https://github.com/victorstanciu/dbv&lt;/li&gt;
-&lt;li&gt;http://deltasql.sourceforge.net/features.php&lt;/li&gt;
-&lt;li&gt;http://propelorm.org/&lt;/li&gt;
-&lt;li&gt;https://phinx.org/&lt;/li&gt;
-&lt;li&gt;https://www.doctrine-project.org/&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;https://redbeanphp.com/index.php&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="http://freecode.com/projects/metabase"&gt;Metabase Freecode entry&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Metabase is a DBMS-independent PHP API to access SQL databases. It
-supports MySQL, PostgreSQL, Oracle, Microsoft SQL server, Microsoft
-Access …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Options:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;https://github.com/victorstanciu/dbv&lt;/li&gt;
-&lt;li&gt;http://deltasql.sourceforge.net/features.php&lt;/li&gt;
-&lt;li&gt;http://propelorm.org/&lt;/li&gt;
-&lt;li&gt;https://phinx.org/&lt;/li&gt;
-&lt;li&gt;https://www.doctrine-project.org/&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;https://redbeanphp.com/index.php&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="http://freecode.com/projects/metabase"&gt;Metabase Freecode entry&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Metabase is a DBMS-independent PHP API to access SQL databases. It
-supports MySQL, PostgreSQL, Oracle, Microsoft SQL server, Microsoft
-Access, ODBC, Interbase, Informix, MiniSQL, and SQLite. It supports
-nested transactions, blobs, and prepared queries. It can install
-database schemas defined in a DBMS independent XML format that
-describe tables, indexes, primary keys, and auto-increment sequences.
-It is also able to upgrade a database to a new schema without
-affecting the data that was stored since it was installed or
-upgraded for the last time. There is also schema reverse engineering
-support.&lt;/p&gt;
-&lt;p&gt;This allows the Database schema to be imported into a Version Control System (e.g. Git)&lt;/p&gt;</content><category term="..."></category></entry><entry><title>todo</title><link href="https://0ink.net/posts/1111/todo.html" rel="alternate"></link><published>1111-11-11T00:00:00+00:20</published><updated>2021-12-23T00:56:43+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,1111-11-11:/posts/1111/todo.html</id><content type="html">&lt;h2 id="add-to-websites"&gt;Add to WebSites&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="..."></category></entry><entry><title>todo</title><link href="https://0ink.net/posts/1111/todo.html" rel="alternate"></link><published>1111-11-11T00:00:00+00:20</published><updated>2021-12-23T00:56:43+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,1111-11-11:/posts/1111/todo.html</id><content type="html">&lt;h2 id="add-to-websites"&gt;Add to WebSites&lt;/h2&gt;
 &lt;h3 id="0inknet"&gt;0ink.net&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Mirror https://deliciousbrains.com/ssl-certificate-authority-for-local-https-development/

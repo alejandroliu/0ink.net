@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>Meta Database - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="So I was looking for a way to version control database schemas, but I never found something that worked for me. I found all these options that never seem to match what I wanted: metabase dbv delta sql Propel phinx doctrine redbeanphp At the end, I finally began doing the …">
+	<meta name="int-title" content="Meta Database">
+	<meta name="tags" content="database, scripts">
+	<meta name="date" content="2022-01-10 00:00:00+01:00">
+	<meta name="modified" content="2022-01-10 17:09:50+01:00">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+    <link href="/feeds/atom.xml" type="application/atom+xml" rel="alternate" title="0ink.net Atom Feed" />
+    <link href="/feeds/rss.xml" type="application/rss+xml" rel="alternate" title="0ink.net RSS Feed" />
+</head>
+
+<body>
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	        <a href="/feeds/atom.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="atom feed" title="atom feed"/></a>
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>Meta Database</h1>
+
+<div class="metadata">
+  <time datetime="2022-01-10T00:00:00+01:00" pubdate>Mon 10 January 2022</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2022-01-10 17:09:50+01:00</p>
+  in <a href="/category/c2022.html">2022</a>
+<p class="tags">tagged <a href="/tag/database.html">database</a>, <a href="/tag/scripts.html">scripts</a></p></div>
+		<p>So I was looking for a way to version control database schemas,
+but I never found something that worked for me.  I found all
+these options that never seem to match what I wanted:</p>
+<ul>
+<li><a href="http://freecode.com/projects/metabase">metabase</a></li>
+<li><a href="https://github.com/victorstanciu/dbv">dbv</a></li>
+<li><a href="http://deltasql.sourceforge.net/features.php">delta sql</a></li>
+<li><a href="http://propelorm.org/">Propel</a></li>
+<li><a href="https://phinx.org/">phinx</a></li>
+<li><a href="https://www.doctrine-project.org/">doctrine</a></li>
+<li><a href="https://redbeanphp.com/index.php">redbeanphp</a></li>
+</ul>
+<p>At the end, I finally began doing the following.</p>
+<p>The first schema release, I would create a file called:</p>
+<ul>
+<li>init-1.0.sql</li>
+</ul>
+<p>This would contain all the sql statements needed to initialize
+the database.  To indicate this is the current version I would
+create a symlink to it:</p>
+<ul>
+<li>init.sql -&gt; init-1.0.sql</li>
+</ul>
+<p>The next schema update I would create file with the commands
+to transform the schema.  i.e. additional <code>CREATE DATABASE</code> or
+<code>ALTER TABLE</code> etc.</p>
+<ul>
+<li>upgrade-1.1.sql</li>
+</ul>
+<p>So actually, the <code>upgrade</code> file would be the working version
+used for development.  For release then I would create a
+new <code>init</code> file.  Either doing it manually or by doing:</p>
+<div class="highlight"><pre><span></span><code>cat init-1.0.sql upgrade-1.1.sql &gt; init-1.1.sql
+</code></pre></div>
+
+<p>To indicate that this is the current version, the symlink would
+be updated:</p>
+<ul>
+<li>init.sql -&gt; init-1.1.sql</li>
+</ul>
+<h2 id="final-notes">Final notes</h2>
+<p>This would end-up with a history of schema changes and scripts that
+could be used to upgrade the database schema from any version to
+any later version.</p>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li class="active"><a href="/category/c2022.html">2022</a></li>
+	              <li ><a href="/category/c2021.html">2021</a></li>
+	              <li ><a href="/category/c2020.html">2020</a></li>
+	              <li ><a href="/category/c2019.html">2019</a></li>
+	              <li ><a href="/category/c2018.html">2018</a></li>
+	              <li ><a href="/category/c2017.html">2017</a></li>
+	              <li ><a href="/category/c2016.html">2016</a></li>
+	              <li ><a href="/category/c2015.html">2015</a></li>
+	              <li ><a href="/category/c2014.html">2014</a></li>
+	              <li ><a href="/category/c2013.html">2013</a></li>
+	              <li ><a href="/category/c.html">...</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	                <li><a href="/tags.html">Tags</a></li>
+	                <li><a href="/sitemap.html">sitemap</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2021 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+		  <span class="feeds">
+		    <a href="/feeds/rss.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="rss feed" title="rss feed"/></a>
+		  </span>
+		  </p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

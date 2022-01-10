@@ -6,11 +6,11 @@
 	<meta name="author" content="Alejandro Liu">
 
 
-	<meta name="description" content="I made the switch to [void linux][void]. Except for compatibility issues around glibc, it works quite well. Most compatibility I have worked around with a combination of Flatpaks, chroots and namespaces. The high lights of [void linux][void]: musl build - which is very lightweigth Does not depend …">
+	<meta name="description" content="I made the switch to void linux. Except for compatibility issues around glibc, it works quite well. Most compatibility I have worked around with a combination of Flatpaks, chroots and namespaces. The high lights of void linux: musl build - which is very lightweigth Does not depend on systemd …">
 	<meta name="int-title" content="Installing Void Linux">
 	<meta name="tags" content="backups, boot, configuration, desktop, device, directory, drive, filesystem, installation, linux, login, manager, network, partition, password, power, scripts, security, software, sudo, windows">
 	<meta name="date" content="2019-02-19 00:00:00+01:00">
-	<meta name="modified" content="2021-12-25 01:32:48+01:00">
+	<meta name="modified" content="2022-01-10 17:29:50+01:00">
 
 
 	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
@@ -60,50 +60,50 @@
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2021-12-25 01:32:48+01:00</p>
+  <p>Updated: 2022-01-10 17:29:50+01:00</p>
   in <a href="/category/c2019.html">2019</a>
 <p class="tags">tagged <a href="/tag/backups.html">backups</a>, <a href="/tag/boot.html">boot</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/desktop.html">desktop</a>, <a href="/tag/device.html">device</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/drive.html">drive</a>, <a href="/tag/filesystem.html">filesystem</a>, <a href="/tag/installation.html">installation</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/login.html">login</a>, <a href="/tag/manager.html">manager</a>, <a href="/tag/network.html">network</a>, <a href="/tag/partition.html">partition</a>, <a href="/tag/password.html">password</a>, <a href="/tag/power.html">power</a>, <a href="/tag/scripts.html">scripts</a>, <a href="/tag/security.html">security</a>, <a href="/tag/software.html">software</a>, <a href="/tag/sudo.html">sudo</a>, <a href="/tag/windows.html">windows</a></p></div>
-		<p>I made the switch to [void linux][void].  Except for compatibility
+		<p>I made the switch to <a href="https://voidlinux.org" title="Void Linux">void linux</a>.  Except for compatibility
 issues around <code>glibc</code>, it works quite well.  Most compatibility
 I have worked around with a combination of <code>Flatpak</code>s, <code>chroot</code>s and
 <code>namespaces</code>.</p>
-<p>The high lights of [void linux][void]:</p>
+<p>The high lights of <a href="https://voidlinux.org" title="Void Linux">void linux</a>:</p>
 <ul>
 <li>musl build - which is very lightweigth</li>
 <li>Does not depend on <code>systemd</code></li>
 <li>a reasonable selection of software packages</li>
 </ul>
 <p>I have tweaked the installation on my computers to use UEFI and thus
-I am using [rEFInd][refind] instead of grub.  This is because it makes
+I am using <a href="http://www.rodsbooks.com/refind/" title="rEFInd bootloader">rEFInd</a> instead of grub.  This is because it makes
 doing bare metal backups and restore just a simple file copy.</p>
-<p>My installation process roughly follows the [UEFI chroot install][void-uefi].</p>
+<p>My installation process roughly follows the <a href="https://wiki.voidlinux.org/Installation_on_UEFI,_via_chroot" title="Install void linux on UEFI via chroot">UEFI chroot install</a>.</p>
 <p>This process is implemented in a script and can be found here:</p>
 <ul>
 <li><a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/install.sh">install.sh</a></li>
 </ul>
 <p>Script usage:</p>
-<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="k">Usage</span><span class="err">:</span><span class="w"> </span><span class="n">installer</span><span class="p">.</span><span class="n">sh</span><span class="w"> </span><span class="n">_</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdx_</span><span class="w"> </span><span class="n">_hostname_</span><span class="w"> </span><span class="o">[</span><span class="n">options</span><span class="o">]</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>    Usage: installer.sh <span class="ge">_/dev/sdx_</span> <span class="ge">_hostname_</span> [options]
 
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="nl">_sdx_</span><span class="p">:</span><span class="w"> </span><span class="n">Block</span><span class="w"> </span><span class="n">device</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="ow">or</span><span class="w"></span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="o">--</span><span class="nc">image</span><span class="o">=</span><span class="n">filepath</span><span class="o">[</span><span class="n">:size</span><span class="o">]</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">virtual</span><span class="w"> </span><span class="n">disc</span><span class="w"> </span><span class="nc">image</span><span class="w"></span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="o">--</span><span class="n">imgset</span><span class="o">=</span><span class="n">filebase</span><span class="o">[</span><span class="n">:size</span><span class="o">]</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">virtual</span><span class="w"> </span><span class="n">filesystem</span><span class="w"> </span><span class="nc">image</span><span class="w"> </span><span class="k">set</span><span class="w"></span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="o">--</span><span class="n">dir</span><span class="o">=</span><span class="n">dirpath</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">directory</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="nl">_hostname_</span><span class="p">:</span><span class="w"> </span><span class="n">Hostname</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">use</span><span class="w"></span>
+    <span class="k">-</span> <span class="ge">_sdx_</span>: Block device to install to or
+      <span class="k">-</span> --image=filepath[:size] to create a virtual disc image
+      <span class="k">-</span> --imgset=filebase[:size] to create a virtual filesystem image set
+      <span class="k">-</span> --dir=dirpath to create a directory
+    <span class="k">-</span> <span class="ge">_hostname_</span>: Hostname to use
 
-<span class="w">    </span><span class="nl">Options</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">swap</span><span class="o">=</span><span class="n">kbs</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">swap</span><span class="w"> </span><span class="k">size</span><span class="p">,</span><span class="w"> </span><span class="n">defaults</span><span class="w"> </span><span class="n">computed</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="o">/</span><span class="k">proc</span><span class="o">/</span><span class="n">meminfo</span><span class="p">,</span><span class="w"> </span><span class="n">uses</span><span class="w"> </span><span class="n">numfmt</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="nf">parse</span><span class="w"> </span><span class="k">values</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">glibc</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">Do</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">glibc</span><span class="w"> </span><span class="n">install</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">noxwin</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">do</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">insall</span><span class="w"> </span><span class="n">X11</span><span class="w"> </span><span class="n">related</span><span class="w"> </span><span class="n">packages</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">nodesktop</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">do</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">desktop</span><span class="w"> </span><span class="n">environment</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">desktop</span><span class="o">=</span><span class="n">mate</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">Install</span><span class="w"> </span><span class="n">MATE</span><span class="w"> </span><span class="n">dekstop</span><span class="w"> </span><span class="n">environment</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">passwd</span><span class="o">=</span><span class="n">password</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="p">(</span><span class="n">prompt</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">specified</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">enc</span><span class="o">-</span><span class="n">passwd</span><span class="o">=</span><span class="n">encrypted</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">encrypted</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">password</span><span class="p">.</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">ovl</span><span class="o">=</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">tarball</span><span class="w"> </span><span class="n">containing</span><span class="w"> </span><span class="n">additional</span><span class="w"> </span><span class="n">files</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">post</span><span class="o">=</span><span class="n">script</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">post</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">script</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">pkgs</span><span class="o">=</span><span class="k">file</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="nc">text</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="n">containing</span><span class="w"> </span><span class="n">additional</span><span class="w"> </span><span class="n">software</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">install</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">bios</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">BIOS</span><span class="w"> </span><span class="n">boot</span><span class="w"> </span><span class="k">system</span><span class="w"> </span><span class="p">(</span><span class="n">needs</span><span class="w"> </span><span class="n">syslinux</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">cache</span><span class="o">=</span><span class="k">path</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="k">path</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">download</span><span class="w"> </span><span class="n">cache</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">xen</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">do</span><span class="w"> </span><span class="ow">some</span><span class="w"> </span><span class="n">xen</span><span class="w"> </span><span class="k">specific</span><span class="w"> </span><span class="n">tweaks</span><span class="w"></span>
+    Options:
+    <span class="k">-</span> swap=kbs : swap size, defaults computed from /proc/meminfo, uses numfmt to parse values
+    <span class="k">-</span> glibc : Do a glibc install
+    <span class="k">-</span> noxwin : do not insall X11 related packages
+    <span class="k">-</span> nodesktop ; do not install desktop environment
+    <span class="k">-</span> desktop=mate : Install MATE dekstop environment
+    <span class="k">-</span> passwd=password : root password (prompt if not specified)
+    <span class="k">-</span> enc-passwd=encrypted : encrypted root password.
+    <span class="k">-</span> ovl=tar.gz : tarball containing additional files
+    <span class="k">-</span> post=script : run a post install script
+    <span class="k">-</span> pkgs=file : text file containing additional software to install
+    <span class="k">-</span> bios : create a BIOS boot system (needs syslinux)
+    <span class="k">-</span> cache=path : use the file path for download cache
+    <span class="k">-</span> xen : do some xen specific tweaks
 </code></pre></div>
 
 <h4 id="command-line-examples">Command line examples</h4>
@@ -126,7 +126,7 @@ the following partitions:</p>
 </ol>
 <p>This is on a USB thumb drive.  The data I keep on an internal disk.</p>
 <p>Now we create the filesystems:</p>
-<div class="highlight"><pre><span></span><code>mkfs.vfat -F 32 -n EFI /dev/xda1
+<div class="highlight"><pre><span></span><code>mkfs.vfat -F <span class="m">32</span> -n EFI /dev/xda1
 mkswap -L swp0 /dev/xda2
 mkfs.xfs -f -L voidlinux /dev/xda3
 </code></pre></div>
@@ -140,11 +140,11 @@ mount /dev/xda1 /mnt/boot
 <h3 id="installing-void">Installing Void</h3>
 <p>So we do a targeted install:</p>
 <p>For musl-libc</p>
-<div class="highlight"><pre><span></span><code>env XBPS_ARCH=x86_64-musl xbps-install -S -R http://alpha.de.repo.voidlinux.org/current/musl -r /mnt base-system grub-x86_64-efi
+<div class="highlight"><pre><span></span><code>env <span class="nv">XBPS_ARCH</span><span class="o">=</span>x86_64-musl xbps-install -S -R http://alpha.de.repo.voidlinux.org/current/musl -r /mnt base-system grub-x86_64-efi
 </code></pre></div>
 
 <p>For glibc</p>
-<div class="highlight"><pre><span></span><code>env XBPS_ARCH=x86_64 xbps-install -S -R http://alpha.de.repo.voidlinux.org/current -r /mnt base-system grub-x86_64-efi
+<div class="highlight"><pre><span></span><code>env <span class="nv">XBPS_ARCH</span><span class="o">=</span>x86_64 xbps-install -S -R http://alpha.de.repo.voidlinux.org/current -r /mnt base-system grub-x86_64-efi
 </code></pre></div>
 
 <p>But actually, for the package list I have been using these lists:</p>
@@ -152,7 +152,7 @@ mount /dev/xda1 /mnt/boot
 <script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/swlist-xwin.txt?footer=minimal"></script>
 <script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/swlist-mate.txt?footer=minimal"></script>
 
-<p>This installs a [MATE][mate] desktop environment.</p>
+<p>This installs a <a href="https://mate-desktop.org/" title="MATE Desktop environment">MATE</a> desktop environment.</p>
 <h4 id="software-selection-notes">Software selection notes</h4>
 <ul>
 <li>For time synchronisation (ntp) we ae choosing <code>chrony</code> as it is
@@ -173,11 +173,11 @@ mount /dev/xda1 /mnt/boot
 non-free software and in the case of glibc, multilib (32 bit)
 binaries.</p>
 <p>To enable under the musl version:</p>
-<div class="highlight"><pre><span></span><code>env XBPS_ARCH=&quot;$arch&quot; xbps-install -y -S -R &quot;$voidurl&quot; -r /mnt void-repo-nonfree
+<div class="highlight"><pre><span></span><code>env <span class="nv">XBPS_ARCH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$arch</span><span class="s2">&quot;</span> xbps-install -y -S -R <span class="s2">&quot;</span><span class="nv">$voidurl</span><span class="s2">&quot;</span> -r /mnt void-repo-nonfree
 </code></pre></div>
 
 <p>For glibc:</p>
-<div class="highlight"><pre><span></span><code>env XBPS_ARCH=&quot;$arch&quot; xbps-install -y -S -R &quot;$voidurl&quot; -r /mnt void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
+<div class="highlight"><pre><span></span><code>env <span class="nv">XBPS_ARCH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$arch</span><span class="s2">&quot;</span> xbps-install -y -S -R <span class="s2">&quot;</span><span class="nv">$voidurl</span><span class="s2">&quot;</span> -r /mnt void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
 </code></pre></div>
 
 <p>Then you can install non-free software, like:</p>
@@ -187,7 +187,7 @@ binaries.</p>
 <p>Upon completion of the install, we set up our chroot jail, and chroot into our mounted filesystem:</p>
 <div class="highlight"><pre><span></span><code>mount -t proc proc /mnt/proc
 mount -t sysfs sys /mnt/sys
-mount -o bind /dev /mnt/dev
+mount -o <span class="nb">bind</span> /dev /mnt/dev
 mount -t devpts pts /mnt/dev/pts
 cp -L /etc/resolv.conf /mnt/etc/
 chroot /mnt bash -il
@@ -198,34 +198,34 @@ chroot /mnt bash -il
 </code></pre></div>
 
 <p>The output should look something akin to the following:</p>
-<div class="highlight"><pre><span></span><code><span class="n">total</span><span class="w"> </span><span class="mi">12</span><span class="w"></span>
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="mi">4096</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mi">17</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">27</span><span class="w"> </span><span class="o">.</span><span class="w"></span>
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span><span class="w">  </span><span class="mi">3</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="mi">4096</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mi">17</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">16</span><span class="w"> </span><span class="o">..</span><span class="w"></span>
-<span class="n">lrwxrwxrwx</span><span class="w">  </span><span class="mi">1</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">root</span><span class="w">    </span><span class="mi">7</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mi">17</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="w"> </span><span class="n">bin</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="w"></span>
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span><span class="w">  </span><span class="mi">4</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">root</span><span class="w">  </span><span class="mi">127</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mi">17</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">37</span><span class="w"> </span><span class="n">boot</span><span class="w"></span>
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span><span class="w">  </span><span class="mi">2</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">root</span><span class="w">   </span><span class="mi">17</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mi">17</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="w"> </span><span class="n">dev</span><span class="w"></span>
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span><span class="w"> </span><span class="mi">26</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="mi">4096</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mi">17</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">27</span><span class="w"> </span><span class="n">etc</span><span class="w"></span>
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span><span class="w">  </span><span class="mi">2</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">root</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mi">17</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="w"> </span><span class="n">home</span><span class="w"></span>
-<span class="n">lrwxrwxrwx</span><span class="w">  </span><span class="mi">1</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">root</span><span class="w">    </span><span class="mi">7</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mi">17</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="w"> </span><span class="n">lib</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="w"></span>
-<span class="n">lrwxrwxrwx</span><span class="w">  </span><span class="mi">1</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">root</span><span class="w">    </span><span class="mi">9</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mi">17</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="w"> </span><span class="n">lib32</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">usr</span><span class="o">/</span><span class="n">lib32</span><span class="w"></span>
-<span class="n">lrwxrwxrwx</span><span class="w">  </span><span class="mi">1</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">root</span><span class="w">    </span><span class="mi">7</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mi">17</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="w"> </span><span class="n">lib64</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="w"></span>
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span><span class="w">  </span><span class="mi">2</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">root</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mi">17</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="w"> </span><span class="n">media</span><span class="w"></span>
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span><span class="w">  </span><span class="mi">2</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">root</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mi">17</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="w"> </span><span class="n">mnt</span><span class="w"></span>
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span><span class="w">  </span><span class="mi">2</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">root</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mi">17</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="w"> </span><span class="n">opt</span><span class="w"></span>
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span><span class="w">  </span><span class="mi">2</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">root</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mi">17</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="w"> </span><span class="n">proc</span><span class="w"></span>
-<span class="n">drwxr</span><span class="o">-</span><span class="n">x</span><span class="o">---</span><span class="w">  </span><span class="mi">2</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">root</span><span class="w">   </span><span class="mi">26</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mi">17</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">39</span><span class="w"> </span><span class="n">root</span><span class="w"></span>
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span><span class="w">  </span><span class="mi">3</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">root</span><span class="w">   </span><span class="mi">17</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mi">17</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="w"> </span><span class="n">run</span><span class="w"></span>
-<span class="n">lrwxrwxrwx</span><span class="w">  </span><span class="mi">1</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">root</span><span class="w">    </span><span class="mi">8</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mi">17</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="w"> </span><span class="n">sbin</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">usr</span><span class="o">/</span><span class="n">sbin</span><span class="w"></span>
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span><span class="w">  </span><span class="mi">2</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">root</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mi">17</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="w"> </span><span class="n">sys</span><span class="w"></span>
-<span class="n">drwxrwxrwt</span><span class="w">  </span><span class="mi">2</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">root</span><span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mi">17</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">15</span><span class="w"> </span><span class="n">tmp</span><span class="w"></span>
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span><span class="w"> </span><span class="mi">11</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">root</span><span class="w">  </span><span class="mi">123</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mi">17</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="w"> </span><span class="n">usr</span><span class="w"></span>
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span><span class="w"> </span><span class="mi">11</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">root</span><span class="w">  </span><span class="mi">150</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mi">17</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="w"> </span><span class="k">var</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>total 12
+drwxr-xr-x 16 root root 4096 Jan 17 15:27 .
+drwxr-xr-x  3 root root 4096 Jan 17 15:16 ..
+lrwxrwxrwx  1 root root    7 Jan 17 15:26 bin -&gt; usr/bin
+drwxr-xr-x  4 root root  127 Jan 17 15:37 boot
+drwxr-xr-x  2 root root   17 Jan 17 15:26 dev
+drwxr-xr-x 26 root root 4096 Jan 17 15:27 etc
+drwxr-xr-x  2 root root    6 Jan 17 15:26 home
+lrwxrwxrwx  1 root root    7 Jan 17 15:26 lib -&gt; usr/lib
+lrwxrwxrwx  1 root root    9 Jan 17 15:26 lib32 -&gt; usr/lib32
+lrwxrwxrwx  1 root root    7 Jan 17 15:26 lib64 -&gt; usr/lib
+drwxr-xr-x  2 root root    6 Jan 17 15:26 media
+drwxr-xr-x  2 root root    6 Jan 17 15:26 mnt
+drwxr-xr-x  2 root root    6 Jan 17 15:26 opt
+drwxr-xr-x  2 root root    6 Jan 17 15:26 proc
+drwxr-x---  2 root root   26 Jan 17 15:39 root
+drwxr-xr-x  3 root root   17 Jan 17 15:26 run
+lrwxrwxrwx  1 root root    8 Jan 17 15:26 sbin -&gt; usr/sbin
+drwxr-xr-x  2 root root    6 Jan 17 15:26 sys
+drwxrwxrwt  2 root root    6 Jan 17 15:15 tmp
+drwxr-xr-x 11 root root  123 Jan 17 15:26 usr
+drwxr-xr-x 11 root root  150 Jan 17 15:26 var
 </code></pre></div>
 
 <p>While chrooted, we create the password for the root user, and set root access permissions:</p>
 <div class="highlight"><pre><span></span><code> passwd root
  chown root:root /
- chmod 755 /
+ chmod <span class="m">755</span> /
 </code></pre></div>
 
 <p>Since I am a <code>bash</code> convert, I would do this:</p>
@@ -233,39 +233,39 @@ chroot /mnt bash -il
 </code></pre></div>
 
 <p>Create the <code>hostname</code> for the new install:</p>
-<div class="highlight"><pre><span></span><code>echo &lt;HOSTNAME&gt; &gt; /etc/hostname
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> &lt;HOSTNAME&gt; &gt; /etc/hostname
 </code></pre></div>
 
 <p>Edit our <code>/etc/rc.conf</code> file, like so:</p>
-<div class="highlight"><pre><span></span><code><span class="n">HOSTNAME</span><span class="o">=</span><span class="s2">&quot;&lt;HOSTNAME&gt;&quot;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">HOSTNAME</span><span class="o">=</span><span class="s2">&quot;&lt;HOSTNAME&gt;&quot;</span>
 
-<span class="c1"># Set RTC to UTC or localtime.</span><span class="w"></span>
-<span class="n">HARDWARECLOCK</span><span class="o">=</span><span class="s2">&quot;UTC&quot;</span><span class="w"></span>
+<span class="c1"># Set RTC to UTC or localtime.</span>
+<span class="nv">HARDWARECLOCK</span><span class="o">=</span><span class="s2">&quot;UTC&quot;</span>
 
-<span class="c1"># Set timezone, availables timezones at /usr/share/zoneinfo.</span><span class="w"></span>
-<span class="n">TIMEZONE</span><span class="o">=</span><span class="s2">&quot;Europe/Amsterdam&quot;</span><span class="w"></span>
+<span class="c1"># Set timezone, availables timezones at /usr/share/zoneinfo.</span>
+<span class="nv">TIMEZONE</span><span class="o">=</span><span class="s2">&quot;Europe/Amsterdam&quot;</span>
 
-<span class="c1"># Keymap to load, see loadkeys(8).</span><span class="w"></span>
-<span class="n">KEYMAP</span><span class="o">=</span><span class="s2">&quot;us-acentos&quot;</span><span class="w"></span>
+<span class="c1"># Keymap to load, see loadkeys(8).</span>
+<span class="nv">KEYMAP</span><span class="o">=</span><span class="s2">&quot;us-acentos&quot;</span>
 
-<span class="c1"># Console font to load, see setfont(8).</span><span class="w"></span>
-<span class="c1">#FONT=&quot;lat9w-16&quot;</span><span class="w"></span>
+<span class="c1"># Console font to load, see setfont(8).</span>
+<span class="c1">#FONT=&quot;lat9w-16&quot;</span>
 
-<span class="c1"># Console map to load, see setfont(8).</span><span class="w"></span>
-<span class="c1">#FONT_MAP=</span><span class="w"></span>
+<span class="c1"># Console map to load, see setfont(8).</span>
+<span class="c1">#FONT_MAP=</span>
 
-<span class="c1"># Font unimap to load, see setfont(8).</span><span class="w"></span>
-<span class="c1">#FONT_UNIMAP=</span><span class="w"></span>
+<span class="c1"># Font unimap to load, see setfont(8).</span>
+<span class="c1">#FONT_UNIMAP=</span>
 
-<span class="c1"># Kernel modules to load, delimited by blanks.</span><span class="w"></span>
-<span class="c1">#MODULES=&quot;&quot;</span><span class="w"></span>
+<span class="c1"># Kernel modules to load, delimited by blanks.</span>
+<span class="c1">#MODULES=&quot;&quot;</span>
 </code></pre></div>
 
 <p>Also, modify the <code>/etc/fstab</code>:</p>
-<div class="highlight"><pre><span></span><code>#
-# See fstab(5).
+<div class="highlight"><pre><span></span><code><span class="gh">#</span>
+<span class="gh"># See fstab(5).</span>
 
-# &lt;file system&gt; &lt;dir&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;
+<span class="gh"># &lt;file system&gt; &lt;dir&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;</span>
 tmpfs       /tmp    tmpfs   defaults,nosuid,nodev   0       0
 LABEL=EFI   /boot   vfat    rw,fmask=0133,dmask=0022,noatime,discard  0 2
 LABEL=voidlinux /   xfs rw,relatime,discard 0 1
@@ -287,9 +287,9 @@ uncomment:</p>
 </code></pre></div>
 
 <h3 id="set-up-uefi-boot">Set-up UEFI boot</h3>
-<p>Download the [rEFInd][refind] zip binary from:</p>
+<p>Download the <a href="http://www.rodsbooks.com/refind/" title="rEFInd bootloader">rEFInd</a> zip binary from:</p>
 <ul>
-<li>[rEFInd download][getting-refind]</li>
+<li><a href="http://www.rodsbooks.com/refind/getting.html" title="rEFInd download page">rEFInd download</a></li>
 </ul>
 <p>Set-up the boot partition:</p>
 <div class="highlight"><pre><span></span><code>mkdir /boot/EFI
@@ -300,7 +300,7 @@ mkdir /boot/EFI/BOOT
 <code>/boot/EFI/BOOT/BOOTX64.EFI</code>.</p>
 <p>The version I am using right now can be found here: <a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/BOOTX64.EFI">v0.11.4 BOOTX64.EFI</a></p>
 <p>Create kernel options files <code>/boot/cmdline</code>:</p>
-<div class="highlight"><pre><span></span><code>root=LABEL=voidlinux ro quiet
+<div class="highlight"><pre><span></span><code><span class="nv">root</span><span class="o">=</span><span class="nv">LABEL</span><span class="o">=</span>voidlinux ro quiet
 </code></pre></div>
 
 <p>For my hardware I had to add the option:</p>
@@ -337,32 +337,32 @@ drwxr-xr-x  3 root root 4096 Jan 31 15:22 5.2.13_1
 </code></pre></div>
 
 <p>If you need to manually prepare boot files:</p>
-<div class="highlight"><pre><span></span><code># update dracut
-dracut --force --kver 4.19.4_1
-# update refind menu
+<div class="highlight"><pre><span></span><code><span class="c1"># update dracut</span>
+dracut --force --kver <span class="m">4</span>.19.4_1
+<span class="c1"># update refind menu</span>
 bash /boot/mkmenu.sh
 </code></pre></div>
 
-<p>We are now ready to boot into [Void][void].</p>
-<div class="highlight"><pre><span></span><code><span class="k">exit</span>
-<span class="nv">umount</span> <span class="o">-</span><span class="nv">R</span> <span class="o">/</span><span class="nv">mnt</span>
-<span class="nv">reboot</span>
+<p>We are now ready to boot into <a href="https://voidlinux.org" title="Void Linux">Void</a>.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">exit</span>
+umount -R /mnt
+reboot
 </code></pre></div>
 
 <h3 id="post-install">Post install</h3>
 <p>After the first boot, we need to activate services:</p>
 <p>Command line set-up:</p>
-<div class="highlight"><pre><span></span><code><span class="n">ln</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sv</span><span class="o">/</span><span class="n">dhcpcd</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">service</span><span class="w"></span>
-<span class="n">ln</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sv</span><span class="o">/</span><span class="n">sshd</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">service</span><span class="w"></span>
-<span class="n">ln</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sv</span><span class="o">/</span><span class="p">{</span><span class="n">acpid</span><span class="p">,</span><span class="n">chronyd</span><span class="p">,</span><span class="n">cgmanager</span><span class="p">,</span><span class="n">crond</span><span class="p">,</span><span class="n">uuidd</span><span class="p">,</span><span class="n">statd</span><span class="p">,</span><span class="n">rcpbind</span><span class="p">,</span><span class="n">autofs</span><span class="p">}</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">service</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>ln -s /etc/sv/dhcpcd /var/service
+ln -s /etc/sv/sshd /var/service
+ln -s /etc/sv/<span class="o">{</span>acpid,chronyd,cgmanager,crond,uuidd,statd,rcpbind,autofs<span class="o">}</span> /var/service
 </code></pre></div>
 
 <p>Full workstation set-up:</p>
-<div class="highlight"><pre><span></span><code><span class="n">ln</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sv</span><span class="o">/</span><span class="n">dbus</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">service</span><span class="w"></span>
-<span class="n">ln</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sv</span><span class="o">/</span><span class="n">NetworkManager</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">service</span><span class="w"></span>
-<span class="n">ln</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sv</span><span class="o">/</span><span class="n">sshd</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">service</span><span class="w"></span>
-<span class="n">ln</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sv</span><span class="o">/</span><span class="p">{</span><span class="n">acpid</span><span class="p">,</span><span class="n">chronyd</span><span class="p">,</span><span class="n">cgmanager</span><span class="p">,</span><span class="n">crond</span><span class="p">,</span><span class="n">uuidd</span><span class="p">,</span><span class="n">statd</span><span class="p">,</span><span class="n">rcpbind</span><span class="p">,</span><span class="n">autofs</span><span class="p">}</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">service</span><span class="w"></span>
-<span class="n">ln</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sv</span><span class="o">/</span><span class="p">{</span><span class="n">consolekit</span><span class="p">,</span><span class="n">xdm</span><span class="p">}</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">service</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>ln -s /etc/sv/dbus /var/service
+ln -s /etc/sv/NetworkManager /var/service
+ln -s /etc/sv/sshd /var/service
+ln -s /etc/sv/<span class="o">{</span>acpid,chronyd,cgmanager,crond,uuidd,statd,rcpbind,autofs<span class="o">}</span> /var/service
+ln -s /etc/sv/<span class="o">{</span>consolekit,xdm<span class="o">}</span> /var/service
 </code></pre></div>
 
 <p>Creating new users:</p>
@@ -376,34 +376,34 @@ passwd newuser
 </code></pre></div>
 
 <p>Uncomment:</p>
-<div class="highlight"><pre><span></span><code># %wheel ALL=(ALL) ALL
+<div class="highlight"><pre><span></span><code><span class="c1"># %wheel ALL=(ALL) ALL</span>
 </code></pre></div>
 
 <h3 id="configure-keyboard">Configure keyboard</h3>
 <p>Create configuration file: <code>/etc/X11/xorg.conf.d/30-keyboard.conf</code></p>
-<div class="highlight"><pre><span></span><code>Section &quot;InputClass&quot;
-    Identifier &quot;keyboard-all&quot;
-    Option &quot;XkbLayout&quot; &quot;us&quot;
-    # Option &quot;XkbModel&quot; &quot;pc105&quot;
-    # Option &quot;XkbVariant&quot; &quot;altgr-intl&quot;
-    Option &quot;XkbVariant&quot; &quot;intl&quot;
-    # MatchIsKeyboard &quot;on&quot;
-EndSection
+<div class="highlight"><pre><span></span><code><span class="se">Section</span> <span class="se">&quot;InputClass&quot;</span>
+    <span class="nb">Identifier</span> <span class="no">&quot;keyboard-all&quot;</span>
+    <span class="nb">Option</span> <span class="no">&quot;XkbLayout&quot; &quot;us&quot;</span>
+    <span class="c"># Option &quot;XkbModel&quot; &quot;pc105&quot;</span>
+    <span class="c"># Option &quot;XkbVariant&quot; &quot;altgr-intl&quot;</span>
+    <span class="nb">Option</span> <span class="no">&quot;XkbVariant&quot; &quot;intl&quot;</span>
+    <span class="c"># MatchIsKeyboard &quot;on&quot;</span>
+<span class="se">EndSection</span>
 </code></pre></div>
 
 <p>This makes the <code>intl</code> for the <code>XkbVariant</code> the system-wide default.</p>
 <p>Since, as a programmer I prefer the <code>altgr-intl</code> variant, then I
 run this in my de desktop environment startup to override the
 default:</p>
-<div class="highlight"><pre><span></span><code><span class="n">setxkbmap</span><span class="w"> </span><span class="o">-</span><span class="n">rules</span><span class="w"> </span><span class="n">evdev</span><span class="w"> </span><span class="o">-</span><span class="n">model</span><span class="w"> </span><span class="n">evdev</span><span class="w"> </span><span class="o">-</span><span class="n">layout</span><span class="w"> </span><span class="n">us</span><span class="w"> </span><span class="o">-</span><span class="n">variant</span><span class="w"> </span><span class="n">altgr</span><span class="o">-</span><span class="n">intl</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl
 </code></pre></div>
 
 <h3 id="using-xdm">Using xdm</h3>
-<p>I have switched to [xdm][xdm] as my display manager.  This is
+<p>I have switched to <a href="https://en.wikipedia.org/wiki/XDM_(display_manager)">xdm</a> as my display manager.  This is
 configured in <code>/etc/X11/xdm/xdm-config</code>.</p>
 <p>Specifically, I update the Xsession setting to be the following:</p>
-<div class="highlight"><pre><span></span><code>! DisplayManager*session:       /usr/lib64/X11/xdm/Xsession
-DisplayManager*session:     /etc/X11/Xsession
+<div class="highlight"><pre><span></span><code><span class="n">! DisplayManager*session</span><span class="p">:</span><span class="w"> </span><span class="s">      /usr/lib64/X11/xdm/Xsession</span>
+<span class="n">DisplayManager*session</span><span class="p">:</span><span class="w"> </span><span class="s">    /etc/X11/Xsession</span><span class="w"></span>
 </code></pre></div>
 
 <p>And have a custom <a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/xdm/Xsession">Xsession</a> script in
@@ -419,7 +419,7 @@ is handled.</p>
 <p><strong>NOTE:</strong> <em>Doing <code>xhost +local:</code> is hardly a best practice
 when it comes to security.</em></p>
 <h4 id="spicing-up-xdm">Spicing up XDM</h4>
-<p>Allthough [xdm][xdm] is fairly old-school, there are
+<p>Allthough <a href="https://en.wikipedia.org/wiki/XDM_(display_manager)">xdm</a> is fairly old-school, there are
 still some opportunities to add some eye-candy to
 it.  For that, we change the <code>setup</code> and <code>startup</code> scripts
 <code>Xsetup_0</code> and <code>GiveConsole</code> into custom scripts:</p>
@@ -431,7 +431,7 @@ it.  For that, we change the <code>setup</code> and <code>startup</code> scripts
 directly to the root window as it is not possible to control
 overlapping windows.  For example, running <code>cmatrix</code> on
 a <code>xterm</code> window covers the login widget.</p>
-<p>On the other hand, the [xscreensaver][xs] collection of screen
+<p>On the other hand, the <a href="https://www.jwz.org/xscreensaver/">xscreensaver</a> collection of screen
 hacks seem to accept the <code>-root</code> parameter, which can be used
 to kick off the hack, drawing on the root window.</p>
 <h3 id="tweaks-and-bug-fixes">Tweaks and Bug-fixes</h3>
@@ -441,7 +441,7 @@ and <code>/var/lib/dbus/machine-id</code>.
 manually.  This is only needed for desktop systems.</p>
 <p>See [this article][machineid] for more
 info.</p>
-<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="n">dbus</span><span class="o">-</span><span class="n">uuidgen</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">tee</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">machine</span><span class="o">-</span><span class="n">id</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">dbus</span><span class="o">/</span><span class="n">machine</span><span class="o">-</span><span class="n">id</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>  dbus-uuidgen <span class="p">|</span> tee /etc/machine-id /var/lib/dbus/machine-id
 </code></pre></div>
 
 <h4 id="power-button-handling">power button handling</h4>
@@ -478,16 +478,18 @@ any longer.  I left it here just for reference (in case it breaks
 again.</p>
 <hr>
 <p>OK, in my case, <code>shutdown</code>, <code>reboot</code> and local media access functions
-were not available using the [MATE][mate] desktop.</p>
+were not available using the <a href="https://mate-desktop.org/" title="MATE Desktop environment">MATE</a> desktop.</p>
 <p>To enable this I had to create/tweak the PolKit rules...</p>
 <script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/_attic_/tweak-polkit-rules.sh"></script>
 
 <h3 id="using-slim">Using SLIM</h3>
-<p>I have switched to [SLiM][SLiM] as the display manager.  This is
+<p>I have switched to <a href="https://github.com/iwamatsu/slim" title="Simple Login Manager">SLiM</a> as the display manager.  This is
 configured in <code>/etc/slim.conf</code>.</p>
 <p>Specifically, I update the login_cmd to be the following:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">login_cmd</span> <span class="k">exec</span> <span class="o">/</span><span class="nv">bin</span><span class="o">/</span><span class="nv">sh</span> <span class="o">-</span><span class="nv">l</span> <span class="o">/</span><span class="nv">etc</span><span class="o">/</span><span class="nv">X11</span><span class="o">/</span><span class="nv">Xsession</span> <span class="o">%</span><span class="nv">session</span>
 </code></pre></div>
+
+<hr>
 
 	</article>
 
@@ -499,6 +501,7 @@ configured in <code>/etc/slim.conf</code>.</p>
 	        <nav>
 	          <h2>Years</h2>
 	          <ul>
+	              <li ><a href="/category/c2022.html">2022</a></li>
 	              <li ><a href="/category/c2021.html">2021</a></li>
 	              <li ><a href="/category/c2020.html">2020</a></li>
 	              <li class="active"><a href="/category/c2019.html">2019</a></li>
