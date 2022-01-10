@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: OpenWRT web
-tags: authentication, config, configuration, login, password, scripts, settings, speed
+tags: authentication, config, configuration, database, login, password, scripts, settings, speed
 ---
 
 Some useful tidbits to use when using the OpenWRT embedded web

@@ -1,0 +1,45 @@
+#!/bin/sh
+#
+# Simple remote command: remote component
+#
+set -euf -o pipefail
+die() {
+  echo "$@" 1>&2
+  exit "$1"
+}
+
+exports="/etc/exports"
+
+translate_path() {
+  if ( echo "$1" | grep -q / ) ; then
+    local \
+	share_name="$(echo "$1" | cut -d/ -f1)" \
+	share_path="$(echo "$1" | cut -d/ -f2-)"
+  else
+    local share_name="$1" share_path=""
+  fi
+
+  cut -d'"' -f2 < "$exports" | (while read in
+  do
+    if [ x"$(basename "$in")" = x"$share_name" ] ; then
+      echo "$in"/"$share_path"
+      return 0
+    fi
+  done
+  return 1)
+}
+
+
+
+main() {
+  # <share-path> cmd
+  [ $# -lt 1 ] && die 12 "Invalid usage.  Usage \"op\" remote command"
+  local share="$1" ; shift
+
+  local xpath="$(translate_path "$share")"
+
+  cd "$xpath" || exit 1
+  exec "$@"
+}
+
+main "$@"

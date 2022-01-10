@@ -22,6 +22,7 @@
 - [markdown include](https://github.com/neurobin/mdx_include)
 - [blockdiag](https://github.com/gisce/markdown-blockdiag)
 - [aafigure](https://github.com/mbarkhau/markdown-aafigure)
+- graphviz
 
 # known issues or non-issues
 

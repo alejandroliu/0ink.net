@@ -22,6 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: MariaDB Quickest Quick start
+tags: database
 ---
 
 This article outlines the bare minimum to get

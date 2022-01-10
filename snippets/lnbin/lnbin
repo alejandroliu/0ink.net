@@ -1,0 +1,266 @@
+#!/bin/sh
+#
+# lnbin : a stow like bin symlink manager
+#
+# (C) 2010,2014,2021 Alejandro Liu Ly <alejandro_liu@hotmail.com>
+#
+# Manage bin symlinks
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+set -euf -o pipefail
+op_usage() {
+sed s/^#// << 'EOT'
+#++
+# = LNSYM(1)
+# :Revision: 1.0
+#
+# == NAME
+#
+# lnbin - Manage installation software
+#
+# == SYNOPSIS
+#
+# *lnbin* _[options]_ {pkgs-dir}
+#
+# == DESCRIPTION
+#
+# *lnbin* is a program for managing symlinks in `/usr/local/bin`
+# directories.  It is similar in princple to stow, lndir, cleanlinks
+# and others.
+#
+# The approach used by *lnbin* is based on Stow, and it is to install
+# each into its own tree, then use symbolic links to make its bin
+# directory, so that the command can be in the executable path.
+#
+# When run, *lnbin* examines packages in `pkgs-dir` and the
+# `target` directory (see OPTIONS), adding or removing links as
+# needed.
+#
+#
+# == OPTIONS
+#
+# *pkgs-dir*::
+#    a directory relative to the target directory or an absolute
+#    path.
+# *-t|--target* _directory_::
+#    Defaults to the current directory.
+# *-n|--dry-run*::
+#    Just show what is going to happen.
+# *-v|--verbose*::
+#    Show the actions being executed
+# *-f|--forced*::
+#    Overwrite any existing entries
+#
+# == ACTIONS
+#
+# TODO: *info* pkg_dir::
+# TODO:     Show info on a installed pkg `pkg_dir`.
+# TODO: *list* parent_pkg_dir::
+# TODO:      Show a list of installed packages.  If *-v* option is specified,
+# TODO:      it also lists the symlinks belonging to that pkg.
+#
+#
+# == SAMPLE USAGE
+#
+# The standard way to use *lnbin* is:
+#
+# - download source package
+# - build and install package
+#
+#    # extract archive
+#    tar zxvf archive-x.x.tar.gz
+#    cd archive-x.x
+#    # GNU autoconf
+#    ./configure --prefix="/usr/local/pkgs/archive-x.x"
+#    make
+#    # Package installation
+#    make install
+#    # ... or ...
+#    make install DESTDIR=/usr/local/pkgs/archive-x.x
+#
+# - update symlinks in /usr/local
+#
+#    cd /usr/local/bin
+#    lnbin -v update ../pkgs
+#
+# - uninstalling a package, is
+#
+#     rm -rf /usr/local/pkgs/archive-x.x
+#     cd /usr/local/bin
+#     lnbin -v update ../pkgs
+#
+# == AUTHOR
+#
+# Alejandro Liu Ly
+#
+# == REFERENCES
+#
+# There are a number of packages that do similar things.  The main
+# attractiveness of this one is that it is a `/bin/sh` script intended
+# to have low dependancies.
+#
+# Other options:
+#
+# stow:: a perl program
+#    http://www.gnu.org/software/stow/
+# spill:: written C, so also has a low dependency count.
+#    http://www.rpcurnow.force9.co.uk/spill/
+# stash:: a package manager for non-root users (in perl)
+#    http://www.wyrick.org/source/perl/stash/
+# lt:: shell script by Marc Vertes.
+#     http://mvertes.free.fr/lt/lt
+#
+# I chose not to use *lt* because while written in `/bin/sh`, I wanted
+# a script that could use relative links instead of absolute links.
+#
+# == SEE ALSO
+#
+# ln(1), find(1)
+#
+#--
+EOT
+}
+
+fatal () {
+    echo "$@" 1>&2
+    exit 1
+}
+
+create_link() {
+  if [ -L "$2" ] ; then
+    $do rm -f "$2"
+  elif [ -e "$2" ] ; then
+    $do rm -f "$2"
+  fi
+  $do ln -s "$1" "$2"
+}
+
+op_update() {
+  [ $# -ne 1 ] && fatal "Usage: $0 {pkgdir}"
+  lnkdir=$(basename $(pwd)) target="$1"
+
+  [ ! -d "$target" ] && fatal "$target: directory not found"
+  target=$(echo "$target" | sed -e 's!/*$!!')
+
+  $vv "PKGDIR: $target"
+  $vv "LNKDIR: $lnkdir"
+
+  # Remove outdated links
+  find . -mindepth 1 -maxdepth 1 -type l | while read lnk
+  do
+    exe=$(readlink "$lnk")
+    case "$exe" in
+    ${target}*)
+      if [ ! -e "$lnk" ] ; then
+	# target is gone!
+	$vv "removing: $lnk => $exe"
+	$do rm -f "$lnk"
+      else
+	$vv "OK: $lnk => $exe"
+      fi
+      ;;
+    esac
+  done
+
+  find $target -mindepth 2 -maxdepth 2 -name "$lnkdir" -type d | while read appdir
+  do
+
+    # Link all the files in this directory
+    find "$appdir" -mindepth 1 -maxdepth 1 | while read exe
+    do
+      lnk=$(basename "$exe")
+      if [ -L "$lnk" ] ; then
+	# Link to this exe already exist?
+	clnk=$(readlink "$lnk")
+	if [ x"$clnk" = x"$exe" ] ; then
+	  $vv "$lnk: is up to date"
+	else
+	  if [ -e "$lnk" ] ; then
+	    if $forced ; then
+	      $vv "$lnk: is being changed"
+	      create_link "$exe" "$lnk"
+	    else
+	      echo "$lnk: already exists!" 1>&2
+	    fi
+	  else
+	    $vv "$lnk => $exe"
+	    create_link "$exe" "$lnk"
+	  fi
+	fi
+      elif [ -e "$lnk" ] ; then
+	# There is already a conflicting entry!
+	if $forced ; then
+	  echo "Warning: overwriting $lnk"
+	  create_link "$exe" "$lnk"
+	else
+	  echo "$lnk: already exist!"
+	fi
+      else
+	# let's go!
+	$vv "$lnk => $exe"
+	create_link "$exe" "$lnk"
+      fi
+    done
+  done
+}
+
+do=echo
+v=
+vv=:
+ACTION=
+forced=false
+
+while [ $# -gt 0 ]
+do
+  case "$1" in
+    --target=*)
+      [ -z "${1#--target=}" ] && fatal "No target specified"
+      cd "${1#--target=}" || exit 1
+      ;;
+    -t|--target)
+      [ -z "$2" ] && fatal "No target specified"
+      cd "$2" || exit 1
+      shift
+      ;;
+    -f|--forced)
+      forced=false
+      ;;
+    -v|--verbose)
+      v=-v
+      vv=echo
+      ;;
+    -x|--no-dry-run)
+      v=
+      do=
+      ;;
+    *)
+      break
+      ;;
+  esac
+  shift
+done
+
+if [ -z "$ACTION" ] ; then
+  if [ $# -eq 0 ] ; then
+    ACTION=usage
+  else
+    ACTION=update
+  fi
+fi
+
+$vv "TARGET: $(pwd)"
+
+op_$ACTION "$@"

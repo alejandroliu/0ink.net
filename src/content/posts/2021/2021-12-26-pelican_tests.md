@@ -1,6 +1,6 @@
 ---
 title: Pelican Test page
-tags: address, browser, markdown, network
+tags: address, browser, database, markdown, network
 ---
 
 [TOC]

@@ -1,0 +1,5 @@
+#
+# Install paths
+#
+op /usr/local/bin/op 755
+op.remote /usr/local/bin/op.remote 755

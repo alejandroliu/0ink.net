@@ -1,0 +1,5 @@
+#
+# Used for HDMI hotplug
+#
+99-xwin-hotplug.rules /etc/udev/rules.d/99-xwin-hotplug.rules 0644
+xwin-hotplug /usr/local/bin/xwin-hotplug 0755

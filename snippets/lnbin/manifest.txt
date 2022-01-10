@@ -1,0 +1,4 @@
+#
+# Install paths
+#
+lnbin /usr/local/bin/lnbin 755

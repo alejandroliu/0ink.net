@@ -1,0 +1,5 @@
+#
+# Paths to install
+#
+patoggle /usr/local/bin/patoggle 0755
+

@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Windows administration from the command line
-tags: address, computer, configuration, device, directory, editor, management, manager, network, remote, security, service, settings, storage, terminal, tools, windows
+tags: address, computer, configuration, database, device, directory, editor, management, manager, network, remote, security, service, settings, storage, terminal, tools, windows
 ---
 
 Windows system administration is very mouse driven and to reach

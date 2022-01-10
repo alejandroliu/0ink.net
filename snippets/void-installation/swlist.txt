@@ -30,3 +30,4 @@ smartmontools
 
 # More utils
 screen
+bash-completion

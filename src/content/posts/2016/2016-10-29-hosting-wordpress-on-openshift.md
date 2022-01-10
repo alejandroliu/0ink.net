@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Hosting WordPress on OpenShift
-tags: backups, cloud, drive, github, integration, scripts, storage, wordpress
+tags: backups, cloud, database, drive, github, integration, scripts, storage, wordpress
 ---
 
 ![openshift]({static}/images/2016/img_0423.jpg)

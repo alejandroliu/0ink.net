@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: Managing our personal finances
-tags: application, computer, desktop, feature, information, software
+tags: application, computer, database, desktop, feature, information, software
 ---
 
 During my last vacation I wanted to move how we manage our personal

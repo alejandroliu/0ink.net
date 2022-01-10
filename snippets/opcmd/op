@@ -1,0 +1,72 @@
+#!/bin/sh
+#
+# Simple remote command
+#
+# Security is enforced on the remote end... (i.e. the user either
+# has an authorized key or knows the password)
+#
+set -euf -o pipefail
+die() {
+  echo "$@" 1>&2
+  exit "$1"
+}
+
+
+root_user="admin"
+rem_cmd="/usr/site/bin/op.remote"
+
+main() {
+  local t=""
+  if [ $# -eq 2 ] ; then
+    if [ x"$1" = x"-t" -o x"$1" = x"--translate" ] ; then
+      t="$2"
+    fi
+  elif [ $# -eq 1 ] ; then
+    case "$1" in
+      --translate=*) t=${1#--translate=} ;;
+    esac
+  fi
+  if [ -n "$t" ] ; then
+    if [ ! -d "$t" ] ; then
+      die 31 "$t: is not a directory"
+    fi
+    set - pwd
+    local cwd="$(realpath -e "$t")"
+  else
+    local cwd="$(realpath -e "$(pwd)")"
+  fi
+  if [ x"${cwd:0:5}" != x"/net/" ] ; then
+    if [ -n "$t" ] ; then
+      die 35 "$t: is not a NFS directory"
+    fi
+    exec sudo "$@"
+    return $?
+  fi
+  rhost="$(echo "$cwd" | cut -d/ -f 3)"
+  [ -f "/etc/opcfg.d/$rhost.conf" ] && . "/etc/opcfg.d/$rhost.conf"
+  ping -q -c 1 "$rhost" >/dev/null 2>&1|| die 22 "$rhost: not found"
+
+  if [ -x "$0.remote" ] ; then
+    if ! rcheck=$(ssh -l "$root_user" "$rhost" ls -1 "$rem_cmd" 2>/dev/null) ; then
+      echo "Installing $0.remote" 1>&2
+      ssh -l "$root_user" "$rhost" mkdir -p "$(dirname "$rem_cmd")"
+      scp "$0.remote" "$root_user"'@'"${rhost}:${rem_cmd}"
+    fi
+  fi
+
+  if [ $# -gt 0 ] && [ x"$1" = x"--copy" ] ; then
+    shift
+    if [ -x "$0.remote" ] ; then
+      ssh -l "$root_user" "$rhost" mkdir -p "$(dirname "$rem_cmd")"
+      scp "$0.remote" "$root_user"'@'"${rhost}:${rem_cmd}"
+    fi
+  fi
+  ssh \
+	-l "$root_user" \
+	"$rhost" \
+	"$rem_cmd" \
+	"$(echo "$cwd" | cut -d/ -f4-)" \
+	"$@"
+}
+
+main "$@"
