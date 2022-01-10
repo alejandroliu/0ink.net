@@ -120,7 +120,7 @@ repofile() {
 ##
 ## Script usage:
 ##
-## ```
+## ```markdown
 #end-output
 if [ $# -lt 2 ] ; then
   cat <<-_EOF_
@@ -251,7 +251,7 @@ fi
 ##
 ## Boot using the void live CD and partition the target disk:
 ##
-## ```
+## ```bash
 ## cfdisk -z /dev/xda
 ## ```
 ##
@@ -339,7 +339,7 @@ fi
 ##
 ## Now we create the filesystems:
 ##
-## ```
+## ```bash
 ## mkfs.vfat -F 32 -n EFI /dev/xda1
 ## mkswap -L swp0 /dev/xda2
 ## mkfs.xfs -f -L voidlinux /dev/xda3
@@ -369,7 +369,7 @@ fi
 ##
 ## We're now ready to mount the volumes, making any necessary mount point directories along the way (the sequence is important, yes):
 ##
-## ```
+## ```bash
 ## mount /dev/xda3 $hmnt
 ## mkdir $hmnt/boot
 ## mount /dev/xda1 $hmnt/boot
@@ -406,12 +406,12 @@ fi
 ##
 ## For musl-libc
 ##
-## ```
+## ```bash
 ## env XBPS_ARCH=x86_64-musl xbps-install -S -R http://alpha.de.repo.voidlinux.org/current/musl -r $hmnt base-system grub-x86_64-efi
 ## ```
 ##
 ## For glibc
-## ```
+## ```bash
 ## env XBPS_ARCH=x86_64 xbps-install -S -R http://alpha.de.repo.voidlinux.org/current -r $hmnt base-system grub-x86_64-efi
 ## ```
 ##
@@ -494,13 +494,13 @@ echo y | env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $mnt $(
 ##
 ## To enable under the musl version:
 ##
-## ```
+## ```bash
 ## env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $hmnt void-repo-nonfree
 ## ```
 ##
 ## For glibc:
 ##
-## ```
+## ```bash
 ## env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $hmnt void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
 ## ```
 ##
@@ -524,7 +524,7 @@ env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $hmnt $(
 ##
 ## Upon completion of the install, we set up our chroot jail, and chroot into our mounted filesystem:
 ##
-## ```
+## ```bash
 mount -t proc proc $hmnt/proc
 mount -t sysfs sys $hmnt/sys
 mount -o bind /dev $hmnt/dev
@@ -535,13 +535,13 @@ cp -L /etc/resolv.conf $hmnt/etc/
 ##
 ## In order to verify our install, we can have a look at the directory structure:
 ##
-## ```
+## ```bash
 $run ls -la
 ## ```
 ##
 ## The output should look something akin to the following:
 ##
-## ```
+## ```markdown
 ## total 12
 ## drwxr-xr-x 16 root root 4096 Jan 17 15:27 .
 ## drwxr-xr-x  3 root root 4096 Jan 17 15:16 ..
@@ -575,7 +575,7 @@ else
   $run usermod --password "$pwline" root
 fi
 #begin-output
-## ```
+## ```bash
 ##  passwd root
 $run chown root:root /
 $run chmod 755 /
@@ -583,13 +583,13 @@ $run chmod 755 /
 ##
 ## Since I am a `bash` convert, I would do this:
 ##
-## ```
+## ```bash
 $run xbps-alternatives --set bash
 ## ```
 ##
 ## Create the `hostname` for the new install:
 ##
-## ```
+## ```bash
 ## echo <HOSTNAME> > /etc/hostname
 #end-output
 echo $syshost > $mnt/etc/hostname
@@ -598,7 +598,7 @@ echo $syshost > $mnt/etc/hostname
 ##
 ## Edit our `/etc/rc.conf` file, like so:
 ##
-## ```
+## ```bash
 #end-output
 (cat <<:end-output
 #begin-output
@@ -633,7 +633,7 @@ KEYMAP="us-acentos"
 ##
 ## Also, modify the `/etc/fstab`:
 ##
-## ```
+## ```markdown
 ## #
 ## # See fstab(5).
 ##
@@ -685,7 +685,7 @@ fi
 ##
 ## For a removable drive I include the line:
 ##
-## ```
+## ```markdown
 ## LABEL=volume	/media/blahblah xfs	rw,relatime,nofail 0 0
 ## ```
 ##
@@ -703,7 +703,7 @@ fi
 #end-output
 if check_opt glibc "$@" ; then
 #begin-output
-## ```
+## ```bash
 $run xbps-reconfigure -f glibc-locales
 ## ```
 #end-output
@@ -718,7 +718,7 @@ fi
 ##
 ## Set-up the boot partition:
 ##
-## ```
+## ```bash
 ## mkdir /boot/EFI
 ## mkdir /boot/EFI/BOOT
 ## ```
@@ -730,7 +730,7 @@ fi
 ##
 ## Create kernel options files `/boot/cmdline`:
 ##
-## ```
+## ```bash
 ## root=LABEL=voidlinux ro quiet
 ##
 ## ```
@@ -786,13 +786,13 @@ chmod 755 $mnt/etc/kernel.d/post-{install,remove}/99-bootmenu
 #begin-output
 ## We need to have a look at `/lib/modules` to get our Linux kernel version
 ##
-## ```
+## ```bash
 ## ls -la /lib/modules
 ## ```
 ##
 ## Which should return something akin to:
 ##
-## ```
+## ```markdown
 ## drwxr-xr-x  3 root root   21 Jan 31 15:22 .
 ## drwxr-xr-x 23 root root 8192 Jan 31 15:22 ..
 ## drwxr-xr-x  3 root root 4096 Jan 31 15:22 5.2.13_1
@@ -800,7 +800,7 @@ chmod 755 $mnt/etc/kernel.d/post-{install,remove}/99-bootmenu
 ##
 ## And this script to create boot files:
 ##
-## ```
+## ```bash
 ## xbps-reconfigure -f linux5.2
 ## ```
 ##
@@ -811,7 +811,7 @@ $run xbps-reconfigure -f linux${kver}
 ##
 ## If you need to manually prepare boot files:
 ##
-## ```
+## ```bash
 ## # update dracut
 ## dracut --force --kver 4.19.4_1
 ## # update refind menu
@@ -820,7 +820,7 @@ $run xbps-reconfigure -f linux${kver}
 ##
 ## We are now ready to boot into [Void][void].
 ##
-## ```
+## ```bash
 ## exit
 ## umount -R $hmnt
 ## reboot
@@ -832,7 +832,7 @@ $run xbps-reconfigure -f linux${kver}
 ##
 ## Command line set-up:
 ##
-## ```
+## ```bash
 ## ln -s /etc/sv/dhcpcd /var/service
 ## ln -s /etc/sv/sshd /var/service
 ## ln -s /etc/sv/{acpid,chronyd,cgmanager,crond,uuidd,statd,rcpbind,autofs} /var/service
@@ -840,7 +840,7 @@ $run xbps-reconfigure -f linux${kver}
 ##
 ## Full workstation set-up:
 ##
-## ```
+## ```bash
 ## ln -s /etc/sv/dbus /var/service
 ## ln -s /etc/sv/NetworkManager /var/service
 ## ln -s /etc/sv/sshd /var/service
@@ -872,7 +872,7 @@ echo ''
 ##
 ## Creating new users:
 ##
-## ```
+## ```bash
 ## useradd -m -s /bin/bash -U -G wheel,users,audio,video,cdrom,input newuser
 ## passwd newuser
 ## ```
@@ -881,13 +881,13 @@ echo ''
 ##
 ## Configure sudo:
 ##
-## ```
+## ```bash
 ## visudo
 ## ```
 ##
 ## Uncomment:
 ##
-## ```
+## ```bash
 ## # %wheel ALL=(ALL) ALL
 ## ```
 ##
@@ -901,7 +901,7 @@ chmod 440 $mnt/etc/sudoers.d/admins
 ##
 ## Create configuration file: `/etc/X11/xorg.conf.d/30-keyboard.conf`
 ##
-## ```
+## ```xorg.conf
 #end-output
 if [ -d $mnt/etc/X11 ] ; then
   mkdir -p $mnt/etc/X11/xorg.conf.d
@@ -926,7 +926,7 @@ fi
 ## run this in my de desktop environment startup to override the
 ## default:
 ##
-## ```
+## ```bash
 ## setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl
 ##
 ## ```
@@ -938,7 +938,7 @@ fi
 ##
 ## Specifically, I update the Xsession setting to be the following:
 ##
-## ```
+## ```nt
 ## ! DisplayManager*session:		/usr/lib64/X11/xdm/Xsession
 ## DisplayManager*session:		/etc/X11/Xsession
 ##
@@ -951,7 +951,7 @@ fi
 ## script is not able to start a `mate` or `xfce4` sessions
 ## until you add the command:
 ##
-## ```
+## ```bash
 ## xhost +local:
 ##
 ## ```
@@ -1011,7 +1011,7 @@ fi
 #end-output
 if is_valid_desktop "$desktop" ; then
 #begin-output
-## ```
+## ```bash
   dbus-uuidgen | tee $mnt/etc/machine-id /var/lib/dbus/machine-id
 ## ```
 #end-output
@@ -1039,7 +1039,7 @@ fi
 ## Apparently, `rtkit` requres an `rtkit` user to exist.  Otherwise it
 ## will spam the logs with error messages.  To correct use this command:
 ##
-## ```
+## ```bash
 ## useradd -r -s /sbin/nologin rtkit
 ## ```
 ##
@@ -1123,6 +1123,7 @@ if [ -f $mnt/etc/slim.conf ] ; then
   chmod 755 $mnt/etc/X11/Xsession
 fi
 
+#begin-output
 ## * * *
 ##
 ##  [void]: https://voidlinux.org "Void Linux"
