@@ -3,6 +3,8 @@ set -euf -o pipefail
 #
 # Simple script to cycle PA outputs
 #
+# TODO: Win+0 toggle profiles, Win+. toggle sinks (i.e. cards)
+#
 if [ -f $HOME/.patogglerc ] ; then
   . $HOME/.patogglerc
 fi

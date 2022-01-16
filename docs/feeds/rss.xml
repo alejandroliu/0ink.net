@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Mon, 10 Jan 2022 17:29:50 +0100</lastBuildDate><item><title>lnbin</title><link>https://0ink.net/posts/2022/2022-01-10-lnbin.html</link><description>&lt;p&gt;This is my &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/lnbin"&gt;lnbin&lt;/a&gt; script.&lt;/p&gt;
+<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Sun, 16 Jan 2022 14:31:02 +0100</lastBuildDate><item><title>My git release script</title><link>https://0ink.net/posts/2022/2022-01-12-ghrelease.html</link><description>&lt;p&gt;I always had issues remembering how to create releases.
+So in order to standardise things, I wrote this script:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/TortugaLabs/my-gh-tools/blob/main/ghrelease.sh"&gt;ghrelease&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So whenever I am ready to release I would then just issue
+the command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;./ghrelease vX.Y.Z
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="pre-requisistes"&gt;Pre-requisistes:&lt;/h2&gt;
+&lt;p&gt;You obviously need &lt;code&gt;git&lt;/code&gt;.  But also you would need
+&lt;a href="https://github.com/cli/cli"&gt;github-cli&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Your …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Wed, 12 Jan 2022 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:None,2022-01-12:/posts/2022/2022-01-12-ghrelease.html</guid><category>2022</category><category>directory</category><category>remote</category><category>scripts</category></item><item><title>Linux Icons</title><link>https://0ink.net/posts/2022/2022-01-10-linux_icons.html</link><description>&lt;p&gt;A quick note on how to add icons to menus in a Linux desktop.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Create the icon image in: &lt;code&gt;/usr/share/pixmaps&lt;/code&gt;.&lt;ul&gt;
+&lt;li&gt;png and svg (and maybe others) are supported.&lt;/li&gt;
+&lt;li&gt;24x24 seems to be a good size for menus.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;You need to create a &lt;code&gt;.desktop&lt;/code&gt; file in &lt;code&gt;/usr/share/applications …&lt;/code&gt;&lt;/li&gt;&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Mon, 10 Jan 2022 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:None,2022-01-10:/posts/2022/2022-01-10-linux_icons.html</guid><category>2022</category><category>desktop</category><category>linux</category></item><item><title>lnbin</title><link>https://0ink.net/posts/2022/2022-01-10-lnbin.html</link><description>&lt;p&gt;This is my &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/lnbin"&gt;lnbin&lt;/a&gt; script.&lt;/p&gt;
 &lt;p&gt;This is a program for managing symlink in a &lt;code&gt;/usr/local/bin&lt;/code&gt;
 directory.  It is similar to stow, lndir, cleanlinks and
 others.&lt;/p&gt;

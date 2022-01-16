@@ -1,5 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2022-01-10T17:29:50+01:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>lnbin</title><link href="https://0ink.net/posts/2022/2022-01-10-lnbin.html" rel="alternate"></link><published>2022-01-10T00:00:00+01:00</published><updated>2022-01-10T17:09:50+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-01-10:/posts/2022/2022-01-10-lnbin.html</id><summary type="html">&lt;p&gt;This is my &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/lnbin"&gt;lnbin&lt;/a&gt; script.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2022-01-16T14:31:02+01:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>My git release script</title><link href="https://0ink.net/posts/2022/2022-01-12-ghrelease.html" rel="alternate"></link><published>2022-01-12T00:00:00+01:00</published><updated>2022-01-16T14:31:02+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-01-12:/posts/2022/2022-01-12-ghrelease.html</id><summary type="html">&lt;p&gt;I always had issues remembering how to create releases.
+So in order to standardise things, I wrote this script:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/TortugaLabs/my-gh-tools/blob/main/ghrelease.sh"&gt;ghrelease&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So whenever I am ready to release I would then just issue
+the command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;./ghrelease vX.Y.Z
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="pre-requisistes"&gt;Pre-requisistes:&lt;/h2&gt;
+&lt;p&gt;You obviously need &lt;code&gt;git&lt;/code&gt;.  But also you would need
+&lt;a href="https://github.com/cli/cli"&gt;github-cli&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Your …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I always had issues remembering how to create releases.
+So in order to standardise things, I wrote this script:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/TortugaLabs/my-gh-tools/blob/main/ghrelease.sh"&gt;ghrelease&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So whenever I am ready to release I would then just issue
+the command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;./ghrelease vX.Y.Z
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="pre-requisistes"&gt;Pre-requisistes:&lt;/h2&gt;
+&lt;p&gt;You obviously need &lt;code&gt;git&lt;/code&gt;.  But also you would need
+&lt;a href="https://github.com/cli/cli"&gt;github-cli&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Your repository must also be &lt;em&gt;clean&lt;/em&gt;, without any
+pending commits.&lt;/p&gt;
+&lt;p&gt;You must be on the &lt;em&gt;default&lt;/em&gt; branch (usually &lt;code&gt;main&lt;/code&gt; or
+&lt;code&gt;master&lt;/code&gt;), unless doing a &lt;strong&gt;pre-release&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Optionally, you may have a &lt;code&gt;wfscripts/checks&lt;/code&gt; directory
+containing checking scripts.&lt;/p&gt;
+&lt;h2 id="what-happens-on-release"&gt;What happens on release&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;remote &lt;code&gt;--tags&lt;/code&gt; will be synchronised with local tags.&lt;/li&gt;
+&lt;li&gt;if a tag of the same name already exists then, release
+   will be stopped.&lt;/li&gt;
+&lt;li&gt;check if we are on the &lt;code&gt;default&lt;/code&gt; branch (unless pre-release)&lt;/li&gt;
+&lt;li&gt;check if there are any uncomitted changes.&lt;/li&gt;
+&lt;li&gt;If available, &lt;code&gt;wfscripts/checks&lt;/code&gt; is run using &lt;code&gt;run-parts&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Will create release notes based on log entries since the
+   last release (previous annotated tagged commit)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;VERSION&lt;/code&gt; or &lt;code&gt;version.h&lt;/code&gt; is updated and comitted.&lt;/li&gt;
+&lt;li&gt;A new annotated tag is created.&lt;/li&gt;
+&lt;li&gt;Commits and tags are push to remote (origin).&lt;/li&gt;
+&lt;li&gt;Release is created using &lt;code&gt;github-cli&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="pre-releases"&gt;Pre-releases&lt;/h2&gt;
+&lt;p&gt;You can create pre-releases.  These do not have to be on the
+&lt;em&gt;default&lt;/em&gt; branch.  To do this use the &lt;code&gt;--rc&lt;/code&gt; (Release candidate)
+option:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;./ghrelease vX.Y.Z-rcN
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This will create a release in &lt;code&gt;github&lt;/code&gt; but tag it as &lt;strong&gt;pre-release&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;After release, you may delete all pre-release candidates:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;./ghrelease --purge
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="2022"></category><category term="directory"></category><category term="remote"></category><category term="scripts"></category></entry><entry><title>Linux Icons</title><link href="https://0ink.net/posts/2022/2022-01-10-linux_icons.html" rel="alternate"></link><published>2022-01-10T00:00:00+01:00</published><updated>2022-01-16T14:30:47+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-01-10:/posts/2022/2022-01-10-linux_icons.html</id><summary type="html">&lt;p&gt;A quick note on how to add icons to menus in a Linux desktop.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Create the icon image in: &lt;code&gt;/usr/share/pixmaps&lt;/code&gt;.&lt;ul&gt;
+&lt;li&gt;png and svg (and maybe others) are supported.&lt;/li&gt;
+&lt;li&gt;24x24 seems to be a good size for menus.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;You need to create a &lt;code&gt;.desktop&lt;/code&gt; file in &lt;code&gt;/usr/share/applications …&lt;/code&gt;&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;A quick note on how to add icons to menus in a Linux desktop.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Create the icon image in: &lt;code&gt;/usr/share/pixmaps&lt;/code&gt;.&lt;ul&gt;
+&lt;li&gt;png and svg (and maybe others) are supported.&lt;/li&gt;
+&lt;li&gt;24x24 seems to be a good size for menus.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;You need to create a &lt;code&gt;.desktop&lt;/code&gt; file in &lt;code&gt;/usr/share/applications&lt;/code&gt;.&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://specifications.freedesktop.org/menu-spec/latest/index.html"&gt;Desktop menu specification&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://specifications.freedesktop.org/menu-spec/latest/apa.html"&gt;Registered categories&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;User desktop files:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;These are located in:&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;$HOME/.local/share/applications&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Icons can be found here:&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;$HOME/.local/icons&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;I am not sure about this one&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Autostart files:&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;$HOME/.config/autostart&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;See also: &lt;a href="https://wiki.archlinux.org/title/desktop_entries"&gt;archlinux wiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;There is a command line utility:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://linux.die.net/man/1/xdg-desktop-menu"&gt;xdg-desktop-menu&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="2022"></category><category term="desktop"></category><category term="linux"></category></entry><entry><title>lnbin</title><link href="https://0ink.net/posts/2022/2022-01-10-lnbin.html" rel="alternate"></link><published>2022-01-10T00:00:00+01:00</published><updated>2022-01-10T17:09:50+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-01-10:/posts/2022/2022-01-10-lnbin.html</id><summary type="html">&lt;p&gt;This is my &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/lnbin"&gt;lnbin&lt;/a&gt; script.&lt;/p&gt;
 &lt;p&gt;This is a program for managing symlink in a &lt;code&gt;/usr/local/bin&lt;/code&gt;
 directory.  It is similar to stow, lndir, cleanlinks and
 others.&lt;/p&gt;

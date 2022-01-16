@@ -2,8 +2,15 @@
 <html lang="">
 <head>
 	<meta charset="utf-8"/>
-	<title>0ink.net - Authors</title>
+	<title>Linux Icons - 0ink.net</title>
 	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="A quick note on how to add icons to menus in a Linux desktop. Create the icon image in: /usr/share/pixmaps. png and svg (and maybe others) are supported. 24x24 seems to be a good size for menus. You need to create a .desktop file in /usr/share/applications …">
+	<meta name="int-title" content="Linux Icons">
+	<meta name="tags" content="desktop, linux">
+	<meta name="date" content="2022-01-10 00:00:00+01:00">
+	<meta name="modified" content="2022-01-16 14:30:47.627009+01:00">
 
 
 	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
@@ -44,10 +51,56 @@
 		  <div role="main" class="content">
 			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
 
-    <h1>Authors on 0ink.net</h1>
-    <ul>
-        <li><a href="/author/alejandro-liu.html">Alejandro Liu</a> (191)</li>
-    </ul>
+	<article class="full">
+
+		<h1>Linux Icons</h1>
+
+<div class="metadata">
+  <time datetime="2022-01-10T00:00:00+01:00" pubdate>Mon 10 January 2022</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2022-01-16 14:30:47.627009+01:00</p>
+  in <a href="/category/c2022.html">2022</a>
+<p class="tags">tagged <a href="/tag/desktop.html">desktop</a>, <a href="/tag/linux.html">linux</a></p></div>
+		<p>A quick note on how to add icons to menus in a Linux desktop.</p>
+<ol>
+<li>Create the icon image in: <code>/usr/share/pixmaps</code>.<ul>
+<li>png and svg (and maybe others) are supported.</li>
+<li>24x24 seems to be a good size for menus.</li>
+</ul>
+</li>
+<li>You need to create a <code>.desktop</code> file in <code>/usr/share/applications</code>.<ul>
+<li><a href="https://specifications.freedesktop.org/menu-spec/latest/index.html">Desktop menu specification</a></li>
+<li><a href="https://specifications.freedesktop.org/menu-spec/latest/apa.html">Registered categories</a></li>
+</ul>
+</li>
+</ol>
+<p>User desktop files:</p>
+<ul>
+<li>These are located in:<ul>
+<li><code>$HOME/.local/share/applications</code></li>
+</ul>
+</li>
+<li>Icons can be found here:<ul>
+<li><code>$HOME/.local/icons</code></li>
+<li><strong>I am not sure about this one</strong></li>
+</ul>
+</li>
+<li>Autostart files:<ul>
+<li><code>$HOME/.config/autostart</code>.</li>
+</ul>
+</li>
+</ul>
+<p>See also: <a href="https://wiki.archlinux.org/title/desktop_entries">archlinux wiki</a></p>
+<p>There is a command line utility:</p>
+<ul>
+<li><a href="https://linux.die.net/man/1/xdg-desktop-menu">xdg-desktop-menu</a></li>
+</ul>
+
+	</article>
+
+
 		  </div>
 
 		  <div class="sidebar">
@@ -55,7 +108,7 @@
 	        <nav>
 	          <h2>Years</h2>
 	          <ul>
-	              <li ><a href="/category/c2022.html">2022</a></li>
+	              <li class="active"><a href="/category/c2022.html">2022</a></li>
 	              <li ><a href="/category/c2021.html">2021</a></li>
 	              <li ><a href="/category/c2020.html">2020</a></li>
 	              <li ><a href="/category/c2019.html">2019</a></li>
