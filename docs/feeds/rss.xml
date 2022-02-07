@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Sun, 16 Jan 2022 14:31:02 +0100</lastBuildDate><item><title>My git release script</title><link>https://0ink.net/posts/2022/2022-01-12-ghrelease.html</link><description>&lt;p&gt;I always had issues remembering how to create releases.
+<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Sun, 16 Jan 2022 14:36:17 +0100</lastBuildDate><item><title>My git release script</title><link>https://0ink.net/posts/2022/2022-01-12-ghrelease.html</link><description>&lt;p&gt;I always had issues remembering how to create releases.
 So in order to standardise things, I wrote this script:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://github.com/TortugaLabs/my-gh-tools/blob/main/ghrelease.sh"&gt;ghrelease&lt;/a&gt;&lt;/li&gt;
