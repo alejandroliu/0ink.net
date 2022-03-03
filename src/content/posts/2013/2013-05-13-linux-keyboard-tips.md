@@ -14,16 +14,6 @@ tags: computer, linux
 
 Miscellaneous hacks to use the keyboard under Linux.
 
-# Turn number pad into a mouse controller
-
-This comes in handy when working at a **colo** or someplace where you
-don't have a mouse and then find yourself needing to use _X11_. Press
-the following key combo:
-
-    Ctrl-Shift-Numlock
-
-Now the number pad will move the mouse pointer. The `5` key is the
-left-click.
 
 ## Special Characters on X11
 

@@ -59,19 +59,12 @@ sed s/^#// << 'EOT'
 #    Defaults to the current directory.
 # *-n|--dry-run*::
 #    Just show what is going to happen.
+# *-x|--no-dry-run*::
+#    Execute changes.
 # *-v|--verbose*::
 #    Show the actions being executed
 # *-f|--forced*::
-#    Overwrite any existing entries
-#
-# == ACTIONS
-#
-# TODO: *info* pkg_dir::
-# TODO:     Show info on a installed pkg `pkg_dir`.
-# TODO: *list* parent_pkg_dir::
-# TODO:      Show a list of installed packages.  If *-v* option is specified,
-# TODO:      it also lists the symlinks belonging to that pkg.
-#
+#    Overwrite any existing files (not managed by lnbin)
 #
 # == SAMPLE USAGE
 #
@@ -94,13 +87,13 @@ sed s/^#// << 'EOT'
 # - update symlinks in /usr/local
 #
 #    cd /usr/local/bin
-#    lnbin -v update ../pkgs
+#    lnbin -v -x ../pkgs
 #
 # - uninstalling a package, is
 #
 #     rm -rf /usr/local/pkgs/archive-x.x
 #     cd /usr/local/bin
-#     lnbin -v update ../pkgs
+#     lnbin -v -x ../pkgs
 #
 # == AUTHOR
 #
@@ -131,6 +124,14 @@ sed s/^#// << 'EOT'
 # ln(1), find(1)
 #
 #--
+#
+# TODO: *info* pkg_dir::
+# TODO:     Show info on a installed pkg `pkg_dir`.
+# TODO: *list* parent_pkg_dir::
+# TODO:      Show a list of installed packages.  If *-v* option is specified,
+# TODO:      it also lists the symlinks belonging to that pkg.
+#
+#
 EOT
 }
 
@@ -236,7 +237,7 @@ do
       shift
       ;;
     -f|--forced)
-      forced=false
+      forced=true
       ;;
     -v|--verbose)
       v=-v

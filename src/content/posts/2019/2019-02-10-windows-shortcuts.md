@@ -1,6 +1,6 @@
 ---
 title: Global Windows Keyboard Shorcuts
-tags: desktop, management, manager, windows
+tags: desktop, management, manager, mouse, windows
 ---
 
 Common Window Management Shortcuts

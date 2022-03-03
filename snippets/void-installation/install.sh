@@ -776,7 +776,7 @@ repofile BOOTX64.EFI $mnt/boot/EFI/BOOT/BOOTX64.EFI
 ##
 #end-output
 
-echo "Installinng boot menu generator"
+echo "Installing boot menu generator"
 repofile mkmenu.sh $mnt/boot/mkmenu.sh
 (
   repofile hook.sh

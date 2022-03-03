@@ -22,7 +22,7 @@ post_type: post
 post_mime_type: ""
 comment_count: "0"
 title: ArchLinux tips
-tags: boot, configuration, database, directory, installation, linux, network, settings, setup
+tags: boot, configuration, database, directory, installation, linux, mouse, network, settings, setup
 ---
 
 A bunch of recipes useful for an ArchLinux system environment.
