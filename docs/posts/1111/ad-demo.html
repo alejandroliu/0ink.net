@@ -2,14 +2,13 @@
 <html lang="">
 <head>
 	<meta charset="utf-8"/>
-	<title>lnbin - 0ink.net</title>
+	<title>virtual AD testing - 0ink.net</title>
 	<meta name="author" content="Alejandro Liu">
 
 
-	<meta name="description" content="This is my lnbin script. This is a program for managing symlink in a /usr/local/bin directory. It is similar to stow, lndir, cleanlinks and others. The approach used by lnbin is based on Stow, and it is to install each into its own tree, then use symbolic links …">
-	<meta name="int-title" content="lnbin">
-	<meta name="tags" content="directory, installation">
-	<meta name="date" content="2022-01-10 00:00:00+01:00">
+	<meta name="description" content="Creating a virtual AD controller https://www.freeipa.org/page/Setting_up_Active_Directory_domain_for_testing_purposes http://stef.thewalter.net/how-to-create-active-directory-domain.html Join a Samba Server to AD https://docs.oracle.com/cd/E37670_01/E41138/html/ol_ads_samba.html https://wiki.samba.org/index.php/Setting_up_Samba_as_a_Domain_Member https://wiki.samba.org/index.php/Joining_a_Samba_DC_to_an_Existing_Active_Directory http://man.he …">
+	<meta name="int-title" content="virtual AD testing">
+	<meta name="date" content="1111-11-11 00:00:00+00:20">
 	<meta name="modified" content="2022-03-03 22:34:42+01:00">
 
 
@@ -53,65 +52,28 @@
 
 	<article class="full">
 
-		<h1>lnbin</h1>
+		<h1>virtual AD testing</h1>
 
 <div class="metadata">
-  <time datetime="2022-01-10T00:00:00+01:00" pubdate>Mon 10 January 2022</time>
+  <time datetime="1111-11-11T00:00:00+00:20" pubdate>Sat 11 November 1111</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
   <p>Updated: 2022-03-03 22:34:42+01:00</p>
-  in <a href="/category/c2022.html">2022</a>
-<p class="tags">tagged <a href="/tag/directory.html">directory</a>, <a href="/tag/installation.html">installation</a></p></div>
-		<p>This is my <a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/lnbin">lnbin</a> script.</p>
-<p>This is a program for managing symlink in a <code>/usr/local/bin</code>
-directory.  It is similar to stow, lndir, cleanlinks and
-others.</p>
-<p>The approach used by <em>lnbin</em> is based on Stow, and it is to install
-each into its own tree, then use symbolic links to make its bin
-directory, so that the command can be in the executable path.</p>
-<p>When run, <em>lnbin</em> examines packages in <code>pkgs-dir</code> and the
-<code>target</code> directory (see OPTIONS), adding or removing links as
-needed.</p>
-<h2 id="sample-usage">Sample usage:</h2>
-<h3 id="pkg-installation">pkg installation</h3>
-<p>The standard way to use <em>lnbin</em> is:</p>
+  in <a href="/category/c.html">...</a>
+</div>
+		<h2 id="creating-a-virtual-ad-controller">Creating a virtual AD controller</h2>
 <ul>
-<li>download source package</li>
-<li>build and install package</li>
+<li>https://www.freeipa.org/page/Setting_up_Active_Directory_domain_for_testing_purposes</li>
+<li>http://stef.thewalter.net/how-to-create-active-directory-domain.html</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="c1"># extract archive</span>
-tar zxvf archive-x.x.tar.gz
-<span class="nb">cd</span> archive-x.x
-<span class="c1"># GNU autoconf</span>
-./configure --prefix<span class="o">=</span><span class="s2">&quot;/usr/local/pkgs/archive-x.x&quot;</span>
-make
-<span class="c1"># Package installation</span>
-make install
-<span class="c1"># ... or ...</span>
-make install <span class="nv">DESTDIR</span><span class="o">=</span>/usr/local/pkgs/archive-x.x
-</code></pre></div>
-
+<h2 id="join-a-samba-server-to-ad">Join a Samba Server to AD</h2>
 <ul>
-<li>update symlinks in /usr/local/bin</li>
+<li>https://docs.oracle.com/cd/E37670_01/E41138/html/ol_ads_samba.html</li>
+<li>https://wiki.samba.org/index.php/Setting_up_Samba_as_a_Domain_Member</li>
+<li>https://wiki.samba.org/index.php/Joining_a_Samba_DC_to_an_Existing_Active_Directory</li>
+<li>http://man.he.net/man8/samba-tool</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span> /usr/local/bin
-lnbin -v -x ../pkgs
-</code></pre></div>
-
-<p>This will add the new links (and also remove/update obsolete/changed links)</p>
-<h3 id="removing-packages">Removing packages</h3>
-<div class="highlight"><pre><span></span><code>rm -rf /usr/local/pkgs/archive-x.x
-<span class="nb">cd</span> /usr/local/bin
-lnbin -v -x ../pkgs
-</code></pre></div>
-
-<h3 id="updating-symlinks-after-upgrade">Updating symlinks (after upgrade)</h3>
-<div class="highlight"><pre><span></span><code>cd /usr/local/bin
-lnbin -v -x ../pkgs
-</code></pre></div>
-
-<p>This will add new links and/or remove obsolete links</p>
 
 	</article>
 
@@ -123,7 +85,7 @@ lnbin -v -x ../pkgs
 	        <nav>
 	          <h2>Years</h2>
 	          <ul>
-	              <li class="active"><a href="/category/c2022.html">2022</a></li>
+	              <li ><a href="/category/c2022.html">2022</a></li>
 	              <li ><a href="/category/c2021.html">2021</a></li>
 	              <li ><a href="/category/c2020.html">2020</a></li>
 	              <li ><a href="/category/c2019.html">2019</a></li>
@@ -133,7 +95,7 @@ lnbin -v -x ../pkgs
 	              <li ><a href="/category/c2015.html">2015</a></li>
 	              <li ><a href="/category/c2014.html">2014</a></li>
 	              <li ><a href="/category/c2013.html">2013</a></li>
-	              <li ><a href="/category/c.html">...</a></li>
+	              <li class="active"><a href="/category/c.html">...</a></li>
 	          </ul>
 	        </nav>
 

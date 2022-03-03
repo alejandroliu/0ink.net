@@ -49,6 +49,35 @@
 
 <article class="summary">
 <div class="metadata">
+  <time datetime="2014-03-11T00:00:00+01:00" pubdate>Tue 11 March 2014</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
+  in <a href="/category/c2014.html">2014</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2014/2014-03-11-dvd-archiving.html" rel="bookmark" title="Permalink to DVD archiving">DVD archiving</a>
+    </h2>
+    <p><p>This is my simple procedure for backing up my DVD movies:</p>
+<p>Examine the DVD:</p>
+<div class="highlight"><pre><span></span><code>dvdbackup -i /dev/sr0 -I
+</code></pre></div>
+
+<p>Create a full backup:</p>
+<div class="highlight"><pre><span></span><code>dvdbackup -i /dev/dvd -o ~ -M
+</code></pre></div>
+
+<p>Creating an ISO:</p>
+<div class="highlight"><pre><span></span><code>mkisofs -dvd-video -udf -o ~/dvd.iso ~/movie_name
+</code></pre></div>
+
+<p>Testing the newly created ISO:</p>
+<div class="highlight"><pre><span></span><code>mplayer dvd:// -dvd-device ~/dvd.iso
+</code></pre></div></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
   <time datetime="2014-01-26T00:00:00+01:00" pubdate>Sun 26 January 2014</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
@@ -465,20 +494,6 @@ leading candidates are:</p>
 <p><img alt="phone" src="/images/2013/W52PwebRpicture20X20CM-01590427430.jpg"></p>
 <p>So I was looking to replace my analog cordless phones mainly because I wanted to have a centralized way to maintain phonebooks. Right now I have two cordless phone that I have to manually enter phonebook entries on the two handsets independently.</p>
 <p>Initially I was thinking of getting …</p></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2013-08-26T00:00:00+02:00" pubdate>Mon 26 August 2013</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2021-12-25 22:02:18+01:00</p>
-  in <a href="/category/c2013.html">2013</a>
-</div>  <div>
-    <h2>
-      <a href="/posts/2013/2013-08-26-box-com-promotions.html" rel="bookmark" title="Permalink to BOX.com promotions">BOX.com promotions</a>
-    </h2>
-    <p><p>This is a good link to keep an eye on: <a href="https://support.box.com/entries/22057282-box-promotions-faq">box.com promotions</a></p></p>
   </div>
 </article>
 <div class="pagination">

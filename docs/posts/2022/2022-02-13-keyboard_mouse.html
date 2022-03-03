@@ -2,14 +2,14 @@
 <html lang="">
 <head>
 	<meta charset="utf-8"/>
-	<title>lnbin - 0ink.net</title>
+	<title>Keyboard Mouse control - 0ink.net</title>
 	<meta name="author" content="Alejandro Liu">
 
 
-	<meta name="description" content="This is my lnbin script. This is a program for managing symlink in a /usr/local/bin directory. It is similar to stow, lndir, cleanlinks and others. The approach used by lnbin is based on Stow, and it is to install each into its own tree, then use symbolic links …">
-	<meta name="int-title" content="lnbin">
-	<meta name="tags" content="directory, installation">
-	<meta name="date" content="2022-01-10 00:00:00+01:00">
+	<meta name="description" content="This comes in handy when working at a colo or someplace where you don't have a mouse and then find yourself needing to use X11. Press the following key combo: Ctrl-Shift-Numlock Now you can control the mouse pointer using the number pad. The key bindings are: Move the mouse pointer …">
+	<meta name="int-title" content="Keyboard Mouse control">
+	<meta name="tags" content="mouse">
+	<meta name="date" content="2022-02-13 00:00:00+01:00">
 	<meta name="modified" content="2022-03-03 22:34:42+01:00">
 
 
@@ -53,65 +53,46 @@
 
 	<article class="full">
 
-		<h1>lnbin</h1>
+		<h1>Keyboard Mouse control</h1>
 
 <div class="metadata">
-  <time datetime="2022-01-10T00:00:00+01:00" pubdate>Mon 10 January 2022</time>
+  <time datetime="2022-02-13T00:00:00+01:00" pubdate>Sun 13 February 2022</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
   <p>Updated: 2022-03-03 22:34:42+01:00</p>
   in <a href="/category/c2022.html">2022</a>
-<p class="tags">tagged <a href="/tag/directory.html">directory</a>, <a href="/tag/installation.html">installation</a></p></div>
-		<p>This is my <a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/lnbin">lnbin</a> script.</p>
-<p>This is a program for managing symlink in a <code>/usr/local/bin</code>
-directory.  It is similar to stow, lndir, cleanlinks and
-others.</p>
-<p>The approach used by <em>lnbin</em> is based on Stow, and it is to install
-each into its own tree, then use symbolic links to make its bin
-directory, so that the command can be in the executable path.</p>
-<p>When run, <em>lnbin</em> examines packages in <code>pkgs-dir</code> and the
-<code>target</code> directory (see OPTIONS), adding or removing links as
-needed.</p>
-<h2 id="sample-usage">Sample usage:</h2>
-<h3 id="pkg-installation">pkg installation</h3>
-<p>The standard way to use <em>lnbin</em> is:</p>
+<p class="tags">tagged <a href="/tag/mouse.html">mouse</a></p></div>
+		<p>This comes in handy when working at a <strong>colo</strong> or someplace where you
+don't have a mouse and then find yourself needing to use <em>X11</em>. Press
+the following key combo:</p>
+<div class="highlight"><pre><span></span><code>Ctrl-Shift-Numlock
+</code></pre></div>
+
+<p>Now you can control the mouse pointer using the number pad.  The
+key bindings are:</p>
+<h2 id="move-the-mouse-pointer">Move the mouse pointer</h2>
 <ul>
-<li>download source package</li>
-<li>build and install package</li>
+<li>7, 8, 9 are the up directions</li>
+<li>4, 6 are left and right</li>
+<li>1, 2, 3 are the down directions</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="c1"># extract archive</span>
-tar zxvf archive-x.x.tar.gz
-<span class="nb">cd</span> archive-x.x
-<span class="c1"># GNU autoconf</span>
-./configure --prefix<span class="o">=</span><span class="s2">&quot;/usr/local/pkgs/archive-x.x&quot;</span>
-make
-<span class="c1"># Package installation</span>
-make install
-<span class="c1"># ... or ...</span>
-make install <span class="nv">DESTDIR</span><span class="o">=</span>/usr/local/pkgs/archive-x.x
-</code></pre></div>
-
+<h2 id="to-control-the-mouse-buttons">To control the mouse buttons</h2>
 <ul>
-<li>update symlinks in /usr/local/bin</li>
+<li><code>/</code> selects the left mouse button</li>
+<li><code>*</code> selects the middle mouse button</li>
+<li><code>-</code> selects the right mouse button</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span> /usr/local/bin
-lnbin -v -x ../pkgs
-</code></pre></div>
-
-<p>This will add the new links (and also remove/update obsolete/changed links)</p>
-<h3 id="removing-packages">Removing packages</h3>
-<div class="highlight"><pre><span></span><code>rm -rf /usr/local/pkgs/archive-x.x
-<span class="nb">cd</span> /usr/local/bin
-lnbin -v -x ../pkgs
-</code></pre></div>
-
-<h3 id="updating-symlinks-after-upgrade">Updating symlinks (after upgrade)</h3>
-<div class="highlight"><pre><span></span><code>cd /usr/local/bin
-lnbin -v -x ../pkgs
-</code></pre></div>
-
-<p>This will add new links and/or remove obsolete links</p>
+<p>This only selects the mouse button but does not press it.  To
+actually use the mouse button:</p>
+<ul>
+<li><code>5</code> mouse click</li>
+<li><code>+</code> double mouse click</li>
+<li><code>0</code> to press and hold the mouse button (e.g. for dragging)</li>
+<li><code>.</code> to release the currently mouse button.</li>
+</ul>
+<p>For example, to do a mouse-click with the middle button you
+first press the <code>*</code> key and then <code>5</code> to click.</p>
 
 	</article>
 
