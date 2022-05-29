@@ -333,7 +333,7 @@ that I should be moving to a more modern replacement …</p></p>
       <a href="/posts/2015/2015-07-11-openwrt-upd.html" rel="bookmark" title="Permalink to Upload to OpenWRT">Upload to OpenWRT</a>
     </h2>
     <p><p>Base 64 decoding: <code>coreutils-base64</code></p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -352,12 +352,12 @@ that I should be moving to a more modern replacement …</p></p>
 <span class="normal">17</span>
 <span class="normal">18</span>
 <span class="normal">19</span>
-<span class="normal">20</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>#!/usr/local/bin/haserl --upload-limit=4096 --upload-dir=/tmp 
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code>#!/usr/local/bin/haserl --upload-limit=4096 --upload-dir=/tmp 
 content-type: text/html
 
 <span class="nt">&lt;html&gt;&lt;body&gt;</span>
 <span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">&quot;</span><span class="cp">&lt;%</span> <span class="n">echo</span> <span class="o">-</span><span class="n">n</span> <span class="vg">$SCRIPT_NAME</span> <span class="cp">%&gt;</span><span class="s">&quot;</span> <span class="na">method=</span><span class="s">POST</span> <span class="na">enctype=</span><span class="s">&quot;multipart/form-data&quot;</span> <span class="nt">&gt;</span>
-<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">file …</span></code></pre></div></td></tr></table></p>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">file …</span></code></pre></div></td></tr></table></div></p>
   </div>
 </article><article class="summary">
 <div class="metadata">

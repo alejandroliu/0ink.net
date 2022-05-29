@@ -94,21 +94,21 @@ EOF
 <p>Remember the keystore file and passwords.</p>
 <h3 id="build-instructions">Build instructions</h3>
 <p>In your <code>build.gradle</code> you need the following:</p>
-<div class="highlight"><pre><span></span><code><span class="nx">android</span> <span class="p">{</span>
-  <span class="nx">signingConfigs</span> <span class="p">{</span>
-    <span class="nx">release</span> <span class="p">{</span>
-      <span class="nx">storeFile</span> <span class="nx">file</span><span class="p">(</span><span class="s2">&quot;my_keystore.keystore&quot;</span><span class="p">)</span>
-      <span class="nx">storePassword</span> <span class="s2">&quot;{password}&quot;</span>
-      <span class="nx">keyAlias</span> <span class="s2">&quot;Key_Alias&quot;</span>
-      <span class="nx">keyPassword</span> <span class="s2">&quot;{password}&quot;</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="nx">buildTypes</span> <span class="p">{</span>
-    <span class="nx">release</span> <span class="p">{</span>
-      <span class="nx">signingConfig</span> <span class="nx">signingConfigs</span><span class="p">.</span><span class="nx">release</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="nx">android</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nx">signingConfigs</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">release</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nx">storeFile</span><span class="w"> </span><span class="nx">file</span><span class="p">(</span><span class="s2">&quot;my_keystore.keystore&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="nx">storePassword</span><span class="w"> </span><span class="s2">&quot;{password}&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nx">keyAlias</span><span class="w"> </span><span class="s2">&quot;Key_Alias&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nx">keyPassword</span><span class="w"> </span><span class="s2">&quot;{password}&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="nx">buildTypes</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">release</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nx">signingConfig</span><span class="w"> </span><span class="nx">signingConfigs</span><span class="p">.</span><span class="nx">release</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 
 	</article>

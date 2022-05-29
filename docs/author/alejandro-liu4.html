@@ -49,6 +49,43 @@
 
 <article class="summary">
 <div class="metadata">
+  <time datetime="2017-07-12T00:00:00+02:00" pubdate>Wed 12 July 2017</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2022-01-04 18:38:11+01:00</p>
+  in <a href="/category/c2017.html">2017</a>
+<p class="tags">tagged <a href="/tag/alpine.html">alpine</a>, <a href="/tag/application.html">application</a>, <a href="/tag/browser.html">browser</a>, <a href="/tag/centos.html">centos</a>, <a href="/tag/git.html">git</a>, <a href="/tag/installation.html">installation</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/login.html">login</a>, <a href="/tag/settings.html">settings</a>, <a href="/tag/windows.html">windows</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2017/2017-07-12-install-centos-notes.html" rel="bookmark" title="Permalink to Centos Install notes">Centos Install notes</a>
+    </h2>
+    <p><p>Set-up <code>local.repo</code></p>
+<p>yum installs:</p>
+<ul>
+<li>nfs-utils autofs</li>
+<li>@x11</li>
+<li>@xfce</li>
+<li>wget</li>
+<li>dejavu-sans-fonts dejavu-sans-mono-fonts dejavu-serif-fonts</li>
+<li>xorg-x11-fonts-{Type1,misc,75dpi,100dpi}</li>
+<li>bitmap-console-fonts bitmap-fixed-fonts bitmap-fonts-compat bitmap-lucida-typewriter-fonts</li>
+<li>ucs-miscfixed-fonts urw-fonts</li>
+<li>open-sans-fonts</li>
+<li>webcore-fonts webcore-fonts-vista</li>
+<li>liberation-mono-fonts liberation-sans-fonts liberation-serif-fonts</li>
+<li>bitstream-vera-sans-fonts bitstream-vera-serif-fonts</li>
+<li>gnu-free-{mono,sans,serif}-fonts</li>
+<li>tk</li>
+<li>firefox</li>
+<li>mplayer ffmpeg alsa-utils </li>
+<li>xsensors xfce4-sensors-plugin</li>
+<li>keepassx</li>
+<li>git</li>
+</ul>
+<p><a href="https://blog.packagecloud.io/eng/2015/05/11/building-rpm-packages-with-mock/">Building RPM packages with …</a></p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
   <time datetime="2017-06-24T00:00:00+02:00" pubdate>Sat 24 June 2017</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
@@ -272,17 +309,16 @@ the same every time you plug it in, read on.</p>
     </h2>
     <p><p>This trick lets you run X-Windows within an X-Windows session.</p>
 <p>This is kinda like running VNC.  It is useful for testing scenarios.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/sh</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="ch">#!/bin/sh</span>
 Xnest :1 -name <span class="s2">&quot;Bla&quot;</span> -ac -geometry 800x600 <span class="p">&amp;</span>amp<span class="p">;</span>
 sleep <span class="m">1</span>
 <span class="nb">export</span> <span class="nv">DISPLAY</span><span class="o">=</span>:1
 <span class="nb">exec</span> xterm
-</code></pre></div>
-</td></tr></table></p>
+</code></pre></div></td></tr></table></div></p>
   </div>
 </article><article class="summary">
 <div class="metadata">
@@ -523,26 +559,6 @@ a MariaDB or MySQL database up and running.</p>
 <tbody>
 <tr>
 <td><code>yum install mariadb-server …</code></td></tr></tbody></table></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2016-11-07T00:00:00+01:00" pubdate>Mon 07 November 2016</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2021-12-25 22:02:18+01:00</p>
-  in <a href="/category/c2016.html">2016</a>
-<p class="tags">tagged <a href="/tag/backup.html">backup</a>, <a href="/tag/wordpress.html">wordpress</a></p></div>  <div>
-    <h2>
-      <a href="/posts/2016/2016-11-07-my-wordpress-plugins.html" rel="bookmark" title="Permalink to My WordPress plugins">My WordPress plugins</a>
-    </h2>
-    <p><p>For my own purposes I have written a number of WordPress plugins.</p>
-<ol>
-<li><a href="https://github.com/iliu-net/S3Copy">S3Copy</a> - Makes backup copies of your pictures to an S3
-   Compatible server.  I use <a href="http://sirv.com">sirv.com</a> myself.  It also mangles <img /> tags so
-   files are server from the S3 bucket.</li>
-<li><a href="https://github.com/iliu-net/wptools">wptools</a> - A collection of WordPress related functionality.</li>
-<li><a href="https://github.com/iliu-net/auto-content">auto-content</a> - A …</li></ol></p>
   </div>
 </article>
 <div class="pagination">

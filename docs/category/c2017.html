@@ -428,17 +428,16 @@ the same every time you plug it in, read on.</p>
     </h2>
     <p><p>This trick lets you run X-Windows within an X-Windows session.</p>
 <p>This is kinda like running VNC.  It is useful for testing scenarios.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/sh</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="ch">#!/bin/sh</span>
 Xnest :1 -name <span class="s2">&quot;Bla&quot;</span> -ac -geometry 800x600 <span class="p">&amp;</span>amp<span class="p">;</span>
 sleep <span class="m">1</span>
 <span class="nb">export</span> <span class="nv">DISPLAY</span><span class="o">=</span>:1
 <span class="nb">exec</span> xterm
-</code></pre></div>
-</td></tr></table></p>
+</code></pre></div></td></tr></table></div></p>
   </div>
 </article><article class="summary">
 <div class="metadata">
