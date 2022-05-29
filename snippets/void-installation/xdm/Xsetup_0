@@ -11,6 +11,9 @@ candy=""
 #candy="display -window root /home/alex/bg/event-horizon-2-1920×1080.jpg"
 
 case "$(date +%m)" in
+01)
+  candy="/usr/libexec/xscreensaver/phosphor -root"
+  ;;
 02)
   candy="/usr/libexec/xscreensaver/xmatrix -root"
   ;;
@@ -41,8 +44,11 @@ case "$(date +%m)" in
 esac
 
 if [ -n "$candy" ] ; then
-  $candy &
-  echo $! > /var/run/xdm-candy.pid
+  (
+    export HOME=/root
+    $candy &
+    echo $! > /var/run/xdm-candy.pid
+  )
 fi
 
 

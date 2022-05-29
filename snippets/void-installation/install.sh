@@ -994,6 +994,7 @@ if [ -f $mnt/etc/X11/xdm/xdm-config ] ; then
     repofile xdm/$f $mnt/etc/X11/xdm/$f
     chmod 755 $mnt/etc/X11/xdm/$f
   done
+  repofile xdm/xscreensaver $mnt/root/.xscreensaver
 fi
 #begin-output
 ##

@@ -1,0 +1,4 @@
+# textMode:	program
+# textProgram:	fortune
+textMode:	file
+textFile:	/var/log/dmesg.log
