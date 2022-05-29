@@ -84,7 +84,8 @@ asciidoc 			# alt: ruby-asciidoctor
 # darkhttpd			# light weight web server
 # pandoc			# convert md to epub
 
-# pidgin pidgin-sipe avahi	# chat app
+pidgin # pidgin-sipe avahi	# chat app
+thunderbird			# e-mail app
 
 #qemu
 #libvirt
