@@ -40,11 +40,13 @@ catimg feh viu		# barebones img viewers
 
 libreoffice		# Office applications
 dia			# vector drawings
-azpainter		# MSPaint like
 simple-scan		# scanner support
 calibre			# e-book management
 cups			# Printer support
 hplip-gui		# Printer+scanner support for HP
+# MSPaint alternatives
+#azpaint : still too complicated
+mtpaint # almost there...
 
 redshift-gtk		# blue blocker
 safeeyes xprintidle	# eye care
