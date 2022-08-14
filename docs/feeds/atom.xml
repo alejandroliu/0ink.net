@@ -1,5 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2022-05-29T07:04:30+02:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>A couple of useful sites for development</title><link href="https://0ink.net/posts/2022/2022-05-29-websites.html" rel="alternate"></link><published>2022-05-29T00:00:00+02:00</published><updated>2022-05-29T07:04:30+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-05-29:/posts/2022/2022-05-29-websites.html</id><summary type="html">&lt;h2 id="unicode"&gt;&lt;a href="https://www.compart.com/en/unicode/"&gt;Unicode&lt;/a&gt;&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2022-08-14T08:36:48+02:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>voidlinux virtualization</title><link href="https://0ink.net/posts/2022/2022-08-14-void-kvm.html" rel="alternate"></link><published>2022-08-14T00:00:00+02:00</published><updated>2022-08-14T08:36:48+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-08-14:/posts/2022/2022-08-14-void-kvm.html</id><summary type="html">&lt;p&gt;This recipe is for setting virtualization on a voidlinux desktop.&lt;/p&gt;
+&lt;p&gt;Use this &lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-kvm/setup.sh"&gt;setup script&lt;/a&gt; to set things up on void linux.&lt;/p&gt;
+&lt;h2 id="connecting-to-libvirtd"&gt;Connecting to libvirtd&lt;/h2&gt;
+&lt;p&gt;Note that &lt;code&gt;virsh&lt;/code&gt; and &lt;code&gt;virt-manager&lt;/code&gt; commands connect to different &lt;code&gt;libvirtd&lt;/code&gt;
+sessions by defauult.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;virsh&lt;/code&gt; defaults to &lt;code&gt;qemu:///session&lt;/code&gt; while &lt;code&gt;virt-manager&lt;/code&gt; to &lt;code&gt;qemu:///system&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;It is better …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This recipe is for setting virtualization on a voidlinux desktop.&lt;/p&gt;
+&lt;p&gt;Use this &lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-kvm/setup.sh"&gt;setup script&lt;/a&gt; to set things up on void linux.&lt;/p&gt;
+&lt;h2 id="connecting-to-libvirtd"&gt;Connecting to libvirtd&lt;/h2&gt;
+&lt;p&gt;Note that &lt;code&gt;virsh&lt;/code&gt; and &lt;code&gt;virt-manager&lt;/code&gt; commands connect to different &lt;code&gt;libvirtd&lt;/code&gt;
+sessions by defauult.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;virsh&lt;/code&gt; defaults to &lt;code&gt;qemu:///session&lt;/code&gt; while &lt;code&gt;virt-manager&lt;/code&gt; to &lt;code&gt;qemu:///system&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;It is better to use &lt;code&gt;qemu:///system&lt;/code&gt; as &lt;code&gt;qemu:///session&lt;/code&gt; does not seem to see
+all available resources.&lt;/p&gt;
+&lt;p&gt;To force &lt;code&gt;virsh&lt;/code&gt; to connect to the right session you can use commands such as:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;virsh --connect qemu:///system net-list
+virsh --connect qemu:///system pool-list
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="create-network"&gt;Create network&lt;/h2&gt;
+&lt;p&gt;Set-up a bridge for internal networking using &lt;code&gt;NetworkManager&lt;/code&gt;.  See this &lt;a href="https://www.happyassassin.net/posts/2014/07/23/bridged-networking-for-libvirt-with-networkmanager-2014-fedora-21/"&gt;article&lt;/a&gt;
+for reference.&lt;/p&gt;
+&lt;p&gt;Go to &lt;code&gt;NetworkManager&lt;/code&gt; menu and use the &lt;code&gt;Edit network connections&lt;/code&gt; applet:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;add new bridge connection&lt;/li&gt;
+&lt;li&gt;give a suitable name&lt;/li&gt;
+&lt;li&gt;disable IPv4 and IPv6&lt;/li&gt;
+&lt;li&gt;everything can be left as default.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="import-images"&gt;Import images&lt;/h2&gt;
+&lt;p&gt;This needs to be done on CLI (as the GUI doesn't seem to allow this)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;virsh --connect qemu:///system vol-create-as &lt;span class="nv"&gt;$pool&lt;/span&gt; &lt;span class="nv"&gt;$vol&lt;/span&gt; 32k --format &lt;span class="nv"&gt;$format&lt;/span&gt;
+virsh --connect qemu:///system vol-upload &lt;span class="nv"&gt;$vol&lt;/span&gt; &lt;span class="nv"&gt;$file&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;For &lt;code&gt;format&lt;/code&gt;, use &lt;code&gt;raw&lt;/code&gt; for iso, &lt;code&gt;qcow2&lt;/code&gt; for actual drives.&lt;/p&gt;
+&lt;h2 id="setup-vm"&gt;Setup VM&lt;/h2&gt;
+&lt;p&gt;Just create VM as normal.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;virt-manager&lt;/code&gt; create Vm wizard&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;manual install&lt;/li&gt;
+&lt;li&gt;alpine linux&lt;/li&gt;
+&lt;li&gt;mem: depends&lt;/li&gt;
+&lt;li&gt;Create storage (4GB is enough)&lt;/li&gt;
+&lt;li&gt;name.  Customize configuration.  Network use NAT.&lt;/li&gt;
+&lt;li&gt;Add CDROM, make readonly and shareable&lt;/li&gt;
+&lt;li&gt;Add Network connected to internal bridge.&lt;/li&gt;
+&lt;li&gt;Add boot device.&lt;/li&gt;
+&lt;li&gt;Add shared filesystem:&lt;/li&gt;
+&lt;li&gt;driver: virtio-9p&lt;/li&gt;
+&lt;li&gt;source path: &lt;code&gt;/var/lib/libvirt/filesystems/shared&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;target path: &lt;code&gt;/shared&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Prepare system&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;create filesystem&lt;/li&gt;
+&lt;li&gt;mkfs.vfat /dev/vda&lt;/li&gt;
+&lt;li&gt;apk add syslinux&lt;/li&gt;
+&lt;li&gt;syslinux /dev/vda&lt;/li&gt;
+&lt;li&gt;copy media&lt;/li&gt;
+&lt;li&gt;mount -t vfat /dev/vda /mnt&lt;/li&gt;
+&lt;li&gt;cp -av /media/cdrom/. /mnt&lt;/li&gt;
+&lt;li&gt;edit /mnt/boot/syslinux/syslinux.cfg
+    add: dom0_mem=1024M&lt;/li&gt;
+&lt;li&gt;umount /mnt&lt;/li&gt;
+&lt;li&gt;remove cdrom&lt;/li&gt;
+&lt;li&gt;power off&lt;/li&gt;
+&lt;li&gt;remove cdrom&lt;/li&gt;
+&lt;li&gt;change boot options&lt;/li&gt;
+&lt;li&gt;re-start system&lt;/li&gt;
+&lt;li&gt;setup-alpine&lt;/li&gt;
+&lt;li&gt;enter fqdn&lt;/li&gt;
+&lt;li&gt;set interface eth0 to dhcp&lt;/li&gt;
+&lt;li&gt;Mount shared fs:&lt;/li&gt;
+&lt;li&gt;mount -t 9p -o trans=virtio /shared /shared&lt;/li&gt;
+&lt;li&gt;fstab&lt;/li&gt;
+&lt;li&gt;/sharepoint   /share    9p  trans=virtio,version=9p2000.L,rw    0   0&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="thin-provisioning"&gt;Thin provisioning&lt;/h2&gt;
+&lt;p&gt;Create an overlay file like so:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;qemu-img create -b ubuntu-20.04-server-cloudimg-amd64-disk-kvm.img -F qcow2 -f qcow2 guest-1.qcow2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="2022"></category><category term="alpine"></category><category term="boot"></category><category term="configuration"></category><category term="desktop"></category><category term="device"></category><category term="filesystem"></category><category term="linux"></category><category term="network"></category><category term="power"></category><category term="setup"></category><category term="storage"></category></entry><entry><title>A couple of useful sites for development</title><link href="https://0ink.net/posts/2022/2022-05-29-websites.html" rel="alternate"></link><published>2022-05-29T00:00:00+02:00</published><updated>2022-05-29T07:07:25+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-05-29:/posts/2022/2022-05-29-websites.html</id><summary type="html">&lt;h2 id="unicode"&gt;&lt;a href="https://www.compart.com/en/unicode/"&gt;Unicode&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Can be useful for looking up &lt;code&gt;unicode&lt;/code&gt; code points.  Particularly
 useful for looking up accented characters.  Another interesting
 use is for UI graphics characters.&lt;/p&gt;
@@ -1238,11 +1319,13 @@ I am using nowadays.&lt;/p&gt;
 
 &lt;span class="n"&gt;libreoffice&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="c1"&gt;# Office applications&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="n"&gt;dia&lt;/span&gt;&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="c1"&gt;# vector drawings&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="n"&gt;azpainter&lt;/span&gt;&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="c1"&gt;# MSPaint like&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="n"&gt;simple&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;scan&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="c1"&gt;# scanner support&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="n"&gt;calibre&lt;/span&gt;&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="c1"&gt;# e-book management&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="n"&gt;cups&lt;/span&gt;&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="c1"&gt;# Printer support&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="n"&gt;hplip&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;gui&lt;/span&gt;&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="c1"&gt;# Printer+scanner support for HP&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="c1"&gt;# MSPaint alternatives&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="c1"&gt;#azpaint : still too complicated&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;mtpaint&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# almost there...&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
 &lt;span class="n"&gt;redshift&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;gtk&lt;/span&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;# blue blocker&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="n"&gt;safeeyes&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;xprintidle&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# eye care&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
@@ -1473,13 +1556,16 @@ so that it would work well with &lt;a href="https://www.putty.org/"&gt;putty&lt;
 &lt;p&gt;This is my &lt;a href="https://github.com/alejandroliu/dotfiles/blob/rcm-style/config/micro/bindings.json"&gt;bindings&lt;/a&gt;.json file:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;Alt-/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;lua:comment.comment&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;CtrlUnderscore&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;lua:comment.comment&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;Ctrl-e&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;lua:comment.comment&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;Alt-Down&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;SelectDown&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;Alt-Left&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;SelectLeft&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;Alt-Right&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;SelectRight&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;Alt-Up&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;SelectUp&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;Alt-Down&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;SelectDown&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;Alt-\\&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;CommandMode&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;Alt-\\&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;CommandMode&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;Alt-m&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;lua:initlua.MouseToggle&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;Ctrl-e&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;lua:comment.comment&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;Ctrl-j&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;lua:initlua.MouseToggle&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;Ctrl-m&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;lua:initlua.MouseToggle&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;quot;CtrlUnderscore&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;lua:comment.comment&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -13130,157 +13216,4 @@ email address, just point your browser to
 &lt;a href="https://www.guerrillamail.com/"&gt;Guerrilla Mail&lt;/a&gt;
 upon loading the page you'll have an automatically assigned email
 address that is good for one hour.&lt;/p&gt;
-&lt;p&gt;Hopefully this helps reduce spam.&lt;/p&gt;</content><category term="2013"></category><category term="address"></category><category term="browser"></category></entry><entry><title>virtual AD testing</title><link href="https://0ink.net/posts/1111/ad-demo.html" rel="alternate"></link><published>1111-11-11T00:00:00+00:20</published><updated>2022-03-03T22:34:42+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,1111-11-11:/posts/1111/ad-demo.html</id><summary type="html">&lt;h2 id="creating-a-virtual-ad-controller"&gt;Creating a virtual AD controller&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;https://www.freeipa.org/page/Setting_up_Active_Directory_domain_for_testing_purposes&lt;/li&gt;
-&lt;li&gt;http://stef.thewalter.net/how-to-create-active-directory-domain.html&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="join-a-samba-server-to-ad"&gt;Join a Samba Server to AD&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;https://docs.oracle.com/cd/E37670_01/E41138/html/ol_ads_samba.html&lt;/li&gt;
-&lt;li&gt;https://wiki.samba.org/index.php/Setting_up_Samba_as_a_Domain_Member&lt;/li&gt;
-&lt;li&gt;https://wiki.samba.org/index.php/Joining_a_Samba_DC_to_an_Existing_Active_Directory&lt;/li&gt;
-&lt;li&gt;http://man.he …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;h2 id="creating-a-virtual-ad-controller"&gt;Creating a virtual AD controller&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;https://www.freeipa.org/page/Setting_up_Active_Directory_domain_for_testing_purposes&lt;/li&gt;
-&lt;li&gt;http://stef.thewalter.net/how-to-create-active-directory-domain.html&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="join-a-samba-server-to-ad"&gt;Join a Samba Server to AD&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;https://docs.oracle.com/cd/E37670_01/E41138/html/ol_ads_samba.html&lt;/li&gt;
-&lt;li&gt;https://wiki.samba.org/index.php/Setting_up_Samba_as_a_Domain_Member&lt;/li&gt;
-&lt;li&gt;https://wiki.samba.org/index.php/Joining_a_Samba_DC_to_an_Existing_Active_Directory&lt;/li&gt;
-&lt;li&gt;http://man.he.net/man8/samba-tool&lt;/li&gt;
-&lt;/ul&gt;</content><category term="..."></category></entry><entry><title>DIY REST API</title><link href="https://0ink.net/posts/1111/diy_rest_api.html" rel="alternate"></link><published>1111-11-11T00:00:00+00:20</published><updated>2021-12-23T00:56:43+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,1111-11-11:/posts/1111/diy_rest_api.html</id><content type="html">&lt;p&gt;https://codeburst.io/this-is-how-easy-it-is-to-create-a-rest-api-8a25122ab1f3
-How to write an REST API using bottle py
-- add authentication
-  Just add a PSK string in the header.
-  The PSK is created in a web ui.  And it is given an expiration date.
-  API to change an existing PSK.
-  Security requires https.&lt;/p&gt;</content><category term="..."></category></entry><entry><title>graphviz test</title><link href="https://0ink.net/posts/1111/dot.html" rel="alternate"></link><published>1111-11-11T00:00:00+00:20</published><updated>2022-01-04T18:38:11+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,1111-11-11:/posts/1111/dot.html</id><content type="html">&lt;h2 id="test-graphviz"&gt;Test graphviz&lt;/h2&gt;
-&lt;p&gt;The attack plan is as follows:&lt;/p&gt;
-&lt;p&gt;&lt;img src="data:image/svg+xml;charset=utf-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3C%21DOCTYPE%20svg%20PUBLIC%20%22-//W3C//DTD%20SVG%201.1//EN%22%0A%20%22http%3A//www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd%22%3E%0A%3C%21--%20Generated%20by%20graphviz%20version%202.50.0%20%280%29%0A%20--%3E%0A%3C%21--%20Title%3A%20NET%20Pages%3A%201%20--%3E%0A%3Csvg%20width%3D%22422pt%22%20height%3D%22410pt%22%0A%20viewBox%3D%220.00%200.00%20422.00%20410.19%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%3E%0A%3Cg%20id%3D%22graph0%22%20class%3D%22graph%22%20transform%3D%22scale%281%201%29%20rotate%280%29%20translate%284%20406.19%29%22%3E%0A%3Ctitle%3ENET%3C/title%3E%0A%3Cpolygon%20fill%3D%22white%22%20stroke%3D%22transparent%22%20points%3D%22-4%2C4%20-4%2C-406.19%20418%2C-406.19%20418%2C4%20-4%2C4%22/%3E%0A%3C%21--%20kpnmodem%20--%3E%0A%3Cg%20id%3D%22node1%22%20class%3D%22node%22%3E%0A%3Ctitle%3Ekpnmodem%3C/title%3E%0A%3Cpolygon%20fill%3D%22white%22%20stroke%3D%22black%22%20points%3D%22151.85%2C-113.55%2056.85%2C-113.55%2056.85%2C-77.55%20151.85%2C-77.55%20151.85%2C-113.55%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22104.35%22%20y%3D%22-91.85%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Ekpnmodem%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20cn4%20--%3E%0A%3Cg%20id%3D%22node6%22%20class%3D%22node%22%3E%0A%3Ctitle%3Ecn4%3C/title%3E%0A%3Cpolygon%20fill%3D%22silver%22%20stroke%3D%22black%22%20points%3D%22167.62%2C-186.94%20113.62%2C-186.94%20113.62%2C-150.94%20167.62%2C-150.94%20167.62%2C-186.94%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22140.62%22%20y%3D%22-165.24%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Ecn4%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20kpnmodem%26%2345%3B%26%2345%3Bcn4%20--%3E%0A%3Cg%20id%3D%22edge1%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Ekpnmodem%26%2345%3B%26%2345%3Bcn4%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M113.31%2C-113.69C118.9%2C-124.99%20126.05%2C-139.46%20131.63%2C-150.76%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22117.97%22%20y%3D%22-134.63%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev2%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22126.63%22%20y%3D%22-145.16%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep2%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22108.31%22%20y%3D%22-116.09%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep1%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20iptv1%20--%3E%0A%3Cg%20id%3D%22node7%22%20class%3D%22node%22%3E%0A%3Ctitle%3Eiptv1%3C/title%3E%0A%3Cpolygon%20fill%3D%22silver%22%20stroke%3D%22black%22%20points%3D%2254%2C-93.45%200%2C-93.45%200%2C-57.45%2054%2C-57.45%2054%2C-93.45%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%2227%22%20y%3D%22-71.75%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Eiptv1%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20kpnmodem%26%2345%3B%26%2345%3Biptv1%20--%3E%0A%3Cg%20id%3D%22edge2%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Ekpnmodem%26%2345%3B%26%2345%3Biptv1%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M56.68%2C-83.16C55.81%2C-82.94%2054.95%2C-82.71%2054.09%2C-82.49%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%2271.39%22%20y%3D%22-77.23%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev2%20%28p%237%29%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%2251.68%22%20y%3D%22-85.56%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep2%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20veraedge1%20--%3E%0A%3Cg%20id%3D%22node8%22%20class%3D%22node%22%3E%0A%3Ctitle%3Everaedge1%3C/title%3E%0A%3Cpolygon%20fill%3D%22silver%22%20stroke%3D%22black%22%20points%3D%22171.91%2C-36%2079.91%2C-36%2079.91%2C0%20171.91%2C0%20171.91%2C-36%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22125.91%22%20y%3D%22-14.3%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Everaedge1%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20kpnmodem%26%2345%3B%26%2345%3Bveraedge1%20--%3E%0A%3Cg%20id%3D%22edge3%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Ekpnmodem%26%2345%3B%26%2345%3Bveraedge1%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M109.46%2C-77.17C112.89%2C-64.81%20117.41%2C-48.58%20120.84%2C-36.25%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22110.65%22%20y%3D%22-59.11%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev2%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22104.46%22%20y%3D%22-71.57%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep4%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs1%20--%3E%0A%3Cg%20id%3D%22node2%22%20class%3D%22node%22%3E%0A%3Ctitle%3Engs1%3C/title%3E%0A%3Cpolygon%20fill%3D%22lightblue%22%20stroke%3D%22black%22%20points%3D%22215.66%2C-259.16%20161.66%2C-259.16%20161.66%2C-223.16%20215.66%2C-223.16%20215.66%2C-259.16%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22188.66%22%20y%3D%22-237.46%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Engs1%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs2%20--%3E%0A%3Cg%20id%3D%22node3%22%20class%3D%22node%22%3E%0A%3Ctitle%3Engs2%3C/title%3E%0A%3Cpolygon%20fill%3D%22lightblue%22%20stroke%3D%22black%22%20points%3D%22257.87%2C-196.42%20203.87%2C-196.42%20203.87%2C-160.42%20257.87%2C-160.42%20257.87%2C-196.42%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22230.87%22%20y%3D%22-174.72%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Engs2%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs1%26%2345%3B%26%2345%3Bngs2%20--%3E%0A%3Cg%20id%3D%22edge5%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Engs1%26%2345%3B%26%2345%3Bngs2%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M200.87%2C-223.01C206.42%2C-214.76%20212.98%2C-205.02%20218.54%2C-196.75%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22190.21%22%20y%3D%22-212.28%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev1%2C3%20%28p%234%29%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22213.54%22%20y%3D%22-199.15%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep1%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22195.87%22%20y%3D%22-217.41%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep1%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs3%20--%3E%0A%3Cg%20id%3D%22node4%22%20class%3D%22node%22%3E%0A%3Ctitle%3Engs3%3C/title%3E%0A%3Cpolygon%20fill%3D%22lightblue%22%20stroke%3D%22black%22%20points%3D%22156.72%2C-321.63%20102.72%2C-321.63%20102.72%2C-285.63%20156.72%2C-285.63%20156.72%2C-321.63%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22129.72%22%20y%3D%22-299.93%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Engs3%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs1%26%2345%3B%26%2345%3Bngs3%20--%3E%0A%3Cg%20id%3D%22edge6%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Engs1%26%2345%3B%26%2345%3Bngs3%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20d%3D%22M171.62%2C-259.23C163.86%2C-267.44%20154.71%2C-277.15%20146.94%2C-285.39%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22151.28%22%20y%3D%22-274.71%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev1%2C3%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22138.94%22%20y%3D%22-279.79%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep1%2C8%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22163.62%22%20y%3D%22-261.63%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep8%2C9%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20cctv_sw%20--%3E%0A%3Cg%20id%3D%22node5%22%20class%3D%22node%22%3E%0A%3Ctitle%3Ecctv_sw%3C/title%3E%0A%3Cpolygon%20fill%3D%22lightgreen%22%20stroke%3D%22black%22%20points%3D%22308.65%2C-289.59%20236.65%2C-289.59%20236.65%2C-253.59%20308.65%2C-253.59%20308.65%2C-289.59%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22272.65%22%20y%3D%22-267.89%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Ecctv_sw%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs1%26%2345%3B%26%2345%3Bcctv_sw%20--%3E%0A%3Cg%20id%3D%22edge7%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Engs1%26%2345%3B%26%2345%3Bcctv_sw%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M215.7%2C-250.95C222.32%2C-253.35%20229.5%2C-255.96%20236.47%2C-258.48%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22221.59%22%20y%3D%22-257.12%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev3%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22231.47%22%20y%3D%22-260.88%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep5%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22220.7%22%20y%3D%22-245.35%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep7%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs1%26%2345%3B%26%2345%3Bcn4%20--%3E%0A%3Cg%20id%3D%22edge4%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Engs1%26%2345%3B%26%2345%3Bcn4%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M176.54%2C-222.93C169.26%2C-211.99%20160.02%2C-198.11%20152.74%2C-187.16%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22156.64%22%20y%3D%22-207.45%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev1%2C3%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22147.74%22%20y%3D%22-189.56%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep0%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22169.54%22%20y%3D%22-217.33%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep10%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20nd2%20--%3E%0A%3Cg%20id%3D%22node9%22%20class%3D%22node%22%3E%0A%3Ctitle%3End2%3C/title%3E%0A%3Cpolygon%20fill%3D%22silver%22%20stroke%3D%22black%22%20points%3D%2277.94%2C-337.76%2023.94%2C-337.76%2023.94%2C-301.76%2077.94%2C-301.76%2077.94%2C-337.76%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%2250.94%22%20y%3D%22-316.06%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3End2%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs3%26%2345%3B%26%2345%3Bnd2%20--%3E%0A%3Cg%20id%3D%22edge8%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Engs3%26%2345%3B%26%2345%3Bnd2%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M102.61%2C-309.18C94.69%2C-310.81%2086.03%2C-312.58%2078.1%2C-314.2%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%2294.36%22%20y%3D%22-306.09%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev1%2C3%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%2297.61%22%20y%3D%22-311.58%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep7%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20nd3%20--%3E%0A%3Cg%20id%3D%22node10%22%20class%3D%22node%22%3E%0A%3Ctitle%3End3%3C/title%3E%0A%3Cpolygon%20fill%3D%22silver%22%20stroke%3D%22black%22%20points%3D%22147.23%2C-402.19%2093.23%2C-402.19%2093.23%2C-366.19%20147.23%2C-366.19%20147.23%2C-402.19%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22120.23%22%20y%3D%22-380.49%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3End3%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs3%26%2345%3B%26%2345%3Bnd3%20--%3E%0A%3Cg%20id%3D%22edge9%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Engs3%26%2345%3B%26%2345%3Bnd3%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M127.57%2C-321.91C126.02%2C-335.1%20123.93%2C-352.82%20122.38%2C-365.98%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22116.97%22%20y%3D%22-346.35%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev1%2C3%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22122.57%22%20y%3D%22-324.31%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep8%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ipcam1%20--%3E%0A%3Cg%20id%3D%22node16%22%20class%3D%22node%22%3E%0A%3Ctitle%3Eipcam1%3C/title%3E%0A%3Cpolygon%20fill%3D%22yellow%22%20stroke%3D%22black%22%20points%3D%22373.88%2C-237.6%20305.88%2C-237.6%20305.88%2C-201.6%20373.88%2C-201.6%20373.88%2C-237.6%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22339.88%22%20y%3D%22-215.9%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Eipcam1%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20cctv_sw%26%2345%3B%26%2345%3Bipcam1%20--%3E%0A%3Cg%20id%3D%22edge10%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Ecctv_sw%26%2345%3B%26%2345%3Bipcam1%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M296.16%2C-253.41C302.67%2C-248.37%20309.74%2C-242.91%20316.26%2C-237.86%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22301.71%22%20y%3D%22-248.04%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev3%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22291.16%22%20y%3D%22-247.81%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep1%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ipcam2%20--%3E%0A%3Cg%20id%3D%22node17%22%20class%3D%22node%22%3E%0A%3Ctitle%3Eipcam2%3C/title%3E%0A%3Cpolygon%20fill%3D%22yellow%22%20stroke%3D%22black%22%20points%3D%22319.22%2C-370.72%20251.22%2C-370.72%20251.22%2C-334.72%20319.22%2C-334.72%20319.22%2C-370.72%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22285.22%22%20y%3D%22-349.02%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Eipcam2%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20cctv_sw%26%2345%3B%26%2345%3Bipcam2%20--%3E%0A%3Cg%20id%3D%22edge11%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Ecctv_sw%26%2345%3B%26%2345%3Bipcam2%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M275.44%2C-289.6C277.51%2C-302.95%20280.32%2C-321.08%20282.4%2C-334.49%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22262.92%22%20y%3D%22-314.44%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev3%20%28p%231%29%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22270.44%22%20y%3D%22-292%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep2%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ipcam3%20--%3E%0A%3Cg%20id%3D%22node18%22%20class%3D%22node%22%3E%0A%3Ctitle%3Eipcam3%3C/title%3E%0A%3Cpolygon%20fill%3D%22yellow%22%20stroke%3D%22black%22%20points%3D%22381.57%2C-318.32%20313.57%2C-318.32%20313.57%2C-282.32%20381.57%2C-282.32%20381.57%2C-318.32%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22347.57%22%20y%3D%22-296.62%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Eipcam3%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20cctv_sw%26%2345%3B%26%2345%3Bipcam3%20--%3E%0A%3Cg%20id%3D%22edge12%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Ecctv_sw%26%2345%3B%26%2345%3Bipcam3%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M308.79%2C-285.45C310.29%2C-286.03%20311.79%2C-286.6%20313.28%2C-287.17%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22295.04%22%20y%3D%22-288.71%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev3%20%28p%235%29%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22313.79%22%20y%3D%22-279.85%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep3%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20philtv%20--%3E%0A%3Cg%20id%3D%22node11%22%20class%3D%22node%22%3E%0A%3Ctitle%3Ephiltv%3C/title%3E%0A%3Cpolygon%20fill%3D%22silver%22%20stroke%3D%22black%22%20points%3D%22346%2C-162%20288%2C-162%20288%2C-126%20346%2C-126%20346%2C-162%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22317%22%20y%3D%22-140.3%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Ephiltv%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20wac1%20--%3E%0A%3Cg%20id%3D%22node12%22%20class%3D%22node%22%3E%0A%3Ctitle%3Ewac1%3C/title%3E%0A%3Cpolygon%20fill%3D%22yellow%22%20stroke%3D%22black%22%20points%3D%22342%2C-90%20288%2C-90%20288%2C-54%20342%2C-54%20342%2C-90%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22315%22%20y%3D%22-68.3%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Ewac1%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20wac2%20--%3E%0A%3Cg%20id%3D%22node13%22%20class%3D%22node%22%3E%0A%3Ctitle%3Ewac2%3C/title%3E%0A%3Cpolygon%20fill%3D%22yellow%22%20stroke%3D%22black%22%20points%3D%22126%2C-252%2072%2C-252%2072%2C-216%20126%2C-216%20126%2C-252%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%2299%22%20y%3D%22-230.3%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Ewac2%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20wac3%20--%3E%0A%3Cg%20id%3D%22node14%22%20class%3D%22node%22%3E%0A%3Ctitle%3Ewac3%3C/title%3E%0A%3Cpolygon%20fill%3D%22yellow%22%20stroke%3D%22black%22%20points%3D%22414%2C-396%20360%2C-396%20360%2C-360%20414%2C-360%20414%2C-396%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22387%22%20y%3D%22-374.3%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Ewac3%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20owap1%20--%3E%0A%3Cg%20id%3D%22node15%22%20class%3D%22node%22%3E%0A%3Ctitle%3Eowap1%3C/title%3E%0A%3Cpolygon%20fill%3D%22yellow%22%20stroke%3D%22black%22%20points%3D%22261%2C-126%20198%2C-126%20198%2C-90%20261%2C-90%20261%2C-126%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22229.5%22%20y%3D%22-104.3%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Eowap1%3C/text%3E%0A%3C/g%3E%0A%3C/g%3E%0A%3C/svg%3E%0A"&gt;&lt;/p&gt;
-&lt;p&gt;For more instructions, kill the martians.&lt;/p&gt;</content><category term="..."></category></entry><entry><title>JavaScript snippets</title><link href="https://0ink.net/posts/1111/js-example.html" rel="alternate"></link><published>1111-11-11T00:00:00+00:20</published><updated>2022-05-29T06:55:48+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,1111-11-11:/posts/1111/js-example.html</id><summary type="html">&lt;p&gt;Check if element is hidden&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;isHidden&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;el&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;style&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getComputedStyle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;el&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;style&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;display&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;===&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;none&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;ul&lt;/span&gt; &lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;foo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;li&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;First&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;li&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;li&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Second&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;li&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;li&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Third&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;li&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;ul&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;you can access the list items this way,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;ul&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;foo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;items&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;ul&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementsByTagName&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;li&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;var …&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Check if element is hidden&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;isHidden&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;el&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;style&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getComputedStyle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;el&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;style&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;display&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;===&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;none&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;ul&lt;/span&gt; &lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;foo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;li&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;First&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;li&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;li&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Second&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;li&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;li&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Third&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;li&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;ul&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;you can access the list items this way,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;ul&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;foo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;items&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;ul&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementsByTagName&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;li&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;items&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;// do something with items[i], which is a &amp;lt;li&amp;gt; element&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="..."></category></entry><entry><title>todo</title><link href="https://0ink.net/posts/1111/todo.html" rel="alternate"></link><published>1111-11-11T00:00:00+00:20</published><updated>2021-12-23T00:56:43+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,1111-11-11:/posts/1111/todo.html</id><content type="html">&lt;h2 id="add-to-websites"&gt;Add to WebSites&lt;/h2&gt;
-&lt;h3 id="0inknet"&gt;0ink.net&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Mirror https://deliciousbrains.com/ssl-certificate-authority-for-local-https-development/
-  And change the link in posts/2021-12-21.ssl-tips.md&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="my-punch-list"&gt;My Punch list:&lt;/h3&gt;
-&lt;ul class="checklist"&gt;
-&lt;li&gt;&lt;input type="checkbox" disabled&gt; Printer/Scanner&lt;/li&gt;
-&lt;li&gt;&lt;input type="checkbox" disabled&gt; RedShift&lt;/li&gt;
-&lt;li&gt;&lt;input type="checkbox" disabled&gt; SafeEyes&lt;/li&gt;
-&lt;li&gt;&lt;input type="checkbox" disabled&gt; ownCLoud&lt;/li&gt;
-&lt;li&gt;&lt;input type="checkbox" disabled&gt; Chat&lt;/li&gt;
-&lt;/ul&gt;</content><category term="..."></category></entry><entry><title>virtual test lab</title><link href="https://0ink.net/posts/1111/vtestlab.html" rel="alternate"></link><published>1111-11-11T00:00:00+00:20</published><updated>2022-05-18T18:37:32+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,1111-11-11:/posts/1111/vtestlab.html</id><summary type="html">&lt;p&gt;This recipe is for a virtual test lab on your desktop.  It does
-this by using nested virtualization.&lt;/p&gt;
-&lt;p&gt;Use this setup script to set things up on void linux.&lt;/p&gt;
-&lt;p&gt;Connect to.  virsh defaults to qemu:///session
-virsh --connect qemu:///system net-list
-virsh --connect qemu:///system pool-list
-virt-manager defaults to qemu …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This recipe is for a virtual test lab on your desktop.  It does
-this by using nested virtualization.&lt;/p&gt;
-&lt;p&gt;Use this setup script to set things up on void linux.&lt;/p&gt;
-&lt;p&gt;Connect to.  virsh defaults to qemu:///session
-virsh --connect qemu:///system net-list
-virsh --connect qemu:///system pool-list
-virt-manager defaults to qemu:///system&lt;/p&gt;
-&lt;p&gt;It is better to use qemu:///system as qemu:///session can only seem&lt;/p&gt;
-&lt;h2 id="create-network"&gt;Create network&lt;/h2&gt;
-&lt;p&gt;Set-up a bridge for internal networking using NetworkManager&lt;/p&gt;
-&lt;p&gt;https://www.happyassassin.net/posts/2014/07/23/bridged-networking-for-libvirt-with-networkmanager-2014-fedora-21/&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;disable IPv4 and IPv6&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="import-images"&gt;Import images&lt;/h2&gt;
-&lt;p&gt;This needs to be done on CLI (as the GUI doesn't seem to allow this)&lt;/p&gt;
-&lt;p&gt;virsh --connect qemu:///system vol-create-as $pool $vol 32k --format $format
-  format: use raw for iso, qcow2 for actual drives
-virsh --connect qemu:///system vol-upload $vol $file&lt;/p&gt;
-&lt;h2 id="setup-vm"&gt;Setup VM&lt;/h2&gt;
-&lt;p&gt;Just create VM as normal.&lt;/p&gt;
-&lt;p&gt;virt-manager create Vm wizard&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;manual install&lt;/li&gt;
-&lt;li&gt;alpine linux&lt;/li&gt;
-&lt;li&gt;mem: depends&lt;/li&gt;
-&lt;li&gt;Create storage (4GB is enough)&lt;/li&gt;
-&lt;li&gt;name.  Customize configuration.  Network use NAT.&lt;/li&gt;
-&lt;li&gt;Add CDROM, make readonly and shareable&lt;/li&gt;
-&lt;li&gt;Add Network connected to internal bridge.&lt;/li&gt;
-&lt;li&gt;Add boot device.&lt;/li&gt;
-&lt;li&gt;Add shared filesystem:&lt;/li&gt;
-&lt;li&gt;driver: virtio-9p&lt;/li&gt;
-&lt;li&gt;source path: /var/lib/libvirt/filesystems/shared&lt;/li&gt;
-&lt;li&gt;target path: /shared&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Prepare system&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;create filesystem&lt;/li&gt;
-&lt;li&gt;mkfs.vfat /dev/vda&lt;/li&gt;
-&lt;li&gt;apk add syslinux&lt;/li&gt;
-&lt;li&gt;syslinux /dev/vda&lt;/li&gt;
-&lt;li&gt;copy media&lt;/li&gt;
-&lt;li&gt;mount -t vfat /dev/vda /mnt&lt;/li&gt;
-&lt;li&gt;cp -av /media/cdrom/. /mnt&lt;/li&gt;
-&lt;li&gt;edit /mnt/boot/syslinux/syslinux.cfg
-    add: dom0_mem=1024M&lt;/li&gt;
-&lt;li&gt;umount /mnt&lt;/li&gt;
-&lt;li&gt;remove cdrom&lt;/li&gt;
-&lt;li&gt;power off&lt;/li&gt;
-&lt;li&gt;remove cdrom&lt;/li&gt;
-&lt;li&gt;change boot options&lt;/li&gt;
-&lt;li&gt;re-start system&lt;/li&gt;
-&lt;li&gt;setup-alpine&lt;/li&gt;
-&lt;li&gt;enter fqdn&lt;/li&gt;
-&lt;li&gt;set interface eth0 to dhcp&lt;/li&gt;
-&lt;li&gt;Mount shared fs:&lt;/li&gt;
-&lt;li&gt;mount -t 9p -o trans=virtio /shared /shared&lt;/li&gt;
-&lt;li&gt;fstab&lt;/li&gt;
-&lt;li&gt;/sharepoint   /share    9p  trans=virtio,version=9p2000.L,rw    0   0&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;xen: mem=4096&lt;/p&gt;
-&lt;h2 id="todo"&gt;TODO&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;investiage Qemu User space emulator&lt;/li&gt;
-&lt;li&gt;https://qemu-project.gitlab.io/qemu/user/main.html&lt;/li&gt;
-&lt;li&gt;https://wiki.debian.org/QemuUserEmulation&lt;/li&gt;
-&lt;/ul&gt;</content><category term="..."></category></entry></feed>
+&lt;p&gt;Hopefully this helps reduce spam.&lt;/p&gt;</content><category term="2013"></category><category term="address"></category><category term="browser"></category></entry></feed>
