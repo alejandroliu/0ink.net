@@ -23,6 +23,8 @@ AUTHOR_FEED_RSS = None
 LINKS = (
           ('Repo','https://github.com/alejandroliu/0ink.net'),
           ('Alejandro','https://alejandro.iliu.net/'),
+          ('Home','https://home.0ink.net/'),
+          ('Wiki','https://home.0ink.net/nanowiki/'),
           ('Tags','/tags.html'),
           ('sitemap','/sitemap.html'),
         )
