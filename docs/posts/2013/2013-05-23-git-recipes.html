@@ -120,9 +120,9 @@ git push -f
 </code></pre></div>
 
 <p>Deleting branches</p>
-<div class="highlight"><pre><span></span><code><span class="nv">git</span> <span class="nv">branch</span> <span class="o">-</span><span class="nv">d</span> <span class="nv">branch_name</span>    # <span class="nv">Only</span> <span class="nv">local</span> <span class="nv">branches</span>
-<span class="nv">git</span> <span class="nv">push</span> <span class="nv">origin</span> <span class="o">--</span><span class="nv">delete</span> <span class="nv">branch_name</span> # <span class="nv">Remote</span> <span class="nv">branch</span>
-<span class="nv">git</span> <span class="nv">push</span> <span class="nv">origin</span> :<span class="nv">branch_name</span> # <span class="nv">Old</span> <span class="nv">format</span> <span class="k">for</span> <span class="nv">deleting</span>... <span class="nv">prefix</span> <span class="nv">with</span> <span class="s2">&quot;</span><span class="s">:</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nv">git</span><span class="w"> </span><span class="nv">branch</span><span class="w"> </span><span class="o">-</span><span class="nv">d</span><span class="w"> </span><span class="nv">branch_name</span><span class="w">    </span>#<span class="w"> </span><span class="nv">Only</span><span class="w"> </span><span class="nv">local</span><span class="w"> </span><span class="nv">branches</span><span class="w"></span>
+<span class="nv">git</span><span class="w"> </span><span class="nv">push</span><span class="w"> </span><span class="nv">origin</span><span class="w"> </span><span class="o">--</span><span class="nv">delete</span><span class="w"> </span><span class="nv">branch_name</span><span class="w"> </span>#<span class="w"> </span><span class="nv">Remote</span><span class="w"> </span><span class="nv">branch</span><span class="w"></span>
+<span class="nv">git</span><span class="w"> </span><span class="nv">push</span><span class="w"> </span><span class="nv">origin</span><span class="w"> </span>:<span class="nv">branch_name</span><span class="w"> </span>#<span class="w"> </span><span class="nv">Old</span><span class="w"> </span><span class="nv">format</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">deleting</span>...<span class="w"> </span><span class="nv">prefix</span><span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="s2">&quot;:&quot;</span><span class="w"></span>
 </code></pre></div>
 
 <p>Clean-up delete branches in remote repo from local repo...</p>
@@ -252,21 +252,21 @@ git merge upstream
 <p>A variation of vendor branches is to sync with an upstream fork in github. Read this guide on how to do that: <a href="https://help.github.com/articles/syncing-a-fork/">Syncing a fork on github</a></p>
 <h2 id="git-through-patches">GIT through patches</h2>
 <p>Creating a patch:</p>
-<div class="highlight"><pre><span></span><code> ... <span class="nv">prepare</span> <span class="nv">a</span> <span class="nv">new</span> <span class="nv">branch</span> <span class="nv">to</span> <span class="nv">keep</span> <span class="nv">work</span> <span class="nv">separate</span> ...
- <span class="nv">git</span> <span class="nv">checkout</span> <span class="o">-</span><span class="nv">b</span> <span class="nv">mybranch</span>
- ... <span class="k">do</span> <span class="nv">work</span> ...
- <span class="nv">git</span> <span class="nv">commit</span> <span class="o">-</span><span class="nv">a</span>
- .. <span class="nv">create</span> <span class="nv">the</span> <span class="nv">patch</span> <span class="nv">from</span> <span class="nv">branch</span> <span class="s2">&quot;</span><span class="s">master</span><span class="s2">&quot;</span>...
- <span class="nv">git</span> <span class="nv">format</span><span class="o">-</span><span class="nv">patch</span> <span class="nv">master</span> <span class="o">--</span><span class="nv">stdout</span> <span class="o">&amp;</span><span class="nv">gt</span><span class="c1">; file.patch</span>
+<div class="highlight"><pre><span></span><code><span class="w"> </span>...<span class="w"> </span><span class="nv">prepare</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">new</span><span class="w"> </span><span class="nv">branch</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">keep</span><span class="w"> </span><span class="nv">work</span><span class="w"> </span><span class="nv">separate</span><span class="w"> </span>...<span class="w"></span>
+<span class="w"> </span><span class="nv">git</span><span class="w"> </span><span class="nv">checkout</span><span class="w"> </span><span class="o">-</span><span class="nv">b</span><span class="w"> </span><span class="nv">mybranch</span><span class="w"></span>
+<span class="w"> </span>...<span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nv">work</span><span class="w"> </span>...<span class="w"></span>
+<span class="w"> </span><span class="nv">git</span><span class="w"> </span><span class="nv">commit</span><span class="w"> </span><span class="o">-</span><span class="nv">a</span><span class="w"></span>
+<span class="w"> </span>..<span class="w"> </span><span class="nv">create</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">patch</span><span class="w"> </span><span class="nv">from</span><span class="w"> </span><span class="nv">branch</span><span class="w"> </span><span class="s2">&quot;master&quot;</span>...<span class="w"></span>
+<span class="w"> </span><span class="nv">git</span><span class="w"> </span><span class="nv">format</span><span class="o">-</span><span class="nv">patch</span><span class="w"> </span><span class="nv">master</span><span class="w"> </span><span class="o">--</span><span class="nv">stdout</span><span class="w"> </span><span class="o">&amp;</span><span class="nv">gt</span><span class="c1">; file.patch</span><span class="w"></span>
 </code></pre></div>
 
 <p>To apply patch..</p>
-<div class="highlight"><pre><span></span><code> ... <span class="k">show</span> <span class="nv">what</span> <span class="nv">the</span> <span class="nv">patch</span> <span class="nv">file</span> <span class="nv">will</span> <span class="k">do</span> ...
- <span class="nv">git</span> <span class="nv">apply</span> <span class="o">--</span><span class="nv">stat</span> <span class="nv">file</span>.<span class="nv">patch</span>
- .. <span class="nv">displays</span> <span class="nv">issues</span> <span class="nv">the</span> <span class="nv">patch</span> <span class="nv">might</span> <span class="nv">cause</span>...
- <span class="nv">git</span> <span class="nv">apply</span> <span class="o">--</span><span class="nv">check</span> <span class="nv">file</span>.<span class="nv">patch</span>
- .. <span class="nv">apply</span> <span class="nv">with</span> <span class="nv">am</span> <span class="ss">(</span><span class="nv">so</span> <span class="nv">you</span> <span class="nv">can</span> <span class="nv">sign</span><span class="o">-</span><span class="nv">off</span><span class="ss">)</span>
- <span class="nv">git</span> <span class="nv">am</span> <span class="o">--</span><span class="nv">signoff</span> <span class="o">&amp;</span><span class="nv">lt</span><span class="c1">; file.patch</span>
+<div class="highlight"><pre><span></span><code><span class="w"> </span>...<span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="nv">what</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">patch</span><span class="w"> </span><span class="nv">file</span><span class="w"> </span><span class="nv">will</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>...<span class="w"></span>
+<span class="w"> </span><span class="nv">git</span><span class="w"> </span><span class="nv">apply</span><span class="w"> </span><span class="o">--</span><span class="nv">stat</span><span class="w"> </span><span class="nv">file</span>.<span class="nv">patch</span><span class="w"></span>
+<span class="w"> </span>..<span class="w"> </span><span class="nv">displays</span><span class="w"> </span><span class="nv">issues</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">patch</span><span class="w"> </span><span class="nv">might</span><span class="w"> </span><span class="nv">cause</span>...<span class="w"></span>
+<span class="w"> </span><span class="nv">git</span><span class="w"> </span><span class="nv">apply</span><span class="w"> </span><span class="o">--</span><span class="nv">check</span><span class="w"> </span><span class="nv">file</span>.<span class="nv">patch</span><span class="w"></span>
+<span class="w"> </span>..<span class="w"> </span><span class="nv">apply</span><span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="nv">am</span><span class="w"> </span><span class="ss">(</span><span class="nv">so</span><span class="w"> </span><span class="nv">you</span><span class="w"> </span><span class="nv">can</span><span class="w"> </span><span class="nv">sign</span><span class="o">-</span><span class="nv">off</span><span class="ss">)</span><span class="w"></span>
+<span class="w"> </span><span class="nv">git</span><span class="w"> </span><span class="nv">am</span><span class="w"> </span><span class="o">--</span><span class="nv">signoff</span><span class="w"> </span><span class="o">&amp;</span><span class="nv">lt</span><span class="c1">; file.patch</span><span class="w"></span>
 </code></pre></div>
 
 <h2 id="maintenance">Maintenance</h2>
@@ -343,6 +343,8 @@ git rm $submodule # No trailing slash!
 	            <ul>
 	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
 	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	                <li><a href="https://home.0ink.net/">Home</a></li>
+	                <li><a href="https://home.0ink.net/nanowiki/">Wiki</a></li>
 	                <li><a href="/tags.html">Tags</a></li>
 	                <li><a href="/sitemap.html">sitemap</a></li>
 	            </ul>

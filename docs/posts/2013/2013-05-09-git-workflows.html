@@ -141,25 +141,25 @@ git push origin --delete topic
 
 <h3 id="create-a-new-release">Create a New Release</h3>
 <p>We are ready for a new release...</p>
-<div class="highlight"><pre><span></span><code><span class="nv">git</span> <span class="nv">checkout</span> <span class="nv">dev</span>
-<span class="nv">git</span> <span class="nv">push</span>
-<span class="nv">git</span> <span class="nv">pull</span>
-# <span class="nv">Make</span> <span class="nv">sure</span> <span class="nv">that</span> <span class="nv">dev</span> <span class="nv">is</span> <span class="nv">up</span><span class="o">-</span><span class="nv">to</span><span class="o">-</span><span class="nv">date</span> <span class="nv">in</span> <span class="nv">both</span> <span class="nv">directions</span>...
-<span class="nv">git</span> <span class="nv">checkout</span> <span class="nv">master</span>
-<span class="nv">git</span> <span class="nv">push</span> <span class="c1">; git pull</span>
-# <span class="nv">Make</span> <span class="nv">sure</span> <span class="nv">that</span> <span class="nv">master</span> <span class="nv">is</span> <span class="nv">up</span><span class="o">-</span><span class="nv">to</span><span class="o">-</span><span class="nv">date</span>
-<span class="nv">git</span> <span class="nv">merge</span> <span class="o">--</span><span class="nv">no</span><span class="o">-</span><span class="nv">ff</span> <span class="nv">dev</span>
-# ... <span class="nv">fix</span> <span class="nv">version</span> <span class="nv">number</span> ...
-<span class="nv">git</span> <span class="nv">commit</span> <span class="o">-</span><span class="nv">a</span> <span class="o">-</span><span class="nv">m</span><span class="s2">&quot;</span><span class="s">preparing release X.Y</span><span class="s2">&quot;</span>
-<span class="nv">git</span> <span class="nv">tag</span> <span class="o">-</span><span class="nv">a</span> <span class="nv">X</span>.<span class="nv">Yrel</span> <span class="o">-</span><span class="nv">m</span><span class="s2">&quot;</span><span class="s">Release X.Y</span><span class="s2">&quot;</span>
-<span class="nv">git</span> <span class="nv">push</span>
-<span class="nv">git</span> <span class="nv">checkout</span> <span class="nv">dev</span>
-<span class="nv">git</span> <span class="nv">merge</span> <span class="o">--</span><span class="nv">no</span><span class="o">-</span><span class="nv">ff</span> <span class="nv">master</span>
-# ... <span class="nv">bump</span> <span class="nv">version</span> <span class="nv">number</span> ...
-<span class="nv">git</span> <span class="nv">commit</span> <span class="o">-</span><span class="nv">a</span> <span class="o">-</span><span class="nv">m</span><span class="s2">&quot;</span><span class="s">Bump version to X.Y+1</span><span class="s2">&quot;</span>
-<span class="nv">git</span> <span class="nv">tag</span> <span class="o">-</span><span class="nv">a</span> <span class="nv">X</span>.<span class="nv">Y</span><span class="o">+</span><span class="mi">1</span><span class="nv">pre</span> <span class="o">-</span><span class="nv">m</span><span class="s2">&quot;</span><span class="s">New dev cycle for X.Y+1</span><span class="s2">&quot;</span>
-<span class="nv">git</span> <span class="nv">push</span> <span class="nv">origin</span> <span class="nv">dev</span>
-<span class="nv">git</span> <span class="nv">push</span> <span class="nv">origin</span> <span class="o">--</span><span class="nv">tags</span>
+<div class="highlight"><pre><span></span><code><span class="nv">git</span><span class="w"> </span><span class="nv">checkout</span><span class="w"> </span><span class="nv">dev</span><span class="w"></span>
+<span class="nv">git</span><span class="w"> </span><span class="nv">push</span><span class="w"></span>
+<span class="nv">git</span><span class="w"> </span><span class="nv">pull</span><span class="w"></span>
+#<span class="w"> </span><span class="nv">Make</span><span class="w"> </span><span class="nv">sure</span><span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">dev</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">up</span><span class="o">-</span><span class="nv">to</span><span class="o">-</span><span class="nv">date</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">both</span><span class="w"> </span><span class="nv">directions</span>...<span class="w"></span>
+<span class="nv">git</span><span class="w"> </span><span class="nv">checkout</span><span class="w"> </span><span class="nv">master</span><span class="w"></span>
+<span class="nv">git</span><span class="w"> </span><span class="nv">push</span><span class="w"> </span><span class="c1">; git pull</span><span class="w"></span>
+#<span class="w"> </span><span class="nv">Make</span><span class="w"> </span><span class="nv">sure</span><span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">master</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">up</span><span class="o">-</span><span class="nv">to</span><span class="o">-</span><span class="nv">date</span><span class="w"></span>
+<span class="nv">git</span><span class="w"> </span><span class="nv">merge</span><span class="w"> </span><span class="o">--</span><span class="nv">no</span><span class="o">-</span><span class="nv">ff</span><span class="w"> </span><span class="nv">dev</span><span class="w"></span>
+#<span class="w"> </span>...<span class="w"> </span><span class="nv">fix</span><span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="nv">number</span><span class="w"> </span>...<span class="w"></span>
+<span class="nv">git</span><span class="w"> </span><span class="nv">commit</span><span class="w"> </span><span class="o">-</span><span class="nv">a</span><span class="w"> </span><span class="o">-</span><span class="nv">m</span><span class="s2">&quot;preparing release X.Y&quot;</span><span class="w"></span>
+<span class="nv">git</span><span class="w"> </span><span class="nv">tag</span><span class="w"> </span><span class="o">-</span><span class="nv">a</span><span class="w"> </span><span class="nv">X</span>.<span class="nv">Yrel</span><span class="w"> </span><span class="o">-</span><span class="nv">m</span><span class="s2">&quot;Release X.Y&quot;</span><span class="w"></span>
+<span class="nv">git</span><span class="w"> </span><span class="nv">push</span><span class="w"></span>
+<span class="nv">git</span><span class="w"> </span><span class="nv">checkout</span><span class="w"> </span><span class="nv">dev</span><span class="w"></span>
+<span class="nv">git</span><span class="w"> </span><span class="nv">merge</span><span class="w"> </span><span class="o">--</span><span class="nv">no</span><span class="o">-</span><span class="nv">ff</span><span class="w"> </span><span class="nv">master</span><span class="w"></span>
+#<span class="w"> </span>...<span class="w"> </span><span class="nv">bump</span><span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="nv">number</span><span class="w"> </span>...<span class="w"></span>
+<span class="nv">git</span><span class="w"> </span><span class="nv">commit</span><span class="w"> </span><span class="o">-</span><span class="nv">a</span><span class="w"> </span><span class="o">-</span><span class="nv">m</span><span class="s2">&quot;Bump version to X.Y+1&quot;</span><span class="w"></span>
+<span class="nv">git</span><span class="w"> </span><span class="nv">tag</span><span class="w"> </span><span class="o">-</span><span class="nv">a</span><span class="w"> </span><span class="nv">X</span>.<span class="nv">Y</span><span class="o">+</span><span class="mi">1</span><span class="nv">pre</span><span class="w"> </span><span class="o">-</span><span class="nv">m</span><span class="s2">&quot;New dev cycle for X.Y+1&quot;</span><span class="w"></span>
+<span class="nv">git</span><span class="w"> </span><span class="nv">push</span><span class="w"> </span><span class="nv">origin</span><span class="w"> </span><span class="nv">dev</span><span class="w"></span>
+<span class="nv">git</span><span class="w"> </span><span class="nv">push</span><span class="w"> </span><span class="nv">origin</span><span class="w"> </span><span class="o">--</span><span class="nv">tags</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="setup-new-project">Setup New Project</h3>
@@ -229,6 +229,8 @@ git push origin master
 	            <ul>
 	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
 	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	                <li><a href="https://home.0ink.net/">Home</a></li>
+	                <li><a href="https://home.0ink.net/nanowiki/">Wiki</a></li>
 	                <li><a href="/tags.html">Tags</a></li>
 	                <li><a href="/sitemap.html">sitemap</a></li>
 	            </ul>

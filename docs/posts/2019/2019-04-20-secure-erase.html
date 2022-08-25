@@ -126,8 +126,8 @@ below.</p>
 <strong>(Add discard)</strong></p>
 <p>Save and reboot, TRIM should now be enabled.</p>
 <p>Check if TRIM is enabled:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">sudo</span> <span class="nv">dd</span> <span class="k">if</span><span class="o">=/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">urandom</span> <span class="nv">of</span><span class="o">=</span><span class="nv">tempfile</span> <span class="nv">count</span><span class="o">=</span><span class="mi">100</span> <span class="nv">bs</span><span class="o">=</span><span class="mi">512</span><span class="nv">k</span> <span class="nv">oflag</span><span class="o">=</span><span class="nv">direct</span>
-<span class="nv">sudo</span> <span class="nv">hdparm</span> <span class="o">--</span><span class="nv">fibmap</span> <span class="nv">tempfile</span>
+<div class="highlight"><pre><span></span><code><span class="nv">sudo</span><span class="w"> </span><span class="nv">dd</span><span class="w"> </span><span class="k">if</span><span class="o">=/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">urandom</span><span class="w"> </span><span class="nv">of</span><span class="o">=</span><span class="nv">tempfile</span><span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="mi">100</span><span class="w"> </span><span class="nv">bs</span><span class="o">=</span><span class="mi">512</span><span class="nv">k</span><span class="w"> </span><span class="nv">oflag</span><span class="o">=</span><span class="nv">direct</span><span class="w"></span>
+<span class="nv">sudo</span><span class="w"> </span><span class="nv">hdparm</span><span class="w"> </span><span class="o">--</span><span class="nv">fibmap</span><span class="w"> </span><span class="nv">tempfile</span><span class="w"></span>
 </code></pre></div>
 
 <p>Use the first begin_LBA address.</p>
@@ -157,7 +157,7 @@ discouraged for SSD devices:</p>
 
 <p>The <code>pv</code> part of the pipe is <strong>optional</strong>.</p>
 <p>Afterwards:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">dd</span> <span class="k">if</span><span class="o">=/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">zero</span> <span class="nv">of</span><span class="o">=/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">sdX</span> <span class="nv">bs</span><span class="o">=</span><span class="mi">4</span><span class="nv">k</span>
+<div class="highlight"><pre><span></span><code><span class="nv">dd</span><span class="w"> </span><span class="k">if</span><span class="o">=/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">zero</span><span class="w"> </span><span class="nv">of</span><span class="o">=/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">sdX</span><span class="w"> </span><span class="nv">bs</span><span class="o">=</span><span class="mi">4</span><span class="nv">k</span><span class="w"></span>
 </code></pre></div>
 
 	</article>
@@ -196,6 +196,8 @@ discouraged for SSD devices:</p>
 	            <ul>
 	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
 	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	                <li><a href="https://home.0ink.net/">Home</a></li>
+	                <li><a href="https://home.0ink.net/nanowiki/">Wiki</a></li>
 	                <li><a href="/tags.html">Tags</a></li>
 	                <li><a href="/sitemap.html">sitemap</a></li>
 	            </ul>

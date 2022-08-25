@@ -53,7 +53,7 @@
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2022-08-14 08:36:48.955109+02:00</p>
+  <p>Updated: 2022-08-14 08:37:54+02:00</p>
   in <a href="/category/c2022.html">2022</a>
 <p class="tags">tagged <a href="/tag/alpine.html">alpine</a>, <a href="/tag/boot.html">boot</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/desktop.html">desktop</a>, <a href="/tag/device.html">device</a>, <a href="/tag/filesystem.html">filesystem</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/network.html">network</a>, <a href="/tag/power.html">power</a>, <a href="/tag/setup.html">setup</a>, <a href="/tag/storage.html">storage</a></p></div>  <div>
     <h2>
@@ -81,8 +81,8 @@ sessions by defauult.</p>
     </h2>
     <p><p><strong>THIS IS FOR ARCHIVAL PURPOSES.  THIS IS OUT-OF-DATE</strong></p>
 <h3 id="backup-openshift">backup OpenShift</h3>
-<div class="highlight"><pre><span></span><code><span class="nv">openshift</span> <span class="k">getenv</span><span class="ss">(</span><span class="nv">USER</span><span class="ss">)</span> <span class="nv">from</span> <span class="nv">OpenShift</span> <span class="nv">php</span>
-<span class="nv">ssh</span> <span class="nv">to</span> {<span class="nv">user</span>}@{<span class="nv">app</span><span class="o">-</span><span class="nv">domain</span>} <span class="nv">gear</span> <span class="nv">snapshot</span>  <span class="o">&gt;</span> <span class="nv">file</span>
+<div class="highlight"><pre><span></span><code><span class="nv">openshift</span><span class="w"> </span><span class="k">getenv</span><span class="ss">(</span><span class="nv">USER</span><span class="ss">)</span><span class="w"> </span><span class="nv">from</span><span class="w"> </span><span class="nv">OpenShift</span><span class="w"> </span><span class="nv">php</span><span class="w"></span>
+<span class="nv">ssh</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span>{<span class="nv">user</span>}@{<span class="nv">app</span><span class="o">-</span><span class="nv">domain</span>}<span class="w"> </span><span class="nv">gear</span><span class="w"> </span><span class="nv">snapshot</span><span class="w">  </span><span class="o">&gt;</span><span class="w"> </span><span class="nv">file</span><span class="w"></span>
 </code></pre></div>
 
 <p>Run gear app</p>
@@ -106,26 +106,26 @@ sessions by defauult.</p>
 <li><a href="http://forums.pimoroni.com/t/picade-pcb-emulator-key-mapping/922">key mappings</a></li>
 <li>look up and label default mappings</li>
 </ol>
-<div class="highlight"><pre><span></span><code>  { <span class="nv">KEY_UP_ARROW</span>,    <span class="nv">UP</span>     },
-  { <span class="nv">KEY_DOWN_ARROW</span>,  <span class="nv">DOWN</span>   },
-  { <span class="nv">KEY_LEFT_ARROW</span>,  <span class="nv">LEFT</span>   },
-  { <span class="nv">KEY_RIGHT_ARROW</span>, <span class="nv">RIGHT</span>  },
+<div class="highlight"><pre><span></span><code><span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_UP_ARROW</span>,<span class="w">    </span><span class="nv">UP</span><span class="w">     </span>},<span class="w"></span>
+<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_DOWN_ARROW</span>,<span class="w">  </span><span class="nv">DOWN</span><span class="w">   </span>},<span class="w"></span>
+<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_LEFT_ARROW</span>,<span class="w">  </span><span class="nv">LEFT</span><span class="w">   </span>},<span class="w"></span>
+<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_RIGHT_ARROW</span>,<span class="w"> </span><span class="nv">RIGHT</span><span class="w">  </span>},<span class="w"></span>
 
-  { <span class="nv">KEY_LEFT_CTRL</span>,   <span class="nv">BTN_1</span>  },
-  { <span class="nv">KEY_LEFT_ALT</span>,    <span class="nv">BTN_2</span>  },
-  { <span class="s1">&#39;</span><span class="s"> </span><span class="s1">&#39;</span>,             <span class="nv">BTN_3</span>  },
-  { <span class="nv">KEY_LEFT_SHIFT</span>,  <span class="nv">BTN_4</span>  },
-  { <span class="s1">&#39;</span><span class="s">z</span><span class="s1">&#39;</span>,             <span class="nv">BTN_5</span>  },
-  { <span class="s1">&#39;</span><span class="s">x</span><span class="s1">&#39;</span>,             <span class="nv">BTN_6</span>  },
+<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_LEFT_CTRL</span>,<span class="w">   </span><span class="nv">BTN_1</span><span class="w">  </span>},<span class="w"></span>
+<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_LEFT_ALT</span>,<span class="w">    </span><span class="nv">BTN_2</span><span class="w">  </span>},<span class="w"></span>
+<span class="w">  </span>{<span class="w"> </span><span class="s1">&#39; &#39;</span>,<span class="w">             </span><span class="nv">BTN_3</span><span class="w">  </span>},<span class="w"></span>
+<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_LEFT_SHIFT</span>,<span class="w">  </span><span class="nv">BTN_4</span><span class="w">  </span>},<span class="w"></span>
+<span class="w">  </span>{<span class="w"> </span><span class="s1">&#39;z&#39;</span>,<span class="w">             </span><span class="nv">BTN_5</span><span class="w">  </span>},<span class="w"></span>
+<span class="w">  </span>{<span class="w"> </span><span class="s1">&#39;x&#39;</span>,<span class="w">             </span><span class="nv">BTN_6</span><span class="w">  </span>},<span class="w"></span>
 
-  { <span class="s1">&#39;</span><span class="s">s</span><span class="s1">&#39;</span>,             <span class="nv">START</span>  },
-  { <span class="s1">&#39;</span><span class="s">c</span><span class="s1">&#39;</span>,             <span class="nv">COIN</span>   },
-  { <span class="nv">KEY_RETURN</span>,      <span class="nv">ENTER</span>  },
-  { <span class="nv">KEY_ESC</span>,         <span class="nv">ESCAPE</span> },
+<span class="w">  </span>{<span class="w"> </span><span class="s1">&#39;s&#39;</span>,<span class="w">             </span><span class="nv">START</span><span class="w">  </span>},<span class="w"></span>
+<span class="w">  </span>{<span class="w"> </span><span class="s1">&#39;c&#39;</span>,<span class="w">             </span><span class="nv">COIN</span><span class="w">   </span>},<span class="w"></span>
+<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_RETURN</span>,<span class="w">      </span><span class="nv">ENTER</span><span class="w">  </span>},<span class="w"></span>
+<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_ESC</span>,<span class="w">         </span><span class="nv">ESCAPE</span><span class="w"> </span>},<span class="w"></span>
 
-  <span class="cm">/* Change these lines to set key bindings for VOL_UP and VOL_DN */</span>
-   { <span class="s1">&#39;</span><span class="s">u</span><span class="s1">&#39;</span>,      <span class="nv">VOL_UP</span>  },
-   { <span class="s1">&#39;</span><span class="s">d</span><span class="s1">&#39;</span>,      <span class="nv">VOL_DN …</span></code></pre></div></p>
+<span class="w">  </span><span class="cm">/* Change these lines to set key bindings for VOL_UP and VOL_DN */</span><span class="w"></span>
+<span class="w">   </span>{<span class="w"> </span><span class="s1">&#39;u&#39;</span>,<span class="w">      </span><span class="nv">VOL_UP</span><span class="w">  </span>},<span class="w"></span>
+<span class="w">   </span>{<span class="w"> </span><span class="s1">&#39;d&#39;</span>,<span class="w">      </span><span class="nv">VOL_DN …</span></code></pre></div></p>
   </div>
 </article><article class="summary">
 <div class="metadata">
@@ -351,6 +351,8 @@ git push -u origin &quot;topic&quot;
 	            <ul>
 	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
 	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	                <li><a href="https://home.0ink.net/">Home</a></li>
+	                <li><a href="https://home.0ink.net/nanowiki/">Wiki</a></li>
 	                <li><a href="/tags.html">Tags</a></li>
 	                <li><a href="/sitemap.html">sitemap</a></li>
 	            </ul>

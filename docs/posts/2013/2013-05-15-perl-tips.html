@@ -63,15 +63,15 @@
   in <a href="/category/c2013.html">2013</a>
 </div>
 		<p>Determine what is the local PERL5LIB configuration:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">LIB</span><span class="o">=</span>$<span class="ss">(</span>
-  <span class="k">for</span> <span class="nv">d</span> <span class="nv">in</span> `<span class="nv">tr</span> : <span class="s1">&#39;</span><span class="s"> </span><span class="s1">&#39;</span> <span class="o">&lt;&lt;&lt;</span>$<span class="nv">PERL5LIB</span>
-  <span class="k">do</span>
-    <span class="k">if</span> [ <span class="o">-</span><span class="nv">w</span> <span class="mh">$d</span> ] <span class="c1">; then</span>
-      <span class="nv">echo</span> <span class="mh">$d</span>
-    <span class="k">break</span>
-  <span class="nv">fi</span>
-  <span class="nv">done</span><span class="ss">)</span>
-<span class="nv">PREFIX</span><span class="o">=</span>`<span class="k">dirname</span> $<span class="nv">LIB</span>`
+<div class="highlight"><pre><span></span><code><span class="nv">LIB</span><span class="o">=</span>$<span class="ss">(</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="nv">d</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span>`<span class="nv">tr</span><span class="w"> </span>:<span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="o">&lt;&lt;&lt;</span>$<span class="nv">PERL5LIB</span><span class="w"></span>
+<span class="w">  </span><span class="k">do</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span>[<span class="w"> </span><span class="o">-</span><span class="nv">w</span><span class="w"> </span><span class="mh">$d</span><span class="w"> </span>]<span class="w"> </span><span class="c1">; then</span><span class="w"></span>
+<span class="w">      </span><span class="nv">echo</span><span class="w"> </span><span class="mh">$d</span><span class="w"></span>
+<span class="w">    </span><span class="k">break</span><span class="w"></span>
+<span class="w">  </span><span class="nv">fi</span><span class="w"></span>
+<span class="w">  </span><span class="nv">done</span><span class="ss">)</span><span class="w"></span>
+<span class="nv">PREFIX</span><span class="o">=</span>`<span class="k">dirname</span><span class="w"> </span>$<span class="nv">LIB</span>`<span class="w"></span>
 </code></pre></div>
 
 <p>Install sequence</p>
@@ -121,6 +121,8 @@
 	            <ul>
 	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
 	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	                <li><a href="https://home.0ink.net/">Home</a></li>
+	                <li><a href="https://home.0ink.net/nanowiki/">Wiki</a></li>
 	                <li><a href="/tags.html">Tags</a></li>
 	                <li><a href="/sitemap.html">sitemap</a></li>
 	            </ul>

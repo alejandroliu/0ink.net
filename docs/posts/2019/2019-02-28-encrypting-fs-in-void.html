@@ -83,9 +83,9 @@ lvcreate --name home0 -L 20G pool
 <p>Add <code>rd.luks.crypttab=1 rd.luks=1</code> to the kernel command line.</p>
 <h2 id="create-a-decryption-key">Create a decryption key</h2>
 <p>Create the key file in the unencrypted <code>/</code> partition</p>
-<div class="highlight"><pre><span></span><code><span class="nv">dd</span> <span class="k">if</span><span class="o">=/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">urandom</span> <span class="nv">of</span><span class="o">=/</span><span class="nv">crypto_keyfile</span>.<span class="nv">bin</span> <span class="nv">bs</span><span class="o">=</span><span class="mi">1024</span> <span class="nv">count</span><span class="o">=</span><span class="mi">4</span>
-<span class="nv">chmod</span> <span class="mi">000</span> <span class="o">/</span><span class="nv">crypto_keyfile</span>.<span class="nv">bin</span>
-<span class="nv">cryptsetup</span> <span class="o">-</span><span class="nv">v</span> <span class="nv">luksAddKey</span> <span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">xda2</span> <span class="o">/</span><span class="nv">crypto_keyfile</span>.<span class="nv">bin</span>
+<div class="highlight"><pre><span></span><code><span class="nv">dd</span><span class="w"> </span><span class="k">if</span><span class="o">=/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">urandom</span><span class="w"> </span><span class="nv">of</span><span class="o">=/</span><span class="nv">crypto_keyfile</span>.<span class="nv">bin</span><span class="w"> </span><span class="nv">bs</span><span class="o">=</span><span class="mi">1024</span><span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="mi">4</span><span class="w"></span>
+<span class="nv">chmod</span><span class="w"> </span><span class="mi">000</span><span class="w"> </span><span class="o">/</span><span class="nv">crypto_keyfile</span>.<span class="nv">bin</span><span class="w"></span>
+<span class="nv">cryptsetup</span><span class="w"> </span><span class="o">-</span><span class="nv">v</span><span class="w"> </span><span class="nv">luksAddKey</span><span class="w"> </span><span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">xda2</span><span class="w"> </span><span class="o">/</span><span class="nv">crypto_keyfile</span>.<span class="nv">bin</span><span class="w"></span>
 </code></pre></div>
 
 <p>Look up the UUID</p>
@@ -175,6 +175,8 @@ root filesystem was destroyed.  It requires to have a backup of the
 	            <ul>
 	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
 	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	                <li><a href="https://home.0ink.net/">Home</a></li>
+	                <li><a href="https://home.0ink.net/nanowiki/">Wiki</a></li>
 	                <li><a href="/tags.html">Tags</a></li>
 	                <li><a href="/sitemap.html">sitemap</a></li>
 	            </ul>

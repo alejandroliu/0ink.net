@@ -114,35 +114,35 @@ Arch stays true to its &quot;keep it simple&quot; philosophy here as well.
 </code></pre></div>
 
 <h2 id="emerge-ask-cryptsetup">emerge --ask cryptsetup</h2>
-<div class="highlight"><pre><span></span><code># <span class="nv">Setting</span> <span class="nv">Up</span> <span class="nv">The</span> <span class="nv">Partition</span>
+<div class="highlight"><pre><span></span><code>#<span class="w"> </span><span class="nv">Setting</span><span class="w"> </span><span class="nv">Up</span><span class="w"> </span><span class="nv">The</span><span class="w"> </span><span class="nv">Partition</span><span class="w"></span>
 
-<span class="o">*</span><span class="nv">WARNING</span>:<span class="o">*</span> <span class="o">**</span><span class="nv">The</span> <span class="nv">following</span> <span class="nv">will</span> <span class="nv">erase</span> <span class="nv">all</span> <span class="nv">data</span> <span class="nv">on</span> <span class="nv">the</span> <span class="nv">partition</span> <span class="nv">being</span>
-<span class="nv">used</span> <span class="nv">and</span> <span class="nv">will</span> <span class="nv">make</span> <span class="nv">it</span> <span class="nv">unrecoverable</span>. <span class="nv">Proceed</span> <span class="nv">with</span> <span class="nv">caution</span>.<span class="o">**</span>
-<span class="nv">From</span> <span class="nv">here</span> <span class="nv">on</span>, <span class="nv">none</span> <span class="nv">of</span> <span class="nv">this</span> <span class="nv">is</span> <span class="nv">distribution</span> <span class="nv">specific</span>. <span class="nv">It</span> <span class="nv">will</span> <span class="nv">all</span> <span class="nv">work</span>
-<span class="nv">well</span> <span class="nv">with</span> <span class="nv">any</span> <span class="nv">distribution</span>.<span class="nv">The</span> <span class="nv">defaults</span> <span class="nv">provided</span> <span class="nv">are</span> <span class="nv">actually</span> <span class="nv">quite</span>
-<span class="nv">good</span>, <span class="nv">but</span> <span class="nv">they</span> <span class="nv">can</span> <span class="nv">easily</span> <span class="nv">be</span> <span class="nv">customized</span>. <span class="k">If</span> <span class="nv">you</span> <span class="nv">really</span> <span class="nv">aren</span><span class="s1">&#39;</span><span class="s">t</span>
-<span class="nv">comfortable</span> <span class="nv">playing</span> <span class="nv">with</span> <span class="nv">them</span>, <span class="nv">don</span><span class="s1">&#39;</span><span class="s">t worry. If you do know what you</span>
-<span class="nv">want</span> <span class="nv">to</span> <span class="k">do</span>, <span class="nv">feel</span> <span class="nv">free</span>.
+<span class="o">*</span><span class="nv">WARNING</span>:<span class="o">*</span><span class="w"> </span><span class="o">**</span><span class="nv">The</span><span class="w"> </span><span class="nv">following</span><span class="w"> </span><span class="nv">will</span><span class="w"> </span><span class="nv">erase</span><span class="w"> </span><span class="nv">all</span><span class="w"> </span><span class="nv">data</span><span class="w"> </span><span class="nv">on</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">partition</span><span class="w"> </span><span class="nv">being</span><span class="w"></span>
+<span class="nv">used</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">will</span><span class="w"> </span><span class="nv">make</span><span class="w"> </span><span class="nv">it</span><span class="w"> </span><span class="nv">unrecoverable</span>.<span class="w"> </span><span class="nv">Proceed</span><span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="nv">caution</span>.<span class="o">**</span><span class="w"></span>
+<span class="nv">From</span><span class="w"> </span><span class="nv">here</span><span class="w"> </span><span class="nv">on</span>,<span class="w"> </span><span class="nv">none</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">this</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">distribution</span><span class="w"> </span><span class="nv">specific</span>.<span class="w"> </span><span class="nv">It</span><span class="w"> </span><span class="nv">will</span><span class="w"> </span><span class="nv">all</span><span class="w"> </span><span class="nv">work</span><span class="w"></span>
+<span class="nv">well</span><span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="nv">any</span><span class="w"> </span><span class="nv">distribution</span>.<span class="nv">The</span><span class="w"> </span><span class="nv">defaults</span><span class="w"> </span><span class="nv">provided</span><span class="w"> </span><span class="nv">are</span><span class="w"> </span><span class="nv">actually</span><span class="w"> </span><span class="nv">quite</span><span class="w"></span>
+<span class="nv">good</span>,<span class="w"> </span><span class="nv">but</span><span class="w"> </span><span class="nv">they</span><span class="w"> </span><span class="nv">can</span><span class="w"> </span><span class="nv">easily</span><span class="w"> </span><span class="nv">be</span><span class="w"> </span><span class="nv">customized</span>.<span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="nv">you</span><span class="w"> </span><span class="nv">really</span><span class="w"> </span><span class="nv">aren</span><span class="err">&#39;t</span><span class="w"></span>
+<span class="nv">comfortable</span><span class="w"> </span><span class="nv">playing</span><span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="nv">them</span>,<span class="w"> </span><span class="nv">don</span><span class="err">&#39;t worry. If you do know what you</span>
+<span class="err">want to do, feel free.</span>
 
-<span class="nv">The</span> <span class="nv">basic</span> <span class="nv">options</span> <span class="nv">are</span> <span class="nv">as</span> <span class="nv">follows</span>:
+<span class="err">The basic options are as follows:</span>
 
-<span class="o">*</span> <span class="o">--</span><span class="nv">cypher</span>:  <span class="nv">This</span> <span class="nv">determines</span> <span class="nv">the</span> <span class="nv">cryptographic</span> <span class="nv">cypher</span> <span class="nv">used</span> <span class="nv">on</span> <span class="nv">the</span>
-  <span class="nv">partition</span>.  <span class="nv">The</span> <span class="nv">default</span> <span class="nv">option</span> <span class="nv">is</span> <span class="nv">aes</span><span class="o">-</span><span class="nv">xts</span><span class="o">-</span><span class="nv">plain64</span>
-<span class="o">*</span> <span class="o">--</span><span class="nv">key</span><span class="o">-</span><span class="nv">size</span>: <span class="nv">The</span> <span class="nv">length</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">key</span> <span class="nv">used</span>.  <span class="nv">The</span> <span class="nv">default</span> <span class="nv">is</span> <span class="mi">256</span>
-<span class="o">*</span> <span class="o">--</span><span class="nv">hash</span>: <span class="nv">Chooses</span> <span class="nv">the</span> <span class="nv">hash</span> <span class="nv">algorithm</span> <span class="nv">used</span> <span class="nv">to</span> <span class="nv">derive</span> <span class="nv">the</span> <span class="nv">key</span>.  <span class="nv">The</span>
-  <span class="nv">default</span> <span class="nv">is</span> <span class="nv">sha256</span>.
-<span class="o">*</span> <span class="o">--</span><span class="nv">time</span>: <span class="nv">The</span> <span class="nv">time</span> <span class="nv">used</span> <span class="k">for</span> <span class="nv">passphrase</span> <span class="nv">processing</span>.  <span class="nv">The</span> <span class="nv">default</span> <span class="nv">is</span>
-  <span class="mi">2000</span> <span class="nv">milliseconds</span>.
-<span class="o">*</span> <span class="o">--</span><span class="nv">use</span><span class="o">-</span><span class="k">random</span><span class="o">/--</span><span class="nv">use</span><span class="o">-</span><span class="nv">urandom</span>: <span class="nv">Determines</span> <span class="nv">the</span> <span class="k">random</span> <span class="nv">number</span> <span class="nv">generator</span>
-  <span class="nv">used</span>.  <span class="nv">The</span> <span class="nv">default</span> <span class="nv">is</span> <span class="o">--</span><span class="nv">use</span><span class="o">-</span><span class="k">random</span>.
+<span class="err">* --cypher:  This determines the cryptographic cypher used on the</span>
+<span class="err">  partition.  The default option is aes-xts-plain64</span>
+<span class="err">* --key-size: The length of the key used.  The default is 256</span>
+<span class="err">* --hash: Chooses the hash algorithm used to derive the key.  The</span>
+<span class="err">  default is sha256.</span>
+<span class="err">* --time: The time used for passphrase processing.  The default is</span>
+<span class="err">  2000 milliseconds.</span>
+<span class="err">* --use-random/--use-urandom: Determines the random number generator</span>
+<span class="err">  used.  The default is --use-random.</span>
 
-<span class="nv">So</span>, <span class="nv">a</span> <span class="nv">basic</span> <span class="nv">command</span> <span class="nv">with</span> <span class="nv">no</span> <span class="nv">options</span> <span class="nv">would</span> <span class="nv">look</span> <span class="nv">like</span> <span class="nv">the</span> <span class="nv">line</span> <span class="nv">below</span>.
+<span class="err">So, a basic command with no options would look like the line below.</span><span class="w"></span>
 </code></pre></div>
 
 <h2 id="cryptsetup-luksformat-devsdb1">cryptsetup luksFormat /dev/sdb1</h2>
-<div class="highlight"><pre><span></span><code><span class="nv">Obviously</span>, <span class="nv">you</span><span class="s1">&#39;</span><span class="s">d want to use the path to whichever partition that</span>
-<span class="nv">you</span><span class="s1">&#39;</span><span class="s">re encrypting. If you do want to use options, it would look like</span>
-<span class="nv">the</span> <span class="nv">following</span>.
+<div class="highlight"><pre><span></span><code><span class="nv">Obviously</span>,<span class="w"> </span><span class="nv">you</span><span class="err">&#39;d want to use the path to whichever partition that</span><span class="w"></span>
+<span class="nv">you</span><span class="err">&#39;re encrypting. If you do want to use options, it would look like</span>
+<span class="err">the following.</span><span class="w"></span>
 </code></pre></div>
 
 <h2 id="cryptsetup-c-aes-xts-plain64-key-size-512-hash-sha512-time-5000-use-urandom-devsdb1">cryptsetup -c aes-xts-plain64 --key-size 512 --hash sha512 --time 5000 --use-urandom /dev/sdb1</h2>
@@ -234,6 +234,8 @@ deeper.</p>
 	            <ul>
 	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
 	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	                <li><a href="https://home.0ink.net/">Home</a></li>
+	                <li><a href="https://home.0ink.net/nanowiki/">Wiki</a></li>
 	                <li><a href="/tags.html">Tags</a></li>
 	                <li><a href="/sitemap.html">sitemap</a></li>
 	            </ul>

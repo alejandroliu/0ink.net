@@ -102,13 +102,13 @@ I have worked around with a combination of <code>Flatpak</code>s, <code>chroot</
       <a href="/posts/2017/2017-11-12-vnc-desktop-client.html" rel="bookmark" title="Permalink to VNC desktop">VNC desktop</a>
     </h2>
     <p><p>IDEA:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">Client</span> <span class="nv">connects</span> <span class="o">&gt;</span>
-        <span class="o">&lt;</span> <span class="nv">server</span> <span class="nv">sends</span> <span class="nv">version</span> <span class="nv">string</span> <span class="ss">(</span><span class="nv">Use</span> <span class="mi">3</span>.<span class="mi">3</span> <span class="nv">only</span><span class="ss">)</span>
-<span class="nv">Client</span> <span class="nv">replies</span> <span class="nv">with</span> <span class="nv">actual</span> <span class="nv">verison</span> <span class="nv">string</span> <span class="o">&gt;</span>
-        <span class="o">&lt;</span> <span class="nv">server</span> <span class="nv">sends</span> <span class="nv">security</span> <span class="nv">type</span><span class="c1">; NONE</span>
-<span class="nv">Client</span> <span class="k">send</span> <span class="nv">ClientInit</span> <span class="ss">(</span><span class="nv">shared</span> <span class="nv">flag</span><span class="ss">)</span> <span class="o">&gt;</span> 
-        <span class="o">&lt;</span> <span class="nv">sever</span> <span class="nv">sens</span> <span class="nv">ServerInit</span> <span class="ss">(</span><span class="nv">server</span> <span class="nv">details</span><span class="ss">)</span> <span class="nv">WxHxD</span> <span class="nv">Name</span>
-<span class="o">===</span> <span class="nv">standard</span> <span class="nv">stuff</span> <span class="o">===</span>
+<div class="highlight"><pre><span></span><code><span class="nv">Client</span><span class="w"> </span><span class="nv">connects</span><span class="w"> </span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;</span><span class="w"> </span><span class="nv">server</span><span class="w"> </span><span class="nv">sends</span><span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="nv">string</span><span class="w"> </span><span class="ss">(</span><span class="nv">Use</span><span class="w"> </span><span class="mi">3</span>.<span class="mi">3</span><span class="w"> </span><span class="nv">only</span><span class="ss">)</span><span class="w"></span>
+<span class="nv">Client</span><span class="w"> </span><span class="nv">replies</span><span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="nv">actual</span><span class="w"> </span><span class="nv">verison</span><span class="w"> </span><span class="nv">string</span><span class="w"> </span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;</span><span class="w"> </span><span class="nv">server</span><span class="w"> </span><span class="nv">sends</span><span class="w"> </span><span class="nv">security</span><span class="w"> </span><span class="nv">type</span><span class="c1">; NONE</span><span class="w"></span>
+<span class="nv">Client</span><span class="w"> </span><span class="k">send</span><span class="w"> </span><span class="nv">ClientInit</span><span class="w"> </span><span class="ss">(</span><span class="nv">shared</span><span class="w"> </span><span class="nv">flag</span><span class="ss">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>
+<span class="w">        </span><span class="o">&lt;</span><span class="w"> </span><span class="nv">sever</span><span class="w"> </span><span class="nv">sens</span><span class="w"> </span><span class="nv">ServerInit</span><span class="w"> </span><span class="ss">(</span><span class="nv">server</span><span class="w"> </span><span class="nv">details</span><span class="ss">)</span><span class="w"> </span><span class="nv">WxHxD</span><span class="w"> </span><span class="nv">Name</span><span class="w"></span>
+<span class="o">===</span><span class="w"> </span><span class="nv">standard</span><span class="w"> </span><span class="nv">stuff</span><span class="w"> </span><span class="o">===</span><span class="w"></span>
 </code></pre></div>
 
 <h3 id="2-versions">2 VERSIONS</h3>
@@ -184,8 +184,8 @@ I have worked around with a combination of <code>Flatpak</code>s, <code>chroot</
     </h2>
     <p><p><strong>THIS IS FOR ARCHIVAL PURPOSES.  THIS IS OUT-OF-DATE</strong></p>
 <h3 id="backup-openshift">backup OpenShift</h3>
-<div class="highlight"><pre><span></span><code><span class="nv">openshift</span> <span class="k">getenv</span><span class="ss">(</span><span class="nv">USER</span><span class="ss">)</span> <span class="nv">from</span> <span class="nv">OpenShift</span> <span class="nv">php</span>
-<span class="nv">ssh</span> <span class="nv">to</span> {<span class="nv">user</span>}@{<span class="nv">app</span><span class="o">-</span><span class="nv">domain</span>} <span class="nv">gear</span> <span class="nv">snapshot</span>  <span class="o">&gt;</span> <span class="nv">file</span>
+<div class="highlight"><pre><span></span><code><span class="nv">openshift</span><span class="w"> </span><span class="k">getenv</span><span class="ss">(</span><span class="nv">USER</span><span class="ss">)</span><span class="w"> </span><span class="nv">from</span><span class="w"> </span><span class="nv">OpenShift</span><span class="w"> </span><span class="nv">php</span><span class="w"></span>
+<span class="nv">ssh</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span>{<span class="nv">user</span>}@{<span class="nv">app</span><span class="o">-</span><span class="nv">domain</span>}<span class="w"> </span><span class="nv">gear</span><span class="w"> </span><span class="nv">snapshot</span><span class="w">  </span><span class="o">&gt;</span><span class="w"> </span><span class="nv">file</span><span class="w"></span>
 </code></pre></div>
 
 <p>Run gear app</p>
@@ -363,6 +363,8 @@ added to the AD …</p></p>
 	            <ul>
 	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
 	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	                <li><a href="https://home.0ink.net/">Home</a></li>
+	                <li><a href="https://home.0ink.net/nanowiki/">Wiki</a></li>
 	                <li><a href="/tags.html">Tags</a></li>
 	                <li><a href="/sitemap.html">sitemap</a></li>
 	            </ul>

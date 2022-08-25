@@ -202,26 +202,26 @@ vulnerabilities. Here are some tips on how to make your shell scripts safer.</p>
 <li><a href="http://forums.pimoroni.com/t/picade-pcb-emulator-key-mapping/922">key mappings</a></li>
 <li>look up and label default mappings</li>
 </ol>
-<div class="highlight"><pre><span></span><code>  { <span class="nv">KEY_UP_ARROW</span>,    <span class="nv">UP</span>     },
-  { <span class="nv">KEY_DOWN_ARROW</span>,  <span class="nv">DOWN</span>   },
-  { <span class="nv">KEY_LEFT_ARROW</span>,  <span class="nv">LEFT</span>   },
-  { <span class="nv">KEY_RIGHT_ARROW</span>, <span class="nv">RIGHT</span>  },
+<div class="highlight"><pre><span></span><code><span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_UP_ARROW</span>,<span class="w">    </span><span class="nv">UP</span><span class="w">     </span>},<span class="w"></span>
+<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_DOWN_ARROW</span>,<span class="w">  </span><span class="nv">DOWN</span><span class="w">   </span>},<span class="w"></span>
+<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_LEFT_ARROW</span>,<span class="w">  </span><span class="nv">LEFT</span><span class="w">   </span>},<span class="w"></span>
+<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_RIGHT_ARROW</span>,<span class="w"> </span><span class="nv">RIGHT</span><span class="w">  </span>},<span class="w"></span>
 
-  { <span class="nv">KEY_LEFT_CTRL</span>,   <span class="nv">BTN_1</span>  },
-  { <span class="nv">KEY_LEFT_ALT</span>,    <span class="nv">BTN_2</span>  },
-  { <span class="s1">&#39;</span><span class="s"> </span><span class="s1">&#39;</span>,             <span class="nv">BTN_3</span>  },
-  { <span class="nv">KEY_LEFT_SHIFT</span>,  <span class="nv">BTN_4</span>  },
-  { <span class="s1">&#39;</span><span class="s">z</span><span class="s1">&#39;</span>,             <span class="nv">BTN_5</span>  },
-  { <span class="s1">&#39;</span><span class="s">x</span><span class="s1">&#39;</span>,             <span class="nv">BTN_6</span>  },
+<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_LEFT_CTRL</span>,<span class="w">   </span><span class="nv">BTN_1</span><span class="w">  </span>},<span class="w"></span>
+<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_LEFT_ALT</span>,<span class="w">    </span><span class="nv">BTN_2</span><span class="w">  </span>},<span class="w"></span>
+<span class="w">  </span>{<span class="w"> </span><span class="s1">&#39; &#39;</span>,<span class="w">             </span><span class="nv">BTN_3</span><span class="w">  </span>},<span class="w"></span>
+<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_LEFT_SHIFT</span>,<span class="w">  </span><span class="nv">BTN_4</span><span class="w">  </span>},<span class="w"></span>
+<span class="w">  </span>{<span class="w"> </span><span class="s1">&#39;z&#39;</span>,<span class="w">             </span><span class="nv">BTN_5</span><span class="w">  </span>},<span class="w"></span>
+<span class="w">  </span>{<span class="w"> </span><span class="s1">&#39;x&#39;</span>,<span class="w">             </span><span class="nv">BTN_6</span><span class="w">  </span>},<span class="w"></span>
 
-  { <span class="s1">&#39;</span><span class="s">s</span><span class="s1">&#39;</span>,             <span class="nv">START</span>  },
-  { <span class="s1">&#39;</span><span class="s">c</span><span class="s1">&#39;</span>,             <span class="nv">COIN</span>   },
-  { <span class="nv">KEY_RETURN</span>,      <span class="nv">ENTER</span>  },
-  { <span class="nv">KEY_ESC</span>,         <span class="nv">ESCAPE</span> },
+<span class="w">  </span>{<span class="w"> </span><span class="s1">&#39;s&#39;</span>,<span class="w">             </span><span class="nv">START</span><span class="w">  </span>},<span class="w"></span>
+<span class="w">  </span>{<span class="w"> </span><span class="s1">&#39;c&#39;</span>,<span class="w">             </span><span class="nv">COIN</span><span class="w">   </span>},<span class="w"></span>
+<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_RETURN</span>,<span class="w">      </span><span class="nv">ENTER</span><span class="w">  </span>},<span class="w"></span>
+<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_ESC</span>,<span class="w">         </span><span class="nv">ESCAPE</span><span class="w"> </span>},<span class="w"></span>
 
-  <span class="cm">/* Change these lines to set key bindings for VOL_UP and VOL_DN */</span>
-   { <span class="s1">&#39;</span><span class="s">u</span><span class="s1">&#39;</span>,      <span class="nv">VOL_UP</span>  },
-   { <span class="s1">&#39;</span><span class="s">d</span><span class="s1">&#39;</span>,      <span class="nv">VOL_DN …</span></code></pre></div></p>
+<span class="w">  </span><span class="cm">/* Change these lines to set key bindings for VOL_UP and VOL_DN */</span><span class="w"></span>
+<span class="w">   </span>{<span class="w"> </span><span class="s1">&#39;u&#39;</span>,<span class="w">      </span><span class="nv">VOL_UP</span><span class="w">  </span>},<span class="w"></span>
+<span class="w">   </span>{<span class="w"> </span><span class="s1">&#39;d&#39;</span>,<span class="w">      </span><span class="nv">VOL_DN …</span></code></pre></div></p>
   </div>
 </article><article class="summary">
 <div class="metadata">
@@ -325,6 +325,8 @@ backups via a desktop computer)</p>
 	            <ul>
 	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
 	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	                <li><a href="https://home.0ink.net/">Home</a></li>
+	                <li><a href="https://home.0ink.net/nanowiki/">Wiki</a></li>
 	                <li><a href="/tags.html">Tags</a></li>
 	                <li><a href="/sitemap.html">sitemap</a></li>
 	            </ul>

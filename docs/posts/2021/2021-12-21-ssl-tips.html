@@ -66,7 +66,7 @@
 		<p>Some hints and tips foor doing SSL related things:</p>
 <h2 id="netcat-for-ssl">Netcat for SSL</h2>
 <p>This command lets you connect to a SSL server (a-la netcat):</p>
-<div class="highlight"><pre><span></span><code><span class="nv">cat</span> <span class="nv">request</span>.<span class="nv">txt</span> <span class="o">|</span> <span class="nv">openssl</span> <span class="nv">s_client</span> <span class="o">-</span><span class="k">connect</span> <span class="nv">server</span>:<span class="mi">443</span>
+<div class="highlight"><pre><span></span><code><span class="nv">cat</span><span class="w"> </span><span class="nv">request</span>.<span class="nv">txt</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">openssl</span><span class="w"> </span><span class="nv">s_client</span><span class="w"> </span><span class="o">-</span><span class="k">connect</span><span class="w"> </span><span class="nv">server</span>:<span class="mi">443</span><span class="w"></span>
 </code></pre></div>
 
 <h2 id="creating-self-signed-certificates">Creating self-signed certificates</h2>
@@ -125,7 +125,7 @@ following:</p>
 </ul>
 <p>After disabling a weak cipher, you can verify if it has been disabled
 or not with the following command.</p>
-<div class="highlight"><pre><span></span><code><span class="nv">openssl</span> <span class="nv">s_client</span> <span class="o">-</span><span class="k">connect</span> <span class="nv">google</span>.<span class="nv">com</span>:<span class="mi">443</span> <span class="o">-</span><span class="nv">cipher</span> <span class="nv">EXP</span><span class="o">-</span><span class="nv">RC4</span><span class="o">-</span><span class="nv">MD5</span>
+<div class="highlight"><pre><span></span><code><span class="nv">openssl</span><span class="w"> </span><span class="nv">s_client</span><span class="w"> </span><span class="o">-</span><span class="k">connect</span><span class="w"> </span><span class="nv">google</span>.<span class="nv">com</span>:<span class="mi">443</span><span class="w"> </span><span class="o">-</span><span class="nv">cipher</span><span class="w"> </span><span class="nv">EXP</span><span class="o">-</span><span class="nv">RC4</span><span class="o">-</span><span class="nv">MD5</span><span class="w"></span>
 </code></pre></div>
 
 <h2 id="check-ssl-certificates-on-a-remote-server">Check SSL certificates on a remote server:</h2>
@@ -186,6 +186,8 @@ the process fully.</p>
 	            <ul>
 	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
 	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	                <li><a href="https://home.0ink.net/">Home</a></li>
+	                <li><a href="https://home.0ink.net/nanowiki/">Wiki</a></li>
 	                <li><a href="/tags.html">Tags</a></li>
 	                <li><a href="/sitemap.html">sitemap</a></li>
 	            </ul>
