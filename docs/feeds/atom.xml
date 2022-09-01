@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2022-08-25T10:16:14+02:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>Supervisorui REDONE</title><link href="https://0ink.net/posts/2022/2022-08-25-supervisorui-redone.html" rel="alternate"></link><published>2022-08-25T00:00:00+02:00</published><updated>2022-08-25T10:16:14+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-08-25:/posts/2022/2022-08-25-supervisorui-redone.html</id><summary type="html">&lt;p&gt;Currently I am using docker containers to deploy applications.  A number of those
+<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2022-09-01T07:39:29+02:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>SupervisorUI MF</title><link href="https://0ink.net/posts/2022/2022-09-01-supervisorui-mf.html" rel="alternate"></link><published>2022-09-01T00:00:00+02:00</published><updated>2022-09-01T07:39:29+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-09-01:/posts/2022/2022-09-01-supervisorui-mf.html</id><summary type="html">&lt;p&gt;In a previous &lt;a href="/posts/2022/2022-08-25-supervisorui-redone.html"&gt;article&lt;/a&gt;, I updated a &lt;a href="https://github.com/Tabcorp/supervisorui/"&gt;supervisorui&lt;/a&gt; project to work for me.&lt;/p&gt;
+&lt;p&gt;This updated version &lt;a href="https://github.com/TortugaLabs/supervisorui-redone"&gt;supervisorui-redone&lt;/a&gt; is essentially a PHP application
+which is a different approach from the original &lt;a href="https://github.com/Tabcorp/supervisorui/"&gt;supervisorui&lt;/a&gt; project
+which was more of a JavaScript application with some helper functionality implemented
+in PHP.&lt;/p&gt;
+&lt;p&gt;As such, I figured …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In a previous &lt;a href="/posts/2022/2022-08-25-supervisorui-redone.html"&gt;article&lt;/a&gt;, I updated a &lt;a href="https://github.com/Tabcorp/supervisorui/"&gt;supervisorui&lt;/a&gt; project to work for me.&lt;/p&gt;
+&lt;p&gt;This updated version &lt;a href="https://github.com/TortugaLabs/supervisorui-redone"&gt;supervisorui-redone&lt;/a&gt; is essentially a PHP application
+which is a different approach from the original &lt;a href="https://github.com/Tabcorp/supervisorui/"&gt;supervisorui&lt;/a&gt; project
+which was more of a JavaScript application with some helper functionality implemented
+in PHP.&lt;/p&gt;
+&lt;p&gt;As such, I figured that I could probably fix the &lt;a href="https://github.com/Tabcorp/supervisorui/"&gt;supervisorui&lt;/a&gt; code base
+eliminating the &lt;code&gt;Silex&lt;/code&gt; library, but keeping most of the JavaScript framework
+in place.  This resulted in my &lt;a href="https://github.com/TortugaLabs/SupervisorUI-mf"&gt;SupervisorUI-mf&lt;/a&gt; dashboard.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="screenshot" src="https://raw.githubusercontent.com/TortugaLabs/SupervisorUI-mf/master/screenshot.png"&gt;&lt;/p&gt;
+&lt;p&gt;This maintains JavaScript framework and simply removes the &lt;code&gt;Silex&lt;/code&gt; dependancy.&lt;/p&gt;
+&lt;p&gt;As before, the &lt;a href="http://scripts.incutio.com/xmlrpc/"&gt;Incutio XML-RPC Library&lt;/a&gt; was
+updated so that it works with PHP8.&lt;/p&gt;
+&lt;p&gt;In addition I added/fixed the following functionality:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Added links to &lt;a href="http://supervisord.org/index.html"&gt;supervisor&lt;/a&gt; built-in web UI.&lt;/li&gt;
+&lt;li&gt;Added links to &lt;code&gt;restart&lt;/code&gt; and &lt;code&gt;reload config&lt;/code&gt; &lt;a href="http://supervisord.org/index.html"&gt;supervisor&lt;/a&gt; daemons.&lt;/li&gt;
+&lt;li&gt;Fixed the &lt;code&gt;updateServers&lt;/code&gt; functionality, so that services status gets updated
+  every 30 seconds without having to reload the page.  Similarly, starting/stopping
+  services do not need to reload the page as with &lt;a href="https://github.com/TortugaLabs/supervisorui-redone"&gt;supervisorui-redone&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Added the ability to configure port's in the server IP specifications.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So the result is an updated &lt;a href="https://github.com/Tabcorp/supervisorui/"&gt;supervisorui&lt;/a&gt; which works at least for me.&lt;/p&gt;
+&lt;p&gt;Note that I am still keeping &lt;a href="https://github.com/TortugaLabs/supervisorui-redone"&gt;supervisorui-redone&lt;/a&gt; because it is more
+static than &lt;a href="https://github.com/TortugaLabs/SupervisorUI-mf"&gt;SupervisorUI-mf&lt;/a&gt; which means that &lt;a href="https://github.com/TortugaLabs/supervisorui-redone"&gt;supervisorui-redone&lt;/a&gt;
+works better with &lt;strong&gt;High Latency&lt;/strong&gt; (high ping time) connections.&lt;/p&gt;</content><category term="2022"></category><category term="application"></category><category term="javascript"></category><category term="library"></category></entry><entry><title>Supervisorui REDONE</title><link href="https://0ink.net/posts/2022/2022-08-25-supervisorui-redone.html" rel="alternate"></link><published>2022-08-25T00:00:00+02:00</published><updated>2022-08-25T10:16:14+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-08-25:/posts/2022/2022-08-25-supervisorui-redone.html</id><summary type="html">&lt;p&gt;Currently I am using docker containers to deploy applications.  A number of those
 containers make use of &lt;a href="http://supervisord.org/index.html"&gt;supervisord&lt;/a&gt; for managing processes.  While
 &lt;a href="http://supervisord.org/index.html"&gt;supervisord&lt;/a&gt; itself comes with a UI, it is unhandy for me because each
 container is its own &lt;a href="http://supervisord.org/index.html"&gt;supervisord&lt;/a&gt; instance.&lt;/p&gt;
