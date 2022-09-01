@@ -21,12 +21,11 @@ AUTHOR_FEED_RSS = None
 
 # Blogroll
 LINKS = (
+          ('sitemap','/sitemap.html'),
+          ('Tags','/tags.html'),
           ('Repo','https://github.com/alejandroliu/0ink.net'),
           ('Alejandro','https://alejandro.iliu.net/'),
-          ('Home','https://home.0ink.net/'),
           ('Wiki','https://home.0ink.net/nanowiki/'),
-          ('Tags','/tags.html'),
-          ('sitemap','/sitemap.html'),
         )
 LOGO_IMG = '/images/2021/0ink.png'
 DISPLAY_PAGES_ON_MENU = True
