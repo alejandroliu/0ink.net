@@ -1,0 +1,8 @@
+[Unit]
+Description=X728 UPS Monitor
+
+[Service]
+ExecStart=/etc/x728/upsmon.sh
+
+[Install]
+WantedBy=multi-user.target

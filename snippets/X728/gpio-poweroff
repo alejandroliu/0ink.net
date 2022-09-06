@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# file: /lib/systemd/system-shutdown/gpio-poweroff
+# $1 will be either "halt", "poweroff", "reboot" or "kexec"
+#
+
+BUTTON=26
+
+op_poweroff() {
+  echo $BUTTON > /sys/class/gpio/export
+  echo out > /sys/class/gpio/gpio$BUTTON/direction
+  echo 1 > /sys/class/gpio/gpio$BUTTON/value
+  sync;sync;sync
+  sleep 7
+  echo 0 > /sys/class/gpio/gpio$BUTTON/value
+  sleep 3
+}
+
+case "$1" in
+  poweroff) op_poweroff ;;
+esac
+  
