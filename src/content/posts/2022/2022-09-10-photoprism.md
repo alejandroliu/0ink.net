@@ -4,14 +4,14 @@ tags: application, authentication, cloud, database, library, management, network
 ---
 [photoprism][pp] is a web based photo management application.
 
-![photoprism preview](https://docs.photoprism.app/img/preview.jpg)
-
 From its website:
 
 > PhotoPrism® is an AI-Powered Photos App for the Decentralized Web.
 > It makes use of the latest technologies to tag and find pictures
 > automatically without getting in your way. You can run it at home,
-> on a private server, or in the cloud. 
+> on a private server, or in the cloud.
+
+![photoprism preview](https://docs.photoprism.app/img/preview.jpg)
 
 Features:
 
