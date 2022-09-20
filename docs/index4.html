@@ -47,6 +47,71 @@
 
 <article class="summary">
 <div class="metadata">
+  <time datetime="2017-11-12T00:00:00+01:00" pubdate>Sun 12 November 2017</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
+  in <a href="/category/c2017.html">2017</a>
+<p class="tags">tagged <a href="/tag/authentication.html">authentication</a>, <a href="/tag/desktop.html">desktop</a>, <a href="/tag/login.html">login</a>, <a href="/tag/security.html">security</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2017/2017-11-12-vnc-desktop-client.html" rel="bookmark" title="Permalink to VNC desktop">VNC desktop</a>
+    </h2>
+    <p><p>IDEA:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">Client</span><span class="w"> </span><span class="nv">connects</span><span class="w"> </span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;</span><span class="w"> </span><span class="nv">server</span><span class="w"> </span><span class="nv">sends</span><span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="nv">string</span><span class="w"> </span><span class="ss">(</span><span class="nv">Use</span><span class="w"> </span><span class="mi">3</span>.<span class="mi">3</span><span class="w"> </span><span class="nv">only</span><span class="ss">)</span><span class="w"></span>
+<span class="nv">Client</span><span class="w"> </span><span class="nv">replies</span><span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="nv">actual</span><span class="w"> </span><span class="nv">verison</span><span class="w"> </span><span class="nv">string</span><span class="w"> </span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;</span><span class="w"> </span><span class="nv">server</span><span class="w"> </span><span class="nv">sends</span><span class="w"> </span><span class="nv">security</span><span class="w"> </span><span class="nv">type</span><span class="c1">; NONE</span><span class="w"></span>
+<span class="nv">Client</span><span class="w"> </span><span class="k">send</span><span class="w"> </span><span class="nv">ClientInit</span><span class="w"> </span><span class="ss">(</span><span class="nv">shared</span><span class="w"> </span><span class="nv">flag</span><span class="ss">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>
+<span class="w">        </span><span class="o">&lt;</span><span class="w"> </span><span class="nv">sever</span><span class="w"> </span><span class="nv">sens</span><span class="w"> </span><span class="nv">ServerInit</span><span class="w"> </span><span class="ss">(</span><span class="nv">server</span><span class="w"> </span><span class="nv">details</span><span class="ss">)</span><span class="w"> </span><span class="nv">WxHxD</span><span class="w"> </span><span class="nv">Name</span><span class="w"></span>
+<span class="o">===</span><span class="w"> </span><span class="nv">standard</span><span class="w"> </span><span class="nv">stuff</span><span class="w"> </span><span class="o">===</span><span class="w"></span>
+</code></pre></div>
+
+<h3 id="2-versions">2 VERSIONS</h3>
+<ul>
+<li>kiosk</li>
+<li>unmodified vncviewer connects to a multiplexer screen</li>
+<li>server (in inetd mode …</li></ul></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2017-10-19T00:00:00+02:00" pubdate>Thu 19 October 2017</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
+  in <a href="/category/c2017.html">2017</a>
+<p class="tags">tagged <a href="/tag/desktop.html">desktop</a>, <a href="/tag/editor.html">editor</a>, <a href="/tag/markdown.html">markdown</a>, <a href="/tag/python.html">python</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2017/2017-10-19-markdown-simplenote-editing.html" rel="bookmark" title="Permalink to SimpleNote/Markdown editor">SimpleNote/Markdown editor</a>
+    </h2>
+    <p><p><strong>We just load SimpleNote as a Desktop WebApp</strong></p>
+<ol>
+<li>Create first a basic markdown editor</li>
+<li>
+<p>styling</p>
+</li>
+<li>
+<p>Hack retext</p>
+</li>
+<li>add stuff for multiple views</li>
+<li>nvpy remixed with retext?</li>
+<li><a href="http://www.py2exe.org/">Wrapper python for Windows</a></li>
+</ol>
+<p>Another option:</p>
+<ul>
+<li>SimpleNote native app + editor</li>
+</ul>
+<p>Features:</p>
+<ul>
+<li>Search tags from a menu</li>
+<li>Search within document</li>
+<li>Poll website for changes</li>
+</ul>
+<p>Or …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
   <time datetime="2017-10-02T00:00:00+02:00" pubdate>Mon 02 October 2017</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
@@ -467,73 +532,6 @@ build instructions needed to created signed APKs.</p>
 listen CDs directly.</p>
 <p>So I converted my entire CD and DVD library to media files and stored in my home NAS.</p>
 <p>Since we are talking hundreds of DVDs and …</p></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2016-11-23T00:00:00+01:00" pubdate>Wed 23 November 2016</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2021-12-25 22:02:18+01:00</p>
-  in <a href="/category/c2016.html">2016</a>
-<p class="tags">tagged <a href="/tag/configuration.html">configuration</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/python.html">python</a>, <a href="/tag/scripts.html">scripts</a>, <a href="/tag/security.html">security</a>, <a href="/tag/settings.html">settings</a>, <a href="/tag/tools.html">tools</a></p></div>  <div>
-    <h2>
-      <a href="/posts/2016/2016-11-23-writing-safe-shell-scripts.html" rel="bookmark" title="Permalink to Writing Safe Shell scripts">Writing Safe Shell scripts</a>
-    </h2>
-    <p><p>Writing shell scripts leaves a lot of room to make mistakes, in ways that will cause
-your scripts to break on certain input, or (if some input is untrusted) open up security
-vulnerabilities. Here are some tips on how to make your shell scripts safer.</p>
-<h2 id="dont">Don't</h2>
-<p>The simplest step is …</p></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2016-11-15T00:00:00+01:00" pubdate>Tue 15 November 2016</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2021-12-25 22:02:18+01:00</p>
-  in <a href="/category/c2016.html">2016</a>
-<p class="tags">tagged <a href="/tag/geany.html">geany</a>, <a href="/tag/java.html">java</a>, <a href="/tag/javascript.html">javascript</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/markdown.html">markdown</a>, <a href="/tag/windows.html">windows</a></p></div>  <div>
-    <h2>
-      <a href="/posts/2016/2016-11-15-editor-evaluation.html" rel="bookmark" title="Permalink to editor to replace emacs">editor to replace emacs</a>
-    </h2>
-    <p><p>At the end, I switched to <a href="http://www.geany.org/">geany</a></p>
-<h2 id="gui">GUI</h2>
-<ul>
-<li><a href="https://foicica.com/textadept/">TextAdept</a></li>
-<li><a href="http://bluefish.openoffice.nl/index.html">Bluefish Editor</a></li>
-<li><a href="http://editra.org/">editra</a></li>
-<li><a href="https://wiki.gnome.org/Apps/Gedit">gedit</a></li>
-</ul>
-<h2 id="console">Console</h2>
-<ul>
-<li><a href="http://www.jbox.dk/sanos/editor.htm">sanos editor</a></li>
-<li><a href="https://github.com/lanurmi/efte">eFTE</a></li>
-<li><a href="http://os.ghalkes.nl/tilde/">Tilde</a></li>
-</ul>
-<h2 id="tcltk">TCL/TK</h2>
-<ul>
-<li><a href="http://tke.sourceforge.net/">TKE</a></li>
-<li><a href="http://mooedit.sourceforge.net/">moodit</a></li>
-<li><a href="https://sites.google.com/site/msedit/home">msedit</a></li>
-</ul>
-<h2 id="windows-only">Windows only</h2>
-<ul>
-<li><a href="https://notepad-plus-plus.org/">nodepad++</a></li>
-<li>
-<p>Crimson or Emerald Editors</p>
-</li>
-<li>
-<p>Macros</p>
-</li>
-<li>Split Views</li>
-<li>Interactive search</li>
-<li>File Browser?</li>
-<li>Smart indent</li>
-<li>Parenthesis matching</li>
-<li>Syntax: PHP, Markdown, C, Java, JavaScript, HTML, C++</li>
-<li>UTF8 …</li></ul></p>
   </div>
 </article>
 <div class="pagination">

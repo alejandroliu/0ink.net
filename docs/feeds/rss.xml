@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Thu, 01 Sep 2022 07:39:29 +0200</lastBuildDate><item><title>SupervisorUI MF</title><link>https://0ink.net/posts/2022/2022-09-01-supervisorui-mf.html</link><description>&lt;p&gt;In a previous &lt;a href="/posts/2022/2022-08-25-supervisorui-redone.html"&gt;article&lt;/a&gt;, I updated a &lt;a href="https://github.com/Tabcorp/supervisorui/"&gt;supervisorui&lt;/a&gt; project to work for me.&lt;/p&gt;
+<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Tue, 20 Sep 2022 16:25:58 +0200</lastBuildDate><item><title>cuylib</title><link>https://0ink.net/posts/2022/2022-09-20-cuylib.html</link><description>&lt;p&gt;This is a tiny library to implement Web server embedded editor.&lt;/p&gt;
+&lt;p&gt;You can find it in &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/cuylib"&gt;github&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Can be used either from &lt;a href="http://haserl.sourceforge.net/"&gt;haserl&lt;/a&gt; or directly from
+a &lt;code&gt;shell&lt;/code&gt; script.&lt;/p&gt;
+&lt;p&gt;Features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Uses &lt;a href="https://codemirror.net/"&gt;codemirror&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Escaped HTML entities (html_enc)&lt;/li&gt;
+&lt;li&gt;Decode URL escaping (url_decode)&lt;/li&gt;
+&lt;li&gt;Read POST form data (post_data)&lt;/li&gt;
+&lt;li&gt;Parse &lt;code&gt;QUERY_STRING&lt;/code&gt; (query_string and query_string_raw …&lt;/li&gt;&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Tue, 20 Sep 2022 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:None,2022-09-20:/posts/2022/2022-09-20-cuylib.html</guid><category>2022</category><category>editor</category><category>library</category><category>markdown</category></item><item><title>Photoprism</title><link>https://0ink.net/posts/2022/2022-09-10-photoprism.html</link><description>&lt;p&gt;&lt;a href="https://photoprism.app/"&gt;photoprism&lt;/a&gt; is a web based photo management application.&lt;/p&gt;
+&lt;p&gt;From its website:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PhotoPrism® is an AI-Powered Photos App for the Decentralized Web.
+It makes use of the latest technologies to tag and find pictures
+automatically without getting in your way. You can run it at home,
+on a private server, or …&lt;/p&gt;&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Sat, 10 Sep 2022 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:None,2022-09-10:/posts/2022/2022-09-10-photoprism.html</guid><category>2022</category><category>application</category><category>authentication</category><category>cloud</category><category>database</category><category>library</category><category>management</category><category>network</category><category>proxy</category></item><item><title>SupervisorUI MF</title><link>https://0ink.net/posts/2022/2022-09-01-supervisorui-mf.html</link><description>&lt;p&gt;In a previous &lt;a href="/posts/2022/2022-08-25-supervisorui-redone.html"&gt;article&lt;/a&gt;, I updated a &lt;a href="https://github.com/Tabcorp/supervisorui/"&gt;supervisorui&lt;/a&gt; project to work for me.&lt;/p&gt;
 &lt;p&gt;This updated version &lt;a href="https://github.com/TortugaLabs/supervisorui-redone"&gt;supervisorui-redone&lt;/a&gt; is essentially a PHP application
 which is a different approach from the original &lt;a href="https://github.com/Tabcorp/supervisorui/"&gt;supervisorui&lt;/a&gt; project
 which was more of a JavaScript application with some helper functionality implemented

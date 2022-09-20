@@ -1,5 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2022-09-01T07:39:29+02:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>SupervisorUI MF</title><link href="https://0ink.net/posts/2022/2022-09-01-supervisorui-mf.html" rel="alternate"></link><published>2022-09-01T00:00:00+02:00</published><updated>2022-09-01T07:39:29+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-09-01:/posts/2022/2022-09-01-supervisorui-mf.html</id><summary type="html">&lt;p&gt;In a previous &lt;a href="/posts/2022/2022-08-25-supervisorui-redone.html"&gt;article&lt;/a&gt;, I updated a &lt;a href="https://github.com/Tabcorp/supervisorui/"&gt;supervisorui&lt;/a&gt; project to work for me.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2022-09-20T16:25:58+02:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>cuylib</title><link href="https://0ink.net/posts/2022/2022-09-20-cuylib.html" rel="alternate"></link><published>2022-09-20T00:00:00+02:00</published><updated>2022-09-20T16:25:58+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-09-20:/posts/2022/2022-09-20-cuylib.html</id><summary type="html">&lt;p&gt;This is a tiny library to implement Web server embedded editor.&lt;/p&gt;
+&lt;p&gt;You can find it in &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/cuylib"&gt;github&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Can be used either from &lt;a href="http://haserl.sourceforge.net/"&gt;haserl&lt;/a&gt; or directly from
+a &lt;code&gt;shell&lt;/code&gt; script.&lt;/p&gt;
+&lt;p&gt;Features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Uses &lt;a href="https://codemirror.net/"&gt;codemirror&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Escaped HTML entities (html_enc)&lt;/li&gt;
+&lt;li&gt;Decode URL escaping (url_decode)&lt;/li&gt;
+&lt;li&gt;Read POST form data (post_data)&lt;/li&gt;
+&lt;li&gt;Parse &lt;code&gt;QUERY_STRING&lt;/code&gt; (query_string and query_string_raw …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;This is a tiny library to implement Web server embedded editor.&lt;/p&gt;
+&lt;p&gt;You can find it in &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/cuylib"&gt;github&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Can be used either from &lt;a href="http://haserl.sourceforge.net/"&gt;haserl&lt;/a&gt; or directly from
+a &lt;code&gt;shell&lt;/code&gt; script.&lt;/p&gt;
+&lt;p&gt;Features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Uses &lt;a href="https://codemirror.net/"&gt;codemirror&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Escaped HTML entities (html_enc)&lt;/li&gt;
+&lt;li&gt;Decode URL escaping (url_decode)&lt;/li&gt;
+&lt;li&gt;Read POST form data (post_data)&lt;/li&gt;
+&lt;li&gt;Parse &lt;code&gt;QUERY_STRING&lt;/code&gt; (query_string and query_string_raw)&lt;/li&gt;
+&lt;li&gt;Render HTML and Markdown documents with pre-processing (cuy_render)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Support functions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;codemirror_link : Configured URL to where you can find codemirror files.&lt;/li&gt;
+&lt;li&gt;html_msg : generate a HTML response&lt;/li&gt;
+&lt;li&gt;html_enc : Encode special HTML characters&lt;/li&gt;
+&lt;li&gt;url_decode : Decode URL encoded strings&lt;/li&gt;
+&lt;li&gt;post_data : Read data posted using a HTML POST request.&lt;/li&gt;
+&lt;li&gt;query_string_raw : parse HTML query parameters.&lt;/li&gt;
+&lt;li&gt;query_string : part HTML query paramters and also decodes URL encoding.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Editor components:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;cuy_header : snippet of code for the html document header.&lt;/li&gt;
+&lt;li&gt;cuy_editform : snippet of code for genereting the html editor form&lt;/li&gt;
+&lt;li&gt;cuy_editarea : snippet of code to bind codemirror to a text area&lt;/li&gt;
+&lt;li&gt;cuy_savecb : snippet for save command callback&lt;/li&gt;
+&lt;li&gt;cuy_render : convert content into suitable HTML markup&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Main editing entry point&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;cuy_editapp : A full editing page&lt;/li&gt;
+&lt;/ul&gt;</content><category term="2022"></category><category term="editor"></category><category term="library"></category><category term="markdown"></category></entry><entry><title>Photoprism</title><link href="https://0ink.net/posts/2022/2022-09-10-photoprism.html" rel="alternate"></link><published>2022-09-10T00:00:00+02:00</published><updated>2022-09-20T15:35:52+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-09-10:/posts/2022/2022-09-10-photoprism.html</id><summary type="html">&lt;p&gt;&lt;a href="https://photoprism.app/"&gt;photoprism&lt;/a&gt; is a web based photo management application.&lt;/p&gt;
+&lt;p&gt;From its website:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PhotoPrism® is an AI-Powered Photos App for the Decentralized Web.
+It makes use of the latest technologies to tag and find pictures
+automatically without getting in your way. You can run it at home,
+on a private server, or …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://photoprism.app/"&gt;photoprism&lt;/a&gt; is a web based photo management application.&lt;/p&gt;
+&lt;p&gt;From its website:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PhotoPrism® is an AI-Powered Photos App for the Decentralized Web.
+It makes use of the latest technologies to tag and find pictures
+automatically without getting in your way. You can run it at home,
+on a private server, or in the cloud.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img alt="photoprism preview" src="https://docs.photoprism.app/img/preview.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;Features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Browse all your photos and videos without worrying about RAW conversion,
+  duplicates or video formats&lt;/li&gt;
+&lt;li&gt;search: Easily find specific pictures using powerful search filters&lt;/li&gt;
+&lt;li&gt;places: Includes four high-resolution world maps to bring back the
+  memories of your favorite trips&lt;/li&gt;
+&lt;li&gt;Play Live Photos™ by hovering over them in albums and search results&lt;/li&gt;
+&lt;li&gt;people: Recognizes the faces of your family and friends&lt;/li&gt;
+&lt;li&gt;Automatic classification of pictures based on their content and location&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;What I found is that it does most things automatically.&lt;/p&gt;
+&lt;p&gt;My implementation:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I use a docker instance for &lt;a href="https://photoprism.app/"&gt;photoprism&lt;/a&gt; linked to a &lt;code&gt;mysql&lt;/code&gt; database.
+  (actually &lt;code&gt;mariadb&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.photoprism.app/getting-started/advanced/databases/"&gt;database setup&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;This &lt;a href="https://photoprism.app/"&gt;photoprism&lt;/a&gt; instance is set as &lt;code&gt;AUTH=public&lt;/code&gt;, so no authentication.
+  Users on my home network can connect directly.  From the Internet, I am using an
+  &lt;a href="https://nginx.org/"&gt;nginx&lt;/a&gt; reverse proxy.  This reverse proxy requires authentication.&lt;/li&gt;
+&lt;li&gt;For photo sharing, a different &lt;a href="https://photoprism.app/"&gt;photoprism&lt;/a&gt; instance is used pointing to the same
+  file system and mysql as the main instance.  This instance however has &lt;code&gt;AUTH=password&lt;/code&gt;
+  enabled, so only &lt;code&gt;shared&lt;/code&gt; links can be visited.&lt;/li&gt;
+&lt;li&gt;For uploading photos from my iPhone, I am using &lt;a href="https://link.photoprism.app/photosync"&gt;PhotoSync&lt;/a&gt;.  This can be
+  configured to upload directly to &lt;a href="https://photoprism.app/"&gt;photoprism&lt;/a&gt; using WebDav.  (See instructions for
+  &lt;a href="https://docs.photoprism.app/user-guide/sync/mobile-devices/"&gt;syncing with mobile devices&lt;/a&gt;.)
+  On the other hand, it is complicated for me due to permission problems in my home
+  network.  For that reason, I am using a small container running a &lt;code&gt;sshd&lt;/code&gt; daemon
+  and I sync to that small container using &lt;code&gt;sftp&lt;/code&gt; protocol.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Some issues I found:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;face recognition is a bit wonky.  Specially for kid's faces.&lt;/li&gt;
+&lt;li&gt;some tweaks may be needed to get things to display just right.&lt;/li&gt;
+&lt;li&gt;running using the embedded &lt;code&gt;sqlite&lt;/code&gt; database won't scale beyond a handful of
+  photos.&lt;/li&gt;
+&lt;li&gt;I have a photo library of 400GB.  It took a long time to index.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Before I would copy files from my camera to my server.  In the case of
+video files, a re-encoding step was needed.  With todays smartphones
+this is not needed.  The smartphone can sync directly to the server
+and files are already compressed with a good enough CODEC.&lt;/p&gt;</content><category term="2022"></category><category term="application"></category><category term="authentication"></category><category term="cloud"></category><category term="database"></category><category term="library"></category><category term="management"></category><category term="network"></category><category term="proxy"></category></entry><entry><title>SupervisorUI MF</title><link href="https://0ink.net/posts/2022/2022-09-01-supervisorui-mf.html" rel="alternate"></link><published>2022-09-01T00:00:00+02:00</published><updated>2022-09-01T07:39:29+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-09-01:/posts/2022/2022-09-01-supervisorui-mf.html</id><summary type="html">&lt;p&gt;In a previous &lt;a href="/posts/2022/2022-08-25-supervisorui-redone.html"&gt;article&lt;/a&gt;, I updated a &lt;a href="https://github.com/Tabcorp/supervisorui/"&gt;supervisorui&lt;/a&gt; project to work for me.&lt;/p&gt;
 &lt;p&gt;This updated version &lt;a href="https://github.com/TortugaLabs/supervisorui-redone"&gt;supervisorui-redone&lt;/a&gt; is essentially a PHP application
 which is a different approach from the original &lt;a href="https://github.com/Tabcorp/supervisorui/"&gt;supervisorui&lt;/a&gt; project
 which was more of a JavaScript application with some helper functionality implemented
