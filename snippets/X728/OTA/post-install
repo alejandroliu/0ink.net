@@ -43,7 +43,8 @@ tee -a $rootfs/etc/rauc/system.conf <<-_EOF_
 	_EOF_
 
 echo "Copy customzied files"
-cat /etc/rauc/custom-files | (while read fpath
+manifest=/etc/rauc/custom-files
+tee $rootfs$manifest < $manifest | (while read fpath
 do
   dir=$(dirname "$fpath")
   mkdir -vp "$rootfs/$dir"

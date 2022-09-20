@@ -12,6 +12,8 @@ die() {
 }
 
 [ $# -ne 2 ] && die 1 "Usage: $0 {img} {part}"
+[ $(id -u) -ne 0 ] && die 22 "Must be run as root"
+
 img="$1"
 part="$2"
 trap "sudo umount /mnt || :; sudo kpartx -dv \"\$img\"" EXIT

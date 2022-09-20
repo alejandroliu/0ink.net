@@ -49,13 +49,14 @@ gsqfsout() {
 }
 
 
-ssh=
+ssh=/
 backup=false
 
 while [ $# -gt 0 ] ; do
   case "$1" in
     --ssh) ssh=/ ;;
     --ssh=*) ssh=${1#--ssh=} ;;
+    --no-ssh) ssh= ;;
     --backup) backup=true ;;
     *) break ;;
   esac
@@ -127,6 +128,12 @@ sqfs2tar $systemfs | tar -C $w/rootfs -xvf - 2>&1 | summarize
 	post-install=/lib/rauc/post-install
 	_EOF_
 
+if [ -f "$rootfs" ] ; then
+  # So this is a tarball
+  mkdir -p "$w/srcfs"
+  tar -C "$w/srcfs" -xvf "$rootfs" 2>&1 | summarize
+  rootfs="$w/srcfs"
+fi
 
 find $rootfs '(' -type f -o -type l ')'| sed -e "s!$rootfs/!!" | tee $w/rootfs/etc/rauc/custom-files | (while read fpath
 do
