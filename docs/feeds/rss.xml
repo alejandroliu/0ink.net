@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Tue, 20 Sep 2022 16:25:58 +0200</lastBuildDate><item><title>cuylib</title><link>https://0ink.net/posts/2022/2022-09-20-cuylib.html</link><description>&lt;p&gt;This is a tiny library to implement Web server embedded editor.&lt;/p&gt;
+<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Tue, 20 Sep 2022 16:28:05 +0200</lastBuildDate><item><title>cuylib</title><link>https://0ink.net/posts/2022/2022-09-20-cuylib.html</link><description>&lt;p&gt;This is a tiny library to implement Web server embedded editor.&lt;/p&gt;
 &lt;p&gt;You can find it in &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/cuylib"&gt;github&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Can be used either from &lt;a href="http://haserl.sourceforge.net/"&gt;haserl&lt;/a&gt; or directly from
 a &lt;code&gt;shell&lt;/code&gt; script.&lt;/p&gt;
