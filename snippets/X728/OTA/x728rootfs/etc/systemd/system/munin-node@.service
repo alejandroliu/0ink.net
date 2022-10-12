@@ -1,0 +1,8 @@
+[Unit]
+Description = munin-node service
+
+[Service]
+ExecStart = /bin/munin-node
+
+StandardInput = socket
+

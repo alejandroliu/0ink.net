@@ -1,0 +1,10 @@
+[Unit]
+Description = munin-node
+
+[Socket]
+ListenStream = 4949
+Accept = yes
+
+[Install]
+WantedBy = sockets.target
+

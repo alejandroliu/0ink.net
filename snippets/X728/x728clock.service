@@ -1,16 +1,1 @@
-# file: /etc/systemd/system
-
-[Unit]
-Description=Restore / save X728 clock
-DefaultDependencies=no
-Before=sysinit.target shutdown.target
-Conflicts=shutdown.target
-
-[Service]
-ExecStart=/etc/x728/clock.sh start
-ExecStop=/etc/x728/clock.sh stop
-Type=oneshot
-RemainAfterExit=yes
-
-[Install]
-WantedBy=sysinit.target
+OTA//x728rootfs/etc/systemd/system/x728clock.service

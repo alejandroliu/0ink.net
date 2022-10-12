@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Time 2</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body bgcolor="black">
+        <p style="text-align: center;"><span id="time" style="color: lightgreen; font-size: 82pt; font-family: sans-serif"></span></p>
+        <p style="text-align: center;"><span id="date" style="color: white; font-size: 8pt; font-family: sans-serif;"></span></p>
+        <script>
+            function update_html() {
+                var dt = new Date();
+
+                document.getElementById("time").innerHTML = (( (("0"+(dt.getHours())).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2))));
+                document.getElementById("date").innerHTML = (("0"+(dt.getDate())).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear());
+                setTimeout(update_html, 5000);
+            }
+            update_html();
+
+        </script>
+    </body>
+</html>

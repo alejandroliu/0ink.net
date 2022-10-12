@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Tue, 20 Sep 2022 16:28:05 +0200</lastBuildDate><item><title>cuylib</title><link>https://0ink.net/posts/2022/2022-09-20-cuylib.html</link><description>&lt;p&gt;This is a tiny library to implement Web server embedded editor.&lt;/p&gt;
+<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Wed, 12 Oct 2022 01:43:49 +0200</lastBuildDate><item><title>Nanowiki</title><link>https://0ink.net/posts/2022/2022-10-10-nanowiki.html</link><description>&lt;p&gt;&lt;a href="https://github.com/iliu-net/nanowiki"&gt;NanoWiki&lt;/a&gt; is a Wiki implementation based on &lt;a href="https://github.com/luckyshot/picowiki"&gt;picowiki&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I have been using &lt;a href="https://simplenote.com/"&gt;SimpleNote&lt;/a&gt; for a number of years.  It works pretty well
+but somehow I was looking for:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ability to include and render nice asciiart pictures&lt;/li&gt;
+&lt;li&gt;Organizes articles in a folder structure.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So I was looking for a Wiki package …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Mon, 10 Oct 2022 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:None,2022-10-10:/posts/2022/2022-10-10-nanowiki.html</guid><category>2022</category><category>config</category><category>editor</category><category>feature</category><category>markdown</category><category>network</category><category>software</category></item><item><title>X728 kit for Raspberry Pi 4</title><link>https://0ink.net/posts/2022/2022-10-01-x728.html</link><description>&lt;p&gt;As part of my small project of movng my Z-Wave Hub to a Raspberry PI, I got an
+&lt;a href="http://wiki.geekworm.com/X728"&gt;X728&lt;/a&gt; kit.  This has:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;UPS controller board&lt;/li&gt;
+&lt;li&gt;RTC circuit&lt;/li&gt;
+&lt;li&gt;Battery and Power control board&lt;/li&gt;
+&lt;li&gt;Case&lt;/li&gt;
+&lt;li&gt;Button&lt;/li&gt;
+&lt;li&gt;Cooling fan&lt;/li&gt;
+&lt;li&gt;Additional Battery holder&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The case has holes for wall-mounting.&lt;/p&gt;
+&lt;p&gt;The Geekworm X728 kit is …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Sat, 01 Oct 2022 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:None,2022-10-01:/posts/2022/2022-10-01-x728.html</guid><category>2022</category><category>address</category><category>boot</category><category>directory</category><category>installation</category><category>management</category><category>password</category><category>power</category><category>raspberry</category><category>scripts</category><category>software</category></item><item><title>cuylib</title><link>https://0ink.net/posts/2022/2022-09-20-cuylib.html</link><description>&lt;p&gt;This is a tiny library to implement Web server embedded editor.&lt;/p&gt;
 &lt;p&gt;You can find it in &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/cuylib"&gt;github&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Can be used either from &lt;a href="http://haserl.sourceforge.net/"&gt;haserl&lt;/a&gt; or directly from
 a &lt;code&gt;shell&lt;/code&gt; script.&lt;/p&gt;

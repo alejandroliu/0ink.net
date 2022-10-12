@@ -11,23 +11,30 @@ die() {
   exit $1
 }
 
-
 usage() {
+  if [ $# -gt 0 ] ; then
+    echo "$@" 1>&2
+    echo '---' 1>&2
+  fi
   cat 1>&2 <<-_EOV_
-	Usage: $0 [--ssh] {img} {rootfs}
+	Usage: $0 [options] {orig-img} {modified-img}
 
 	Options:
-	  --ssh : Enable ssh
+	  --[no-]ssh : Enable/disable ssh
+	  --force : Force file overwrite
+	  --rootfs : root directory or tarball
 	_EOV_
   exit 1
 }
+
 ( type sqfs2tar && type gensquashfs ) || die 21 "Need to install squashfs-tools-ng"
-[ $(id -u) -ne 0 ] && die 22 "Must be run as root"
+[ $(id -u) -ne 0 ] && usage "Must be run as root"
 
 [ $# -eq 0 ] && usage
 
 summarize() {
- while read -r L
+  set +x
+  while read -r L
   do
     printf '\r'
     echo -n "$L"
@@ -36,6 +43,7 @@ summarize() {
   printf '\rDone\033[K\r\n'
 }
 gsqfsout() {
+  set +x
   while read -r L
   do
     if (echo "$L" | grep -q packing) ; then
@@ -50,33 +58,46 @@ gsqfsout() {
 
 
 ssh=/
-backup=false
+force=false
+rootfs=''
 
 while [ $# -gt 0 ] ; do
   case "$1" in
     --ssh) ssh=/ ;;
     --ssh=*) ssh=${1#--ssh=} ;;
     --no-ssh) ssh= ;;
-    --backup) backup=true ;;
+    --force|-F) force=true ;;
+    --rootfs=*) rootfs=${1#--rootfs=} ;;
+    --root=*) rootfs=${1#--root=} ;;
     *) break ;;
   esac
   shift
 done
 
 [ $# -ne 2 ] && usage
+[ -z "$rootfs" ] && usage "Not --rootfs specified"
 
-img="$1"
-rootfs="$(echo "$2" | sed -e s'!/*$!!')"
+srcimg="$1"
+modimg="$2"
 
-$backup && cp -av "$img" "$img~"
-if (echo "$img" | grep -q '\.xz$' ) ; then
-  xz -d "$img"
-  img=$(echo "$img" | sed -e 's/\.xz$//')
+if [ -f "$modimg" ] ; then
+  if $force ; then
+    echo "$modimg: already exists.  Overwrite" 1>&2
+  else
+    die 84 "$modimg: already exists"
+  fi
 fi
 
-w=$(mktemp -d) ; trap "umount $w/mnt || : ; rm -rf $w; kpartx -dv \$img" EXIT
+w=$(mktemp -d) ; trap "umount $w/mnt || : ; rm -rf $w; kpartx -dv \$modimg" EXIT
+
+if (echo "$srcimg" | grep -q '\.xz$' ) ; then
+  xz -d -v < "$srcimg"  > "$modimg"
+else
+  cp -av "$srcimg" "$modimg"
+fi
+
 mkdir $w/mnt
-kpartx -av "$img"
+kpartx -av "$modimg"
 
 bootfs=/dev/loop0p1
 mount -o loop $bootfs $w/mnt
@@ -116,30 +137,36 @@ if [ -n "$ssh" ]; then
 fi
 umount $w/mnt
 
-
 systemfs=/dev/loop0p3
 mkdir -p $w/rootfs
+echo "Unpack $systemfs (squashfs)"
 sqfs2tar $systemfs | tar -C $w/rootfs -xvf - 2>&1 | summarize
 
 # add the post-install handler
 # sed -i -e '/^\[system\]$/a post-install=/lib/rauc/post-install'
-( tee -a $w/rootfs/etc/rauc/system.conf | summarize ) <<-_EOF_
+echo 'Post install handler:'
+( tee -a $w/rootfs/etc/rauc/system.conf ) <<-_EOF_
 	[handlers]
 	post-install=/lib/rauc/post-install
 	_EOF_
 
 if [ -f "$rootfs" ] ; then
   # So this is a tarball
+  echo "Unpacking tarball"
   mkdir -p "$w/srcfs"
   tar -C "$w/srcfs" -xvf "$rootfs" 2>&1 | summarize
   rootfs="$w/srcfs"
 fi
 
+echo "Copying custom files"
 find $rootfs '(' -type f -o -type l ')'| sed -e "s!$rootfs/!!" | tee $w/rootfs/etc/rauc/custom-files | (while read fpath
 do
   dir=$(dirname "$fpath")
   mkdir -vp "$w/rootfs/$dir"
   cp -av "$rootfs/$fpath" "$w/rootfs/$dir" 2>&1
 done) | summarize
-gensquashfs -D "$w/rootfs" $w/new-rootfs.img 2>&1 | gsqfsout | summarize
+
+echo "Re-squashing FS"
+gensquashfs -D "$w/rootfs" "$w/new-rootfs.img" 2>&1 | gsqfsout | summarize
 dd bs=64k if=$w/new-rootfs.img of=$systemfs
+

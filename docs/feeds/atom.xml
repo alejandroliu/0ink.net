@@ -1,5 +1,446 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2022-09-20T16:28:05+02:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>cuylib</title><link href="https://0ink.net/posts/2022/2022-09-20-cuylib.html" rel="alternate"></link><published>2022-09-20T00:00:00+02:00</published><updated>2022-09-20T16:28:05+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-09-20:/posts/2022/2022-09-20-cuylib.html</id><summary type="html">&lt;p&gt;This is a tiny library to implement Web server embedded editor.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2022-10-12T01:43:49+02:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>Nanowiki</title><link href="https://0ink.net/posts/2022/2022-10-10-nanowiki.html" rel="alternate"></link><published>2022-10-10T00:00:00+02:00</published><updated>2022-10-12T01:43:49+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-10-10:/posts/2022/2022-10-10-nanowiki.html</id><summary type="html">&lt;p&gt;&lt;a href="https://github.com/iliu-net/nanowiki"&gt;NanoWiki&lt;/a&gt; is a Wiki implementation based on &lt;a href="https://github.com/luckyshot/picowiki"&gt;picowiki&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I have been using &lt;a href="https://simplenote.com/"&gt;SimpleNote&lt;/a&gt; for a number of years.  It works pretty well
+but somehow I was looking for:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ability to include and render nice asciiart pictures&lt;/li&gt;
+&lt;li&gt;Organizes articles in a folder structure.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So I was looking for a Wiki package …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://github.com/iliu-net/nanowiki"&gt;NanoWiki&lt;/a&gt; is a Wiki implementation based on &lt;a href="https://github.com/luckyshot/picowiki"&gt;picowiki&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I have been using &lt;a href="https://simplenote.com/"&gt;SimpleNote&lt;/a&gt; for a number of years.  It works pretty well
+but somehow I was looking for:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ability to include and render nice asciiart pictures&lt;/li&gt;
+&lt;li&gt;Organizes articles in a folder structure.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So I was looking for a Wiki package that could either do this or be extended
+to do this.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="screenshot" src="https://github.com/iliu-net/nanowiki/raw/main/static/screenshot.png"&gt;&lt;/p&gt;
+&lt;p&gt;Other features that I was looking for:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Use of &lt;a href="https://daringfireball.net/projects/markdown/"&gt;markdown&lt;/a&gt; for markup, and be able to tweak the format as needed.&lt;/li&gt;
+&lt;li&gt;Editor that would &lt;em&gt;syntax highlight&lt;/em&gt; the markdown syntax&lt;/li&gt;
+&lt;li&gt;Store data as simple files&lt;/li&gt;
+&lt;li&gt;Written in a language I am familiar with.&lt;/li&gt;
+&lt;li&gt;software generated network graphs (graphviz)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So, after looking at a number of packages, I opted for one that allthough
+did not have all features, but it was small enough and easily extendable.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/luckyshot/picowiki"&gt;PicoWiki&lt;/a&gt; is a very small Wiki implementation with a &lt;em&gt;plugin&lt;/em&gt;
+architecture, so it is quite easy to extend.  The downside of this
+is that the functionality in &lt;a href="https://github.com/luckyshot/picowiki"&gt;PicoWiki&lt;/a&gt; is quite limited.  So
+I added the following features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;file management: create, delete, rename, modify, attach, etc.&lt;/li&gt;
+&lt;li&gt;hooks for access control&lt;/li&gt;
+&lt;li&gt;meta data support&lt;/li&gt;
+&lt;li&gt;Disabled code execution.  This can be considered a &lt;em&gt;"security"&lt;/em&gt; feature.&lt;/li&gt;
+&lt;li&gt;Support for byte ranges.  This lets you stream video files directly
+  from the wiki.&lt;/li&gt;
+&lt;li&gt;toggable, folder or document views.&lt;/li&gt;
+&lt;li&gt;theme support&lt;/li&gt;
+&lt;li&gt;Multiple file type handling&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The default installations has the following plugins:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Emoji : Render emojis&lt;/li&gt;
+&lt;li&gt;HTML : HTML content handler&lt;/li&gt;
+&lt;li&gt;MarkDown : Markdown content handler&lt;/li&gt;
+&lt;li&gt;Includes : Include Wiki documents in another&lt;/li&gt;
+&lt;li&gt;Vars : Expand variables.  Either from document metadata or from the NanoWiki config file.&lt;/li&gt;
+&lt;li&gt;WikiLinks : short hand for wiki links.&lt;/li&gt;
+&lt;/ul&gt;</content><category term="2022"></category><category term="config"></category><category term="editor"></category><category term="feature"></category><category term="markdown"></category><category term="network"></category><category term="software"></category></entry><entry><title>X728 kit for Raspberry Pi 4</title><link href="https://0ink.net/posts/2022/2022-10-01-x728.html" rel="alternate"></link><published>2022-10-01T00:00:00+02:00</published><updated>2022-10-12T01:43:49+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-10-01:/posts/2022/2022-10-01-x728.html</id><summary type="html">&lt;p&gt;As part of my small project of movng my Z-Wave Hub to a Raspberry PI, I got an
+&lt;a href="http://wiki.geekworm.com/X728"&gt;X728&lt;/a&gt; kit.  This has:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;UPS controller board&lt;/li&gt;
+&lt;li&gt;RTC circuit&lt;/li&gt;
+&lt;li&gt;Battery and Power control board&lt;/li&gt;
+&lt;li&gt;Case&lt;/li&gt;
+&lt;li&gt;Button&lt;/li&gt;
+&lt;li&gt;Cooling fan&lt;/li&gt;
+&lt;li&gt;Additional Battery holder&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The case has holes for wall-mounting.&lt;/p&gt;
+&lt;p&gt;The Geekworm X728 kit is …&lt;/p&gt;</summary><content type="html">&lt;p&gt;As part of my small project of movng my Z-Wave Hub to a Raspberry PI, I got an
+&lt;a href="http://wiki.geekworm.com/X728"&gt;X728&lt;/a&gt; kit.  This has:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;UPS controller board&lt;/li&gt;
+&lt;li&gt;RTC circuit&lt;/li&gt;
+&lt;li&gt;Battery and Power control board&lt;/li&gt;
+&lt;li&gt;Case&lt;/li&gt;
+&lt;li&gt;Button&lt;/li&gt;
+&lt;li&gt;Cooling fan&lt;/li&gt;
+&lt;li&gt;Additional Battery holder&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The case has holes for wall-mounting.&lt;/p&gt;
+&lt;p&gt;The Geekworm X728 kit is very easy to build.  There is a video to show how to do
+this:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=QOG30LXb6ds&amp;amp;t"&gt;Build video&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Otherwise, refer to the hardware guide &lt;a href="http://wiki.geekworm.com/X728-hardware"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In my case, before the build, I took the disassembled case to measure the holes
+needed for wall-mounting the case. You need fairly small screws for this. I
+actually had to bend the case slighly for my screws to work.&lt;/p&gt;
+&lt;p&gt;Also, I set the jumper to automatic Power-on and a few cable ties to fix a USB Hub
+to the case.&lt;/p&gt;
+&lt;p&gt;To test the hardware I downloaded a 64-bit Raspberry OS Lite image from
+&lt;a href="https://www.raspberrypi.com/software/operating-systems/"&gt;Raspberrypi.com&lt;/a&gt; and
+image an micro-SD card.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Boot the Raspberry OS.  The first boot will resize the filesystems, so please
+  wait.  Also, it will let you configure the default user and password.&lt;/li&gt;
+&lt;li&gt;Enable the i2c function:&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sudo raspi-config&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Go to &lt;code&gt;Interfacing Options&lt;/code&gt; -&amp;gt; &lt;code&gt;I2C - Enable/Disable automatic loading&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;While you are at-it, you may also enable &lt;code&gt;SSH&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Alternatively, you can a manual install by:&lt;/li&gt;
+&lt;li&gt;Modify the &lt;code&gt;config.txt&lt;/code&gt; in the &lt;code&gt;/boot&lt;/code&gt; partition:&lt;/li&gt;
+&lt;li&gt;Add at the end:&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[all]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dtparam=i2c_arm=on&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Install pre-requisites:&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sudo apt-get update&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sudo apt-get upgrade&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sudo apt-get -y install i2c-tools&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;This is only needed for &lt;code&gt;i2cdetect&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Reboot the system.&lt;/li&gt;
+&lt;li&gt;Check if the hardware is detected:&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sudo i2cdetect -y 1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;img alt="screenshot" src="https://raw.githubusercontent.com/alejandroliu/0ink.net/master/snippets/X728/imgs/X728x-i2c.png"&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;#36&lt;/code&gt; - the address of the battery fuel gauging chip&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;#68&lt;/code&gt; - the address of the RTC chip&lt;/li&gt;
+&lt;li&gt;Different x728 versions may have different values.  Mine used these values.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I personally did not like the example software.  This can be found in &lt;a href="https://github.com/geekworm-com/x728"&gt;github&lt;/a&gt;.
+Specifically, the &lt;code&gt;shutdown&lt;/code&gt; functionality seemed to have &lt;a href="https://en.wikipedia.org/wiki/Race_condition"&gt;race-conditions&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;However, using it is not that complicated.  So I wrote my own software, but you
+can do your own thing:&lt;/p&gt;
+&lt;h2 id="rtc-functionality"&gt;RTC functionality&lt;/h2&gt;
+&lt;p&gt;The RTC functionality is supported by the Raspberry OS kernel.  You need to enable
+the &lt;code&gt;i2c&lt;/code&gt; functionality in &lt;code&gt;/boot/config.txt&lt;/code&gt; by adding the line:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;dtparam=i2c_arm=on
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;With that enabled, you need to add the kernel modules:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;i2c-dev
+rtc-ds1307
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You need to enable it in the bus:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; ds1307 0x68 &amp;gt; /sys/class/i2c-adapter/i2c-1/new_device
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;From then on, you can use the standard &lt;code&gt;hwclock&lt;/code&gt; command.&lt;/p&gt;
+&lt;p&gt;These can be added to &lt;code&gt;rc.local&lt;/code&gt; which is how the sample code does.  I prefer to
+do this from a script run from &lt;code&gt;systemd&lt;/code&gt; unit file:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;file&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;systemd&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;system&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;x728clock&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;service&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Unit&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;Description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;Restore&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;save&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;X728&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;clock&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;DefaultDependencies&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;no&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;Before&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;sysinit&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;shutdown&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;Conflicts&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;shutdown&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Service&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;ExecStart&lt;/span&gt;&lt;span class="o"&gt;=/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;x728&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;clock&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;start&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;ExecStop&lt;/span&gt;&lt;span class="o"&gt;=/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;x728&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;clock&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;stop&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;Type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;oneshot&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;RemainAfterExit&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;yes&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Install&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;WantedBy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;sysinit&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;After saving this file and creating a &lt;code&gt;/etc/x728/clock.sh&lt;/code&gt; script you can:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;systemctl&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;daemon&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;reload&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;systemctl&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;enable&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;x728clock&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;systemctl&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;x728clock&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;systemctl&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;disable&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;fake&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;hwclock&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;systemctl&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;stop&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;fake&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;hwclock&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/X728/x728clock.service"&gt;systemd unit file&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/X728/scripts/clock.sh"&gt;script&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="gpio-assignments"&gt;GPIO assignments&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Pin&lt;/th&gt;
+&lt;th&gt;Function&lt;/th&gt;
+&lt;th&gt;Direction&lt;/th&gt;
+&lt;th&gt;Comment&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;#6&lt;/td&gt;
+&lt;td&gt;PLD&lt;/td&gt;
+&lt;td&gt;in&lt;/td&gt;
+&lt;td&gt;1: A/C lost, 0: A/C OK&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;#5&lt;/td&gt;
+&lt;td&gt;5hutdown&lt;/td&gt;
+&lt;td&gt;in&lt;/td&gt;
+&lt;td&gt;Sense button press&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;#12&lt;/td&gt;
+&lt;td&gt;Boot&lt;/td&gt;
+&lt;td&gt;out&lt;/td&gt;
+&lt;td&gt;Control SW/HW controlled button&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;#20&lt;/td&gt;
+&lt;td&gt;Buzzer&lt;/td&gt;
+&lt;td&gt;out&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;#26&lt;/td&gt;
+&lt;td&gt;Button&lt;/td&gt;
+&lt;td&gt;out&lt;/td&gt;
+&lt;td&gt;Simulate power button press&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;Reading &lt;code&gt;PLD&lt;/code&gt; detects if the A/C power is available or not.  If it reads &lt;code&gt;1&lt;/code&gt;
+  A/C power was lost.  &lt;code&gt;0&lt;/code&gt; if A/C power is available.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Buzzer&lt;/code&gt; if set to &lt;code&gt;1&lt;/code&gt; it will sound a rather loud beep.  &lt;code&gt;0&lt;/code&gt; for off.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Button&lt;/code&gt; simulates pressing the hardware &lt;code&gt;Off&lt;/code&gt; button.  If you set &lt;code&gt;Button&lt;/code&gt;
+  to &lt;code&gt;1&lt;/code&gt; for 6 seconds, the system will poweroff.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Shutdown&lt;/code&gt; is used to read the status of the hardware button.  This works only
+  if &lt;code&gt;Boot&lt;/code&gt; is set to &lt;code&gt;1&lt;/code&gt;.  Otherwise, &lt;code&gt;Shutdown&lt;/code&gt; doesn't seem to work.
+  When &lt;code&gt;Boot&lt;/code&gt; is set to &lt;code&gt;1&lt;/code&gt;, it would read &lt;code&gt;1&lt;/code&gt; if pressed, &lt;code&gt;0&lt;/code&gt; if released.
+  Weirdly enough, the &lt;code&gt;Shutdown&lt;/code&gt; button is not very sensitive.  It takes about
+  3 seconds to register the button press.  The button release takes bout 50
+  seconds to detect.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="gpio-programming"&gt;GPIO programming&lt;/h2&gt;
+&lt;p&gt;Programming GPIO is quite easy.  It can be done from shell scripting using the
+sys file-system.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gpioIO&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="nb"&gt;local&lt;/span&gt; &lt;span class="nv"&gt;pin&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="nv"&gt;$#&lt;/span&gt; -eq &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+    cat /sys/class/gpio/gpio&lt;span class="nv"&gt;$pin&lt;/span&gt;/value
+  &lt;span class="k"&gt;else&lt;/span&gt;
+    &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$2&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &amp;gt; /sys/class/gpio/gpio&lt;span class="nv"&gt;$pin&lt;/span&gt;/value
+  &lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+gpioInit&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="nb"&gt;local&lt;/span&gt; &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;pin&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$2&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$3&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+
+  &lt;span class="o"&gt;[&lt;/span&gt; ! -d /sys/class/gpio/gpio&lt;span class="nv"&gt;$pin&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$pin&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &amp;gt; /sys/class/gpio/export
+  &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$dir&lt;/span&gt; &amp;gt; /sys/class/gpio/gpio&lt;span class="nv"&gt;$pin&lt;/span&gt;/direction
+
+  &lt;span class="nb"&gt;eval&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;gpio&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;() { gpioIO &lt;/span&gt;&lt;span class="nv"&gt;$pin&lt;/span&gt;&lt;span class="s2"&gt; \&amp;quot;\$@\&amp;quot; ; }&amp;quot;&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+ticks&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;date +%s&lt;span class="k"&gt;)$(&lt;/span&gt;date +%N &lt;span class="p"&gt;|&lt;/span&gt; cut -c-2&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+beep&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="nb"&gt;local&lt;/span&gt; &lt;span class="nv"&gt;len&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nb"&gt;shift&lt;/span&gt;
+
+  gpioBUZZER &lt;span class="m"&gt;1&lt;/span&gt;
+  sleep &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$len&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+  gpioBUZZER &lt;span class="m"&gt;0&lt;/span&gt;
+
+  &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="nv"&gt;$#&lt;/span&gt; -eq &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt;
+
+  &lt;span class="nb"&gt;local&lt;/span&gt; &lt;span class="nv"&gt;repeat&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; idle
+  &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="nv"&gt;$#&lt;/span&gt; -gt &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nv"&gt;idle&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$2&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="nv"&gt;idle&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$len&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+
+  &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="nv"&gt;$repeat&lt;/span&gt; -gt &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;
+  &lt;span class="k"&gt;do&lt;/span&gt;
+    &lt;span class="nv"&gt;repeat&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;expr &lt;span class="nv"&gt;$repeat&lt;/span&gt; - &lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+    sleep &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$idle&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+    gpioBUZZER &lt;span class="m"&gt;1&lt;/span&gt;
+    sleep &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$len&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+    gpioBUZZER &lt;span class="m"&gt;0&lt;/span&gt;
+  &lt;span class="k"&gt;done&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+gpioInit SHUTDOWN &lt;span class="m"&gt;5&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt;
+gpioInit PLD &lt;span class="m"&gt;6&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt;
+gpioInit BOOT &lt;span class="m"&gt;12&lt;/span&gt; out
+gpioInit BUZZER &lt;span class="m"&gt;20&lt;/span&gt; out
+gpioInit BUTTON &lt;span class="m"&gt;26&lt;/span&gt; out
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Afterwards, you can just:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;gpio[PIN]&lt;/code&gt; to read, i.e:&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;gpioSHUTDOWN&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;gpioPLD&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;gpio[PIN] {1|0}&lt;/code&gt; to write i.e.:&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;gpioBOOT 1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;gpioBUZER 0&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="reading-battery-status"&gt;Reading Battery status&lt;/h2&gt;
+&lt;p&gt;You can read battery voltage and battery charge from the &lt;code&gt;smbus&lt;/code&gt;.  To read the &lt;code&gt;smbus&lt;/code&gt;
+I am using an example from [rpi-examples]((https://github.com/leon-anavi/rpi-examples/tree/master/BMP180/c).
+Specifically, I am only using the files &lt;code&gt;smbus.c&lt;/code&gt; and &lt;code&gt;smbus.h&lt;/code&gt; from that repository.&lt;/p&gt;
+&lt;p&gt;The code outline is:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;open &lt;code&gt;/dev/i2c-1&lt;/code&gt; in read/write mode.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ioctl(fd, I2C_SLAVE, I2C_ADDRESS)&lt;/code&gt; where &lt;code&gt;I2C_ADDRESS = 0x36&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;From &lt;code&gt;smbus.c&lt;/code&gt; read &lt;code&gt;i2c_smbus_read_word_data(fd, address)&lt;/code&gt;, and byte swap.&lt;/li&gt;
+&lt;li&gt;Voltage can be read from address &lt;code&gt;2&lt;/code&gt;:&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Voltage = (swapped) * 1.25 / 1000 / 16&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Battery charge can be read from address &lt;code&gt;4&lt;/code&gt;:&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Battery = (swapped) / 256&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The code to do this can be found on &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/X728/src"&gt;github&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;A precompiled 64bit static binary can be found there too.&lt;/p&gt;
+&lt;h2 id="power-down"&gt;Power down&lt;/h2&gt;
+&lt;p&gt;The &lt;a href="http://wiki.geekworm.com/X728"&gt;x728&lt;/a&gt; will turn off power by holding down the power button for around
+6 seconds.  Doing this will skip the &lt;code&gt;shutdown&lt;/code&gt; process.  Also, if you execute the
+&lt;code&gt;poweroff&lt;/code&gt; command, the Raspberry Pi will shutdown but power will not go &lt;strong&gt;OFF&lt;/strong&gt; until
+you hold the power button for 6 seconds.&lt;/p&gt;
+&lt;p&gt;For this to work properly, I am adding this small script to &lt;code&gt;/lib/systemd/system-shutdown/gpio-poweroff&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
+&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;span class="c1"&gt;# file: /lib/systemd/system-shutdown/gpio-poweroff&lt;/span&gt;
+&lt;span class="c1"&gt;# $1 will be either &amp;quot;halt&amp;quot;, &amp;quot;poweroff&amp;quot;, &amp;quot;reboot&amp;quot; or &amp;quot;kexec&amp;quot;&lt;/span&gt;
+&lt;span class="c1"&gt;#&lt;/span&gt;
+
+&lt;span class="nv"&gt;BUTTON&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;26&lt;/span&gt;
+
+op_poweroff&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$BUTTON&lt;/span&gt; &amp;gt; /sys/class/gpio/export
+  &lt;span class="nb"&gt;echo&lt;/span&gt; out &amp;gt; /sys/class/gpio/gpio&lt;span class="nv"&gt;$BUTTON&lt;/span&gt;/direction
+  &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt; &amp;gt; /sys/class/gpio/gpio&lt;span class="nv"&gt;$BUTTON&lt;/span&gt;/value
+  sync&lt;span class="p"&gt;;&lt;/span&gt;sync&lt;span class="p"&gt;;&lt;/span&gt;sync
+  sleep &lt;span class="m"&gt;7&lt;/span&gt;
+  &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; &amp;gt; /sys/class/gpio/gpio&lt;span class="nv"&gt;$BUTTON&lt;/span&gt;/value
+  sleep &lt;span class="m"&gt;3&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt;
+  poweroff&lt;span class="o"&gt;)&lt;/span&gt; op_poweroff &lt;span class="p"&gt;;;&lt;/span&gt;
+&lt;span class="k"&gt;esac&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This hooks into &lt;code&gt;systemd&lt;/code&gt;'s &lt;code&gt;shutdown&lt;/code&gt; target and uses the &lt;code&gt;BUTTON&lt;/code&gt; pin to
+simulate holding the button for 6 seconds to force the UPS board to power off.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/X728/gpio-poweroff"&gt;script&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="ups-management"&gt;UPS management&lt;/h2&gt;
+&lt;p&gt;In addition, I wrote a small script to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;graceful shutdown when power button is pressed.&lt;/li&gt;
+&lt;li&gt;hold the power button, after approximately 3 seconds, you will hear
+    2 beeps.  YOu can release the power button then.  The system will
+    do a graceful shutdown and power down.&lt;/li&gt;
+&lt;li&gt;When A/C power is lost:&lt;/li&gt;
+&lt;li&gt;If battery status can not be determined, the system will do a graceful
+    powerdown.&lt;/li&gt;
+&lt;li&gt;If battery status can be read, it will beep once every 60 seconds until
+    power is restored.&lt;/li&gt;
+&lt;li&gt;If battery is low, it will do a graceful powerdown.&lt;/li&gt;
+&lt;li&gt;Events are written to /dev/kmsg, so they could be forwarded to a syslog server.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The files to do this are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/X728/x728ups.service"&gt;systemd unit file&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/X728/scripts/upsmon.sh"&gt;upsmon.sh&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="home-assistant"&gt;Home Assistant&lt;/h2&gt;
+&lt;p&gt;I am using the &lt;a href="http://wiki.geekworm.com/X728"&gt;X728 kit&lt;/a&gt; for creating a &lt;a href="https://www.home-assistant.io/"&gt;Home Assistant&lt;/a&gt; installation.
+&lt;a href="https://www.home-assistant.io/"&gt;Home Assistant&lt;/a&gt; has a "managed Operating System" called
+&lt;a href="https://github.com/home-assistant/operating-system"&gt;Home Assistant OS&lt;/a&gt; which is a mostly read-only installation.  This
+makes it complicated to add your own "low-level" customizations.  To include
+these scripts and making them persistant accross upgrades I am hooking into the
+&lt;a href="https://rauc.io/"&gt;RAUC OTA&lt;/a&gt; upgrade subsystem.&lt;/p&gt;
+&lt;p&gt;For that, I hook up to the &lt;a href="https://rauc.readthedocs.io/en/latest/using.html#system-based-customization-handlers"&gt;System handlers&lt;/a&gt;
+which makes use of a &lt;a href="https://rauc.readthedocs.io/en/latest/reference.html#sec-handler-interface"&gt;Handler Interface&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;With these scripts, I am able to move the customizations from a previous image
+to the new upgraded image.&lt;/p&gt;
+&lt;p&gt;For this, I have a script &lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/X728/OTA/haos-x728.sh"&gt;haos-x728&lt;/a&gt;
+that injects the customizations
+into a new installation image.  This script also modifies &lt;code&gt;/etc/rauc/system.conf&lt;/code&gt;
+so that the customization handler is called during an upgrade.&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/X728/OTA/post-install"&gt;post-install handler&lt;/a&gt;
+re-adds the handler to &lt;code&gt;/etc/rauc/system.conf&lt;/code&gt;
+and copies the necessary files to the updated image.&lt;/p&gt;
+&lt;p&gt;The customization scripts are &lt;em&gt;not&lt;/em&gt; &lt;a href="http://wiki.geekworm.com/X728"&gt;X728&lt;/a&gt; specific, and essentially lets
+you copy all the files in a directory to the custom image.  As such, I am using
+to not only inject these &lt;a href="http://wiki.geekworm.com/X728"&gt;X728&lt;/a&gt; scripts, but also the &lt;code&gt;vcgencmd&lt;/code&gt; and a
+&lt;code&gt;muninlite&lt;/code&gt; agent.  Also, the dependant binaries for the
+&lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/X728/OTA/post-install"&gt;post-install handler&lt;/a&gt;
+are injected in the same way.&lt;/p&gt;
+&lt;p&gt;For the &lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/X728/OTA/post-install"&gt;post-install handler&lt;/a&gt;
+to work properly you need to copy binaries for:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;gensquashfs&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sqfs2tar&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And dependant shared libraries (that are not part of the &lt;a href="https://github.com/home-assistant/operating-system"&gt;Home Assistant OS&lt;/a&gt;
+image:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;liblz4.so.1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;liblz4.so.1.9.3&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;liblzma.so.5&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;liblzma.so.5.2.5&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;liblzo2.so.2&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;liblzo2.so.2.0.0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;libselinux.so.1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;libsquashfs.so.1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;libsquashfs.so.1.1.0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;libzstd.so.1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;libzstd.so.1.4.8&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The simplest way to get these is to install &lt;code&gt;squashfs-tools-ng&lt;/code&gt; on standard
+&lt;code&gt;Raspberry PI OS&lt;/code&gt; and copy those files from there.&lt;/p&gt;
+&lt;p&gt;The full set of customization files that I am using can be found
+&lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/X728/OTA/x728rootfs.tar.gz"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It contains:&lt;/p&gt;
+&lt;p&gt;RAUC handler:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;lib/rauc/post-install&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;squashfs-tools-ng&lt;/code&gt; (dependancy to RAUC handler)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;bin/gensquashfs&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;bin/sqfs2tar&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lib/liblz4.so.1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lib/liblz4.so.1.9.3&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lib/liblzma.so.5&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lib/liblzma.so.5.2.5&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lib/liblzo2.so.2&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lib/liblzo2.so.2.0.0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lib/libselinux.so.1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lib/libsquashfs.so.1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lib/libsquashfs.so.1.1.0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lib/libzstd.so.1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lib/libzstd.so.1.4.8&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Actual &lt;a href="http://wiki.geekworm.com/X728"&gt;X728&lt;/a&gt; support scripts.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;bin/x728batt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;etc/x728/clock.sh&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;etc/x728/upsmon.sh&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;etc/systemd/system/x728clock.service&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;etc/systemd/system/x728ups.service&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;etc/systemd/system/sysinit.target.wants/x728clock.service&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;etc/systemd/system/multi-user.target.wants/x728ups.service&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lib/systemd/system-shutdown/gpio-poweroff&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Munin node:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;bin/munin-node&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;etc/systemd/system/sockets.target.wants/munin-node.socket&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;etc/systemd/system/munin-node.socket&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;etc/systemd/system/munin-node@.service&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;etc/muninlite.conf&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="2022"></category><category term="address"></category><category term="boot"></category><category term="directory"></category><category term="installation"></category><category term="management"></category><category term="password"></category><category term="power"></category><category term="raspberry"></category><category term="scripts"></category><category term="software"></category></entry><entry><title>cuylib</title><link href="https://0ink.net/posts/2022/2022-09-20-cuylib.html" rel="alternate"></link><published>2022-09-20T00:00:00+02:00</published><updated>2022-09-20T16:28:05+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-09-20:/posts/2022/2022-09-20-cuylib.html</id><summary type="html">&lt;p&gt;This is a tiny library to implement Web server embedded editor.&lt;/p&gt;
 &lt;p&gt;You can find it in &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/cuylib"&gt;github&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Can be used either from &lt;a href="http://haserl.sourceforge.net/"&gt;haserl&lt;/a&gt; or directly from
 a &lt;code&gt;shell&lt;/code&gt; script.&lt;/p&gt;

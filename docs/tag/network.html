@@ -49,6 +49,27 @@
 
 <article class="summary">
 <div class="metadata">
+  <time datetime="2022-10-10T00:00:00+02:00" pubdate>Mon 10 October 2022</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2022-10-12 01:43:49.110408+02:00</p>
+  in <a href="/category/c2022.html">2022</a>
+<p class="tags">tagged <a href="/tag/config.html">config</a>, <a href="/tag/editor.html">editor</a>, <a href="/tag/feature.html">feature</a>, <a href="/tag/markdown.html">markdown</a>, <a href="/tag/network.html">network</a>, <a href="/tag/software.html">software</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2022/2022-10-10-nanowiki.html" rel="bookmark" title="Permalink to Nanowiki">Nanowiki</a>
+    </h2>
+    <p><p><a href="https://github.com/iliu-net/nanowiki">NanoWiki</a> is a Wiki implementation based on <a href="https://github.com/luckyshot/picowiki">picowiki</a>.</p>
+<p>I have been using <a href="https://simplenote.com/">SimpleNote</a> for a number of years.  It works pretty well
+but somehow I was looking for:</p>
+<ul>
+<li>Ability to include and render nice asciiart pictures</li>
+<li>Organizes articles in a folder structure.</li>
+</ul>
+<p>So I was looking for a Wiki package …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
   <time datetime="2022-09-10T00:00:00+02:00" pubdate>Sat 10 September 2022</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
@@ -435,33 +456,6 @@ caching. One such …</p></p>
 <li>A DHCP server to assign IP addresses to our diskless nodes.</li>
 <li>A TFTP server to transfer the boot image (a requirement of all PXE option roms).</li>
 <li>A form of network storage (NFS …</li></ul></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2013-05-27T00:00:00+02:00" pubdate>Mon 27 May 2013</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2022-03-03 22:34:42+01:00</p>
-  in <a href="/category/c2013.html">2013</a>
-<p class="tags">tagged <a href="/tag/boot.html">boot</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/database.html">database</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/installation.html">installation</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/mouse.html">mouse</a>, <a href="/tag/network.html">network</a>, <a href="/tag/settings.html">settings</a>, <a href="/tag/setup.html">setup</a></p></div>  <div>
-    <h2>
-      <a href="/posts/2013/2013-05-27-archlinux-tips.html" rel="bookmark" title="Permalink to ArchLinux tips">ArchLinux tips</a>
-    </h2>
-    <p><p>A bunch of recipes useful for an ArchLinux system environment.</p>
-<p>Mostly around system administration.</p>
-<h2 id="custom-repos-and-packages">Custom Repos and Packages</h2>
-<p>In the repo directory, put all the packages in there.</p>
-<div class="highlight"><pre><span></span><code>repo-add ./custom.db.tar.gz ./*
-</code></pre></div>
-
-<p>Add to <code>pacman.conf</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">[custom]</span><span class="w"></span>
-<span class="na">SigLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">[Package|Databse]Never|Optional|Required</span><span class="w"></span>
-<span class="na">Server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">path-to-repo</span><span class="w"></span>
-</code></pre></div>
-
-<p>See also <code>repo-remove</code>. A …</p></p>
   </div>
 </article>
 <div class="pagination">

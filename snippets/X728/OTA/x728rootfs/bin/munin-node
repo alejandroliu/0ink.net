@@ -1,0 +1,1378 @@
+#!/bin/sh
+#
+# Simple Bourne Shell script that implements Munin protocol and
+# some common Linux plugins.
+#
+# For latest ORIGINAL version, see http://muninlite.sf.net/
+# For latest FORKED version, see https://github.com/TortugaLabs/muninlite
+#
+# Copyright (c) 2007-2011 Rune Nordb&x#xF8;e Skillingstad <rune@skillingstad.no>
+# Copyright (c) 2019 A Liu Ly
+#
+# Licensed under GPLv2 (see LICENSE file for full License)
+#
+set -euf -o pipefail
+
+VERSION="1.0.4-2.4dev"
+
+if [ -f /etc/openwrt_release ] ; then
+  HOSTNAME=$(/sbin/uci get "system.@system[0].hostname" 2>/dev/null || cat /proc/sys/kernel/hostname)
+else
+  #HOSTNAME=$(hostname -f 2>/dev/null || hostname)
+  HOSTNAME=$(hostname 2>/dev/null || uname -n 2>/dev/null)
+fi
+
+[ -z "${PLUGINS:-}" ] && PLUGINS="cpu df forks ifex_ interrupts load memory netbps neterr proc_pri processes sensors swap uptime"
+[ -n "${ADD_PLUGINS:-}" ] && PLUGINS="$PLUGINS $ADD_PLUGINS"
+NODES="$HOSTNAME"
+
+# ===== LIB FUNCTIONS =====
+if ! type xargs >/dev/null 2>&1 ; then
+  # We do this in order to support homeassistant
+  xargs() { echo $(cat); }
+fi
+
+clean_fieldname() {
+  echo "$@" | sed -e 's/^[^A-Za-z_]/_/' -e 's/[^A-Za-z0-9_]/_/g'
+}
+
+# Get a timestamp from a file
+filetime() {
+  if [ -f "$1" ] ; then
+    date -r "$1" +'%s'
+  else
+    echo 0
+  fi
+}
+
+# Check if plugin is enabled...
+is_plugin_enabled() {
+  echo "$PLUGINS" | grep -q "\b$1\b"
+}
+remove_plugin() {
+  local new="" i q=""
+  for i in $PLUGINS
+  do
+    if [ $i = "$1" ] ; then
+      continue
+    fi
+    new="$new$q$i"
+    q=" "
+  done
+  PLUGINS="$new"
+}
+add_plugin() {
+  PLUGINS=$(echo $PLUGINS $* | tr ' ' '\n' | sort -u|tr '\n' ' ')
+}
+check_fn() {
+  type "$1" >/dev/null 2>&1
+}
+check_service() {
+  check_fn config_"${1}" || return 1
+  check_fn fetch_"${1}" || return 1
+  # Check if it is a valid plugin on the default node
+  (echo "$PLUGINS" | grep -q "\b${1}\b") && return 0
+  # Otherwise check nodes...
+  local node
+  for node in $NODES
+  do
+    local n=$(clean_fieldname "$node")
+    check_fn node_"$n" || continue
+    (node_"$n" | grep -q "\b${1}\b") && return 0
+  done
+  return 1
+}
+
+# ==== REGISTER VARIABLE SETS ====
+register() {
+  local n="$1" i ; shift
+  local txt="${n}() {
+	case \"\$1\" in"
+  for i in "$@"
+  do
+     local k=$(echo "$i" | cut -d= -f1)
+     local v=$(echo "$i" | cut -d= -f2-)
+     txt="$txt
+	$k) echo \"$v\" ;;"
+  done
+  txt="$txt
+	esac
+	}"
+  eval "$txt"
+}
+
+
+# ==== ADD NODE FUNCTIONALITY ====
+add_node() {
+  local node="$1" node_id="$(clean_fieldname "$1")"
+  if echo "$NODES" | grep -q "\b$node\b" ; then
+    # Already exists...
+    return
+  fi
+  NODES="$NODES $node"
+  eval "NODE_PLUGINS_${node_id}=\"\""
+  eval "node_${node_id}() { echo \$NODE_PLUGINS_${node_id} ; }"
+}
+add_node_plugins() {
+  local node="$1" node_id="$(clean_fieldname "$1")" ; shift
+  eval "NODE_PLUGINS_${node_id}=\"\$NODE_PLUGINS_${node_id} $*\""
+}
+# ===== MUNIN-NODE PROTOCOL FUNCTIONS =====
+
+do_list() {
+  if [ $# -gt 0 ] ; then
+    local n=$(clean_fieldname "$1")
+    if check_fn "node_${n}" ; then
+      "node_${n}"
+      return $?
+    fi
+  fi
+  echo "$PLUGINS"
+}
+
+do_nodes() {
+  echo "$NODES"
+  echo "."
+}
+
+do_config() {
+  if check_service "${1}" ; then
+    "config_${1}"
+  else
+    echo "# Unknown service"
+  fi
+  echo "."
+}
+
+do_fetch() {
+  if check_service "${1}" ; then
+    "fetch_${1}"
+  else
+    echo "# Unknow service"
+  fi
+  echo "."
+}
+
+do_version() {
+  echo "munins node on $HOSTNAME version: $VERSION (munin-lite)"
+}
+
+do_quit() {
+  exit 0
+}
+
+# Recognized, but otherwise ignored!
+do_cap() {
+  echo cap
+}
+
+main_loop() {
+  FUNCTIONS="list nodes config fetch version quit cap"
+  echo "# munin node at $HOSTNAME"
+  while read arg0 arg1
+  do
+    arg0=$(echo "$arg0" | xargs)
+    arg1=$(echo "$arg1" | xargs)
+    if [ -z "$arg0" ] ; then
+      continue
+    fi
+    if ! echo "$FUNCTIONS" | grep -q "\b$arg0\b" ; then
+      echo "# Unknown command. Try" $(echo "$FUNCTIONS" | sed -e 's/\( [[:alpha:]]\{1,\}\)/,\1/g' -e 's/,\( [[:alpha:]]\{1,\}\)$/ or\1/')
+      continue
+    fi
+    "do_$arg0" $arg1
+  done
+}
+
+# ===== DEBUG TRACE MUNIN PROTOCOL ====
+
+debug() {
+  [ -n "${IN_DEBUG:-}" ] && return
+
+  local mode=f output="" rotate=""
+  while [ $# -gt 0 ]
+  do
+    case "$1" in
+      --dir|-d) mode=d ;;
+      --file|-f) mode=f ;;
+      --rotate=*) rotate=${1#--rotate=} ;;
+      -r) rotate=$2 ; shift ;;
+      *) output="$1" ; break ;;
+    esac
+    shift
+  done
+  [ -z "$output" ] && return 0
+  case "$mode" in
+  f)
+    if [ -n "$rotate" ] && [ -f "$output" ] ; then
+      # Truncate file...
+      local lc=$(wc -l < "$output")
+      if [ $lc -gt $rotate ] ; then
+        local txt=$(tail -$rotate "$output" | sed -e 's/^/:/')
+        echo "$txt" | sed -e 's/^://' > "$output"
+      fi
+    fi
+    ;;
+  d)
+    mkdir -p "$output"
+    local lc=$(ls -1 "$output" | wc -l) i
+    if [ $lc -gt $rotate ] ; then
+      local lc=$(expr $lc - $rotate)
+      ls -1 "$output" | head -$lc | while read f
+      do
+        rm -f "$output/$f"
+      done
+    fi
+    output="$output/trc$(date +'%Y-%m-%d_%H:%M:%S').$$.log"
+    ;;
+  *)
+    # Invalid debug mode specified
+    return
+    ;;
+  esac
+
+  export IN_DEBUG=1
+  exec 3>>"$output"
+  local start=$(awk '{print $1}' /proc/uptime)
+  (
+    echo "========" 1>&3
+    echo "START: $(date)" 1>&3
+    echo "========" 1>&3
+    while read -r line
+    do
+      echo "<: $line" 1>&3
+      echo "$line"
+      [ x"$line" = x"quit" ] && exit 0
+    done
+  ) | sh "$0" "$@" | (
+    while read -r line
+    do
+      echo ">: $line" 1>&3
+      echo "$line"
+    done
+  )
+  local stop=$(awk '{print $1}' /proc/uptime)
+  awk 'BEGIN { print "RUN TIME:", '$stop' - '$start' ; exit }' 1>&3
+  exit 0
+}
+
+
+# ===== RUN-TIME CONFIGURATION ====
+if [ -f /etc/muninlite.conf ] ; then
+  . /etc/muninlite.conf
+fi
+
+
+
+config_cpu() {
+  extinfo=""
+  if grep '^cpu \{1,\}[0-9]\{1,\} \{1,\}[0-9]\{1,\} \{1,\}[0-9]\{1,\} \{1,\}[0-9]\{1,\} \{1,\}[0-9]\{1,\} \{1,\}[0-9]\{1,\} \{1,\}[0-9]\{1,\}' /proc/stat >/dev/null 2>&1; then
+    extinfo="iowait irq softirq"
+  fi
+  NCPU=$(($(grep '^cpu. ' /proc/stat | wc -l) - 1))
+  if [ $NCPU = 0 ]; then NCPU=1; fi
+  PERCENT=$(($NCPU * 100))
+  graphlimit=$PERCENT
+  SYSWARNING=$(($PERCENT * 30 / 100))
+  SYSCRITICAL=$(($PERCENT * 50 / 100))
+  USRWARNING=$(($PERCENT * 80 / 100))
+  echo "graph_title CPU usage"
+  echo "graph_order system user nice idle" $extinfo
+  echo "graph_args --base 1000 -r --lower-limit 0 --upper-limit $graphlimit"
+  echo "graph_vlabel %"
+  echo "graph_scale no"
+  echo "graph_info This graph shows how CPU time is spent."
+  echo "graph_category system"
+  echo "graph_period second"
+  echo "system.label system"
+  echo "system.draw AREA"
+  echo "system.max 5000"
+  echo "system.min 0"
+  echo "system.type DERIVE"
+  echo "system.warning $SYSWARNING"
+  echo "system.critical $SYSCRITICAL"
+  echo "system.info CPU time spent by the kernel in system activities"
+  echo "user.label user"
+  echo "user.draw STACK"
+  echo "user.min 0"
+  echo "user.max 5000"
+  echo "user.warning $USRWARNING"
+  echo "user.type DERIVE"
+  echo "user.info CPU time spent by normal programs and daemons"
+  echo "nice.label nice"
+  echo "nice.draw STACK"
+  echo "nice.min 0"
+  echo "nice.max 5000"
+  echo "nice.type DERIVE"
+  echo "nice.info CPU time spent by nice(1)d programs"
+  echo "idle.label idle"
+  echo "idle.draw STACK"
+  echo "idle.min 0"
+  echo "idle.max 5000"
+  echo "idle.type DERIVE"
+  echo "idle.info Idle CPU time"
+  if [ ! -z "$extinfo" ]; then
+    echo "iowait.label iowait"
+    echo "iowait.draw STACK"
+    echo "iowait.min 0"
+    echo "iowait.max 5000"
+    echo "iowait.type DERIVE"
+    echo "iowait.info CPU time spent waiting for I/O operations to finish"
+    echo "irq.label irq"
+    echo "irq.draw STACK"
+    echo "irq.min 0"
+    echo "irq.max 5000"
+    echo "irq.type DERIVE"
+    echo "irq.info CPU time spent handling interrupts"
+    echo "softirq.label softirq"
+    echo "softirq.draw STACK"
+    echo "softirq.min 0"
+    echo "softirq.max 5000"
+    echo "softirq.type DERIVE"
+    echo "softirq.info CPU time spent handling "batched" interrupts"
+  fi
+}
+fetch_cpu() {
+  extinfo=""
+  if grep '^cpu \{1,\}[0-9]\{1,\} \{1,\}[0-9]\{1,\} \{1,\}[0-9]\{1,\} \{1,\}[0-9]\{1,\} \{1,\}[0-9]\{1,\} \{1,\}[0-9]\{1,\} \{1,\}[0-9]\{1,\}' /proc/stat >/dev/null 2>&1; then
+    extinfo="iowait irq softirq"
+  fi
+  CINFO=$(grep '^cpu ' /proc/stat | cut -c6-)
+  echo "user.value" $(echo "$CINFO" | cut -d\  -f1)
+  echo "nice.value" $(echo "$CINFO" | cut -d\  -f2)
+  echo "system.value" $(echo "$CINFO" | cut -d\  -f3)
+  echo "idle.value" $(echo "$CINFO" | cut -d\  -f4)
+  if [ ! -z "$extinfo" ]; then
+    echo "iowait.value" $(echo "$CINFO" | cut -d\  -f5)
+    echo "irq.value" $(echo "$CINFO" | cut -d\  -f6)
+    echo "softirq.value" $(echo "$CINFO" | cut -d\  -f7)
+  fi
+}
+#!/bin/sh
+
+df_filter_fs() {
+  local fstype=$1
+  case "$fstype" in
+  iso9660) return 1 ;;
+  squashfs) return 1 ;;
+  esac
+  return 0
+}
+
+df_calc_threshold() {
+  local total="$1"
+  local val="$(expr "$2" '*' 1048576)" # Convert input to gigs
+  echo "$total $val" | awk '{ print 100 - ($2/$1*100) }'
+}
+
+df_qnap_hacks() {
+  # Make sure this is a QNAP box.
+  [ -f /etc/os-release ] || return 1
+  local name=$(. /etc/os-release ; echo $NAME)
+  [ x"$name" = x"QTS" ] || return 1
+
+  case "$1" in
+    /dev/mapper/vg*-snap*) return 0 ;;
+    /dev/md* ) return 0 ;;
+  esac
+  return 1
+}
+
+config_df() {
+  echo "graph_title Filesystem usage (in %)
+graph_args --upper-limit 100 -l 0
+graph_vlabel %
+graph_category disk
+graph_info This graph shows disk usage on the machine."
+  for PART in $(df -P | grep '^/' | awk 'BEGIN {v=0} {if (v > 0) print $1; v=v+1;}' | sort -u)
+  do
+    # OK.. another hack to deal with QNAP snapshots and other specials ...
+    df_qnap_hacks "$PART" && continue
+
+    PINFO=$(df -T -P $PART | tail -1)
+    PTYPE=$(echo $PINFO | awk '{print $2}')
+    df_filter_fs $PTYPE || continue
+
+    PNAME=$(echo $PINFO | awk '{print $1}' | sed 's/\//_/g')
+    PSIZE_H=$( (df -Ph $PART 2>/dev/null || df -P $PART)| tail -1 | awk '{print $2}')
+    PAVAIL_H=$( (df -Ph $PART 2>/dev/null || df -P $PART)| tail -1 | awk '{print $4}')
+    PMOUNT=$(echo $PINFO | awk '{q="";for (i=7;i<=NF;i++) { printf q $i; q=" ";print "";} }')
+
+    if [ -f "$PMOUNT/.qextension" ] ; then
+      # Special HACK to show volume names in QNAP NAS...
+      PMOUNT="[$(grep labelName "$PMOUNT/.qextension" | cut -d= -f2-| tr -d ' ')]"
+    fi
+
+    echo "$PNAME.label $PMOUNT ($PSIZE_H)"
+    echo "$PNAME.info $PMOUNT -> $PART $PAVAIL_H free ($PTYPE)"
+    ks=$(echo $PINFO | awk '{print $3}')
+    if [ $ks -lt 104857600 ] ; then # FileSystem is less than 100G
+      echo "$PNAME.warning 90.0"
+      echo "$PNAME.critical 95.0"
+    else
+      # For more than 100G, the tresholds are based actual storage (not fixed percentage)
+      echo "$PNAME.warning $(df_calc_threshold $ks 20)"
+      echo "$PNAME.critical $(df_calc_threshold $ks 2)"
+    fi
+
+  done
+}
+
+fetch_df() {
+  for PART in $(df -P | grep '^/' | awk 'BEGIN {v=0} {if (v > 0) print $1; v=v+1;}' | sort -u)
+  do
+    # OK.. another hack to deal with QNAP snapshots and other specials ...
+    df_qnap_hacks "$PART" && continue
+
+    PINFO=$(df -T -P $PART | tail -1)
+    PTYPE=$(echo $PINFO | awk '{print $2}')
+    df_filter_fs $PTYPE || continue
+
+    PNAME=$(echo $PINFO | awk '{print $1}' | sed 's/\//_/g')
+    echo "$PNAME.value" $(echo $PINFO | awk '{ v=$4/$3 * 100 ; if (v < 10.00) { printf "%.2f", v } else { print v }}')
+  done
+}
+#!/bin/sh
+config_forks() {
+	echo 'graph_title Fork rate'
+	echo 'graph_args --base 1000 -l 0 '
+	# shellcheck disable=SC2016
+	echo 'graph_vlabel forks / ${graph_period}'
+	echo 'graph_category processes'
+	echo 'graph_info This graph shows the number of forks (new processes started) per second.'
+	echo 'forks.label forks'
+	echo 'forks.type DERIVE'
+	echo 'forks.min 0'
+	echo 'forks.max 100000'
+	echo 'forks.info The number of forks per second.'  
+}
+
+fetch_forks() {
+  echo -n "forks.value "
+  awk '/processes/ {print $2}' /proc/stat
+}
+
+
+# -*- sh -*-
+
+: << =cut
+
+=head1 NAME
+
+forks -Plugin to monitor the number of forks per second on the machine
+
+=head1 CONFIGURATION
+
+No configuration
+
+=head1 AUTHOR
+
+Unknown author
+
+=head1 LICENSE
+
+GPLv2
+
+=head1 MAGICK MARKERS
+
+ #%# family=auto
+ #%# capabilities=autoconf
+
+=cut
+
+#!/bin/sh
+#
+# This plugin is disabled by default.
+#
+# To enable you must:
+#
+# ```
+# add_plugin if_ if_err_
+# ```
+#
+# or
+#
+# ```
+# PLUGINS="$PLUGINS if_"
+# ```
+#
+# Also, this plugin can be configured to report interfaces to
+# a sub-node.  To do this you must define:
+#
+# - `**IFEX_SUB_NODE**=_nodename_`
+#
+# For example:
+#
+# ```
+# IFEX_SUB_NODE=$HOSTNAME-fw
+# ```
+#
+# select-net-devs tries to make sure that we only select
+# physical interfaces.
+#
+# This is because:
+# 1. errors only happen on physical devices (it is strange for virtual
+#    interface to report errors)
+# 2. traffic from virtual interfaces is either internal (so it is not
+#    that interesting, or it is better reported at the VM level)
+#    or it goes out a physical interface, so it is accounted there
+#    already (and reporting it here, is like double-counting)
+#
+# TODO: https://serverfault.com/questions/928258/how-to-know-a-virtual-nics-type-on-linux
+select_net_devs() {
+  local duplex
+  grep '^ *[a-zA-Z0-9]\([^:]\)\{1,\}:' /proc/net/dev | cut -f1 -d: | sed 's/ //g' | while read dev
+  do
+    [ -z "$dev" ] && continue || :
+    case "$dev" in
+      lo) continue ;;
+    esac
+    [ ! -d /sys/class/net/$dev ] && continue
+    if duplex=$(cat /sys/class/net/$dev/duplex 2>/dev/null) ; then
+      case "$duplex" in
+	unknown) continue ;;
+      esac
+    fi
+
+    if [ "${IFEX_DISABLE_VLAN_IF:-no}" = "yes" ] ; then
+      [ -f /proc/net/vlan/$dev ] && continue
+    fi
+    if type ethtool >/dev/null 2>&1 ; then
+      [ -z "$(ethtool $dev | grep 'Supported ports:' | cut -d: -f2- | tr -d '[] ')" ] && continue
+    fi
+    echo "$dev"
+  done
+}
+
+clean_net_dev_name() {
+  echo "$@" | sed -e 's/\./VLAN/' -e 's/^[^A-Za-z_]/_/' -e 's/[^A-Za-z0-9_]/_/g'
+}
+
+remove_plugin ifex_
+for i in "if_" "if_err_"
+do
+  if is_plugin_enabled "$i" ; then
+    remove_plugin "$i"
+    if [ -n "${IFEX_SUB_NODE:-}" ] ; then
+      # Add items to a sub-node...
+      add_node ${IFEX_SUB_NODE}
+      _add_plugin_="add_node_plugins ${IFEX_SUB_NODE}"
+    else
+      # use current node...
+      _add_plugin_=add_plugin
+    fi
+    for INTER in $(select_net_devs)
+    do
+      INTERRES=$(clean_net_dev_name $INTER)
+      $_add_plugin_ "$i${INTERRES}"
+      eval "fetch_${i}${INTERRES}() { fetch_$i $INTER \$@; };"
+      eval "config_${i}${INTERRES}() { config_$i $INTER \$@; };"
+    done
+  fi
+done
+
+config_if_() {
+  echo "graph_order down up"
+  echo "graph_title $1 traffic"
+  echo "graph_args --base 1000"
+  echo "graph_vlabel bits in (-) / out (+) per \${graph_period}"
+  echo "graph_category network"
+  echo "graph_info This graph shows the traffic of the $1 network interface. Please note that the traffic is shown in bits per second, not bytes. IMPORTANT: Since the data source for this plugin use 32bit counters, this plugin is really unreliable and unsuitable for most 100Mb (or faster) interfaces, where bursts are expected to exceed 50Mbps. This means that this plugin is usuitable for most production environments. To avoid this problem, use the ip_ plugin instead."
+  echo "down.label received"
+  echo "down.type DERIVE"
+  echo "down.min 0"
+  echo "down.graph no"
+  echo "down.cdef down,8,*"
+  echo "up.label bps"
+  echo "up.type DERIVE"
+  echo "up.min 0"
+  echo "up.negative down"
+  echo "up.cdef up,8,*"
+  if type ethtool >/dev/null 2>&1 ; then
+    #~ if ethtool $1 | grep -q Speed; then
+      MAX=$(expr $(cat /sys/class/net/$1/speed) * 1000000)
+      #~ MAX=$(($(ethtool $1 | grep Speed | sed -e 's/[[:space:]]\{1,\}/ /g' -e 's/^ //' -e 's/M.*//' | cut -d\  -f2) * 1000000))
+      echo "up.max $MAX"
+      echo "down.max $MAX"
+    #~ fi
+  fi
+}
+fetch_if_() {
+  IINFO=$(grep "$1:" /proc/net/dev | cut -d: -f2 | sed -e 's/  / /g')
+  echo "down.value" $(echo $IINFO | cut -d\  -f1)
+  echo "up.value" $(echo $IINFO | cut -d\  -f9)
+}
+config_if_err_() {
+  echo "graph_order rcvd trans"
+  echo "graph_title $1 errors"
+  echo "graph_args --base 1000"
+  echo "graph_vlabel packets in (-) / out (+) per \${graph_period}"
+  echo "graph_category network"
+  echo "graph_info This graph shows the amount of errors on the $1 network interface."
+  echo "rcvd.label packets"
+  echo "rcvd.type COUNTER"
+  echo "rcvd.graph no"
+  echo "rcvd.warning 1"
+  echo "trans.label packets"
+  echo "trans.type COUNTER"
+  echo "trans.negative rcvd"
+  echo "trans.warning 1"
+}
+fetch_if_err_() {
+  IINFO=$(grep "$1:" /proc/net/dev | cut -d: -f2 | sed -e 's/  / /g')
+  echo "rcvd.value" $(echo $IINFO | cut -d\  -f3)
+  echo "trans.value" $(echo $IINFO | cut -d\  -f11)
+}
+config_interrupts() {
+  echo "graph_title Interrupts and context switches"
+  echo "graph_args --base 1000 -l 0"
+  echo "graph_vlabel interrupts & ctx switches / \${graph_period}"
+  echo "graph_category system"
+  echo "graph_info This graph shows the number of interrupts and context switches on the system. These are typically high on a busy system."
+  echo "intr.info Interrupts are events that alter sequence of instructions executed by a processor. They can come from either hardware (exceptions, NMI, IRQ) or software."
+  echo "ctx.info A context switch occurs when a multitasking operatings system suspends the currently running process, and starts executing another."
+  echo "intr.label interrupts"
+  echo "ctx.label context switches"
+  echo "intr.type DERIVE"
+  echo "ctx.type DERIVE"
+  echo "intr.max 100000"
+  echo "ctx.max 100000"
+  echo "intr.min 0"
+  echo "ctx.min 0"
+}
+fetch_interrupts() {
+  IINFO=$(cat /proc/stat)
+  echo "ctx.value" $(echo "$IINFO" | grep "^ctxt" | cut -d\  -f2)
+  echo "intr.value" $(echo "$IINFO" | grep "^intr" | cut -d\  -f2)
+}
+config_load() {
+  echo "graph_title Load average
+graph_args --base 1000 -l 0
+graph_vlabel load
+graph_scale no
+graph_category system
+load.label load
+load.warning 10
+load.critical 120
+graph_info The load average of the machine describes how many processes are in the run-queue (scheduled to run \"immediately\").
+load.info Average load for the five minutes."
+}
+fetch_load() {
+  echo "load.value" $(cut -f2 -d\  /proc/loadavg)
+}
+config_memory() {
+  MINFO=$(cat /proc/meminfo | sed 's/ \{1,\}/ /g;') || :
+  MEMTOTAL=$(echo "$MINFO" | grep "^MemTotal:" | cut -d\  -f2) || :
+  PAGETABLES=$(echo "$MINFO" | grep "^PageTables:" | cut -d\  -f2) || :
+  SWAPCACHED=$(echo "$MINFO" | grep "^SwapCached:" | cut -d\  -f2) || :
+  SWAPTOTAL=$(echo "$MINFO" | grep "^SwapTotal:" | cut -d\  -f2) || :
+  VMALLOCUSED=$(echo "$MINFO" | grep "^VmallocUsed:" | cut -d\  -f2) || :
+  SLAB=$(echo "$MINFO" | grep "^Slab:" | cut -d\  -f2) || :
+  MAPPED=$(echo "$MINFO" | grep "^Mapped:" | cut -d\  -f2) || :
+  COMMITTEDAS=$(echo "$MINFO" | grep "^Committed_AS:" | cut -d\  -f2) || :
+  ACTIVE=$(echo "$MINFO" | grep "^Active:" | cut -d\  -f2) || :
+  INACTIVE=$(echo "$MINFO" | grep "^Inactive:" | cut -d\  -f2) || :
+  ACTIVEANON=$(echo "$MINFO" | grep "^ActiveAnon:" | cut -d\  -f2) || :
+  ACTIVECACHE=$(echo "$MINFO" | grep "^ActiveCache:" | cut -d\  -f2) || :
+  INACTIVE=$(echo "$MINFO" | grep "^Inactive:" | cut -d\  -f2) || :
+  INACTDIRTY=$(echo "$MINFO" | grep "^Inact_dirty:" | cut -d\  -f2) || :
+  INACTLAUNDRY=$(echo "$MINFO" | grep "^Inact_laundry:" | cut -d\  -f2) || :
+  INACTCLEAN=$(echo "$MINFO" | grep "^Inact_clean:" | cut -d\  -f2) || :
+
+  GRAPH_ORDER="apps";
+  test "$PAGETABLES" != "" && GRAPH_ORDER="$GRAPH_ORDER page_tables"
+  test "$SWAPCACHED" != "" && GRAPH_ORDER="$GRAPH_ORDER swap_cache"
+  test "$VMALLOCUSED" != "" && GRAPH_ORDER="$GRAPH_ORDER vmalloc_used"
+  test "$SLAB" != "" && GRAPH_ORDER="$GRAPH_ORDER slab"
+  GRAPH_ORDER="$GRAPH_ORDER cached buffers free swap"
+
+  echo "graph_args --base 1024 -l 0 --vertical-label Bytes --upper-limit $MEMTOTAL"
+  echo "graph_title Memory usage"
+  echo "graph_category system"
+  echo "graph_info This graph shows what the machine uses its memory for."
+  echo "graph_order $GRAPH_ORDER"
+  echo "apps.label apps"
+  echo "apps.draw AREA"
+  echo "apps.info Memory used by user-space applications."
+  echo "buffers.label buffers"
+  echo "buffers.draw STACK"
+  echo "buffers.info Block device (e.g. harddisk) cache. Also where \"dirty\" blocks are stored until written."
+  echo "swap.label swap"
+  echo "swap.draw STACK"
+  echo "swap.info Swap space used."
+  echo "cached.label cache"
+  echo "cached.draw STACK"
+  echo "cached.info Parked file data (file content) cache."
+  echo "free.label unused"
+  echo "free.draw STACK"
+  echo "free.info Wasted memory. Memory that is not used for anything at all."
+  if [ "$SLAB" != "" ]; then
+    echo "slab.label slab_cache"
+    echo "slab.draw STACK"
+    echo "slab.info Memory used by the kernel (major users are caches like inode, dentry, etc)."
+  fi
+  if [ "$SWAPCACHED" != "" ]; then
+    echo "swap_cache.label swap_cache"
+    echo "swap_cache.draw STACK"
+    echo "swap_cache.info A piece of memory that keeps track of pages that have been fetched from swap but not yet been modified."
+  fi
+  if [ "$PAGETABLES" != "" ]; then
+    echo "page_tables.label page_tables"
+    echo "page_tables.draw STACK"
+    echo "page_tables.info Memory used to map between virtual and physical memory addresses.\n"
+  fi
+  if [ "$VMALLOCUSED" != "" ]; then
+    echo "vmalloc_used.label vmalloc_used"
+    echo "vmalloc_used.draw STACK"
+    echo "vmalloc_used.info Virtual memory used by the kernel (used when the memory does not have to be physically contigious)."
+  fi
+  if [ "$COMMITTEDAS" != "" ]; then
+    echo "committed.label committed"
+    echo "committed.draw LINE2"
+    echo "committed.warn" $(($SWAPTOTAL + $MEMTOTAL))
+    echo "committed.info The amount of memory that would be used if all the memory that's been allocated were to be used."
+  fi
+  if [ "$MAPPED" != "" ]; then
+    echo "mapped.label mapped"
+    echo "mapped.draw LINE2"
+    echo "mapped.info All mmap()ed pages."
+  fi
+  if [ "$ACTIVE" != "" ]; then
+    echo "active.label active"
+    echo "active.draw LINE2"
+    echo "active.info Memory recently used. Not reclaimed unless absolutely necessary."
+  fi
+  if [ "$ACTIVEANON" != "" ]; then
+    echo "active_anon.label active_anon"
+    echo "active_anon.draw LINE1"
+  fi
+  if [ "$ACTIVECACHE" != "" ]; then
+    echo "active_cache.label active_cache"
+    echo "active_cache.draw LINE1"
+  fi
+  if [ "$INACTIVE" != "" ]; then
+    echo "inactive.label inactive"
+    echo "inactive.draw LINE2"
+    echo "inactive.info Memory not currently used."
+  fi
+  if [ "$INACTDIRTY" != "" ]; then
+    echo "inact_dirty.label inactive_dirty"
+    echo "inact_dirty.draw LINE1"
+    echo "inact_dirty.info Memory not currently used, but in need of being written to disk."
+  fi
+  if [ "$INACTLAUNDRY" != "" ]; then
+    echo "inact_laundry.label inactive_laundry"
+    echo "inact_laundry.draw LINE1"
+  fi
+  if [ "$INACTCLEAN" != "" ]; then
+    echo "inact_clean.label inactive_clean"
+    echo "inact_clean.draw LINE1"
+    echo "inact_clean.info Memory not currently used."
+  fi
+}
+fetch_memory() {
+  MINFO=$(cat /proc/meminfo | sed 's/ \{1,\}/ /g;') || :
+  MEMTOTAL=$(echo "$MINFO" | grep "^MemTotal:" | cut -d\  -f2) || :
+  MEMFREE=$(echo "$MINFO" | grep "^MemFree:" | cut -d\  -f2) || :
+  BUFFERS=$(echo "$MINFO" | grep "^Buffers:" | cut -d\  -f2) || :
+  CACHED=$(echo "$MINFO" | grep "^Cached:" | cut -d\  -f2) || :
+  SWAP_TOTAL=$(echo "$MINFO" | grep "^SwapTotal:" | cut -d\  -f2) || :
+  SWAP_FREE=$(echo "$MINFO" | grep "^SwapFree:" | cut -d\  -f2) || :
+  MEMTOTAL=$(echo "$MINFO" | grep "^MemTotal:" | cut -d\  -f2) || :
+  PAGETABLES=$(echo "$MINFO" | grep "^PageTables:" | cut -d\  -f2) || :
+  SWAPCACHED=$(echo "$MINFO" | grep "^SwapCached:" | cut -d\  -f2) || :
+  VMALLOCUSED=$(echo "$MINFO" | grep "^VmallocUsed:" | cut -d\  -f2) || :
+  SLAB=$(echo "$MINFO" | grep "^Slab:" | cut -d\  -f2) || :
+  MAPPED=$(echo "$MINFO" | grep "^Mapped:" | cut -d\  -f2) || :
+  COMMITTEDAS=$(echo "$MINFO" | grep "^Committed_AS:" | cut -d\  -f2) || :
+  ACTIVE=$(echo "$MINFO" | grep "^Active:" | cut -d\  -f2) || :
+  INACTIVE=$(echo "$MINFO" | grep "^Inactive:" | cut -d\  -f2) || :
+  ACTIVEANON=$(echo "$MINFO" | grep "^ActiveAnon:" | cut -d\  -f2) || :
+  ACTIVECACHE=$(echo "$MINFO" | grep "^ActiveCache:" | cut -d\  -f2) || :
+  INACTIVE=$(echo "$MINFO" | grep "^Inactive:" | cut -d\  -f2) || :
+  INACTDIRTY=$(echo "$MINFO" | grep "^Inact_dirty:" | cut -d\  -f2) || :
+  INACTLAUNDRY=$(echo "$MINFO" | grep "^Inact_laundry:" | cut -d\  -f2) || :
+  INACTCLEAN=$(echo "$MINFO" | grep "^Inact_clean:" | cut -d\  -f2) || :
+  APPS=$(($MEMTOTAL - $MEMFREE - $BUFFERS - $CACHED))
+  SWAP=$(($SWAP_TOTAL - $SWAP_FREE))
+  echo "buffers.value" $(($BUFFERS * 1024))
+  echo "swap.value" $(($SWAP * 1024))
+  echo "cached.value" $(($CACHED * 1024))
+  echo "free.value" $(($MEMFREE * 1024))
+  if [ "$SLAB" != "" ]; then
+    echo "slab.value" $(($SLAB * 1024))
+    APPS=$(($APPS - $SLAB))
+  fi
+  if [ "$SWAPCACHED" != "" ]; then
+    echo "swap_cache.value" $(($SWAPCACHED * 1024))
+    APPS=$(($APPS - $SWAPCACHED))
+  fi
+  if [ "$PAGETABLES" != "" ]; then
+    echo "page_tables.value" $(($PAGETABLES * 1024))
+    APPS=$(($APPS - $PAGETABLES))
+  fi
+  if [ "$VMALLOCUSED" != "" ]; then
+    echo "vmalloc_used.value" $(($VMALLOCUSED * 1024))
+    APPS=$(($APPS - $VMALLOCUSED))
+  fi
+  if [ "$COMMITTEDAS" != "" ]; then
+    echo "committed.value" $(($COMMITTEDAS * 1024))
+  fi
+  if [ "$MAPPED" != "" ]; then
+    echo "mapped.value" $(($MAPPED * 1024))
+  fi
+  if [ "$ACTIVE" != "" ]; then
+    echo "active.value" $(($ACTIVE * 1024))
+  fi
+  if [ "$ACTIVEANON" != "" ]; then
+    echo "active_anon.value" $(($ACTIVEANON * 1024))
+  fi
+  if [ "$ACTIVECACHE" != "" ]; then
+    echo "active_cache.value" $(($ACTIVECACHE * 1024))
+  fi
+  if [ "$INACTIVE" != "" ]; then
+    echo "inactive.value" $(($INACTIVE * 1024))
+  fi
+  if [ "$INACTDIRTY" != "" ]; then
+    echo "inact_dirty.value" $(($INACTDIRTY * 1024))
+  fi
+  if [ "$INACTLAUNDRY" != "" ]; then
+    echo "inact_laundry.value" $(($INACTLAUNDRY * 1024))
+  fi
+  if [ "$INACTCLEAN" != "" ]; then
+    echo "inact_clean.value" $(($INACTCLEAN * 1024))
+  fi
+
+  echo "apps.value" $(($APPS * 1024))
+}
+#!/bin/sh
+
+config_netbps() {
+  echo "graph_order down up"
+  echo "graph_title Network traffic"
+  echo "graph_args --base 1000"
+  echo "graph_vlabel bits in (-) / out (+) per \${graph_period}"
+  echo "graph_category network"
+  echo "graph_info This graph shows the traffic of all network interfaces. Please note that the traffic is shown in bits per second, not bytes. IMPORTANT: Since the data source for this plugin use 32bit counters, this plugin is really unreliable and unsuitable for most 100Mb (or faster) interfaces, where bursts are expected to exceed 50Mbps. This means that this plugin is usuitable for most production environments. To avoid this problem, use the ip_ plugin instead."
+  echo "down.label received"
+  echo "down.type DERIVE"
+  echo "down.min 0"
+  echo "down.graph no"
+  echo "up.label bps"
+  echo "up.type DERIVE"
+  echo "up.min 0"
+  echo "up.negative down"
+}
+fetch_netbps() {
+  local awksrc='
+      BEGIN {
+        down_cnt = 0
+        up_cnt = 0
+      }
+      END {
+        printf "down.value %.0f\n", down_cnt
+        printf "up.value %.0f\n", up_cnt
+      }
+    '
+  if [ -n "${net_ifs:-}" ] ; then
+    # User specified target devices...
+    local kv k v
+    for kv in $net_ifs
+    do
+      k=$(echo $kv | cut -d: -f1)
+      v=$(echo $kv | cut -d: -f2)
+      awksrc="$awksrc
+          \$1 == \"$k:\" { down_cnt += \$2 ; up_cnt += \$10 }
+      "
+    done
+  else
+    awksrc="$awksrc
+        /:/ { down_cnt += \$2 ; up_cnt += \$10 }"
+  fi
+  awk "$awksrc" /proc/net/dev
+}
+#!/bin/sh
+#
+config_neterr() {
+  echo "graph_order down up"
+  echo "graph_title Network Errors"
+  echo "graph_args --base 1000"
+  echo "graph_vlabel Errors in (-) / out (+) per \${graph_period}"
+  echo "graph_category network"
+  echo "graph_info This graph shows the amount of errors across all network interfaces."
+  echo "down.label received"
+  echo "down.type DERIVE"
+  echo "down.min 0"
+  echo "down.graph no"
+  echo "up.label errors"
+  echo "up.type DERIVE"
+  echo "up.min 0"
+  echo "up.negative down"
+}
+
+
+fetch_neterr() {
+  local awksrc='
+      BEGIN {
+        down_cnt = 0
+        up_cnt = 0
+      }
+      END {
+        printf "down.value %.0f\n", down_cnt
+        printf "up.value %.0f\n", up_cnt
+      }
+    ' stats=' down_cnt += $4 + $5 ; up_cnt += $12 + $13 + $15 '
+  if [ -n "${net_ifs:-}" ] ; then
+    # User specified target devices...
+    for kv in $net_ifs
+    do
+      k=$(echo $kv | cut -d: -f1)
+      v=$(echo $kv | cut -d: -f2)
+      awksrc="$awksrc
+          \$1 == \"$k:\" { $stats }
+      "
+    done
+  else
+    awksrc="$awksrc
+      /:/ { $stats }
+      "
+  fi
+  awk "$awksrc" /proc/net/dev
+}
+#!/bin/sh
+# -*- sh -*-
+
+
+config_proc_pri() {
+  echo 'graph_title Processes priority'
+  echo 'graph_order low high locked'
+  echo 'graph_category processes'
+  echo 'graph_info This graph shows number of processes at each priority'
+  echo 'graph_args --base 1000 -l 0'
+  echo 'graph_vlabel Number of processes'
+
+  echo 'low.label low priority'
+  echo 'low.draw AREA'
+  echo 'low.info The number of low-priority processes (tasks)'
+
+  echo 'high.label high priority'
+  echo 'high.draw STACK'
+  echo 'high.info The number of high-priority processes (tasks)'
+
+  echo 'locked.label locked in memory'
+  echo 'locked.draw STACK'
+  echo 'locked.info The number of processes that have pages locked into memory (for real-time and custom IO)'  
+
+  echo "processes.label total"
+  echo "processes.draw LINE1"
+  echo "processes.info The total number of processes."
+}
+
+
+fetch_proc_pri() {
+  ps -eo stat | awk '
+	/STAT/ { next; }
+	{ processes++; }
+	/L/ { stat["L"]++; next }
+	/N/ { stat["N"]++; next }
+	/</ { stat["<"]++; next }
+
+	END {
+	print "processes.value "        0+processes;
+	print "low.value "         0+stat["N"];
+	print "high.value "         0+stat["<"];
+	print "locked.value "  0+stat["L"];
+	}'
+}
+
+
+: << =cut
+
+=head1 NAME
+
+proc_pri - Munin-plugin to monitor the processes priority on a Linux
+machine
+
+=head1 CONFIGURATION
+
+No configuration
+
+=head1 AUTHOR
+
+Lars Strand
+
+=head1 LICENSE
+
+GNU GPL
+
+=head1 MAGIC MARKERS
+
+ #%# family=auto
+ #%# capabilities=autoconf
+
+=cut
+#!/bin/sh
+
+# TODO
+# display nice and pri process counts
+
+config_processes() {
+  # Define colours
+  local RUNNABLE='22ff22'         # Green
+  local SLEEPING='0022ff'         # Blue
+  local STOPPED='cc0000'          # Darker red
+  local ZOMBIE='990000'           # Darkest red
+  local UNINTERRUPTIBLE='ffa500'  # Orange
+  local IDLE='4169e1'             # Royal blue
+  local PAGING='00aaaa'           # Darker turquoise
+  local INTERRUPT='ff00ff'        # Fuchsia
+  local LOCK='ff3333'             # Lighter red
+  local RUNNING='00ff7f'          # Spring green
+  local DEAD='ff0000'             # Red
+  local SUSPENDED='ff1493'        # Deep pink
+  local TOTAL='c0c0c0'            # Silver
+
+  echo "graph_title Processes"
+  echo "graph_args --base 1000 -l 0 "
+  echo "graph_vlabel number of processes"
+  echo "graph_category processes"
+  echo "graph_info This graph shows the number of processes in the system."
+
+  #~ echo "nprocesses.label processes"
+  #~ echo "nprocesses.draw LINE2"
+  #~ echo "nprocesses.info The current number of processes."
+  #~ echo "nprocesses.colour 000000"
+
+  echo "graph_order nprocesses sleeping stopped zombie dead paging uninterruptible runnable processes"
+
+  echo "sleeping.label sleeping"
+  echo "sleeping.draw AREA"
+  echo "sleeping.colour $SLEEPING"
+  echo "sleeping.info The number of sleeping processes."
+
+  echo "stopped.label stopped"
+  echo "stopped.draw STACK"
+  echo "stopped.colour $STOPPED"
+  echo "stopped.info The number of stopped or traced processes."
+
+  echo "zombie.label zombie"
+  echo "zombie.draw STACK"
+  echo "zombie.colour $ZOMBIE"
+  echo "zombie.info The number of defunct ('zombie') processes (process terminated and parent not waiting)."
+
+  echo "dead.label dead"
+  echo "dead.draw STACK"
+  echo "dead.colour $DEAD"
+  echo "dead.info The number of dead processes."
+
+  echo "paging.label paging"
+  echo "paging.draw STACK"
+  echo "paging.colour $PAGING"
+  echo "paging.info The number of paging processes (<2.6 kernels only)."
+
+  echo "uninterruptible.label uninterruptible"
+  echo "uninterruptible.draw STACK"
+  echo "uninterruptible.colour $UNINTERRUPTIBLE"
+  echo "uninterruptible.info The number of uninterruptible processes (usually IO)."
+
+
+  echo "runnable.label runnable"
+  echo "runnable.draw STACK"
+  echo "runnable.colour $RUNNABLE"
+  echo "runnable.info The number of runnable processes (on the run queue)."
+
+
+  echo "processes.label total"
+  echo "processes.draw LINE1"
+  echo "processes.colour $TOTAL"
+  echo "processes.info The total number of processes."
+
+}
+fetch_processes() {
+  #~ echo "nprocesses.value" $(echo /proc/[0-9]* | wc -w)
+
+  # Additional from munin plugin
+  ps -eo stat | awk '
+	/STAT/ { next; }
+	{ processes++; }
+	/N/ { stat["N"]++ }
+	/</ { stat["<"]++ }
+	/D/ { stat["D"]++ ; next }
+	/R/ { stat["R"]++ ; next }
+	/S/ { stat["S"]++ ; next }
+	/T/ { stat["T"]++ ; next }
+	/W/ { stat["W"]++ ; next }
+	/X/ { stat["X"]++ ; next }
+	/Z/ { stat["Z"]++ ; next }
+
+	END {
+	print "processes.value "        0+processes;
+	print "uninterruptible.value "  0+stat["D"];
+	print "runnable.value "         0+stat["R"];
+	print "sleeping.value "         0+stat["S"];
+	print "stopped.value "          0+stat["T"];
+	print "paging.value "           0+stat["W"];
+	print "dead.value "             0+stat["X"];
+	print "zombie.value "           0+stat["Z"];
+	}'
+	#echo "graph_order nprocesses sleeping stopped zombie dead paging uninterruptible runnable processes"
+}
+
+
+# -*- sh -*-
+
+: << =cut
+
+=head1 NAME
+
+processes - Plugin to monitor processes and process states.
+
+=head1 ABOUT
+
+This plugin requires munin-server version 1.2.5 or 1.3.3 (or higher).
+
+This plugin is backwards compatible with the old processes-plugins found on
+SunOS, Linux and *BSD (i.e. the history is preserved).
+
+All fields have colours associated with them which reflect the type of process
+(sleeping/idle = blue, running = green, stopped/zombie/dead = red, etc.)
+
+=head1 CONFIGURATION
+
+No configuration for this plugin.
+
+=head1 AUTHOR
+
+Copyright (C) 2006 Lars Strand
+
+=head1 LICENSE
+
+GNU General Public License, version 2
+
+=begin comment
+
+This file is part of Munin.
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; version 2 dated June, 1991.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program; if not, write to the Free Software Foundation, Inc., 51 Franklin
+Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+=end comment
+
+=head1 MAGIC MARKERS
+
+=begin comment
+
+These magic markers are used by munin-node-configure when installing
+munin-node.
+
+=end comment
+
+ #%# family=auto
+ #%# capabilities=autoconf
+
+=cut
+
+
+
+
+# Taken from ps(1)
+# R - Linux, SunOS, FreeBSD, OpenBSD, NetBSD, OSX, HP-UX      (runable)
+# S - Linux, SunOS, FreeBSD*, OpenBSD*, NetBSD*, OSX*, HP-UX  (sleeping)
+# T - Linux, SunOS, FreeBSD, OpenBSD, NetBSD, OSX, HP-UX      (stopped)
+# Z - Linux, SunOS, FreeBSD, OpenBSD, NetBSD, OSX, HP-UX      (zombie/terminated)
+# D - Linux, FreeBSD, OpenBSD, NetBSD                         (uninterruptible)
+# I - FreeBSD, OpenBSD, NetBSD, OSX, HP-UX                    (idle/intermediate)
+# W - Linux*, FreeBSD*, HP-UX                                 (paging/interrupt/waiting)
+# L - FreeBSD                                                 (lock)
+# O - SunOS                                                   (running)
+# X - Linux, HP-UX*                                           (dead)
+# U - OSX, NetBSD*                                            (uninterruptible/suspended)
+# 0 - HP-UX                                                   (nonexistent)
+# *) Differ meaning
+
+
+#!/bin/sh
+
+
+probe_sensors() {
+  local rc=0
+  if type sensors >/dev/null 2>&1 ; then
+    rc=$(expr $rc + 1)
+  elif (type acpi && [ -n "$(acpi -t)" ] ) >/dev/null 2>&1 ; then
+    rc=$(expr $rc + 1)
+  fi
+  if type smartctl >/dev/null 2>&1 ; then
+    for hdd in $(find /dev -name 'sd?')
+    do
+      res=$(smartctl -a $hdd | awk '$1 == 194 { print $10}') || continue
+      if [ -n "$res" ] ; then
+        rc=$(expr $rc + 1)
+      fi
+    done
+  fi
+  return $rc
+}
+  
+
+
+if is_plugin_enabled "sensors" ; then
+  if probe_sensors ; then
+    remove_plugin "sensors"
+  fi
+fi
+
+config_sensors() {
+  cat <<-_EOF_
+	graph_title System Temperature
+	graph_args --base 1000 -l 0
+	graph_vlabel C
+	graph_scale no
+	graph_category system
+	graph_info Temperature of various components, in C
+	_EOF_
+  if type sensors >/dev/null 2>&1 ; then
+    sensors | grep high | while read ln
+    do
+      name=$(echo $ln | cut -d: -f1)
+      id=$(echo $name| tr -sc A-Za-z0-9 _)
+      echo "$id.label $name"
+      echo "$id.warning $(echo $ln | cut -d+ -f3 | cut -d. -f1)"
+      echo "$id.critical $(echo $ln | cut -d+ -f4 | cut -d. -f1)"
+    done
+  elif (type acpi && [ -n "$(acpi -t)" ] ) >/dev/null 2>&1 ; then
+    acpi -t | cut -d: -f1 | tr ' ' '_' | while read f
+    do
+      echo "$f.label $f"
+    done
+  fi
+  if type smartctl >/dev/null 2>&1 ; then
+    for hdd in $(find /dev -name 'sd?')
+    do
+      res=$(smartctl -a $hdd | awk '$1 == 194 { print $10}') || continue
+      if [ -n "$res" ] ; then
+        id=$(echo $hdd| tr -sc A-Za-z0-9 _)
+        echo "$id.label $hdd"
+      fi
+    done
+  fi
+}
+fetch_sensors() {
+  if type sensors >/dev/null 2>&1 ; then
+    sensors | grep high | while read ln
+    do
+      name=$(echo $ln | cut -d: -f1)
+      id=$(echo $name| tr -sc A-Za-z0-9 _)
+      echo "$id.value $(echo $ln | cut -d: -f2 | cut -dC -f1 | tr -dc .0-9)"
+    done
+  elif (type acpi && [ -n "$(acpi -t)" ] ) >/dev/null 2>&1 ; then
+    acpi -t | while read ln
+    do
+      id=$(echo "$ln" | cut -d: -f1 | tr ' ' '_')
+      val=$(echo "$ln" | cut -d, -f2- | sed -e 's/^\s//' | cut -d' ' -f1)
+      echo "$id.value $val"
+    done
+  fi
+  if type smartctl >/dev/null 2>&1 ; then
+    for hdd in $(find /dev -name 'sd?')
+    do
+      res=$(smartctl -a $hdd | awk '$1 == 194 { print $10}') || continue
+      id=$(echo $hdd| tr -sc A-Za-z0-9 _)
+      if [ -n "$res" ] ; then
+        id=$(echo $hdd| tr -sc A-Za-z0-9 _)
+        echo "$id.value $res"
+      fi
+    done
+  fi
+}
+config_swap() {
+  echo "graph_title Swap in/out"
+  echo "graph_args -l 0 --base 1000"
+  echo "graph_vlabel pages per \${graph_period} in (-) / out (+)"
+  echo "graph_category system"
+  echo "swap_in.label swap"
+  echo "swap_in.type DERIVE"
+  echo "swap_in.max 100000"
+  echo "swap_in.min 0"
+  echo "swap_in.graph no"
+  echo "swap_out.label swap"
+  echo "swap_out.type DERIVE"
+  echo "swap_out.max 100000"
+  echo "swap_out.min 0"
+  echo "swap_out.negative swap_in"
+}
+fetch_swap() {
+  if [ -f /proc/vmstat ]; then
+    SINFO=$(cat /proc/vmstat)
+    echo "swap_in.value" $(echo "$SINFO" | grep "^pswpin" | cut -d\  -f2)
+    echo "swap_out.value" $(echo "$SINFO" | grep "^pswpout" | cut -d\  -f2)
+  else
+    SINFO=$(grep "^swap" /proc/stat)
+    echo "swap_in.value" $(echo "$SINFO" | cut -d\  -f2)
+    echo "swap_out.value" $(echo "$SINFO" | cut -d\  -f3)
+  fi
+}
+#!/bin/sh
+
+_settings_uptime() {
+  echo "graph_title Uptime"
+  echo "graph_args --base 1000 -r --lower-limit 0 --upper-limit 100"
+  echo "graph_vlabel uptime %"
+  echo "graph_scale no"
+  echo "graph_category system"
+  echo "graph_period second"
+
+  echo "uptime.draw AREA"
+  echo "uptime.type DERIVE"
+  echo "uptime.max 100"
+  echo "uptime.min 0"
+}
+config_uptime() {
+  _settings_uptime
+
+  local seconds=$(awk '{print int($1)}' /proc/uptime)
+  if [ $seconds -gt 86400 ] ; then
+    local num=$(expr $seconds / 86400)
+    if [ $num -eq 1 ] ; then
+      local units="day"
+    else
+      local units="days"
+    fi
+  elif [ $seconds -gt 3600 ] ; then
+    local num=$(expr $seconds / 3600)
+    if [ $num -eq 1 ] ; then
+      local units="hour"
+    else
+      local units="hours"
+    fi
+  elif [ $seconds -gt 60 ] ; then
+    local num=$(expr $seconds / 60)
+    if [ $num -eq 1 ] ; then
+      local units="minute"
+    else
+      local units="minutes"
+    fi
+  else
+    local num="$seconds"
+    if [ $num -eq 1 ] ; then
+      local units="second"
+    else
+      local units="seconds"
+    fi
+  fi
+  num=$(echo $num | awk '{ len=length($0); res=""; for (i=0;i<=len;i++) { res=substr($0,len-i+1,1) res; if (i > 0 && i < len && i % 3 == 0) { res = "," res } }; print res }')
+
+  echo "uptime.label uptime ($num $units)"
+}
+fetch_uptime() {
+  echo "uptime.value" $(awk '{printf "%d",$1*100}' /proc/uptime)
+}
+main_loop

@@ -49,6 +49,60 @@
 
 <article class="summary">
 <div class="metadata">
+  <time datetime="2018-03-01T00:00:00+01:00" pubdate>Thu 01 March 2018</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
+  in <a href="/category/c2018.html">2018</a>
+<p class="tags">tagged <a href="/tag/backup.html">backup</a>, <a href="/tag/boot.html">boot</a>, <a href="/tag/git.html">git</a>, <a href="/tag/power.html">power</a>, <a href="/tag/sudo.html">sudo</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2018/2018-03-01-retropie-notes.html" rel="bookmark" title="Permalink to Retropie">Retropie</a>
+    </h2>
+    <p><ul>
+<li>DVD player</li>
+<li>Bluetooth receiver </li>
+<li>
+<p>keyboard </p>
+</li>
+<li>
+<p>good keyboard bindings</p>
+</li>
+<li>how to exit games</li>
+<li>convert probox into binding keys</li>
+<li>where are key codes saved</li>
+</ul>
+<hr>
+<ul>
+<li>Write image:</li>
+<li>gunzip &lt; retropie-4.3-rpi2_rpi3.img.gz | sudo dd of=/dev/sde bs=4M</li>
+<li>Configure config.txt</li>
+<li>hdmi_force_hotplug=1</li>
+<li>hdmi_drive=2</li>
+<li>Boot and configure keyboard</li>
+<li>D-Pad =&gt; D-Pad</li>
+<li>start …</li></ul></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2018-01-30T00:00:00+01:00" pubdate>Tue 30 January 2018</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
+  in <a href="/category/c2018.html">2018</a>
+<p class="tags">tagged <a href="/tag/centos.html">centos</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/filesystem.html">filesystem</a>, <a href="/tag/information.html">information</a>, <a href="/tag/installation.html">installation</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/network.html">network</a>, <a href="/tag/partition.html">partition</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/service.html">service</a>, <a href="/tag/storage.html">storage</a>, <a href="/tag/sudo.html">sudo</a>, <a href="/tag/ubuntu.html">ubuntu</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2018/2018-01-30-cache-nfs-files.html" rel="bookmark" title="Permalink to using cachefiles on an Linux NFS share">using cachefiles on an Linux NFS share</a>
+    </h2>
+    <p><p>If you often mount and access a remote NFS share on your system, you
+will probably want to know how to improve NFS file access performance.
+One possibility is using file caching. In Linux, there is a caching
+filesystem called FS-Cache which enables file caching for network file
+systems such …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
   <time datetime="2017-11-12T00:00:00+01:00" pubdate>Sun 12 November 2017</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
@@ -494,46 +548,6 @@ sleep <span class="m">1</span>
 <a href="https://en.wikipedia.org/wiki/Android_TV">Android TV</a>.</p>
 <p>One of the things I wanted to do from the very start was to load my own APKs.  This was not
 possible until a recent (2016) update that enabled the <strong>"Install from Unknown …</strong></p></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2016-12-11T00:00:00+01:00" pubdate>Sun 11 December 2016</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2021-12-25 22:02:18+01:00</p>
-  in <a href="/category/c2016.html">2016</a>
-<p class="tags">tagged <a href="/tag/android.html">android</a></p></div>  <div>
-    <h2>
-      <a href="/posts/2016/2016-12-11-building-signed-apks.html" rel="bookmark" title="Permalink to Building Signed APKs">Building Signed APKs</a>
-    </h2>
-    <p><p>Building signed APK's for Android is easy if you know what you
-are doing.</p>
-<p>This article goes over the preparation steps and the additional
-build instructions needed to created signed APKs.</p>
-<h3 id="preparation">Preparation</h3>
-<p>First you need to have a <code>keystore</code>.  Use this command:</p>
-<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-<span class="nv">keystore_file</span><span class="o">=</span><span class="s2">&quot;my_key_store.keystore&quot;</span>
-<span class="nv">key_name</span><span class="o">=</span><span class="s2">&quot;john_doe&quot;</span>
-<span class="nv">secret …</span></code></pre></div></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2016-12-05T00:00:00+01:00" pubdate>Mon 05 December 2016</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2021-12-26 20:53:13+01:00</p>
-  in <a href="/category/c2016.html">2016</a>
-<p class="tags">tagged <a href="/tag/android.html">android</a>, <a href="/tag/information.html">information</a>, <a href="/tag/library.html">library</a>, <a href="/tag/scripts.html">scripts</a>, <a href="/tag/tools.html">tools</a></p></div>  <div>
-    <h2>
-      <a href="/posts/2016/2016-12-05-archiving-dvds-and-cds.html" rel="bookmark" title="Permalink to Archiving DVDs and CDs">Archiving DVDs and CDs</a>
-    </h2>
-    <p><p>Since now I have a Android TV I put away my HTPC and with that the capability to view DVDs or
-listen CDs directly.</p>
-<p>So I converted my entire CD and DVD library to media files and stored in my home NAS.</p>
-<p>Since we are talking hundreds of DVDs and …</p></p>
   </div>
 </article>
 <div class="pagination">
