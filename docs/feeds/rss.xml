@@ -1,5 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Wed, 12 Oct 2022 01:43:49 +0200</lastBuildDate><item><title>Nanowiki</title><link>https://0ink.net/posts/2022/2022-10-10-nanowiki.html</link><description>&lt;p&gt;&lt;a href="https://github.com/iliu-net/nanowiki"&gt;NanoWiki&lt;/a&gt; is a Wiki implementation based on &lt;a href="https://github.com/luckyshot/picowiki"&gt;picowiki&lt;/a&gt;.&lt;/p&gt;
+<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Thu, 20 Oct 2022 00:00:00 +0200</lastBuildDate><item><title>Markdown cheat sheet</title><link>https://0ink.net/posts/2022/2022-10-20-md-cheatsheet.html</link><description>&lt;p&gt;This is intended as a quick reference and showcase. For more complete info,
+see &lt;a href="http://daringfireball.net/projects/markdown/"&gt;John Gruber's original spec&lt;/a&gt;
+and the &lt;a href="http://github.github.com/github-flavored-markdown/"&gt;Github-flavored Markdown info page&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="headers"&gt;Headers&lt;/h2&gt;
+&lt;p&gt;Source:&lt;/p&gt;
+&lt;hr&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;# H1&lt;/span&gt;
+&lt;span class="gu"&gt;## H2&lt;/span&gt;
+&lt;span class="gu"&gt;### H3&lt;/span&gt;
+&lt;span class="gu"&gt;#### H4&lt;/span&gt;
+&lt;span class="gu"&gt;##### H5&lt;/span&gt;
+&lt;span class="gu"&gt;###### H6&lt;/span&gt;
+
+Alternatively, for H1 and H2, an underline-ish style:
+
+&lt;span class="gh"&gt;Alt-H1&lt;/span&gt;
+&lt;span class="gh"&gt;======&lt;/span&gt;
+
+&lt;span class="gu"&gt;Alt-H2&lt;/span&gt;
+&lt;span class="gu"&gt;------&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;p&gt;Output:&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="h1"&gt;H1&lt;/h2&gt;
+&lt;h3 id="h2"&gt;H2&lt;/h3&gt;
+&lt;h4 id="h3"&gt;H3&lt;/h4&gt;
+&lt;h5 id="h4"&gt;H4&lt;/h5&gt;
+&lt;h6 id="h5"&gt;H5&lt;/h6&gt;
+&lt;h6 id="h6"&gt;H6&lt;/h6&gt;
+&lt;p&gt;Alternatively …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Thu, 20 Oct 2022 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:None,2022-10-20:/posts/2022/2022-10-20-md-cheatsheet.html</guid><category>2022</category><category>application</category><category>github</category><category>markdown</category></item><item><title>Nanowiki</title><link>https://0ink.net/posts/2022/2022-10-10-nanowiki.html</link><description>&lt;p&gt;&lt;a href="https://github.com/iliu-net/nanowiki"&gt;NanoWiki&lt;/a&gt; is a Wiki implementation based on &lt;a href="https://github.com/luckyshot/picowiki"&gt;picowiki&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I have been using &lt;a href="https://simplenote.com/"&gt;SimpleNote&lt;/a&gt; for a number of years.  It works pretty well
 but somehow I was looking for:&lt;/p&gt;
 &lt;ul&gt;
