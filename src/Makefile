@@ -44,12 +44,16 @@ help:
 	@echo '                                                                          '
 
 html:
+	[ -d $(OUTPUTDIR)/drafts ] && git rm -r $(OUTPUTDIR)/drafts || :
+	[ -d $(OUTPUTDIR)/drafts ] && rm -rf $(OUTPUTDIR)/drafts || :
 	python3 hax.py --tags=tagcloud $(INPUTDIR)/pages/*.md $(INPUTDIR)/posts/*/*.md
 	$(PELICAN) "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
 	python3 sitemap.py --strip=2 --prefix=https://0ink.net/ --xml=$(OUTPUTDIR)/sitemap.xml --html=$(OUTPUTDIR)/sitemap.html ../docs/pages/*.html ../docs/posts/*/*.html
 	# Fix links in site feeds...
 	sed -i -e 's!<link>/!<link>https://0ink.net/!g' "$(OUTPUTDIR)/feeds/rss.xml"
 	sed -i -e 's!<link href="/!<link href="https://0ink.net/!g' "$(OUTPUTDIR)/feeds/atom.xml"
+	# Create drafts index
+	[ -d $(OUTPUTDIR)/drafts ] && sh mkindex.sh $(OUTPUTDIR)/drafts
 	> $(OUTPUTDIR)/.nojekyll
 
 clean:
