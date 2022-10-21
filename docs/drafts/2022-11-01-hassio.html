@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>Moving to Home Assistant - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="I am busy moving away from my VeraEdge installation to a Home Assistant running on a Raspberry Pi 4. This is because it looks like the maker of the VeraEdge was bought and it is slowly being phased out. For this I am using the following parts: Geekwork X728 18650 …">
+	<meta name="int-title" content="Moving to Home Assistant">
+	<meta name="tags" content="address, android, backups, boot, configuration, device, idea, installation, integration, linux, login, power, raspberry, remote, software">
+	<meta name="date" content="2022-11-01 00:00:00+01:00">
+	<meta name="modified" content="2022-10-21 09:37:39.266731+02:00">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+    <link href="/feeds/atom.xml" type="application/atom+xml" rel="alternate" title="0ink.net Atom Feed" />
+    <link href="/feeds/rss.xml" type="application/rss+xml" rel="alternate" title="0ink.net RSS Feed" />
+</head>
+
+<body>
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	        <a href="/feeds/atom.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="atom feed" title="atom feed"/></a>
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>Moving to Home Assistant</h1>
+
+<div class="metadata">
+  <time datetime="2022-11-01T00:00:00+01:00" pubdate>Tue 01 November 2022</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2022-10-21 09:37:39.266731+02:00</p>
+  in <a href="/category/c2022.html">2022</a>
+<p class="tags">tagged <a href="/tag/address.html">address</a>, <a href="/tag/android.html">android</a>, <a href="/tag/backups.html">backups</a>, <a href="/tag/boot.html">boot</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/device.html">device</a>, <a href="/tag/idea.html">idea</a>, <a href="/tag/installation.html">installation</a>, <a href="/tag/integration.html">integration</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/login.html">login</a>, <a href="/tag/power.html">power</a>, <a href="/tag/raspberry.html">raspberry</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/software.html">software</a></p></div>
+		<p>I am busy moving away from my <a href="https://support.getvera.com/hc/en-us/articles/360021753434-VeraEdge-Getting-Started-How-To">VeraEdge</a>
+installation to a <a href="https://www.home-assistant.io/">Home Assistant</a> running on a <a href="https://www.raspberrypi.com/products/raspberry-pi-4-model-b/">Raspberry Pi 4</a>.  This is
+because it looks like the maker of the VeraEdge was bought and it is slowly being
+phased out.</p>
+<p>For this I am using the following parts:</p>
+<ul>
+<li><a href="http://wiki.geekworm.com/X728">Geekwork X728 18650 UPS + X728-C1 case</a> : This
+  provides with a case (with cooling fan), UPS and RTC functionality.</li>
+<li><a href="https://aeotec.com/products/aeotec-z-stick-gen5/">Aeotec Z-Stick Gen5+</a> : For
+  Z-Wave compatibility.</li>
+<li><a href="https://phoscon.de/en/conbee2">ConBee 2</a> : For ZigBee compatibility.</li>
+<li>A Raspberry Pi 4 - 4GB</li>
+<li>64GB SD Card.  Actually I wanted to use a 32GB SD card, but the 64GB had better
+  specs and was only a couple os bucks more expensive.</li>
+</ul>
+<p>I will be reusing these components:</p>
+<ul>
+<li><a href="https://www.robbshop.nl/slimme-meter-kabel-usb-p1-1-meter">Smart Meter USB-P1 cable</a></li>
+<li><a href="http://www.rfxcom.com/RFXtrx433XL-USB-43392MHz-Transceiver">RFXtrx433XL USB HA controller</a></li>
+</ul>
+<h2 id="hardware-build">Hardware build</h2>
+<p>Building the case is simple and straight forward.  You can follow this
+video on <a href="https://www.youtube.com/watch?v=QOG30LXb6ds">youtube</a>.</p>
+<p>The steps are:</p>
+<ul>
+<li>Open the case.</li>
+<li>Install the fan.</li>
+<li>Install the additional battery holder.</li>
+<li>Install the power button.</li>
+<li>Screw the spacers to the Raspberry Pi.</li>
+<li>Insert the X728 UPS hat on top and screw in place.</li>
+<li>Install batteries.</li>
+<li>Plug connectors.</li>
+<li>Screw the Raspberry Pi to the case.</li>
+<li>Test that everything is in working order.</li>
+<li>Optional: Set the jumper selector to auto power-on.</li>
+<li>Close the case.</li>
+</ul>
+<h2 id="case-software">Case software</h2>
+<p>I did not like the software that comes with the case, so I rolled-up
+my own.  The RTC uses the standard <code>rtc-ds1307</code> which is in the Linux
+kernel.  For GPIO programming I am using the <code>/sysfs</code> interface.  The
+only component that requires <em>custom</em> programming was the battery
+charge and voltage readings.  For that I wrote a small C program.</p>
+<ul>
+<li><a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/X728/src">x728batt</a></li>
+</ul>
+<p>This is tied to <code>systemd</code> through these files:</p>
+<ul>
+<li><a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/X728/x728clock.service">/etc/systemd/system/x728clock.service</a>
+  executes <a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/X728/scripts/clock.sh">clock.sh</a>
+  This is used to load the RTC kernel modules and activate the RTC in the
+  i<sup>2</sup>c bus.</li>
+<li><a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/X728/x728ups.service">/etc/systemd/system/x728ups.service</a>
+  executes <a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/X728/scripts/upsmon.sh">upsmon.sh</a>
+  This is used to monitor the Push Button, the A/C power status and if the
+  A/C power is lost, the battery status.  It will trigger a graceful shutdown
+  if the button is pressed or if the battery charge is insufficient.</li>
+<li><a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/X728/gpio-poweroff">/lib/systemd/system-shutdown/gpio-poweroff</a>
+  This is used to turn off the UPS power if the user issues the <code>poweroff</code>
+  command.</li>
+</ul>
+<p>In addition to this, I created a script to inject the <a href="https://www.home-assistant.io/">Home Assistant</a>
+Raspberry Pi image with the relevant files and also adds a
+<a href="https://rauc.readthedocs.io/en/latest/reference.html#system-configuration-file">RAUC post-install handler</a>.
+so that OTA upgrades will keep these customizations.</p>
+<p>As a bonus I am adding a <a href="https://github.com/TortugaLabs/muninlite">munin-node</a>
+systemd unit for system monitoring.  And yes, I am old-fashioned.</p>
+<p>Also, I am enabling <code>ssh</code> to the underlying Operating System.</p>
+<h2 id="home-assistant-installation">Home Assistant installation</h2>
+<p>Following the raspberry pi installation <a href="https://www.home-assistant.io/installation/raspberrypi/">guide</a>
+is quite straight forward.</p>
+<p>I chose to use the HAOS image install as it gives a more <em>consumer device</em>
+experience.</p>
+<ul>
+<li>Download the 64bit image for Raspberry Pi 4 from the
+  <a href="https://github.com/home-assistant/operating-system/releases">releases page</a></li>
+<li>Use the <a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/X728/OTA">haos-x728.sh</a>
+  to customize the image to include my X728 files.</li>
+<li>Write the modified image to SD card.</li>
+</ul>
+<p>Boot the raspberry pi from the new SD card and do the GUI installation.
+For my case, I needed to login to my router to look-up the IP address.
+It is configured via DHCP.  I also statically assign an IP address and DNS
+name based on MAC address.  To make sure that the DNS name and the host name
+match, I modified it on the configuration:</p>
+<p><code>Settings</code> -&gt; <code>System</code> -&gt; <code>network</code></p>
+<p>Modify <code>hostname</code>.</p>
+<h2 id="initial-configuration">Initial configuration</h2>
+<p>Set up home areas.  I set-up one area per room, following a naming convention:</p>
+<p>F <strong>floor-number</strong> <strong>Room-name</strong></p>
+<p>For example:</p>
+<ul>
+<li><code>F0 Kitchen</code></li>
+<li><code>F2 Attic</code></li>
+</ul>
+<p>Also, create additional areas for:</p>
+<ul>
+<li><code>External</code> : External items</li>
+<li><code>System</code> : System related entities and devices</li>
+</ul>
+<p>For devices, I am using this naming convention:</p>
+<ul>
+<li><strong>Room-name</strong> <strong>room-section</strong> <strong>device</strong> <strong>optional</strong></li>
+</ul>
+<p>The idea is to make it simple to guess the name for voice recognition.</p>
+<ul>
+<li><strong>Room-name</strong> : this should match the area.</li>
+<li><strong>room-section</strong> : <strong>optional</strong>, section of the room this applies to.</li>
+<li><strong>device</strong> : device type.</li>
+<li>Chromecast : google chromecast device</li>
+<li>Display : google nest hub</li>
+<li>TV : with optional <strong>casting</strong>, <strong>upnp</strong> or <strong>api</strong></li>
+<li>Skylight</li>
+<li>Light</li>
+<li>Switch</li>
+<li>Double Switch</li>
+<li>Remote: Remote control</li>
+<li>Window Sensor</li>
+<li>Door Sensor</li>
+<li><strong>optional</strong> : used for when multiple device of the same type are in the same room.</li>
+</ul>
+<h2 id="add-ons">Add-Ons</h2>
+<p>I installed the followng add-ons:</p>
+<ul>
+<li>Home Assistant Community Add-ons</li>
+<li><a href="https://github.com/hassio-addons/addon-vscode">Studio Code Server</a> : for
+    editing files.  Press ==F1== and start typing <code>home assistant</code> to view
+    available integration commands.  This is needed because (unfortunately)
+    not everything can be configured through the UI.</li>
+<li><a href="https://github.com/hassio-addons/addon-zwave-js-ui">Z-Wave JS UI</a> : Instead
+    of <strong>Official add-ons</strong>.  The community add-on gives you a control panel with
+    more detailed control featires.  Specifically you can set group associations.</li>
+</ul>
+<p>Also, adding my own repository: https://github.com/iliu-net/hassio-addons</p>
+<ul>
+<li>rsync-folders : save data and backups to remote server using rsync</li>
+<li>watchdogdev : watchdog timer</li>
+</ul>
+<h2 id="further-configuration">Further Configuration</h2>
+<p>These configurations require modifying files.  So usually I would do them
+<strong>after</strong> installing <code>Studio Code Server</code>.</p>
+<h3 id="modifying-authentications">Modifying authentications</h3>
+<p>To simplify login in local networks (specially to support physical
+control panels) I configured the
+<a href="https://www.home-assistant.io/docs/authentication/providers/#trusted-networks">trusted_networks</a>
+by adding the following lines to your <code>configuration.yaml</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">homeassistant</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">auth_providers</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trusted_networks</span><span class="w"></span>
+<span class="w">      </span><span class="nt">trusted_networks</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.2.0/24</span><span class="w"></span>
+</code></pre></div>
+
+<p>Essentially what this does is that devices connecting from the
+<em>trusted networks</em> do not to login with username/password.</p>
+<h3 id="system-temperature">System temperature</h3>
+<p>For fun I also configured a CPU temperature sensor.  Add this
+to <code>configuration.yaml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">sensor</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="c1">### command line</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">command_line</span><span class="w"></span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CPU Temperature</span><span class="w"></span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cat</span><span class="nv"> </span><span class="s">/sys/class/thermal/thermal_zone0/temp&quot;</span><span class="w"> </span><span class="c1"># RPi</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># command: &quot;cat /sys/class/thermal/thermal_zone2/temp&quot; # NUC</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># If errors occur, remove degree symbol below</span><span class="w"></span>
+<span class="w">    </span><span class="nt">unit_of_measurement</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;°C&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">value_template</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">&#39;%.1f&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">format(value</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">multiply(0.001))</span><span class="nv"> </span><span class="s">}}&quot;</span><span class="w"> </span><span class="c1"># RPi &amp; NUC</span><span class="w"></span>
+<span class="w">    </span><span class="nt">unique_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sys_cpu_temp</span><span class="w"></span>
+</code></pre></div>
+
+<h2 id="integrations">Integrations</h2>
+<h3 id="dsmr-slimme-meter">DSMR Slimme Meter</h3>
+<p><a href="https://www.home-assistant.io/integrations/dsmr">This</a> integration is to read
+energy consumption as provided by NL smart meters.  Just make sure that
+you get the right cable.  I am using a cable from
+<a href="https://www.robbshop.nl/slimme-meter-kabel-usb-p1-1-meter">ROBBshop</a>.  Just
+plug and add to the integrations.</p>
+<p>To include:</p>
+<ul>
+<li><code>Add Integration</code> : <code>DSMR Slimme Meter</code></li>
+<li><code>Serial</code> : connection</li>
+<li><code>Select device</code>: Select the right serial port  (should be easy to identify).</li>
+<li><code>DSMR Version</code> : <code>5</code></li>
+</ul>
+<p>This is very easy to add and configure.</p>
+<h3 id="zigbee-home-automation">ZigBee Home Automation</h3>
+<p><a href="https://www.home-assistant.io/integrations/zha">This</a> integration is automatically
+discovered for supported coordinators.  I am using
+a <a href="https://phoscon.de/en/conbee2">ConBee II</a> ZigBee coordinator.  As long as the
+device is supported (see
+<a href="https://zigbee.blakadder.com/index.html">compatibility list</a> ) things are fairly
+easy and simple.</p>
+<p>There are multiple options for ZigBee support.  I opted for ZHA because it has
+fairly good device support and is easy to use and set-up.</p>
+<p>The alternatives are:</p>
+<ul>
+<li><a href="https://www.zigbee2mqtt.io/">Zibgee2MQTT</a></li>
+<li>Good for power users, execellent configuratbility and the best device support</li>
+<li>It can be complicated.</li>
+<li><a href="https://dresden-elektronik.github.io/deconz-rest-doc/">deCONZ Add-On</a></li>
+<li>Made by the ConBee2 developers.  There are no real benefits to using
+    this integration.</li>
+</ul>
+<h3 id="z-wave-automation">Z-Wave automation</h3>
+<p>For Z-Wave I am using the
+<a href="https://www.home-assistant.io/integrations/zwave_js">Z-Wave JS</a>
+integration paired with a
+<a href="https://aeotec.com/products/aeotec-z-stick-gen5/">Aeotec Z-Stick Gen5</a>.</p>
+<p>I am using the
+<a href="https://github.com/hassio-addons/addon-zwave-js-ui">Z-Wave JS UI</a>
+from Community Add-ons because that gives you a control panel
+user interface that is handy when debugging obscure Z-Wave issues and
+also has support for creating direct node group associations.</p>
+<p>In most day to day situations, I don't really use this control panel, as
+most operations can be done from the <a href="https://www.home-assistant.io/">Home Assistant</a> integration
+directly.</p>
+<p>When adding this, it is <em>not</em> possible to do it from the auto-discovered
+<em>z-stick gen5</em> as that will automatically install the core Z-Wave JS add-on.
+So just ignore it and use the <code>Add Integration</code> functionality and pick
+<code>Z-Wave JS</code> integration from the menu.  This will let you skip the
+standard add-on installation and let you specify the right Z-Wave JS UI add-on
+instead.</p>
+<h3 id="other-integrations">Other integrations</h3>
+<ul>
+<li><a href="https://www.home-assistant.io/integrations/buienradar">Buienradar</a> : Dutch
+  weather data.  Just add it and it works mostly out of the box.</li>
+<li><a href="https://www.home-assistant.io/integrations/dlna_dms">DLNA media servers</a> :
+  these are discovered automatically as long as they are in the same Subnet.</li>
+<li><a href="https://www.home-assistant.io/integrations/cast">Google Cast</a> :
+  These are also discovered automatically.  Used for Android TV devices and
+  Google Nest speakers/displays.</li>
+<li><a href="https://www.home-assistant.io/integrations/ipp">Printer</a> : This was
+  automatically discovered.</li>
+<li><a href="https://www.home-assistant.io/integrations/waze_travel_time">Waze Travel Time</a> :
+  Show the commute time between two points.</li>
+<li><a href="https://www.home-assistant.io/integrations/rdw">Netherlands Vehicle Authority</a> :
+  Yes, this can be done, but not sure its use.  Maybe to remind you that the APK
+  is due?</li>
+<li><a href="https://www.home-assistant.io/integrations/philips_js/">Philips TV</a> :
+  Installing this integration is quite straight forward.  This enables automation
+  options, but I don't know what to do with it yet.  Also has the limitation that
+  it can't be turned on using the API.</li>
+<li><a href="https://www.home-assistant.io/integrations/jellyfin/">Jellyfin</a> :
+  Add a Jellyfin server as a media source.  Note that only a single Jellyfin
+  can be configured.</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li>https://github.com/home-assistant/operating-system</li>
+<li>https://developers.home-assistant.io/docs/operating-system/getting-started</li>
+</ul>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li class="active"><a href="/category/c2022.html">2022</a></li>
+	              <li ><a href="/category/c2021.html">2021</a></li>
+	              <li ><a href="/category/c2020.html">2020</a></li>
+	              <li ><a href="/category/c2019.html">2019</a></li>
+	              <li ><a href="/category/c2018.html">2018</a></li>
+	              <li ><a href="/category/c2017.html">2017</a></li>
+	              <li ><a href="/category/c2016.html">2016</a></li>
+	              <li ><a href="/category/c2015.html">2015</a></li>
+	              <li ><a href="/category/c2014.html">2014</a></li>
+	              <li ><a href="/category/c2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="/sitemap.html">sitemap</a></li>
+	                <li><a href="/tags.html">Tags</a></li>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	                <li><a href="https://home.0ink.net/nanowiki/">Wiki</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2021-2022 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+		  <span class="feeds">
+		    <a href="/feeds/rss.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="rss feed" title="rss feed"/></a>
+		  </span>
+		  </p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>
