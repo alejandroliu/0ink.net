@@ -1,5 +1,262 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2022-10-20T00:00:00+02:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>Markdown cheat sheet</title><link href="https://0ink.net/posts/2022/2022-10-20-md-cheatsheet.html" rel="alternate"></link><published>2022-10-20T00:00:00+02:00</published><updated>2022-10-12T02:15:39+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-10-20:/posts/2022/2022-10-20-md-cheatsheet.html</id><summary type="html">&lt;p&gt;This is intended as a quick reference and showcase. For more complete info,
+<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2022-11-02T09:18:10+01:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>Moving to Home Assistant</title><link href="https://0ink.net/posts/2022/2022-11-01-hassio.html" rel="alternate"></link><published>2022-11-01T00:00:00+01:00</published><updated>2022-10-21T10:08:55+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-11-01:/posts/2022/2022-11-01-hassio.html</id><summary type="html">&lt;p&gt;I am busy moving away from my &lt;a href="https://support.getvera.com/hc/en-us/articles/360021753434-VeraEdge-Getting-Started-How-To"&gt;VeraEdge&lt;/a&gt;
+installation to a &lt;a href="https://www.home-assistant.io/"&gt;Home Assistant&lt;/a&gt; running on a &lt;a href="https://www.raspberrypi.com/products/raspberry-pi-4-model-b/"&gt;Raspberry Pi 4&lt;/a&gt;.  This is
+because it looks like the maker of the VeraEdge was bought and it is slowly being
+phased out.&lt;/p&gt;
+&lt;p&gt;For this I am using the following parts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://wiki.geekworm.com/X728"&gt;Geekwork X728 18650 …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;I am busy moving away from my &lt;a href="https://support.getvera.com/hc/en-us/articles/360021753434-VeraEdge-Getting-Started-How-To"&gt;VeraEdge&lt;/a&gt;
+installation to a &lt;a href="https://www.home-assistant.io/"&gt;Home Assistant&lt;/a&gt; running on a &lt;a href="https://www.raspberrypi.com/products/raspberry-pi-4-model-b/"&gt;Raspberry Pi 4&lt;/a&gt;.  This is
+because it looks like the maker of the VeraEdge was bought and it is slowly being
+phased out.&lt;/p&gt;
+&lt;p&gt;For this I am using the following parts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://wiki.geekworm.com/X728"&gt;Geekwork X728 18650 UPS + X728-C1 case&lt;/a&gt; : This
+  provides with a case (with cooling fan), UPS and RTC functionality.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://aeotec.com/products/aeotec-z-stick-gen5/"&gt;Aeotec Z-Stick Gen5+&lt;/a&gt; : For
+  Z-Wave compatibility.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://phoscon.de/en/conbee2"&gt;ConBee 2&lt;/a&gt; : For ZigBee compatibility.&lt;/li&gt;
+&lt;li&gt;A Raspberry Pi 4 - 4GB&lt;/li&gt;
+&lt;li&gt;64GB SD Card.  Actually I wanted to use a 32GB SD card, but the 64GB had better
+  specs and was only a couple os bucks more expensive.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I will be reusing these components:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.robbshop.nl/slimme-meter-kabel-usb-p1-1-meter"&gt;Smart Meter USB-P1 cable&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.rfxcom.com/RFXtrx433XL-USB-43392MHz-Transceiver"&gt;RFXtrx433XL USB HA controller&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="hardware-build"&gt;Hardware build&lt;/h2&gt;
+&lt;p&gt;Building the case is simple and straight forward.  You can follow this
+video on &lt;a href="https://www.youtube.com/watch?v=QOG30LXb6ds"&gt;youtube&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The steps are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Open the case.&lt;/li&gt;
+&lt;li&gt;Install the fan.&lt;/li&gt;
+&lt;li&gt;Install the additional battery holder.&lt;/li&gt;
+&lt;li&gt;Install the power button.&lt;/li&gt;
+&lt;li&gt;Screw the spacers to the Raspberry Pi.&lt;/li&gt;
+&lt;li&gt;Insert the X728 UPS hat on top and screw in place.&lt;/li&gt;
+&lt;li&gt;Install batteries.&lt;/li&gt;
+&lt;li&gt;Plug connectors.&lt;/li&gt;
+&lt;li&gt;Screw the Raspberry Pi to the case.&lt;/li&gt;
+&lt;li&gt;Test that everything is in working order.&lt;/li&gt;
+&lt;li&gt;Optional: Set the jumper selector to auto power-on.&lt;/li&gt;
+&lt;li&gt;Close the case.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="case-software"&gt;Case software&lt;/h2&gt;
+&lt;p&gt;I did not like the software that comes with the case, so I rolled-up
+my own.  The RTC uses the standard &lt;code&gt;rtc-ds1307&lt;/code&gt; which is in the Linux
+kernel.  For GPIO programming I am using the &lt;code&gt;/sysfs&lt;/code&gt; interface.  The
+only component that requires &lt;em&gt;custom&lt;/em&gt; programming was the battery
+charge and voltage readings.  For that I wrote a small C program.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/X728/src"&gt;x728batt&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is tied to &lt;code&gt;systemd&lt;/code&gt; through these files:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/X728/x728clock.service"&gt;/etc/systemd/system/x728clock.service&lt;/a&gt;
+  executes &lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/X728/scripts/clock.sh"&gt;clock.sh&lt;/a&gt;
+  This is used to load the RTC kernel modules and activate the RTC in the
+  i&lt;sup&gt;2&lt;/sup&gt;c bus.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/X728/x728ups.service"&gt;/etc/systemd/system/x728ups.service&lt;/a&gt;
+  executes &lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/X728/scripts/upsmon.sh"&gt;upsmon.sh&lt;/a&gt;
+  This is used to monitor the Push Button, the A/C power status and if the
+  A/C power is lost, the battery status.  It will trigger a graceful shutdown
+  if the button is pressed or if the battery charge is insufficient.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/X728/gpio-poweroff"&gt;/lib/systemd/system-shutdown/gpio-poweroff&lt;/a&gt;
+  This is used to turn off the UPS power if the user issues the &lt;code&gt;poweroff&lt;/code&gt;
+  command.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In addition to this, I created a script to inject the &lt;a href="https://www.home-assistant.io/"&gt;Home Assistant&lt;/a&gt;
+Raspberry Pi image with the relevant files and also adds a
+&lt;a href="https://rauc.readthedocs.io/en/latest/reference.html#system-configuration-file"&gt;RAUC post-install handler&lt;/a&gt;.
+so that OTA upgrades will keep these customizations.&lt;/p&gt;
+&lt;p&gt;As a bonus I am adding a &lt;a href="https://github.com/TortugaLabs/muninlite"&gt;munin-node&lt;/a&gt;
+systemd unit for system monitoring.  And yes, I am old-fashioned.&lt;/p&gt;
+&lt;p&gt;Also, I am enabling &lt;code&gt;ssh&lt;/code&gt; to the underlying Operating System.&lt;/p&gt;
+&lt;h2 id="home-assistant-installation"&gt;Home Assistant installation&lt;/h2&gt;
+&lt;p&gt;Following the raspberry pi installation &lt;a href="https://www.home-assistant.io/installation/raspberrypi/"&gt;guide&lt;/a&gt;
+is quite straight forward.&lt;/p&gt;
+&lt;p&gt;I chose to use the HAOS image install as it gives a more &lt;em&gt;consumer device&lt;/em&gt;
+experience.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Download the 64bit image for Raspberry Pi 4 from the
+  &lt;a href="https://github.com/home-assistant/operating-system/releases"&gt;releases page&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Use the &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/X728/OTA"&gt;haos-x728.sh&lt;/a&gt;
+  to customize the image to include my X728 files.&lt;/li&gt;
+&lt;li&gt;Write the modified image to SD card.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Boot the raspberry pi from the new SD card and do the GUI installation.
+For my case, I needed to login to my router to look-up the IP address.
+It is configured via DHCP.  I also statically assign an IP address and DNS
+name based on MAC address.  To make sure that the DNS name and the host name
+match, I modified it on the configuration:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Settings&lt;/code&gt; -&amp;gt; &lt;code&gt;System&lt;/code&gt; -&amp;gt; &lt;code&gt;network&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Modify &lt;code&gt;hostname&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="initial-configuration"&gt;Initial configuration&lt;/h2&gt;
+&lt;p&gt;Set up home areas.  I set-up one area per room, following a naming convention:&lt;/p&gt;
+&lt;p&gt;F &lt;strong&gt;floor-number&lt;/strong&gt; &lt;strong&gt;Room-name&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;For example:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;F0 Kitchen&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;F2 Attic&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Also, create additional areas for:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;External&lt;/code&gt; : External items&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;System&lt;/code&gt; : System related entities and devices&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For devices, I am using this naming convention:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Room-name&lt;/strong&gt; &lt;strong&gt;room-section&lt;/strong&gt; &lt;strong&gt;device&lt;/strong&gt; &lt;strong&gt;optional&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The idea is to make it simple to guess the name for voice recognition.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Room-name&lt;/strong&gt; : this should match the area.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;room-section&lt;/strong&gt; : &lt;strong&gt;optional&lt;/strong&gt;, section of the room this applies to.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt; : device type.&lt;/li&gt;
+&lt;li&gt;Chromecast : google chromecast device&lt;/li&gt;
+&lt;li&gt;Display : google nest hub&lt;/li&gt;
+&lt;li&gt;TV : with optional &lt;strong&gt;casting&lt;/strong&gt;, &lt;strong&gt;upnp&lt;/strong&gt; or &lt;strong&gt;api&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Skylight&lt;/li&gt;
+&lt;li&gt;Light&lt;/li&gt;
+&lt;li&gt;Switch&lt;/li&gt;
+&lt;li&gt;Double Switch&lt;/li&gt;
+&lt;li&gt;Remote: Remote control&lt;/li&gt;
+&lt;li&gt;Window Sensor&lt;/li&gt;
+&lt;li&gt;Door Sensor&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;optional&lt;/strong&gt; : used for when multiple device of the same type are in the same room.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="add-ons"&gt;Add-Ons&lt;/h2&gt;
+&lt;p&gt;I installed the followng add-ons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Home Assistant Community Add-ons&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/hassio-addons/addon-vscode"&gt;Studio Code Server&lt;/a&gt; : for
+    editing files.  Press ==F1== and start typing &lt;code&gt;home assistant&lt;/code&gt; to view
+    available integration commands.  This is needed because (unfortunately)
+    not everything can be configured through the UI.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/hassio-addons/addon-zwave-js-ui"&gt;Z-Wave JS UI&lt;/a&gt; : Instead
+    of &lt;strong&gt;Official add-ons&lt;/strong&gt;.  The community add-on gives you a control panel with
+    more detailed control featires.  Specifically you can set group associations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Also, adding my own repository: https://github.com/iliu-net/hassio-addons&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;rsync-folders : save data and backups to remote server using rsync&lt;/li&gt;
+&lt;li&gt;watchdogdev : watchdog timer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="further-configuration"&gt;Further Configuration&lt;/h2&gt;
+&lt;p&gt;These configurations require modifying files.  So usually I would do them
+&lt;strong&gt;after&lt;/strong&gt; installing &lt;code&gt;Studio Code Server&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id="modifying-authentications"&gt;Modifying authentications&lt;/h3&gt;
+&lt;p&gt;To simplify login in local networks (specially to support physical
+control panels) I configured the
+&lt;a href="https://www.home-assistant.io/docs/authentication/providers/#trusted-networks"&gt;trusted_networks&lt;/a&gt;
+by adding the following lines to your &lt;code&gt;configuration.yaml&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;homeassistant&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;auth_providers&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;trusted_networks&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;trusted_networks&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;192.168.2.0/24&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Essentially what this does is that devices connecting from the
+&lt;em&gt;trusted networks&lt;/em&gt; do not to login with username/password.&lt;/p&gt;
+&lt;h3 id="system-temperature"&gt;System temperature&lt;/h3&gt;
+&lt;p&gt;For fun I also configured a CPU temperature sensor.  Add this
+to &lt;code&gt;configuration.yaml&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;sensor&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;### command line&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;platform&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;command_line&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;CPU Temperature&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;command&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;cat&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;/sys/class/thermal/thermal_zone0/temp&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# RPi&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;# command: &amp;quot;cat /sys/class/thermal/thermal_zone2/temp&amp;quot; # NUC&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;# If errors occur, remove degree symbol below&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;unit_of_measurement&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;°C&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;value_template&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;{{&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;#39;%.1f&amp;#39;&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;|&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;format(value&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;|&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;multiply(0.001))&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;}}&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# RPi &amp;amp; NUC&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;unique_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;sys_cpu_temp&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="integrations"&gt;Integrations&lt;/h2&gt;
+&lt;h3 id="dsmr-slimme-meter"&gt;DSMR Slimme Meter&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://www.home-assistant.io/integrations/dsmr"&gt;This&lt;/a&gt; integration is to read
+energy consumption as provided by NL smart meters.  Just make sure that
+you get the right cable.  I am using a cable from
+&lt;a href="https://www.robbshop.nl/slimme-meter-kabel-usb-p1-1-meter"&gt;ROBBshop&lt;/a&gt;.  Just
+plug and add to the integrations.&lt;/p&gt;
+&lt;p&gt;To include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Add Integration&lt;/code&gt; : &lt;code&gt;DSMR Slimme Meter&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Serial&lt;/code&gt; : connection&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Select device&lt;/code&gt;: Select the right serial port  (should be easy to identify).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DSMR Version&lt;/code&gt; : &lt;code&gt;5&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is very easy to add and configure.&lt;/p&gt;
+&lt;h3 id="zigbee-home-automation"&gt;ZigBee Home Automation&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://www.home-assistant.io/integrations/zha"&gt;This&lt;/a&gt; integration is automatically
+discovered for supported coordinators.  I am using
+a &lt;a href="https://phoscon.de/en/conbee2"&gt;ConBee II&lt;/a&gt; ZigBee coordinator.  As long as the
+device is supported (see
+&lt;a href="https://zigbee.blakadder.com/index.html"&gt;compatibility list&lt;/a&gt; ) things are fairly
+easy and simple.&lt;/p&gt;
+&lt;p&gt;There are multiple options for ZigBee support.  I opted for ZHA because it has
+fairly good device support and is easy to use and set-up.&lt;/p&gt;
+&lt;p&gt;The alternatives are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.zigbee2mqtt.io/"&gt;Zibgee2MQTT&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Good for power users, execellent configuratbility and the best device support&lt;/li&gt;
+&lt;li&gt;It can be complicated.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dresden-elektronik.github.io/deconz-rest-doc/"&gt;deCONZ Add-On&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Made by the ConBee2 developers.  There are no real benefits to using
+    this integration.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="z-wave-automation"&gt;Z-Wave automation&lt;/h3&gt;
+&lt;p&gt;For Z-Wave I am using the
+&lt;a href="https://www.home-assistant.io/integrations/zwave_js"&gt;Z-Wave JS&lt;/a&gt;
+integration paired with a
+&lt;a href="https://aeotec.com/products/aeotec-z-stick-gen5/"&gt;Aeotec Z-Stick Gen5&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I am using the
+&lt;a href="https://github.com/hassio-addons/addon-zwave-js-ui"&gt;Z-Wave JS UI&lt;/a&gt;
+from Community Add-ons because that gives you a control panel
+user interface that is handy when debugging obscure Z-Wave issues and
+also has support for creating direct node group associations.&lt;/p&gt;
+&lt;p&gt;In most day to day situations, I don't really use this control panel, as
+most operations can be done from the &lt;a href="https://www.home-assistant.io/"&gt;Home Assistant&lt;/a&gt; integration
+directly.&lt;/p&gt;
+&lt;p&gt;When adding this, it is &lt;em&gt;not&lt;/em&gt; possible to do it from the auto-discovered
+&lt;em&gt;z-stick gen5&lt;/em&gt; as that will automatically install the core Z-Wave JS add-on.
+So just ignore it and use the &lt;code&gt;Add Integration&lt;/code&gt; functionality and pick
+&lt;code&gt;Z-Wave JS&lt;/code&gt; integration from the menu.  This will let you skip the
+standard add-on installation and let you specify the right Z-Wave JS UI add-on
+instead.&lt;/p&gt;
+&lt;h3 id="other-integrations"&gt;Other integrations&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.home-assistant.io/integrations/buienradar"&gt;Buienradar&lt;/a&gt; : Dutch
+  weather data.  Just add it and it works mostly out of the box.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.home-assistant.io/integrations/dlna_dms"&gt;DLNA media servers&lt;/a&gt; :
+  these are discovered automatically as long as they are in the same Subnet.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.home-assistant.io/integrations/cast"&gt;Google Cast&lt;/a&gt; :
+  These are also discovered automatically.  Used for Android TV devices and
+  Google Nest speakers/displays.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.home-assistant.io/integrations/ipp"&gt;Printer&lt;/a&gt; : This was
+  automatically discovered.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.home-assistant.io/integrations/waze_travel_time"&gt;Waze Travel Time&lt;/a&gt; :
+  Show the commute time between two points.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.home-assistant.io/integrations/rdw"&gt;Netherlands Vehicle Authority&lt;/a&gt; :
+  Yes, this can be done, but not sure its use.  Maybe to remind you that the APK
+  is due?&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.home-assistant.io/integrations/philips_js/"&gt;Philips TV&lt;/a&gt; :
+  Installing this integration is quite straight forward.  This enables automation
+  options, but I don't know what to do with it yet.  Also has the limitation that
+  it can't be turned on using the API.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.home-assistant.io/integrations/jellyfin/"&gt;Jellyfin&lt;/a&gt; :
+  Add a Jellyfin server as a media source.  Note that only a single Jellyfin
+  can be configured.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="references"&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;https://github.com/home-assistant/operating-system&lt;/li&gt;
+&lt;li&gt;https://developers.home-assistant.io/docs/operating-system/getting-started&lt;/li&gt;
+&lt;/ul&gt;</content><category term="2022"></category><category term="address"></category><category term="android"></category><category term="backups"></category><category term="boot"></category><category term="configuration"></category><category term="device"></category><category term="idea"></category><category term="installation"></category><category term="integration"></category><category term="linux"></category><category term="login"></category><category term="power"></category><category term="raspberry"></category><category term="remote"></category><category term="software"></category></entry><entry><title>Markdown cheat sheet</title><link href="https://0ink.net/posts/2022/2022-10-20-md-cheatsheet.html" rel="alternate"></link><published>2022-10-20T00:00:00+02:00</published><updated>2022-10-12T02:15:39+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-10-20:/posts/2022/2022-10-20-md-cheatsheet.html</id><summary type="html">&lt;p&gt;This is intended as a quick reference and showcase. For more complete info,
 see &lt;a href="http://daringfireball.net/projects/markdown/"&gt;John Gruber's original spec&lt;/a&gt;
 and the &lt;a href="http://github.github.com/github-flavored-markdown/"&gt;Github-flavored Markdown info page&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id="headers"&gt;Headers&lt;/h2&gt;
@@ -499,7 +756,7 @@ This line is only separated by a single newline, so it's a separate line in the 
 &lt;hr&gt;
 &lt;p&gt;Output:&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;&lt;img src="data:image/svg+xml;charset=utf-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3C%21DOCTYPE%20svg%20PUBLIC%20%22-//W3C//DTD%20SVG%201.1//EN%22%0A%20%22http%3A//www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd%22%3E%0A%3C%21--%20Generated%20by%20graphviz%20version%206.0.1%20%280%29%0A%20--%3E%0A%3C%21--%20Title%3A%20NET%20Pages%3A%201%20--%3E%0A%3Csvg%20width%3D%22422pt%22%20height%3D%22410pt%22%0A%20viewBox%3D%220.00%200.00%20422.00%20410.19%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%3E%0A%3Cg%20id%3D%22graph0%22%20class%3D%22graph%22%20transform%3D%22scale%281%201%29%20rotate%280%29%20translate%284%20406.19%29%22%3E%0A%3Ctitle%3ENET%3C/title%3E%0A%3Cpolygon%20fill%3D%22white%22%20stroke%3D%22none%22%20points%3D%22-4%2C4%20-4%2C-406.19%20418%2C-406.19%20418%2C4%20-4%2C4%22/%3E%0A%3C%21--%20kpnmodem%20--%3E%0A%3Cg%20id%3D%22node1%22%20class%3D%22node%22%3E%0A%3Ctitle%3Ekpnmodem%3C/title%3E%0A%3Cpolygon%20fill%3D%22white%22%20stroke%3D%22black%22%20points%3D%22151.85%2C-113.55%2056.85%2C-113.55%2056.85%2C-77.55%20151.85%2C-77.55%20151.85%2C-113.55%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22104.35%22%20y%3D%22-91.85%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Ekpnmodem%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20cn4%20--%3E%0A%3Cg%20id%3D%22node6%22%20class%3D%22node%22%3E%0A%3Ctitle%3Ecn4%3C/title%3E%0A%3Cpolygon%20fill%3D%22silver%22%20stroke%3D%22black%22%20points%3D%22167.62%2C-186.94%20113.62%2C-186.94%20113.62%2C-150.94%20167.62%2C-150.94%20167.62%2C-186.94%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22140.62%22%20y%3D%22-165.24%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Ecn4%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20kpnmodem%26%2345%3B%26%2345%3Bcn4%20--%3E%0A%3Cg%20id%3D%22edge1%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Ekpnmodem%26%2345%3B%26%2345%3Bcn4%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M113.31%2C-113.69C118.9%2C-124.99%20126.05%2C-139.46%20131.63%2C-150.76%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22117.97%22%20y%3D%22-134.63%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev2%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22126.63%22%20y%3D%22-145.16%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep2%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22108.31%22%20y%3D%22-116.09%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep1%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20iptv1%20--%3E%0A%3Cg%20id%3D%22node7%22%20class%3D%22node%22%3E%0A%3Ctitle%3Eiptv1%3C/title%3E%0A%3Cpolygon%20fill%3D%22silver%22%20stroke%3D%22black%22%20points%3D%2254%2C-93.45%200%2C-93.45%200%2C-57.45%2054%2C-57.45%2054%2C-93.45%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%2227%22%20y%3D%22-71.75%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Eiptv1%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20kpnmodem%26%2345%3B%26%2345%3Biptv1%20--%3E%0A%3Cg%20id%3D%22edge2%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Ekpnmodem%26%2345%3B%26%2345%3Biptv1%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M56.68%2C-83.16C55.81%2C-82.94%2054.95%2C-82.71%2054.09%2C-82.49%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%2271.39%22%20y%3D%22-77.23%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev2%20%28p%237%29%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%2251.68%22%20y%3D%22-85.56%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep2%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20veraedge1%20--%3E%0A%3Cg%20id%3D%22node8%22%20class%3D%22node%22%3E%0A%3Ctitle%3Everaedge1%3C/title%3E%0A%3Cpolygon%20fill%3D%22silver%22%20stroke%3D%22black%22%20points%3D%22171.91%2C-36%2079.91%2C-36%2079.91%2C0%20171.91%2C0%20171.91%2C-36%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22125.91%22%20y%3D%22-14.3%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Everaedge1%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20kpnmodem%26%2345%3B%26%2345%3Bveraedge1%20--%3E%0A%3Cg%20id%3D%22edge3%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Ekpnmodem%26%2345%3B%26%2345%3Bveraedge1%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M109.46%2C-77.17C112.89%2C-64.81%20117.41%2C-48.58%20120.84%2C-36.25%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22110.65%22%20y%3D%22-59.11%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev2%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22104.46%22%20y%3D%22-71.57%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep4%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs1%20--%3E%0A%3Cg%20id%3D%22node2%22%20class%3D%22node%22%3E%0A%3Ctitle%3Engs1%3C/title%3E%0A%3Cpolygon%20fill%3D%22lightblue%22%20stroke%3D%22black%22%20points%3D%22215.66%2C-259.16%20161.66%2C-259.16%20161.66%2C-223.16%20215.66%2C-223.16%20215.66%2C-259.16%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22188.66%22%20y%3D%22-237.46%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Engs1%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs2%20--%3E%0A%3Cg%20id%3D%22node3%22%20class%3D%22node%22%3E%0A%3Ctitle%3Engs2%3C/title%3E%0A%3Cpolygon%20fill%3D%22lightblue%22%20stroke%3D%22black%22%20points%3D%22257.87%2C-196.42%20203.87%2C-196.42%20203.87%2C-160.42%20257.87%2C-160.42%20257.87%2C-196.42%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22230.87%22%20y%3D%22-174.72%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Engs2%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs1%26%2345%3B%26%2345%3Bngs2%20--%3E%0A%3Cg%20id%3D%22edge5%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Engs1%26%2345%3B%26%2345%3Bngs2%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M200.87%2C-223.01C206.42%2C-214.76%20212.98%2C-205.02%20218.54%2C-196.75%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22190.21%22%20y%3D%22-212.28%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev1%2C3%20%28p%234%29%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22213.54%22%20y%3D%22-199.15%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep1%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22195.87%22%20y%3D%22-217.41%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep1%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs3%20--%3E%0A%3Cg%20id%3D%22node4%22%20class%3D%22node%22%3E%0A%3Ctitle%3Engs3%3C/title%3E%0A%3Cpolygon%20fill%3D%22lightblue%22%20stroke%3D%22black%22%20points%3D%22156.72%2C-321.63%20102.72%2C-321.63%20102.72%2C-285.63%20156.72%2C-285.63%20156.72%2C-321.63%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22129.72%22%20y%3D%22-299.93%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Engs3%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs1%26%2345%3B%26%2345%3Bngs3%20--%3E%0A%3Cg%20id%3D%22edge6%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Engs1%26%2345%3B%26%2345%3Bngs3%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20d%3D%22M171.62%2C-259.23C163.86%2C-267.44%20154.71%2C-277.15%20146.94%2C-285.39%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22151.28%22%20y%3D%22-274.71%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev1%2C3%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22138.94%22%20y%3D%22-279.79%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep1%2C8%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22163.62%22%20y%3D%22-261.63%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep8%2C9%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20cctv_sw%20--%3E%0A%3Cg%20id%3D%22node5%22%20class%3D%22node%22%3E%0A%3Ctitle%3Ecctv_sw%3C/title%3E%0A%3Cpolygon%20fill%3D%22lightgreen%22%20stroke%3D%22black%22%20points%3D%22308.65%2C-289.59%20236.65%2C-289.59%20236.65%2C-253.59%20308.65%2C-253.59%20308.65%2C-289.59%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22272.65%22%20y%3D%22-267.89%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Ecctv_sw%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs1%26%2345%3B%26%2345%3Bcctv_sw%20--%3E%0A%3Cg%20id%3D%22edge7%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Engs1%26%2345%3B%26%2345%3Bcctv_sw%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M215.7%2C-250.95C222.32%2C-253.35%20229.5%2C-255.96%20236.47%2C-258.48%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22221.59%22%20y%3D%22-257.12%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev3%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22231.47%22%20y%3D%22-260.88%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep5%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22220.7%22%20y%3D%22-245.35%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep7%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs1%26%2345%3B%26%2345%3Bcn4%20--%3E%0A%3Cg%20id%3D%22edge4%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Engs1%26%2345%3B%26%2345%3Bcn4%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M176.54%2C-222.93C169.26%2C-211.99%20160.02%2C-198.11%20152.74%2C-187.16%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22156.64%22%20y%3D%22-207.45%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev1%2C3%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22147.74%22%20y%3D%22-189.56%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep0%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22169.54%22%20y%3D%22-217.33%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep10%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20nd2%20--%3E%0A%3Cg%20id%3D%22node9%22%20class%3D%22node%22%3E%0A%3Ctitle%3End2%3C/title%3E%0A%3Cpolygon%20fill%3D%22silver%22%20stroke%3D%22black%22%20points%3D%2277.94%2C-337.76%2023.94%2C-337.76%2023.94%2C-301.76%2077.94%2C-301.76%2077.94%2C-337.76%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%2250.94%22%20y%3D%22-316.06%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3End2%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs3%26%2345%3B%26%2345%3Bnd2%20--%3E%0A%3Cg%20id%3D%22edge8%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Engs3%26%2345%3B%26%2345%3Bnd2%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M102.61%2C-309.18C94.69%2C-310.81%2086.03%2C-312.58%2078.1%2C-314.2%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%2294.36%22%20y%3D%22-306.09%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev1%2C3%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%2297.61%22%20y%3D%22-311.58%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep7%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20nd3%20--%3E%0A%3Cg%20id%3D%22node10%22%20class%3D%22node%22%3E%0A%3Ctitle%3End3%3C/title%3E%0A%3Cpolygon%20fill%3D%22silver%22%20stroke%3D%22black%22%20points%3D%22147.23%2C-402.19%2093.23%2C-402.19%2093.23%2C-366.19%20147.23%2C-366.19%20147.23%2C-402.19%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22120.23%22%20y%3D%22-380.49%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3End3%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs3%26%2345%3B%26%2345%3Bnd3%20--%3E%0A%3Cg%20id%3D%22edge9%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Engs3%26%2345%3B%26%2345%3Bnd3%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M127.57%2C-321.91C126.02%2C-335.1%20123.93%2C-352.82%20122.38%2C-365.98%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22116.97%22%20y%3D%22-346.35%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev1%2C3%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22122.57%22%20y%3D%22-324.31%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep8%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ipcam1%20--%3E%0A%3Cg%20id%3D%22node16%22%20class%3D%22node%22%3E%0A%3Ctitle%3Eipcam1%3C/title%3E%0A%3Cpolygon%20fill%3D%22yellow%22%20stroke%3D%22black%22%20points%3D%22373.88%2C-237.6%20305.88%2C-237.6%20305.88%2C-201.6%20373.88%2C-201.6%20373.88%2C-237.6%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22339.88%22%20y%3D%22-215.9%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Eipcam1%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20cctv_sw%26%2345%3B%26%2345%3Bipcam1%20--%3E%0A%3Cg%20id%3D%22edge10%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Ecctv_sw%26%2345%3B%26%2345%3Bipcam1%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M296.16%2C-253.41C302.67%2C-248.37%20309.74%2C-242.91%20316.26%2C-237.86%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22301.71%22%20y%3D%22-248.04%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev3%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22291.16%22%20y%3D%22-247.81%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep1%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ipcam2%20--%3E%0A%3Cg%20id%3D%22node17%22%20class%3D%22node%22%3E%0A%3Ctitle%3Eipcam2%3C/title%3E%0A%3Cpolygon%20fill%3D%22yellow%22%20stroke%3D%22black%22%20points%3D%22319.22%2C-370.72%20251.22%2C-370.72%20251.22%2C-334.72%20319.22%2C-334.72%20319.22%2C-370.72%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22285.22%22%20y%3D%22-349.02%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Eipcam2%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20cctv_sw%26%2345%3B%26%2345%3Bipcam2%20--%3E%0A%3Cg%20id%3D%22edge11%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Ecctv_sw%26%2345%3B%26%2345%3Bipcam2%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M275.44%2C-289.6C277.51%2C-302.95%20280.32%2C-321.08%20282.4%2C-334.49%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22262.92%22%20y%3D%22-314.44%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev3%20%28p%231%29%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22270.44%22%20y%3D%22-292%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep2%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ipcam3%20--%3E%0A%3Cg%20id%3D%22node18%22%20class%3D%22node%22%3E%0A%3Ctitle%3Eipcam3%3C/title%3E%0A%3Cpolygon%20fill%3D%22yellow%22%20stroke%3D%22black%22%20points%3D%22381.57%2C-318.32%20313.57%2C-318.32%20313.57%2C-282.32%20381.57%2C-282.32%20381.57%2C-318.32%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22347.57%22%20y%3D%22-296.62%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Eipcam3%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20cctv_sw%26%2345%3B%26%2345%3Bipcam3%20--%3E%0A%3Cg%20id%3D%22edge12%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Ecctv_sw%26%2345%3B%26%2345%3Bipcam3%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M308.79%2C-285.45C310.29%2C-286.03%20311.79%2C-286.6%20313.28%2C-287.17%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22295.04%22%20y%3D%22-288.71%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev3%20%28p%235%29%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22313.79%22%20y%3D%22-279.85%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep3%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20philtv%20--%3E%0A%3Cg%20id%3D%22node11%22%20class%3D%22node%22%3E%0A%3Ctitle%3Ephiltv%3C/title%3E%0A%3Cpolygon%20fill%3D%22silver%22%20stroke%3D%22black%22%20points%3D%22346%2C-162%20288%2C-162%20288%2C-126%20346%2C-126%20346%2C-162%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22317%22%20y%3D%22-140.3%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Ephiltv%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20wac1%20--%3E%0A%3Cg%20id%3D%22node12%22%20class%3D%22node%22%3E%0A%3Ctitle%3Ewac1%3C/title%3E%0A%3Cpolygon%20fill%3D%22yellow%22%20stroke%3D%22black%22%20points%3D%22342%2C-90%20288%2C-90%20288%2C-54%20342%2C-54%20342%2C-90%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22315%22%20y%3D%22-68.3%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Ewac1%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20wac2%20--%3E%0A%3Cg%20id%3D%22node13%22%20class%3D%22node%22%3E%0A%3Ctitle%3Ewac2%3C/title%3E%0A%3Cpolygon%20fill%3D%22yellow%22%20stroke%3D%22black%22%20points%3D%22126%2C-252%2072%2C-252%2072%2C-216%20126%2C-216%20126%2C-252%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%2299%22%20y%3D%22-230.3%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Ewac2%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20wac3%20--%3E%0A%3Cg%20id%3D%22node14%22%20class%3D%22node%22%3E%0A%3Ctitle%3Ewac3%3C/title%3E%0A%3Cpolygon%20fill%3D%22yellow%22%20stroke%3D%22black%22%20points%3D%22414%2C-396%20360%2C-396%20360%2C-360%20414%2C-360%20414%2C-396%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22387%22%20y%3D%22-374.3%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Ewac3%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20owap1%20--%3E%0A%3Cg%20id%3D%22node15%22%20class%3D%22node%22%3E%0A%3Ctitle%3Eowap1%3C/title%3E%0A%3Cpolygon%20fill%3D%22yellow%22%20stroke%3D%22black%22%20points%3D%22261%2C-126%20198%2C-126%20198%2C-90%20261%2C-90%20261%2C-126%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22229.5%22%20y%3D%22-104.3%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Eowap1%3C/text%3E%0A%3C/g%3E%0A%3C/g%3E%0A%3C/svg%3E%0A"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="data:image/svg+xml;charset=utf-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3C%21DOCTYPE%20svg%20PUBLIC%20%22-//W3C//DTD%20SVG%201.1//EN%22%0A%20%22http%3A//www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd%22%3E%0A%3C%21--%20Generated%20by%20graphviz%20version%207.0.0%20%280%29%0A%20--%3E%0A%3C%21--%20Title%3A%20NET%20Pages%3A%201%20--%3E%0A%3Csvg%20width%3D%22422pt%22%20height%3D%22410pt%22%0A%20viewBox%3D%220.00%200.00%20422.00%20410.19%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%3E%0A%3Cg%20id%3D%22graph0%22%20class%3D%22graph%22%20transform%3D%22scale%281%201%29%20rotate%280%29%20translate%284%20406.19%29%22%3E%0A%3Ctitle%3ENET%3C/title%3E%0A%3Cpolygon%20fill%3D%22white%22%20stroke%3D%22none%22%20points%3D%22-4%2C4%20-4%2C-406.19%20418%2C-406.19%20418%2C4%20-4%2C4%22/%3E%0A%3C%21--%20kpnmodem%20--%3E%0A%3Cg%20id%3D%22node1%22%20class%3D%22node%22%3E%0A%3Ctitle%3Ekpnmodem%3C/title%3E%0A%3Cpolygon%20fill%3D%22white%22%20stroke%3D%22black%22%20points%3D%22151.85%2C-113.55%2056.85%2C-113.55%2056.85%2C-77.55%20151.85%2C-77.55%20151.85%2C-113.55%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22104.35%22%20y%3D%22-91.85%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Ekpnmodem%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20cn4%20--%3E%0A%3Cg%20id%3D%22node6%22%20class%3D%22node%22%3E%0A%3Ctitle%3Ecn4%3C/title%3E%0A%3Cpolygon%20fill%3D%22silver%22%20stroke%3D%22black%22%20points%3D%22167.62%2C-186.94%20113.62%2C-186.94%20113.62%2C-150.94%20167.62%2C-150.94%20167.62%2C-186.94%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22140.62%22%20y%3D%22-165.24%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Ecn4%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20kpnmodem%26%2345%3B%26%2345%3Bcn4%20--%3E%0A%3Cg%20id%3D%22edge1%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Ekpnmodem%26%2345%3B%26%2345%3Bcn4%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M113.31%2C-113.69C118.85%2C-124.9%20125.94%2C-139.24%20131.51%2C-150.5%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22117.91%22%20y%3D%22-134.5%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev2%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22126.51%22%20y%3D%22-144.9%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep2%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22108.31%22%20y%3D%22-116.09%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep1%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20iptv1%20--%3E%0A%3Cg%20id%3D%22node7%22%20class%3D%22node%22%3E%0A%3Ctitle%3Eiptv1%3C/title%3E%0A%3Cpolygon%20fill%3D%22silver%22%20stroke%3D%22black%22%20points%3D%2254%2C-93.45%200%2C-93.45%200%2C-57.45%2054%2C-57.45%2054%2C-93.45%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%2227%22%20y%3D%22-71.75%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Eiptv1%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20kpnmodem%26%2345%3B%26%2345%3Biptv1%20--%3E%0A%3Cg%20id%3D%22edge2%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Ekpnmodem%26%2345%3B%26%2345%3Biptv1%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M56.68%2C-83.16C55.94%2C-82.97%2055.2%2C-82.78%2054.46%2C-82.59%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%2271.57%22%20y%3D%22-77.28%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev2%20%28p%237%29%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%2251.68%22%20y%3D%22-85.56%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep2%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20veraedge1%20--%3E%0A%3Cg%20id%3D%22node8%22%20class%3D%22node%22%3E%0A%3Ctitle%3Everaedge1%3C/title%3E%0A%3Cpolygon%20fill%3D%22silver%22%20stroke%3D%22black%22%20points%3D%22171.91%2C-36%2079.91%2C-36%2079.91%2C0%20171.91%2C0%20171.91%2C-36%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22125.91%22%20y%3D%22-14.3%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Everaedge1%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20kpnmodem%26%2345%3B%26%2345%3Bveraedge1%20--%3E%0A%3Cg%20id%3D%22edge3%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Ekpnmodem%26%2345%3B%26%2345%3Bveraedge1%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M109.46%2C-77.17C112.89%2C-64.81%20117.41%2C-48.58%20120.84%2C-36.25%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22110.65%22%20y%3D%22-59.11%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev2%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22104.46%22%20y%3D%22-71.57%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep4%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs1%20--%3E%0A%3Cg%20id%3D%22node2%22%20class%3D%22node%22%3E%0A%3Ctitle%3Engs1%3C/title%3E%0A%3Cpolygon%20fill%3D%22lightblue%22%20stroke%3D%22black%22%20points%3D%22215.66%2C-259.16%20161.66%2C-259.16%20161.66%2C-223.16%20215.66%2C-223.16%20215.66%2C-259.16%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22188.66%22%20y%3D%22-237.46%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Engs1%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs2%20--%3E%0A%3Cg%20id%3D%22node3%22%20class%3D%22node%22%3E%0A%3Ctitle%3Engs2%3C/title%3E%0A%3Cpolygon%20fill%3D%22lightblue%22%20stroke%3D%22black%22%20points%3D%22257.87%2C-196.42%20203.87%2C-196.42%20203.87%2C-160.42%20257.87%2C-160.42%20257.87%2C-196.42%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22230.87%22%20y%3D%22-174.72%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Engs2%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs1%26%2345%3B%26%2345%3Bngs2%20--%3E%0A%3Cg%20id%3D%22edge5%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Engs1%26%2345%3B%26%2345%3Bngs2%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M201.1%2C-222.67C206.64%2C-214.43%20213.15%2C-204.76%20218.67%2C-196.56%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22190.38%22%20y%3D%22-212.02%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev1%2C3%20%28p%234%29%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22213.67%22%20y%3D%22-198.96%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep1%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22206.1%22%20y%3D%22-217.07%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep1%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs3%20--%3E%0A%3Cg%20id%3D%22node4%22%20class%3D%22node%22%3E%0A%3Ctitle%3Engs3%3C/title%3E%0A%3Cpolygon%20fill%3D%22lightblue%22%20stroke%3D%22black%22%20points%3D%22156.72%2C-321.63%20102.72%2C-321.63%20102.72%2C-285.63%20156.72%2C-285.63%20156.72%2C-321.63%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22129.72%22%20y%3D%22-299.93%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Engs3%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs1%26%2345%3B%26%2345%3Bngs3%20--%3E%0A%3Cg%20id%3D%22edge6%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Engs1%26%2345%3B%26%2345%3Bngs3%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20d%3D%22M171.3%2C-259.56C163.69%2C-267.63%20154.78%2C-277.07%20147.17%2C-285.14%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22151.23%22%20y%3D%22-274.75%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev1%2C3%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22139.17%22%20y%3D%22-279.54%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep1%2C8%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22163.3%22%20y%3D%22-261.96%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep8%2C9%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20cctv_sw%20--%3E%0A%3Cg%20id%3D%22node5%22%20class%3D%22node%22%3E%0A%3Ctitle%3Ecctv_sw%3C/title%3E%0A%3Cpolygon%20fill%3D%22lightgreen%22%20stroke%3D%22black%22%20points%3D%22308.65%2C-289.59%20236.65%2C-289.59%20236.65%2C-253.59%20308.65%2C-253.59%20308.65%2C-289.59%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22272.65%22%20y%3D%22-267.89%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Ecctv_sw%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs1%26%2345%3B%26%2345%3Bcctv_sw%20--%3E%0A%3Cg%20id%3D%22edge7%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Engs1%26%2345%3B%26%2345%3Bcctv_sw%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M216.16%2C-251.12C222.57%2C-253.45%20229.5%2C-255.95%20236.23%2C-258.39%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22221.69%22%20y%3D%22-257.16%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev3%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22231.23%22%20y%3D%22-260.79%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep5%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22221.16%22%20y%3D%22-245.52%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep7%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs1%26%2345%3B%26%2345%3Bcn4%20--%3E%0A%3Cg%20id%3D%22edge4%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Engs1%26%2345%3B%26%2345%3Bcn4%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M176.54%2C-222.93C169.31%2C-212.07%20160.16%2C-198.32%20152.91%2C-187.41%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22156.72%22%20y%3D%22-207.57%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev1%2C3%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22147.91%22%20y%3D%22-189.81%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep0%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22169.54%22%20y%3D%22-217.33%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep10%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20nd2%20--%3E%0A%3Cg%20id%3D%22node9%22%20class%3D%22node%22%3E%0A%3Ctitle%3End2%3C/title%3E%0A%3Cpolygon%20fill%3D%22silver%22%20stroke%3D%22black%22%20points%3D%2277.94%2C-337.76%2023.94%2C-337.76%2023.94%2C-301.76%2077.94%2C-301.76%2077.94%2C-337.76%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%2250.94%22%20y%3D%22-316.06%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3End2%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs3%26%2345%3B%26%2345%3Bnd2%20--%3E%0A%3Cg%20id%3D%22edge8%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Engs3%26%2345%3B%26%2345%3Bnd2%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M102.61%2C-309.18C94.78%2C-310.79%2086.22%2C-312.54%2078.37%2C-314.15%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%2294.49%22%20y%3D%22-306.06%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev1%2C3%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%2297.61%22%20y%3D%22-311.58%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep7%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20nd3%20--%3E%0A%3Cg%20id%3D%22node10%22%20class%3D%22node%22%3E%0A%3Ctitle%3End3%3C/title%3E%0A%3Cpolygon%20fill%3D%22silver%22%20stroke%3D%22black%22%20points%3D%22147.23%2C-402.19%2093.23%2C-402.19%2093.23%2C-366.19%20147.23%2C-366.19%20147.23%2C-402.19%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22120.23%22%20y%3D%22-380.49%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3End3%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ngs3%26%2345%3B%26%2345%3Bnd3%20--%3E%0A%3Cg%20id%3D%22edge9%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Engs3%26%2345%3B%26%2345%3Bnd3%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M127.57%2C-321.91C126.03%2C-335%20123.96%2C-352.57%20122.41%2C-365.71%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22116.99%22%20y%3D%22-346.21%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev1%2C3%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22122.57%22%20y%3D%22-324.31%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep8%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ipcam1%20--%3E%0A%3Cg%20id%3D%22node16%22%20class%3D%22node%22%3E%0A%3Ctitle%3Eipcam1%3C/title%3E%0A%3Cpolygon%20fill%3D%22yellow%22%20stroke%3D%22black%22%20points%3D%22373.87%2C-237.6%20305.87%2C-237.6%20305.87%2C-201.6%20373.87%2C-201.6%20373.87%2C-237.6%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22339.87%22%20y%3D%22-215.9%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Eipcam1%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20cctv_sw%26%2345%3B%26%2345%3Bipcam1%20--%3E%0A%3Cg%20id%3D%22edge10%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Ecctv_sw%26%2345%3B%26%2345%3Bipcam1%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M296.54%2C-253.12C302.88%2C-248.21%20309.72%2C-242.92%20316.06%2C-238.02%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22301.8%22%20y%3D%22-247.97%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev3%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22291.54%22%20y%3D%22-247.52%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep1%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ipcam2%20--%3E%0A%3Cg%20id%3D%22node17%22%20class%3D%22node%22%3E%0A%3Ctitle%3Eipcam2%3C/title%3E%0A%3Cpolygon%20fill%3D%22yellow%22%20stroke%3D%22black%22%20points%3D%22319.22%2C-370.72%20251.22%2C-370.72%20251.22%2C-334.72%20319.22%2C-334.72%20319.22%2C-370.72%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22285.22%22%20y%3D%22-349.02%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Eipcam2%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20cctv_sw%26%2345%3B%26%2345%3Bipcam2%20--%3E%0A%3Cg%20id%3D%22edge11%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Ecctv_sw%26%2345%3B%26%2345%3Bipcam2%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M275.5%2C-290C277.56%2C-303.28%20280.33%2C-321.12%20282.38%2C-334.38%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22262.94%22%20y%3D%22-314.59%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev3%20%28p%231%29%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22270.5%22%20y%3D%22-292.4%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep2%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20ipcam3%20--%3E%0A%3Cg%20id%3D%22node18%22%20class%3D%22node%22%3E%0A%3Ctitle%3Eipcam3%3C/title%3E%0A%3Cpolygon%20fill%3D%22yellow%22%20stroke%3D%22black%22%20points%3D%22381.57%2C-318.32%20313.57%2C-318.32%20313.57%2C-282.32%20381.57%2C-282.32%20381.57%2C-318.32%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22347.57%22%20y%3D%22-296.62%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Eipcam3%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20cctv_sw%26%2345%3B%26%2345%3Bipcam3%20--%3E%0A%3Cg%20id%3D%22edge12%22%20class%3D%22edge%22%3E%0A%3Ctitle%3Ecctv_sw%26%2345%3B%26%2345%3Bipcam3%3C/title%3E%0A%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20d%3D%22M308.79%2C-285.45C310.29%2C-286.03%20311.79%2C-286.6%20313.28%2C-287.17%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22295.04%22%20y%3D%22-288.71%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ev3%20%28p%235%29%3C/text%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22313.79%22%20y%3D%22-279.85%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%227.00%22%3Ep3%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20philtv%20--%3E%0A%3Cg%20id%3D%22node11%22%20class%3D%22node%22%3E%0A%3Ctitle%3Ephiltv%3C/title%3E%0A%3Cpolygon%20fill%3D%22silver%22%20stroke%3D%22black%22%20points%3D%22346%2C-162%20288%2C-162%20288%2C-126%20346%2C-126%20346%2C-162%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22317%22%20y%3D%22-140.3%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Ephiltv%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20wac1%20--%3E%0A%3Cg%20id%3D%22node12%22%20class%3D%22node%22%3E%0A%3Ctitle%3Ewac1%3C/title%3E%0A%3Cpolygon%20fill%3D%22yellow%22%20stroke%3D%22black%22%20points%3D%22342%2C-90%20288%2C-90%20288%2C-54%20342%2C-54%20342%2C-90%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22315%22%20y%3D%22-68.3%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Ewac1%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20wac2%20--%3E%0A%3Cg%20id%3D%22node13%22%20class%3D%22node%22%3E%0A%3Ctitle%3Ewac2%3C/title%3E%0A%3Cpolygon%20fill%3D%22yellow%22%20stroke%3D%22black%22%20points%3D%22126%2C-252%2072%2C-252%2072%2C-216%20126%2C-216%20126%2C-252%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%2299%22%20y%3D%22-230.3%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Ewac2%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20wac3%20--%3E%0A%3Cg%20id%3D%22node14%22%20class%3D%22node%22%3E%0A%3Ctitle%3Ewac3%3C/title%3E%0A%3Cpolygon%20fill%3D%22yellow%22%20stroke%3D%22black%22%20points%3D%22414%2C-396%20360%2C-396%20360%2C-360%20414%2C-360%20414%2C-396%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22387%22%20y%3D%22-374.3%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Ewac3%3C/text%3E%0A%3C/g%3E%0A%3C%21--%20owap1%20--%3E%0A%3Cg%20id%3D%22node15%22%20class%3D%22node%22%3E%0A%3Ctitle%3Eowap1%3C/title%3E%0A%3Cpolygon%20fill%3D%22yellow%22%20stroke%3D%22black%22%20points%3D%22261%2C-126%20198%2C-126%20198%2C-90%20261%2C-90%20261%2C-126%22/%3E%0A%3Ctext%20text-anchor%3D%22middle%22%20x%3D%22229.5%22%20y%3D%22-104.3%22%20font-family%3D%22Times%2Cserif%22%20font-size%3D%2214.00%22%3Eowap1%3C/text%3E%0A%3C/g%3E%0A%3C/g%3E%0A%3C/svg%3E%0A"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;svg width="300.0" height="76.0" viewBox="0 0 300.0 76.0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
 &lt;!-- automatically generated by aafigure --&gt;&lt;line x1="94.0" y1="10.0" x2="178.0" y2="10.0" stroke="#ff0000" stroke-width="2.0" /&gt;
 &lt;line x1="94.0" y1="10.0" x2="94.0" y2="38.0" stroke="#ff0000" stroke-width="2.0" /&gt;
@@ -2933,7 +3190,11 @@ REG_DWORD ProxyEnable = 0
 &lt;span class="k"&gt;set&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;conn&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;[&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nb"&gt;http&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;geturl&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$pacURL&lt;/span&gt;&lt;span class="k"&gt;]&lt;/span&gt;
 &lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nb"&gt;http&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;wait&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$conn&lt;/span&gt;
 &lt;span class="nb"&gt;puts&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;[&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nb"&gt;http&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;data&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$conn&lt;/span&gt;&lt;span class="k"&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="2020"></category></entry><entry><title>Using XScreenSaver Hacks with mate-screensaver</title><link href="https://0ink.net/posts/2020/2020-03-19-mate-screensaver-hacks.html" rel="alternate"></link><published>2020-03-19T00:00:00+01:00</published><updated>2021-12-26T20:53:13+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2020-03-19:/posts/2020/2020-03-19-mate-screensaver-hacks.html</id><summary type="html">&lt;p&gt;Here we explain how to use &lt;a href="https://www.jwz.org/xscreensaver/"&gt;XScreenSaver&lt;/a&gt; &lt;strong&gt;EXCELLENT&lt;/strong&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="2020"></category></entry><entry><title>Definiton of maturity</title><link href="https://0ink.net/posts/2020/2020-04-06-maturity.html" rel="alternate"></link><published>2020-04-06T00:00:00+02:00</published><updated>2022-11-02T09:18:10+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2020-04-06:/posts/2020/2020-04-06-maturity.html</id><content type="html">&lt;p&gt;Maturity is:&lt;/p&gt;
+&lt;p&gt;The ability to stick with a job until it’s finished.&lt;/p&gt;
+&lt;p&gt;The ability to do a job without being supervised.&lt;/p&gt;
+&lt;p&gt;The ability to carry money without spending it.&lt;/p&gt;
+&lt;p&gt;And the ability to bear an injustice without wanting to get even.&lt;/p&gt;</content><category term="2020"></category></entry><entry><title>Using XScreenSaver Hacks with mate-screensaver</title><link href="https://0ink.net/posts/2020/2020-03-19-mate-screensaver-hacks.html" rel="alternate"></link><published>2020-03-19T00:00:00+01:00</published><updated>2021-12-26T20:53:13+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2020-03-19:/posts/2020/2020-03-19-mate-screensaver-hacks.html</id><summary type="html">&lt;p&gt;Here we explain how to use &lt;a href="https://www.jwz.org/xscreensaver/"&gt;XScreenSaver&lt;/a&gt; &lt;strong&gt;EXCELLENT&lt;/strong&gt;
 screensaver hack collection with the &lt;a href="https://mate-desktop.org/"&gt;MATE&lt;/a&gt; screensaver
 applet.&lt;/p&gt;
 &lt;ul&gt;
@@ -5908,7 +6169,8 @@ captains are excused from this rule).&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://mermaid-js.github.io/mermaid/#/"&gt;mermaid-js&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/aafigure/aafigure"&gt;aafigure&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/ivanceras/svgbob"&gt;svgbob&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><category term="2018"></category><category term="application"></category><category term="editor"></category><category term="java"></category></entry><entry><title>6 Cloud-Based Tools To Help You Build A Web App With Ease</title><link href="https://0ink.net/posts/2018/2018-06-06-web-app-build-tools.html" rel="alternate"></link><published>2018-06-06T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2018-06-06:/posts/2018/2018-06-06-web-app-build-tools.html</id><summary type="html">&lt;p&gt;In just a relatively short amount of time, building mobile apps has
+&lt;/ul&gt;</content><category term="2018"></category><category term="application"></category><category term="editor"></category><category term="java"></category></entry><entry><title>Project Requirements</title><link href="https://0ink.net/posts/2018/2018-06-07-project-requirements.html" rel="alternate"></link><published>2018-06-07T00:00:00+02:00</published><updated>2022-11-02T09:18:10+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2018-06-07:/posts/2018/2018-06-07-project-requirements.html</id><content type="html">&lt;p&gt;This is sometimes so true!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Project Requirements Image" src="/images/2018/requirements_accavdar.jpg"&gt;&lt;/p&gt;</content><category term="2018"></category></entry><entry><title>6 Cloud-Based Tools To Help You Build A Web App With Ease</title><link href="https://0ink.net/posts/2018/2018-06-06-web-app-build-tools.html" rel="alternate"></link><published>2018-06-06T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2018-06-06:/posts/2018/2018-06-06-web-app-build-tools.html</id><summary type="html">&lt;p&gt;In just a relatively short amount of time, building mobile apps has
 transformed from a process that included lots of knowledge in
 developing into something that almost anyone can do. Cloud-based tools
 are quickly becoming the norm for app developers, and these are some
@@ -6988,7 +7250,326 @@ through them and bookmark the ones that meet your needs.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://school.discoveryeducation.com/clipart/"&gt;Discovery Education&lt;/a&gt; : Discovery is one of the more &lt;a href="https://www.makeuseof.com/tag/10-video-websites-kids-safe-fun/"&gt;kid-friendly websites&lt;/a&gt; you can visit on the web. Go straight to the space devoted for clip arts tucked away among their educational videos and curricular resources. The graphics are excellent and cover most of the categories (including animated clip arts) you would need to complete any school assignment. The designs are consistent because they are made by one designer.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://commons.wikimedia.org/wiki/Main_Page"&gt;Wikimedia Commons&lt;/a&gt; : This is arguably the largest collection of free images on the web. So far there are &lt;em&gt;38,205,390&lt;/em&gt; freely usable media files and it is always open for contribution from anyone in the world. Use the search box at the top to ferret the files you want to use. As a regular user, you can take advantage of the syndicated feeds to grab the latest images that come into the archive.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;From &lt;a href="http://www.makeuseof.com/tag/the-best-websites-for-free-clipart-downloads/"&gt;makeuseof&lt;/a&gt;&lt;/p&gt;</content><category term="2017"></category><category term="database"></category><category term="domain"></category><category term="library"></category></entry><entry><title>Kivy</title><link href="https://0ink.net/posts/2017/2017-03-19-kivy.html" rel="alternate"></link><published>2017-03-19T00:00:00+01:00</published><updated>2022-03-03T22:34:42+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2017-03-19:/posts/2017/2017-03-19-kivy.html</id><summary type="html">&lt;p&gt;Today I want to briefly write about &lt;a href="https://kivy.org/"&gt;kivy&lt;/a&gt;.  &lt;a href="https://kivy.org/"&gt;kivy&lt;/a&gt; is an
+&lt;p&gt;From &lt;a href="http://www.makeuseof.com/tag/the-best-websites-for-free-clipart-downloads/"&gt;makeuseof&lt;/a&gt;&lt;/p&gt;</content><category term="2017"></category><category term="database"></category><category term="domain"></category><category term="library"></category></entry><entry><title>Anti Roboto skills</title><link href="https://0ink.net/posts/2017/2017-03-30-anti-robot-skills.html" rel="alternate"></link><published>2017-03-30T00:00:00+02:00</published><updated>2022-11-02T09:18:10+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2017-03-30:/posts/2017/2017-03-30-anti-robot-skills.html</id><summary type="html">&lt;p&gt;Losing your job to robots is no longer a sci-fi fantasy.&lt;/p&gt;
+&lt;p&gt;Some estimates say, robots may take over more than five million jobs
+across 15 developed countries. Machines could account for more than
+half the workforce in places like Cambodia and Indonesia, particularly
+in the garment industry.&lt;/p&gt;
+&lt;p&gt;While such information …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Losing your job to robots is no longer a sci-fi fantasy.&lt;/p&gt;
+&lt;p&gt;Some estimates say, robots may take over more than five million jobs
+across 15 developed countries. Machines could account for more than
+half the workforce in places like Cambodia and Indonesia, particularly
+in the garment industry.&lt;/p&gt;
+&lt;p&gt;While such information has led many people to seek out higher-tech
+skills, others have said we need a stronger emphasis on trade skills
+to combat the high competition in tech fields. In one 2016 survey, 60
+percent of respondents wanted more emphasis on Shop classes in high
+schools, while a 2015 Gallup poll found that 90 percent of parents
+want computer sciences emphasized in schools.&lt;/p&gt;
+&lt;p&gt;The good news. There are some skills robots can't embody, and if you
+have them, there's no need to worry about losing your job due to
+robotic advancements. Better yet, many of them are transferrable,
+meaning they can help you advance your career, even if you need to
+change industries.&lt;/p&gt;
+&lt;p&gt;Here are eight skills that can keep your job from being handed off
+to a robot.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Complex Problem-Solving Skills&lt;/li&gt;
+&lt;li&gt;Project and Personnel Management Skills&lt;/li&gt;
+&lt;li&gt;Athletic Skills&lt;/li&gt;
+&lt;li&gt;Confidence and Leadership Skills&lt;/li&gt;
+&lt;li&gt;Critical Thinking and Judgment Skills&lt;/li&gt;
+&lt;li&gt;Empathy Skills&lt;/li&gt;
+&lt;li&gt;Listening Skills&lt;/li&gt;
+&lt;li&gt;Robotics and Hardware Repair&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Source: &lt;a href="http://www.makeuseof.com/tag/job-skills-robot/"&gt;makeuseof&lt;/a&gt;&lt;/p&gt;</content><category term="2017"></category><category term="computer"></category><category term="information"></category><category term="management"></category></entry><entry><title>manage busyness</title><link href="https://0ink.net/posts/2017/2017-03-24-manage-busyness.html" rel="alternate"></link><published>2017-03-24T00:00:00+01:00</published><updated>2022-11-02T09:18:10+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2017-03-24:/posts/2017/2017-03-24-manage-busyness.html</id><summary type="html">&lt;p&gt;Former United States President Dwight Eisenhower was responsible for
+putting together one of the most important yet fundamentally simple
+to understand concepts in time management. Eisenhower's
+Urgent/Important Principle is a tool to help decipher what tasks need
+to be addressed more immediately than others. Anyone who uses the
+principle …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Former United States President Dwight Eisenhower was responsible for
+putting together one of the most important yet fundamentally simple
+to understand concepts in time management. Eisenhower's
+Urgent/Important Principle is a tool to help decipher what tasks need
+to be addressed more immediately than others. Anyone who uses the
+principle will be better able to organize and orchestrate their
+daily tasks. This skill is especially imperative for busy people
+who find themselves working too hard and still not getting everything
+done.&lt;/p&gt;
+&lt;p&gt;Eisenhower's Urgent/Important Principle places tasks into four
+categories:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Important and Urgent&lt;/li&gt;
+&lt;li&gt;Important but Not Urgent&lt;/li&gt;
+&lt;li&gt;Not Important but Urgent&lt;/li&gt;
+&lt;li&gt;Not Important and Not Urgent&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These four categories are used to label and organize which tasks need
+to be addressed first and which ones can be approached last. By
+asserting something's importance and its urgency, we are better able
+to identify what comes first:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="quadrants" src="/images/2017/covey-time-management-grid.png"&gt;&lt;/p&gt;
+&lt;p&gt;What these quadrants reveal is that identifying which tasks are either
+important or urgent boils down to time management and what makes us
+most efficient. For example, President Obama' former campaign manager
+said in an article by WebMD that Obama valued his time to exercise and
+that it helped fuel him for the rest of his day. According to Obama,
+"The rest of my time will be more productive if you give me my workout
+time." The article goes on in detail about his routine and how he
+values its importance.&lt;/p&gt;
+&lt;p&gt;James Clear, a behavioral psychology writer, noted in a blog post
+that "too often, we use productivity, time management, and optimization
+as an excuse to avoid the really difficult question: 'Do I actually
+need to be doing this?' It is much easier to remain busy and tell
+yourself that you just need to be a little more efficient or to 'work
+a little later tonight' than to endure the pain of eliminating a task
+that you are comfortable with doing, but that isn' the highest and
+best use of your time."&lt;/p&gt;
+&lt;p&gt;Let' take a deeper look at each quadrant, what it means, and how we
+should approach all of our tasks with either urgency or importance
+(or both).&lt;/p&gt;
+&lt;h3 id="urgent-and-important"&gt;Urgent And Important&lt;/h3&gt;
+&lt;p&gt;For Urgent/Important tasks, they can arise unexpectedly or may have
+been left for the last minute. These tasks need to be managed ahead
+of time. Make plans to address these tasks so that they do not become
+stressful activities when it comes close to deadlines. It's also a
+good idea to leave some wiggle room in your daily schedule just in
+case unexpected tasks come about.&lt;/p&gt;
+&lt;p&gt;Assess your deadlines. Are you moving at an appropriate pace to meet
+that deadline?&lt;/p&gt;
+&lt;p&gt;Emergencies happen. Whether they are unexpected meetings or sickness
+or injuries, they can't be put off until later.&lt;/p&gt;
+&lt;p&gt;This will force you to reconsider your task list and how much time
+you have to apply to each quadrant.&lt;/p&gt;
+&lt;h3 id="important-but-not-urgent"&gt;Important But Not Urgent&lt;/h3&gt;
+&lt;p&gt;Not Urgent/Important tasks are integral to personal growth, building
+relationships, and accomplishing long-term professional goals. If these
+tasks are given the proper amount of time, they will not become urgent.
+This will prevent unexpected and last-minute tasks from unexpectedly
+cluttering up your time later on, keeping stress and frustration at
+bay. You'll be able to complete work efficiently and effectively.&lt;/p&gt;
+&lt;p&gt;Exercise is an example of this. Personal growth through exercise is
+not an overnight progress. Training for a run or any other sort of
+competition doesn't begin just days before. Plan your goals ahead of
+time, but leave room for urgent, unexpected tasks.&lt;/p&gt;
+&lt;p&gt;Maintaining your relationships is also important. Keep up with
+friends and family and partners, but be mindful of how much time
+you're alotting here. There is such a thing as putting too much
+time into relationships. Your goals are important, too. If you keep
+putting them off, they'll soon become urgent and you'll become
+stressed. This may affect your relationships in the long run.&lt;/p&gt;
+&lt;h3 id="urgent-but-not-important"&gt;Urgent But Not Important&lt;/h3&gt;
+&lt;p&gt;Urgent/Not Important tasks are cumbersome and get in the way of
+your goals. Responding to phone calls or emails that are not
+pertinent to your goals or attending meetings with people who don't
+bring any value to completing your activities can be wasted time.
+Avoid these if possible and delegate the activities if you can.
+Something to keep in mind: you're saying yes to the person, but no to
+the task.&lt;/p&gt;
+&lt;p&gt;If someone or something requires that you do things for them
+frequently, then it might be best to arrange time for them in one
+larger block of time. This will allow you to focus your energy and
+time on multiple things.&lt;/p&gt;
+&lt;p&gt;Respond to time-sensitive correspondence as needed. Don't wait until
+after a deadline to inform someone when that deadline is:&lt;/p&gt;
+&lt;p&gt;You: "Hey, the class will be starting at noon today."&lt;/p&gt;
+&lt;p&gt;Colleague: "Really? Because it' already 2 P.M.!"&lt;/p&gt;
+&lt;h3 id="not-urgent-and-not-important"&gt;Not Urgent And Not Important&lt;/h3&gt;
+&lt;p&gt;Not Urgent/Not Important tasks should also be avoided. Spending
+time on Facebook or Twitter, watching TV, and shopping (when it's
+not important to completing your tasks to have the things you're
+shopping for) can significantly drain your time. Limit these tasks
+as much as possible. It's not always going to be easy saying no to
+these mostly leisure activities, but it is important to remain
+mindful of how much of that time you're using here.&lt;/p&gt;
+&lt;p&gt;Yes, everyone is talking about the new show on Netflix. They watched
+it this past weekend and are already posting memes and gifs on
+Facebook. This doesn't mean you have to do the same.&lt;/p&gt;
+&lt;p&gt;Complete tasks first and then assess if you have time to participate
+in leisure. Otherwise, you're procrastinating, and that affects all
+the other quadrants.&lt;/p&gt;
+&lt;h3 id="in-conclusion"&gt;In Conclusion&lt;/h3&gt;
+&lt;p&gt;Eisenhower's Principles can be vital in developing skills to
+effectively and consistently complete tasks, delegate properly,
+and work efficiently. Take time to look over your tasks to determine
+which quadrant they belong.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Is there a deadline? If yes, then it is important.&lt;/li&gt;
+&lt;li&gt;Is the deadline soon? If yes, then it is urgent.&lt;/li&gt;
+&lt;li&gt;Is the task necessary to completing the other tasks? If yes, then it is important.&lt;/li&gt;
+&lt;li&gt;Can I delegate the task to someone else? If yes, then it is not important.&lt;/li&gt;
+&lt;li&gt;What does it have to do with your personal growth?&lt;/li&gt;
+&lt;li&gt;What does it have to do with your professional growth?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ask yourself these questions when you need to determine a task's
+importance and urgency. Make a quadrant table of your own somewhere
+to help you visualize all your tasks. This is an excellent exercise
+for time management, and it could be the foundation of healthy work
+habits that stick around for a long time.&lt;/p&gt;
+&lt;p&gt;Source &lt;a href="http://www.lifehack.org/463821/if-youre-busy-but-still-find-your-hard-work-doesnt-pay-off-you-probably-lack-this-important-skill"&gt;lifehack.org&lt;/a&gt;&lt;/p&gt;</content><category term="2017"></category><category term="address"></category><category term="idea"></category><category term="management"></category><category term="manager"></category></entry><entry><title>stop procrastinating</title><link href="https://0ink.net/posts/2017/2017-03-24-stop-procrastinating.html" rel="alternate"></link><published>2017-03-24T00:00:00+01:00</published><updated>2022-11-02T09:18:10+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2017-03-24:/posts/2017/2017-03-24-stop-procrastinating.html</id><summary type="html">&lt;p&gt;We are all guilty of procrastinating from time to time--here's always
+something more interesting than the work in hand. We usually think it's
+no big deal, since deadline is our biggest inspiration, and we do our
+best work when we're inspired. We may even joke about it.&lt;/p&gt;
+&lt;p&gt;However, procrastination is …&lt;/p&gt;</summary><content type="html">&lt;p&gt;We are all guilty of procrastinating from time to time--here's always
+something more interesting than the work in hand. We usually think it's
+no big deal, since deadline is our biggest inspiration, and we do our
+best work when we're inspired. We may even joke about it.&lt;/p&gt;
+&lt;p&gt;However, procrastination is a massive waste of time as it turns out.&lt;/p&gt;
+&lt;p&gt;A survey in 2015 found that &lt;strong&gt;on average, a person loses over 55 days
+per year&lt;/strong&gt; procrastinating, wasting around 218 minutes every day on
+doing unimportant things.&lt;/p&gt;
+&lt;p&gt;Here' the maths:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;218 minutes/day x 365 = 79570 minutes = 55.3 days&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;That' a lot of time wasted!&lt;/p&gt;
+&lt;p&gt;If you think you need to have a lot of willpower to get productive,
+you're wrong.&lt;/p&gt;
+&lt;p&gt;We're human beings, we all have limited willpower. Our brain is wired
+to instant gratification. Temporary rewards are always more tempting
+to us.&lt;/p&gt;
+&lt;p&gt;When you make plans, you're making plans for your future self.
+You'll only experience the benefits in future. But most of the time,
+the present moment can give you the immediate reward you want, making
+you want to delay the plans and just enjoy the moment.&lt;/p&gt;
+&lt;p&gt;This is why relying on our willpower to stop procrastination will never
+be effective. What we should do is to look into the root causes of
+procrastination and start with the small things we can do every day
+and build a habit of staying productive.&lt;/p&gt;
+&lt;p&gt;Basically there'e 5 common reasons why we procrastinate.&lt;/p&gt;
+&lt;p&gt;Identify the real reason and find out how to stop procrastination
+accordingly:&lt;/p&gt;
+&lt;h3 id="type-1-the-perfectionist"&gt;Type 1: The Perfectionist&lt;/h3&gt;
+&lt;p&gt;They are the ones who pay too much attention to the minor details.
+The perfectionist is afraid to start a task because they get stressed
+out about getting every detail right. They can also get stuck in the
+process even when they've started since they're just too scared to move
+on.&lt;/p&gt;
+&lt;h4 id="advice-for-the-perfectionist"&gt;Advice for the Perfectionist:&lt;/h4&gt;
+&lt;p&gt;Instead of letting your obsession with details take up all your time,
+be clear about the purpose of your tasks and assign a time limit to
+each task. This will force you to stay focused and finish your task
+within the time frame.&lt;/p&gt;
+&lt;p&gt;For example,&lt;/p&gt;
+&lt;p&gt;If you're going to write a report, be clear about the purpose of the
+report first.&lt;/p&gt;
+&lt;p&gt;If the goal of having the report is to clearly present the changes
+in data over the past few months, don't sweat too much about writing
+up a lot of dainty words; rather, focus more on the figures and
+charts. Just make sure the goal can be reached, and there's really
+no need to work on things that don't help you achieve the ultimate goal.&lt;/p&gt;
+&lt;h3 id="type-2-the-dreamer"&gt;Type 2: The Dreamer&lt;/h3&gt;
+&lt;p&gt;This is someone who enjoys making the ideal plan more than taking
+actions. They are highly creative, but find it hard to actually finish
+a task.&lt;/p&gt;
+&lt;h4 id="advice-for-the-dreamer"&gt;Advice for the Dreamer&lt;/h4&gt;
+&lt;p&gt;To stop yourself from being carried away by your endless imagination,
+get your feet back on the ground by setting specific (and achievable)
+goals for each day based on the SMART framework. Set a goal and break
+down the plan into small tasks that you can take actions right away.&lt;/p&gt;
+&lt;p&gt;For example,&lt;/p&gt;
+&lt;p&gt;If you dream about waking up earlier every day, set a clear goal
+about it - "In 3 weeks, I will wake up at 6:30am every day."&lt;/p&gt;
+&lt;p&gt;Then, break this goal down into smaller tasks:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;From tonight onwards, I will go to sleep before 11:00pm.&lt;/li&gt;
+&lt;li&gt;Set alarm to remind me to go to sleep&lt;/li&gt;
+&lt;li&gt;Schedule earlier friends gathering so I can go to sleep early&lt;/li&gt;
+&lt;li&gt;For the 1st week, I will wake up at 7:30am even for non-working days&lt;/li&gt;
+&lt;li&gt;Go jogging or swimming in the morning for weekends&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;... and the task list goes on.&lt;/p&gt;
+&lt;p&gt;Also, you should reflect on your progress while you work. Track your
+input and output for each task, so you can easily tell which tasks are
+only a waste of time with little importance.6 This can help you focus
+on doing the things that bring positive results, which will improve
+productivity.&lt;/p&gt;
+&lt;h3 id="type-3-the-avoider"&gt;Type 3: The Avoider&lt;/h3&gt;
+&lt;p&gt;The worrier are scared to take on tasks that they think they can't
+manage. They would rather put off work than be judged by others when
+they end up making mistakes.&lt;/p&gt;
+&lt;h4 id="advice-for-the-avoider"&gt;Advice for the Avoider&lt;/h4&gt;
+&lt;p&gt;I know checking emails seems tempting, but don't make answering
+emails the first thing on your to-do list. More often than not,
+emails are unimportant. But they steal your time and mental energy
+before you even notice.&lt;/p&gt;
+&lt;p&gt;Instead, focus on the worst first.  Spend your morning working on
+what you find the most challenging. This will give you a sense of
+achievement, and helps you build momentum for a productive day ahead.&lt;/p&gt;
+&lt;p&gt;Try to break down your tasks into smaller sub-tasks. Understand how
+much time and energy is really needed for a given task. Make realistic
+calculations.&lt;/p&gt;
+&lt;p&gt;For example,&lt;/p&gt;
+&lt;p&gt;A 2000-word report does seem to take a lot of time and effort, it
+does seem scary to just start working on it. But is there anyway to
+break this down into smaller pieces so it'll seem less scary?
+What about this:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Introduction: around 100 words (15 min)&lt;/li&gt;
+&lt;li&gt;Table of content (5 min)&lt;/li&gt;
+&lt;li&gt;Report on the financial status: a chart with 100 supporting text (20 min)&lt;/li&gt;
+&lt;li&gt;Case study: 3 cases based on the new business model with around 400 words each (around 40 min each)&lt;/li&gt;
+&lt;li&gt;Conclusion: around 800 words (30 min)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Does it look a lot more easier now?&lt;/p&gt;
+&lt;h3 id="type-4-the-crisis-maker"&gt;Type 4: The Crisis-maker&lt;/h3&gt;
+&lt;p&gt;Now the crisis-maker deliberately pushes back work until the last
+minute. They find deadlines (the crises) exciting, and believe that
+they work best when being forced to rush it.&lt;/p&gt;
+&lt;h4 id="advice-for-the-crisis-maker"&gt;Advice for the Crisis-maker&lt;/h4&gt;
+&lt;p&gt;Being forced to rush the work will perform better is just an illusion
+because it actually leaves you no room for reviewing the work to make
+it better afterwards.&lt;/p&gt;
+&lt;p&gt;If you always leave work until the last minute, try using the
+Pomodoro technique. Literally the "tomato technique" developed by
+Italian entrepreneur Francesco Cirillo.&lt;/p&gt;
+&lt;p&gt;It focuses on working in short, intensely focused bursts, and then
+giving yourself a brief break to recover and start over.&lt;/p&gt;
+&lt;p&gt;For example,&lt;/p&gt;
+&lt;p&gt;Use a timer and divide your complex work into small manageable
+sessions. In between the small sessions, give yourself a break
+to recover.&lt;/p&gt;
+&lt;p&gt;While giving your brain a regular break can highly boost your
+performance by recharging your brain's energy;10 having completed
+the tasks earlier allows you to have plenty of time to go through
+your work again to make it even better.&lt;/p&gt;
+&lt;h3 id="type-5-the-busy-procrastinator"&gt;Type 5: The Busy Procrastinator&lt;/h3&gt;
+&lt;p&gt;This type of procrastinators are the fussy ones. They have trouble
+prioritizing tasks because they either have too many of them or
+refuse to work on what they see as unworthy of their effort.
+They don't know how to choose the task that's best for them and
+simply postpone making any decisions.&lt;/p&gt;
+&lt;h4 id="advice-for-the-busy-procrastinator"&gt;Advice for the Busy Procrastinator&lt;/h4&gt;
+&lt;p&gt;You have to get your priorities straight. Important tasks should
+take priority over urgent ones because "urgent" doesn't always mean
+important. You only have so much time and energy, and you don't want
+to waste that on things that don' matter.&lt;/p&gt;
+&lt;p&gt;Identify the purpose of your task and the expected outcome. Important
+tasks are the ones that add value in the long run.&lt;/p&gt;
+&lt;p&gt;Replying an email that's written "please get back to me asap" seems
+to be urgent, but before you reply that email, think about how
+important it is compared to other tasks.&lt;/p&gt;
+&lt;p&gt;For example,&lt;/p&gt;
+&lt;p&gt;Imagine the email is sent by a client asking about the progress of
+a project and she wants you to reply her as soon as possible; at the
+same time you have another task about fixing the logistics problem
+that is affecting all the projects on hand. Which one should you
+handle first?&lt;/p&gt;
+&lt;p&gt;The time cost for replying an email is as low as just around 5
+minutes but the benefit is also very low because you're just
+satisfying one client request. Fixing the logistic problem probably
+takes a lot more time but it's also a lot more worth it because by
+fixing the problem, you're saving all the projects on hands,
+benefiting the whole company.&lt;/p&gt;
+&lt;h3 id="be-smart-about-every-small-choice-you-make-because"&gt;Be smart about every small choice you make because...&lt;/h3&gt;
+&lt;p&gt;You may notice most of the characteristics of procrastinators have
+to do with their mindset. They keep delaying work because of some sort
+of fear. This is exactly why tweaking our attitude towards work can
+help us stop procrastinating and become more productive.&lt;/p&gt;
+&lt;p&gt;Changing our mindset may seem a lot of work. But by doing the
+smallest things every day, you're getting used to the way you handle
+works - from setting goals, to breaking down tasks, to evaluating
+each task's values.&lt;/p&gt;
+&lt;p&gt;Source &lt;a href="http://www.lifehack.org/565818/why-procrastinate-and-how-stop-procrastination"&gt;lifehack.org&lt;/a&gt;&lt;/p&gt;</content><category term="2017"></category></entry><entry><title>Kivy</title><link href="https://0ink.net/posts/2017/2017-03-19-kivy.html" rel="alternate"></link><published>2017-03-19T00:00:00+01:00</published><updated>2022-03-03T22:34:42+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2017-03-19:/posts/2017/2017-03-19-kivy.html</id><summary type="html">&lt;p&gt;Today I want to briefly write about &lt;a href="https://kivy.org/"&gt;kivy&lt;/a&gt;.  &lt;a href="https://kivy.org/"&gt;kivy&lt;/a&gt; is an
 &lt;a href="https://www.python.org/"&gt;Python&lt;/a&gt; library intended for developing Mobile Apps.  It is a
 cross-platform library that runs on &lt;a href="https://www.android.com/"&gt;Android&lt;/a&gt;, &lt;a href="http://www.apple.com/ios/"&gt;iOS&lt;/a&gt;,
 &lt;a href="https://www.cs.helsinki.fi/linux/"&gt;Linux&lt;/a&gt;, &lt;a href="https://www.apple.com/macos/"&gt;OS X&lt;/a&gt; and &lt;a href="https://www.microsoft.com/en-us/windows"&gt;Windows&lt;/a&gt;.  It is licensed under
@@ -10954,7 +11535,8 @@ notification.defaults |= Notification.DEFAULT_VIBRATE;
 
 &lt;p&gt;In the onReceive method, read the database and re-install the alarms in the same way as was done at the top.&lt;/p&gt;
 &lt;h2 id="proximity-alerts"&gt;Proximity Alerts&lt;/h2&gt;
-&lt;p&gt;A similar mechanism can be used for proximity alerts. The LocationManager will fire an alert which is nearly identical to an alarm. The same mechanism to restore alerts can be used after rebooting the device.&lt;/p&gt;</content><category term="2013"></category><category term="database"></category><category term="device"></category><category term="information"></category><category term="manager"></category></entry><entry><title>Off site backup options</title><link href="https://0ink.net/posts/2013/2013-09-19-off-site-backup-options.html" rel="alternate"></link><published>2013-09-19T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2013-09-19:/posts/2013/2013-09-19-off-site-backup-options.html</id><summary type="html">&lt;p&gt;This is my working notes on doing off-site backups to the cloud.
+&lt;p&gt;A similar mechanism can be used for proximity alerts. The LocationManager will fire an alert which is nearly identical to an alarm. The same mechanism to restore alerts can be used after rebooting the device.&lt;/p&gt;</content><category term="2013"></category><category term="database"></category><category term="device"></category><category term="information"></category><category term="manager"></category></entry><entry><title>No Comment</title><link href="https://0ink.net/posts/2013/2013-09-19-no-comment.html" rel="alternate"></link><published>2013-09-19T00:00:00+02:00</published><updated>2022-11-02T09:18:10+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2013-09-19:/posts/2013/2013-09-19-no-comment.html</id><content type="html">&lt;p&gt;&lt;img alt="About Leadership" src="/images/2013/leadership.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;This should require no explanation...&lt;/p&gt;</content><category term="2013"></category></entry><entry><title>Off site backup options</title><link href="https://0ink.net/posts/2013/2013-09-19-off-site-backup-options.html" rel="alternate"></link><published>2013-09-19T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2013-09-19:/posts/2013/2013-09-19-off-site-backup-options.html</id><summary type="html">&lt;p&gt;This is my working notes on doing off-site backups to the cloud.
 Still trying to figure out where to keep Offsite backups.&lt;/p&gt;
 &lt;p&gt;These are the candidates:&lt;/p&gt;
 &lt;table&gt;

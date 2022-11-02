@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>Home Assistant Large Clock - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="This recipe is my version of providing a "large clock" face in the home assistant dashboard. Enable serving local static files: Create directory www in your config directory. Restart home assistant. Static files are now available as http://homeassistant.local:8123/local/. Place the HTML with your clock in a …">
+	<meta name="int-title" content="Home Assistant Large Clock">
+	<meta name="tags" content="directory">
+	<meta name="date" content="2022-11-21 00:00:00+01:00">
+	<meta name="modified" content="2022-10-21 10:08:55+02:00">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+    <link href="/feeds/atom.xml" type="application/atom+xml" rel="alternate" title="0ink.net Atom Feed" />
+    <link href="/feeds/rss.xml" type="application/rss+xml" rel="alternate" title="0ink.net RSS Feed" />
+</head>
+
+<body>
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	        <a href="/feeds/atom.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="atom feed" title="atom feed"/></a>
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>Home Assistant Large Clock</h1>
+
+<div class="metadata">
+  <time datetime="2022-11-21T00:00:00+01:00" pubdate>Mon 21 November 2022</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2022-10-21 10:08:55+02:00</p>
+  in <a href="/category/c2022.html">2022</a>
+<p class="tags">tagged <a href="/tag/directory.html">directory</a></p></div>
+		<p>This recipe is my version of providing a "large clock" face in the
+<a href="https://home-assistant.io/">home assistant</a> dashboard.</p>
+<p>Enable serving local static files:</p>
+<ul>
+<li>Create directory <code>www</code> in your <code>config</code> directory.</li>
+<li>Restart <a href="https://home-assistant.io/">home assistant</a>.</li>
+<li>Static files are now available as <code>http://homeassistant.local:8123/local/</code>.</li>
+</ul>
+<p>Place the HTML with your clock in a file i.e. <code>$config/www/clock.html</code>.
+I am using this:</p>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/hassio/clock.html"></script>
+
+<p>Then add a <a href="https://www.home-assistant.io/dashboards/iframe/">webpage</a> card:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iframe</span><span class="w"></span>
+<span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/local/clock.html</span><span class="w"></span>
+<span class="nt">aspect_ratio</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">45%</span><span class="w"></span>
+</code></pre></div>
+
+<p>Obviously you can fully exercise your HTML to get your clock to look
+exactly like you want.</p>
+<p>I wrote this because I couldn't get the
+<a href="https://www.home-assistant.io/dashboards/markdown/">markdown</a> card
+to style properly.  Also, I wasn't keen on installing the 
+<a href="https://www.home-assistant.io/integrations/time_date/">time and date</a>
+sensor which is required for the clock examples based on the
+<a href="https://www.home-assistant.io/dashboards/picture-elements/">picture elements</a>
+card.</p>
+<p>Other implementations:</p>
+<ul>
+<li>https://community.home-assistant.io/t/really-simple-big-clock/255971</li>
+<li>https://community.home-assistant.io/t/just-a-big-clock/69976/2</li>
+</ul>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li class="active"><a href="/category/c2022.html">2022</a></li>
+	              <li ><a href="/category/c2021.html">2021</a></li>
+	              <li ><a href="/category/c2020.html">2020</a></li>
+	              <li ><a href="/category/c2019.html">2019</a></li>
+	              <li ><a href="/category/c2018.html">2018</a></li>
+	              <li ><a href="/category/c2017.html">2017</a></li>
+	              <li ><a href="/category/c2016.html">2016</a></li>
+	              <li ><a href="/category/c2015.html">2015</a></li>
+	              <li ><a href="/category/c2014.html">2014</a></li>
+	              <li ><a href="/category/c2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="/sitemap.html">sitemap</a></li>
+	                <li><a href="/tags.html">Tags</a></li>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://alejandro.iliu.net/">Alejandro</a></li>
+	                <li><a href="https://home.0ink.net/nanowiki/">Wiki</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2021-2022 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+		  <span class="feeds">
+		    <a href="/feeds/rss.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="rss feed" title="rss feed"/></a>
+		  </span>
+		  </p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

@@ -47,6 +47,169 @@
 
 <article class="summary">
 <div class="metadata">
+  <time datetime="2013-05-27T00:00:00+02:00" pubdate>Mon 27 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
+  in <a href="/category/c2013.html">2013</a>
+<p class="tags">tagged <a href="/tag/directory.html">directory</a>, <a href="/tag/git.html">git</a>, <a href="/tag/github.html">github</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/setup.html">setup</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-05-27-mirroring-a-gitorious-repository-to-github.html" rel="bookmark" title="Permalink to Mirroring a Gitorious repository to GitHub">Mirroring a Gitorious repository to GitHub</a>
+    </h2>
+    <p><p>There is nothing special with <a href="http://github.com/">GitHub</a> and
+<a href="http://gitorious.com/">Gitorious</a> here. This technique would work
+exactly the same the other way around or with other servers.</p>
+<h2 id="in-a-nutshell">In a nutshell</h2>
+<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">Inital</span><span class="w"> </span><span class="n">setup</span><span class="w"></span>
+<span class="n">git</span><span class="w"> </span><span class="n">clone</span><span class="w"> </span><span class="o">--</span><span class="n">mirror</span><span class="w"> </span><span class="nl">git</span><span class="p">:</span><span class="o">//</span><span class="n">gitorious</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">weasyprint</span><span class="o">/</span><span class="n">weasyprint</span><span class="p">.</span><span class="n">git</span><span class="w"> </span><span class="n">weasyprint</span><span class="w"></span>
+<span class="n">GIT_DIR</span><span class="o">=</span><span class="n">weasyprint</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="n">remote</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">github</span><span class="w"> </span><span class="n">git</span><span class="nv">@github</span><span class="p">.</span><span class="nl">com</span><span class="p">:</span><span class="n">SimonSapin</span><span class="o">/</span><span class="n">WeasyPrint …</span></code></pre></div></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-05-27T00:00:00+02:00" pubdate>Mon 27 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
+  in <a href="/category/c2013.html">2013</a>
+<p class="tags">tagged <a href="/tag/backups.html">backups</a>, <a href="/tag/proxy.html">proxy</a>, <a href="/tag/scripts.html">scripts</a>, <a href="/tag/service.html">service</a>, <a href="/tag/software.html">software</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-05-27-my-new-0ink-net-site.html" rel="bookmark" title="Permalink to My new 0ink.net site">My new 0ink.net site</a>
+    </h2>
+    <p><p>So one weekend went by and managed to finish up my <code>0ink.net</code> web site. So now I have:</p>
+<ul>
+<li><a href="http://wordpress.org/">wordpress</a><br>
+    For main content.</li>
+<li><a href="http://tt-rss.org/">tt-rss</a><br>
+    This is my answer to Google's shutdown of the Reader service.</li>
+<li>Automated backups<br>
+    Through my own custom scripts.</li>
+<li>New e-mail server</li>
+<li><a href="http://www.manyfish.co.uk/sitecopy/">sitecopy</a><br>
+    To manage the web …</li></ul></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-05-27T00:00:00+02:00" pubdate>Mon 27 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
+  in <a href="/category/c2013.html">2013</a>
+<p class="tags">tagged <a href="/tag/authentication.html">authentication</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/domain.html">domain</a>, <a href="/tag/information.html">information</a>, <a href="/tag/login.html">login</a>, <a href="/tag/network.html">network</a>, <a href="/tag/password.html">password</a>, <a href="/tag/service.html">service</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-05-27-native-kerberos-authentication-with-ssh.html" rel="bookmark" title="Permalink to Native Kerberos Authentication with SSH">Native Kerberos Authentication with SSH</a>
+    </h2>
+    <p><p>This article is about integrating OpenSSH in a kerberos environment.
+Allthough OpenSSH can provide passwordless logins (through Public/Private
+keys), it is not a true SSO set-up.  This article makes use of
+Kerberos TGT service to implement a true SSO configuration for OpenSSH.</p>
+<h2 id="pre-requisites">Pre-requisites</h2>
+<p>First off, you'll need to make …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-05-27T00:00:00+02:00" pubdate>Mon 27 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
+  in <a href="/category/c2013.html">2013</a>
+<p class="tags">tagged <a href="/tag/computer.html">computer</a>, <a href="/tag/network.html">network</a>, <a href="/tag/power.html">power</a>, <a href="/tag/speed.html">speed</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-05-27-network-wiring-notes-8p8c-rj45.html" rel="bookmark" title="Permalink to Network wiring notes - 8P8C / RJ45">Network wiring notes - 8P8C / RJ45</a>
+    </h2>
+    <p><p>What you were probably looking forT568A/B (10-BASE-T and 100-BASE-TX):</p>
+<p>With pin positions are counted from <em>left to right</em> with the <em>contacts facing</em> you (clip on the back) and pointing up <em>(cable coming out the bottom):</em></p>
+<table>
+<thead>
+<tr>
+<th>Color (568B)</th>
+<th>Pin</th>
+<th>Color(568A)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Orange-white</td>
+<td>1</td>
+<td>Green-white</td>
+</tr>
+<tr>
+<td>Orange</td>
+<td>2</td>
+<td>Green</td>
+</tr>
+<tr>
+<td>Green-white</td>
+<td>3</td>
+<td>Orange-white …</td></tr></tbody></table></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-05-27T00:00:00+02:00" pubdate>Mon 27 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
+  in <a href="/category/c2013.html">2013</a>
+<p class="tags">tagged <a href="/tag/address.html">address</a>, <a href="/tag/computer.html">computer</a>, <a href="/tag/config.html">config</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/device.html">device</a>, <a href="/tag/domain.html">domain</a>, <a href="/tag/encryption.html">encryption</a>, <a href="/tag/idea.html">idea</a>, <a href="/tag/management.html">management</a>, <a href="/tag/network.html">network</a>, <a href="/tag/password.html">password</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/setup.html">setup</a>, <a href="/tag/software.html">software</a>, <a href="/tag/speed.html">speed</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-05-27-remote-bridging.html" rel="bookmark" title="Permalink to Remote Bridging">Remote Bridging</a>
+    </h2>
+    <p><p>Sometimes we need to connect two or more geographically distrubuted ethernet networks to one broadcast domain. There can be two different office networks of some company which uses smb protocol partially based on broadcast network messages. Another example of such situation is computer cafes: a couple of computer cafes can …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-05-23T00:00:00+02:00" pubdate>Thu 23 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
+  in <a href="/category/c2013.html">2013</a>
+<p class="tags">tagged <a href="/tag/authentication.html">authentication</a>, <a href="/tag/config.html">config</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/feature.html">feature</a>, <a href="/tag/git.html">git</a>, <a href="/tag/github.html">github</a>, <a href="/tag/login.html">login</a>, <a href="/tag/password.html">password</a>, <a href="/tag/proxy.html">proxy</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/windows.html">windows</a>, <a href="/tag/wordpress.html">wordpress</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-05-23-git-recipes.html" rel="bookmark" title="Permalink to Git recipes">Git recipes</a>
+    </h2>
+    <p><p>A collection of small useful recipes for using with <code>Git</code>.</p>
+<h2 id="rewriting-history">Rewriting history</h2>
+<h3 id="rolling-back-the-last-commit">Rolling back the last commit</h3>
+<p>if nobody has pulled your remote repo yet, you can change your branch HEAD and force push it to said remote repo:</p>
+<div class="highlight"><pre><span></span><code>git reset --hard HEAD^
+git push -f
+</code></pre></div>
+
+<h2 id="restoring-changes">Restoring changes</h2>
+<p>So in …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2013-05-23T00:00:00+02:00" pubdate>Thu 23 May 2013</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
+  in <a href="/category/c2013.html">2013</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2013/2013-05-23-php-coding-style.html" rel="bookmark" title="Permalink to PHP notes">PHP notes</a>
+    </h2>
+    <p><p>Notes on doing different things within the PHP language.</p>
+<h2 id="object-oriented-introspection">Object oriented introspection</h2>
+<ul>
+<li>property_exists(obj,prop_name)</li>
+<li>method_exists(obj,method_name)</li>
+<li>is_a(obj,'clas_name') or ($obj instanceof ClassName)</li>
+</ul>
+<h2 id="dynamic-coding">Dynamic coding</h2>
+<ul>
+<li>Call a method: call_user_func(array($obj,'method',...args...)</li>
+<li>You can simply $obj-&gt;prop = value to add properties.</li>
+<li>or you can use __set and …</li></ul></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
   <time datetime="2013-05-22T00:00:00+02:00" pubdate>Wed 22 May 2013</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
@@ -364,98 +527,11 @@ CMS like Wordpress.</p>
     <p><p>After a long time in <strong>Limbo</strong> we are back with <code>0ink.net</code> as a live
 site.</p></p>
   </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2013-05-13T00:00:00+02:00" pubdate>Mon 13 May 2013</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2021-12-25 22:02:18+01:00</p>
-  in <a href="/category/c2013.html">2013</a>
-</div>  <div>
-    <h2>
-      <a href="/posts/2013/2013-05-13-bash-tips.html" rel="bookmark" title="Permalink to Bash Tips">Bash Tips</a>
-    </h2>
-    <p><p>Some bash one-liners:</p>
-<div class="highlight"><pre><span></span><code>echo <span class="cp">${</span><span class="err">!</span><span class="n">X</span><span class="o">*</span><span class="cp">}</span>
-</code></pre></div>
-
-<p>Will print all the names of variables whos name starts with <code>X</code>. To
-output the contents of a variable so it can be parsed by<br>
-bash</p>
-<div class="highlight"><pre><span></span><code>declare -p VARNAME
-</code></pre></div>
-
-<h2 id="pattern-matching">Pattern Matching</h2>
-<div class="highlight"><pre><span></span><code>Operator: <span class="cp">${</span><span class="n">foo</span><span class="c1">#t*is</span><span class="cp">}</span>
-</code></pre></div>
-
-<p>Function: deletes the shortest possible match from the left</p>
-<div class="highlight"><pre><span></span><code>Operator …</code></pre></div></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2013-05-13T00:00:00+02:00" pubdate>Mon 13 May 2013</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2022-03-03 22:34:42+01:00</p>
-  in <a href="/category/c2013.html">2013</a>
-<p class="tags">tagged <a href="/tag/computer.html">computer</a>, <a href="/tag/linux.html">linux</a></p></div>  <div>
-    <h2>
-      <a href="/posts/2013/2013-05-13-linux-keyboard-tips.html" rel="bookmark" title="Permalink to Linux Keyboard Tips">Linux Keyboard Tips</a>
-    </h2>
-    <p><p>Miscellaneous hacks to use the keyboard under Linux.</p>
-<h3 id="special-characters-on-x11">Special Characters on X11</h3>
-<p>The compose key, when pressed in sequence with other keys, produces a
-Unicode character. E.g., in most configurations pressing <code>Compose</code> <code>e</code>
-``` produces &eacute;. Compose keys appeared on some computer keyboards
-decades ago, especially those produced by Sun …</p></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2013-05-09T00:00:00+02:00" pubdate>Thu 09 May 2013</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2021-12-25 22:02:18+01:00</p>
-  in <a href="/category/c2013.html">2013</a>
-<p class="tags">tagged <a href="/tag/computer.html">computer</a>, <a href="/tag/feature.html">feature</a>, <a href="/tag/git.html">git</a>, <a href="/tag/integration.html">integration</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/setup.html">setup</a></p></div>  <div>
-    <h2>
-      <a href="/posts/2013/2013-05-09-git-workflows.html" rel="bookmark" title="Permalink to Git Workflows">Git Workflows</a>
-    </h2>
-    <p><p>This article describes my personal <code>git</code> Workflow.</p>
-<h3 id="start-working-on-a-topic-branch">Start working on a Topic Branch</h3>
-<p>This when we are implementing a new feature. Assumes that you have a working git repo.</p>
-<div class="highlight"><pre><span></span><code>git checkout -b &quot;topic&quot; dev
-git push -u origin &quot;topic&quot;
-</code></pre></div>
-
-<p>From a different computer, you may want to work on an …</p></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2013-05-09T00:00:00+02:00" pubdate>Thu 09 May 2013</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2021-12-25 22:02:18+01:00</p>
-  in <a href="/category/c2013.html">2013</a>
-<p class="tags">tagged <a href="/tag/address.html">address</a>, <a href="/tag/browser.html">browser</a></p></div>  <div>
-    <h2>
-      <a href="/posts/2013/2013-05-09-keep-e-mail-private.html" rel="bookmark" title="Permalink to Keep e-mail private">Keep e-mail private</a>
-    </h2>
-    <p><p>This is a handy tip.</p>
-<p>If you don't want to give out your real email address to register for
-a site and don't want to go through the hassle of creating a spam
-email address, just point your browser to
-<a href="https://www.guerrillamail.com/">Guerrilla Mail</a>
-upon loading the page you'll have an automatically …</p></p>
-  </div>
 </article>
 <div class="pagination">
             <a href="/index9.html">&laquo;</a>
-    Page 10 / 10
+    Page 10 / 11
+        <a href="/index11.html">&raquo;</a>
 </div>
 
 
