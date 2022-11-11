@@ -71,6 +71,7 @@ die() {
 is_valid_desktop() {
   case "$1" in
     mate) return 0 ;;
+    budgie) return 0 ;;
   esac
   return 1
 }
@@ -1123,7 +1124,6 @@ if [ -f $mnt/etc/slim.conf ] ; then
   wget -O$mnt/etc/X11/Xsession $repourl/Xsession
   chmod 755 $mnt/etc/X11/Xsession
 fi
-
 #begin-output
 ## * * *
 ##

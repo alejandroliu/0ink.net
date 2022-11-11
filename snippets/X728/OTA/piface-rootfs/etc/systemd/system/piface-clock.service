@@ -1,0 +1,16 @@
+# file: /etc/systemd/system
+
+[Unit]
+Description=Restore / save piface clock
+DefaultDependencies=no
+Before=sysinit.target shutdown.target
+Conflicts=shutdown.target
+
+[Service]
+ExecStart=/etc/piface/clock.sh start
+ExecStop=/etc/piface/clock.sh stop
+Type=oneshot
+RemainAfterExit=yes
+
+[Install]
+WantedBy=sysinit.target

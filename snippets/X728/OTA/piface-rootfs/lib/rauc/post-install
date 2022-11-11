@@ -1,0 +1,57 @@
+#!/bin/sh
+#
+# tweak the installation
+#
+exec >/mnt/data/upgrade-tweak.log 2>&1
+#~ env | grep '^RAUC_' | sort
+#~ set -x
+
+find_slot() {
+  local p c
+  for p in $RAUC_TARGET_SLOTS
+  do
+    eval "c=\"\$RAUC_IMAGE_CLASS_${p}\""
+    [ x"$c" != x"$1" ] && continue
+    eval "echo \$RAUC_SLOT_DEVICE_${p}"
+  done
+}
+
+sysdev=$(find_slot rootfs)
+bootdev=$(find_slot boot)
+
+if [ -z "$sysdev" ] ; then
+  echo "Unable to determine rootfs"
+  exit 1
+fi
+
+#
+# Note, we are leaving the boot partition alone!...
+#
+
+rootfs=/mnt/data/_rootfs_ ; trap "rm -rf $rootfs $rootfs.img" EXIT
+
+echo "Unpack new image"
+mkdir -p "$rootfs"
+sqfs2tar $sysdev | tar -C $rootfs -xf -
+
+# add the post-install handler
+echo "Change RUAC configure"
+
+tee -a $rootfs/etc/rauc/system.conf <<-_EOF_
+	[handlers]
+	post-install=/lib/rauc/post-install
+	_EOF_
+
+echo "Copy customzied files"
+manifest=/etc/rauc/custom-files
+tee $rootfs$manifest < $manifest | (while read fpath
+do
+  dir=$(dirname "$fpath")
+  mkdir -vp "$rootfs/$dir"
+  cp -av "/$fpath" "$rootfs/$dir" 2>&1
+done)
+echo "Repacking image"
+gensquashfs -q -D "$rootfs" $rootfs.img
+echo "Rewriting image"
+dd bs=64k if=$rootfs.img of=$sysdev
+

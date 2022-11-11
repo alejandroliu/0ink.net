@@ -96,6 +96,12 @@ else
     else
       desktop="mate-session"
     fi
+  elif type budgie-desktop >/dev/null 2>&1 ; then
+    if type ck-launch-session >/dev/null ; then
+      desktop="ck-launch-session budgie-desktop"
+    else
+      desktop="budgie-desktop"
+    fi
   elif type xsm >/dev/null 2>&1 ; then
     desktop=xsm
   else

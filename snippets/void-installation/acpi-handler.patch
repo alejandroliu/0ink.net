@@ -5,7 +5,7 @@
  # Default acpi script that takes an entry for all actions
  
 +# Ignore things if running Desktop power-manager
-+for mgr in mate-power-manager
++for mgr in mate-power-manager gsd-power
 +do
 +  if [ -n "$(pidof $mgr)" ] ; then
 +    echo "$mgr is running ... (let it handle ACPI events)"

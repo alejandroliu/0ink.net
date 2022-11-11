@@ -99,7 +99,7 @@ fi
 mkdir $w/mnt
 kpartx -av "$modimg"
 
-bootfs=/dev/loop0p1
+bootfs=/dev/mapper/loop0p1
 mount -o loop $bootfs $w/mnt
 if [ -f $w/mnt/config.txt ] ; then
   echo "Enable i2c bus"
@@ -137,7 +137,7 @@ if [ -n "$ssh" ]; then
 fi
 umount $w/mnt
 
-systemfs=/dev/loop0p3
+systemfs=/dev/mapper/loop0p3
 mkdir -p $w/rootfs
 echo "Unpack $systemfs (squashfs)"
 sqfs2tar $systemfs | tar -C $w/rootfs -xvf - 2>&1 | summarize

@@ -24,7 +24,6 @@ LINKS = (
           ('sitemap','/sitemap.html'),
           ('Tags','/tags.html'),
           ('Repo','https://github.com/alejandroliu/0ink.net'),
-          ('Alejandro','https://alejandro.iliu.net/'),
           ('Wiki','https://home.0ink.net/nanowiki/'),
         )
 LOGO_IMG = '/images/2021/0ink.png'

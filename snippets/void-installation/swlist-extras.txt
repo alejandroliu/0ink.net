@@ -16,7 +16,8 @@ rcm			# dot file manager
 tcl			# gui scripts
 tk
 
-VeraCrypt		# Encrypted drives
+# VeraCrypt		# Encrypted drives
+tc-play			# Encrypted drives
 
 flatpak			# application distrib
 xdg-desktop-portal

@@ -1,0 +1,41 @@
+# Budgie desktop environment
+
+
+budgie-desktop
+xdg-user-dirs-gtk
+papirus-icon-theme
+
+# Stuff that is not available in budgie...
+gnome-control-center
+nautilus
+gedit
+mate-terminal
+gnome-calculator
+gnome-calendar
+gnome-disk-utility
+eog
+gnome-keyring seahorse
+
+network-manager-applet
+udisks2
+
+gvfs-afc
+gvfs-mtp
+gvfs-smb
+paprefs
+
+# Just the web browser
+firefox-esr
+gst-libav		# void-linux: add mp4 support to firefox
+
+parcellite
+xdotool
+xdg-utils
+wmctrl			# windows scripting
+xscreensaver		# cross DE screen saver
+fortune-mod
+fortune-mod-void
+xbindkeys		# hot keys
+x11vnc
+
+
