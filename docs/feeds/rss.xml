@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Wed, 02 Nov 2022 09:18:10 +0100</lastBuildDate><item><title>Moving to Home Assistant</title><link>https://0ink.net/posts/2022/2022-11-01-hassio.html</link><description>&lt;p&gt;I am busy moving away from my &lt;a href="https://support.getvera.com/hc/en-us/articles/360021753434-VeraEdge-Getting-Started-How-To"&gt;VeraEdge&lt;/a&gt;
+<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Fri, 11 Nov 2022 22:11:35 +0100</lastBuildDate><item><title>Home Assistant HTTP Based Authentication Backend</title><link>https://0ink.net/posts/2022/2022-11-11-hassio-httpbasicauth.html</link><description>&lt;p&gt;This recipe is to authenticate users using a web server providing
+&lt;a href="https://en.wikipedia.org/wiki/Basic_access_authentication"&gt;Basic HTTP authentication&lt;/a&gt;
+for it users.&lt;/p&gt;
+&lt;p&gt;This is useful if you want to consolidate users/passwords in a single
+system.  So instead of managing users on &lt;a href="https://www.home-assistant.io/"&gt;Home Assistant&lt;/a&gt; you can
+have all users managed from a central location.&lt;/p&gt;
+&lt;p&gt;It …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Fri, 11 Nov 2022 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:None,2022-11-11:/posts/2022/2022-11-11-hassio-httpbasicauth.html</guid><category>2022</category><category>authentication</category><category>configuration</category><category>directory</category></item><item><title>Moving to Home Assistant</title><link>https://0ink.net/posts/2022/2022-11-01-hassio.html</link><description>&lt;p&gt;I am busy moving away from my &lt;a href="https://support.getvera.com/hc/en-us/articles/360021753434-VeraEdge-Getting-Started-How-To"&gt;VeraEdge&lt;/a&gt;
 installation to a &lt;a href="https://www.home-assistant.io/"&gt;Home Assistant&lt;/a&gt; running on a &lt;a href="https://www.raspberrypi.com/products/raspberry-pi-4-model-b/"&gt;Raspberry Pi 4&lt;/a&gt;.  This is
 because it looks like the maker of the VeraEdge was bought and it is slowly being
 phased out.&lt;/p&gt;

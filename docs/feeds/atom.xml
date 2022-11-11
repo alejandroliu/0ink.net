@@ -1,5 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2022-11-02T09:18:10+01:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>Moving to Home Assistant</title><link href="https://0ink.net/posts/2022/2022-11-01-hassio.html" rel="alternate"></link><published>2022-11-01T00:00:00+01:00</published><updated>2022-10-21T10:08:55+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-11-01:/posts/2022/2022-11-01-hassio.html</id><summary type="html">&lt;p&gt;I am busy moving away from my &lt;a href="https://support.getvera.com/hc/en-us/articles/360021753434-VeraEdge-Getting-Started-How-To"&gt;VeraEdge&lt;/a&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2022-11-11T22:11:35+01:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>Home Assistant HTTP Based Authentication Backend</title><link href="https://0ink.net/posts/2022/2022-11-11-hassio-httpbasicauth.html" rel="alternate"></link><published>2022-11-11T00:00:00+01:00</published><updated>2022-10-21T10:08:55+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-11-11:/posts/2022/2022-11-11-hassio-httpbasicauth.html</id><summary type="html">&lt;p&gt;This recipe is to authenticate users using a web server providing
+&lt;a href="https://en.wikipedia.org/wiki/Basic_access_authentication"&gt;Basic HTTP authentication&lt;/a&gt;
+for it users.&lt;/p&gt;
+&lt;p&gt;This is useful if you want to consolidate users/passwords in a single
+system.  So instead of managing users on &lt;a href="https://www.home-assistant.io/"&gt;Home Assistant&lt;/a&gt; you can
+have all users managed from a central location.&lt;/p&gt;
+&lt;p&gt;It …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This recipe is to authenticate users using a web server providing
+&lt;a href="https://en.wikipedia.org/wiki/Basic_access_authentication"&gt;Basic HTTP authentication&lt;/a&gt;
+for it users.&lt;/p&gt;
+&lt;p&gt;This is useful if you want to consolidate users/passwords in a single
+system.  So instead of managing users on &lt;a href="https://www.home-assistant.io/"&gt;Home Assistant&lt;/a&gt; you can
+have all users managed from a central location.&lt;/p&gt;
+&lt;p&gt;It uses the &lt;a href="https://www.home-assistant.io/"&gt;Home Assistant&lt;/a&gt;
+&lt;a href="https://www.home-assistant.io/docs/authentication/providers/#command-line"&gt;command line&lt;/a&gt;
+authentication provider and the &lt;code&gt;curl&lt;/code&gt; command.&lt;/p&gt;
+&lt;p&gt;To make it work is quite simple.  Copy this script to your &lt;code&gt;/config&lt;/code&gt;
+directory as &lt;code&gt;curl_auth.sh&lt;/code&gt;:&lt;/p&gt;
+&lt;script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&amp;showBorder=on&amp;showLineNumbers=on&amp;showFileMeta=on&amp;showCopy=on&amp;fetchFromJsDelivr=on&amp;target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/hassio/curl_auth.sh"&gt;&lt;/script&gt;
+
+&lt;p&gt;Add the following lines to your &lt;code&gt;configure.yaml&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;homeassistant&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;auth_providers&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;command_line&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;command&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;/config/curl_auth.sh&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;args&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p p-Indicator"&gt;[&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://your-web-site-url/&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p p-Indicator"&gt;]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;meta&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Make sure that you modify the URL in the configuration to a
+web server that is doing Basic HTTP authentication.  It uses &lt;code&gt;curl&lt;/code&gt;
+for checking URLs, so &lt;code&gt;http&lt;/code&gt; and &lt;code&gt;https&lt;/code&gt; protocols would work.&lt;/p&gt;
+&lt;p&gt;If using &lt;code&gt;https&lt;/code&gt; with self-signed certificates, you need to pass the
+&lt;code&gt;-k&lt;/code&gt; option which is then passed to &lt;code&gt;curl&lt;/code&gt;.  See
+&lt;a href="https://man7.org/linux/man-pages/man1/curl.1.html"&gt;curl(1)&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;args&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p p-Indicator"&gt;[&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-k&amp;quot;&lt;/span&gt;&lt;span class="p p-Indicator"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://your-web-site-url/&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p p-Indicator"&gt;]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="2022"></category><category term="authentication"></category><category term="configuration"></category><category term="directory"></category></entry><entry><title>Moving to Home Assistant</title><link href="https://0ink.net/posts/2022/2022-11-01-hassio.html" rel="alternate"></link><published>2022-11-01T00:00:00+01:00</published><updated>2022-10-21T10:08:55+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-11-01:/posts/2022/2022-11-01-hassio.html</id><summary type="html">&lt;p&gt;I am busy moving away from my &lt;a href="https://support.getvera.com/hc/en-us/articles/360021753434-VeraEdge-Getting-Started-How-To"&gt;VeraEdge&lt;/a&gt;
 installation to a &lt;a href="https://www.home-assistant.io/"&gt;Home Assistant&lt;/a&gt; running on a &lt;a href="https://www.raspberrypi.com/products/raspberry-pi-4-model-b/"&gt;Raspberry Pi 4&lt;/a&gt;.  This is
 because it looks like the maker of the VeraEdge was bought and it is slowly being
 phased out.&lt;/p&gt;
@@ -2692,7 +2728,8 @@ I am using nowadays.&lt;/p&gt;
 &lt;span class="n"&gt;tcl&lt;/span&gt;&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="c1"&gt;# gui scripts&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="n"&gt;tk&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
-&lt;span class="n"&gt;VeraCrypt&lt;/span&gt;&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="c1"&gt;# Encrypted drives&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="c1"&gt;# VeraCrypt     # Encrypted drives&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;tc&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;play&lt;/span&gt;&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="c1"&gt;# Encrypted drives&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
 &lt;span class="n"&gt;flatpak&lt;/span&gt;&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="c1"&gt;# application distrib&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="n"&gt;xdg&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;desktop&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;portal&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
@@ -10008,7 +10045,7 @@ also helps kids develop problem-solving skills and the encouragement
 to keep pushing on when they're faced with a challenge in the
 game-much like programmers often have to push through challenging
 walls.&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://codekingdoms.com/"&gt;Code Kingdoms&lt;/a&gt;&lt;/p&gt;</content><category term="2015"></category><category term="javascript"></category></entry><entry><title>HP Envy 4504 Set-up</title><link href="https://0ink.net/posts/2015/2015-02-06-hp-envy-4504-set-up.html" rel="alternate"></link><published>2015-02-06T00:00:00+01:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2015-02-06:/posts/2015/2015-02-06-hp-envy-4504-set-up.html</id><summary type="html">&lt;p&gt;I bought a HP Envy 4504.  Overall I am happy with it.  This is how
+&lt;p&gt;&lt;a href="http://codekingdoms.com/"&gt;Code Kingdoms&lt;/a&gt;&lt;/p&gt;</content><category term="2015"></category><category term="javascript"></category></entry><entry><title>HP Envy 4504 Set-up</title><link href="https://0ink.net/posts/2015/2015-02-06-hp-envy-4504-set-up.html" rel="alternate"></link><published>2015-02-06T00:00:00+01:00</published><updated>2022-11-11T22:11:35+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2015-02-06:/posts/2015/2015-02-06-hp-envy-4504-set-up.html</id><summary type="html">&lt;p&gt;I bought a HP Envy 4504.  Overall I am happy with it.  This is how
 I configure it so I can use with Linux.&lt;/p&gt;
 &lt;p&gt;This mini howto applies to ArchLinux, void linux and Centos/RedHat distributions.&lt;/p&gt;
 &lt;h3 id="installation"&gt;Installation&lt;/h3&gt;
@@ -10038,7 +10075,9 @@ I configure it so I can use with Linux.&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;And for scanning, install:&lt;/p&gt;
-&lt;p&gt;simple-scan and/or xsane&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;simple-scan and/or xsane
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 &lt;h3 id="configuration-arch-linux-and-centosredhat"&gt;Configuration Arch Linux and Centos/RedHat&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo systemctl enable cups
 sudo systemctl start cups
@@ -10056,48 +10095,11 @@ sudo hp-setup
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;ln&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sv&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cupsd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;service&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;uncompress PPD file (otherwise it is not recognized)&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gunzip /usr/share/ppd/HP/hp-envy_4500_series.ppd.gz
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;We need to hack the install &lt;code&gt;/usr/share/hplip/prnt/cups.py&lt;/code&gt;
-so that it runs:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gd"&gt;--- cups.py.orig    2019-02-05 22:44:34.000000000 +0100&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="gi"&gt;+++ cups.py 2019-02-19 11:45:00.793904202 +0100&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="gu"&gt;@@ -324,14 +324,17 @@&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt; &lt;/span&gt;                        except AttributeError: # happens on some boxes with provider: style ppds (foomatic: etc)&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt; &lt;/span&gt;                            path = ppd&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt; &lt;/span&gt;                        else:&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="gd"&gt;-                            if not os.path.exists(path):&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="gd"&gt;-                                try:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="gd"&gt;-                                    path = os.path.join(cups_ppd_path, ppd)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="gd"&gt;-                                except AttributeError:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="gd"&gt;-                                    path = ppd&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="gd"&gt;-                                else:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="gd"&gt;-                                    if not os.path.exists(path):&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="gd"&gt;-                                        path = ppd # foomatic: or some other driver&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="gi"&gt;+                            log.debug(cups_ppd_path)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="gi"&gt;+                            log.debug(ppd)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="gi"&gt;+                            #if not os.path.exists(path):&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="gi"&gt;+                            #    try:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="gi"&gt;+                            #        path = os.path.join(cups_ppd_path, ppd)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="gi"&gt;+                            #    except AttributeError:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="gi"&gt;+                            #        path = ppd&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="gi"&gt;+                            #    else:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="gi"&gt;+                            #        if not os.path.exists(path):&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="gi"&gt;+                            #            path = ppd # foomatic: or some other driver&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="gi"&gt;+                            path = ppd # foomatic: or some other driver&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-
-&lt;span class="w"&gt; &lt;/span&gt;                    ppds[path] = desc&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt; &lt;/span&gt;                    #log.debug(&amp;quot;%s: %s&amp;quot; % (path, desc))&lt;span class="w"&gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 &lt;p&gt;Add printer (run with &lt;code&gt;sudo&lt;/code&gt;):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;print_host=npr1
 hp-setup $print_host
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;For scanning, uncoment &lt;code&gt;hpaio&lt;/code&gt; from &lt;code&gt;/etc/sane/dll.conf&lt;/code&gt;.&lt;/p&gt;
 &lt;h3 id="tweaks"&gt;Tweaks&lt;/h3&gt;
 &lt;p&gt;Some commands:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;lpstat -p
@@ -10118,7 +10120,13 @@ command as root:&lt;/p&gt;
 &lt;li&gt;&lt;code&gt;echo a4 &amp;gt; /etc/papersize&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
+&lt;h2 id="updates"&gt;Updates&lt;/h2&gt;
 &lt;ul&gt;
+&lt;li&gt;2022-11-06: Removed from voidlinux:&lt;/li&gt;
+&lt;li&gt;uncompress PPD file (otherwise it is not recognized)
+    so that it runs:&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;removed OBSOLEtE patch&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;For scanning, uncoment &lt;code&gt;hpaio&lt;/code&gt; from &lt;code&gt;/etc/sane/dll.conf&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;2020-03-09 : Removed:&lt;/li&gt;
 &lt;li&gt;To prevent this you should configure
     the default &lt;code&gt;ErrorPolicy&lt;/code&gt; in &lt;code&gt;/etc/cups/cupsd.conf&lt;/code&gt; by adding in the top
