@@ -53,7 +53,7 @@ html:
 	sed -i -e 's!<link>/!<link>https://0ink.net/!g' "$(OUTPUTDIR)/feeds/rss.xml"
 	sed -i -e 's!<link href="/!<link href="https://0ink.net/!g' "$(OUTPUTDIR)/feeds/atom.xml"
 	# Create drafts index
-	[ -d $(OUTPUTDIR)/drafts ] && sh mkindex.sh $(OUTPUTDIR)/drafts
+	[ -d $(OUTPUTDIR)/drafts ] && sh mkindex.sh $(OUTPUTDIR)/drafts || :
 	> $(OUTPUTDIR)/.nojekyll
 
 clean:

@@ -49,6 +49,38 @@
 
 <article class="summary">
 <div class="metadata">
+  <time datetime="2019-04-01T00:00:00+02:00" pubdate>Mon 01 April 2019</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
+  in <a href="/category/c2019.html">2019</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2019/2019-04-01-availability-calculations.html" rel="bookmark" title="Permalink to Calculate system availability">Calculate system availability</a>
+    </h2>
+    <p><p>To calculate the availability of redundant systems you can
+use this formula:</p>
+<div class="highlight"><pre><span></span><code>total_avail = 1-(1 - single_avail) ^ (number_of_nodes)
+</code></pre></div>
+
+<form action="">
+<table>
+  <tr><td>Nodes:</td><td> <input type="number" id="nodes" name="nodes" min="1" maxlength="4" value="2" onchange="myCalculation();" /></td></tr>
+  <tr><td>Single component availability (%):</td><td><input type="number" id="savail" name="savail" min="0.10" step="any" maxlength="10" value="99.00" onchange="myCalculation();" /></td></tr>
+  <tr><td>Total Availability (%): </td><td><input name="total" id="total" type="number" maxlength="20" min="0" placeholder="00.00" readonly="true" /> </td></tr>
+</table>
+</form>
+
+<script>
+function myCalculation() {
+var nodes = parseInt(document.getElementById('nodes').value,10);
+var sava = parseFloat(document.getElementById('savail').value);
+var result = (1-(1-sava/100.0)**(nodes))*100
+document.getElementById …</script></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
   <time datetime="2019-03-20T00:00:00+01:00" pubdate>Wed 20 March 2019</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
@@ -487,23 +519,6 @@ best software for that, but that doesn't mean it's the best choice
 <em>for you.</em></p>
 <p>Visio may be the industry standard in the corporate world, but it
 comes with a huge drawback …</p></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2018-06-10T00:00:00+02:00" pubdate>Sun 10 June 2018</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2021-12-25 22:02:18+01:00</p>
-  in <a href="/category/c2018.html">2018</a>
-</div>  <div>
-    <h2>
-      <a href="/posts/2018/2018-06-10-documentation-tips.html" rel="bookmark" title="Permalink to 10 tips for maiking documentation crystal clear">10 tips for maiking documentation crystal clear</a>
-    </h2>
-    <p><p>So you've some written excellent documentation. Now what? Now it's
-time to go back and edit it. When you first sit down to write your
-documentation, you want to focus on what you're trying to say instead
-of how you're saying it, but once that first draft is done it's …</p></p>
   </div>
 </article>
 <div class="pagination">

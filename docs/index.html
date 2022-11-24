@@ -47,6 +47,28 @@
 
 <article class="summary">
 <div class="metadata">
+  <time datetime="2022-11-21T00:00:00+01:00" pubdate>Mon 21 November 2022</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2022-10-21 10:08:55+02:00</p>
+  in <a href="/category/c2022.html">2022</a>
+<p class="tags">tagged <a href="/tag/directory.html">directory</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2022/2022-11-21-hassio-large-clock.html" rel="bookmark" title="Permalink to Home Assistant Large Clock">Home Assistant Large Clock</a>
+    </h2>
+    <p><p>This recipe is my version of providing a "large clock" face in the
+<a href="https://home-assistant.io/">home assistant</a> dashboard.</p>
+<p>Enable serving local static files:</p>
+<ul>
+<li>Create directory <code>www</code> in your <code>config</code> directory.</li>
+<li>Restart <a href="https://home-assistant.io/">home assistant</a>.</li>
+<li>Static files are now available as <code>http://homeassistant.local:8123/local/</code>.</li>
+</ul>
+<p>Place the HTML with your clock in a …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
   <time datetime="2022-11-11T00:00:00+01:00" pubdate>Fri 11 November 2022</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
@@ -468,32 +490,6 @@ root level commands without using …</p></p>
 for one and while I found a few, they somehow, did not work for me.</p>
 <p>So I wrote my own: <a href="https://github.com/alejandroliu/0ink.net/blob/master/src/mdx/mdx_graphviz.py">mdx_graphviz</a>.</p>
 <p>It is quite straight forward.  You just need to …</p></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2022-01-04T00:00:00+01:00" pubdate>Tue 04 January 2022</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2022-01-10 17:09:50+01:00</p>
-  in <a href="/category/c2022.html">2022</a>
-<p class="tags">tagged <a href="/tag/sudo.html">sudo</a></p></div>  <div>
-    <h2>
-      <a href="/posts/2022/2022-01-04-linuxstuff.html" rel="bookmark" title="Permalink to Linux stuff">Linux stuff</a>
-    </h2>
-    <p><h2 id="sudoers">Sudoers</h2>
-<p>Since <a href="https://www.sudo.ws/">sudo</a> v1.9, it is possible to use the following
-statements:</p>
-<ul>
-<li><code>#includedir</code></li>
-<li><code>@includedir</code></li>
-</ul>
-<p>This is useful better for adding sudo rules rather than modifying
-the <code>/etc/sudoers</code> file.</p>
-<p>Make sure that the <code>includedir</code> statement is the <strong>LAST</strong> entry
-in <code>/etc/sudoers</code> and the files in the directory:</p>
-<ul>
-<li>names …</li></ul></p>
   </div>
 </article>
 <div class="pagination">

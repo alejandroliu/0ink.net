@@ -1,5 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2022-11-11T22:11:35+01:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>Home Assistant HTTP Based Authentication Backend</title><link href="https://0ink.net/posts/2022/2022-11-11-hassio-httpbasicauth.html" rel="alternate"></link><published>2022-11-11T00:00:00+01:00</published><updated>2022-10-21T10:08:55+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-11-11:/posts/2022/2022-11-11-hassio-httpbasicauth.html</id><summary type="html">&lt;p&gt;This recipe is to authenticate users using a web server providing
+<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2022-11-21T00:00:00+01:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>Home Assistant Large Clock</title><link href="https://0ink.net/posts/2022/2022-11-21-hassio-large-clock.html" rel="alternate"></link><published>2022-11-21T00:00:00+01:00</published><updated>2022-10-21T10:08:55+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-11-21:/posts/2022/2022-11-21-hassio-large-clock.html</id><summary type="html">&lt;p&gt;This recipe is my version of providing a "large clock" face in the
+&lt;a href="https://home-assistant.io/"&gt;home assistant&lt;/a&gt; dashboard.&lt;/p&gt;
+&lt;p&gt;Enable serving local static files:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Create directory &lt;code&gt;www&lt;/code&gt; in your &lt;code&gt;config&lt;/code&gt; directory.&lt;/li&gt;
+&lt;li&gt;Restart &lt;a href="https://home-assistant.io/"&gt;home assistant&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Static files are now available as &lt;code&gt;http://homeassistant.local:8123/local/&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Place the HTML with your clock in a …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This recipe is my version of providing a "large clock" face in the
+&lt;a href="https://home-assistant.io/"&gt;home assistant&lt;/a&gt; dashboard.&lt;/p&gt;
+&lt;p&gt;Enable serving local static files:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Create directory &lt;code&gt;www&lt;/code&gt; in your &lt;code&gt;config&lt;/code&gt; directory.&lt;/li&gt;
+&lt;li&gt;Restart &lt;a href="https://home-assistant.io/"&gt;home assistant&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Static files are now available as &lt;code&gt;http://homeassistant.local:8123/local/&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Place the HTML with your clock in a file i.e. &lt;code&gt;$config/www/clock.html&lt;/code&gt;.
+I am using this:&lt;/p&gt;
+&lt;script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&amp;showBorder=on&amp;showLineNumbers=on&amp;showFileMeta=on&amp;showCopy=on&amp;fetchFromJsDelivr=on&amp;target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/hassio/clock.html"&gt;&lt;/script&gt;
+
+&lt;p&gt;Then add a &lt;a href="https://www.home-assistant.io/dashboards/iframe/"&gt;webpage&lt;/a&gt; card:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;iframe&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="nt"&gt;url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;/local/clock.html&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="nt"&gt;aspect_ratio&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;45%&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Obviously you can fully exercise your HTML to get your clock to look
+exactly like you want.&lt;/p&gt;
+&lt;p&gt;I wrote this because I couldn't get the
+&lt;a href="https://www.home-assistant.io/dashboards/markdown/"&gt;markdown&lt;/a&gt; card
+to style properly.  Also, I wasn't keen on installing the 
+&lt;a href="https://www.home-assistant.io/integrations/time_date/"&gt;time and date&lt;/a&gt;
+sensor which is required for the clock examples based on the
+&lt;a href="https://www.home-assistant.io/dashboards/picture-elements/"&gt;picture elements&lt;/a&gt;
+card.&lt;/p&gt;
+&lt;p&gt;Other implementations:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;https://community.home-assistant.io/t/really-simple-big-clock/255971&lt;/li&gt;
+&lt;li&gt;https://community.home-assistant.io/t/just-a-big-clock/69976/2&lt;/li&gt;
+&lt;/ul&gt;</content><category term="2022"></category><category term="directory"></category></entry><entry><title>Home Assistant HTTP Based Authentication Backend</title><link href="https://0ink.net/posts/2022/2022-11-11-hassio-httpbasicauth.html" rel="alternate"></link><published>2022-11-11T00:00:00+01:00</published><updated>2022-10-21T10:08:55+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-11-11:/posts/2022/2022-11-11-hassio-httpbasicauth.html</id><summary type="html">&lt;p&gt;This recipe is to authenticate users using a web server providing
 &lt;a href="https://en.wikipedia.org/wiki/Basic_access_authentication"&gt;Basic HTTP authentication&lt;/a&gt;
 for it users.&lt;/p&gt;
 &lt;p&gt;This is useful if you want to consolidate users/passwords in a single

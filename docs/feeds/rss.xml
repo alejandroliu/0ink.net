@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Fri, 11 Nov 2022 22:11:35 +0100</lastBuildDate><item><title>Home Assistant HTTP Based Authentication Backend</title><link>https://0ink.net/posts/2022/2022-11-11-hassio-httpbasicauth.html</link><description>&lt;p&gt;This recipe is to authenticate users using a web server providing
+<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Mon, 21 Nov 2022 00:00:00 +0100</lastBuildDate><item><title>Home Assistant Large Clock</title><link>https://0ink.net/posts/2022/2022-11-21-hassio-large-clock.html</link><description>&lt;p&gt;This recipe is my version of providing a "large clock" face in the
+&lt;a href="https://home-assistant.io/"&gt;home assistant&lt;/a&gt; dashboard.&lt;/p&gt;
+&lt;p&gt;Enable serving local static files:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Create directory &lt;code&gt;www&lt;/code&gt; in your &lt;code&gt;config&lt;/code&gt; directory.&lt;/li&gt;
+&lt;li&gt;Restart &lt;a href="https://home-assistant.io/"&gt;home assistant&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Static files are now available as &lt;code&gt;http://homeassistant.local:8123/local/&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Place the HTML with your clock in a …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Mon, 21 Nov 2022 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:None,2022-11-21:/posts/2022/2022-11-21-hassio-large-clock.html</guid><category>2022</category><category>directory</category></item><item><title>Home Assistant HTTP Based Authentication Backend</title><link>https://0ink.net/posts/2022/2022-11-11-hassio-httpbasicauth.html</link><description>&lt;p&gt;This recipe is to authenticate users using a web server providing
 &lt;a href="https://en.wikipedia.org/wiki/Basic_access_authentication"&gt;Basic HTTP authentication&lt;/a&gt;
 for it users.&lt;/p&gt;
 &lt;p&gt;This is useful if you want to consolidate users/passwords in a single
