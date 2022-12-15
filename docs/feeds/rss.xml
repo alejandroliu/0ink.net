@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Mon, 21 Nov 2022 00:00:00 +0100</lastBuildDate><item><title>Home Assistant Large Clock</title><link>https://0ink.net/posts/2022/2022-11-21-hassio-large-clock.html</link><description>&lt;p&gt;This recipe is my version of providing a "large clock" face in the
+<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Thu, 15 Dec 2022 16:53:10 +0100</lastBuildDate><item><title>Home Assistant Behind Reverse Proxy</title><link>https://0ink.net/posts/2022/2022-12-10-hassio-rev-proxy.html</link><description>&lt;p&gt;To set-up a reverse proxy I took the following steps:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;configure DNS&lt;/li&gt;
+&lt;li&gt;get Letsencrypt certificates&lt;/li&gt;
+&lt;li&gt;Configure NGINX&lt;/li&gt;
+&lt;li&gt;Configure Home Assistant to trust the proxy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;At the time of this writing I can't really confirm if the reverse proxy
+configuration for home assistant is working as I can't tell what IP …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Sat, 10 Dec 2022 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:None,2022-12-10:/posts/2022/2022-12-10-hassio-rev-proxy.html</guid><category>2022</category><category>address</category><category>configuration</category><category>domain</category><category>proxy</category><category>security</category></item><item><title>Looking up docker image tags</title><link>https://0ink.net/posts/2022/2022-12-01-docker-image-tags.html</link><description>&lt;p&gt;This recipe is to check the tags defined for a specific Docker image
+in &lt;a href="https://hub.docker.com"&gt;docker.hub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The basic API is at https://registry.hub.docker.com/v2&lt;/p&gt;
+&lt;p&gt;So the format is as follows:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;https://registry.hub.docker.com/v2/repositories/&lt;/strong&gt;&lt;strong&gt;{namespace}&lt;/strong&gt;/&lt;strong&gt;{image}&lt;/strong&gt;&lt;strong&gt;/tags/&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Where:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;namespace&lt;/strong&gt; : usually is the user account …&lt;/li&gt;&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Thu, 01 Dec 2022 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:None,2022-12-01:/posts/2022/2022-12-01-docker-image-tags.html</guid><category>2022</category><category>alpine</category><category>library</category></item><item><title>Home Assistant Large Clock</title><link>https://0ink.net/posts/2022/2022-11-21-hassio-large-clock.html</link><description>&lt;p&gt;This recipe is my version of providing a "large clock" face in the
 &lt;a href="https://home-assistant.io/"&gt;home assistant&lt;/a&gt; dashboard.&lt;/p&gt;
 &lt;p&gt;Enable serving local static files:&lt;/p&gt;
 &lt;ul&gt;
