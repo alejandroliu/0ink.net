@@ -1,6 +1,6 @@
 PY?=python3
 #~ PELICAN?=pelican
-PELICAN=env PYTHONPATH=$$(pwd)/mdx .venv/bin/run $$(which pelican)
+PELICAN=env PYTHONPATH=$$(pwd)/mdx .venv/bin/run .venv/bin/pelican
 PELICANOPTS=
 
 BASEDIR=$(CURDIR)
@@ -71,6 +71,7 @@ devserver:
 setup:
 	[ ! -d .venv ] && python3 -m venv --system-site-packages .venv || :
 	( . .venv/bin/activate ; pip install \
+		pelican \
 		markdown-aafigure Pillow \
 		markdown-blockdiag \
 		markdown-headdown \
