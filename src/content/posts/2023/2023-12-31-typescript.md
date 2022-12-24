@@ -1,5 +1,6 @@
 ---
 title: 2023-12-31-typescript
+tags: browser
 ---
 - [Duktape](https://duktape.org/)
 - [typescript-script](https://github.com/basarat/typescript-script)  

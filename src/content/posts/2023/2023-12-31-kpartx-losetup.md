@@ -1,5 +1,6 @@
 ---
 title: Kpartx-and-losetup
+tags: device
 ---
 https://www.ullright.org/ullWiki/show/mount-disk-image-files-kpartx
 

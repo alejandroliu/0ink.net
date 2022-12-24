@@ -1,5 +1,6 @@
 ---
 title: Cordova devlopment on docker
+tags: alpine, android
 ---
 - [docker hub: cordova](https://hub.docker.com/r/beevelop/cordova)
 - [docker hub: android cordova](https://hub.docker.com/r/vgaidarji/docker-android-cordova/)

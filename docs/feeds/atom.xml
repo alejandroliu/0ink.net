@@ -1,5 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2022-12-15T16:53:10+01:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>Home Assistant Behind Reverse Proxy</title><link href="https://0ink.net/posts/2022/2022-12-10-hassio-rev-proxy.html" rel="alternate"></link><published>2022-12-10T00:00:00+01:00</published><updated>2022-12-15T16:53:10+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-12-10:/posts/2022/2022-12-10-hassio-rev-proxy.html</id><summary type="html">&lt;p&gt;To set-up a reverse proxy I took the following steps:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2022-12-20T00:00:00+01:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>Home Assistant RFXCOM Integration</title><link href="https://0ink.net/posts/2022/2022-12-20-hassio-rfx.html" rel="alternate"></link><published>2022-12-20T00:00:00+01:00</published><updated>2022-12-15T16:53:10+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-12-20:/posts/2022/2022-12-20-hassio-rfx.html</id><summary type="html">&lt;h3 id="rfxcom-rfxtrx"&gt;RFXCOM RFXtrx&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://www.home-assistant.io/integrations/rfxtrx/"&gt;This&lt;/a&gt; integration is
+to control RFXtrx devices.  I am using to control Somfy blinds and KlikAanKlikUit
+remotes.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Add integration: &lt;code&gt;RFXCOM RFXtrx&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Conection type: &lt;code&gt;Serial&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Select device: &lt;code&gt;RFXtrx433XL - RFXtrx433XL, s/n: * - RFXCOM&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Remember to configure the RFXCOM unit &lt;strong&gt;before&lt;/strong&gt; using it with &lt;a href="https://www.home-assistant.io/"&gt;Home Assistant&lt;/a&gt;
+as &lt;a href="https://www.home-assistant.io/"&gt;Home Assistant&lt;/a&gt; integration has …&lt;/p&gt;</summary><content type="html">&lt;h3 id="rfxcom-rfxtrx"&gt;RFXCOM RFXtrx&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://www.home-assistant.io/integrations/rfxtrx/"&gt;This&lt;/a&gt; integration is
+to control RFXtrx devices.  I am using to control Somfy blinds and KlikAanKlikUit
+remotes.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Add integration: &lt;code&gt;RFXCOM RFXtrx&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Conection type: &lt;code&gt;Serial&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Select device: &lt;code&gt;RFXtrx433XL - RFXtrx433XL, s/n: * - RFXCOM&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Remember to configure the RFXCOM unit &lt;strong&gt;before&lt;/strong&gt; using it with &lt;a href="https://www.home-assistant.io/"&gt;Home Assistant&lt;/a&gt;
+as &lt;a href="https://www.home-assistant.io/"&gt;Home Assistant&lt;/a&gt; integration has limited control of it.&lt;/p&gt;
+&lt;p&gt;Specifically, you need to use the RFXCOM &lt;a href="http://www.rfxcom.com/downloads.htm"&gt;rfxmngr&lt;/a&gt;
+tool to enable the relevant protocols and in the case of Somfy blinds, pair them.&lt;/p&gt;
+&lt;p&gt;For my home I enabled the &lt;code&gt;AC&lt;/code&gt; protocol for use with
+&lt;a href="https://klikaanklikuit.nl/"&gt;KAKU&lt;/a&gt; devices.&lt;/p&gt;
+&lt;h4 id="klikaanklikuit"&gt;KlikAanKlikUit&lt;/h4&gt;
+&lt;p&gt;&lt;a href="https://klikaanklikuit.nl/"&gt;KAKU&lt;/a&gt; are inexpensive home automation devices that
+use a wireless protocol very similar to X-10.&lt;/p&gt;
+&lt;p&gt;The simplest way is to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;List integrations&lt;/li&gt;
+&lt;li&gt;Configure &lt;code&gt;RFXTRX&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Enable Automatic Add&lt;/li&gt;
+&lt;li&gt;Submit&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Afterwards, just use the lights and devices, and they will be added automatically.&lt;/p&gt;
+&lt;h2 id="somfy"&gt;Somfy&lt;/h2&gt;
+&lt;p&gt;For pairing the Somfy blinds, you can refer to &lt;a href="https://www.vlieshout.net/home-assistant-and-somfy-rts-with-rfxcom/"&gt;this article&lt;/a&gt;
+and &lt;a href="https://www.vesternet.com/en-eu/pages/apnt-79-controlling-somfy-rts-blinds-with-the-rfxtrx433e"&gt;ths one&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In my configuration I am using:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;remoteID&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;010&lt;/span&gt;&lt;span class="n"&gt;E1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;E1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;010&lt;/span&gt;&lt;span class="n"&gt;E1&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="mi"&gt;123456&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="n"&gt;ABCDEF&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;remoteID&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;69121&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;225&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;4321&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;unitCode&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;01&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="mi"&gt;1234567890123456&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="mi"&gt;071&lt;/span&gt;&lt;span class="n"&gt;a000000000000&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="mi"&gt;071&lt;/span&gt;&lt;span class="n"&gt;a00000010e101&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2 id="tweaks"&gt;Tweaks&lt;/h2&gt;
+&lt;p&gt;Because for some reason my Skylight cover says "Open" when is "Closed" and
+viceversa.&lt;/p&gt;
+&lt;p&gt;To clean that up we use the:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;https://www.home-assistant.io/integrations/cover.template/&lt;/li&gt;
+&lt;li&gt;https://www.home-assistant.io/integrations/cover/&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To create a "template" cover that shows things properly.  In &lt;code&gt;configuration.yaml&lt;/code&gt;
+we have this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;cover&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;platform&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;template&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;covers&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;study_skylight_p&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;unique_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;13d7a089-c536-4dc0-b2c0-e5dae6521460&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;open_cover&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;service&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;cover.close_cover&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;target&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nt"&gt;entity_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;cover.rfy_0010e1_1&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;close_cover&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;service&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;cover.open_cover&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;target&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nt"&gt;entity_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;cover.rfy_0010e1_1&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;stop_cover&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;service&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;cover.stop_cover&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;target&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nt"&gt;entity_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;cover.rfy_0010e1_1&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="2022"></category><category term="configuration"></category><category term="integration"></category></entry><entry><title>Home Assistant Behind Reverse Proxy</title><link href="https://0ink.net/posts/2022/2022-12-10-hassio-rev-proxy.html" rel="alternate"></link><published>2022-12-10T00:00:00+01:00</published><updated>2022-12-15T16:53:10+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-12-10:/posts/2022/2022-12-10-hassio-rev-proxy.html</id><summary type="html">&lt;p&gt;To set-up a reverse proxy I took the following steps:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;configure DNS&lt;/li&gt;
 &lt;li&gt;get Letsencrypt certificates&lt;/li&gt;

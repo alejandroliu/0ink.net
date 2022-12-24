@@ -1,5 +1,6 @@
 ---
 title: Python Dev
+tags: android, python, windows
 ---
 # Windows
 

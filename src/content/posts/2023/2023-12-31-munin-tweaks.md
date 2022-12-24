@@ -1,5 +1,6 @@
 ---
 title: Munin-tweaks
+tags: address, configuration
 ---
 Small recipes to tweak munin configurations.
 

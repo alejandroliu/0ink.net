@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Thu, 15 Dec 2022 16:53:10 +0100</lastBuildDate><item><title>Home Assistant Behind Reverse Proxy</title><link>https://0ink.net/posts/2022/2022-12-10-hassio-rev-proxy.html</link><description>&lt;p&gt;To set-up a reverse proxy I took the following steps:&lt;/p&gt;
+<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Tue, 20 Dec 2022 00:00:00 +0100</lastBuildDate><item><title>Home Assistant RFXCOM Integration</title><link>https://0ink.net/posts/2022/2022-12-20-hassio-rfx.html</link><description>&lt;h3 id="rfxcom-rfxtrx"&gt;RFXCOM RFXtrx&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://www.home-assistant.io/integrations/rfxtrx/"&gt;This&lt;/a&gt; integration is
+to control RFXtrx devices.  I am using to control Somfy blinds and KlikAanKlikUit
+remotes.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Add integration: &lt;code&gt;RFXCOM RFXtrx&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Conection type: &lt;code&gt;Serial&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Select device: &lt;code&gt;RFXtrx433XL - RFXtrx433XL, s/n: * - RFXCOM&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Remember to configure the RFXCOM unit &lt;strong&gt;before&lt;/strong&gt; using it with &lt;a href="https://www.home-assistant.io/"&gt;Home Assistant&lt;/a&gt;
+as &lt;a href="https://www.home-assistant.io/"&gt;Home Assistant&lt;/a&gt; integration has …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Tue, 20 Dec 2022 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:None,2022-12-20:/posts/2022/2022-12-20-hassio-rfx.html</guid><category>2022</category><category>configuration</category><category>integration</category></item><item><title>Home Assistant Behind Reverse Proxy</title><link>https://0ink.net/posts/2022/2022-12-10-hassio-rev-proxy.html</link><description>&lt;p&gt;To set-up a reverse proxy I took the following steps:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;configure DNS&lt;/li&gt;
 &lt;li&gt;get Letsencrypt certificates&lt;/li&gt;

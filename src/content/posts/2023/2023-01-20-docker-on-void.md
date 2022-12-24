@@ -1,5 +1,6 @@
 ---
 title: Docker on Void
+tags: login
 ---
 This is a quick recipe to run Docker on void:
 

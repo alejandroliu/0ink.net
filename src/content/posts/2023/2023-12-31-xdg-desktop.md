@@ -1,5 +1,6 @@
 ---
 title: Linux Desktop file tipes
+tags: github, library, linux
 ---
 Tips for Linux dekstop files:
 

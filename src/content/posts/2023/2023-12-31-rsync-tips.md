@@ -1,5 +1,6 @@
 ---
 title: Rsync-tips
+tags: backups
 ---
 - snapshot style backups
 - using filters
