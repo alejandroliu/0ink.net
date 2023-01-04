@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Tue, 20 Dec 2022 00:00:00 +0100</lastBuildDate><item><title>Home Assistant RFXCOM Integration</title><link>https://0ink.net/posts/2022/2022-12-20-hassio-rfx.html</link><description>&lt;h3 id="rfxcom-rfxtrx"&gt;RFXCOM RFXtrx&lt;/h3&gt;
+<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Sun, 01 Jan 2023 00:00:00 +0100</lastBuildDate><item><title>Happy New Year 2023</title><link>https://0ink.net/posts/2023/2023-01-01-new-year.html</link><description>&lt;p&gt;&lt;img alt="NewYear2023" src="/images/2023/newyear-2023.png"&gt;&lt;/p&gt;
+&lt;p&gt;Best wishes for 2023!&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Sun, 01 Jan 2023 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:None,2023-01-01:/posts/2023/2023-01-01-new-year.html</guid><category>2023</category></item><item><title>Home Assistant RFXCOM Integration</title><link>https://0ink.net/posts/2022/2022-12-20-hassio-rfx.html</link><description>&lt;h3 id="rfxcom-rfxtrx"&gt;RFXCOM RFXtrx&lt;/h3&gt;
 &lt;p&gt;&lt;a href="https://www.home-assistant.io/integrations/rfxtrx/"&gt;This&lt;/a&gt; integration is
 to control RFXtrx devices.  I am using to control Somfy blinds and KlikAanKlikUit
 remotes.&lt;/p&gt;
