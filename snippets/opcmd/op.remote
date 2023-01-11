@@ -19,14 +19,16 @@ translate_path() {
     local share_name="$1" share_path=""
   fi
 
-  cut -d'"' -f2 < "$exports" | (while read in
-  do
-    if [ x"$(basename "$in")" = x"$share_name" ] ; then
-      echo "$in"/"$share_path"
-      return 0
-    fi
-  done
-  return 1)
+  echo "/share/$share_name/$share_path"
+
+  #~ cut -d'"' -f2 < "$exports" | (while read in
+  #~ do
+    #~ if [ x"$(basename "$in")" = x"$share_name" ] ; then
+      #~ echo "$in"/"$share_path"
+      #~ return 0
+    #~ fi
+  #~ done
+  #~ return 1)
 }
 
 

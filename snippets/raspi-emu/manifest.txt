@@ -1,0 +1,4 @@
+#
+# Install paths
+#
+raspi-emu.sh /usr/local/bin/raspi-emu 755

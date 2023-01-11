@@ -61,11 +61,12 @@ glmark2
 font-bh-ttf		# Additional fonts
 noto-fonts-ttf
 
-syslinux mtools		# misc script for working with USB boot drives
+syslinux mtools	squashfs-tools-ng	# misc script for working with USB boot drives and images
 
 atf			# dev support
 kyua
-jq
+jq yq jc		# manipulate data in scripts
+
 # php
 # gcc
 # make
@@ -81,11 +82,10 @@ python3-Markdown
 python3-GitPython
 graphviz
 
-
 asciidoc 			# alt: ruby-asciidoctor
+pandoc				# convert md to epub
 # bootiso			# Create USB boot discs from ISOs
 # darkhttpd			# light weight web server
-# pandoc			# convert md to epub
 
 pidgin # pidgin-sipe avahi	# chat app
 thunderbird			# e-mail app

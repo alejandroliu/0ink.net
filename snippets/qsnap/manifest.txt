@@ -1,0 +1,4 @@
+#
+# Install paths
+#
+qsnap /usr/local/bin/qsnap 755

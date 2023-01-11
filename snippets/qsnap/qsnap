@@ -1,0 +1,148 @@
+#!/bin/sh
+#
+# Manage QNAP snapshots from the command line
+#
+# ls : show snapshots
+#
+
+set -euf -o pipefail
+die() {
+  echo "$@" 1>&2
+  exit "$1"
+}
+
+sshcmd() {
+  local rc=0 tmpdir=$(mktemp -d) cat=false
+
+  while [ $# -gt 0 ]
+  do
+    case "$1" in
+      --stdin) cat=true ;;
+      *) break ;;
+    esac
+    shift
+  done
+  (
+    export SSH_AUTH_SOCK=
+    id=$(mktemp -p "$tmpdir")
+    echo "$ssh_privkey" > "$id"
+    (
+      echo $#
+      for i in "$@"
+      do
+	echo ":$i:"
+      done
+      $cat && cat || :
+    ) | ssh -o BatchMode=yes -i "$id" -l "$admin_user" "$server" /dev/null
+  ) || rc=$?
+  rm -rf "$tmpdir" || :
+  return $rc
+}
+
+prologue() {
+  target="$1"
+
+  [ ! -e "$target" ] && die 20 "$target: does not exist"
+  cwd="$target"
+  if [ -d "$cwd" ] ; then
+    cwd="$(readlink -f "$cwd")"
+    target="."
+  else
+    cwd="$(readlink -f "$(dirname "$cwd")")"
+    target="$(basename "$target")"
+  fi
+
+  [ x"${cwd:0:5}" != x"/net/" ] && die 30 "$cwd: is not an NFS directory"
+  [ $(echo "$cwd" | tr -dc / | wc -c) -lt 3 ] && die 31 "$cwd: Invalid path"
+
+  server="$(echo "$cwd" | cut -d/ -f 3)"
+  ping -q -c 1 "$server" >/dev/null 2>&1|| die 22 "$server: server not reachable"
+
+  registry="/net/$server/netcfg/registry.yaml"
+  aregistry="/net/$server/netcfg/admin.yaml"
+  [ ! -f "$registry" ] && die 33 "$server: registry not configured"
+  [ ! -r "$aregistry" ] && die 65 "$server: admin registry not readable"
+  type yq >/dev/null 2>&1 || die 34 "yq: not found.  Must install \"yq\" utility"
+
+  ssh_privkey="$(yq -r '.qsnap.sshkeys.private // ""' < "$aregistry")"
+  [ -z "$ssh_privkey" ] && die 39 "$server: no qsnap private key found"
+  admin_user=$(yq -r '.admin // "admin"' < "$registry")
+
+  share="$(echo "$cwd" | cut -d/ -f4)" rpath="$(echo "$cwd" | cut -d/ -f5-)"
+  sshcmd ping >/dev/null || die 72 "$server: RPC not configured"
+}
+
+rsnap_ls() {
+  [ $# -eq 0 ] && set - $(pwd)
+  for target in "$@"
+  do
+    [ $# -gt 1 ] && echo "$target:"
+    prologue "$target"
+    sshcmd list "$share" "$rpath" "$target"
+  done
+}
+
+rsnap_cat() {
+  local snap="_" # defaults to latest snap
+  while [ $# -gt 0 ]
+  do
+    case "$1" in
+      --snap=*) snap="$(echo "${1#--snap=}" | sed -e 's/:$//')" ;;
+      *) break ;;
+    esac
+    shift
+  done
+
+  [ $# -eq 0 ] && die 86 "No files specifed"
+
+  for target in "$@"
+  do
+    [ $# -gt 1 ] && echo "$target:" 1>&2
+    prologue "$target"
+    sshcmd cat "$share" "$rpath" "$target" "$snap"
+  done
+}
+
+rsnap_tar() {
+  local snap="_" # defaults to latest snap
+  local z=z v='' b64=false
+  while [ $# -gt 0 ]
+  do
+    case "$1" in
+      --snap=*) snap="$(echo "${1#--snap=}" | sed -e 's/:$//')" ;;
+      --base64|--mime) b64=true ;;
+      --no-base64|--no-mime) b64=false ;;
+      --compress|-c|-z) z=z ;;
+      --no-compress) z="" ;;
+      -v) v=v ;;
+      -zv|-vz) z=z; v=v ;;
+      *) break ;;
+    esac
+    shift
+  done
+
+  [ $# -ne 1 ] && die 86 "Must specify ONE file/directory"
+  prologue "$1"
+  sshcmd tar "$share" "$rpath" "$target" "$snap" "$b64"  "$z$v"
+}
+
+
+try() {
+  prologue "$1"
+  sshcmd try "$share" "$rpath" "$target"
+}
+
+main() {
+  [ $# -eq 0 ] && set - ls # Default to list snaps
+
+  case "$1" in
+    ls|list) shift; rsnap_ls "$@" ;;
+    cat|type) shift; rsnap_cat "$@" ;;
+    tar|pkg) shift ; rsnap_tar "$@" ;;
+    try) shift; try "$@" ;;
+    *) die 81 "$1: Unknown op" ;;
+  esac
+}
+
+
+main "$@"

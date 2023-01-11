@@ -1,0 +1,123 @@
+#!/bin/sh
+set -euf -o pipefail
+
+die() {
+  echo "$@" 1>&2
+  exit "$1"
+}
+
+#
+# Read arguments
+#
+read -r argc || die 12 "Missing argcnt"
+set - junk ; shift # Rest arglist
+while [ $# -lt $argc ]
+do
+  read -r argv
+  set - "$@" "$(echo "$argv" | sed -e 's/^://' -e 's/:$//')"
+done
+
+[ $# -eq 0 ] && die 21 "No op specified"
+
+
+prologue() {
+  share="$1"
+  rpath="$2"
+  target="$3"
+  cdev="$(dirname "$(readlink -f "/share/$1")")"
+  snapdir="$cdev/_.share/$share/.snapshot"
+
+}
+
+snap_ls() {
+  prologue "$@"
+  ls -1 "$snapdir" | (
+    while read snap
+    do
+      echo "$snap:"
+      [ ! -e "$snapdir/$snap/$rpath/$target" ] && continue
+      (
+	cd "$snapdir/$snap/$rpath"
+        ls -lh "$target" | sed -e 's/^/  /'
+      )
+    done)
+}
+
+snap_cat() {
+  prologue "$@"
+  snapid="$4"
+
+  if [ "$snapid" != "_" ] ; then
+    [ ! -d "$snapdir/$snapid/" ] && die 50 "$snapid: snapshot does not exist"
+    [ ! -e "$snapdir/$snapid/$rpath/$target" ] && die 51 "$snapid/$rpath/$target: does not exist"
+    [ ! -f "$snapdir/$snapid/$rpath/$target" ] && die 51 "$snapid/$rpath/$target: is not a file"
+  fi
+
+  (
+    if [ "$snapid" = "_" ] ; then
+      ls -1 "$snapdir" | sort -r
+    else
+      echo "$snapid"
+    fi
+  ) | ( while read snapid
+  do
+    [ ! -f "$snapdir/$snapid/$rpath/$target" ] && continue
+    [ -f "$snapdir/$snapid/$rpath/$target" ] && exec cat "$snapdir/$snapid/$rpath/$target"
+  done
+  die 65 "$rpath/$target: not found"
+  )
+
+}
+
+snap_tar() {
+  prologue "$@"
+  local snapid="$4" b64="$5" taropts="$6"
+
+  if [ "$snapid" != "_" ] ; then
+    [ ! -d "$snapdir/$snapid/" ] && die 50 "$snapid: snapshot does not exist"
+    [ ! -e "$snapdir/$snapid/$rpath/$target" ] && die 51 "$snapid/$rpath/$target: does not exists"
+  fi
+
+  (
+    if [ "$snapid" = "_" ] ; then
+      ls -1 "$snapdir" | sort -r
+    else
+      echo "$snapid"
+    fi
+  ) | (
+    while read snapid
+    do
+      [ ! -e "$snapdir/$snapid/$rpath/$target" ] && continue
+      exec tar -C "$snapdir/$snapid/$rpath" -${taropts}cf - "$target"
+    done
+    die 65 "$rpath/$target: not found"
+  ) | (
+    if $b64 ; then
+      exec base64
+    else
+      exec cat
+    fi
+  )
+
+}
+
+
+try() {
+  prologue "$@"
+
+  echo "share:   '$share'"
+  echo "rpath:   '$rpath'"
+  echo "target:  '$target'"
+  echo "cdev:    '$cdev'"
+  echo "snapdir: '$snapdir'"
+}
+
+case "$1" in
+  ping) uptime ;;
+  list) shift ; snap_ls "$@" ;;
+  cat) shift ; snap_cat "$@" ;;
+  tar) shift ; snap_tar "$@" ;;
+  try) shift ; try "$@" ;;
+  *) die 24 "$1: unknown op"
+esac
+
