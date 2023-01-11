@@ -1,5 +1,6 @@
 ---
 title: Raspberry Pi emulation with Qemu
+tags: boot, configuration, desktop, idea, linux, login, mouse, network, partition, raspberry, storage
 ---
 The idea here is that we use a Desktop PC for developing/debugging
 Raspberry Pi set-ups using [qemu][qemu] for emulating Rasperrby Pi.
