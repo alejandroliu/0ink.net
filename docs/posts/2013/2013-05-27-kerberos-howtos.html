@@ -73,7 +73,7 @@ prove their identity to one another in a secure manner. (Source
 </code></pre></div>
 
 <p>Restore from dump file:</p>
-<div class="highlight"><pre><span></span><code><span class="n">kdb5_util</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="n">_dump_file_</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">kdb5_util</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="n">_dump_file_</span>
 </code></pre></div>
 
 <h2 id="masterslave-replication">Master/Slave replication</h2>
@@ -107,10 +107,10 @@ chmod 400 /etc/krb5.keytab
 <h2 id="logging">Logging</h2>
 <p>To turn logging on, add this section to <code>/etc/krb5.conf</code> (adapt the
 file paths to your likings):</p>
-<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="o">[</span><span class="n">logging</span><span class="o">]</span><span class="w"></span>
-<span class="w">     </span><span class="k">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">FILE</span><span class="err">:</span><span class="o">/</span><span class="nf">var</span><span class="o">/</span><span class="nf">log</span><span class="o">/</span><span class="n">krb5</span><span class="p">.</span><span class="nf">log</span><span class="w"></span>
-<span class="w">     </span><span class="n">kdc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">FILE</span><span class="err">:</span><span class="o">/</span><span class="nf">var</span><span class="o">/</span><span class="nf">log</span><span class="o">/</span><span class="n">krb5kdc</span><span class="p">.</span><span class="nf">log</span><span class="w"></span>
-<span class="w">     </span><span class="n">admin_server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">FILE</span><span class="err">:</span><span class="o">/</span><span class="nf">var</span><span class="o">/</span><span class="nf">log</span><span class="o">/</span><span class="n">kadmind</span><span class="p">.</span><span class="nf">log</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="o">[</span><span class="n">logging</span><span class="o">]</span>
+<span class="w">     </span><span class="k">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">FILE</span><span class="err">:</span><span class="o">/</span><span class="nf">var</span><span class="o">/</span><span class="nf">log</span><span class="o">/</span><span class="n">krb5</span><span class="p">.</span><span class="nf">log</span>
+<span class="w">     </span><span class="n">kdc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">FILE</span><span class="err">:</span><span class="o">/</span><span class="nf">var</span><span class="o">/</span><span class="nf">log</span><span class="o">/</span><span class="n">krb5kdc</span><span class="p">.</span><span class="nf">log</span>
+<span class="w">     </span><span class="n">admin_server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">FILE</span><span class="err">:</span><span class="o">/</span><span class="nf">var</span><span class="o">/</span><span class="nf">log</span><span class="o">/</span><span class="n">kadmind</span><span class="p">.</span><span class="nf">log</span>
 </code></pre></div>
 
 <h2 id="merging-or-editing-a-keytab-file">Merging (or editing) a keytab file</h2>
@@ -127,9 +127,9 @@ and optionally <strong>delent</strong> if you want to delete some entities. Exam
 <div class="highlight"><pre><span></span><code><span class="c"> ktutil: rkt keytab1</span>
 <span class="c"> ktutil: list</span>
 <span class="c"> slot KVNO Principal</span>
-<span class="c"> </span><span class="nb">----</span><span class="c"> </span><span class="nb">----</span><span class="c"> </span><span class="nb">-------------------------------------------------------------</span><span class="c"></span>
-<span class="c"> 1 3 </span><span class="nv">&lt;</span><span class="c">principal and key of keytab1</span><span class="nv">&gt;</span><span class="c"></span>
-<span class="c"> 2 3 </span><span class="nv">&lt;</span><span class="c">principal and key of keytab1</span><span class="nv">&gt;</span><span class="c"></span>
+<span class="c"> </span><span class="nb">----</span><span class="c"> </span><span class="nb">----</span><span class="c"> </span><span class="nb">-------------------------------------------------------------</span>
+<span class="c"> 1 3 </span><span class="nv">&lt;</span><span class="c">principal and key of keytab1</span><span class="nv">&gt;</span>
+<span class="c"> 2 3 </span><span class="nv">&lt;</span><span class="c">principal and key of keytab1</span><span class="nv">&gt;</span>
 </code></pre></div>
 
 <p>Now, we will read the content of keytab2:</p>
@@ -165,23 +165,23 @@ twice or more (simultaneously avoiding KVNO's increment).</p>
 </ul>
 <h3 id="configuration">Configuration</h3>
 <p>Create the file <code>/etc/krb5.conf</code> with the following credentials. Example:</p>
-<div class="highlight"><pre><span></span><code><span class="k">[libdefaults]</span><span class="w"></span>
-<span class="w">    </span><span class="na">default_realm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">YOURDOMAIN.ORG</span><span class="w"></span>
-<span class="w">    </span><span class="na">dns_lookup_realm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">false</span><span class="w"></span>
-<span class="w">    </span><span class="na">dns_lookup_kdc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">false</span><span class="w"></span>
-<span class="w">    </span><span class="na">ticket_lifetime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">24h</span><span class="w"></span>
-<span class="w">    </span><span class="na">forwardable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">[libdefaults]</span>
+<span class="w">    </span><span class="na">default_realm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">YOURDOMAIN.ORG</span>
+<span class="w">    </span><span class="na">dns_lookup_realm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">false</span>
+<span class="w">    </span><span class="na">dns_lookup_kdc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">false</span>
+<span class="w">    </span><span class="na">ticket_lifetime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">24h</span>
+<span class="w">    </span><span class="na">forwardable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
 
-<span class="k">[realms]</span><span class="w"></span>
-<span class="w">    </span><span class="na">YOURDOMAIN.ORG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">{</span><span class="w"></span>
-<span class="w">        </span><span class="na">kdc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">server_address_of_this_machine:88</span><span class="w"></span>
-<span class="w">        </span><span class="na">admin_server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">server_address_of_this_machine:749</span><span class="w"></span>
-<span class="w">        </span><span class="na">default_domain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yourdomain.org</span><span class="w"></span>
-<span class="w">    </span><span class="na">}</span><span class="w"></span>
+<span class="k">[realms]</span>
+<span class="w">    </span><span class="na">YOURDOMAIN.ORG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">{</span>
+<span class="w">        </span><span class="na">kdc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">server_address_of_this_machine:88</span>
+<span class="w">        </span><span class="na">admin_server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">server_address_of_this_machine:749</span>
+<span class="w">        </span><span class="na">default_domain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yourdomain.org</span>
+<span class="w">    </span><span class="na">}</span>
 
-<span class="k">[domain_realm]</span><span class="w"></span>
-<span class="w">    </span><span class="na">.yourdomain.org</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">YOURDOMAIN.ORG</span><span class="w"></span>
-<span class="w">    </span><span class="na">yourdomain.org</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">YOURDOMAIN.ORG</span><span class="w"></span>
+<span class="k">[domain_realm]</span>
+<span class="w">    </span><span class="na">.yourdomain.org</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">YOURDOMAIN.ORG</span>
+<span class="w">    </span><span class="na">yourdomain.org</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">YOURDOMAIN.ORG</span>
 </code></pre></div>
 
 <p>Replace <code>YOURDOMAIN.ORG</code> / <code>yourdomain.org</code> with the domain name of
@@ -203,9 +203,9 @@ with the host name/IP adress of this server you're setting up.</p>
 <p>In case you don't get any error messages check your server by logging
 on with <code>kadmin.local</code> In case everything works well you will see the
 following message</p>
-<div class="highlight"><pre><span></span><code><span class="n">root</span><span class="nv">@bridge</span><span class="err">:</span><span class="o">~</span><span class="err">#</span><span class="w"> </span><span class="n">kadmin</span><span class="p">.</span><span class="k">local</span><span class="w"></span>
-<span class="n">Authenticating</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">principal</span><span class="w"> </span><span class="n">xxxxxxx</span><span class="o">/</span><span class="k">admin</span><span class="nv">@YOURDOMAIN</span><span class="p">.</span><span class="n">ORG</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">password</span><span class="p">.</span><span class="w"></span>
-<span class="n">kadmin</span><span class="p">.</span><span class="k">local</span><span class="err">:</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">root</span><span class="nv">@bridge</span><span class="err">:</span><span class="o">~</span><span class="err">#</span><span class="w"> </span><span class="n">kadmin</span><span class="p">.</span><span class="k">local</span>
+<span class="n">Authenticating</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">principal</span><span class="w"> </span><span class="n">xxxxxxx</span><span class="o">/</span><span class="k">admin</span><span class="nv">@YOURDOMAIN</span><span class="p">.</span><span class="n">ORG</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">password</span><span class="p">.</span>
+<span class="n">kadmin</span><span class="p">.</span><span class="k">local</span><span class="err">:</span>
 </code></pre></div>
 
 <h4 id="start-on-boot">Start on boot</h4>

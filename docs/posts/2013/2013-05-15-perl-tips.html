@@ -63,26 +63,26 @@
   in <a href="/category/c2013.html">2013</a>
 </div>
 		<p>Determine what is the local PERL5LIB configuration:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">LIB</span><span class="o">=</span>$<span class="ss">(</span><span class="w"></span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="nv">d</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span>`<span class="nv">tr</span><span class="w"> </span>:<span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="o">&lt;&lt;&lt;</span>$<span class="nv">PERL5LIB</span><span class="w"></span>
-<span class="w">  </span><span class="k">do</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span>[<span class="w"> </span><span class="o">-</span><span class="nv">w</span><span class="w"> </span><span class="mh">$d</span><span class="w"> </span>]<span class="w"> </span><span class="c1">; then</span><span class="w"></span>
-<span class="w">      </span><span class="nv">echo</span><span class="w"> </span><span class="mh">$d</span><span class="w"></span>
-<span class="w">    </span><span class="k">break</span><span class="w"></span>
-<span class="w">  </span><span class="nv">fi</span><span class="w"></span>
-<span class="w">  </span><span class="nv">done</span><span class="ss">)</span><span class="w"></span>
-<span class="nv">PREFIX</span><span class="o">=</span>`<span class="k">dirname</span><span class="w"> </span>$<span class="nv">LIB</span>`<span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">LIB</span><span class="o">=</span>$<span class="ss">(</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="nv">d</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span>`<span class="nv">tr</span><span class="w"> </span>:<span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="o">&lt;&lt;&lt;</span>$<span class="nv">PERL5LIB</span>
+<span class="w">  </span><span class="k">do</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span>[<span class="w"> </span><span class="o">-</span><span class="nv">w</span><span class="w"> </span><span class="mh">$d</span><span class="w"> </span>]<span class="w"> </span><span class="c1">; then</span>
+<span class="w">      </span><span class="nv">echo</span><span class="w"> </span><span class="mh">$d</span>
+<span class="w">    </span><span class="k">break</span>
+<span class="w">  </span><span class="nv">fi</span>
+<span class="w">  </span><span class="nv">done</span><span class="ss">)</span>
+<span class="nv">PREFIX</span><span class="o">=</span>`<span class="k">dirname</span><span class="w"> </span>$<span class="nv">LIB</span>`
 </code></pre></div>
 
 <p>Install sequence</p>
 <div class="highlight"><pre><span></span><code><span class="cp">#PREFIX=$HOME/cpan</span>
 <span class="cp">#LIB=$HOME/cpan/lib</span>
-<span class="n">tar</span><span class="w"> </span><span class="n">zxvf</span><span class="w"> </span><span class="n">$perl</span><span class="o">-</span><span class="n">mod</span><span class="o">-</span><span class="n">tar</span><span class="w"></span>
-<span class="n">cd</span><span class="w"> </span><span class="n">$unpacked</span><span class="o">-</span><span class="n">src</span><span class="o">-</span><span class="n">dir</span><span class="w"></span>
-<span class="n">perl</span><span class="w"> </span><span class="n">Makefile</span><span class="p">.</span><span class="n">PL</span><span class="w"> </span><span class="n">PREFIX</span><span class="o">=</span><span class="n">$PREFIX</span><span class="w"> </span><span class="n">LIB</span><span class="o">=</span><span class="n">$LIB</span><span class="w"> </span><span class="s">&quot;$@&quot;</span><span class="w"></span>
-<span class="n">make</span><span class="w"></span>
-<span class="n">make</span><span class="w"> </span><span class="n">test</span><span class="w"></span>
-<span class="n">make</span><span class="w"> </span><span class="n">install</span><span class="w"></span>
+<span class="n">tar</span><span class="w"> </span><span class="n">zxvf</span><span class="w"> </span><span class="n">$perl</span><span class="o">-</span><span class="n">mod</span><span class="o">-</span><span class="n">tar</span>
+<span class="n">cd</span><span class="w"> </span><span class="n">$unpacked</span><span class="o">-</span><span class="n">src</span><span class="o">-</span><span class="n">dir</span>
+<span class="n">perl</span><span class="w"> </span><span class="n">Makefile</span><span class="p">.</span><span class="n">PL</span><span class="w"> </span><span class="n">PREFIX</span><span class="o">=</span><span class="n">$PREFIX</span><span class="w"> </span><span class="n">LIB</span><span class="o">=</span><span class="n">$LIB</span><span class="w"> </span><span class="s">&quot;$@&quot;</span>
+<span class="n">make</span>
+<span class="n">make</span><span class="w"> </span><span class="n">test</span>
+<span class="n">make</span><span class="w"> </span><span class="n">install</span>
 </code></pre></div>
 
 	</article>

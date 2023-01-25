@@ -77,12 +77,12 @@ directory as <code>curl_auth.sh</code>:</p>
 <script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/hassio/curl_auth.sh"></script>
 
 <p>Add the following lines to your <code>configure.yaml</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">homeassistant</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">auth_providers</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">command_line</span><span class="w"></span>
-<span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/config/curl_auth.sh</span><span class="w"></span>
-<span class="w">      </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;http://your-web-site-url/&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">      </span><span class="nt">meta</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nt">homeassistant</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">auth_providers</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">command_line</span>
+<span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/config/curl_auth.sh</span>
+<span class="w">      </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;http://your-web-site-url/&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">meta</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 
 <p>Make sure that you modify the URL in the configuration to a
@@ -92,7 +92,7 @@ for checking URLs, so <code>http</code> and <code>https</code> protocols would w
 <code>-k</code> option which is then passed to <code>curl</code>.  See
 <a href="https://man7.org/linux/man-pages/man1/curl.1.html">curl(1)</a>.</p>
 <p>Example:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;-k&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;https://your-web-site-url/&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;-k&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;https://your-web-site-url/&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
 </code></pre></div>
 
 	</article>

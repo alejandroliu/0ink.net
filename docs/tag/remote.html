@@ -104,7 +104,7 @@ So in order to standardise things, I wrote this script:</p>
 </ul>
 <p>So whenever I am ready to release I would then just issue
 the command:</p>
-<div class="highlight"><pre><span></span><code>./ghrelease vX.Y.Z
+<div class="highlight"><pre><span></span><code>./ghrelease<span class="w"> </span>vX.Y.Z
 </code></pre></div>
 
 <h2 id="pre-requisistes">Pre-requisistes:</h2>
@@ -127,7 +127,7 @@ the command:</p>
     <p><p>Some hints and tips foor doing SSL related things:</p>
 <h2 id="netcat-for-ssl">Netcat for SSL</h2>
 <p>This command lets you connect to a SSL server (a-la netcat):</p>
-<div class="highlight"><pre><span></span><code><span class="nv">cat</span><span class="w"> </span><span class="nv">request</span>.<span class="nv">txt</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">openssl</span><span class="w"> </span><span class="nv">s_client</span><span class="w"> </span><span class="o">-</span><span class="k">connect</span><span class="w"> </span><span class="nv">server</span>:<span class="mi">443</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">cat</span><span class="w"> </span><span class="nv">request</span>.<span class="nv">txt</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">openssl</span><span class="w"> </span><span class="nv">s_client</span><span class="w"> </span><span class="o">-</span><span class="k">connect</span><span class="w"> </span><span class="nv">server</span>:<span class="mi">443</span>
 </code></pre></div>
 
 <h2 id="creating-self-signed-certificates">Creating self-signed certificates</h2>
@@ -246,14 +246,14 @@ systems such …</p></p>
     </h2>
     <p><p><strong>THIS IS FOR ARCHIVAL PURPOSES.  THIS IS OUT-OF-DATE</strong></p>
 <h3 id="backup-openshift">backup OpenShift</h3>
-<div class="highlight"><pre><span></span><code><span class="nv">openshift</span><span class="w"> </span><span class="k">getenv</span><span class="ss">(</span><span class="nv">USER</span><span class="ss">)</span><span class="w"> </span><span class="nv">from</span><span class="w"> </span><span class="nv">OpenShift</span><span class="w"> </span><span class="nv">php</span><span class="w"></span>
-<span class="nv">ssh</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span>{<span class="nv">user</span>}@{<span class="nv">app</span><span class="o">-</span><span class="nv">domain</span>}<span class="w"> </span><span class="nv">gear</span><span class="w"> </span><span class="nv">snapshot</span><span class="w">  </span><span class="o">&gt;</span><span class="w"> </span><span class="nv">file</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">openshift</span><span class="w"> </span><span class="k">getenv</span><span class="ss">(</span><span class="nv">USER</span><span class="ss">)</span><span class="w"> </span><span class="nv">from</span><span class="w"> </span><span class="nv">OpenShift</span><span class="w"> </span><span class="nv">php</span>
+<span class="nv">ssh</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span>{<span class="nv">user</span>}@{<span class="nv">app</span><span class="o">-</span><span class="nv">domain</span>}<span class="w"> </span><span class="nv">gear</span><span class="w"> </span><span class="nv">snapshot</span><span class="w">  </span><span class="o">&gt;</span><span class="w"> </span><span class="nv">file</span>
 </code></pre></div>
 
 <p>Run gear app</p>
 <p>OpenShift migration further notes</p>
 <p>Encrypt a file using a supplied password :</p>
-<div class="highlight"><pre><span></span><code>$ openssl enc -aes-256-cbc -salt -in file.txt -out file.txt.enc -k …</code></pre></div></p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>openssl<span class="w"> </span>enc<span class="w"> </span>-aes-256-cbc<span class="w"> </span>-salt<span class="w"> </span>-in<span class="w"> </span>file.txt<span class="w"> </span>-out<span class="w"> </span>file.txt.enc<span class="w"> </span>-k …</code></pre></div></p>
   </div>
 </article><article class="summary">
 <div class="metadata">
@@ -422,8 +422,8 @@ for SSH to figure out to switch IP protocols. For …</p></p>
 <a href="http://gitorious.com/">Gitorious</a> here. This technique would work
 exactly the same the other way around or with other servers.</p>
 <h2 id="in-a-nutshell">In a nutshell</h2>
-<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">Inital</span><span class="w"> </span><span class="n">setup</span><span class="w"></span>
-<span class="n">git</span><span class="w"> </span><span class="n">clone</span><span class="w"> </span><span class="o">--</span><span class="n">mirror</span><span class="w"> </span><span class="nl">git</span><span class="p">:</span><span class="o">//</span><span class="n">gitorious</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">weasyprint</span><span class="o">/</span><span class="n">weasyprint</span><span class="p">.</span><span class="n">git</span><span class="w"> </span><span class="n">weasyprint</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">Inital</span><span class="w"> </span><span class="n">setup</span>
+<span class="n">git</span><span class="w"> </span><span class="n">clone</span><span class="w"> </span><span class="o">--</span><span class="n">mirror</span><span class="w"> </span><span class="nl">git</span><span class="p">:</span><span class="o">//</span><span class="n">gitorious</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">weasyprint</span><span class="o">/</span><span class="n">weasyprint</span><span class="p">.</span><span class="n">git</span><span class="w"> </span><span class="n">weasyprint</span>
 <span class="n">GIT_DIR</span><span class="o">=</span><span class="n">weasyprint</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="n">remote</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">github</span><span class="w"> </span><span class="n">git</span><span class="nv">@github</span><span class="p">.</span><span class="nl">com</span><span class="p">:</span><span class="n">SimonSapin</span><span class="o">/</span><span class="n">WeasyPrint …</span></code></pre></div></p>
   </div>
 </article><article class="summary">

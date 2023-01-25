@@ -67,14 +67,14 @@
 for one and while I found a few, they somehow, did not work for me.</p>
 <p>So I wrote my own: <a href="https://github.com/alejandroliu/0ink.net/blob/master/src/mdx/mdx_graphviz.py">mdx_graphviz</a>.</p>
 <p>It is quite straight forward.  You just need to create blocks:</p>
-<div class="highlight"><pre><span></span><code><span class="n">dot</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">digraph</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">rankdir</span><span class="o">=</span><span class="n">LR</span><span class="w"></span>
-<span class="w">        </span><span class="n">Earth</span><span class="w"> </span><span class="p">[</span><span class="n">peripheries</span><span class="o">=</span><span class="mi">2</span><span class="p">]</span><span class="w"></span>
-<span class="w">        </span><span class="n">Mars</span><span class="w"></span>
-<span class="w">        </span><span class="n">Earth</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Mars</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">dot</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">digraph</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rankdir</span><span class="o">=</span><span class="n">LR</span>
+<span class="w">        </span><span class="n">Earth</span><span class="w"> </span><span class="p">[</span><span class="n">peripheries</span><span class="o">=</span><span class="mi">2</span><span class="p">]</span>
+<span class="w">        </span><span class="n">Mars</span>
+<span class="w">        </span><span class="n">Earth</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Mars</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
 
 <p>You can use this <a href="http://magjac.com/graphviz-visual-editor/">Graphviz Visual Editor</a> for a more

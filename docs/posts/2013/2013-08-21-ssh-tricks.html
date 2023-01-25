@@ -68,23 +68,23 @@
 <p>This is for the scenario that you know which specific protocol works<br>
 to reach a particular host. Usually good to eliminate the delay<br>
 for SSH to figure out to switch IP protocols. For IPv4:</p>
-<div class="highlight"><pre><span></span><code><span class="n">ssh</span><span class="w"> </span><span class="o">-</span><span class="mi">4</span><span class="w"> </span><span class="k">user</span><span class="nv">@hostname</span><span class="p">.</span><span class="n">com</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">ssh</span><span class="w"> </span><span class="o">-</span><span class="mi">4</span><span class="w"> </span><span class="k">user</span><span class="nv">@hostname</span><span class="p">.</span><span class="n">com</span>
 </code></pre></div>
 
 <p>For IPv6</p>
-<div class="highlight"><pre><span></span><code><span class="n">ssh</span><span class="w"> </span><span class="o">-</span><span class="mi">6</span><span class="w"> </span><span class="k">user</span><span class="nv">@hostname</span><span class="p">.</span><span class="n">com</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">ssh</span><span class="w"> </span><span class="o">-</span><span class="mi">6</span><span class="w"> </span><span class="k">user</span><span class="nv">@hostname</span><span class="p">.</span><span class="n">com</span>
 </code></pre></div>
 
 <h3 id="reuse-a-ssh-connection">Reuse a SSH connection</h3>
 <p>Rather than start a new TCP connection to a remote host, simply
 multiplex over an existing connection: Add to your <code>~/.ssh/config</code> the
 following lines:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">Host</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
-<span class="w">    </span><span class="nv">ControlMaster</span><span class="w"> </span><span class="nv">auto</span><span class="w"></span>
-<span class="w">    </span><span class="nv">ControlPath</span><span class="w"> </span><span class="o">/</span><span class="nv">tmp</span><span class="o">/%</span><span class="nv">r</span>@<span class="o">%</span><span class="nv">h</span>:<span class="o">%</span><span class="nv">p</span><span class="w"></span>
-<span class="w">    </span><span class="nv">ControlPersist</span><span class="w"> </span><span class="mi">4</span><span class="nv">h</span><span class="w"></span>
-#<span class="w"> </span><span class="nv">Another</span><span class="w"> </span><span class="nv">option</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">Control</span><span class="w"> </span><span class="nv">Path</span><span class="w"></span>
-<span class="w">    </span><span class="nv">ControlPath</span><span class="w"> </span><span class="o">~/</span>.<span class="nv">ssh</span><span class="o">/%</span><span class="nv">r</span>@<span class="o">%</span><span class="nv">h</span>:<span class="o">%</span><span class="nv">p</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">Host</span><span class="w"> </span><span class="o">*</span>
+<span class="w">    </span><span class="nv">ControlMaster</span><span class="w"> </span><span class="nv">auto</span>
+<span class="w">    </span><span class="nv">ControlPath</span><span class="w"> </span><span class="o">/</span><span class="nv">tmp</span><span class="o">/%</span><span class="nv">r</span>@<span class="o">%</span><span class="nv">h</span>:<span class="o">%</span><span class="nv">p</span>
+<span class="w">    </span><span class="nv">ControlPersist</span><span class="w"> </span><span class="mi">4</span><span class="nv">h</span>
+#<span class="w"> </span><span class="nv">Another</span><span class="w"> </span><span class="nv">option</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">Control</span><span class="w"> </span><span class="nv">Path</span>
+<span class="w">    </span><span class="nv">ControlPath</span><span class="w"> </span><span class="o">~/</span>.<span class="nv">ssh</span><span class="o">/%</span><span class="nv">r</span>@<span class="o">%</span><span class="nv">h</span>:<span class="o">%</span><span class="nv">p</span>
 </code></pre></div>
 
 <h3 id="enable-compression">Enable compression</h3>

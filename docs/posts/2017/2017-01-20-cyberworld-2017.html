@@ -153,13 +153,13 @@
 <li>apk apache2-utils : for htpasswd command</li>
 <li>Add a proxy command:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nt">location</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="err">proxy_pass</span><span class="w"> </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="err">$</span><span class="n">server</span><span class="o">/</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="err">auth_basic</span><span class="w"> </span><span class="err">&quot;Restricted&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="err">auth_basic_user_file</span><span class="w"> </span><span class="err">/etc/nginx/_htpasswd</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="err">proxy_set_header</span><span class="w"> </span><span class="err">X-Remote-User</span><span class="w"> </span><span class="err">$remote_user</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="err">proxy_pass_request_headers</span><span class="w">      </span><span class="err">on</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nt">location</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="err">proxy_pass</span><span class="w"> </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="err">$</span><span class="n">server</span><span class="o">/</span><span class="p">;</span>
+<span class="w">      </span><span class="err">auth_basic</span><span class="w"> </span><span class="err">&quot;Restricted&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="err">auth_basic_user_file</span><span class="w"> </span><span class="err">/etc/nginx/_htpasswd</span><span class="p">;</span>
+<span class="w">      </span><span class="err">proxy_set_header</span><span class="w"> </span><span class="err">X-Remote-User</span><span class="w"> </span><span class="err">$remote_user</span><span class="p">;</span>
+<span class="w">      </span><span class="err">proxy_pass_request_headers</span><span class="w">      </span><span class="err">on</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 </code></pre></div>
 
 <p>Variable Reference: <a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#variables">NGINX Docs</a></p>

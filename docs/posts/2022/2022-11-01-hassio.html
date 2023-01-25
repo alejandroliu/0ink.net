@@ -210,11 +210,11 @@ match, I modified it on the configuration:</p>
 control panels) I configured the
 <a href="https://www.home-assistant.io/docs/authentication/providers/#trusted-networks">trusted_networks</a>
 by adding the following lines to your <code>configuration.yaml</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="nt">homeassistant</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">auth_providers</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trusted_networks</span><span class="w"></span>
-<span class="w">      </span><span class="nt">trusted_networks</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.2.0/24</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nt">homeassistant</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">auth_providers</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trusted_networks</span>
+<span class="w">      </span><span class="nt">trusted_networks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.2.0/24</span>
 </code></pre></div>
 
 <p>Essentially what this does is that devices connecting from the
@@ -222,16 +222,16 @@ by adding the following lines to your <code>configuration.yaml</code>.</p>
 <h3 id="system-temperature">System temperature</h3>
 <p>For fun I also configured a CPU temperature sensor.  Add this
 to <code>configuration.yaml</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">sensor</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="c1">### command line</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">command_line</span><span class="w"></span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CPU Temperature</span><span class="w"></span>
-<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cat</span><span class="nv"> </span><span class="s">/sys/class/thermal/thermal_zone0/temp&quot;</span><span class="w"> </span><span class="c1"># RPi</span><span class="w"></span>
-<span class="w">    </span><span class="c1"># command: &quot;cat /sys/class/thermal/thermal_zone2/temp&quot; # NUC</span><span class="w"></span>
-<span class="w">    </span><span class="c1"># If errors occur, remove degree symbol below</span><span class="w"></span>
-<span class="w">    </span><span class="nt">unit_of_measurement</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;°C&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="nt">value_template</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">&#39;%.1f&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">format(value</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">multiply(0.001))</span><span class="nv"> </span><span class="s">}}&quot;</span><span class="w"> </span><span class="c1"># RPi &amp; NUC</span><span class="w"></span>
-<span class="w">    </span><span class="nt">unique_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sys_cpu_temp</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nt">sensor</span><span class="p">:</span>
+<span class="w">  </span><span class="c1">### command line</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">command_line</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CPU Temperature</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cat</span><span class="nv"> </span><span class="s">/sys/class/thermal/thermal_zone0/temp&quot;</span><span class="w"> </span><span class="c1"># RPi</span>
+<span class="w">    </span><span class="c1"># command: &quot;cat /sys/class/thermal/thermal_zone2/temp&quot; # NUC</span>
+<span class="w">    </span><span class="c1"># If errors occur, remove degree symbol below</span>
+<span class="w">    </span><span class="nt">unit_of_measurement</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;°C&quot;</span>
+<span class="w">    </span><span class="nt">value_template</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">&#39;%.1f&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">format(value</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">multiply(0.001))</span><span class="nv"> </span><span class="s">}}&quot;</span><span class="w"> </span><span class="c1"># RPi &amp; NUC</span>
+<span class="w">    </span><span class="nt">unique_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sys_cpu_temp</span>
 </code></pre></div>
 
 <h2 id="integrations">Integrations</h2>

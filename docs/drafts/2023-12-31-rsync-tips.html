@@ -79,15 +79,15 @@
 <li>Configure <a href="http://www.jveweb.net/en/archives/2011/01/running-rsync-as-a-daemon.html">rsync daemon</a></li>
 </ul>
 <p>Here is how the "rsync --link-dest=DIR" algorithm creates files in destination:</p>
-<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nv">destination</span><span class="w"> </span><span class="nv">does</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">exists</span>,<span class="w"></span>
-<span class="w">        </span><span class="nv">create</span><span class="w"> </span><span class="nv">destination</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nv">destination</span><span class="w"> </span><span class="nv">does</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">exists</span>,
+<span class="w">        </span><span class="nv">create</span><span class="w"> </span><span class="nv">destination</span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nv">DIR</span><span class="w"> </span><span class="nv">exists</span><span class="w"> </span><span class="ss">(</span><span class="nv">where</span><span class="w"> </span><span class="nv">DIR</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">previous</span><span class="w"> </span><span class="nv">backup</span><span class="ss">)</span>,<span class="w"></span>
-<span class="w">        </span><span class="nv">compare</span><span class="w"> </span><span class="nv">source</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">DIR</span><span class="w"></span>
-<span class="w">        </span><span class="nv">hard</span><span class="w"> </span><span class="nv">link</span><span class="w"> </span><span class="nv">unchanged</span><span class="w"> </span><span class="nv">files</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">DIR</span><span class="w"></span>
-<span class="w">        </span><span class="nv">copy</span><span class="w"> </span><span class="nv">changed</span><span class="w"> </span><span class="nv">files</span><span class="w"> </span><span class="nv">from</span><span class="w"> </span><span class="nv">source</span><span class="w"></span>
-<span class="w">    </span><span class="k">else</span><span class="w"></span>
-<span class="w">        </span><span class="nv">copy</span><span class="w"> </span><span class="nv">all</span><span class="w"> </span><span class="nv">files</span><span class="w"> </span><span class="nv">from</span><span class="w"> </span><span class="nv">source</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nv">DIR</span><span class="w"> </span><span class="nv">exists</span><span class="w"> </span><span class="ss">(</span><span class="nv">where</span><span class="w"> </span><span class="nv">DIR</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">previous</span><span class="w"> </span><span class="nv">backup</span><span class="ss">)</span>,
+<span class="w">        </span><span class="nv">compare</span><span class="w"> </span><span class="nv">source</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">DIR</span>
+<span class="w">        </span><span class="nv">hard</span><span class="w"> </span><span class="nv">link</span><span class="w"> </span><span class="nv">unchanged</span><span class="w"> </span><span class="nv">files</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">DIR</span>
+<span class="w">        </span><span class="nv">copy</span><span class="w"> </span><span class="nv">changed</span><span class="w"> </span><span class="nv">files</span><span class="w"> </span><span class="nv">from</span><span class="w"> </span><span class="nv">source</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="nv">copy</span><span class="w"> </span><span class="nv">all</span><span class="w"> </span><span class="nv">files</span><span class="w"> </span><span class="nv">from</span><span class="w"> </span><span class="nv">source</span>
 </code></pre></div>
 
 <p>By default, rsync does not compressed files.  Restoring files is as simple as a cp command.</p>

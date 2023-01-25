@@ -72,8 +72,8 @@ sessions by defauult.</p>
 <p>It is better to use <code>qemu:///system</code> as <code>qemu:///session</code> does not seem to see
 all available resources.</p>
 <p>To force <code>virsh</code> to connect to the right session you can use commands such as:</p>
-<div class="highlight"><pre><span></span><code>virsh --connect qemu:///system net-list
-virsh --connect qemu:///system pool-list
+<div class="highlight"><pre><span></span><code>virsh<span class="w"> </span>--connect<span class="w"> </span>qemu:///system<span class="w"> </span>net-list
+virsh<span class="w"> </span>--connect<span class="w"> </span>qemu:///system<span class="w"> </span>pool-list
 </code></pre></div>
 
 <h2 id="create-network">Create network</h2>
@@ -88,8 +88,8 @@ for reference.</p>
 </ul>
 <h2 id="import-images">Import images</h2>
 <p>This needs to be done on CLI (as the GUI doesn't seem to allow this)</p>
-<div class="highlight"><pre><span></span><code>virsh --connect qemu:///system vol-create-as <span class="nv">$pool</span> <span class="nv">$vol</span> 32k --format <span class="nv">$format</span>
-virsh --connect qemu:///system vol-upload <span class="nv">$vol</span> <span class="nv">$file</span>
+<div class="highlight"><pre><span></span><code>virsh<span class="w"> </span>--connect<span class="w"> </span>qemu:///system<span class="w"> </span>vol-create-as<span class="w"> </span><span class="nv">$pool</span><span class="w"> </span><span class="nv">$vol</span><span class="w"> </span>32k<span class="w"> </span>--format<span class="w"> </span><span class="nv">$format</span>
+virsh<span class="w"> </span>--connect<span class="w"> </span>qemu:///system<span class="w"> </span>vol-upload<span class="w"> </span><span class="nv">$vol</span><span class="w"> </span><span class="nv">$file</span>
 </code></pre></div>
 
 <p>For <code>format</code>, use <code>raw</code> for iso, <code>qcow2</code> for actual drives.</p>
@@ -137,7 +137,7 @@ virsh --connect qemu:///system vol-upload <span class="nv">$vol</span> <span cla
 </ol>
 <h2 id="thin-provisioning">Thin provisioning</h2>
 <p>Create an overlay file like so:</p>
-<div class="highlight"><pre><span></span><code>qemu-img create -b ubuntu-20.04-server-cloudimg-amd64-disk-kvm.img -F qcow2 -f qcow2 guest-1.qcow2
+<div class="highlight"><pre><span></span><code>qemu-img<span class="w"> </span>create<span class="w"> </span>-b<span class="w"> </span>ubuntu-20.04-server-cloudimg-amd64-disk-kvm.img<span class="w"> </span>-F<span class="w"> </span>qcow2<span class="w"> </span>-f<span class="w"> </span>qcow2<span class="w"> </span>guest-1.qcow2
 </code></pre></div>
 
 	</article>

@@ -84,85 +84,85 @@ Network 1  |     |                         |     |   Network 2
 </code></pre></div>
 
 <p><em>Notice: Last command is needed to make vtun work, because authors build for debian is looking for tunnel device driver at /dev/misc/net/tun.</em> To create ethernet tunnel between bridging servers we will use <strong>vtun</strong> software. When <code>vtun</code> will be installed, we will need to select one of the bridging servers as master and second server will be slave and appropriately change vtund-start.conf and vtund.conf file in /etc/ on buth servers. Complete config files for master is following.</p>
-<div class="highlight"><pre><span></span><code><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">vtund</span><span class="o">-</span><span class="n">start</span><span class="o">.</span><span class="n">conf</span><span class="w"></span>
-<span class="o">----</span><span class="n">cut</span><span class="o">-</span><span class="n">here</span><span class="o">------------------------------------</span><span class="w"></span>
-<span class="o">--</span><span class="n">server</span><span class="o">--</span><span class="w"> </span><span class="mi">5000</span><span class="w"></span>
-<span class="o">----</span><span class="n">cut</span><span class="o">-</span><span class="n">here</span><span class="o">------------------------------------</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">vtund</span><span class="o">-</span><span class="n">start</span><span class="o">.</span><span class="n">conf</span>
+<span class="o">----</span><span class="n">cut</span><span class="o">-</span><span class="n">here</span><span class="o">------------------------------------</span>
+<span class="o">--</span><span class="n">server</span><span class="o">--</span><span class="w"> </span><span class="mi">5000</span>
+<span class="o">----</span><span class="n">cut</span><span class="o">-</span><span class="n">here</span><span class="o">------------------------------------</span>
 
-<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">vtund</span><span class="o">.</span><span class="n">conf</span><span class="w"></span>
-<span class="o">----</span><span class="n">cut</span><span class="o">-</span><span class="n">here</span><span class="o">------------------------------------</span><span class="w"></span>
-<span class="n">options</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">port</span><span class="w"> </span><span class="mi">5000</span><span class="p">;</span><span class="w">            </span><span class="c1"># Listen on this port.</span><span class="w"></span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">vtund</span><span class="o">.</span><span class="n">conf</span>
+<span class="o">----</span><span class="n">cut</span><span class="o">-</span><span class="n">here</span><span class="o">------------------------------------</span>
+<span class="n">options</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">port</span><span class="w"> </span><span class="mi">5000</span><span class="p">;</span><span class="w">            </span><span class="c1"># Listen on this port.</span>
 
-<span class="w">    </span><span class="c1"># Syslog facility</span><span class="w"></span>
-<span class="w">    </span><span class="n">syslog</span><span class="w">        </span><span class="n">daemon</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># Syslog facility</span>
+<span class="w">    </span><span class="n">syslog</span><span class="w">        </span><span class="n">daemon</span><span class="p">;</span>
 
-<span class="w">    </span><span class="c1"># Path to various programs</span><span class="w"></span>
-<span class="w">    </span><span class="n">ifconfig</span><span class="w">      </span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">ifconfig</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">route</span><span class="w">         </span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">route</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">firewall</span><span class="w">      </span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">iptables</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">ip</span><span class="w">            </span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">ip</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># Path to various programs</span>
+<span class="w">    </span><span class="n">ifconfig</span><span class="w">      </span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">ifconfig</span><span class="p">;</span>
+<span class="w">    </span><span class="n">route</span><span class="w">         </span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">route</span><span class="p">;</span>
+<span class="w">    </span><span class="n">firewall</span><span class="w">      </span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">iptables</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ip</span><span class="w">            </span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">ip</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="n">default</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">compress</span><span class="w"> </span><span class="n">no</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">encrypt</span><span class="w"> </span><span class="n">no</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">speed</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="n">default</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">compress</span><span class="w"> </span><span class="n">no</span><span class="p">;</span>
+<span class="w">    </span><span class="n">encrypt</span><span class="w"> </span><span class="n">no</span><span class="p">;</span>
+<span class="w">    </span><span class="n">speed</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="n">rembridge</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">passwd</span><span class="w"> </span><span class="n">Pa</span><span class="o">$$</span><span class="n">Wd</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">type</span><span class="w"> </span><span class="n">ether</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">proto</span><span class="w"> </span><span class="n">udp</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">keepalive</span><span class="w"> </span><span class="n">yes</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">compress</span><span class="w"> </span><span class="n">no</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">encrypt</span><span class="w"> </span><span class="n">yes</span><span class="p">;</span><span class="w"></span>
+<span class="n">rembridge</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">passwd</span><span class="w"> </span><span class="n">Pa</span><span class="o">$$</span><span class="n">Wd</span><span class="p">;</span>
+<span class="w">    </span><span class="n">type</span><span class="w"> </span><span class="n">ether</span><span class="p">;</span>
+<span class="w">    </span><span class="n">proto</span><span class="w"> </span><span class="n">udp</span><span class="p">;</span>
+<span class="w">    </span><span class="n">keepalive</span><span class="w"> </span><span class="n">yes</span><span class="p">;</span>
+<span class="w">    </span><span class="n">compress</span><span class="w"> </span><span class="n">no</span><span class="p">;</span>
+<span class="w">    </span><span class="n">encrypt</span><span class="w"> </span><span class="n">yes</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">up</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="c1"># Connection is Up</span><span class="w"></span>
-<span class="w">        </span><span class="n">ifconfig</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">%%</span><span class="s2"> up&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">program</span><span class="w"> </span><span class="s2">&quot;brctl addif br0 </span><span class="si">%%</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="n">up</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1"># Connection is Up</span>
+<span class="w">        </span><span class="n">ifconfig</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">%%</span><span class="s2"> up&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">program</span><span class="w"> </span><span class="s2">&quot;brctl addif br0 </span><span class="si">%%</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
 
-<span class="w">    </span><span class="n">down</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="c1"># Connection is Down</span><span class="w"></span>
-<span class="w">        </span><span class="n">ifconfig</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">%%</span><span class="s2"> down&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">};</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="o">----</span><span class="n">cut</span><span class="o">-</span><span class="n">here</span><span class="o">------------------------------------</span><span class="w"></span>
+<span class="w">    </span><span class="n">down</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1"># Connection is Down</span>
+<span class="w">        </span><span class="n">ifconfig</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">%%</span><span class="s2"> down&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">}</span>
+<span class="o">----</span><span class="n">cut</span><span class="o">-</span><span class="n">here</span><span class="o">------------------------------------</span>
 </code></pre></div>
 
 <p>Slave server config files is following:</p>
 <div class="highlight"><pre><span></span><code><span class="c">/etc/vtund</span><span class="nb">-</span><span class="c">start</span><span class="nt">.</span><span class="c">conf</span>
-<span class="nb">----</span><span class="c">cut</span><span class="nb">-</span><span class="c">here</span><span class="nb">------------------------------------</span><span class="c"></span>
+<span class="nb">----</span><span class="c">cut</span><span class="nb">-</span><span class="c">here</span><span class="nb">------------------------------------</span>
 <span class="c">rembridge 10</span><span class="nt">.</span><span class="c">1</span><span class="nt">.</span><span class="c">1</span><span class="nt">.</span><span class="c">1 </span><span class="nb">-</span><span class="c">p</span>
-<span class="nb">----</span><span class="c">cut</span><span class="nb">-</span><span class="c">here</span><span class="nb">------------------------------------</span><span class="c"></span>
+<span class="nb">----</span><span class="c">cut</span><span class="nb">-</span><span class="c">here</span><span class="nb">------------------------------------</span>
 </code></pre></div>
 
 <p><em>Notice: In this example 10.1.1.1 is transport address of master server.</em></p>
-<div class="highlight"><pre><span></span><code><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">vtund</span><span class="o">.</span><span class="n">conf</span><span class="w"></span>
-<span class="o">----</span><span class="n">cut</span><span class="o">-</span><span class="n">here</span><span class="o">------------------------------------</span><span class="w"></span>
-<span class="n">options</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="c1"># Path to various programs</span><span class="w"></span>
-<span class="w">  </span><span class="n">ifconfig</span><span class="w">      </span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">ifconfig</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="n">route</span><span class="w">         </span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">route</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="n">firewall</span><span class="w">      </span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">iptables</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">vtund</span><span class="o">.</span><span class="n">conf</span>
+<span class="o">----</span><span class="n">cut</span><span class="o">-</span><span class="n">here</span><span class="o">------------------------------------</span>
+<span class="n">options</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1"># Path to various programs</span>
+<span class="w">  </span><span class="n">ifconfig</span><span class="w">      </span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">ifconfig</span><span class="p">;</span>
+<span class="w">  </span><span class="n">route</span><span class="w">         </span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">route</span><span class="p">;</span>
+<span class="w">  </span><span class="n">firewall</span><span class="w">      </span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">iptables</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="n">korsar</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="k">pass</span><span class="w">  </span><span class="n">Pa</span><span class="o">$$</span><span class="n">Wd</span><span class="p">;</span><span class="w">         </span><span class="c1"># Password</span><span class="w"></span>
-<span class="w">  </span><span class="n">type</span><span class="w">  </span><span class="n">ether</span><span class="p">;</span><span class="w">          </span><span class="c1"># Ethernet tunnel</span><span class="w"></span>
-<span class="w">  </span><span class="n">up</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="c1"># Connection is Up</span><span class="w"></span>
-<span class="w">        </span><span class="n">ifconfig</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">%%</span><span class="s2"> up&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">program</span><span class="w"> </span><span class="s2">&quot;brctl addif br0 </span><span class="si">%%</span><span class="s2">&quot;</span><span class="w"></span>
-<span class="w">  </span><span class="p">};</span><span class="w"></span>
-<span class="w">  </span><span class="n">down</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="c1"># Connection is Down</span><span class="w"></span>
-<span class="w">        </span><span class="n">ifconfig</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">%%</span><span class="s2"> down&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="p">};</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="o">----</span><span class="n">cut</span><span class="o">-</span><span class="n">here</span><span class="o">------------------------------------</span><span class="w"></span>
+<span class="n">korsar</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">pass</span><span class="w">  </span><span class="n">Pa</span><span class="o">$$</span><span class="n">Wd</span><span class="p">;</span><span class="w">         </span><span class="c1"># Password</span>
+<span class="w">  </span><span class="n">type</span><span class="w">  </span><span class="n">ether</span><span class="p">;</span><span class="w">          </span><span class="c1"># Ethernet tunnel</span>
+<span class="w">  </span><span class="n">up</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1"># Connection is Up</span>
+<span class="w">        </span><span class="n">ifconfig</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">%%</span><span class="s2"> up&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">program</span><span class="w"> </span><span class="s2">&quot;brctl addif br0 </span><span class="si">%%</span><span class="s2">&quot;</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="w">  </span><span class="n">down</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1"># Connection is Down</span>
+<span class="w">        </span><span class="n">ifconfig</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">%%</span><span class="s2"> down&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="p">}</span>
+<span class="o">----</span><span class="n">cut</span><span class="o">-</span><span class="n">here</span><span class="o">------------------------------------</span>
 </code></pre></div>
 
 <p>To bring up bridge between LAN ethernet interface and our newly created tunnel interface we need to create bridge interface. To complete this task we will add br0 interface description to /etc/network/interfaces file:</p>
@@ -199,11 +199,11 @@ br0   Link encap:Ethernet  HWaddr 00:02:44:2A:03:30
 </code></pre></div>
 
 <p>If we need to see current state of bridge interface, we can use brctl tool:</p>
-<div class="highlight"><pre><span></span><code>#<span class="w"> </span><span class="nv">brctl</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="nv">br0</span><span class="w"></span>
-<span class="nv">bridge</span><span class="w"> </span><span class="nv">name</span><span class="w">     </span><span class="nv">bridge</span><span class="w"> </span><span class="nv">id</span><span class="w">               </span><span class="nv">STP</span><span class="w"> </span><span class="nv">enabled</span><span class="w">     </span><span class="nv">interfaces</span><span class="w"></span>
-<span class="nv">br0</span><span class="w">             </span><span class="mi">8000</span>.<span class="mi">0002442</span><span class="nv">a0330</span><span class="w">       </span><span class="nv">no</span><span class="w">              </span><span class="nv">eth0</span><span class="w"></span>
-<span class="w">                                                        </span><span class="nv">tap0</span><span class="w"></span>
-#<span class="w"></span>
+<div class="highlight"><pre><span></span><code>#<span class="w"> </span><span class="nv">brctl</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="nv">br0</span>
+<span class="nv">bridge</span><span class="w"> </span><span class="nv">name</span><span class="w">     </span><span class="nv">bridge</span><span class="w"> </span><span class="nv">id</span><span class="w">               </span><span class="nv">STP</span><span class="w"> </span><span class="nv">enabled</span><span class="w">     </span><span class="nv">interfaces</span>
+<span class="nv">br0</span><span class="w">             </span><span class="mi">8000</span>.<span class="mi">0002442</span><span class="nv">a0330</span><span class="w">       </span><span class="nv">no</span><span class="w">              </span><span class="nv">eth0</span>
+<span class="w">                                                        </span><span class="nv">tap0</span>
+#
 </code></pre></div>
 
 <p>When all of described steps will be completed, our computers in both networks will be able to communicate with each other. IP addresses on bridge interfaces can be used for troubleshooting network connection. And last, if you need, you can turn on compression or enrtyption of data within created tunnel.</p>

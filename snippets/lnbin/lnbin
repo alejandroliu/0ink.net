@@ -24,7 +24,7 @@ set -euf -o pipefail
 op_usage() {
 sed s/^#// << 'EOT'
 #++
-# = LNSYM(1)
+# = LNBIN(1)
 # :Revision: 1.0
 #
 # == NAME
@@ -33,7 +33,7 @@ sed s/^#// << 'EOT'
 #
 # == SYNOPSIS
 #
-# *lnbin* _[options]_ {pkgs-dir}
+#     *lnbin* _[options]_ {pkgs-dir}
 #
 # == DESCRIPTION
 #

@@ -95,7 +95,7 @@ to transform the schema.  i.e. additional <code>CREATE DATABASE</code> or
 <p>So actually, the <code>upgrade</code> file would be the working version
 used for development.  For release then I would create a
 new <code>init</code> file.  Either doing it manually or by doing:</p>
-<div class="highlight"><pre><span></span><code>cat init-1.0.sql upgrade-1.1.sql &gt; init-1.1.sql
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>init-1.0.sql<span class="w"> </span>upgrade-1.1.sql<span class="w"> </span>&gt;<span class="w"> </span>init-1.1.sql
 </code></pre></div>
 
 <p>To indicate that this is the current version, the symlink would

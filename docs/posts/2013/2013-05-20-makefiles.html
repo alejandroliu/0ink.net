@@ -79,9 +79,9 @@ the manual.  Here now for my own convenience.</p>
     The names of all the prerequisites.</li>
 </ul>
 <p>To include files in Makefile only if they exist:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">ifneq</span><span class="w"> </span><span class="ss">(</span>$<span class="ss">(</span><span class="nv">wildcard</span><span class="w"> </span><span class="nv">_incfile_</span><span class="ss">)</span>,<span class="ss">)</span><span class="w"></span>
-<span class="w">  </span><span class="k">include</span><span class="w"> </span><span class="nv">_incfile_</span><span class="w"></span>
-<span class="k">endif</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">ifneq</span><span class="w"> </span><span class="ss">(</span>$<span class="ss">(</span><span class="nv">wildcard</span><span class="w"> </span><span class="nv">_incfile_</span><span class="ss">)</span>,<span class="ss">)</span>
+<span class="w">  </span><span class="k">include</span><span class="w"> </span><span class="nv">_incfile_</span>
+<span class="k">endif</span>
 </code></pre></div>
 
 	</article>

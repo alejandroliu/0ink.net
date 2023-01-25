@@ -64,15 +64,15 @@
 </div>
 		<p>portable console</p>
 <p>Set scrolling region:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">printf</span> <span class="s2">&quot;\033[1;24r&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;\033[1;24r&quot;</span>
 </code></pre></div>
 
 <p>Reset scrolling region:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">printf</span> <span class="s2">&quot;\033[r&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;\033[r&quot;</span>
 </code></pre></div>
 
 <p>However, it is easier/better to do:</p>
-<div class="highlight"><pre><span></span><code>stty rows <span class="m">24</span> cols <span class="m">80</span>
+<div class="highlight"><pre><span></span><code>stty<span class="w"> </span>rows<span class="w"> </span><span class="m">24</span><span class="w"> </span>cols<span class="w"> </span><span class="m">80</span>
 </code></pre></div>
 
 	</article>

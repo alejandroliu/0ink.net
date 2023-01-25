@@ -71,8 +71,8 @@ disc.  However, after the fact the following options are possible:</p>
 <h2 id="ata-secure-erase">ATA Secure Erase</h2>
 <p>You should use the drive's security erase feature.</p>
 <p>Make sure the drive Security is not frozen. If it is, it may help to suspend and resume the computer.</p>
-<div class="highlight"><pre><span></span><code>$ sudo hdparm -I /dev/sdX <span class="p">|</span> grep frozen
-       not     frozen 
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>hdparm<span class="w"> </span>-I<span class="w"> </span>/dev/sdX<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>frozen
+<span class="w">       </span>not<span class="w">     </span>frozen<span class="w"> </span>
 </code></pre></div>
 
 <p>The (filtered) command output means that this drive is ”not frozen” and you can continue.</p>
@@ -126,8 +126,8 @@ below.</p>
 <strong>(Add discard)</strong></p>
 <p>Save and reboot, TRIM should now be enabled.</p>
 <p>Check if TRIM is enabled:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">sudo</span><span class="w"> </span><span class="nv">dd</span><span class="w"> </span><span class="k">if</span><span class="o">=/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">urandom</span><span class="w"> </span><span class="nv">of</span><span class="o">=</span><span class="nv">tempfile</span><span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="mi">100</span><span class="w"> </span><span class="nv">bs</span><span class="o">=</span><span class="mi">512</span><span class="nv">k</span><span class="w"> </span><span class="nv">oflag</span><span class="o">=</span><span class="nv">direct</span><span class="w"></span>
-<span class="nv">sudo</span><span class="w"> </span><span class="nv">hdparm</span><span class="w"> </span><span class="o">--</span><span class="nv">fibmap</span><span class="w"> </span><span class="nv">tempfile</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">sudo</span><span class="w"> </span><span class="nv">dd</span><span class="w"> </span><span class="k">if</span><span class="o">=/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">urandom</span><span class="w"> </span><span class="nv">of</span><span class="o">=</span><span class="nv">tempfile</span><span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="mi">100</span><span class="w"> </span><span class="nv">bs</span><span class="o">=</span><span class="mi">512</span><span class="nv">k</span><span class="w"> </span><span class="nv">oflag</span><span class="o">=</span><span class="nv">direct</span>
+<span class="nv">sudo</span><span class="w"> </span><span class="nv">hdparm</span><span class="w"> </span><span class="o">--</span><span class="nv">fibmap</span><span class="w"> </span><span class="nv">tempfile</span>
 </code></pre></div>
 
 <p>Use the first begin_LBA address.</p>
@@ -148,16 +148,16 @@ sync
 <p>This is what I used to do for magnetic discs.  Note, that this is
 discouraged for SSD devices:</p>
 <p>First I create some random data to use:</p>
-<div class="highlight"><pre><span></span><code><span class="n">dd</span><span class="w"> </span><span class="k">if</span><span class="o">=/</span><span class="n">dev</span><span class="o">/</span><span class="n">urandom</span><span class="w"> </span><span class="n">of</span><span class="o">=/</span><span class="k">var</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">random</span><span class="w"> </span><span class="n">bs</span><span class="o">=</span><span class="mi">1</span><span class="n">M</span><span class="w"> </span><span class="n">count</span><span class="o">=</span><span class="mi">128</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">dd</span><span class="w"> </span><span class="k">if</span><span class="o">=/</span><span class="n">dev</span><span class="o">/</span><span class="n">urandom</span><span class="w"> </span><span class="n">of</span><span class="o">=/</span><span class="k">var</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">random</span><span class="w"> </span><span class="n">bs</span><span class="o">=</span><span class="mi">1</span><span class="n">M</span><span class="w"> </span><span class="n">count</span><span class="o">=</span><span class="mi">128</span>
 </code></pre></div>
 
 <p>Then we write random data to disc:</p>
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">while</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">do</span><span class="w"> </span><span class="n">dd</span><span class="w"> </span><span class="k">if</span><span class="o">=/</span><span class="k">var</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">random</span><span class="w"> </span><span class="n">bs</span><span class="o">=</span><span class="mi">4</span><span class="n">k</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">done</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">pv</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">dd</span><span class="w"> </span><span class="n">of</span><span class="o">=/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdX</span><span class="w"> </span><span class="n">bs</span><span class="o">=</span><span class="mi">4</span><span class="n">k</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">while</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">do</span><span class="w"> </span><span class="n">dd</span><span class="w"> </span><span class="k">if</span><span class="o">=/</span><span class="k">var</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">random</span><span class="w"> </span><span class="n">bs</span><span class="o">=</span><span class="mi">4</span><span class="n">k</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">done</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">pv</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">dd</span><span class="w"> </span><span class="n">of</span><span class="o">=/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdX</span><span class="w"> </span><span class="n">bs</span><span class="o">=</span><span class="mi">4</span><span class="n">k</span>
 </code></pre></div>
 
 <p>The <code>pv</code> part of the pipe is <strong>optional</strong>.</p>
 <p>Afterwards:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">dd</span><span class="w"> </span><span class="k">if</span><span class="o">=/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">zero</span><span class="w"> </span><span class="nv">of</span><span class="o">=/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">sdX</span><span class="w"> </span><span class="nv">bs</span><span class="o">=</span><span class="mi">4</span><span class="nv">k</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">dd</span><span class="w"> </span><span class="k">if</span><span class="o">=/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">zero</span><span class="w"> </span><span class="nv">of</span><span class="o">=/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">sdX</span><span class="w"> </span><span class="nv">bs</span><span class="o">=</span><span class="mi">4</span><span class="nv">k</span>
 </code></pre></div>
 
 	</article>

@@ -49,6 +49,33 @@
 
 <article class="summary">
 <div class="metadata">
+  <time datetime="2022-01-12T00:00:00+01:00" pubdate>Wed 12 January 2022</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2022-01-16 14:36:17+01:00</p>
+  in <a href="/category/c2022.html">2022</a>
+<p class="tags">tagged <a href="/tag/directory.html">directory</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/scripts.html">scripts</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2022/2022-01-12-ghrelease.html" rel="bookmark" title="Permalink to My git release script">My git release script</a>
+    </h2>
+    <p><p>I always had issues remembering how to create releases.
+So in order to standardise things, I wrote this script:</p>
+<ul>
+<li><a href="https://github.com/TortugaLabs/my-gh-tools/blob/main/ghrelease.sh">ghrelease</a></li>
+</ul>
+<p>So whenever I am ready to release I would then just issue
+the command:</p>
+<div class="highlight"><pre><span></span><code>./ghrelease<span class="w"> </span>vX.Y.Z
+</code></pre></div>
+
+<h2 id="pre-requisistes">Pre-requisistes:</h2>
+<p>You obviously need <code>git</code>.  But also you would need
+<a href="https://github.com/cli/cli">github-cli</a>.</p>
+<p>Your …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
   <time datetime="2022-01-10T00:00:00+01:00" pubdate>Mon 10 January 2022</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
@@ -336,7 +363,7 @@ I am using nowadays.</p>
     <p><p>Some hints and tips foor doing SSL related things:</p>
 <h2 id="netcat-for-ssl">Netcat for SSL</h2>
 <p>This command lets you connect to a SSL server (a-la netcat):</p>
-<div class="highlight"><pre><span></span><code><span class="nv">cat</span><span class="w"> </span><span class="nv">request</span>.<span class="nv">txt</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">openssl</span><span class="w"> </span><span class="nv">s_client</span><span class="w"> </span><span class="o">-</span><span class="k">connect</span><span class="w"> </span><span class="nv">server</span>:<span class="mi">443</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">cat</span><span class="w"> </span><span class="nv">request</span>.<span class="nv">txt</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">openssl</span><span class="w"> </span><span class="nv">s_client</span><span class="w"> </span><span class="o">-</span><span class="k">connect</span><span class="w"> </span><span class="nv">server</span>:<span class="mi">443</span>
 </code></pre></div>
 
 <h2 id="creating-self-signed-certificates">Creating self-signed certificates</h2>
@@ -470,24 +497,6 @@ executable and rename <code>freewrap.exe</code> to <code>wish.exe</code> or <cod
 <div class="highlight"><pre><span></span><code>Registry Key : HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings\
 REG_SZ AutoConfigURL = https://&lt;your url&gt;/proxy.pac
 REG_DWORD ProxyEnable …</code></pre></div></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2020-04-06T00:00:00+02:00" pubdate>Mon 06 April 2020</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2022-11-02 09:18:10+01:00</p>
-  in <a href="/category/c2020.html">2020</a>
-</div>  <div>
-    <h2>
-      <a href="/posts/2020/2020-04-06-maturity.html" rel="bookmark" title="Permalink to Definiton of maturity">Definiton of maturity</a>
-    </h2>
-    <p><p>Maturity is:</p>
-<p>The ability to stick with a job until it’s finished.</p>
-<p>The ability to do a job without being supervised.</p>
-<p>The ability to carry money without spending it.</p>
-<p>And the ability to bear an injustice without wanting to get even.</p></p>
   </div>
 </article>
 <div class="pagination">

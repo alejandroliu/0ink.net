@@ -62,7 +62,7 @@
     <p><p>Some hints and tips foor doing SSL related things:</p>
 <h2 id="netcat-for-ssl">Netcat for SSL</h2>
 <p>This command lets you connect to a SSL server (a-la netcat):</p>
-<div class="highlight"><pre><span></span><code><span class="nv">cat</span><span class="w"> </span><span class="nv">request</span>.<span class="nv">txt</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">openssl</span><span class="w"> </span><span class="nv">s_client</span><span class="w"> </span><span class="o">-</span><span class="k">connect</span><span class="w"> </span><span class="nv">server</span>:<span class="mi">443</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">cat</span><span class="w"> </span><span class="nv">request</span>.<span class="nv">txt</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">openssl</span><span class="w"> </span><span class="nv">s_client</span><span class="w"> </span><span class="o">-</span><span class="k">connect</span><span class="w"> </span><span class="nv">server</span>:<span class="mi">443</span>
 </code></pre></div>
 
 <h2 id="creating-self-signed-certificates">Creating self-signed certificates</h2>
@@ -84,14 +84,14 @@
     </h2>
     <p><p><strong>THIS IS FOR ARCHIVAL PURPOSES.  THIS IS OUT-OF-DATE</strong></p>
 <h3 id="backup-openshift">backup OpenShift</h3>
-<div class="highlight"><pre><span></span><code><span class="nv">openshift</span><span class="w"> </span><span class="k">getenv</span><span class="ss">(</span><span class="nv">USER</span><span class="ss">)</span><span class="w"> </span><span class="nv">from</span><span class="w"> </span><span class="nv">OpenShift</span><span class="w"> </span><span class="nv">php</span><span class="w"></span>
-<span class="nv">ssh</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span>{<span class="nv">user</span>}@{<span class="nv">app</span><span class="o">-</span><span class="nv">domain</span>}<span class="w"> </span><span class="nv">gear</span><span class="w"> </span><span class="nv">snapshot</span><span class="w">  </span><span class="o">&gt;</span><span class="w"> </span><span class="nv">file</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">openshift</span><span class="w"> </span><span class="k">getenv</span><span class="ss">(</span><span class="nv">USER</span><span class="ss">)</span><span class="w"> </span><span class="nv">from</span><span class="w"> </span><span class="nv">OpenShift</span><span class="w"> </span><span class="nv">php</span>
+<span class="nv">ssh</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span>{<span class="nv">user</span>}@{<span class="nv">app</span><span class="o">-</span><span class="nv">domain</span>}<span class="w"> </span><span class="nv">gear</span><span class="w"> </span><span class="nv">snapshot</span><span class="w">  </span><span class="o">&gt;</span><span class="w"> </span><span class="nv">file</span>
 </code></pre></div>
 
 <p>Run gear app</p>
 <p>OpenShift migration further notes</p>
 <p>Encrypt a file using a supplied password :</p>
-<div class="highlight"><pre><span></span><code>$ openssl enc -aes-256-cbc -salt -in file.txt -out file.txt.enc -k …</code></pre></div></p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>openssl<span class="w"> </span>enc<span class="w"> </span>-aes-256-cbc<span class="w"> </span>-salt<span class="w"> </span>-in<span class="w"> </span>file.txt<span class="w"> </span>-out<span class="w"> </span>file.txt.enc<span class="w"> </span>-k …</code></pre></div></p>
   </div>
 </article>
 <div class="pagination">

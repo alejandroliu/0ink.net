@@ -137,11 +137,11 @@ which requires root priviledge (or <code>sudo</code>).  You may also specify
 <p>The best place to find software for Flatpak is <a href="https://flathub.org">flathub</a>.
 You can browse the catalogue in <a href="https://flathub.org">https://flathub.org</a>.</p>
 <p>If you want to start installing software you need to first add the remote:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">sudo</span><span class="w"> </span><span class="nv">flatpak</span><span class="w"> </span><span class="nv">remote</span><span class="o">-</span><span class="nv">add</span><span class="w"> </span><span class="o">--</span><span class="k">if</span><span class="o">-</span><span class="nv">not</span><span class="o">-</span><span class="nv">exists</span><span class="w"> </span><span class="nv">flathub</span><span class="w"> </span><span class="nv">https</span>:<span class="o">//</span><span class="nv">flathub</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">repo</span><span class="o">/</span><span class="nv">flathub</span>.<span class="nv">flatpakrepo</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">sudo</span><span class="w"> </span><span class="nv">flatpak</span><span class="w"> </span><span class="nv">remote</span><span class="o">-</span><span class="nv">add</span><span class="w"> </span><span class="o">--</span><span class="k">if</span><span class="o">-</span><span class="nv">not</span><span class="o">-</span><span class="nv">exists</span><span class="w"> </span><span class="nv">flathub</span><span class="w"> </span><span class="nv">https</span>:<span class="o">//</span><span class="nv">flathub</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">repo</span><span class="o">/</span><span class="nv">flathub</span>.<span class="nv">flatpakrepo</span>
 </code></pre></div>
 
 <p>Or for per-user installation:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">flatpak</span><span class="w"> </span><span class="o">--</span><span class="nv">user</span><span class="w"> </span><span class="nv">remote</span><span class="o">-</span><span class="nv">add</span><span class="w"> </span><span class="o">--</span><span class="k">if</span><span class="o">-</span><span class="nv">not</span><span class="o">-</span><span class="nv">exists</span><span class="w"> </span><span class="nv">flathub</span><span class="w"> </span><span class="nv">https</span>:<span class="o">//</span><span class="nv">flathub</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">repo</span><span class="o">/</span><span class="nv">flathub</span>.<span class="nv">flatpakrepo</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">flatpak</span><span class="w"> </span><span class="o">--</span><span class="nv">user</span><span class="w"> </span><span class="nv">remote</span><span class="o">-</span><span class="nv">add</span><span class="w"> </span><span class="o">--</span><span class="k">if</span><span class="o">-</span><span class="nv">not</span><span class="o">-</span><span class="nv">exists</span><span class="w"> </span><span class="nv">flathub</span><span class="w"> </span><span class="nv">https</span>:<span class="o">//</span><span class="nv">flathub</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">repo</span><span class="o">/</span><span class="nv">flathub</span>.<span class="nv">flatpakrepo</span>
 </code></pre></div>
 
 <p>Afterwards you can install software:</p>
@@ -223,11 +223,11 @@ your $HOME directory.  These are in <code>$HOME/.var/app/$PKGID</code>.</p>
 list indicates whether each remote has been added per-user or
 system-wide.</p>
 <p>Add a remote:</p>
-<div class="highlight"><pre><span></span><code>sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>flatpak<span class="w"> </span>remote-add<span class="w"> </span>--if-not-exists<span class="w"> </span>flathub<span class="w"> </span>https://flathub.org/repo/flathub.flatpakrepo
 </code></pre></div>
 
 <p>Or:</p>
-<div class="highlight"><pre><span></span><code>flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+<div class="highlight"><pre><span></span><code>flatpak<span class="w"> </span>--user<span class="w"> </span>remote-add<span class="w"> </span>--if-not-exists<span class="w"> </span>flathub<span class="w"> </span>https://flathub.org/repo/flathub.flatpakrepo
 </code></pre></div>
 
 <p>Remove a remote:</p>

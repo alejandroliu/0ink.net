@@ -137,16 +137,16 @@ work!  Your mileage may vary …</p></p>
       <a href="/posts/2018/2018-07-11-awk-vs-grep.html" rel="bookmark" title="Permalink to Skipping grep when using AWK">Skipping grep when using AWK</a>
     </h2>
     <p><p>Over the years, We've seen many people use this pattern (filter-map):</p>
-<div class="highlight"><pre><span></span><code>$ <span class="o">[</span>data is generated<span class="o">]</span> <span class="p">|</span> grep something <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="o">[</span>data<span class="w"> </span>is<span class="w"> </span>generated<span class="o">]</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>something<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span>
 </code></pre></div>
 
 <p>but it can be shortened to:</p>
-<div class="highlight"><pre><span></span><code>$ <span class="o">[</span>data is generated<span class="o">]</span> <span class="p">|</span> awk <span class="s1">&#39;/something/ {print $2}&#39;</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="o">[</span>data<span class="w"> </span>is<span class="w"> </span>generated<span class="o">]</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;/something/ {print $2}&#39;</span>
 </code></pre></div>
 
 <h2 id="you-probably-dont-need-grep">You (probably) don't need grep</h2>
 <p>Following this logic, you can replace a simple grep with:</p>
-<div class="highlight"><pre><span></span><code>$ <span class="o">[</span>data is generated …</code></pre></div></p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="o">[</span>data<span class="w"> </span>is<span class="w"> </span>generated …</code></pre></div></p>
   </div>
 </article><article class="summary">
 <div class="metadata">

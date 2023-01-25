@@ -85,7 +85,7 @@ in <a href="https://hub.docker.com">docker.hub</a>.</p>
 </ul>
 <p>So, you can then use <code>curl</code> and <code>jq</code> to access the relevant data.  For example,
 to get the tags, last updated time and digest as a tsv:</p>
-<div class="highlight"><pre><span></span><code>curl -s -L <span class="nv">$URL</span> <span class="p">|</span> jq -r <span class="s1">&#39;(.results[] | select(.tag_status == &quot;active&quot;) | [.name, .last_updated</span>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-s<span class="w"> </span>-L<span class="w"> </span><span class="nv">$URL</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;(.results[] | select(.tag_status == &quot;active&quot;) | [.name, .last_updated</span>
 <span class="s1">, .digest]) | @tsv&#39;</span>
 </code></pre></div>
 

@@ -71,9 +71,9 @@
 </code></pre></div>
 
 <p>Add to <code>pacman.conf</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">[custom]</span><span class="w"></span>
-<span class="na">SigLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">[Package|Databse]Never|Optional|Required</span><span class="w"></span>
-<span class="na">Server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">path-to-repo</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">[custom]</span>
+<span class="na">SigLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">[Package|Databse]Never|Optional|Required</span>
+<span class="na">Server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">path-to-repo</span>
 </code></pre></div>
 
 <p>See also <code>repo-remove</code>. A package database is a tar file, optionally compressed. Valid extensions are <code>.db</code> or <code>.files</code> followed by an archive extension of <code>.tar</code>, <code>.tar.gz</code>, <code>.tar.bz2</code>, <code>.tar.xz</code>, or <code>.tar.Z</code>. The file does not need to exist, but all parent directories must exist. ?Can we create a <code>rpmgot.php</code> hack?</p>
@@ -119,16 +119,16 @@ tmp=<span class="cp">${</span><span class="n">TMPDIR</span><span class="o">-/</s
 db=<span class="nv">$tmp</span>/db
 fs=<span class="nv">$tmp</span>/fs
 
-mkdir &quot;<span class="nv">$tmp</span>&quot;
-trap &#39;rm -rf &quot;<span class="nv">$tmp</span>&quot;&#39; EXIT
+mkdir<span class="w"> </span>&quot;<span class="nv">$tmp</span>&quot;
+trap<span class="w"> </span>&#39;rm<span class="w"> </span>-rf<span class="w"> </span>&quot;<span class="nv">$tmp</span>&quot;&#39;<span class="w"> </span>EXIT
 
-pacman -Qlq | sort -u &gt; &quot;<span class="nv">$db</span>&quot;
+pacman<span class="w"> </span>-Qlq<span class="w"> </span>|<span class="w"> </span>sort<span class="w"> </span>-u<span class="w"> </span>&gt;<span class="w"> </span>&quot;<span class="nv">$db</span>&quot;
 
-find /bin /etc /sbin /usr 
-  ! -name lost+found 
-  ( -type d -printf &#39;%p/n&#39; -o -print ) | sort &gt; &quot;<span class="nv">$fs</span>&quot;
+find<span class="w"> </span>/bin<span class="w"> </span>/etc<span class="w"> </span>/sbin<span class="w"> </span>/usr<span class="w"> </span>
+<span class="w">  </span>!<span class="w"> </span>-name<span class="w"> </span>lost+found<span class="w"> </span>
+<span class="w">  </span>(<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-printf<span class="w"> </span>&#39;%p/n&#39;<span class="w"> </span>-o<span class="w"> </span>-print<span class="w"> </span>)<span class="w"> </span>|<span class="w"> </span>sort<span class="w"> </span>&gt;<span class="w"> </span>&quot;<span class="nv">$fs</span>&quot;
 
-comm -23 &quot;<span class="nv">$fs</span>&quot; &quot;<span class="nv">$db</span>&quot;
+comm<span class="w"> </span>-23<span class="w"> </span>&quot;<span class="nv">$fs</span>&quot;<span class="w"> </span>&quot;<span class="nv">$db</span>&quot;
 </code></pre></div>
 
 <h2 id="pacman-one-liners">Pacman one liners</h2>

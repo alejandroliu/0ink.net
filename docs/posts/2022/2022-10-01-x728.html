@@ -130,36 +130,36 @@ rtc-ds1307
 </code></pre></div>
 
 <p>You need to enable it in the bus:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span> ds1307 0x68 &gt; /sys/class/i2c-adapter/i2c-1/new_device
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>ds1307<span class="w"> </span>0x68<span class="w"> </span>&gt;<span class="w"> </span>/sys/class/i2c-adapter/i2c-1/new_device
 </code></pre></div>
 
 <p>From then on, you can use the standard <code>hwclock</code> command.</p>
 <p>These can be added to <code>rc.local</code> which is how the sample code does.  I prefer to
 do this from a script run from <code>systemd</code> unit file:</p>
-<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="k">file</span><span class="err">:</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">systemd</span><span class="o">/</span><span class="k">system</span><span class="o">/</span><span class="n">x728clock</span><span class="p">.</span><span class="n">service</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="k">file</span><span class="err">:</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">systemd</span><span class="o">/</span><span class="k">system</span><span class="o">/</span><span class="n">x728clock</span><span class="p">.</span><span class="n">service</span>
 
-<span class="o">[</span><span class="n">Unit</span><span class="o">]</span><span class="w"></span>
-<span class="n">Description</span><span class="o">=</span><span class="k">Restore</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">save</span><span class="w"> </span><span class="n">X728</span><span class="w"> </span><span class="n">clock</span><span class="w"></span>
-<span class="n">DefaultDependencies</span><span class="o">=</span><span class="k">no</span><span class="w"></span>
-<span class="k">Before</span><span class="o">=</span><span class="n">sysinit</span><span class="p">.</span><span class="n">target</span><span class="w"> </span><span class="k">shutdown</span><span class="p">.</span><span class="n">target</span><span class="w"></span>
-<span class="n">Conflicts</span><span class="o">=</span><span class="k">shutdown</span><span class="p">.</span><span class="n">target</span><span class="w"></span>
+<span class="o">[</span><span class="n">Unit</span><span class="o">]</span>
+<span class="n">Description</span><span class="o">=</span><span class="k">Restore</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">save</span><span class="w"> </span><span class="n">X728</span><span class="w"> </span><span class="n">clock</span>
+<span class="n">DefaultDependencies</span><span class="o">=</span><span class="k">no</span>
+<span class="k">Before</span><span class="o">=</span><span class="n">sysinit</span><span class="p">.</span><span class="n">target</span><span class="w"> </span><span class="k">shutdown</span><span class="p">.</span><span class="n">target</span>
+<span class="n">Conflicts</span><span class="o">=</span><span class="k">shutdown</span><span class="p">.</span><span class="n">target</span>
 
-<span class="o">[</span><span class="n">Service</span><span class="o">]</span><span class="w"></span>
-<span class="n">ExecStart</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">x728</span><span class="o">/</span><span class="n">clock</span><span class="p">.</span><span class="n">sh</span><span class="w"> </span><span class="k">start</span><span class="w"></span>
-<span class="n">ExecStop</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">x728</span><span class="o">/</span><span class="n">clock</span><span class="p">.</span><span class="n">sh</span><span class="w"> </span><span class="n">stop</span><span class="w"></span>
-<span class="n">Type</span><span class="o">=</span><span class="n">oneshot</span><span class="w"></span>
-<span class="n">RemainAfterExit</span><span class="o">=</span><span class="n">yes</span><span class="w"></span>
+<span class="o">[</span><span class="n">Service</span><span class="o">]</span>
+<span class="n">ExecStart</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">x728</span><span class="o">/</span><span class="n">clock</span><span class="p">.</span><span class="n">sh</span><span class="w"> </span><span class="k">start</span>
+<span class="n">ExecStop</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">x728</span><span class="o">/</span><span class="n">clock</span><span class="p">.</span><span class="n">sh</span><span class="w"> </span><span class="n">stop</span>
+<span class="n">Type</span><span class="o">=</span><span class="n">oneshot</span>
+<span class="n">RemainAfterExit</span><span class="o">=</span><span class="n">yes</span>
 
-<span class="o">[</span><span class="n">Install</span><span class="o">]</span><span class="w"></span>
-<span class="n">WantedBy</span><span class="o">=</span><span class="n">sysinit</span><span class="p">.</span><span class="n">target</span><span class="w"></span>
+<span class="o">[</span><span class="n">Install</span><span class="o">]</span>
+<span class="n">WantedBy</span><span class="o">=</span><span class="n">sysinit</span><span class="p">.</span><span class="n">target</span>
 </code></pre></div>
 
 <p>After saving this file and creating a <code>/etc/x728/clock.sh</code> script you can:</p>
-<div class="highlight"><pre><span></span><code><span class="n">systemctl</span><span class="w"> </span><span class="n">daemon</span><span class="o">-</span><span class="n">reload</span><span class="w"></span>
-<span class="n">systemctl</span><span class="w"> </span><span class="n">enable</span><span class="w"> </span><span class="n">x728clock</span><span class="w"></span>
-<span class="n">systemctl</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="n">x728clock</span><span class="w"></span>
-<span class="n">systemctl</span><span class="w"> </span><span class="n">disable</span><span class="w"> </span><span class="n">fake</span><span class="o">-</span><span class="n">hwclock</span><span class="w"></span>
-<span class="n">systemctl</span><span class="w"> </span><span class="n">stop</span><span class="w"> </span><span class="n">fake</span><span class="o">-</span><span class="n">hwclock</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">systemctl</span><span class="w"> </span><span class="n">daemon</span><span class="o">-</span><span class="n">reload</span>
+<span class="n">systemctl</span><span class="w"> </span><span class="n">enable</span><span class="w"> </span><span class="n">x728clock</span>
+<span class="n">systemctl</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="n">x728clock</span>
+<span class="n">systemctl</span><span class="w"> </span><span class="n">disable</span><span class="w"> </span><span class="n">fake</span><span class="o">-</span><span class="n">hwclock</span>
+<span class="n">systemctl</span><span class="w"> </span><span class="n">stop</span><span class="w"> </span><span class="n">fake</span><span class="o">-</span><span class="n">hwclock</span>
 </code></pre></div>
 
 <ul>
@@ -225,54 +225,54 @@ do this from a script run from <code>systemd</code> unit file:</p>
 <h2 id="gpio-programming">GPIO programming</h2>
 <p>Programming GPIO is quite easy.  It can be done from shell scripting using the
 sys file-system.</p>
-<div class="highlight"><pre><span></span><code>gpioIO<span class="o">()</span> <span class="o">{</span>
-  <span class="nb">local</span> <span class="nv">pin</span><span class="o">=</span><span class="nv">$1</span>
-  <span class="k">if</span> <span class="o">[</span> <span class="nv">$#</span> -eq <span class="m">1</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
-    cat /sys/class/gpio/gpio<span class="nv">$pin</span>/value
-  <span class="k">else</span>
-    <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">&quot;</span> &gt; /sys/class/gpio/gpio<span class="nv">$pin</span>/value
-  <span class="k">fi</span>
+<div class="highlight"><pre><span></span><code>gpioIO<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">  </span><span class="nb">local</span><span class="w"> </span><span class="nv">pin</span><span class="o">=</span><span class="nv">$1</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>cat<span class="w"> </span>/sys/class/gpio/gpio<span class="nv">$pin</span>/value
+<span class="w">  </span><span class="k">else</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/sys/class/gpio/gpio<span class="nv">$pin</span>/value
+<span class="w">  </span><span class="k">fi</span>
 <span class="o">}</span>
 
-gpioInit<span class="o">()</span> <span class="o">{</span>
-  <span class="nb">local</span> <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> <span class="nv">pin</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">&quot;</span> <span class="nv">dir</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$3</span><span class="s2">&quot;</span>
+gpioInit<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">  </span><span class="nb">local</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="nv">pin</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">&quot;</span><span class="w"> </span><span class="nv">dir</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$3</span><span class="s2">&quot;</span>
 
-  <span class="o">[</span> ! -d /sys/class/gpio/gpio<span class="nv">$pin</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$pin</span><span class="s2">&quot;</span> &gt; /sys/class/gpio/export
-  <span class="nb">echo</span> <span class="nv">$dir</span> &gt; /sys/class/gpio/gpio<span class="nv">$pin</span>/direction
+<span class="w">  </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-d<span class="w"> </span>/sys/class/gpio/gpio<span class="nv">$pin</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$pin</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/sys/class/gpio/export
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$dir</span><span class="w"> </span>&gt;<span class="w"> </span>/sys/class/gpio/gpio<span class="nv">$pin</span>/direction
 
-  <span class="nb">eval</span> <span class="s2">&quot;gpio</span><span class="si">${</span><span class="nv">name</span><span class="si">}</span><span class="s2">() { gpioIO </span><span class="nv">$pin</span><span class="s2"> \&quot;\$@\&quot; ; }&quot;</span>
+<span class="w">  </span><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;gpio</span><span class="si">${</span><span class="nv">name</span><span class="si">}</span><span class="s2">() { gpioIO </span><span class="nv">$pin</span><span class="s2"> \&quot;\$@\&quot; ; }&quot;</span>
 <span class="o">}</span>
-ticks<span class="o">()</span> <span class="o">{</span>
-  <span class="nb">echo</span> <span class="k">$(</span>date +%s<span class="k">)$(</span>date +%N <span class="p">|</span> cut -c-2<span class="k">)</span>
-<span class="o">}</span>
-
-beep<span class="o">()</span> <span class="o">{</span>
-  <span class="nb">local</span> <span class="nv">len</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> <span class="p">;</span> <span class="nb">shift</span>
-
-  gpioBUZZER <span class="m">1</span>
-  sleep <span class="s2">&quot;</span><span class="nv">$len</span><span class="s2">&quot;</span>
-  gpioBUZZER <span class="m">0</span>
-
-  <span class="o">[</span> <span class="nv">$#</span> -eq <span class="m">0</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="k">return</span>
-
-  <span class="nb">local</span> <span class="nv">repeat</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> idle
-  <span class="o">[</span> <span class="nv">$#</span> -gt <span class="m">1</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nv">idle</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">&quot;</span> <span class="o">||</span> <span class="nv">idle</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$len</span><span class="s2">&quot;</span>
-
-  <span class="k">while</span> <span class="o">[</span> <span class="nv">$repeat</span> -gt <span class="m">1</span> <span class="o">]</span>
-  <span class="k">do</span>
-    <span class="nv">repeat</span><span class="o">=</span><span class="k">$(</span>expr <span class="nv">$repeat</span> - <span class="m">1</span><span class="k">)</span>
-    sleep <span class="s2">&quot;</span><span class="nv">$idle</span><span class="s2">&quot;</span>
-    gpioBUZZER <span class="m">1</span>
-    sleep <span class="s2">&quot;</span><span class="nv">$len</span><span class="s2">&quot;</span>
-    gpioBUZZER <span class="m">0</span>
-  <span class="k">done</span>
+ticks<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="k">$(</span>date<span class="w"> </span>+%s<span class="k">)$(</span>date<span class="w"> </span>+%N<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-c-2<span class="k">)</span>
 <span class="o">}</span>
 
-gpioInit SHUTDOWN <span class="m">5</span> <span class="k">in</span>
-gpioInit PLD <span class="m">6</span> <span class="k">in</span>
-gpioInit BOOT <span class="m">12</span> out
-gpioInit BUZZER <span class="m">20</span> out
-gpioInit BUTTON <span class="m">26</span> out
+beep<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">  </span><span class="nb">local</span><span class="w"> </span><span class="nv">len</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nb">shift</span>
+
+<span class="w">  </span>gpioBUZZER<span class="w"> </span><span class="m">1</span>
+<span class="w">  </span>sleep<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$len</span><span class="s2">&quot;</span>
+<span class="w">  </span>gpioBUZZER<span class="w"> </span><span class="m">0</span>
+
+<span class="w">  </span><span class="o">[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">return</span>
+
+<span class="w">  </span><span class="nb">local</span><span class="w"> </span><span class="nv">repeat</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span>idle
+<span class="w">  </span><span class="o">[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nv">idle</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nv">idle</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$len</span><span class="s2">&quot;</span>
+
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$repeat</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span>
+<span class="w">  </span><span class="k">do</span>
+<span class="w">    </span><span class="nv">repeat</span><span class="o">=</span><span class="k">$(</span>expr<span class="w"> </span><span class="nv">$repeat</span><span class="w"> </span>-<span class="w"> </span><span class="m">1</span><span class="k">)</span>
+<span class="w">    </span>sleep<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$idle</span><span class="s2">&quot;</span>
+<span class="w">    </span>gpioBUZZER<span class="w"> </span><span class="m">1</span>
+<span class="w">    </span>sleep<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$len</span><span class="s2">&quot;</span>
+<span class="w">    </span>gpioBUZZER<span class="w"> </span><span class="m">0</span>
+<span class="w">  </span><span class="k">done</span>
+<span class="o">}</span>
+
+gpioInit<span class="w"> </span>SHUTDOWN<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="k">in</span>
+gpioInit<span class="w"> </span>PLD<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="k">in</span>
+gpioInit<span class="w"> </span>BOOT<span class="w"> </span><span class="m">12</span><span class="w"> </span>out
+gpioInit<span class="w"> </span>BUZZER<span class="w"> </span><span class="m">20</span><span class="w"> </span>out
+gpioInit<span class="w"> </span>BUTTON<span class="w"> </span><span class="m">26</span><span class="w"> </span>out
 </code></pre></div>
 
 <p>Afterwards, you can just:</p>
@@ -314,18 +314,18 @@ you hold the power button for 6 seconds.</p>
 
 <span class="nv">BUTTON</span><span class="o">=</span><span class="m">26</span>
 
-op_poweroff<span class="o">()</span> <span class="o">{</span>
-  <span class="nb">echo</span> <span class="nv">$BUTTON</span> &gt; /sys/class/gpio/export
-  <span class="nb">echo</span> out &gt; /sys/class/gpio/gpio<span class="nv">$BUTTON</span>/direction
-  <span class="nb">echo</span> <span class="m">1</span> &gt; /sys/class/gpio/gpio<span class="nv">$BUTTON</span>/value
-  sync<span class="p">;</span>sync<span class="p">;</span>sync
-  sleep <span class="m">7</span>
-  <span class="nb">echo</span> <span class="m">0</span> &gt; /sys/class/gpio/gpio<span class="nv">$BUTTON</span>/value
-  sleep <span class="m">3</span>
+op_poweroff<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$BUTTON</span><span class="w"> </span>&gt;<span class="w"> </span>/sys/class/gpio/export
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span>out<span class="w"> </span>&gt;<span class="w"> </span>/sys/class/gpio/gpio<span class="nv">$BUTTON</span>/direction
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="m">1</span><span class="w"> </span>&gt;<span class="w"> </span>/sys/class/gpio/gpio<span class="nv">$BUTTON</span>/value
+<span class="w">  </span>sync<span class="p">;</span>sync<span class="p">;</span>sync
+<span class="w">  </span>sleep<span class="w"> </span><span class="m">7</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>&gt;<span class="w"> </span>/sys/class/gpio/gpio<span class="nv">$BUTTON</span>/value
+<span class="w">  </span>sleep<span class="w"> </span><span class="m">3</span>
 <span class="o">}</span>
 
-<span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> <span class="k">in</span>
-  poweroff<span class="o">)</span> op_poweroff <span class="p">;;</span>
+<span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="w">  </span>poweroff<span class="o">)</span><span class="w"> </span>op_poweroff<span class="w"> </span><span class="p">;;</span>
 <span class="k">esac</span>
 </code></pre></div>
 

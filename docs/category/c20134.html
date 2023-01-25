@@ -81,22 +81,22 @@ CMS like Wordpress.</p>
       <a href="/posts/2013/2013-05-15-perl-tips.html" rel="bookmark" title="Permalink to Local Perl packages">Local Perl packages</a>
     </h2>
     <p><p>Determine what is the local PERL5LIB configuration:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">LIB</span><span class="o">=</span>$<span class="ss">(</span><span class="w"></span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="nv">d</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span>`<span class="nv">tr</span><span class="w"> </span>:<span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="o">&lt;&lt;&lt;</span>$<span class="nv">PERL5LIB</span><span class="w"></span>
-<span class="w">  </span><span class="k">do</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span>[<span class="w"> </span><span class="o">-</span><span class="nv">w</span><span class="w"> </span><span class="mh">$d</span><span class="w"> </span>]<span class="w"> </span><span class="c1">; then</span><span class="w"></span>
-<span class="w">      </span><span class="nv">echo</span><span class="w"> </span><span class="mh">$d</span><span class="w"></span>
-<span class="w">    </span><span class="k">break</span><span class="w"></span>
-<span class="w">  </span><span class="nv">fi</span><span class="w"></span>
-<span class="w">  </span><span class="nv">done</span><span class="ss">)</span><span class="w"></span>
-<span class="nv">PREFIX</span><span class="o">=</span>`<span class="k">dirname</span><span class="w"> </span>$<span class="nv">LIB</span>`<span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">LIB</span><span class="o">=</span>$<span class="ss">(</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="nv">d</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span>`<span class="nv">tr</span><span class="w"> </span>:<span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="o">&lt;&lt;&lt;</span>$<span class="nv">PERL5LIB</span>
+<span class="w">  </span><span class="k">do</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span>[<span class="w"> </span><span class="o">-</span><span class="nv">w</span><span class="w"> </span><span class="mh">$d</span><span class="w"> </span>]<span class="w"> </span><span class="c1">; then</span>
+<span class="w">      </span><span class="nv">echo</span><span class="w"> </span><span class="mh">$d</span>
+<span class="w">    </span><span class="k">break</span>
+<span class="w">  </span><span class="nv">fi</span>
+<span class="w">  </span><span class="nv">done</span><span class="ss">)</span>
+<span class="nv">PREFIX</span><span class="o">=</span>`<span class="k">dirname</span><span class="w"> </span>$<span class="nv">LIB</span>`
 </code></pre></div>
 
 <p>Install sequence</p>
 <div class="highlight"><pre><span></span><code><span class="cp">#PREFIX=$HOME/cpan</span>
 <span class="cp">#LIB=$HOME/cpan/lib</span>
-<span class="n">tar</span><span class="w"> </span><span class="n">zxvf</span><span class="w"> </span><span class="n">$perl</span><span class="o">-</span><span class="n">mod</span><span class="o">-</span><span class="n">tar</span><span class="w"></span>
-<span class="n">cd</span><span class="w"> </span><span class="n">$unpacked</span><span class="o">-</span><span class="n">src</span><span class="o">-</span><span class="n">dir</span><span class="w"></span>
+<span class="n">tar</span><span class="w"> </span><span class="n">zxvf</span><span class="w"> </span><span class="n">$perl</span><span class="o">-</span><span class="n">mod</span><span class="o">-</span><span class="n">tar</span>
+<span class="n">cd</span><span class="w"> </span><span class="n">$unpacked</span><span class="o">-</span><span class="n">src</span><span class="o">-</span><span class="n">dir</span>
 <span class="n">perl</span><span class="w"> </span><span class="n">Makefile</span><span class="p">.</span><span class="n">PL</span><span class="w"> </span><span class="n">PREFIX</span><span class="o">=</span><span class="n">$PREFIX</span><span class="w"> </span><span class="n">LIB …</span></code></pre></div></p>
   </div>
 </article><article class="summary">
@@ -127,7 +127,7 @@ site.</p></p>
       <a href="/posts/2013/2013-05-13-bash-tips.html" rel="bookmark" title="Permalink to Bash Tips">Bash Tips</a>
     </h2>
     <p><p>Some bash one-liners:</p>
-<div class="highlight"><pre><span></span><code>echo <span class="cp">${</span><span class="err">!</span><span class="n">X</span><span class="o">*</span><span class="cp">}</span>
+<div class="highlight"><pre><span></span><code>echo<span class="w"> </span><span class="cp">${</span><span class="err">!</span><span class="n">X</span><span class="o">*</span><span class="cp">}</span>
 </code></pre></div>
 
 <p>Will print all the names of variables whos name starts with <code>X</code>. To
@@ -137,7 +137,7 @@ bash</p>
 </code></pre></div>
 
 <h2 id="pattern-matching">Pattern Matching</h2>
-<div class="highlight"><pre><span></span><code>Operator: <span class="cp">${</span><span class="n">foo</span><span class="c1">#t*is</span><span class="cp">}</span>
+<div class="highlight"><pre><span></span><code>Operator:<span class="w"> </span><span class="cp">${</span><span class="n">foo</span><span class="c1">#t*is</span><span class="cp">}</span>
 </code></pre></div>
 
 <p>Function: deletes the shortest possible match from the left</p>

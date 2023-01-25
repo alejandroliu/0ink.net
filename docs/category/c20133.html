@@ -67,9 +67,9 @@
 </code></pre></div>
 
 <p>Add to <code>pacman.conf</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">[custom]</span><span class="w"></span>
-<span class="na">SigLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">[Package|Databse]Never|Optional|Required</span><span class="w"></span>
-<span class="na">Server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">path-to-repo</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">[custom]</span>
+<span class="na">SigLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">[Package|Databse]Never|Optional|Required</span>
+<span class="na">Server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">path-to-repo</span>
 </code></pre></div>
 
 <p>See also <code>repo-remove</code>. A …</p></p>
@@ -155,7 +155,7 @@ prove their identity to one another in a secure manner. (Source
 </code></pre></div>
 
 <p>Restore from dump file:</p>
-<div class="highlight"><pre><span></span><code><span class="n">kdb5_util</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="n">_dump_file_</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">kdb5_util</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="n">_dump_file_</span>
 </code></pre></div>
 
 <h2 id="masterslave-replication">Master/Slave …</h2></p>
@@ -176,8 +176,8 @@ prove their identity to one another in a secure manner. (Source
 <a href="http://gitorious.com/">Gitorious</a> here. This technique would work
 exactly the same the other way around or with other servers.</p>
 <h2 id="in-a-nutshell">In a nutshell</h2>
-<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">Inital</span><span class="w"> </span><span class="n">setup</span><span class="w"></span>
-<span class="n">git</span><span class="w"> </span><span class="n">clone</span><span class="w"> </span><span class="o">--</span><span class="n">mirror</span><span class="w"> </span><span class="nl">git</span><span class="p">:</span><span class="o">//</span><span class="n">gitorious</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">weasyprint</span><span class="o">/</span><span class="n">weasyprint</span><span class="p">.</span><span class="n">git</span><span class="w"> </span><span class="n">weasyprint</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">Inital</span><span class="w"> </span><span class="n">setup</span>
+<span class="n">git</span><span class="w"> </span><span class="n">clone</span><span class="w"> </span><span class="o">--</span><span class="n">mirror</span><span class="w"> </span><span class="nl">git</span><span class="p">:</span><span class="o">//</span><span class="n">gitorious</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">weasyprint</span><span class="o">/</span><span class="n">weasyprint</span><span class="p">.</span><span class="n">git</span><span class="w"> </span><span class="n">weasyprint</span>
 <span class="n">GIT_DIR</span><span class="o">=</span><span class="n">weasyprint</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="n">remote</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">github</span><span class="w"> </span><span class="n">git</span><span class="nv">@github</span><span class="p">.</span><span class="nl">com</span><span class="p">:</span><span class="n">SimonSapin</span><span class="o">/</span><span class="n">WeasyPrint …</span></code></pre></div></p>
   </div>
 </article><article class="summary">

@@ -82,24 +82,24 @@
 <span class="normal">17</span>
 <span class="normal">18</span>
 <span class="normal">19</span>
-<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code>#!/usr/local/bin/haserl --upload-limit=4096 --upload-dir=/tmp 
-content-type: text/html
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code>#!/usr/local/bin/haserl<span class="w"> </span>--upload-limit=4096<span class="w"> </span>--upload-dir=/tmp<span class="w"> </span>
+content-type:<span class="w"> </span>text/html
 
 <span class="nt">&lt;html&gt;&lt;body&gt;</span>
-<span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">&quot;</span><span class="cp">&lt;%</span> <span class="n">echo</span> <span class="o">-</span><span class="n">n</span> <span class="vg">$SCRIPT_NAME</span> <span class="cp">%&gt;</span><span class="s">&quot;</span> <span class="na">method=</span><span class="s">POST</span> <span class="na">enctype=</span><span class="s">&quot;multipart/form-data&quot;</span> <span class="nt">&gt;</span>
-<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">file</span> <span class="na">name=</span><span class="s">uploadfile</span><span class="nt">&gt;</span>
-<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">submit</span> <span class="na">value=</span><span class="s">GO</span><span class="nt">&gt;</span>
+<span class="nt">&lt;form</span><span class="w"> </span><span class="na">action=</span><span class="s">&quot;</span><span class="cp">&lt;%</span><span class="w"> </span><span class="n">echo</span><span class="w"> </span><span class="o">-</span><span class="n">n</span><span class="w"> </span><span class="vg">$SCRIPT_NAME</span><span class="w"> </span><span class="cp">%&gt;</span><span class="s">&quot;</span><span class="w"> </span><span class="na">method=</span><span class="s">POST</span><span class="w"> </span><span class="na">enctype=</span><span class="s">&quot;multipart/form-data&quot;</span><span class="w"> </span><span class="nt">&gt;</span>
+<span class="nt">&lt;input</span><span class="w"> </span><span class="na">type=</span><span class="s">file</span><span class="w"> </span><span class="na">name=</span><span class="s">uploadfile</span><span class="nt">&gt;</span>
+<span class="nt">&lt;input</span><span class="w"> </span><span class="na">type=</span><span class="s">submit</span><span class="w"> </span><span class="na">value=</span><span class="s">GO</span><span class="nt">&gt;</span>
 <span class="nt">&lt;br&gt;</span>
-<span class="cp">&lt;%</span> <span class="k">if</span> <span class="nb">test</span> <span class="o">-</span><span class="n">n</span> <span class="s2">&quot;$HASERL_uploadfile_path&quot;</span><span class="p">;</span> <span class="k">then</span> <span class="cp">%&gt;</span>
-        <span class="nt">&lt;p&gt;</span>
-        You uploaded a file named <span class="nt">&lt;b&gt;</span><span class="cp">&lt;%</span> <span class="n">echo</span> <span class="o">-</span><span class="n">n</span> <span class="vg">$FORM_uploadfile_name</span> <span class="cp">%&gt;</span><span class="nt">&lt;/b&gt;</span>, and it was
-        temporarily stored on the server as <span class="nt">&lt;i&gt;</span><span class="cp">&lt;%</span> <span class="n">echo</span> <span class="vg">$HASERL_uploadfile_path</span> <span class="cp">%&gt;</span><span class="nt">&lt;/i&gt;</span>.  The
-        file was <span class="cp">&lt;%</span> <span class="n">cat</span> <span class="vg">$HASERL_uploadfile_path</span> <span class="o">|</span> <span class="n">wc</span> <span class="o">-</span><span class="n">c</span> <span class="cp">%&gt;</span> bytes long.<span class="nt">&lt;/p&gt;</span>
-        <span class="cp">&lt;%</span> <span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="vg">$HASERL_uploadfile_path</span> <span class="cp">%&gt;</span><span class="nt">&lt;p&gt;</span>Don&#39;t worry, the file has just been deleted
-        from the web server.<span class="nt">&lt;/p&gt;</span>
-<span class="cp">&lt;%</span> <span class="k">else</span> <span class="cp">%&gt;</span>
-        You haven&#39;t uploaded a file yet.
-<span class="cp">&lt;%</span> <span class="n">fi</span> <span class="cp">%&gt;</span>
+<span class="cp">&lt;%</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="o">-</span><span class="n">n</span><span class="w"> </span><span class="s2">&quot;$HASERL_uploadfile_path&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="cp">%&gt;</span>
+<span class="w">        </span><span class="nt">&lt;p&gt;</span>
+<span class="w">        </span>You<span class="w"> </span>uploaded<span class="w"> </span>a<span class="w"> </span>file<span class="w"> </span>named<span class="w"> </span><span class="nt">&lt;b&gt;</span><span class="cp">&lt;%</span><span class="w"> </span><span class="n">echo</span><span class="w"> </span><span class="o">-</span><span class="n">n</span><span class="w"> </span><span class="vg">$FORM_uploadfile_name</span><span class="w"> </span><span class="cp">%&gt;</span><span class="nt">&lt;/b&gt;</span>,<span class="w"> </span>and<span class="w"> </span>it<span class="w"> </span>was
+<span class="w">        </span>temporarily<span class="w"> </span>stored<span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span>server<span class="w"> </span>as<span class="w"> </span><span class="nt">&lt;i&gt;</span><span class="cp">&lt;%</span><span class="w"> </span><span class="n">echo</span><span class="w"> </span><span class="vg">$HASERL_uploadfile_path</span><span class="w"> </span><span class="cp">%&gt;</span><span class="nt">&lt;/i&gt;</span>.<span class="w">  </span>The
+<span class="w">        </span>file<span class="w"> </span>was<span class="w"> </span><span class="cp">&lt;%</span><span class="w"> </span><span class="n">cat</span><span class="w"> </span><span class="vg">$HASERL_uploadfile_path</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">wc</span><span class="w"> </span><span class="o">-</span><span class="n">c</span><span class="w"> </span><span class="cp">%&gt;</span><span class="w"> </span>bytes<span class="w"> </span>long.<span class="nt">&lt;/p&gt;</span>
+<span class="w">        </span><span class="cp">&lt;%</span><span class="w"> </span><span class="n">rm</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="vg">$HASERL_uploadfile_path</span><span class="w"> </span><span class="cp">%&gt;</span><span class="nt">&lt;p&gt;</span>Don&#39;t<span class="w"> </span>worry,<span class="w"> </span>the<span class="w"> </span>file<span class="w"> </span>has<span class="w"> </span>just<span class="w"> </span>been<span class="w"> </span>deleted
+<span class="w">        </span>from<span class="w"> </span>the<span class="w"> </span>web<span class="w"> </span>server.<span class="nt">&lt;/p&gt;</span>
+<span class="cp">&lt;%</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="cp">%&gt;</span>
+<span class="w">        </span>You<span class="w"> </span>haven&#39;t<span class="w"> </span>uploaded<span class="w"> </span>a<span class="w"> </span>file<span class="w"> </span>yet.
+<span class="cp">&lt;%</span><span class="w"> </span><span class="n">fi</span><span class="w"> </span><span class="cp">%&gt;</span>
 <span class="nt">&lt;/form&gt;</span>
 <span class="nt">&lt;/body&gt;&lt;/html&gt;</span>
 </code></pre></div></td></tr></table></div>

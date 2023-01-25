@@ -81,14 +81,14 @@ sessions by defauult.</p>
     </h2>
     <p><p><strong>THIS IS FOR ARCHIVAL PURPOSES.  THIS IS OUT-OF-DATE</strong></p>
 <h3 id="backup-openshift">backup OpenShift</h3>
-<div class="highlight"><pre><span></span><code><span class="nv">openshift</span><span class="w"> </span><span class="k">getenv</span><span class="ss">(</span><span class="nv">USER</span><span class="ss">)</span><span class="w"> </span><span class="nv">from</span><span class="w"> </span><span class="nv">OpenShift</span><span class="w"> </span><span class="nv">php</span><span class="w"></span>
-<span class="nv">ssh</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span>{<span class="nv">user</span>}@{<span class="nv">app</span><span class="o">-</span><span class="nv">domain</span>}<span class="w"> </span><span class="nv">gear</span><span class="w"> </span><span class="nv">snapshot</span><span class="w">  </span><span class="o">&gt;</span><span class="w"> </span><span class="nv">file</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">openshift</span><span class="w"> </span><span class="k">getenv</span><span class="ss">(</span><span class="nv">USER</span><span class="ss">)</span><span class="w"> </span><span class="nv">from</span><span class="w"> </span><span class="nv">OpenShift</span><span class="w"> </span><span class="nv">php</span>
+<span class="nv">ssh</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span>{<span class="nv">user</span>}@{<span class="nv">app</span><span class="o">-</span><span class="nv">domain</span>}<span class="w"> </span><span class="nv">gear</span><span class="w"> </span><span class="nv">snapshot</span><span class="w">  </span><span class="o">&gt;</span><span class="w"> </span><span class="nv">file</span>
 </code></pre></div>
 
 <p>Run gear app</p>
 <p>OpenShift migration further notes</p>
 <p>Encrypt a file using a supplied password :</p>
-<div class="highlight"><pre><span></span><code>$ openssl enc -aes-256-cbc -salt -in file.txt -out file.txt.enc -k …</code></pre></div></p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>openssl<span class="w"> </span>enc<span class="w"> </span>-aes-256-cbc<span class="w"> </span>-salt<span class="w"> </span>-in<span class="w"> </span>file.txt<span class="w"> </span>-out<span class="w"> </span>file.txt.enc<span class="w"> </span>-k …</code></pre></div></p>
   </div>
 </article><article class="summary">
 <div class="metadata">
@@ -106,25 +106,25 @@ sessions by defauult.</p>
 <li><a href="http://forums.pimoroni.com/t/picade-pcb-emulator-key-mapping/922">key mappings</a></li>
 <li>look up and label default mappings</li>
 </ol>
-<div class="highlight"><pre><span></span><code><span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_UP_ARROW</span>,<span class="w">    </span><span class="nv">UP</span><span class="w">     </span>},<span class="w"></span>
-<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_DOWN_ARROW</span>,<span class="w">  </span><span class="nv">DOWN</span><span class="w">   </span>},<span class="w"></span>
-<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_LEFT_ARROW</span>,<span class="w">  </span><span class="nv">LEFT</span><span class="w">   </span>},<span class="w"></span>
-<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_RIGHT_ARROW</span>,<span class="w"> </span><span class="nv">RIGHT</span><span class="w">  </span>},<span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_UP_ARROW</span>,<span class="w">    </span><span class="nv">UP</span><span class="w">     </span>},
+<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_DOWN_ARROW</span>,<span class="w">  </span><span class="nv">DOWN</span><span class="w">   </span>},
+<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_LEFT_ARROW</span>,<span class="w">  </span><span class="nv">LEFT</span><span class="w">   </span>},
+<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_RIGHT_ARROW</span>,<span class="w"> </span><span class="nv">RIGHT</span><span class="w">  </span>},
 
-<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_LEFT_CTRL</span>,<span class="w">   </span><span class="nv">BTN_1</span><span class="w">  </span>},<span class="w"></span>
-<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_LEFT_ALT</span>,<span class="w">    </span><span class="nv">BTN_2</span><span class="w">  </span>},<span class="w"></span>
-<span class="w">  </span>{<span class="w"> </span><span class="s1">&#39; &#39;</span>,<span class="w">             </span><span class="nv">BTN_3</span><span class="w">  </span>},<span class="w"></span>
-<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_LEFT_SHIFT</span>,<span class="w">  </span><span class="nv">BTN_4</span><span class="w">  </span>},<span class="w"></span>
-<span class="w">  </span>{<span class="w"> </span><span class="s1">&#39;z&#39;</span>,<span class="w">             </span><span class="nv">BTN_5</span><span class="w">  </span>},<span class="w"></span>
-<span class="w">  </span>{<span class="w"> </span><span class="s1">&#39;x&#39;</span>,<span class="w">             </span><span class="nv">BTN_6</span><span class="w">  </span>},<span class="w"></span>
+<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_LEFT_CTRL</span>,<span class="w">   </span><span class="nv">BTN_1</span><span class="w">  </span>},
+<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_LEFT_ALT</span>,<span class="w">    </span><span class="nv">BTN_2</span><span class="w">  </span>},
+<span class="w">  </span>{<span class="w"> </span><span class="s1">&#39; &#39;</span>,<span class="w">             </span><span class="nv">BTN_3</span><span class="w">  </span>},
+<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_LEFT_SHIFT</span>,<span class="w">  </span><span class="nv">BTN_4</span><span class="w">  </span>},
+<span class="w">  </span>{<span class="w"> </span><span class="s1">&#39;z&#39;</span>,<span class="w">             </span><span class="nv">BTN_5</span><span class="w">  </span>},
+<span class="w">  </span>{<span class="w"> </span><span class="s1">&#39;x&#39;</span>,<span class="w">             </span><span class="nv">BTN_6</span><span class="w">  </span>},
 
-<span class="w">  </span>{<span class="w"> </span><span class="s1">&#39;s&#39;</span>,<span class="w">             </span><span class="nv">START</span><span class="w">  </span>},<span class="w"></span>
-<span class="w">  </span>{<span class="w"> </span><span class="s1">&#39;c&#39;</span>,<span class="w">             </span><span class="nv">COIN</span><span class="w">   </span>},<span class="w"></span>
-<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_RETURN</span>,<span class="w">      </span><span class="nv">ENTER</span><span class="w">  </span>},<span class="w"></span>
-<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_ESC</span>,<span class="w">         </span><span class="nv">ESCAPE</span><span class="w"> </span>},<span class="w"></span>
+<span class="w">  </span>{<span class="w"> </span><span class="s1">&#39;s&#39;</span>,<span class="w">             </span><span class="nv">START</span><span class="w">  </span>},
+<span class="w">  </span>{<span class="w"> </span><span class="s1">&#39;c&#39;</span>,<span class="w">             </span><span class="nv">COIN</span><span class="w">   </span>},
+<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_RETURN</span>,<span class="w">      </span><span class="nv">ENTER</span><span class="w">  </span>},
+<span class="w">  </span>{<span class="w"> </span><span class="nv">KEY_ESC</span>,<span class="w">         </span><span class="nv">ESCAPE</span><span class="w"> </span>},
 
-<span class="w">  </span><span class="cm">/* Change these lines to set key bindings for VOL_UP and VOL_DN */</span><span class="w"></span>
-<span class="w">   </span>{<span class="w"> </span><span class="s1">&#39;u&#39;</span>,<span class="w">      </span><span class="nv">VOL_UP</span><span class="w">  </span>},<span class="w"></span>
+<span class="w">  </span><span class="cm">/* Change these lines to set key bindings for VOL_UP and VOL_DN */</span>
+<span class="w">   </span>{<span class="w"> </span><span class="s1">&#39;u&#39;</span>,<span class="w">      </span><span class="nv">VOL_UP</span><span class="w">  </span>},
 <span class="w">   </span>{<span class="w"> </span><span class="s1">&#39;d&#39;</span>,<span class="w">      </span><span class="nv">VOL_DN …</span></code></pre></div></p>
   </div>
 </article><article class="summary">
@@ -206,9 +206,9 @@ on a cloud environment.</p>
 </code></pre></div>
 
 <p>Add to <code>pacman.conf</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">[custom]</span><span class="w"></span>
-<span class="na">SigLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">[Package|Databse]Never|Optional|Required</span><span class="w"></span>
-<span class="na">Server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">path-to-repo</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">[custom]</span>
+<span class="na">SigLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">[Package|Databse]Never|Optional|Required</span>
+<span class="na">Server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">path-to-repo</span>
 </code></pre></div>
 
 <p>See also <code>repo-remove</code>. A …</p></p>
@@ -229,8 +229,8 @@ on a cloud environment.</p>
 <a href="http://gitorious.com/">Gitorious</a> here. This technique would work
 exactly the same the other way around or with other servers.</p>
 <h2 id="in-a-nutshell">In a nutshell</h2>
-<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">Inital</span><span class="w"> </span><span class="n">setup</span><span class="w"></span>
-<span class="n">git</span><span class="w"> </span><span class="n">clone</span><span class="w"> </span><span class="o">--</span><span class="n">mirror</span><span class="w"> </span><span class="nl">git</span><span class="p">:</span><span class="o">//</span><span class="n">gitorious</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">weasyprint</span><span class="o">/</span><span class="n">weasyprint</span><span class="p">.</span><span class="n">git</span><span class="w"> </span><span class="n">weasyprint</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">Inital</span><span class="w"> </span><span class="n">setup</span>
+<span class="n">git</span><span class="w"> </span><span class="n">clone</span><span class="w"> </span><span class="o">--</span><span class="n">mirror</span><span class="w"> </span><span class="nl">git</span><span class="p">:</span><span class="o">//</span><span class="n">gitorious</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">weasyprint</span><span class="o">/</span><span class="n">weasyprint</span><span class="p">.</span><span class="n">git</span><span class="w"> </span><span class="n">weasyprint</span>
 <span class="n">GIT_DIR</span><span class="o">=</span><span class="n">weasyprint</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="n">remote</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">github</span><span class="w"> </span><span class="n">git</span><span class="nv">@github</span><span class="p">.</span><span class="nl">com</span><span class="p">:</span><span class="n">SimonSapin</span><span class="o">/</span><span class="n">WeasyPrint …</span></code></pre></div></p>
   </div>
 </article><article class="summary">

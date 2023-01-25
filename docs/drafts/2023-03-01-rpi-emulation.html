@@ -10,7 +10,7 @@
 	<meta name="int-title" content="Raspberry Pi emulation with Qemu">
 	<meta name="tags" content="boot, configuration, desktop, idea, linux, login, mouse, network, partition, raspberry, storage">
 	<meta name="date" content="2023-03-01 00:00:00+01:00">
-	<meta name="modified" content="2023-01-11 15:54:55.505665+01:00">
+	<meta name="modified" content="2023-01-11 15:59:49+01:00">
 
 
 	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
@@ -60,7 +60,7 @@
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2023-01-11 15:54:55.505665+01:00</p>
+  <p>Updated: 2023-01-11 15:59:49+01:00</p>
   in <a href="/category/c2023.html">2023</a>
 <p class="tags">tagged <a href="/tag/boot.html">boot</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/desktop.html">desktop</a>, <a href="/tag/idea.html">idea</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/login.html">login</a>, <a href="/tag/mouse.html">mouse</a>, <a href="/tag/network.html">network</a>, <a href="/tag/partition.html">partition</a>, <a href="/tag/raspberry.html">raspberry</a>, <a href="/tag/storage.html">storage</a></p></div>
 		<p>The idea here is that we use a Desktop PC for developing/debugging
@@ -196,7 +196,7 @@ this configuration <code>Ctrl-C</code> is handled properly.</p>
 <p>This can be used to prepare images and run emulation sessions.</p>
 <p>Usage:</p>
 <h3 id="preparing-base-image">Preparing base image</h3>
-<div class="highlight"><pre><span></span><code><span class="n">raspi</span><span class="o">-</span><span class="n">emu</span><span class="w"> </span><span class="n">prep</span><span class="w"> </span><span class="o">[</span><span class="n">options</span><span class="o">]</span><span class="w"> </span><span class="n">src</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">raspi</span><span class="o">-</span><span class="n">emu</span><span class="w"> </span><span class="n">prep</span><span class="w"> </span><span class="o">[</span><span class="n">options</span><span class="o">]</span><span class="w"> </span><span class="n">src</span>
 </code></pre></div>
 
 <p>Prepares the downloaded image so it can be used as a <a href="https://www.qemu.org/">qemu</a> thin-provisioned
@@ -211,7 +211,7 @@ image.</p>
   volume name.</li>
 </ul>
 <h3 id="formatting-sdcard-image">Formatting SDCARD image</h3>
-<div class="highlight"><pre><span></span><code><span class="n">raspi</span><span class="o">-</span><span class="n">emu</span><span class="w"> </span><span class="nf">format</span><span class="w"> </span><span class="o">[</span><span class="n">options</span><span class="o">]</span><span class="w"> </span><span class="n">base</span><span class="w"> </span><span class="n">dest</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">raspi</span><span class="o">-</span><span class="n">emu</span><span class="w"> </span><span class="nf">format</span><span class="w"> </span><span class="o">[</span><span class="n">options</span><span class="o">]</span><span class="w"> </span><span class="n">base</span><span class="w"> </span><span class="n">dest</span>
 </code></pre></div>
 
 <p>Create an SDCARD image to be used for <a href="https://www.qemu.org/">qemu</a> emulation.  It will
@@ -221,7 +221,7 @@ create a thin-provisioned image when possible.</p>
 <li><code>--reize=size</code> : Set the SDCARD image to the given size.</li>
 </ul>
 <h3 id="running-emulation">Running Emulation</h3>
-<div class="highlight"><pre><span></span><code><span class="n">raspi</span><span class="o">-</span><span class="n">emu</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">[</span><span class="n">options</span><span class="o">]</span><span class="w"> </span><span class="n">sdimg</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">raspi</span><span class="o">-</span><span class="n">emu</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">[</span><span class="n">options</span><span class="o">]</span><span class="w"> </span><span class="n">sdimg</span>
 </code></pre></div>
 
 <p>Will boot <a href="https://www.qemu.org/">qemu</a> emulation with the specified SDCARD image.  Configuration

@@ -89,131 +89,131 @@ applet.</p>
 <span class="c1"># Installer</span>
 <span class="c1">#</span>
 
-runner<span class="o">()</span> <span class="o">{</span>
-  <span class="k">if</span> <span class="o">[</span> <span class="nv">$#</span> -eq <span class="m">0</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
-    cat <span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span> <span class="s">&lt;&lt;-_EOF_</span>
+runner<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>cat<span class="w"> </span><span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span><span class="w"> </span><span class="s">&lt;&lt;-_EOF_</span>
 <span class="s">    Usage:</span>
 <span class="s">      env [XSCREENSAVER_HACKDIR=/path] XSCREENSAVER_WINDOW=window-id &quot;$0&quot; {hack}</span>
 <span class="s">    _EOF_</span>
-    <span class="nb">exit</span> <span class="m">1</span>
-  <span class="k">fi</span>
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="w">  </span><span class="k">fi</span>
 
-  <span class="k">if</span> <span class="o">[</span> -n <span class="s2">&quot;</span><span class="si">${</span><span class="nv">XSCREENSAVER_HACKDIR</span><span class="k">:-</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
-    <span class="nv">hacksdir</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">XSCREENSAVER_HACKDIR</span><span class="si">}</span><span class="s2">&quot;</span>
-  <span class="k">else</span>
-    <span class="nv">hacksdir</span><span class="o">=</span>/usr/libexec/xscreensaver
-  <span class="k">fi</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">XSCREENSAVER_HACKDIR</span><span class="k">:-</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nv">hacksdir</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">XSCREENSAVER_HACKDIR</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">  </span><span class="k">else</span>
+<span class="w">    </span><span class="nv">hacksdir</span><span class="o">=</span>/usr/libexec/xscreensaver
+<span class="w">  </span><span class="k">fi</span>
 
-  <span class="nv">hack</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> <span class="p">;</span> <span class="nb">shift</span>
+<span class="w">  </span><span class="nv">hack</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nb">shift</span>
 
-  <span class="k">if</span> <span class="o">[</span> ! -x <span class="s2">&quot;</span><span class="nv">$hacksdir</span><span class="s2">/</span><span class="nv">$hack</span><span class="s2">&quot;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
-    <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$hack</span><span class="s2">: not found&quot;</span> <span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
-    <span class="nb">exit</span> <span class="m">2</span>
-  <span class="k">fi</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-x<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$hacksdir</span><span class="s2">/</span><span class="nv">$hack</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$hack</span><span class="s2">: not found&quot;</span><span class="w"> </span><span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">2</span>
+<span class="w">  </span><span class="k">fi</span>
 
-  <span class="c1"># ( date ; echo &quot;$@&quot; ; env) &gt; /tmp/grav.log</span>
-  <span class="k">if</span> <span class="o">[</span> -n <span class="s2">&quot;</span><span class="si">${</span><span class="nv">XSCREENSAVER_WINDOW</span><span class="k">:-</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
-    <span class="nb">set</span> - -window-id <span class="k">$(</span><span class="nb">printf</span> <span class="s2">&quot;%d&quot;</span> <span class="nv">$XSCREENSAVER_WINDOW</span><span class="k">)</span> <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
-  <span class="k">fi</span>
-  <span class="nb">exec</span> <span class="s2">&quot;</span><span class="nv">$hacksdir</span><span class="s2">&quot;</span>/<span class="s2">&quot;</span><span class="nv">$hack</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+<span class="w">  </span><span class="c1"># ( date ; echo &quot;$@&quot; ; env) &gt; /tmp/grav.log</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">XSCREENSAVER_WINDOW</span><span class="k">:-</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">set</span><span class="w"> </span>-<span class="w"> </span>-window-id<span class="w"> </span><span class="k">$(</span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;%d&quot;</span><span class="w"> </span><span class="nv">$XSCREENSAVER_WINDOW</span><span class="k">)</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+<span class="w">  </span><span class="k">fi</span>
+<span class="w">  </span><span class="nb">exec</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$hacksdir</span><span class="s2">&quot;</span>/<span class="s2">&quot;</span><span class="nv">$hack</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
 <span class="o">}</span>
 
-blacklisted<span class="o">()</span> <span class="o">{</span>
-  <span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> <span class="k">in</span>
-  glitchpeg<span class="p">|</span>ljlatest<span class="p">|</span>vidwhacker<span class="o">)</span>
-    <span class="k">return</span> <span class="m">0</span>
-    <span class="p">;;</span>
-  webcollage*<span class="o">)</span>
-    <span class="k">return</span> <span class="m">0</span>
-    <span class="p">;;</span>
-  <span class="k">esac</span>
-  <span class="k">return</span> <span class="m">1</span>
+blacklisted<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="w">  </span>glitchpeg<span class="p">|</span>ljlatest<span class="p">|</span>vidwhacker<span class="o">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="p">;;</span>
+<span class="w">  </span>webcollage*<span class="o">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="p">;;</span>
+<span class="w">  </span><span class="k">esac</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
 <span class="o">}</span>
 
-op_hacks<span class="o">()</span> <span class="o">{</span>
-  <span class="c1"># List available hacks</span>
-  <span class="nv">enabled</span><span class="o">=</span><span class="s2">&quot;echo&quot;</span> <span class="p">;</span> <span class="nv">disabled</span><span class="o">=</span><span class="s2">&quot;echo&quot;</span>
+op_hacks<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">  </span><span class="c1"># List available hacks</span>
+<span class="w">  </span><span class="nv">enabled</span><span class="o">=</span><span class="s2">&quot;echo&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nv">disabled</span><span class="o">=</span><span class="s2">&quot;echo&quot;</span>
 
-  <span class="k">while</span> <span class="o">[</span> <span class="nv">$#</span> -gt <span class="m">0</span> <span class="o">]</span>
-  <span class="k">do</span>
-    <span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> <span class="k">in</span>
-    --enabled<span class="p">|</span>-e<span class="o">)</span>
-      <span class="nv">enabled</span><span class="o">=</span><span class="s2">&quot;echo&quot;</span>
-      <span class="nv">disabled</span><span class="o">=</span><span class="s2">&quot;:&quot;</span>
-      <span class="p">;;</span>
-    --disabled<span class="p">|</span>-d<span class="o">)</span>
-      <span class="nv">enabled</span><span class="o">=</span><span class="s2">&quot;:&quot;</span>
-      <span class="nv">disabled</span><span class="o">=</span><span class="s2">&quot;echo&quot;</span>
-      <span class="p">;;</span>
-    --all<span class="p">|</span>-a<span class="o">)</span>
-      <span class="nv">enabled</span><span class="o">=</span><span class="s2">&quot;echo&quot;</span>
-      <span class="nv">disabled</span><span class="o">=</span><span class="s2">&quot;echo&quot;</span>
-      <span class="p">;;</span>
-    *<span class="o">)</span>
-      <span class="nb">break</span>
-    <span class="k">esac</span>
-    <span class="nb">shift</span>
-  <span class="k">done</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span>
+<span class="w">  </span><span class="k">do</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="w">    </span>--enabled<span class="p">|</span>-e<span class="o">)</span>
+<span class="w">      </span><span class="nv">enabled</span><span class="o">=</span><span class="s2">&quot;echo&quot;</span>
+<span class="w">      </span><span class="nv">disabled</span><span class="o">=</span><span class="s2">&quot;:&quot;</span>
+<span class="w">      </span><span class="p">;;</span>
+<span class="w">    </span>--disabled<span class="p">|</span>-d<span class="o">)</span>
+<span class="w">      </span><span class="nv">enabled</span><span class="o">=</span><span class="s2">&quot;:&quot;</span>
+<span class="w">      </span><span class="nv">disabled</span><span class="o">=</span><span class="s2">&quot;echo&quot;</span>
+<span class="w">      </span><span class="p">;;</span>
+<span class="w">    </span>--all<span class="p">|</span>-a<span class="o">)</span>
+<span class="w">      </span><span class="nv">enabled</span><span class="o">=</span><span class="s2">&quot;echo&quot;</span>
+<span class="w">      </span><span class="nv">disabled</span><span class="o">=</span><span class="s2">&quot;echo&quot;</span>
+<span class="w">      </span><span class="p">;;</span>
+<span class="w">    </span>*<span class="o">)</span>
+<span class="w">      </span><span class="nb">break</span>
+<span class="w">    </span><span class="k">esac</span>
+<span class="w">    </span><span class="nb">shift</span>
+<span class="w">  </span><span class="k">done</span>
 
-  ls -1 <span class="s2">&quot;</span><span class="nv">$hacksdir</span><span class="s2">&quot;</span> <span class="p">|</span> <span class="k">while</span> <span class="nb">read</span> h
-  <span class="k">do</span>
-    <span class="k">if</span> <span class="o">[</span> -e <span class="s2">&quot;</span><span class="nv">$desktopdir</span><span class="s2">/xscr-</span><span class="nv">$h</span><span class="s2">.desktop&quot;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
-      <span class="nv">status</span><span class="o">=</span><span class="s2">&quot;[ENABLED]&quot;</span>
-      <span class="nv">output</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$enabled</span><span class="s2">&quot;</span>
-    <span class="k">else</span>
-      <span class="k">if</span> blacklisted <span class="s2">&quot;</span><span class="nv">$h</span><span class="s2">&quot;</span> <span class="p">;</span> <span class="k">then</span>
-        <span class="nv">status</span><span class="o">=</span><span class="s2">&quot;[BLACKLISTED]&quot;</span>
-      <span class="k">else</span>
-        <span class="nv">status</span><span class="o">=</span><span class="s2">&quot;[DISABLED]&quot;</span>
-      <span class="k">fi</span>
-      <span class="nv">output</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$disabled</span><span class="s2">&quot;</span>
-    <span class="k">fi</span>
-    <span class="s2">&quot;</span><span class="nv">$output</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="nv">$h</span><span class="s2">:  </span><span class="nv">$status</span><span class="s2">&quot;</span>
-  <span class="k">done</span>
+<span class="w">  </span>ls<span class="w"> </span>-1<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$hacksdir</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>h
+<span class="w">  </span><span class="k">do</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$desktopdir</span><span class="s2">/xscr-</span><span class="nv">$h</span><span class="s2">.desktop&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">      </span><span class="nv">status</span><span class="o">=</span><span class="s2">&quot;[ENABLED]&quot;</span>
+<span class="w">      </span><span class="nv">output</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$enabled</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span>blacklisted<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$h</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nv">status</span><span class="o">=</span><span class="s2">&quot;[BLACKLISTED]&quot;</span>
+<span class="w">      </span><span class="k">else</span>
+<span class="w">        </span><span class="nv">status</span><span class="o">=</span><span class="s2">&quot;[DISABLED]&quot;</span>
+<span class="w">      </span><span class="k">fi</span>
+<span class="w">      </span><span class="nv">output</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$disabled</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">    </span><span class="s2">&quot;</span><span class="nv">$output</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$h</span><span class="s2">:  </span><span class="nv">$status</span><span class="s2">&quot;</span>
+<span class="w">  </span><span class="k">done</span>
 <span class="o">}</span>
 
-op_enable<span class="o">()</span> <span class="o">{</span>
-  <span class="k">if</span> <span class="o">[</span> <span class="nv">$#</span> -eq <span class="m">0</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
-    <span class="nb">echo</span> <span class="s2">&quot;Please specify hacks to enable or [--all] to enable all&quot;</span> <span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
-    <span class="nb">exit</span> <span class="m">1</span>
-  <span class="k">fi</span>
-  <span class="k">if</span> <span class="o">[</span> x<span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> <span class="o">=</span> x<span class="s2">&quot;--all&quot;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
-    <span class="nb">set</span> - <span class="k">$(</span>ls -1 <span class="s2">&quot;</span><span class="nv">$hacksdir</span><span class="s2">&quot;</span><span class="k">)</span>
-  <span class="k">fi</span>
+op_enable<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Please specify hacks to enable or [--all] to enable all&quot;</span><span class="w"> </span><span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="w">  </span><span class="k">fi</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>x<span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>x<span class="s2">&quot;--all&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">set</span><span class="w"> </span>-<span class="w"> </span><span class="k">$(</span>ls<span class="w"> </span>-1<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$hacksdir</span><span class="s2">&quot;</span><span class="k">)</span>
+<span class="w">  </span><span class="k">fi</span>
 
-  <span class="nv">runner</span><span class="o">=</span>/usr/libexec/mate-screensaver/xscreensaver-hack
-  <span class="k">if</span> <span class="o">[</span> ! -x <span class="s2">&quot;</span><span class="nv">$runner</span><span class="s2">&quot;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
-    <span class="k">if</span> ! <span class="o">(</span>
-      <span class="nb">exec</span> &gt; <span class="s2">&quot;</span><span class="nv">$runner</span><span class="s2">&quot;</span> <span class="o">||</span> <span class="nb">exit</span> <span class="m">1</span>
-      <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$!</span><span class="s2">/bin/sh&quot;</span>
-      <span class="nb">declare</span> -f runner
-      <span class="nb">echo</span> <span class="s1">&#39;runner &quot;$@&quot;&#39;</span>
-      chmod <span class="m">755</span> <span class="s2">&quot;</span><span class="nv">$runner</span><span class="s2">&quot;</span> <span class="o">||</span> <span class="nb">exit</span> <span class="m">1</span>
-    <span class="o">)</span> <span class="p">;</span> <span class="k">then</span>
-      <span class="nb">echo</span> <span class="s2">&quot;Unable to install </span><span class="nv">$runner</span><span class="s2">&quot;</span> <span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
-      <span class="nb">exit</span> <span class="m">2</span>
-    <span class="k">fi</span>
-  <span class="k">fi</span>
+<span class="w">  </span><span class="nv">runner</span><span class="o">=</span>/usr/libexec/mate-screensaver/xscreensaver-hack
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-x<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$runner</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span>!<span class="w"> </span><span class="o">(</span>
+<span class="w">      </span><span class="nb">exec</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$runner</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="w">      </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$!</span><span class="s2">/bin/sh&quot;</span>
+<span class="w">      </span><span class="nb">declare</span><span class="w"> </span>-f<span class="w"> </span>runner
+<span class="w">      </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;runner &quot;$@&quot;&#39;</span>
+<span class="w">      </span>chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$runner</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="o">)</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">      </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Unable to install </span><span class="nv">$runner</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">      </span><span class="nb">exit</span><span class="w"> </span><span class="m">2</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">  </span><span class="k">fi</span>
 
-  <span class="nv">error</span><span class="o">=</span><span class="m">0</span>
-  <span class="k">for</span> hack <span class="k">in</span> <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
-  <span class="k">do</span>
-    <span class="k">if</span> <span class="o">[</span> ! -x <span class="s2">&quot;</span><span class="nv">$hacksdir</span><span class="s2">/</span><span class="nv">$hack</span><span class="s2">&quot;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
-      <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$hack</span><span class="s2">: does not exist&quot;</span> <span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
-      <span class="nv">error</span><span class="o">=</span><span class="m">1</span>
-      <span class="k">continue</span>
-    <span class="k">fi</span>
-    <span class="k">if</span> blacklisted <span class="s2">&quot;</span><span class="nv">$hack</span><span class="s2">&quot;</span> <span class="p">;</span> <span class="k">then</span>
-      <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$hack</span><span class="s2">: is blacklisted&quot;</span> <span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
-      <span class="k">continue</span>
-    <span class="k">fi</span>
-    <span class="k">if</span> <span class="o">[</span> -e <span class="s2">&quot;</span><span class="nv">$desktopdir</span><span class="s2">/xscr-</span><span class="nv">$hack</span><span class="s2">.desktop&quot;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
-      <span class="c1"># Already enabled</span>
-      <span class="k">continue</span>
-    <span class="k">fi</span>
-    <span class="nb">echo</span> -n <span class="s2">&quot;</span><span class="nv">$hack</span><span class="s2">: &quot;</span> <span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
-    <span class="k">if</span> <span class="o">(</span>
-      cat &gt;<span class="s2">&quot;</span><span class="nv">$desktopdir</span><span class="s2">/xscr-</span><span class="nv">$hack</span><span class="s2">.desktop&quot;</span> <span class="s">&lt;&lt;-_EOF_</span>
+<span class="w">  </span><span class="nv">error</span><span class="o">=</span><span class="m">0</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span>hack<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+<span class="w">  </span><span class="k">do</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-x<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$hacksdir</span><span class="s2">/</span><span class="nv">$hack</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">      </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$hack</span><span class="s2">: does not exist&quot;</span><span class="w"> </span><span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">      </span><span class="nv">error</span><span class="o">=</span><span class="m">1</span>
+<span class="w">      </span><span class="k">continue</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span>blacklisted<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$hack</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">      </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$hack</span><span class="s2">: is blacklisted&quot;</span><span class="w"> </span><span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">      </span><span class="k">continue</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$desktopdir</span><span class="s2">/xscr-</span><span class="nv">$hack</span><span class="s2">.desktop&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">      </span><span class="c1"># Already enabled</span>
+<span class="w">      </span><span class="k">continue</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$hack</span><span class="s2">: &quot;</span><span class="w"> </span><span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">(</span>
+<span class="w">      </span>cat<span class="w"> </span>&gt;<span class="s2">&quot;</span><span class="nv">$desktopdir</span><span class="s2">/xscr-</span><span class="nv">$hack</span><span class="s2">.desktop&quot;</span><span class="w"> </span><span class="s">&lt;&lt;-_EOF_</span>
 <span class="s">    # XSCREENSAVER-HACK</span>
 <span class="s">    [Desktop Entry]</span>
 <span class="s">    Name=$hack</span>
@@ -228,65 +228,65 @@ op_enable<span class="o">()</span> <span class="o">{</span>
 <span class="s">    Keywords=MATE;screensaver;XScreenSaver</span>
 <span class="s">    OnlyShowIn=MATE;</span>
 <span class="s">    _EOF_</span>
-    <span class="o">)</span> <span class="p">;</span> <span class="k">then</span>
-      <span class="nb">echo</span> <span class="s2">&quot;enabled&quot;</span> <span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
-    <span class="k">else</span>
-      <span class="nv">error</span><span class="o">=</span><span class="m">1</span>
-    <span class="k">fi</span>
-  <span class="k">done</span>
-  <span class="nb">exit</span> <span class="nv">$error</span>
+<span class="w">    </span><span class="o">)</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">      </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;enabled&quot;</span><span class="w"> </span><span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">      </span><span class="nv">error</span><span class="o">=</span><span class="m">1</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">  </span><span class="k">done</span>
+<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="nv">$error</span>
 <span class="o">}</span>
 
-op_disable<span class="o">()</span> <span class="o">{</span>
-  <span class="k">if</span> <span class="o">[</span> <span class="nv">$#</span> -eq <span class="m">0</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
-    <span class="nb">echo</span> <span class="s2">&quot;Please specify hacks to disable or [--all] to enable all&quot;</span> <span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
-    <span class="nb">exit</span> <span class="m">1</span>
-  <span class="k">fi</span>
-  <span class="k">if</span> <span class="o">[</span> x<span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> <span class="o">=</span> x<span class="s2">&quot;--all&quot;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
-    <span class="nb">set</span> - <span class="k">$(</span>ls -1 <span class="s2">&quot;</span><span class="nv">$hacksdir</span><span class="s2">&quot;</span><span class="k">)</span>
-  <span class="k">fi</span>
-  <span class="nv">error</span><span class="o">=</span><span class="m">0</span>
-  <span class="k">for</span> hack <span class="k">in</span> <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
-  <span class="k">do</span>
-    <span class="k">if</span> <span class="o">[</span> ! -x <span class="s2">&quot;</span><span class="nv">$hacksdir</span><span class="s2">/</span><span class="nv">$hack</span><span class="s2">&quot;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
-      <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$hack</span><span class="s2">: does not exist&quot;</span> <span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
-      <span class="nv">error</span><span class="o">=</span><span class="m">1</span>
-      <span class="k">continue</span>
-    <span class="k">fi</span>
-    <span class="k">if</span> <span class="o">[</span> ! -e <span class="s2">&quot;</span><span class="nv">$desktopdir</span><span class="s2">/xscr-</span><span class="nv">$hack</span><span class="s2">.desktop&quot;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
-      <span class="c1"># Already disabled</span>
-      <span class="k">continue</span>
-    <span class="k">fi</span>
-    <span class="nb">echo</span> -n <span class="s2">&quot;</span><span class="nv">$hack</span><span class="s2">: &quot;</span> <span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
-    <span class="k">if</span> rm -f <span class="s2">&quot;</span><span class="nv">$desktopdir</span><span class="s2">/xscr-</span><span class="nv">$hack</span><span class="s2">.desktop&quot;</span> <span class="p">;</span> <span class="k">then</span>
-      <span class="nb">echo</span> <span class="s2">&quot;disabled&quot;</span> <span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
-    <span class="k">else</span>
-      <span class="nv">error</span><span class="o">=</span><span class="m">1</span>
-    <span class="k">fi</span>
-  <span class="k">done</span>
-  <span class="nb">exit</span> <span class="nv">$error</span>
+op_disable<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Please specify hacks to disable or [--all] to enable all&quot;</span><span class="w"> </span><span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="w">  </span><span class="k">fi</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>x<span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>x<span class="s2">&quot;--all&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">set</span><span class="w"> </span>-<span class="w"> </span><span class="k">$(</span>ls<span class="w"> </span>-1<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$hacksdir</span><span class="s2">&quot;</span><span class="k">)</span>
+<span class="w">  </span><span class="k">fi</span>
+<span class="w">  </span><span class="nv">error</span><span class="o">=</span><span class="m">0</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span>hack<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+<span class="w">  </span><span class="k">do</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-x<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$hacksdir</span><span class="s2">/</span><span class="nv">$hack</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">      </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$hack</span><span class="s2">: does not exist&quot;</span><span class="w"> </span><span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">      </span><span class="nv">error</span><span class="o">=</span><span class="m">1</span>
+<span class="w">      </span><span class="k">continue</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$desktopdir</span><span class="s2">/xscr-</span><span class="nv">$hack</span><span class="s2">.desktop&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">      </span><span class="c1"># Already disabled</span>
+<span class="w">      </span><span class="k">continue</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$hack</span><span class="s2">: &quot;</span><span class="w"> </span><span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$desktopdir</span><span class="s2">/xscr-</span><span class="nv">$hack</span><span class="s2">.desktop&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">      </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;disabled&quot;</span><span class="w"> </span><span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">      </span><span class="nv">error</span><span class="o">=</span><span class="m">1</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">  </span><span class="k">done</span>
+<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="nv">$error</span>
 <span class="o">}</span>
 
 <span class="nv">hacksdir</span><span class="o">=</span><span class="s2">&quot;/usr/libexec/xscreensaver&quot;</span>
 <span class="nv">desktopdir</span><span class="o">=</span><span class="s2">&quot;/usr/share/applications/screensavers&quot;</span>
 
-<span class="k">while</span> <span class="o">[</span> <span class="nv">$#</span> -gt <span class="m">0</span> <span class="o">]</span> <span class="p">;</span> <span class="k">do</span>
-  <span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> <span class="k">in</span>
-  --hacks<span class="o">=</span>*<span class="o">)</span>
-    <span class="nv">hacksdir</span><span class="o">=</span><span class="si">${</span><span class="nv">1</span><span class="p">#--hacks=</span><span class="si">}</span>
-    <span class="p">;;</span>
-  --desktop<span class="o">=</span>*<span class="o">)</span>
-    <span class="nv">desktopdir</span><span class="o">=</span><span class="si">${</span><span class="nv">1</span><span class="p">#--desktop=</span><span class="si">}</span>
-    <span class="p">;;</span>
-  *<span class="o">)</span>
-    <span class="nb">break</span>
-    <span class="p">;;</span>
-  <span class="k">esac</span>
-  <span class="nb">shift</span>
+<span class="k">while</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="w">  </span>--hacks<span class="o">=</span>*<span class="o">)</span>
+<span class="w">    </span><span class="nv">hacksdir</span><span class="o">=</span><span class="si">${</span><span class="nv">1</span><span class="p">#--hacks=</span><span class="si">}</span>
+<span class="w">    </span><span class="p">;;</span>
+<span class="w">  </span>--desktop<span class="o">=</span>*<span class="o">)</span>
+<span class="w">    </span><span class="nv">desktopdir</span><span class="o">=</span><span class="si">${</span><span class="nv">1</span><span class="p">#--desktop=</span><span class="si">}</span>
+<span class="w">    </span><span class="p">;;</span>
+<span class="w">  </span>*<span class="o">)</span>
+<span class="w">    </span><span class="nb">break</span>
+<span class="w">    </span><span class="p">;;</span>
+<span class="w">  </span><span class="k">esac</span>
+<span class="w">  </span><span class="nb">shift</span>
 <span class="k">done</span>
 
-<span class="k">if</span> <span class="o">[</span> <span class="nv">$#</span> -eq <span class="m">0</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
-  cat <span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span> <span class="s">&lt;&lt;-_EOF_</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span>cat<span class="w"> </span><span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span><span class="w"> </span><span class="s">&lt;&lt;-_EOF_</span>
 <span class="s">    Usage:</span>
 
 <span class="s">    $0 hacks</span>
@@ -296,11 +296,11 @@ op_disable<span class="o">()</span> <span class="o">{</span>
 <span class="s">    $0 disable [--all|hacks]</span>
 <span class="s">        Disable xscreensaver hacks</span>
 <span class="s">    _EOF_</span>
-  <span class="nb">exit</span> <span class="m">1</span>
+<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
 <span class="k">fi</span>
 
-<span class="nv">cmd</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> <span class="p">;</span> <span class="nb">shift</span>
-op_<span class="si">${</span><span class="nv">cmd</span><span class="si">}</span> <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+<span class="nv">cmd</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nb">shift</span>
+op_<span class="si">${</span><span class="nv">cmd</span><span class="si">}</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
 </code></pre></div>
 
 <p><a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/mate-screensaver-hacks/installer.sh">mate-screensaver-hacks/installer.sh</a></p>

@@ -65,18 +65,18 @@
 <p class="tags">tagged <a href="/tag/application.html">application</a>, <a href="/tag/backup.html">backup</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/domain.html">domain</a>, <a href="/tag/encryption.html">encryption</a>, <a href="/tag/git.html">git</a>, <a href="/tag/github.html">github</a>, <a href="/tag/installation.html">installation</a>, <a href="/tag/login.html">login</a>, <a href="/tag/openssl.html">openssl</a>, <a href="/tag/password.html">password</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/settings.html">settings</a>, <a href="/tag/setup.html">setup</a>, <a href="/tag/wordpress.html">wordpress</a></p></div>
 		<p><strong>THIS IS FOR ARCHIVAL PURPOSES.  THIS IS OUT-OF-DATE</strong></p>
 <h3 id="backup-openshift">backup OpenShift</h3>
-<div class="highlight"><pre><span></span><code><span class="nv">openshift</span><span class="w"> </span><span class="k">getenv</span><span class="ss">(</span><span class="nv">USER</span><span class="ss">)</span><span class="w"> </span><span class="nv">from</span><span class="w"> </span><span class="nv">OpenShift</span><span class="w"> </span><span class="nv">php</span><span class="w"></span>
-<span class="nv">ssh</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span>{<span class="nv">user</span>}@{<span class="nv">app</span><span class="o">-</span><span class="nv">domain</span>}<span class="w"> </span><span class="nv">gear</span><span class="w"> </span><span class="nv">snapshot</span><span class="w">  </span><span class="o">&gt;</span><span class="w"> </span><span class="nv">file</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">openshift</span><span class="w"> </span><span class="k">getenv</span><span class="ss">(</span><span class="nv">USER</span><span class="ss">)</span><span class="w"> </span><span class="nv">from</span><span class="w"> </span><span class="nv">OpenShift</span><span class="w"> </span><span class="nv">php</span>
+<span class="nv">ssh</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span>{<span class="nv">user</span>}@{<span class="nv">app</span><span class="o">-</span><span class="nv">domain</span>}<span class="w"> </span><span class="nv">gear</span><span class="w"> </span><span class="nv">snapshot</span><span class="w">  </span><span class="o">&gt;</span><span class="w"> </span><span class="nv">file</span>
 </code></pre></div>
 
 <p>Run gear app</p>
 <p>OpenShift migration further notes</p>
 <p>Encrypt a file using a supplied password :</p>
-<div class="highlight"><pre><span></span><code>$ openssl enc -aes-256-cbc -salt -in file.txt -out file.txt.enc -k PASS
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>openssl<span class="w"> </span>enc<span class="w"> </span>-aes-256-cbc<span class="w"> </span>-salt<span class="w"> </span>-in<span class="w"> </span>file.txt<span class="w"> </span>-out<span class="w"> </span>file.txt.enc<span class="w"> </span>-k<span class="w"> </span>PASS
 </code></pre></div>
 
 <p>Decrypt a file using a supplied password :</p>
-<div class="highlight"><pre><span></span><code>$ openssl enc -aes-256-cbc -d -in file.txt.enc -out file.txt -k PASS
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>openssl<span class="w"> </span>enc<span class="w"> </span>-aes-256-cbc<span class="w"> </span>-d<span class="w"> </span>-in<span class="w"> </span>file.txt.enc<span class="w"> </span>-out<span class="w"> </span>file.txt<span class="w"> </span>-k<span class="w"> </span>PASS
 </code></pre></div>
 
 <p>Add script to tar plugin, then rhc a SSH key into account,
@@ -233,42 +233,42 @@ seem to work with secondary branches.</p>
 </ol>
 <hr>
 <p>Fork syncing</p>
-<div class="highlight"><pre><span></span><code><span class="w">   </span><span class="nt">-</span><span class="w"> </span><span class="nt">Clone</span><span class="w"> </span><span class="nt">repo</span><span class="w"></span>
-<span class="w">   </span><span class="nt">-</span><span class="w"> </span><span class="nt">Configure</span><span class="w"> </span><span class="nt">a</span><span class="w"> </span><span class="nt">remote</span><span class="w"> </span><span class="nt">fork</span><span class="w"></span>
-<span class="w">     </span><span class="nt">1</span><span class="o">.</span><span class="w"> </span><span class="nt">git</span><span class="w"> </span><span class="nt">remote</span><span class="w"> </span><span class="nt">-v</span><span class="w"></span>
-<span class="w">     </span><span class="nt">2</span><span class="o">.</span><span class="w"> </span><span class="nt">git</span><span class="w"> </span><span class="nt">remote</span><span class="w"> </span><span class="nt">add</span><span class="w"> </span><span class="nt">upstream</span><span class="w"> </span><span class="nt">https</span><span class="o">://</span><span class="nt">github</span><span class="p">.</span><span class="nc">com</span><span class="o">/</span><span class="nt">openshift</span><span class="o">/</span><span class="nt">wordpress-example</span><span class="p">.</span><span class="nc">git</span><span class="w"></span>
-<span class="w">   </span><span class="nt">-</span><span class="w"> </span><span class="nt">Syncing</span><span class="w"> </span><span class="nt">a</span><span class="w"> </span><span class="nt">fork</span><span class="w"></span>
-<span class="w">     </span><span class="nt">1</span><span class="o">.</span><span class="w"> </span><span class="nt">git</span><span class="w"> </span><span class="nt">fetch</span><span class="w"> </span><span class="nt">upstream</span><span class="w"></span>
-<span class="w">     </span><span class="nt">2</span><span class="o">.</span><span class="w"> </span><span class="nt">git</span><span class="w"> </span><span class="nt">checkout</span><span class="w"> </span><span class="nt">master</span><span class="w"></span>
-<span class="w">     </span><span class="nt">3</span><span class="o">.</span><span class="w"> </span><span class="nt">git</span><span class="w"> </span><span class="nt">merge</span><span class="w"> </span><span class="nt">upstream</span><span class="o">/</span><span class="nt">master</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="w">   </span><span class="nt">-</span><span class="w"> </span><span class="nt">Clone</span><span class="w"> </span><span class="nt">repo</span>
+<span class="w">   </span><span class="nt">-</span><span class="w"> </span><span class="nt">Configure</span><span class="w"> </span><span class="nt">a</span><span class="w"> </span><span class="nt">remote</span><span class="w"> </span><span class="nt">fork</span>
+<span class="w">     </span><span class="nt">1</span><span class="o">.</span><span class="w"> </span><span class="nt">git</span><span class="w"> </span><span class="nt">remote</span><span class="w"> </span><span class="nt">-v</span>
+<span class="w">     </span><span class="nt">2</span><span class="o">.</span><span class="w"> </span><span class="nt">git</span><span class="w"> </span><span class="nt">remote</span><span class="w"> </span><span class="nt">add</span><span class="w"> </span><span class="nt">upstream</span><span class="w"> </span><span class="nt">https</span><span class="o">://</span><span class="nt">github</span><span class="p">.</span><span class="nc">com</span><span class="o">/</span><span class="nt">openshift</span><span class="o">/</span><span class="nt">wordpress-example</span><span class="p">.</span><span class="nc">git</span>
+<span class="w">   </span><span class="nt">-</span><span class="w"> </span><span class="nt">Syncing</span><span class="w"> </span><span class="nt">a</span><span class="w"> </span><span class="nt">fork</span>
+<span class="w">     </span><span class="nt">1</span><span class="o">.</span><span class="w"> </span><span class="nt">git</span><span class="w"> </span><span class="nt">fetch</span><span class="w"> </span><span class="nt">upstream</span>
+<span class="w">     </span><span class="nt">2</span><span class="o">.</span><span class="w"> </span><span class="nt">git</span><span class="w"> </span><span class="nt">checkout</span><span class="w"> </span><span class="nt">master</span>
+<span class="w">     </span><span class="nt">3</span><span class="o">.</span><span class="w"> </span><span class="nt">git</span><span class="w"> </span><span class="nt">merge</span><span class="w"> </span><span class="nt">upstream</span><span class="o">/</span><span class="nt">master</span>
 
 
 
 
-<span class="w">      </span><span class="o">//</span><span class="nt">define</span><span class="o">(</span><span class="s1">&#39;DOMAIN_CURRENT_SITE&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;dev.iliu.net&#39;</span><span class="o">);</span><span class="w"></span>
-<span class="w">      </span><span class="nt">if</span><span class="w"> </span><span class="o">($</span><span class="nt">_SERVER</span><span class="cp">[</span><span class="s1">&#39;SERVER_NAME&#39;</span><span class="cp">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">&#39;dev.iliu.net&#39;</span><span class="o">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">         </span><span class="err">define(&#39;DOMAIN_CURRENT_SITE&#39;,</span><span class="w"> </span><span class="err">&#39;iliu.net&#39;)</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="nt">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">         </span><span class="err">define(&#39;DOMAIN_CURRENT_SITE&#39;,</span><span class="w"> </span><span class="err">&#39;dev.iliu.net&#39;)</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="o">//</span><span class="nt">define</span><span class="o">(</span><span class="s1">&#39;DOMAIN_CURRENT_SITE&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;dev.iliu.net&#39;</span><span class="o">);</span>
+<span class="w">      </span><span class="nt">if</span><span class="w"> </span><span class="o">($</span><span class="nt">_SERVER</span><span class="cp">[</span><span class="s1">&#39;SERVER_NAME&#39;</span><span class="cp">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">&#39;dev.iliu.net&#39;</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="err">define(&#39;DOMAIN_CURRENT_SITE&#39;,</span><span class="w"> </span><span class="err">&#39;iliu.net&#39;)</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="nt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="err">define(&#39;DOMAIN_CURRENT_SITE&#39;,</span><span class="w"> </span><span class="err">&#39;dev.iliu.net&#39;)</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
 </code></pre></div>
 
 <h2 id="openshift-mailgun">openshift mailgun</h2>
 <p>Success! You're signed up and we just created your sandbox server sandboxf9dbaaa2f22a49a693955138381837e7.mailgun.org</p>
 <h2 id="include-the-autoloader-see-libraries-for-install-instructions">Include the Autoloader (see "Libraries" for install instructions)</h2>
-<div class="highlight"><pre><span></span><code><span class="n">require</span><span class="w"> </span><span class="s1">&#39;vendor/autoload.php&#39;</span><span class="p">;</span><span class="w"></span>
-<span class="n">use</span><span class="w"> </span><span class="n">Mailgun</span>\<span class="n">Mailgun</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">require</span><span class="w"> </span><span class="s1">&#39;vendor/autoload.php&#39;</span><span class="p">;</span>
+<span class="n">use</span><span class="w"> </span><span class="n">Mailgun</span>\<span class="n">Mailgun</span><span class="p">;</span>
 
-<span class="c1"># Instantiate the client.</span><span class="w"></span>
-<span class="o">$</span><span class="n">mgClient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">Mailgun</span><span class="p">(</span><span class="s1">&#39;key-xxxxxxxxxxxxxxxxxxxxxxxxx&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="o">$</span><span class="n">domain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;sandboxf9dbaaa2f22a49a693955138381837e7.mailgun.org&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="c1"># Instantiate the client.</span>
+<span class="o">$</span><span class="n">mgClient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">Mailgun</span><span class="p">(</span><span class="s1">&#39;key-xxxxxxxxxxxxxxxxxxxxxxxxx&#39;</span><span class="p">);</span>
+<span class="o">$</span><span class="n">domain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;sandboxf9dbaaa2f22a49a693955138381837e7.mailgun.org&quot;</span><span class="p">;</span>
 
-<span class="c1"># Make the call to the client.</span><span class="w"></span>
-<span class="o">$</span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">mgClient</span><span class="o">-&gt;</span><span class="n">sendMessage</span><span class="p">(</span><span class="s2">&quot;$domain&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                  </span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;from&#39;</span><span class="w">    </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;Mailgun Sandbox &lt;postmaster@sandboxf9dbaaa2f22a49a693955138381837e7.mailgun.org&gt;&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                        </span><span class="s1">&#39;to&#39;</span><span class="w">      </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;Alejandro Liu &lt;alejandro_liu@hotmail.com&gt;&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                        </span><span class="s1">&#39;subject&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;Hello Alejandro Liu&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                        </span><span class="s1">&#39;text&#39;</span><span class="w">    </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;Congratulations Alejandro Liu, you just sent an email with Mailgun!  You are truly awesome!  You can see a record of this email in your logs: https://mailgun.com/cp/log .  You can send up to 300 emails/day from this sandbox server.  Next, you should add your own domain so you can send 10,000 emails/month for free.&#39;</span><span class="p">));</span><span class="w"></span>
+<span class="c1"># Make the call to the client.</span>
+<span class="o">$</span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">mgClient</span><span class="o">-&gt;</span><span class="n">sendMessage</span><span class="p">(</span><span class="s2">&quot;$domain&quot;</span><span class="p">,</span>
+<span class="w">                  </span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;from&#39;</span><span class="w">    </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;Mailgun Sandbox &lt;postmaster@sandboxf9dbaaa2f22a49a693955138381837e7.mailgun.org&gt;&#39;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s1">&#39;to&#39;</span><span class="w">      </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;Alejandro Liu &lt;alejandro_liu@hotmail.com&gt;&#39;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s1">&#39;subject&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;Hello Alejandro Liu&#39;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s1">&#39;text&#39;</span><span class="w">    </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;Congratulations Alejandro Liu, you just sent an email with Mailgun!  You are truly awesome!  You can see a record of this email in your logs: https://mailgun.com/cp/log .  You can send up to 300 emails/day from this sandbox server.  Next, you should add your own domain so you can send 10,000 emails/month for free.&#39;</span><span class="p">));</span>
 </code></pre></div>
 
 <hr>

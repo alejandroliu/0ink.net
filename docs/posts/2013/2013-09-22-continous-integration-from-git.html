@@ -99,87 +99,87 @@ the open-source and hugely popular <a href="http://www.jenkins-ci.org/">Jenkins<
 CI server:</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env ruby</span>
 
- <span class="c1"># Ref update hook for creating new Jenkins job </span>
- <span class="c1"># configurations for newly pushed branches.</span>
- <span class="c1">#</span>
- <span class="c1"># requires Ruby 1.9.3+ </span>
+<span class="w"> </span><span class="c1"># Ref update hook for creating new Jenkins job </span>
+<span class="w"> </span><span class="c1"># configurations for newly pushed branches.</span>
+<span class="w"> </span><span class="c1">#</span>
+<span class="w"> </span><span class="c1"># requires Ruby 1.9.3+ </span>
 
- <span class="nb">require</span> <span class="s1">&#39;yaml&#39;</span>
- <span class="nb">require</span> <span class="s1">&#39;net/https&#39;</span>
- <span class="nb">require</span> <span class="s1">&#39;uri&#39;</span>
- <span class="nb">require</span> <span class="s1">&#39;rexml/document&#39;</span>
- <span class="kp">include</span> <span class="no">REXML</span>
+<span class="w"> </span><span class="nb">require</span><span class="w"> </span><span class="s1">&#39;yaml&#39;</span>
+<span class="w"> </span><span class="nb">require</span><span class="w"> </span><span class="s1">&#39;net/https&#39;</span>
+<span class="w"> </span><span class="nb">require</span><span class="w"> </span><span class="s1">&#39;uri&#39;</span>
+<span class="w"> </span><span class="nb">require</span><span class="w"> </span><span class="s1">&#39;rexml/document&#39;</span>
+<span class="w"> </span><span class="kp">include</span><span class="w"> </span><span class="no">REXML</span>
 
- <span class="c1"># load ci-config.yml from hook directory</span>
- <span class="k">def</span> <span class="nf">load_config</span>
-     <span class="n">hookDir</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span> <span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)</span>
-     <span class="n">configPath</span> <span class="o">=</span> <span class="n">hookDir</span> <span class="o">+</span> <span class="s2">&quot;/ci-config.yml&quot;</span>
-     <span class="nb">puts</span> <span class="n">configPath</span>
-     <span class="k">raise</span> <span class="s2">&quot;No ci-config.yml found.&quot;</span> <span class="k">unless</span> <span class="no">File</span><span class="o">.</span><span class="n">exists?</span> <span class="n">configPath</span>
-     <span class="no">YAML</span><span class="o">.</span><span class="n">load_file</span><span class="p">(</span><span class="n">configPath</span><span class="p">)</span>
- <span class="k">end</span>
+<span class="w"> </span><span class="c1"># load ci-config.yml from hook directory</span>
+<span class="w"> </span><span class="k">def</span><span class="w"> </span><span class="nf">load_config</span>
+<span class="w">     </span><span class="n">hookDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="w"> </span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)</span>
+<span class="w">     </span><span class="n">configPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hookDir</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;/ci-config.yml&quot;</span>
+<span class="w">     </span><span class="nb">puts</span><span class="w"> </span><span class="n">configPath</span>
+<span class="w">     </span><span class="k">raise</span><span class="w"> </span><span class="s2">&quot;No ci-config.yml found.&quot;</span><span class="w"> </span><span class="k">unless</span><span class="w"> </span><span class="no">File</span><span class="o">.</span><span class="n">exists?</span><span class="w"> </span><span class="n">configPath</span>
+<span class="w">     </span><span class="no">YAML</span><span class="o">.</span><span class="n">load_file</span><span class="p">(</span><span class="n">configPath</span><span class="p">)</span>
+<span class="w"> </span><span class="k">end</span>
 
- <span class="c1"># Grab the configured Jenkins server</span>
- <span class="n">config</span> <span class="o">=</span> <span class="n">load_config</span>
- <span class="k">raise</span> <span class="s2">&quot;ci-config.yml file is incomplete: missing jenkins_server&quot;</span> <span class="k">unless</span>
-     <span class="n">config</span><span class="o">[</span><span class="s2">&quot;jenkins_server&quot;</span><span class="o">]</span>
- <span class="n">server</span> <span class="o">=</span> <span class="n">config</span><span class="o">[</span><span class="s2">&quot;jenkins_server&quot;</span><span class="o">]</span>
- <span class="k">raise</span> <span class="s2">&quot;ci-config.yml file is incomplete: username, password, url and</span>
-<span class="s2">     default_job are required for jenkins_server&quot;</span> <span class="k">unless</span>
-         <span class="n">server</span><span class="o">[</span><span class="s1">&#39;url&#39;</span><span class="o">]</span> <span class="ow">and</span> <span class="n">server</span><span class="o">[</span><span class="s1">&#39;username&#39;</span><span class="o">]</span> <span class="ow">and</span>
-         <span class="n">server</span><span class="o">[</span><span class="s1">&#39;password&#39;</span><span class="o">]</span> <span class="ow">and</span> <span class="n">server</span><span class="o">[</span><span class="s1">&#39;default_job&#39;</span><span class="o">]</span>
+<span class="w"> </span><span class="c1"># Grab the configured Jenkins server</span>
+<span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">load_config</span>
+<span class="w"> </span><span class="k">raise</span><span class="w"> </span><span class="s2">&quot;ci-config.yml file is incomplete: missing jenkins_server&quot;</span><span class="w"> </span><span class="k">unless</span>
+<span class="w">     </span><span class="n">config</span><span class="o">[</span><span class="s2">&quot;jenkins_server&quot;</span><span class="o">]</span>
+<span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">config</span><span class="o">[</span><span class="s2">&quot;jenkins_server&quot;</span><span class="o">]</span>
+<span class="w"> </span><span class="k">raise</span><span class="w"> </span><span class="s2">&quot;ci-config.yml file is incomplete: username, password, url and</span>
+<span class="s2">     default_job are required for jenkins_server&quot;</span><span class="w"> </span><span class="k">unless</span>
+<span class="w">         </span><span class="n">server</span><span class="o">[</span><span class="s1">&#39;url&#39;</span><span class="o">]</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">server</span><span class="o">[</span><span class="s1">&#39;username&#39;</span><span class="o">]</span><span class="w"> </span><span class="ow">and</span>
+<span class="w">         </span><span class="n">server</span><span class="o">[</span><span class="s1">&#39;password&#39;</span><span class="o">]</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">server</span><span class="o">[</span><span class="s1">&#39;default_job&#39;</span><span class="o">]</span>
 
- <span class="c1"># iterate through updated refs looking for new branches</span>
- <span class="no">ARGF</span><span class="o">.</span><span class="n">readlines</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
-     <span class="n">args</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span>
-     <span class="n">oldVal</span> <span class="o">=</span> <span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
-     <span class="n">newVal</span> <span class="o">=</span> <span class="n">args</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
-     <span class="n">ref</span> <span class="o">=</span> <span class="n">args</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span>
+<span class="w"> </span><span class="c1"># iterate through updated refs looking for new branches</span>
+<span class="w"> </span><span class="no">ARGF</span><span class="o">.</span><span class="n">readlines</span><span class="o">.</span><span class="n">each</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">|</span><span class="n">line</span><span class="o">|</span>
+<span class="w">     </span><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">line</span><span class="o">.</span><span class="n">split</span>
+<span class="w">     </span><span class="n">oldVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
+<span class="w">     </span><span class="n">newVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">args</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
+<span class="w">     </span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">args</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span>
 
-     <span class="k">if</span> <span class="sr">/^0{40}$/</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">oldVal</span><span class="p">)</span> <span class="ow">and</span> <span class="n">ref</span><span class="o">.</span><span class="n">start_with?</span><span class="p">(</span><span class="s2">&quot;refs/heads/&quot;</span><span class="p">)</span> 
-         <span class="c1"># new branch!</span>
-         <span class="c1"># retrieve the jenkins job config</span>
-         <span class="c1"># TODO only need to do this once!</span>
-         <span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
-            <span class="s2">&quot;</span><span class="si">#{</span><span class="n">server</span><span class="o">[</span><span class="s1">&#39;url&#39;</span><span class="o">]</span><span class="si">}</span><span class="s2">/job/</span><span class="si">#{</span><span class="n">server</span><span class="o">[</span><span class="s1">&#39;default_job&#39;</span><span class="o">]</span><span class="si">}</span><span class="s2">/config.xml&quot;</span><span class="p">)</span>
-         <span class="n">req</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Get</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">uri</span><span class="o">.</span><span class="n">to_s</span><span class="p">)</span>
-         <span class="n">req</span><span class="o">.</span><span class="n">basic_auth</span> <span class="n">server</span><span class="o">[</span><span class="s1">&#39;username&#39;</span><span class="o">]</span><span class="p">,</span> <span class="n">server</span><span class="o">[</span><span class="s1">&#39;password&#39;</span><span class="o">]</span>
-         <span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">uri</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="n">uri</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
-         <span class="n">http</span><span class="o">.</span><span class="n">verify_mode</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">SSL</span><span class="o">::</span><span class="no">VERIFY_NONE</span>
-         <span class="n">http</span><span class="o">.</span><span class="n">use_ssl</span> <span class="o">=</span> <span class="n">uri</span><span class="o">.</span><span class="n">scheme</span><span class="o">.</span><span class="n">eql?</span><span class="p">(</span><span class="s2">&quot;https&quot;</span><span class="p">)</span>
+<span class="w">     </span><span class="k">if</span><span class="w"> </span><span class="sr">/^0{40}$/</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">oldVal</span><span class="p">)</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">ref</span><span class="o">.</span><span class="n">start_with?</span><span class="p">(</span><span class="s2">&quot;refs/heads/&quot;</span><span class="p">)</span><span class="w"> </span>
+<span class="w">         </span><span class="c1"># new branch!</span>
+<span class="w">         </span><span class="c1"># retrieve the jenkins job config</span>
+<span class="w">         </span><span class="c1"># TODO only need to do this once!</span>
+<span class="w">         </span><span class="n">uri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">URI</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
+<span class="w">            </span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">server</span><span class="o">[</span><span class="s1">&#39;url&#39;</span><span class="o">]</span><span class="si">}</span><span class="s2">/job/</span><span class="si">#{</span><span class="n">server</span><span class="o">[</span><span class="s1">&#39;default_job&#39;</span><span class="o">]</span><span class="si">}</span><span class="s2">/config.xml&quot;</span><span class="p">)</span>
+<span class="w">         </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Get</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">uri</span><span class="o">.</span><span class="n">to_s</span><span class="p">)</span>
+<span class="w">         </span><span class="n">req</span><span class="o">.</span><span class="n">basic_auth</span><span class="w"> </span><span class="n">server</span><span class="o">[</span><span class="s1">&#39;username&#39;</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">server</span><span class="o">[</span><span class="s1">&#39;password&#39;</span><span class="o">]</span>
+<span class="w">         </span><span class="n">http</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">uri</span><span class="o">.</span><span class="n">host</span><span class="p">,</span><span class="w"> </span><span class="n">uri</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+<span class="w">         </span><span class="n">http</span><span class="o">.</span><span class="n">verify_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">OpenSSL</span><span class="o">::</span><span class="no">SSL</span><span class="o">::</span><span class="no">VERIFY_NONE</span>
+<span class="w">         </span><span class="n">http</span><span class="o">.</span><span class="n">use_ssl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uri</span><span class="o">.</span><span class="n">scheme</span><span class="o">.</span><span class="n">eql?</span><span class="p">(</span><span class="s2">&quot;https&quot;</span><span class="p">)</span>
 
-         <span class="c1"># execute the request</span>
-         <span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">start</span> <span class="p">{</span><span class="o">|</span><span class="n">http</span><span class="o">|</span> <span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">req</span><span class="p">)}</span>
+<span class="w">         </span><span class="c1"># execute the request</span>
+<span class="w">         </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">http</span><span class="o">.</span><span class="n">start</span><span class="w"> </span><span class="p">{</span><span class="o">|</span><span class="n">http</span><span class="o">|</span><span class="w"> </span><span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">req</span><span class="p">)}</span>
 
-         <span class="k">raise</span> <span class="s2">&quot;Bad response from jenkins, is your ci-config.yml correct?&quot;</span>
-             <span class="k">unless</span> <span class="n">response</span><span class="o">.</span><span class="n">is_a?</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTPOK</span>
+<span class="w">         </span><span class="k">raise</span><span class="w"> </span><span class="s2">&quot;Bad response from jenkins, is your ci-config.yml correct?&quot;</span>
+<span class="w">             </span><span class="k">unless</span><span class="w"> </span><span class="n">response</span><span class="o">.</span><span class="n">is_a?</span><span class="w"> </span><span class="no">Net</span><span class="o">::</span><span class="no">HTTPOK</span>
 
-         <span class="c1"># parse the config.xml from the response</span>
-         <span class="n">doc</span> <span class="o">=</span> <span class="no">Document</span><span class="o">.</span><span class="n">new</span> <span class="n">response</span><span class="o">.</span><span class="n">body</span>
-         <span class="n">doc</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">get_elements</span><span class="p">(</span>
-             <span class="s2">&quot;//branches/hudson.plugins.git.BranchSpec/name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> 
-                 <span class="c1"># overwrite branch to be our new ref</span>
-                 <span class="o">|</span><span class="n">elem</span><span class="o">|</span> <span class="n">elem</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">ref</span> 
-         <span class="p">}</span>
+<span class="w">         </span><span class="c1"># parse the config.xml from the response</span>
+<span class="w">         </span><span class="n">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Document</span><span class="o">.</span><span class="n">new</span><span class="w"> </span><span class="n">response</span><span class="o">.</span><span class="n">body</span>
+<span class="w">         </span><span class="n">doc</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">get_elements</span><span class="p">(</span>
+<span class="w">             </span><span class="s2">&quot;//branches/hudson.plugins.git.BranchSpec/name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">each</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">                 </span><span class="c1"># overwrite branch to be our new ref</span>
+<span class="w">                 </span><span class="o">|</span><span class="n">elem</span><span class="o">|</span><span class="w"> </span><span class="n">elem</span><span class="o">.</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ref</span><span class="w"> </span>
+<span class="w">         </span><span class="p">}</span>
 
-         <span class="c1"># create a new request to upload the modified config.xml</span>
-         <span class="n">newJob</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-         <span class="n">doc</span><span class="o">.</span><span class="n">write</span> <span class="n">newJob</span>
+<span class="w">         </span><span class="c1"># create a new request to upload the modified config.xml</span>
+<span class="w">         </span><span class="n">newJob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">         </span><span class="n">doc</span><span class="o">.</span><span class="n">write</span><span class="w"> </span><span class="n">newJob</span>
 
-         <span class="n">newJobName</span> <span class="o">=</span> <span class="n">ref</span><span class="o">[</span><span class="s2">&quot;refs/heads/&quot;</span><span class="o">.</span><span class="n">length</span><span class="o">..-</span><span class="mi">1</span><span class="o">].</span><span class="n">gsub</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
-         <span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">server</span><span class="o">[</span><span class="s1">&#39;url&#39;</span><span class="o">]</span><span class="si">}</span><span class="s2">/createItem?name=</span><span class="si">#{</span><span class="n">newJobName</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>        
-         <span class="n">req</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Post</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">uri</span><span class="o">.</span><span class="n">to_s</span><span class="p">,</span> 
-         <span class="n">initheader</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;application/xml&#39;</span><span class="p">})</span>
+<span class="w">         </span><span class="n">newJobName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ref</span><span class="o">[</span><span class="s2">&quot;refs/heads/&quot;</span><span class="o">.</span><span class="n">length</span><span class="o">..-</span><span class="mi">1</span><span class="o">].</span><span class="n">gsub</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
+<span class="w">         </span><span class="n">uri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">URI</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">server</span><span class="o">[</span><span class="s1">&#39;url&#39;</span><span class="o">]</span><span class="si">}</span><span class="s2">/createItem?name=</span><span class="si">#{</span><span class="n">newJobName</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="w">        </span>
+<span class="w">         </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Post</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">uri</span><span class="o">.</span><span class="n">to_s</span><span class="p">,</span><span class="w"> </span>
+<span class="w">         </span><span class="n">initheader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;application/xml&#39;</span><span class="p">})</span>
 
-         <span class="n">req</span><span class="o">.</span><span class="n">basic_auth</span> <span class="n">server</span><span class="o">[</span><span class="s1">&#39;username&#39;</span><span class="o">]</span><span class="p">,</span> <span class="n">server</span><span class="o">[</span><span class="s1">&#39;password&#39;</span><span class="o">]</span>
-         <span class="n">req</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">newJob</span>
+<span class="w">         </span><span class="n">req</span><span class="o">.</span><span class="n">basic_auth</span><span class="w"> </span><span class="n">server</span><span class="o">[</span><span class="s1">&#39;username&#39;</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">server</span><span class="o">[</span><span class="s1">&#39;password&#39;</span><span class="o">]</span>
+<span class="w">         </span><span class="n">req</span><span class="o">.</span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newJob</span>
 
-         <span class="c1"># upload the new job</span>
-         <span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">start</span> <span class="p">{</span><span class="o">|</span><span class="n">http</span><span class="o">|</span> <span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">req</span><span class="p">)}</span>
-         <span class="k">raise</span> <span class="s2">&quot;Failed to post new job to jenkins&quot;</span> <span class="k">unless</span>
-             <span class="n">response</span><span class="o">.</span><span class="n">is_a?</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTPOK</span>
-     <span class="k">end</span>
- <span class="p">}</span>
+<span class="w">         </span><span class="c1"># upload the new job</span>
+<span class="w">         </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">http</span><span class="o">.</span><span class="n">start</span><span class="w"> </span><span class="p">{</span><span class="o">|</span><span class="n">http</span><span class="o">|</span><span class="w"> </span><span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">req</span><span class="p">)}</span>
+<span class="w">         </span><span class="k">raise</span><span class="w"> </span><span class="s2">&quot;Failed to post new job to jenkins&quot;</span><span class="w"> </span><span class="k">unless</span>
+<span class="w">             </span><span class="n">response</span><span class="o">.</span><span class="n">is_a?</span><span class="w"> </span><span class="no">Net</span><span class="o">::</span><span class="no">HTTPOK</span>
+<span class="w">     </span><span class="k">end</span>
+<span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 
 <p>With this hook in place, you need only push a dev branch to the repo,
@@ -227,66 +227,66 @@ they can be implemented in more or less the same way on all CI
 servers.)</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env ruby</span>
 
- <span class="c1"># Ref update hook for verifying the build status of </span>
- <span class="c1"># a topic branch being merged into </span>
- <span class="c1"># a protected branch (e.g. master) from a Bamboo server.</span>
- <span class="c1">#</span>
- <span class="c1"># requires Ruby 1.9.3+ </span>
+<span class="w"> </span><span class="c1"># Ref update hook for verifying the build status of </span>
+<span class="w"> </span><span class="c1"># a topic branch being merged into </span>
+<span class="w"> </span><span class="c1"># a protected branch (e.g. master) from a Bamboo server.</span>
+<span class="w"> </span><span class="c1">#</span>
+<span class="w"> </span><span class="c1"># requires Ruby 1.9.3+ </span>
 
- <span class="n">require_relative</span> <span class="s1">&#39;ci-util&#39;</span>
- <span class="nb">require</span> <span class="s1">&#39;json&#39;</span>
+<span class="w"> </span><span class="n">require_relative</span><span class="w"> </span><span class="s1">&#39;ci-util&#39;</span>
+<span class="w"> </span><span class="nb">require</span><span class="w"> </span><span class="s1">&#39;json&#39;</span>
 
- <span class="c1"># parse args supplied by git: &lt;ref_name&gt; &lt;old_sha&gt; &lt;new_sha&gt;</span>
- <span class="n">ref</span> <span class="o">=</span> <span class="n">simple_branch_name</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
- <span class="n">prevCommit</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
- <span class="n">newCommit</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span>
+<span class="w"> </span><span class="c1"># parse args supplied by git: &lt;ref_name&gt; &lt;old_sha&gt; &lt;new_sha&gt;</span>
+<span class="w"> </span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">simple_branch_name</span><span class="w"> </span><span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
+<span class="w"> </span><span class="n">prevCommit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">ARGV</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
+<span class="w"> </span><span class="n">newCommit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">ARGV</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span>
 
- <span class="c1"># test if the updated ref is one we want to enforce green </span>
- <span class="c1"># builds for exit_if_not_protected_ref(ref)</span>
+<span class="w"> </span><span class="c1"># test if the updated ref is one we want to enforce green </span>
+<span class="w"> </span><span class="c1"># builds for exit_if_not_protected_ref(ref)</span>
 
- <span class="c1"># get the tip of the most recently merged branch</span>
- <span class="n">tip_of_merged_branch</span> <span class="o">=</span> 
-    <span class="n">find_newest_non_merge_commit</span><span class="p">(</span><span class="n">prevCommit</span><span class="p">,</span> <span class="n">newCommit</span><span class="p">)</span>
+<span class="w"> </span><span class="c1"># get the tip of the most recently merged branch</span>
+<span class="w"> </span><span class="n">tip_of_merged_branch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">    </span><span class="n">find_newest_non_merge_commit</span><span class="p">(</span><span class="n">prevCommit</span><span class="p">,</span><span class="w"> </span><span class="n">newCommit</span><span class="p">)</span>
 
- <span class="c1"># parse our Bamboo server config</span>
- <span class="n">bamboo</span> <span class="o">=</span> <span class="n">read_config</span><span class="p">(</span><span class="s2">&quot;bamboo&quot;</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;url&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="o">]</span><span class="p">)</span>
+<span class="w"> </span><span class="c1"># parse our Bamboo server config</span>
+<span class="w"> </span><span class="n">bamboo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read_config</span><span class="p">(</span><span class="s2">&quot;bamboo&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;url&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;username&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;password&quot;</span><span class="o">]</span><span class="p">)</span>
 
- <span class="c1"># query Bamboo for build results</span>
- <span class="n">response</span> <span class="o">=</span> <span class="n">httpGet</span><span class="p">(</span>
-    <span class="n">bamboo</span><span class="p">,</span> 
-    <span class="s2">&quot;/rest/api/latest/result/byChangeset/</span><span class="si">#{</span><span class="n">tip_of_merged_branch</span><span class="si">}</span><span class="s2">.json&quot;</span><span class="p">)</span>
- <span class="n">body</span> <span class="o">=</span> <span class="no">JSON</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>        
- <span class="c1"># tally the results</span>
- <span class="n">failed</span> <span class="o">=</span> <span class="n">successful</span> <span class="o">=</span> <span class="n">in_progress</span> <span class="o">=</span> <span class="mi">0</span>
- <span class="n">body</span><span class="o">[</span><span class="s1">&#39;results&#39;</span><span class="o">][</span><span class="s1">&#39;result&#39;</span><span class="o">].</span><span class="n">collect</span> <span class="p">{</span> <span class="o">|</span><span class="n">result</span><span class="o">|</span>
-     <span class="k">case</span> <span class="n">result</span><span class="o">[</span><span class="s1">&#39;state&#39;</span><span class="o">]</span>
-     <span class="k">when</span> <span class="s2">&quot;Failed&quot;</span>
-       <span class="n">failed</span> <span class="o">+=</span> <span class="mi">1</span>
-     <span class="k">when</span> <span class="s2">&quot;Successful&quot;</span>
-       <span class="n">successful</span> <span class="o">+=</span> <span class="mi">1</span>
-     <span class="k">when</span> <span class="s2">&quot;Unknown&quot;</span>
-       <span class="k">if</span> <span class="n">result</span><span class="o">[</span><span class="s1">&#39;lifeCycleState&#39;</span><span class="o">]</span> <span class="o">==</span> <span class="s2">&quot;InProgress&quot;</span>
-         <span class="n">in_progress</span> <span class="o">+=</span> <span class="mi">1</span>
-       <span class="k">end</span>
-     <span class="k">end</span>
- <span class="p">}</span>
+<span class="w"> </span><span class="c1"># query Bamboo for build results</span>
+<span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">httpGet</span><span class="p">(</span>
+<span class="w">    </span><span class="n">bamboo</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="s2">&quot;/rest/api/latest/result/byChangeset/</span><span class="si">#{</span><span class="n">tip_of_merged_branch</span><span class="si">}</span><span class="s2">.json&quot;</span><span class="p">)</span>
+<span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">JSON</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span><span class="w">        </span>
+<span class="w"> </span><span class="c1"># tally the results</span>
+<span class="w"> </span><span class="n">failed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">successful</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">in_progress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w"> </span><span class="n">body</span><span class="o">[</span><span class="s1">&#39;results&#39;</span><span class="o">][</span><span class="s1">&#39;result&#39;</span><span class="o">].</span><span class="n">collect</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">|</span><span class="n">result</span><span class="o">|</span>
+<span class="w">     </span><span class="k">case</span><span class="w"> </span><span class="n">result</span><span class="o">[</span><span class="s1">&#39;state&#39;</span><span class="o">]</span>
+<span class="w">     </span><span class="k">when</span><span class="w"> </span><span class="s2">&quot;Failed&quot;</span>
+<span class="w">       </span><span class="n">failed</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">     </span><span class="k">when</span><span class="w"> </span><span class="s2">&quot;Successful&quot;</span>
+<span class="w">       </span><span class="n">successful</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">     </span><span class="k">when</span><span class="w"> </span><span class="s2">&quot;Unknown&quot;</span>
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="n">result</span><span class="o">[</span><span class="s1">&#39;lifeCycleState&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;InProgress&quot;</span>
+<span class="w">         </span><span class="n">in_progress</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">       </span><span class="k">end</span>
+<span class="w">     </span><span class="k">end</span>
+<span class="w"> </span><span class="p">}</span>
 
- <span class="c1"># display a short message describing the build status for </span>
- <span class="c1">#the merged branch and abort if necessary</span>
- <span class="k">if</span> <span class="n">failed</span> <span class="o">&gt;</span> <span class="mi">0</span>
-     <span class="c1"># at least one red build - block the branch update</span>
-     <span class="nb">abort</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">shortSha</span><span class="p">(</span><span class="n">tip_of_merged_branch</span><span class="p">)</span><span class="si">}</span><span class="s2"> has </span><span class="si">#{</span><span class="n">failed</span><span class="si">}</span><span class="s2"> </span>
-<span class="s2">     red </span><span class="si">#{</span><span class="n">pluralize</span><span class="p">(</span><span class="n">failed</span><span class="p">,</span> <span class="s1">&#39;build&#39;</span><span class="p">,</span> <span class="s1">&#39;builds&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
- <span class="k">elsif</span> <span class="n">in_progress</span> <span class="o">&gt;</span> <span class="mi">0</span>
-     <span class="c1"># at least one incomplete build - block the branch update</span>
-     <span class="nb">abort</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">shortSha</span><span class="p">(</span><span class="n">tip_of_merged_branch</span><span class="p">)</span><span class="si">}</span><span class="s2"> has </span><span class="si">#{</span><span class="n">in_progress</span><span class="si">}</span><span class="s2"></span>
-<span class="s2">     </span><span class="si">#{</span><span class="n">pluralize</span><span class="p">(</span><span class="n">in_progress</span><span class="p">,</span> <span class="s1">&#39;build&#39;</span><span class="p">,</span> <span class="s1">&#39;builds&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> that have not</span>
+<span class="w"> </span><span class="c1"># display a short message describing the build status for </span>
+<span class="w"> </span><span class="c1">#the merged branch and abort if necessary</span>
+<span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">failed</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">     </span><span class="c1"># at least one red build - block the branch update</span>
+<span class="w">     </span><span class="nb">abort</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">shortSha</span><span class="p">(</span><span class="n">tip_of_merged_branch</span><span class="p">)</span><span class="si">}</span><span class="s2"> has </span><span class="si">#{</span><span class="n">failed</span><span class="si">}</span><span class="s2"> </span>
+<span class="s2">     red </span><span class="si">#{</span><span class="n">pluralize</span><span class="p">(</span><span class="n">failed</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;build&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;builds&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
+<span class="w"> </span><span class="k">elsif</span><span class="w"> </span><span class="n">in_progress</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">     </span><span class="c1"># at least one incomplete build - block the branch update</span>
+<span class="w">     </span><span class="nb">abort</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">shortSha</span><span class="p">(</span><span class="n">tip_of_merged_branch</span><span class="p">)</span><span class="si">}</span><span class="s2"> has </span><span class="si">#{</span><span class="n">in_progress</span><span class="si">}</span>
+<span class="s2">     </span><span class="si">#{</span><span class="n">pluralize</span><span class="p">(</span><span class="n">in_progress</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;build&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;builds&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> that have not</span>
 <span class="s2">     completed yet.&quot;</span>
- <span class="k">else</span>   
-     <span class="c1"># all green builds - allow the branch update</span>
-     <span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">shortSha</span><span class="p">(</span><span class="n">tip_of_merged_branch</span><span class="p">)</span><span class="si">}</span><span class="s2"> has </span><span class="si">#{</span><span class="n">successful</span><span class="si">}</span><span class="s2"> </span>
-<span class="s2">         green </span><span class="si">#{</span><span class="n">pluralize</span><span class="p">(</span><span class="n">successful</span><span class="p">,</span> <span class="s1">&#39;build&#39;</span><span class="p">,</span> <span class="s1">&#39;builds&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
- <span class="k">end</span>
+<span class="w"> </span><span class="k">else</span><span class="w">   </span>
+<span class="w">     </span><span class="c1"># all green builds - allow the branch update</span>
+<span class="w">     </span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">shortSha</span><span class="p">(</span><span class="n">tip_of_merged_branch</span><span class="p">)</span><span class="si">}</span><span class="s2"> has </span><span class="si">#{</span><span class="n">successful</span><span class="si">}</span><span class="s2"> </span>
+<span class="s2">         green </span><span class="si">#{</span><span class="n">pluralize</span><span class="p">(</span><span class="n">successful</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;build&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;builds&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
+<span class="w"> </span><span class="k">end</span>
 </code></pre></div>
 
 <h2 id="enforce-code-coverage-requirements">Enforce Code Coverage Requirements</h2>
@@ -312,81 +312,81 @@ the reference (commit) being merged, as shown here for the code
 coverage tool Clover.</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env ruby</span>
 
- <span class="c1"># Ref update hook for asserting the code coverage of a </span>
- <span class="c1"># topic branch being merged into a </span>
- <span class="c1"># protected branch (e.g. master) is the same or better</span>
- <span class="c1">#</span>
- <span class="c1"># requires Ruby 1.9.3+ </span>
+<span class="w"> </span><span class="c1"># Ref update hook for asserting the code coverage of a </span>
+<span class="w"> </span><span class="c1"># topic branch being merged into a </span>
+<span class="w"> </span><span class="c1"># protected branch (e.g. master) is the same or better</span>
+<span class="w"> </span><span class="c1">#</span>
+<span class="w"> </span><span class="c1"># requires Ruby 1.9.3+ </span>
 
- <span class="n">require_relative</span> <span class="s1">&#39;ci-util&#39;</span>
- <span class="nb">require</span> <span class="s1">&#39;rexml/document&#39;</span>
+<span class="w"> </span><span class="n">require_relative</span><span class="w"> </span><span class="s1">&#39;ci-util&#39;</span>
+<span class="w"> </span><span class="nb">require</span><span class="w"> </span><span class="s1">&#39;rexml/document&#39;</span>
 
- <span class="kp">include</span> <span class="no">REXML</span>
+<span class="w"> </span><span class="kp">include</span><span class="w"> </span><span class="no">REXML</span>
 
- <span class="c1"># Determine the code coverage for a particular commit by </span>
- <span class="c1"># parsing Clover artifacts</span>
- <span class="k">def</span> <span class="nf">find_coverage</span><span class="p">(</span><span class="n">bamboo</span><span class="p">,</span> <span class="n">commit</span><span class="p">)</span>
-     <span class="c1"># grab the clover.xml artifact from the build. </span>
-     <span class="c1"># This (assumes a shared artifact named </span>
-     <span class="c1"># &#39;clover&#39; with &#39;clover.xml&#39; at the root).</span>
-     <span class="c1"># Change this for your coverage tool?s report name.</span>
-     <span class="n">clover_xml</span> <span class="o">=</span> <span class="n">shared_artifact_for_commit</span><span class="p">(</span><span class="n">bamboo</span><span class="p">,</span> <span class="n">commit</span><span class="p">,</span>
-         <span class="n">bamboo</span><span class="o">[</span><span class="s2">&quot;coverage_key&quot;</span><span class="o">]</span><span class="p">,</span> <span class="s2">&quot;clover/clover.xml&quot;</span><span class="p">)</span>
-     <span class="n">doc</span> <span class="o">=</span> <span class="no">Document</span><span class="o">.</span><span class="n">new</span> <span class="n">clover_xml</span>
+<span class="w"> </span><span class="c1"># Determine the code coverage for a particular commit by </span>
+<span class="w"> </span><span class="c1"># parsing Clover artifacts</span>
+<span class="w"> </span><span class="k">def</span><span class="w"> </span><span class="nf">find_coverage</span><span class="p">(</span><span class="n">bamboo</span><span class="p">,</span><span class="w"> </span><span class="n">commit</span><span class="p">)</span>
+<span class="w">     </span><span class="c1"># grab the clover.xml artifact from the build. </span>
+<span class="w">     </span><span class="c1"># This (assumes a shared artifact named </span>
+<span class="w">     </span><span class="c1"># &#39;clover&#39; with &#39;clover.xml&#39; at the root).</span>
+<span class="w">     </span><span class="c1"># Change this for your coverage tool?s report name.</span>
+<span class="w">     </span><span class="n">clover_xml</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shared_artifact_for_commit</span><span class="p">(</span><span class="n">bamboo</span><span class="p">,</span><span class="w"> </span><span class="n">commit</span><span class="p">,</span>
+<span class="w">         </span><span class="n">bamboo</span><span class="o">[</span><span class="s2">&quot;coverage_key&quot;</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;clover/clover.xml&quot;</span><span class="p">)</span>
+<span class="w">     </span><span class="n">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Document</span><span class="o">.</span><span class="n">new</span><span class="w"> </span><span class="n">clover_xml</span>
 
-     <span class="c1"># parse out the project metrics element from the response</span>
-     <span class="n">metrics</span> <span class="o">=</span> <span class="no">XPath</span><span class="o">.</span><span class="n">first</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s2">&quot;coverage/project/metrics&quot;</span><span class="p">)</span>
+<span class="w">     </span><span class="c1"># parse out the project metrics element from the response</span>
+<span class="w">     </span><span class="n">metrics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">XPath</span><span class="o">.</span><span class="n">first</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;coverage/project/metrics&quot;</span><span class="p">)</span>
 
-     <span class="c1"># Use algorithm similar to Clover </span>
-     <span class="c1"># (https://confluence.atlassian.com/x/LoHEB) for </span>
-     <span class="c1"># determining coverage percentage</span>
-     <span class="n">covered_elements</span> <span class="o">=</span> 
-         <span class="n">metrics</span><span class="o">.</span><span class="n">attribute</span><span class="p">(</span><span class="s2">&quot;coveredconditionals&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">to_i</span>
-     <span class="n">covered_elements</span> <span class="o">+=</span> 
-         <span class="n">metrics</span><span class="o">.</span><span class="n">attribute</span><span class="p">(</span><span class="s2">&quot;coveredmethods&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">to_i</span>
-     <span class="n">covered_elements</span> <span class="o">+=</span> 
-         <span class="n">metrics</span><span class="o">.</span><span class="n">attribute</span><span class="p">(</span><span class="s2">&quot;coveredstatements&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">to_i</span>
+<span class="w">     </span><span class="c1"># Use algorithm similar to Clover </span>
+<span class="w">     </span><span class="c1"># (https://confluence.atlassian.com/x/LoHEB) for </span>
+<span class="w">     </span><span class="c1"># determining coverage percentage</span>
+<span class="w">     </span><span class="n">covered_elements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">         </span><span class="n">metrics</span><span class="o">.</span><span class="n">attribute</span><span class="p">(</span><span class="s2">&quot;coveredconditionals&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">to_i</span>
+<span class="w">     </span><span class="n">covered_elements</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>
+<span class="w">         </span><span class="n">metrics</span><span class="o">.</span><span class="n">attribute</span><span class="p">(</span><span class="s2">&quot;coveredmethods&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">to_i</span>
+<span class="w">     </span><span class="n">covered_elements</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>
+<span class="w">         </span><span class="n">metrics</span><span class="o">.</span><span class="n">attribute</span><span class="p">(</span><span class="s2">&quot;coveredstatements&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">to_i</span>
 
-     <span class="n">elements</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">attribute</span><span class="p">(</span><span class="s2">&quot;conditionals&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">to_i</span>
-     <span class="n">elements</span> <span class="o">+=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">attribute</span><span class="p">(</span><span class="s2">&quot;methods&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">to_i</span>
-     <span class="n">elements</span> <span class="o">+=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">attribute</span><span class="p">(</span><span class="s2">&quot;statements&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">to_i</span>
+<span class="w">     </span><span class="n">elements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">metrics</span><span class="o">.</span><span class="n">attribute</span><span class="p">(</span><span class="s2">&quot;conditionals&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">to_i</span>
+<span class="w">     </span><span class="n">elements</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">metrics</span><span class="o">.</span><span class="n">attribute</span><span class="p">(</span><span class="s2">&quot;methods&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">to_i</span>
+<span class="w">     </span><span class="n">elements</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">metrics</span><span class="o">.</span><span class="n">attribute</span><span class="p">(</span><span class="s2">&quot;statements&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">to_i</span>
 
-     <span class="n">coverage</span> <span class="o">=</span> <span class="mi">0</span>
-     <span class="k">if</span> <span class="p">(</span><span class="n">elements</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-         <span class="n">coverage</span> <span class="o">=</span> <span class="n">covered_elements</span> <span class="o">/</span> <span class="n">elements</span>
-     <span class="k">end</span>
-     <span class="n">coverage</span>
- <span class="k">end</span>
+<span class="w">     </span><span class="n">coverage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">     </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">elements</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">         </span><span class="n">coverage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">covered_elements</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">elements</span>
+<span class="w">     </span><span class="k">end</span>
+<span class="w">     </span><span class="n">coverage</span>
+<span class="w"> </span><span class="k">end</span>
 
- <span class="c1"># parse args supplied by git: &lt;ref_name&gt; &lt;old_sha&gt; &lt;new_sha&gt;</span>
- <span class="n">ref</span> <span class="o">=</span> <span class="n">simple_branch_name</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
- <span class="n">prevCommit</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
- <span class="n">newCommit</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span>
+<span class="w"> </span><span class="c1"># parse args supplied by git: &lt;ref_name&gt; &lt;old_sha&gt; &lt;new_sha&gt;</span>
+<span class="w"> </span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">simple_branch_name</span><span class="w"> </span><span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
+<span class="w"> </span><span class="n">prevCommit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">ARGV</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
+<span class="w"> </span><span class="n">newCommit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">ARGV</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span>
 
- <span class="c1"># test if the updated ref is one we want to enforce </span>
- <span class="c1"># green builds for  exit_if_not_protected_ref(ref)</span>
+<span class="w"> </span><span class="c1"># test if the updated ref is one we want to enforce </span>
+<span class="w"> </span><span class="c1"># green builds for  exit_if_not_protected_ref(ref)</span>
 
- <span class="c1"># get the tip of the most recently merged branch</span>
- <span class="n">tip_of_merged_branch</span> <span class="o">=</span> 
-     <span class="n">find_newest_non_merge_commit</span><span class="p">(</span><span class="n">prevCommit</span><span class="p">,</span> <span class="n">newCommit</span><span class="p">)</span>
+<span class="w"> </span><span class="c1"># get the tip of the most recently merged branch</span>
+<span class="w"> </span><span class="n">tip_of_merged_branch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">     </span><span class="n">find_newest_non_merge_commit</span><span class="p">(</span><span class="n">prevCommit</span><span class="p">,</span><span class="w"> </span><span class="n">newCommit</span><span class="p">)</span>
 
- <span class="c1"># parse our bamboo server config</span>
- <span class="n">bamboo</span> <span class="o">=</span> <span class="n">read_config</span><span class="p">(</span><span class="s2">&quot;bamboo&quot;</span><span class="p">,</span> 
-     <span class="o">[</span><span class="s2">&quot;url&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="s2">&quot;coverage_key&quot;</span><span class="o">]</span><span class="p">)</span>
+<span class="w"> </span><span class="c1"># parse our bamboo server config</span>
+<span class="w"> </span><span class="n">bamboo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read_config</span><span class="p">(</span><span class="s2">&quot;bamboo&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">     </span><span class="o">[</span><span class="s2">&quot;url&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;username&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;password&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;coverage_key&quot;</span><span class="o">]</span><span class="p">)</span>
 
- <span class="c1"># calculate code coverage for the old and new commits</span>
- <span class="n">prev_coverage</span> <span class="o">=</span> <span class="n">find_coverage</span><span class="p">(</span><span class="n">bamboo</span><span class="p">,</span> <span class="n">prevCommit</span><span class="p">)</span>
- <span class="n">new_coverage</span> <span class="o">=</span> <span class="n">find_coverage</span><span class="p">(</span><span class="n">bamboo</span><span class="p">,</span> <span class="n">tip_of_merged_branch</span><span class="p">)</span>
+<span class="w"> </span><span class="c1"># calculate code coverage for the old and new commits</span>
+<span class="w"> </span><span class="n">prev_coverage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">find_coverage</span><span class="p">(</span><span class="n">bamboo</span><span class="p">,</span><span class="w"> </span><span class="n">prevCommit</span><span class="p">)</span>
+<span class="w"> </span><span class="n">new_coverage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">find_coverage</span><span class="p">(</span><span class="n">bamboo</span><span class="p">,</span><span class="w"> </span><span class="n">tip_of_merged_branch</span><span class="p">)</span>
 
- <span class="c1"># if the coverage has dropped for the new commit, block the update</span>
- <span class="k">if</span> <span class="n">prev_coverage</span> <span class="o">&gt;</span> <span class="n">new_coverage</span>
-     <span class="nb">abort</span> <span class="s2">&quot;Code coverage for </span><span class="si">#{</span><span class="n">shortSha</span><span class="p">(</span><span class="n">tip_of_merged_branch</span><span class="p">)</span><span class="si">}</span><span class="s2"> is </span>
-<span class="s2">         only </span><span class="si">#{</span><span class="n">new_coverage</span><span class="si">}</span><span class="s2">! </span><span class="si">#{</span><span class="n">ref</span><span class="si">}</span><span class="s2"> is currently at </span><span class="si">#{</span><span class="n">prev_coverage</span><span class="si">}</span><span class="s2">.&quot;</span> 
- <span class="k">else</span>
-     <span class="c1"># if the coverage has increased, TFCIT</span>
-     <span class="nb">puts</span> <span class="s2">&quot;Nice work! Code coverage for </span><span class="si">#{</span><span class="n">ref</span><span class="si">}</span><span class="s2"> has </span>
-<span class="s2">         increased by </span><span class="si">#{</span><span class="n">new_coverage</span> <span class="o">-</span> <span class="n">prev_coverage</span><span class="si">}</span><span class="s2">.&quot;</span>
- <span class="k">end</span>
+<span class="w"> </span><span class="c1"># if the coverage has dropped for the new commit, block the update</span>
+<span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">prev_coverage</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">new_coverage</span>
+<span class="w">     </span><span class="nb">abort</span><span class="w"> </span><span class="s2">&quot;Code coverage for </span><span class="si">#{</span><span class="n">shortSha</span><span class="p">(</span><span class="n">tip_of_merged_branch</span><span class="p">)</span><span class="si">}</span><span class="s2"> is </span>
+<span class="s2">         only </span><span class="si">#{</span><span class="n">new_coverage</span><span class="si">}</span><span class="s2">! </span><span class="si">#{</span><span class="n">ref</span><span class="si">}</span><span class="s2"> is currently at </span><span class="si">#{</span><span class="n">prev_coverage</span><span class="si">}</span><span class="s2">.&quot;</span><span class="w"> </span>
+<span class="w"> </span><span class="k">else</span>
+<span class="w">     </span><span class="c1"># if the coverage has increased, TFCIT</span>
+<span class="w">     </span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;Nice work! Code coverage for </span><span class="si">#{</span><span class="n">ref</span><span class="si">}</span><span class="s2"> has </span>
+<span class="s2">         increased by </span><span class="si">#{</span><span class="n">new_coverage</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">prev_coverage</span><span class="si">}</span><span class="s2">.&quot;</span>
+<span class="w"> </span><span class="k">end</span>
 </code></pre></div>
 
 <h2 id="enforce-good-coding-style">Enforce Good Coding Style</h2>
@@ -410,67 +410,67 @@ branch, and rejects the push if it would introduce additional errors
 into master.</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env ruby</span>
 
- <span class="c1"># Ref update hook for asserting that a topic branch </span>
- <span class="c1"># being merged into a protected</span>
- <span class="c1"># branch (e.g. master) does not introduce an increase in </span>
- <span class="c1"># checkstyle violations</span>
- <span class="c1">#</span>
- <span class="c1"># requires Ruby 1.9.3+ </span>
+<span class="w"> </span><span class="c1"># Ref update hook for asserting that a topic branch </span>
+<span class="w"> </span><span class="c1"># being merged into a protected</span>
+<span class="w"> </span><span class="c1"># branch (e.g. master) does not introduce an increase in </span>
+<span class="w"> </span><span class="c1"># checkstyle violations</span>
+<span class="w"> </span><span class="c1">#</span>
+<span class="w"> </span><span class="c1"># requires Ruby 1.9.3+ </span>
 
- <span class="n">require_relative</span> <span class="s1">&#39;ci-util&#39;</span>
- <span class="nb">require</span> <span class="s1">&#39;rexml/document&#39;</span>
+<span class="w"> </span><span class="n">require_relative</span><span class="w"> </span><span class="s1">&#39;ci-util&#39;</span>
+<span class="w"> </span><span class="nb">require</span><span class="w"> </span><span class="s1">&#39;rexml/document&#39;</span>
 
- <span class="kp">include</span> <span class="no">REXML</span>
+<span class="w"> </span><span class="kp">include</span><span class="w"> </span><span class="no">REXML</span>
 
- <span class="c1"># This example </span>
- <span class="k">def</span> <span class="nf">count_checkstyle_violations</span><span class="p">(</span><span class="n">bamboo</span><span class="p">,</span> <span class="n">commit</span><span class="p">)</span>
-     <span class="c1"># grab the checkstyle.xml artifact from the </span>
-     <span class="c1"># build (assumes a shared artifact named </span>
-     <span class="c1"># &#39;checkstyle&#39; with &#39;checkstyle-result.xml&#39; at the root)</span>
-     <span class="n">checkstyle_xml</span> <span class="o">=</span> 
-         <span class="n">shared_artifact_for_commit</span><span class="p">(</span><span class="n">bamboo</span><span class="p">,</span> <span class="n">commit</span><span class="p">,</span> 
-         <span class="n">bamboo</span><span class="o">[</span><span class="s2">&quot;checkstyle_key&quot;</span><span class="o">]</span><span class="p">,</span>
-        <span class="s2">&quot;checkstyle/checkstyle-result.xml&quot;</span><span class="p">)</span>
-     <span class="n">doc</span> <span class="o">=</span> <span class="no">Document</span><span class="o">.</span><span class="n">new</span> <span class="n">checkstyle_xml</span>
-     <span class="c1"># could go to town on the comparison here - but let&#39;s just count  </span>
-     <span class="c1"># the raw number of errors for the time being</span>
-     <span class="no">XPath</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s2">&quot;//error&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">length</span>
- <span class="k">end</span>
+<span class="w"> </span><span class="c1"># This example </span>
+<span class="w"> </span><span class="k">def</span><span class="w"> </span><span class="nf">count_checkstyle_violations</span><span class="p">(</span><span class="n">bamboo</span><span class="p">,</span><span class="w"> </span><span class="n">commit</span><span class="p">)</span>
+<span class="w">     </span><span class="c1"># grab the checkstyle.xml artifact from the </span>
+<span class="w">     </span><span class="c1"># build (assumes a shared artifact named </span>
+<span class="w">     </span><span class="c1"># &#39;checkstyle&#39; with &#39;checkstyle-result.xml&#39; at the root)</span>
+<span class="w">     </span><span class="n">checkstyle_xml</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">         </span><span class="n">shared_artifact_for_commit</span><span class="p">(</span><span class="n">bamboo</span><span class="p">,</span><span class="w"> </span><span class="n">commit</span><span class="p">,</span><span class="w"> </span>
+<span class="w">         </span><span class="n">bamboo</span><span class="o">[</span><span class="s2">&quot;checkstyle_key&quot;</span><span class="o">]</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;checkstyle/checkstyle-result.xml&quot;</span><span class="p">)</span>
+<span class="w">     </span><span class="n">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Document</span><span class="o">.</span><span class="n">new</span><span class="w"> </span><span class="n">checkstyle_xml</span>
+<span class="w">     </span><span class="c1"># could go to town on the comparison here - but let&#39;s just count  </span>
+<span class="w">     </span><span class="c1"># the raw number of errors for the time being</span>
+<span class="w">     </span><span class="no">XPath</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;//error&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">length</span>
+<span class="w"> </span><span class="k">end</span>
 
- <span class="c1"># parse args supplied by git: &lt;ref_name&gt; &lt;old_sha&gt; &lt;new_sha&gt;</span>
- <span class="n">ref</span> <span class="o">=</span> <span class="n">simple_branch_name</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
- <span class="n">prevCommit</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
- <span class="n">newCommit</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span>
+<span class="w"> </span><span class="c1"># parse args supplied by git: &lt;ref_name&gt; &lt;old_sha&gt; &lt;new_sha&gt;</span>
+<span class="w"> </span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">simple_branch_name</span><span class="w"> </span><span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
+<span class="w"> </span><span class="n">prevCommit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">ARGV</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
+<span class="w"> </span><span class="n">newCommit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">ARGV</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span>
 
- <span class="c1"># test if the updated ref is one we want to enforce green builds for</span>
- <span class="n">exit_if_not_protected_ref</span><span class="p">(</span><span class="n">ref</span><span class="p">)</span>
+<span class="w"> </span><span class="c1"># test if the updated ref is one we want to enforce green builds for</span>
+<span class="w"> </span><span class="n">exit_if_not_protected_ref</span><span class="p">(</span><span class="n">ref</span><span class="p">)</span>
 
- <span class="c1"># get the tip of the most recently merged branch</span>
- <span class="n">tip_of_merged_branch</span> <span class="o">=</span> 
-    <span class="n">find_newest_non_merge_commit</span><span class="p">(</span><span class="n">prevCommit</span><span class="p">,</span> <span class="n">newCommit</span><span class="p">)</span>
+<span class="w"> </span><span class="c1"># get the tip of the most recently merged branch</span>
+<span class="w"> </span><span class="n">tip_of_merged_branch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">    </span><span class="n">find_newest_non_merge_commit</span><span class="p">(</span><span class="n">prevCommit</span><span class="p">,</span><span class="w"> </span><span class="n">newCommit</span><span class="p">)</span>
 
- <span class="c1"># parse our bamboo server config</span>
- <span class="n">bamboo</span> <span class="o">=</span> <span class="n">read_config</span><span class="p">(</span><span class="s2">&quot;bamboo&quot;</span><span class="p">,</span> 
-    <span class="o">[</span><span class="s2">&quot;url&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="s2">&quot;checkstyle_key&quot;</span><span class="o">]</span><span class="p">)</span>
+<span class="w"> </span><span class="c1"># parse our bamboo server config</span>
+<span class="w"> </span><span class="n">bamboo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read_config</span><span class="p">(</span><span class="s2">&quot;bamboo&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="o">[</span><span class="s2">&quot;url&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;username&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;password&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;checkstyle_key&quot;</span><span class="o">]</span><span class="p">)</span>
 
- <span class="c1"># calculate number of checkstyle violations for </span>
- <span class="c1">#the old and new commits</span>
- <span class="n">prev_violations</span> <span class="o">=</span> 
-     <span class="n">count_checkstyle_violations</span><span class="p">(</span><span class="n">bamboo</span><span class="p">,</span> <span class="n">prevCommit</span><span class="p">)</span>
- <span class="n">new_violations</span> <span class="o">=</span> 
-     <span class="n">count_checkstyle_violations</span><span class="p">(</span><span class="n">bamboo</span><span class="p">,</span> <span class="n">tip_of_merged_branch</span><span class="p">)</span>
+<span class="w"> </span><span class="c1"># calculate number of checkstyle violations for </span>
+<span class="w"> </span><span class="c1">#the old and new commits</span>
+<span class="w"> </span><span class="n">prev_violations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">     </span><span class="n">count_checkstyle_violations</span><span class="p">(</span><span class="n">bamboo</span><span class="p">,</span><span class="w"> </span><span class="n">prevCommit</span><span class="p">)</span>
+<span class="w"> </span><span class="n">new_violations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">     </span><span class="n">count_checkstyle_violations</span><span class="p">(</span><span class="n">bamboo</span><span class="p">,</span><span class="w"> </span><span class="n">tip_of_merged_branch</span><span class="p">)</span>
 
- <span class="c1"># if the number of checkstyle violations has increased, block the update</span>
- <span class="k">if</span> <span class="n">prev_violations</span> <span class="o">&gt;</span> <span class="n">new_violations</span>
-     <span class="nb">abort</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">shortSha</span><span class="p">(</span><span class="n">tip_of_merged_branch</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span>
+<span class="w"> </span><span class="c1"># if the number of checkstyle violations has increased, block the update</span>
+<span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">prev_violations</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">new_violations</span>
+<span class="w">     </span><span class="nb">abort</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">shortSha</span><span class="p">(</span><span class="n">tip_of_merged_branch</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span>
 <span class="s2">        has </span><span class="si">#{</span><span class="n">new_violations</span><span class="si">}</span><span class="s2"> checkstyle violations! </span><span class="si">#{</span><span class="n">ref</span><span class="si">}</span><span class="s2"> </span>
-<span class="s2">        currently has only </span><span class="si">#{</span><span class="n">prev_violations</span><span class="si">}</span><span class="s2">.&quot;</span> 
- <span class="k">else</span>
-     <span class="c1"># if the number of checkstyle violations has </span>
-     <span class="c1"># decreased, send kudos to the dev</span>
-     <span class="nb">puts</span> <span class="s2">&quot;Nice work! </span><span class="si">#{</span><span class="n">ref</span><span class="si">}</span><span class="s2"> has </span><span class="si">#{</span><span class="n">new_violations</span> <span class="o">-</span> <span class="n">prev_violations</span><span class="si">}</span><span class="s2"> </span>
+<span class="s2">        currently has only </span><span class="si">#{</span><span class="n">prev_violations</span><span class="si">}</span><span class="s2">.&quot;</span><span class="w"> </span>
+<span class="w"> </span><span class="k">else</span>
+<span class="w">     </span><span class="c1"># if the number of checkstyle violations has </span>
+<span class="w">     </span><span class="c1"># decreased, send kudos to the dev</span>
+<span class="w">     </span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;Nice work! </span><span class="si">#{</span><span class="n">ref</span><span class="si">}</span><span class="s2"> has </span><span class="si">#{</span><span class="n">new_violations</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">prev_violations</span><span class="si">}</span><span class="s2"> </span>
 <span class="s2">         fewer checkstyle violations than before.&quot;</span>
- <span class="k">end</span>
+<span class="w"> </span><span class="k">end</span>
 </code></pre></div>
 
 <p>To get the original source code and surrounding config files for all
@@ -495,105 +495,105 @@ It then queries the CI server to see whether that revision has been
 built, and if so, whether the build succeeded.</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env ruby</span>
 
- <span class="c1"># post-checkout hook for determining the build status of the </span>
- <span class="c1"># checked out ref from the CI server.</span>
- <span class="c1">#</span>
- <span class="c1"># Requires Ruby 1.9.3+ </span>
+<span class="w"> </span><span class="c1"># post-checkout hook for determining the build status of the </span>
+<span class="w"> </span><span class="c1"># checked out ref from the CI server.</span>
+<span class="w"> </span><span class="c1">#</span>
+<span class="w"> </span><span class="c1"># Requires Ruby 1.9.3+ </span>
 
- <span class="nb">require</span> <span class="s1">&#39;yaml&#39;</span>
- <span class="nb">require</span> <span class="s1">&#39;json&#39;</span>
- <span class="nb">require</span> <span class="s1">&#39;net/https&#39;</span>
- <span class="nb">require</span> <span class="s1">&#39;uri&#39;</span>
+<span class="w"> </span><span class="nb">require</span><span class="w"> </span><span class="s1">&#39;yaml&#39;</span>
+<span class="w"> </span><span class="nb">require</span><span class="w"> </span><span class="s1">&#39;json&#39;</span>
+<span class="w"> </span><span class="nb">require</span><span class="w"> </span><span class="s1">&#39;net/https&#39;</span>
+<span class="w"> </span><span class="nb">require</span><span class="w"> </span><span class="s1">&#39;uri&#39;</span>
 
- <span class="c1"># utility for correctly pluralizing quantities</span>
- <span class="k">def</span> <span class="nf">pluralize</span> <span class="n">count</span><span class="p">,</span> <span class="n">single</span><span class="p">,</span> <span class="n">multiple</span>
-   <span class="n">count</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">?</span> <span class="n">single</span> <span class="p">:</span> <span class="n">multiple</span>
- <span class="k">end</span>
+<span class="w"> </span><span class="c1"># utility for correctly pluralizing quantities</span>
+<span class="w"> </span><span class="k">def</span><span class="w"> </span><span class="nf">pluralize</span><span class="w"> </span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="n">single</span><span class="p">,</span><span class="w"> </span><span class="n">multiple</span>
+<span class="w">   </span><span class="n">count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">single</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">multiple</span>
+<span class="w"> </span><span class="k">end</span>
 
- <span class="c1"># parse args supplied by git</span>
- <span class="n">ref</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>       <span class="c1"># ref being checked out</span>
- <span class="n">isBranch</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span>  <span class="c1"># 0 = file checkout, 1 = branch checkout</span>
+<span class="w"> </span><span class="c1"># parse args supplied by git</span>
+<span class="w"> </span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">ARGV</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="w">       </span><span class="c1"># ref being checked out</span>
+<span class="w"> </span><span class="n">isBranch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">ARGV</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="w">  </span><span class="c1"># 0 = file checkout, 1 = branch checkout</span>
 
- <span class="c1"># we only care about branch checkouts </span>
- <span class="k">if</span> <span class="n">isBranch</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span>
-   <span class="c1"># initialise build status counts</span>
-   <span class="n">failed</span> <span class="o">=</span> <span class="n">successful</span> <span class="o">=</span> <span class="n">in_progress</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="w"> </span><span class="c1"># we only care about branch checkouts </span>
+<span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">isBranch</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;1&quot;</span>
+<span class="w">   </span><span class="c1"># initialise build status counts</span>
+<span class="w">   </span><span class="n">failed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">successful</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">in_progress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
 
-   <span class="c1"># loop through each configured Stash server, retrieving build </span>
-   <span class="c1"># statuses for the checked out commit and </span>
-   <span class="c1"># counting the number of failed, successful and in progress builds</span>
-   <span class="n">hookDir</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span> <span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)</span>
-   <span class="n">configPath</span> <span class="o">=</span> <span class="n">hookDir</span> <span class="o">+</span> <span class="s2">&quot;/bamboo-config.yml&quot;</span>
-   <span class="k">raise</span> <span class="s2">&quot;No bamboo-config.yml found.&quot;</span> <span class="k">unless</span> <span class="no">File</span><span class="o">.</span><span class="n">exists?</span> <span class="n">configPath</span>
-   <span class="n">config</span> <span class="o">=</span> <span class="no">YAML</span><span class="o">.</span><span class="n">load_file</span><span class="p">(</span><span class="n">configPath</span><span class="p">)</span>
-   <span class="k">raise</span> <span class="s2">&quot;bamboo-config.yml file is incomplete: </span>
-<span class="s2">       username, password &amp; url are required&quot;</span> <span class="k">unless</span>
-       <span class="n">config</span><span class="o">[</span><span class="s1">&#39;url&#39;</span><span class="o">]</span> <span class="ow">and</span> <span class="n">config</span><span class="o">[</span><span class="s1">&#39;username&#39;</span><span class="o">]</span> <span class="ow">and</span> <span class="n">config</span><span class="o">[</span><span class="s1">&#39;password&#39;</span><span class="o">]</span>
+<span class="w">   </span><span class="c1"># loop through each configured Stash server, retrieving build </span>
+<span class="w">   </span><span class="c1"># statuses for the checked out commit and </span>
+<span class="w">   </span><span class="c1"># counting the number of failed, successful and in progress builds</span>
+<span class="w">   </span><span class="n">hookDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="w"> </span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)</span>
+<span class="w">   </span><span class="n">configPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hookDir</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;/bamboo-config.yml&quot;</span>
+<span class="w">   </span><span class="k">raise</span><span class="w"> </span><span class="s2">&quot;No bamboo-config.yml found.&quot;</span><span class="w"> </span><span class="k">unless</span><span class="w"> </span><span class="no">File</span><span class="o">.</span><span class="n">exists?</span><span class="w"> </span><span class="n">configPath</span>
+<span class="w">   </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">YAML</span><span class="o">.</span><span class="n">load_file</span><span class="p">(</span><span class="n">configPath</span><span class="p">)</span>
+<span class="w">   </span><span class="k">raise</span><span class="w"> </span><span class="s2">&quot;bamboo-config.yml file is incomplete: </span>
+<span class="s2">       username, password &amp; url are required&quot;</span><span class="w"> </span><span class="k">unless</span>
+<span class="w">       </span><span class="n">config</span><span class="o">[</span><span class="s1">&#39;url&#39;</span><span class="o">]</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">config</span><span class="o">[</span><span class="s1">&#39;username&#39;</span><span class="o">]</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">config</span><span class="o">[</span><span class="s1">&#39;password&#39;</span><span class="o">]</span>
 
-   <span class="c1"># normalize base url</span>
-   <span class="n">baseUrl</span> <span class="o">=</span> <span class="n">config</span><span class="o">[</span><span class="s1">&#39;url&#39;</span><span class="o">]</span>
-   <span class="c1"># assume https if no scheme spcified</span>
-   <span class="k">if</span> <span class="ow">not</span> <span class="n">baseUrl</span><span class="o">.</span><span class="n">start_with?</span> <span class="s2">&quot;http&quot;</span>
-     <span class="n">baseUrl</span> <span class="o">=</span> <span class="s2">&quot;https://</span><span class="si">#{</span><span class="n">baseUrl</span><span class="si">}</span><span class="s2">&quot;</span>
-   <span class="k">end</span>
-   <span class="c1"># strip trailing slashes</span>
-   <span class="k">while</span> <span class="n">baseUrl</span><span class="o">.</span><span class="n">end_with?</span> <span class="s2">&quot;/&quot;</span>
-     <span class="n">baseUrl</span> <span class="o">=</span> <span class="n">baseUrl</span><span class="o">[</span><span class="mi">0</span><span class="o">..-</span><span class="mi">2</span><span class="o">]</span>
-   <span class="k">end</span>
+<span class="w">   </span><span class="c1"># normalize base url</span>
+<span class="w">   </span><span class="n">baseUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">config</span><span class="o">[</span><span class="s1">&#39;url&#39;</span><span class="o">]</span>
+<span class="w">   </span><span class="c1"># assume https if no scheme spcified</span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">baseUrl</span><span class="o">.</span><span class="n">start_with?</span><span class="w"> </span><span class="s2">&quot;http&quot;</span>
+<span class="w">     </span><span class="n">baseUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://</span><span class="si">#{</span><span class="n">baseUrl</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">   </span><span class="k">end</span>
+<span class="w">   </span><span class="c1"># strip trailing slashes</span>
+<span class="w">   </span><span class="k">while</span><span class="w"> </span><span class="n">baseUrl</span><span class="o">.</span><span class="n">end_with?</span><span class="w"> </span><span class="s2">&quot;/&quot;</span>
+<span class="w">     </span><span class="n">baseUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">baseUrl</span><span class="o">[</span><span class="mi">0</span><span class="o">..-</span><span class="mi">2</span><span class="o">]</span>
+<span class="w">   </span><span class="k">end</span>
 
-   <span class="c1"># prepare a request to hit the build status REST end-point</span>
-   <span class="n">build_status_resource</span> <span class="o">=</span> 
-       <span class="s2">&quot;</span><span class="si">#{</span><span class="n">baseUrl</span><span class="si">}</span><span class="s2">/rest/api/latest/result/byChangeset&quot;</span>
-   <span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">build_status_resource</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">ref</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-   <span class="n">req</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Get</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">uri</span><span class="o">.</span><span class="n">to_s</span><span class="p">,</span> <span class="n">initheader</span> <span class="o">=</span> 
-       <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span> 
-           <span class="s1">&#39;Accept&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;application/json&#39;</span><span class="p">})</span>
-   <span class="n">req</span><span class="o">.</span><span class="n">basic_auth</span> <span class="n">config</span><span class="o">[</span><span class="s1">&#39;username&#39;</span><span class="o">]</span><span class="p">,</span> <span class="n">config</span><span class="o">[</span><span class="s1">&#39;password&#39;</span><span class="o">]</span>
-   <span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">uri</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="n">uri</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
-   <span class="n">http</span><span class="o">.</span><span class="n">verify_mode</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">SSL</span><span class="o">::</span><span class="no">VERIFY_NONE</span>
-   <span class="n">http</span><span class="o">.</span><span class="n">use_ssl</span> <span class="o">=</span> <span class="n">uri</span><span class="o">.</span><span class="n">scheme</span><span class="o">.</span><span class="n">eql?</span><span class="p">(</span><span class="s2">&quot;https&quot;</span><span class="p">)</span>
+<span class="w">   </span><span class="c1"># prepare a request to hit the build status REST end-point</span>
+<span class="w">   </span><span class="n">build_status_resource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">       </span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">baseUrl</span><span class="si">}</span><span class="s2">/rest/api/latest/result/byChangeset&quot;</span>
+<span class="w">   </span><span class="n">uri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">URI</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">build_status_resource</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">ref</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="w">   </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Get</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">uri</span><span class="o">.</span><span class="n">to_s</span><span class="p">,</span><span class="w"> </span><span class="n">initheader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">       </span><span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">           </span><span class="s1">&#39;Accept&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span><span class="p">})</span>
+<span class="w">   </span><span class="n">req</span><span class="o">.</span><span class="n">basic_auth</span><span class="w"> </span><span class="n">config</span><span class="o">[</span><span class="s1">&#39;username&#39;</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="o">[</span><span class="s1">&#39;password&#39;</span><span class="o">]</span>
+<span class="w">   </span><span class="n">http</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">uri</span><span class="o">.</span><span class="n">host</span><span class="p">,</span><span class="w"> </span><span class="n">uri</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+<span class="w">   </span><span class="n">http</span><span class="o">.</span><span class="n">verify_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">OpenSSL</span><span class="o">::</span><span class="no">SSL</span><span class="o">::</span><span class="no">VERIFY_NONE</span>
+<span class="w">   </span><span class="n">http</span><span class="o">.</span><span class="n">use_ssl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uri</span><span class="o">.</span><span class="n">scheme</span><span class="o">.</span><span class="n">eql?</span><span class="p">(</span><span class="s2">&quot;https&quot;</span><span class="p">)</span>
 
-   <span class="c1"># execute the request</span>
-   <span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">start</span> <span class="p">{</span><span class="o">|</span><span class="n">http</span><span class="o">|</span> <span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">req</span><span class="p">)}</span>
+<span class="w">   </span><span class="c1"># execute the request</span>
+<span class="w">   </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">http</span><span class="o">.</span><span class="n">start</span><span class="w"> </span><span class="p">{</span><span class="o">|</span><span class="n">http</span><span class="o">|</span><span class="w"> </span><span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">req</span><span class="p">)}</span>
 
-   <span class="k">if</span> <span class="ow">not</span> <span class="n">response</span><span class="o">.</span><span class="n">is_a?</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTPOK</span>
-     <span class="nb">puts</span> <span class="s1">&#39;An unknown error occurred while querying </span>
-<span class="s1">         Bamboo for build results.&#39;</span>    
-     <span class="nb">exit</span>    
-   <span class="k">else</span> 
-     <span class="c1"># if the request succeeded, count </span>
-     <span class="c1"># the statuses from the response</span>
-     <span class="n">body</span> <span class="o">=</span> <span class="no">JSON</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>        
-     <span class="n">body</span><span class="o">[</span><span class="s1">&#39;results&#39;</span><span class="o">][</span><span class="s1">&#39;result&#39;</span><span class="o">].</span><span class="n">collect</span> <span class="p">{</span> <span class="o">|</span><span class="n">result</span><span class="o">|</span>
-       <span class="k">case</span> <span class="n">result</span><span class="o">[</span><span class="s1">&#39;state&#39;</span><span class="o">]</span>
-       <span class="k">when</span> <span class="s2">&quot;Failed&quot;</span>
-           <span class="n">failed</span> <span class="o">+=</span> <span class="mi">1</span>
-       <span class="k">when</span> <span class="s2">&quot;Successful&quot;</span>
-           <span class="n">successful</span> <span class="o">+=</span> <span class="mi">1</span>
-       <span class="k">when</span> <span class="s2">&quot;Unknown&quot;</span>
-           <span class="k">if</span> <span class="n">result</span><span class="o">[</span><span class="s1">&#39;lifeCycleState&#39;</span><span class="o">]</span> <span class="o">==</span> <span class="s2">&quot;InProgress&quot;</span>
-             <span class="n">in_progress</span> <span class="o">+=</span> <span class="mi">1</span>
-           <span class="k">end</span>
-       <span class="k">end</span>
-     <span class="p">}</span>
-   <span class="k">end</span>   
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">response</span><span class="o">.</span><span class="n">is_a?</span><span class="w"> </span><span class="no">Net</span><span class="o">::</span><span class="no">HTTPOK</span>
+<span class="w">     </span><span class="nb">puts</span><span class="w"> </span><span class="s1">&#39;An unknown error occurred while querying </span>
+<span class="s1">         Bamboo for build results.&#39;</span><span class="w">    </span>
+<span class="w">     </span><span class="nb">exit</span><span class="w">    </span>
+<span class="w">   </span><span class="k">else</span><span class="w"> </span>
+<span class="w">     </span><span class="c1"># if the request succeeded, count </span>
+<span class="w">     </span><span class="c1"># the statuses from the response</span>
+<span class="w">     </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">JSON</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span><span class="w">        </span>
+<span class="w">     </span><span class="n">body</span><span class="o">[</span><span class="s1">&#39;results&#39;</span><span class="o">][</span><span class="s1">&#39;result&#39;</span><span class="o">].</span><span class="n">collect</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">|</span><span class="n">result</span><span class="o">|</span>
+<span class="w">       </span><span class="k">case</span><span class="w"> </span><span class="n">result</span><span class="o">[</span><span class="s1">&#39;state&#39;</span><span class="o">]</span>
+<span class="w">       </span><span class="k">when</span><span class="w"> </span><span class="s2">&quot;Failed&quot;</span>
+<span class="w">           </span><span class="n">failed</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">       </span><span class="k">when</span><span class="w"> </span><span class="s2">&quot;Successful&quot;</span>
+<span class="w">           </span><span class="n">successful</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">       </span><span class="k">when</span><span class="w"> </span><span class="s2">&quot;Unknown&quot;</span>
+<span class="w">           </span><span class="k">if</span><span class="w"> </span><span class="n">result</span><span class="o">[</span><span class="s1">&#39;lifeCycleState&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;InProgress&quot;</span>
+<span class="w">             </span><span class="n">in_progress</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">           </span><span class="k">end</span>
+<span class="w">       </span><span class="k">end</span>
+<span class="w">     </span><span class="p">}</span>
+<span class="w">   </span><span class="k">end</span><span class="w">   </span>
 
-   <span class="c1"># display a short message describing the build status </span>
-   <span class="c1"># for the checked out commit</span>
-   <span class="n">shortRef</span> <span class="o">=</span> <span class="n">ref</span><span class="o">[</span><span class="mi">0</span><span class="o">..</span><span class="mi">7</span><span class="o">]</span>
-   <span class="k">if</span> <span class="n">failed</span> <span class="o">&gt;</span> <span class="mi">0</span>
-     <span class="nb">puts</span> <span class="s2">&quot;Warning! </span><span class="si">#{</span><span class="n">shortRef</span><span class="si">}</span><span class="s2"> has </span><span class="si">#{</span><span class="n">failed</span><span class="si">}</span><span class="s2"> </span>
-<span class="s2">          red </span><span class="si">#{</span><span class="n">pluralize</span><span class="p">(</span><span class="n">failed</span><span class="p">,</span> <span class="s1">&#39;build&#39;</span><span class="p">,</span> <span class="s1">&#39;builds&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span>
+<span class="w">   </span><span class="c1"># display a short message describing the build status </span>
+<span class="w">   </span><span class="c1"># for the checked out commit</span>
+<span class="w">   </span><span class="n">shortRef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ref</span><span class="o">[</span><span class="mi">0</span><span class="o">..</span><span class="mi">7</span><span class="o">]</span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="n">failed</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">     </span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;Warning! </span><span class="si">#{</span><span class="n">shortRef</span><span class="si">}</span><span class="s2"> has </span><span class="si">#{</span><span class="n">failed</span><span class="si">}</span><span class="s2"> </span>
+<span class="s2">          red </span><span class="si">#{</span><span class="n">pluralize</span><span class="p">(</span><span class="n">failed</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;build&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;builds&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span>
 <span class="s2">          (plus </span><span class="si">#{</span><span class="n">successful</span><span class="si">}</span><span class="s2"> green and </span><span class="si">#{</span><span class="n">in_progress</span><span class="si">}</span><span class="s2"> </span>
 <span class="s2">          in progress).</span><span class="se">\n</span><span class="s2">Details: </span><span class="si">#{</span><span class="n">uri</span><span class="si">}</span><span class="s2">&quot;</span>
-   <span class="k">elsif</span> <span class="n">successful</span> <span class="o">==</span> <span class="mi">0</span>
-       <span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">shortRef</span><span class="si">}</span><span class="s2"> hasn&#39;t built yet.&quot;</span>
-   <span class="k">else</span>
-        <span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">shortRef</span><span class="si">}</span><span class="s2"> has </span><span class="si">#{</span><span class="n">successful</span><span class="si">}</span><span class="s2"> green </span>
-<span class="s2">            </span><span class="si">#{</span><span class="n">pluralize</span><span class="p">(</span><span class="n">successful</span><span class="p">,</span> <span class="s1">&#39;build&#39;</span><span class="p">,</span> <span class="s1">&#39;builds&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
-   <span class="k">end</span>
+<span class="w">   </span><span class="k">elsif</span><span class="w"> </span><span class="n">successful</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">       </span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">shortRef</span><span class="si">}</span><span class="s2"> hasn&#39;t built yet.&quot;</span>
+<span class="w">   </span><span class="k">else</span>
+<span class="w">        </span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">shortRef</span><span class="si">}</span><span class="s2"> has </span><span class="si">#{</span><span class="n">successful</span><span class="si">}</span><span class="s2"> green </span>
+<span class="s2">            </span><span class="si">#{</span><span class="n">pluralize</span><span class="p">(</span><span class="n">successful</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;build&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;builds&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
+<span class="w">   </span><span class="k">end</span>
 
- <span class="k">end</span>
+<span class="w"> </span><span class="k">end</span>
 </code></pre></div>
 
 <p>If, for example, the hook tells you the head commit on the master has

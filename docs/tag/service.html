@@ -81,7 +81,7 @@ I decided to switch to KPN's native IPv6 service.</p>
     <p><p>Some hints and tips foor doing SSL related things:</p>
 <h2 id="netcat-for-ssl">Netcat for SSL</h2>
 <p>This command lets you connect to a SSL server (a-la netcat):</p>
-<div class="highlight"><pre><span></span><code><span class="nv">cat</span><span class="w"> </span><span class="nv">request</span>.<span class="nv">txt</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">openssl</span><span class="w"> </span><span class="nv">s_client</span><span class="w"> </span><span class="o">-</span><span class="k">connect</span><span class="w"> </span><span class="nv">server</span>:<span class="mi">443</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">cat</span><span class="w"> </span><span class="nv">request</span>.<span class="nv">txt</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">openssl</span><span class="w"> </span><span class="nv">s_client</span><span class="w"> </span><span class="o">-</span><span class="k">connect</span><span class="w"> </span><span class="nv">server</span>:<span class="mi">443</span>
 </code></pre></div>
 
 <h2 id="creating-self-signed-certificates">Creating self-signed certificates</h2>
@@ -315,7 +315,7 @@ prove their identity to one another in a secure manner. (Source
 </code></pre></div>
 
 <p>Restore from dump file:</p>
-<div class="highlight"><pre><span></span><code><span class="n">kdb5_util</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="n">_dump_file_</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">kdb5_util</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="n">_dump_file_</span>
 </code></pre></div>
 
 <h2 id="masterslave-replication">Master/Slave …</h2></p>

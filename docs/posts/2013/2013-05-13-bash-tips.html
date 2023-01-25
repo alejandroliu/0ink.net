@@ -63,7 +63,7 @@
   in <a href="/category/c2013.html">2013</a>
 </div>
 		<p>Some bash one-liners:</p>
-<div class="highlight"><pre><span></span><code>echo <span class="cp">${</span><span class="err">!</span><span class="n">X</span><span class="o">*</span><span class="cp">}</span>
+<div class="highlight"><pre><span></span><code>echo<span class="w"> </span><span class="cp">${</span><span class="err">!</span><span class="n">X</span><span class="o">*</span><span class="cp">}</span>
 </code></pre></div>
 
 <p>Will print all the names of variables whos name starts with <code>X</code>. To
@@ -73,19 +73,19 @@ bash</p>
 </code></pre></div>
 
 <h2 id="pattern-matching">Pattern Matching</h2>
-<div class="highlight"><pre><span></span><code>Operator: <span class="cp">${</span><span class="n">foo</span><span class="c1">#t*is</span><span class="cp">}</span>
+<div class="highlight"><pre><span></span><code>Operator:<span class="w"> </span><span class="cp">${</span><span class="n">foo</span><span class="c1">#t*is</span><span class="cp">}</span>
 </code></pre></div>
 
 <p>Function: deletes the shortest possible match from the left</p>
-<div class="highlight"><pre><span></span><code>Operator: <span class="cp">${</span><span class="n">foo</span><span class="c1">##t*is</span><span class="cp">}</span>
+<div class="highlight"><pre><span></span><code>Operator:<span class="w"> </span><span class="cp">${</span><span class="n">foo</span><span class="c1">##t*is</span><span class="cp">}</span>
 </code></pre></div>
 
 <p>Function: deletes the longest possible match from the left</p>
-<div class="highlight"><pre><span></span><code>Operator: <span class="cp">${</span><span class="n">foo</span><span class="o">%</span><span class="n">t</span><span class="o">*</span><span class="n">st</span><span class="cp">}</span>
+<div class="highlight"><pre><span></span><code>Operator:<span class="w"> </span><span class="cp">${</span><span class="n">foo</span><span class="o">%</span><span class="n">t</span><span class="o">*</span><span class="n">st</span><span class="cp">}</span>
 </code></pre></div>
 
 <p>Function: deletes the shortest possible match from the right</p>
-<div class="highlight"><pre><span></span><code>Operator: <span class="cp">${</span><span class="n">foo</span><span class="o">%%</span><span class="n">t</span><span class="o">*</span><span class="n">st</span><span class="cp">}</span>
+<div class="highlight"><pre><span></span><code>Operator:<span class="w"> </span><span class="cp">${</span><span class="n">foo</span><span class="o">%%</span><span class="n">t</span><span class="o">*</span><span class="n">st</span><span class="cp">}</span>
 </code></pre></div>
 
 <p>Function: deletes the longest possible match from the right MNEMONIC:
@@ -97,17 +97,17 @@ The % key is on the right of the $ key and operates from the right.</p>
 
 <p>Function: If $foo exists and is not null, return $foo. If it doesn't
 exist or is null, return bar.</p>
-<div class="highlight"><pre><span></span><code>Operator: <span class="cp">${</span><span class="n">foo</span><span class="o">:=</span><span class="n">bar</span><span class="cp">}</span>
+<div class="highlight"><pre><span></span><code>Operator:<span class="w"> </span><span class="cp">${</span><span class="n">foo</span><span class="o">:=</span><span class="n">bar</span><span class="cp">}</span>
 </code></pre></div>
 
 <p>Function: If $foo exists and is not null, return $foo. If it doesn't
 exist or is null, set $foo to bar and return bar.</p>
-<div class="highlight"><pre><span></span><code>Operator: <span class="cp">${</span><span class="n">foo</span><span class="p">:</span><span class="o">+</span><span class="n">bar</span><span class="cp">}</span>
+<div class="highlight"><pre><span></span><code>Operator:<span class="w"> </span><span class="cp">${</span><span class="n">foo</span><span class="p">:</span><span class="o">+</span><span class="n">bar</span><span class="cp">}</span>
 </code></pre></div>
 
 <p>Function: If $foo exists and is not null, return bar. If it doesn't
 exist or is null, return a null.</p>
-<div class="highlight"><pre><span></span><code>Operator: <span class="cp">${</span><span class="n">foo</span><span class="p">:</span><span class="err">?</span><span class="s2">&quot;error message&quot;</span><span class="cp">}</span>
+<div class="highlight"><pre><span></span><code>Operator:<span class="w"> </span><span class="cp">${</span><span class="n">foo</span><span class="p">:</span><span class="err">?</span><span class="s2">&quot;error message&quot;</span><span class="cp">}</span>
 </code></pre></div>
 
 <p>Function: If $foo exists and isn't null, return its value. If it

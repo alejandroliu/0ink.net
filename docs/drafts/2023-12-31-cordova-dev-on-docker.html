@@ -85,7 +85,7 @@ it was used to build a Cordova app.</p>
 <p>https://hub.docker.com/r/walterwhites/cordova</p>
 <p>run in mounting the local folder where the project is into
 container src folder</p>
-<div class="highlight"><pre><span></span><code>docker run -ti -v <span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>:/src walterwhites/cordova
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-ti<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>:/src<span class="w"> </span>walterwhites/cordova
 </code></pre></div>
 
 <p>After running it some issues appeared, but there is a solution mentioned
@@ -95,17 +95,17 @@ components" when you build your app, you need to accept licenses"</p>
 <p>You just follow the steps, and it works.</p>
 <p>Then to build the cordova app you run:</p>
 <h2 id="dev-debug">dev / debug</h2>
-<div class="highlight"><pre><span></span><code>cordova build android
+<div class="highlight"><pre><span></span><code>cordova<span class="w"> </span>build<span class="w"> </span>android
 </code></pre></div>
 
 <h2 id="release">release</h2>
-<div class="highlight"><pre><span></span><code>cordova build android --release
+<div class="highlight"><pre><span></span><code>cordova<span class="w"> </span>build<span class="w"> </span>android<span class="w"> </span>--release
 </code></pre></div>
 
 <p>To change the name of the output file, you can edit the
 <code>/platforms/android/app/gradle.build</code>
 file, and add inside the android default configs the following line:</p>
-<div class="highlight"><pre><span></span><code><span class="n">setProperty</span><span class="p">(</span><span class="s">&quot;archivesBaseName&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;your-app-name-V-&quot;</span><span class="o">+</span><span class="n">privateHelpers</span><span class="p">.</span><span class="na">extractStringFromManifest</span><span class="p">(</span><span class="s">&quot;versionCode&quot;</span><span class="p">))</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">setProperty</span><span class="p">(</span><span class="s">&quot;archivesBaseName&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;your-app-name-V-&quot;</span><span class="o">+</span><span class="n">privateHelpers</span><span class="p">.</span><span class="na">extractStringFromManifest</span><span class="p">(</span><span class="s">&quot;versionCode&quot;</span><span class="p">))</span>
 </code></pre></div>
 
 <p>In this case, the version code is added to the file name.</p>
@@ -115,8 +115,8 @@ file, and add inside the android default configs the following line:</p>
 </code></pre></div>
 
 <p>Try to remove and add the android platform again:</p>
-<div class="highlight"><pre><span></span><code>cordova platform remove android
-cordova platform add android
+<div class="highlight"><pre><span></span><code>cordova<span class="w"> </span>platform<span class="w"> </span>remove<span class="w"> </span>android
+cordova<span class="w"> </span>platform<span class="w"> </span>add<span class="w"> </span>android
 </code></pre></div>
 
 	</article>

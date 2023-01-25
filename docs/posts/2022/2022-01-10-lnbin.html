@@ -81,29 +81,29 @@ needed.</p>
 <li>build and install package</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="c1"># extract archive</span>
-tar zxvf archive-x.x.tar.gz
-<span class="nb">cd</span> archive-x.x
+tar<span class="w"> </span>zxvf<span class="w"> </span>archive-x.x.tar.gz
+<span class="nb">cd</span><span class="w"> </span>archive-x.x
 <span class="c1"># GNU autoconf</span>
-./configure --prefix<span class="o">=</span><span class="s2">&quot;/usr/local/pkgs/archive-x.x&quot;</span>
+./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="s2">&quot;/usr/local/pkgs/archive-x.x&quot;</span>
 make
 <span class="c1"># Package installation</span>
-make install
+make<span class="w"> </span>install
 <span class="c1"># ... or ...</span>
-make install <span class="nv">DESTDIR</span><span class="o">=</span>/usr/local/pkgs/archive-x.x
+make<span class="w"> </span>install<span class="w"> </span><span class="nv">DESTDIR</span><span class="o">=</span>/usr/local/pkgs/archive-x.x
 </code></pre></div>
 
 <ul>
 <li>update symlinks in /usr/local/bin</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span> /usr/local/bin
-lnbin -v -x ../pkgs
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/usr/local/bin
+lnbin<span class="w"> </span>-v<span class="w"> </span>-x<span class="w"> </span>../pkgs
 </code></pre></div>
 
 <p>This will add the new links (and also remove/update obsolete/changed links)</p>
 <h3 id="removing-packages">Removing packages</h3>
-<div class="highlight"><pre><span></span><code>rm -rf /usr/local/pkgs/archive-x.x
-<span class="nb">cd</span> /usr/local/bin
-lnbin -v -x ../pkgs
+<div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-rf<span class="w"> </span>/usr/local/pkgs/archive-x.x
+<span class="nb">cd</span><span class="w"> </span>/usr/local/bin
+lnbin<span class="w"> </span>-v<span class="w"> </span>-x<span class="w"> </span>../pkgs
 </code></pre></div>
 
 <h3 id="updating-symlinks-after-upgrade">Updating symlinks (after upgrade)</h3>

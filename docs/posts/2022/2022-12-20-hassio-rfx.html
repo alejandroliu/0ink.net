@@ -93,15 +93,15 @@ use a wireless protocol very similar to X-10.</p>
 <p>For pairing the Somfy blinds, you can refer to <a href="https://www.vlieshout.net/home-assistant-and-somfy-rts-with-rfxcom/">this article</a>
 and <a href="https://www.vesternet.com/en-eu/pages/apnt-79-controlling-somfy-rts-blinds-with-the-rfxtrx433e">ths one</a>.</p>
 <p>In my configuration I am using:</p>
-<div class="highlight"><pre><span></span><code><span class="n">remoteID</span><span class="o">:</span><span class="w"> </span><span class="mi">010</span><span class="n">E1</span><span class="w"> </span><span class="o">&gt;</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">E1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">010</span><span class="n">E1</span><span class="w"></span>
-<span class="w">          </span><span class="mi">123456</span><span class="w"></span>
-<span class="w">          </span><span class="n">ABCDEF</span><span class="w"></span>
-<span class="n">remoteID</span><span class="o">:</span><span class="w"> </span><span class="mi">69121</span><span class="w">  </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">225</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">4321</span><span class="w"></span>
-<span class="n">unitCode</span><span class="o">:</span><span class="w"> </span><span class="mi">01</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">remoteID</span><span class="o">:</span><span class="w"> </span><span class="mi">010</span><span class="n">E1</span><span class="w"> </span><span class="o">&gt;</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">E1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">010</span><span class="n">E1</span>
+<span class="w">          </span><span class="mi">123456</span>
+<span class="w">          </span><span class="n">ABCDEF</span>
+<span class="n">remoteID</span><span class="o">:</span><span class="w"> </span><span class="mi">69121</span><span class="w">  </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">225</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">4321</span>
+<span class="n">unitCode</span><span class="o">:</span><span class="w"> </span><span class="mi">01</span>
 
-<span class="mi">1234567890123456</span><span class="w"></span>
-<span class="mi">071</span><span class="n">a000000000000</span><span class="w"></span>
-<span class="mi">071</span><span class="n">a00000010e101</span><span class="w"></span>
+<span class="mi">1234567890123456</span>
+<span class="mi">071</span><span class="n">a000000000000</span>
+<span class="mi">071</span><span class="n">a00000010e101</span>
 </code></pre></div>
 
 <hr>
@@ -115,23 +115,23 @@ viceversa.</p>
 </ul>
 <p>To create a "template" cover that shows things properly.  In <code>configuration.yaml</code>
 we have this:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">cover</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">template</span><span class="w"></span>
-<span class="w">    </span><span class="nt">covers</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nt">study_skylight_p</span><span class="p">:</span><span class="w"></span>
-<span class="w">        </span><span class="nt">unique_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">13d7a089-c536-4dc0-b2c0-e5dae6521460</span><span class="w"></span>
-<span class="w">        </span><span class="nt">open_cover</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cover.close_cover</span><span class="w"></span>
-<span class="w">          </span><span class="nt">target</span><span class="p">:</span><span class="w"></span>
-<span class="w">            </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cover.rfy_0010e1_1</span><span class="w"></span>
-<span class="w">        </span><span class="nt">close_cover</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cover.open_cover</span><span class="w"></span>
-<span class="w">          </span><span class="nt">target</span><span class="p">:</span><span class="w"></span>
-<span class="w">            </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cover.rfy_0010e1_1</span><span class="w"></span>
-<span class="w">        </span><span class="nt">stop_cover</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cover.stop_cover</span><span class="w"></span>
-<span class="w">          </span><span class="nt">target</span><span class="p">:</span><span class="w"></span>
-<span class="w">            </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cover.rfy_0010e1_1</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nt">cover</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">template</span>
+<span class="w">    </span><span class="nt">covers</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">study_skylight_p</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">unique_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">13d7a089-c536-4dc0-b2c0-e5dae6521460</span>
+<span class="w">        </span><span class="nt">open_cover</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cover.close_cover</span>
+<span class="w">          </span><span class="nt">target</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cover.rfy_0010e1_1</span>
+<span class="w">        </span><span class="nt">close_cover</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cover.open_cover</span>
+<span class="w">          </span><span class="nt">target</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cover.rfy_0010e1_1</span>
+<span class="w">        </span><span class="nt">stop_cover</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cover.stop_cover</span>
+<span class="w">          </span><span class="nt">target</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">entity_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cover.rfy_0010e1_1</span>
 </code></pre></div>
 
 	</article>

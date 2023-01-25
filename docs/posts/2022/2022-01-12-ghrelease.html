@@ -70,7 +70,7 @@ So in order to standardise things, I wrote this script:</p>
 </ul>
 <p>So whenever I am ready to release I would then just issue
 the command:</p>
-<div class="highlight"><pre><span></span><code>./ghrelease vX.Y.Z
+<div class="highlight"><pre><span></span><code>./ghrelease<span class="w"> </span>vX.Y.Z
 </code></pre></div>
 
 <h2 id="pre-requisistes">Pre-requisistes:</h2>
@@ -101,12 +101,12 @@ containing checking scripts.</p>
 <p>You can create pre-releases.  These do not have to be on the
 <em>default</em> branch.  To do this use the <code>--rc</code> (Release candidate)
 option:</p>
-<div class="highlight"><pre><span></span><code>./ghrelease vX.Y.Z-rcN
+<div class="highlight"><pre><span></span><code>./ghrelease<span class="w"> </span>vX.Y.Z-rcN
 </code></pre></div>
 
 <p>This will create a release in <code>github</code> but tag it as <strong>pre-release</strong>.</p>
 <p>After release, you may delete all pre-release candidates:</p>
-<div class="highlight"><pre><span></span><code>./ghrelease --purge
+<div class="highlight"><pre><span></span><code>./ghrelease<span class="w"> </span>--purge
 </code></pre></div>
 
 	</article>

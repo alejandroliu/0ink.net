@@ -82,16 +82,16 @@
 <p>The intent parameter can hold a Uri which can contain some information about what the alarm is all about.</p>
 <h2 id="broadcastreceiver-and-notificationmanager">BroadcastReceiver and NotificationManager</h2>
 <p>The BroadcastReceiver must be defined in the manifest.xml like this</p>
-<div class="highlight"><pre><span></span><code>    <span class="nt">&lt;receiver</span>
-        <span class="na">android:name=</span><span class="s">&quot;package.AlarmReceiver&quot;</span>
-    <span class="nt">&gt;</span>
-        <span class="nt">&lt;intent-filter&gt;</span>
-            <span class="nt">&lt;action</span>
-                <span class="na">android:name=</span><span class="s">&quot;intentname&quot;</span> <span class="nt">/&gt;</span>
-            <span class="nt">&lt;data</span>
-                <span class="na">android:scheme=</span><span class="s">&quot;myscheme&quot;</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;/intent-filter&gt;</span>
-    <span class="nt">&lt;/receiver&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nt">&lt;receiver</span>
+<span class="w">        </span><span class="na">android:name=</span><span class="s">&quot;package.AlarmReceiver&quot;</span>
+<span class="w">    </span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;intent-filter&gt;</span>
+<span class="w">            </span><span class="nt">&lt;action</span>
+<span class="w">                </span><span class="na">android:name=</span><span class="s">&quot;intentname&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;data</span>
+<span class="w">                </span><span class="na">android:scheme=</span><span class="s">&quot;myscheme&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/intent-filter&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/receiver&gt;</span>
 </code></pre></div>
 
 <p>The intentname and myscheme values must match the name used in the intent and the scheme used in the uri in the intent. In the onReceive method, the notification is started to show the user the alarm went off. The Notification Manager is also a SystemService, get it like this</p>
@@ -113,14 +113,14 @@ notification.defaults |= Notification.DEFAULT_VIBRATE;
 <li>Create an additional BroadcastReceiver which gets called at boot-up to re-install the alarms.</li>
 </ol>
 <p>Add the <code>android.permission.RECEIVE_BOOT_COMPLETED</code> uses-permission and the following receiver to the manifest.xml</p>
-<div class="highlight"><pre><span></span><code>    <span class="nt">&lt;receiver</span>
-        <span class="na">android:name=</span><span class="s">&quot;package.AlarmSetter&quot;</span>
-    <span class="nt">&gt;</span>
-        <span class="nt">&lt;intent-filter&gt;</span>
-            <span class="nt">&lt;action</span>
-                <span class="na">android:name=</span><span class="s">&quot;android.intent.action.BOOT_COMPLETED&quot;</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;/intent-filter&gt;</span>
-    <span class="nt">&lt;/receiver&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nt">&lt;receiver</span>
+<span class="w">        </span><span class="na">android:name=</span><span class="s">&quot;package.AlarmSetter&quot;</span>
+<span class="w">    </span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;intent-filter&gt;</span>
+<span class="w">            </span><span class="nt">&lt;action</span>
+<span class="w">                </span><span class="na">android:name=</span><span class="s">&quot;android.intent.action.BOOT_COMPLETED&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/intent-filter&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/receiver&gt;</span>
 </code></pre></div>
 
 <p>In the onReceive method, read the database and re-install the alarms in the same way as was done at the top.</p>

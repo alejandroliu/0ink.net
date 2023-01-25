@@ -85,7 +85,7 @@ and the original HTTP request is proxied to the backend server.</p>
 <h2 id="configuring-nginx">Configuring <a href="http://nginx.org/en/">nginx</a></h2>
 <p>In your <a href="http://nginx.org/en/">nginx</a> configuration...</p>
 <p>This block configures the web server area that will be protected:</p>
-<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="k">location</span><span class="w"> </span><span class="s">/hello</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="k">location</span><span class="w"> </span><span class="s">/hello</span><span class="w"> </span><span class="p">{</span>
 <span class="w">          </span><span class="kn">error_page</span><span class="w"> </span><span class="mi">401</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">@error401</span><span class="p">;</span><span class="w">   </span><span class="c1"># Specific login page to use</span>
 <span class="w">          </span><span class="kn">auth_request</span><span class="w"> </span><span class="s">/auth</span><span class="p">;</span><span class="w">       </span><span class="c1"># The sub-request to use</span>
 <span class="w">          </span><span class="kn">auth_request_set</span><span class="w"> </span><span class="nv">$username</span><span class="w"> </span><span class="nv">$upstream_http_x_username</span><span class="p">;</span><span class="w"> </span><span class="c1"># Make the sub request data available</span>
@@ -93,13 +93,13 @@ and the original HTTP request is proxied to the backend server.</p>
 
 <span class="w">          </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://sample.com:8080/hello</span><span class="p">;</span><span class="w">  </span><span class="c1"># actual location of protected data</span>
 <span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span><span class="w">  </span><span class="c1"># Custom headers with authentication related data</span>
-<span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Remote-User</span><span class="w"> </span><span class="nv">$username</span><span class="p">;</span><span class="w"></span>
-<span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Remote-SID</span><span class="w"> </span><span class="nv">$sid</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Remote-User</span><span class="w"> </span><span class="nv">$username</span><span class="p">;</span>
+<span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Remote-SID</span><span class="w"> </span><span class="nv">$sid</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
 
-<span class="w">    </span><span class="k">location</span><span class="w"> </span><span class="s">@error401</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">          </span><span class="kn">return</span><span class="w"> </span><span class="mi">302</span><span class="w"> </span><span class="s">/login/?url=http://</span><span class="nv">$http_host$request_uri</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">location</span><span class="w"> </span><span class="s">@error401</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="kn">return</span><span class="w"> </span><span class="mi">302</span><span class="w"> </span><span class="s">/login/?url=http://</span><span class="nv">$http_host$request_uri</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
 </code></pre></div>
 
 <ul>
@@ -117,14 +117,14 @@ and the original HTTP request is proxied to the backend server.</p>
   to the content backend server.</li>
 </ul>
 <p>This block configures the authentication sub-request server:</p>
-<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="k">location</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">/auth</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="k">location</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">/auth</span><span class="w"> </span><span class="p">{</span>
 <span class="w">          </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://auth-server.sample.com:8080/auth</span><span class="p">;</span><span class="w">   </span><span class="c1"># authentication server</span>
 <span class="w">          </span><span class="kn">proxy_pass_request_body</span><span class="w"> </span><span class="no">off</span><span class="p">;</span><span class="w">              </span><span class="c1"># no data is being transferred...</span>
-<span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Content-Length</span><span class="w"> </span><span class="s">&#39;0&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Content-Length</span><span class="w"> </span><span class="s">&#39;0&#39;</span><span class="p">;</span>
 <span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span><span class="w">              </span><span class="c1"># Custom headers with authentication related data</span>
-<span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Origin-URI</span><span class="w"> </span><span class="nv">$request_uri</span><span class="p">;</span><span class="w"></span>
-<span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Origin-URI</span><span class="w"> </span><span class="nv">$request_uri</span><span class="p">;</span>
+<span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
 </code></pre></div>
 
 <ul>
@@ -137,20 +137,20 @@ and the original HTTP request is proxied to the backend server.</p>
 </ul>
 <p>This implements the login pager URL</p>
 <div class="highlight"><pre><span></span><code><span class="w">        </span><span class="c1"># If the user is not logged in, redirect them to login URL</span>
-<span class="w">        </span><span class="k">location</span><span class="w"> </span><span class="s">@error401</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">          </span><span class="kn">return</span><span class="w"> </span><span class="mi">302</span><span class="w"> </span><span class="s">https://</span><span class="nv">$host/login/?url=https://$http_host$request_uri</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">location</span><span class="w"> </span><span class="s">@error401</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="kn">return</span><span class="w"> </span><span class="mi">302</span><span class="w"> </span><span class="s">https://</span><span class="nv">$host/login/?url=https://$http_host$request_uri</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
 </code></pre></div>
 
 <p>In this example, the login page is on the same reverse proxy, but
 it doesn't have to be that way.</p>
 <p>The actual login page:</p>
-<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="k">location</span><span class="w"> </span><span class="s">/login/</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="k">location</span><span class="w"> </span><span class="s">/login/</span><span class="w"> </span><span class="p">{</span>
 <span class="w">          </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://auth-server.sample.com:8080/login/</span><span class="p">;</span><span class="w"> </span><span class="c1"># Where the login happens</span>
 <span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-My-Real-IP</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span><span class="w">       </span><span class="c1"># Additional parameters to send to login page</span>
-<span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-My-Real-Port</span><span class="w"> </span><span class="nv">$remote_port</span><span class="p">;</span><span class="w"></span>
-<span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-My-Server-Port</span><span class="w"> </span><span class="nv">$server_port</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-My-Real-Port</span><span class="w"> </span><span class="nv">$remote_port</span><span class="p">;</span>
+<span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-My-Server-Port</span><span class="w"> </span><span class="nv">$server_port</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
 </code></pre></div>
 
 <ul>
@@ -293,26 +293,26 @@ access control can be implemented.  Finally, additional values can be passed
 through headers, such as group names, tokens, etc.</p>
 <h4 id="nginx-configuration">nginx configuration</h4>
 <p>Protected Resource:</p>
-<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="k">location</span><span class="w"> </span><span class="s">/hello</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="k">location</span><span class="w"> </span><span class="s">/hello</span><span class="w"> </span><span class="p">{</span>
 <span class="w">          </span><span class="kn">auth_request</span><span class="w"> </span><span class="s">/auth</span><span class="p">;</span><span class="w">       </span><span class="c1"># The sub-request to use</span>
 <span class="w">          </span><span class="kn">auth_request_set</span><span class="w"> </span><span class="nv">$username</span><span class="w"> </span><span class="nv">$upstream_http_x_username</span><span class="p">;</span><span class="w"> </span><span class="c1"># Make the sub request data available</span>
 
 <span class="w">          </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://sample.com:8080/hello</span><span class="p">;</span><span class="w">  </span><span class="c1"># actual location of protected data</span>
 <span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span><span class="w">  </span><span class="c1"># Custom headers with authentication related data</span>
-<span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Remote-User</span><span class="w"> </span><span class="nv">$username</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Remote-User</span><span class="w"> </span><span class="nv">$username</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
 </code></pre></div>
 
 <p><strong>NOTE:</strong> unlike the previous example, we do not need to provide a @error401 page.</p>
 <p>Sub-request configuration:</p>
-<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="k">location</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">/auth</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="k">location</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">/auth</span><span class="w"> </span><span class="p">{</span>
 <span class="w">          </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://auth-server.sample.com:8080/auth</span><span class="p">;</span><span class="w">   </span><span class="c1"># authentication server</span>
 <span class="w">          </span><span class="kn">proxy_pass_request_body</span><span class="w"> </span><span class="no">off</span><span class="p">;</span><span class="w">              </span><span class="c1"># no data is being transferred...</span>
-<span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Content-Length</span><span class="w"> </span><span class="s">&#39;0&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Content-Length</span><span class="w"> </span><span class="s">&#39;0&#39;</span><span class="p">;</span>
 <span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span><span class="w">              </span><span class="c1"># Custom headers with authentication related data</span>
-<span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Origin-URI</span><span class="w"> </span><span class="nv">$request_uri</span><span class="p">;</span><span class="w"></span>
-<span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Origin-URI</span><span class="w"> </span><span class="nv">$request_uri</span><span class="p">;</span>
+<span class="w">          </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
 </code></pre></div>
 
 <h4 id="authentication-server">authentication server</h4>

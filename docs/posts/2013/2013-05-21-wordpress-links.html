@@ -70,23 +70,23 @@ on the configuration and the types of data we are linking to.</p>
 <p>This actually works whether or not Permalinks are active. Using the numeric values found in the ID column of the Posts, Categories, and Pages Administration, you can create links as follows.</p>
 <h3 id="posts">Posts</h3>
 <p>To link to a Post, find the ID of the target post on the Posts administration panel, and insert it in place of the '123' in this link:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;index.php?p=123&quot;</span><span class="nt">&gt;</span>Post Title<span class="nt">&lt;/a&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;a</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;index.php?p=123&quot;</span><span class="nt">&gt;</span>Post<span class="w"> </span>Title<span class="nt">&lt;/a&gt;</span>
 </code></pre></div>
 
 <h3 id="categories">Categories</h3>
 <p>To link to a Category, find the ID of the target Category on the Categories administration panel, and insert it in place of the '7' in this link:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;index.php?cat=7&quot;</span><span class="nt">&gt;</span>Category Title<span class="nt">&lt;/a&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;a</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;index.php?cat=7&quot;</span><span class="nt">&gt;</span>Category<span class="w"> </span>Title<span class="nt">&lt;/a&gt;</span>
 </code></pre></div>
 
 <h3 id="pages">Pages</h3>
 <p>To link to a Page, find the ID of the target Page on the Pages administration panel, and insert it in place of the '42' in this link:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;index.php?page_id=42&quot;</span><span class="nt">&gt;</span>Page title<span class="nt">&lt;/a&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;a</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;index.php?page_id=42&quot;</span><span class="nt">&gt;</span>Page<span class="w"> </span>title<span class="nt">&lt;/a&gt;</span>
 </code></pre></div>
 
 <h3 id="date-based-archives">Date-based Archives</h3>
-<div class="highlight"><pre><span></span><code>Year: <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;index.php?m=2006&quot;</span><span class="nt">&gt;</span>2006<span class="nt">&lt;/a&gt;</span>
-Month: <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;index.php?m=200601&quot;</span><span class="nt">&gt;</span>Jan 2006<span class="nt">&lt;/a&gt;</span>
-Day: <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;index.php?m=20060101&quot;</span><span class="nt">&gt;</span>Jan 1, 2006<span class="nt">&lt;/a&gt;</span> 
+<div class="highlight"><pre><span></span><code>Year:<span class="w"> </span><span class="nt">&lt;a</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;index.php?m=2006&quot;</span><span class="nt">&gt;</span>2006<span class="nt">&lt;/a&gt;</span>
+Month:<span class="w"> </span><span class="nt">&lt;a</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;index.php?m=200601&quot;</span><span class="nt">&gt;</span>Jan<span class="w"> </span>2006<span class="nt">&lt;/a&gt;</span>
+Day:<span class="w"> </span><span class="nt">&lt;a</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;index.php?m=20060101&quot;</span><span class="nt">&gt;</span>Jan<span class="w"> </span>1,<span class="w"> </span>2006<span class="nt">&lt;/a&gt;</span><span class="w"> </span>
 </code></pre></div>
 
 <h2 id="linking-using-permalinks">Linking Using Permalinks</h2>
@@ -95,29 +95,29 @@ Day: <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">
 </code></pre></div>
 
 <p>Replacing the Structure Tags with appropriate values may produce a URL that looks like this:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/index.php/archives/2005/04/22/my-sample-post/&quot;</span><span class="nt">&gt;</span>My Sample Post<span class="nt">&lt;/a&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;a</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;/index.php/archives/2005/04/22/my-sample-post/&quot;</span><span class="nt">&gt;</span>My<span class="w"> </span>Sample<span class="w"> </span>Post<span class="nt">&lt;/a&gt;</span>
 </code></pre></div>
 
 <p>To obtain an accurate URL for a post it may be easier to navigate to the post within the WordPress blog and then copy the URL from one of the blog links that WordPress generates. Review the information at Using Permalinks for more details on constructing URLs for individual posts.</p>
 <h3 id="categories_1">Categories</h3>
 <p>To produce a link to a Category using permalinks, obtain the Category Base value from the Options &gt; Permalinks Administration Panel, and append the category name to the end. For example, to link to the category "testing" when the Category Base is "/index.php/categories", use the following link:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/index.php/categories/testing/&quot;</span><span class="nt">&gt;</span>category link<span class="nt">&lt;/a&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;a</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;/index.php/categories/testing/&quot;</span><span class="nt">&gt;</span>category<span class="w"> </span>link<span class="nt">&lt;/a&gt;</span>
 </code></pre></div>
 
 <p>You can specify a link to a subcategory by using the subcategory directly (as above), or by specifying all parent categories before the category in the URL, like this:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/index.php/categories/parent_category/sub_category/&quot;</span><span class="nt">&gt;</span>subcategory link<span class="nt">&lt;/a&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;a</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;/index.php/categories/parent_category/sub_category/&quot;</span><span class="nt">&gt;</span>subcategory<span class="w"> </span>link<span class="nt">&lt;/a&gt;</span>
 </code></pre></div>
 
 <h3 id="pages_1">Pages</h3>
 <p>Pages have a hierarchy like Categories, and can have parents. If a Page is at the root level of the hierarchy, you can specify just the Page's "page slug" after the static part of your permalink structure:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/index.php/a-test-page&quot;</span><span class="nt">&gt;</span>a test page<span class="nt">&lt;/a&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;a</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;/index.php/a-test-page&quot;</span><span class="nt">&gt;</span>a<span class="w"> </span>test<span class="w"> </span>page<span class="nt">&lt;/a&gt;</span>
 </code></pre></div>
 
 <p>Once again, the best way to verify that this is the correct URL is to navigate to the target Page on the blog and compare the URL to the one you want to use in the link.</p>
 <h3 id="date-based-archives_1">Date-based Archives</h3>
-<div class="highlight"><pre><span></span><code>Year: <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/index.php/archives/2006&quot;</span><span class="nt">&gt;</span>2006<span class="nt">&lt;/a&gt;</span>
-Month: <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/index.php/archives/2006/01/&quot;</span><span class="nt">&gt;</span>Jan 2006<span class="nt">&lt;/a&gt;</span>
-Day: <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/index.php/archives/2006/01/01/&quot;</span><span class="nt">&gt;</span>Jan 1, 2006<span class="nt">&lt;/a&gt;</span>
+<div class="highlight"><pre><span></span><code>Year:<span class="w"> </span><span class="nt">&lt;a</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;/index.php/archives/2006&quot;</span><span class="nt">&gt;</span>2006<span class="nt">&lt;/a&gt;</span>
+Month:<span class="w"> </span><span class="nt">&lt;a</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;/index.php/archives/2006/01/&quot;</span><span class="nt">&gt;</span>Jan<span class="w"> </span>2006<span class="nt">&lt;/a&gt;</span>
+Day:<span class="w"> </span><span class="nt">&lt;a</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;/index.php/archives/2006/01/01/&quot;</span><span class="nt">&gt;</span>Jan<span class="w"> </span>1,<span class="w"> </span>2006<span class="nt">&lt;/a&gt;</span>
 </code></pre></div>
 
 	</article>

@@ -476,10 +476,10 @@ old skool!</p>
 <h2 id="tags">Tags</h2>
 <p>Use tags to navigate source code. It's not hard to set up. This takes advantage of a popular tool called "Exuberant Ctags" (AKA ctags, or etags) that scans your source code and indexes the symbols into a <code>TAGS</code> file. Note: emacs comes with a tool called "etags" that does almost the same thing as Exuberant Ctags. In cygwin, the "etags" binary is actually Exuberant Ctags. Confused yet? My advice is, ignore Emacs etags, and use Exuberant Ctags, whatever it happens to be called in your part of the universe. To generate a <code>TAGS</code> file, do this in the root of your code tree (stick this in a script or Makefile):</p>
 <div class="highlight"><pre><span></span><code><span class="c">#ETAGS=/cygdrive/c/emacs-21.3/bin/etags.exe</span>
-<span class="nv">ETAGS</span><span class="o">=</span>etags <span class="c1"># Exuberant ctags</span>
-<span class="err">rm</span><span class="w"> </span><span class="err">TAGS</span><span class="w"></span>
+<span class="nv">ETAGS</span><span class="o">=</span>etags<span class="w"> </span><span class="c1"># Exuberant ctags</span>
+<span class="err">rm</span><span class="w"> </span><span class="err">TAGS</span>
 <span class="err">find</span><span class="w"> </span><span class="err">.</span><span class="w"> </span><span class="err">-name</span><span class="w"> </span><span class="s1">&#39;*.cpp&#39;</span><span class="w"> </span><span class="err">-o</span><span class="w"> </span><span class="err">-name</span><span class="w"> </span><span class="s1">&#39;*.h&#39;</span><span class="w"> </span><span class="err">-o</span><span class="w"> </span><span class="err">-name</span><span class="w"> </span><span class="s1">&#39;*.c&#39;</span><span class="w"> </span><span class="err">-print0</span><span class="w"> </span>
-<span class="w">     </span><span class="err">|</span><span class="w"> </span><span class="err">xargs</span><span class="w"> </span><span class="k">$(</span><span class="nv">ETAGS</span><span class="k">)</span><span class="w"> </span><span class="nv">--extra</span><span class="o">=</span>+q --fields<span class="o">=</span>+fksaiS --c++-kinds<span class="o">=</span>+px --append
+<span class="w">     </span><span class="err">|</span><span class="w"> </span><span class="err">xargs</span><span class="w"> </span><span class="k">$(</span><span class="nv">ETAGS</span><span class="k">)</span><span class="w"> </span><span class="nv">--extra</span><span class="o">=</span>+q<span class="w"> </span>--fields<span class="o">=</span>+fksaiS<span class="w"> </span>--c++-kinds<span class="o">=</span>+px<span class="w"> </span>--append
 </code></pre></div>
 
 <p>Then, when you're reading code and want to see the definition(s) of a symbol:</p>

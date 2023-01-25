@@ -90,7 +90,7 @@ arguments to commands" below.</p>
 <p>POSIX sh and especially bash have a number of settings that can help write safe shell
 scripts.</p>
 <p>I recommend the following in bash scripts:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">set</span> -euf -o pipefail
+<div class="highlight"><pre><span></span><code><span class="nb">set</span><span class="w"> </span>-euf<span class="w"> </span>-o<span class="w"> </span>pipefail
 </code></pre></div>
 
 <p>In dash, <code>set -o</code> doesn't exist, so use only <code>set -euf</code>.</p>
@@ -117,15 +117,15 @@ will perform
 <a href="http://www.gnu.org/software/bash/manual/html_node/Filename-Expansion.html">globbing</a>,
 which is likely not what you want.</p>
 <p>For example, consider the following:</p>
-<div class="highlight"><pre><span></span><code>alex@kronborg tmp <span class="o">[</span><span class="m">15</span>:23<span class="o">]</span> $ <span class="nv">dir</span><span class="o">=</span><span class="s2">&quot;foo bar&quot;</span>
-alex@kronborg tmp <span class="o">[</span><span class="m">15</span>:23<span class="o">]</span> $ ls <span class="nv">$dir</span>
-ls: cannot access foo: No such file or directory
-ls: cannot access bar: No such file or directory
-alex@kronborg tmp <span class="o">[</span><span class="m">15</span>:23<span class="o">]</span> $ <span class="nb">cd</span> <span class="s2">&quot;</span><span class="nv">$dir</span><span class="s2">&quot;</span>
-alex@kronborg foo bar <span class="o">[</span><span class="m">15</span>:25<span class="o">]</span> $ <span class="nv">file</span><span class="o">=</span>*.txt
-alex@kronborg foo bar <span class="o">[</span><span class="m">15</span>:26<span class="o">]</span> $ <span class="nb">echo</span> <span class="nv">$file</span>
-bar.txt foo.txt
-alex@kronborg foo bar <span class="o">[</span><span class="m">15</span>:26<span class="o">]</span> $ <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code>alex@kronborg<span class="w"> </span>tmp<span class="w"> </span><span class="o">[</span><span class="m">15</span>:23<span class="o">]</span><span class="w"> </span>$<span class="w"> </span><span class="nv">dir</span><span class="o">=</span><span class="s2">&quot;foo bar&quot;</span>
+alex@kronborg<span class="w"> </span>tmp<span class="w"> </span><span class="o">[</span><span class="m">15</span>:23<span class="o">]</span><span class="w"> </span>$<span class="w"> </span>ls<span class="w"> </span><span class="nv">$dir</span>
+ls:<span class="w"> </span>cannot<span class="w"> </span>access<span class="w"> </span>foo:<span class="w"> </span>No<span class="w"> </span>such<span class="w"> </span>file<span class="w"> </span>or<span class="w"> </span>directory
+ls:<span class="w"> </span>cannot<span class="w"> </span>access<span class="w"> </span>bar:<span class="w"> </span>No<span class="w"> </span>such<span class="w"> </span>file<span class="w"> </span>or<span class="w"> </span>directory
+alex@kronborg<span class="w"> </span>tmp<span class="w"> </span><span class="o">[</span><span class="m">15</span>:23<span class="o">]</span><span class="w"> </span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$dir</span><span class="s2">&quot;</span>
+alex@kronborg<span class="w"> </span>foo<span class="w"> </span>bar<span class="w"> </span><span class="o">[</span><span class="m">15</span>:25<span class="o">]</span><span class="w"> </span>$<span class="w"> </span><span class="nv">file</span><span class="o">=</span>*.txt
+alex@kronborg<span class="w"> </span>foo<span class="w"> </span>bar<span class="w"> </span><span class="o">[</span><span class="m">15</span>:26<span class="o">]</span><span class="w"> </span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$file</span>
+bar.txt<span class="w"> </span>foo.txt
+alex@kronborg<span class="w"> </span>foo<span class="w"> </span>bar<span class="w"> </span><span class="o">[</span><span class="m">15</span>:26<span class="o">]</span><span class="w"> </span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span>
 *.txt
 </code></pre></div>
 
@@ -134,7 +134,7 @@ globbing shown above are not what you expected to have happen. By using <code>"$
 the contents of the <code>foo</code> variable instead of just <code>$foo</code>, this problem does not arise.</p>
 <p>When writing a wrapper script, you may wish pass along all the arguments your script
 received. Do that with:</p>
-<div class="highlight"><pre><span></span><code>wrapped-command <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code>wrapped-command<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
 </code></pre></div>
 
 <p>See

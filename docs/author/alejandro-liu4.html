@@ -49,6 +49,26 @@
 
 <article class="summary">
 <div class="metadata">
+  <time datetime="2018-06-18T00:00:00+02:00" pubdate>Mon 18 June 2018</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
+  in <a href="/category/c2018.html">2018</a>
+<p class="tags">tagged <a href="/tag/application.html">application</a>, <a href="/tag/browser.html">browser</a>, <a href="/tag/desktop.html">desktop</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/git.html">git</a>, <a href="/tag/github.html">github</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2018/2018-06-18-build-vr-app.html" rel="bookmark" title="Permalink to Build a VR app in 15 minutes">Build a VR app in 15 minutes</a>
+    </h2>
+    <p><p>In 15 minutes, you can develop a virtual reality application and run
+it in a web browser, on a VR headset, or with <a href="https://vr.google.com/daydream/">Google Daydream</a>.
+The key is <a href="https://aframe.io/">A-Frame</a>, an open source toolkit built
+by the <a href="https://mozvr.com/">Mozilla VR Team</a>.</p>
+<h3 id="test-it">Test It</h3>
+<p>Open <a href="https://theta360developers.github.io/360gallery/">this link</a>
+using Chrome or Firefox on your …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
   <time datetime="2018-06-17T00:00:00+02:00" pubdate>Sun 17 June 2018</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
@@ -345,13 +365,13 @@ systems such …</p></p>
       <a href="/posts/2017/2017-11-12-vnc-desktop-client.html" rel="bookmark" title="Permalink to VNC desktop">VNC desktop</a>
     </h2>
     <p><p>IDEA:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">Client</span><span class="w"> </span><span class="nv">connects</span><span class="w"> </span><span class="o">&gt;</span><span class="w"></span>
-<span class="w">        </span><span class="o">&lt;</span><span class="w"> </span><span class="nv">server</span><span class="w"> </span><span class="nv">sends</span><span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="nv">string</span><span class="w"> </span><span class="ss">(</span><span class="nv">Use</span><span class="w"> </span><span class="mi">3</span>.<span class="mi">3</span><span class="w"> </span><span class="nv">only</span><span class="ss">)</span><span class="w"></span>
-<span class="nv">Client</span><span class="w"> </span><span class="nv">replies</span><span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="nv">actual</span><span class="w"> </span><span class="nv">verison</span><span class="w"> </span><span class="nv">string</span><span class="w"> </span><span class="o">&gt;</span><span class="w"></span>
-<span class="w">        </span><span class="o">&lt;</span><span class="w"> </span><span class="nv">server</span><span class="w"> </span><span class="nv">sends</span><span class="w"> </span><span class="nv">security</span><span class="w"> </span><span class="nv">type</span><span class="c1">; NONE</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">Client</span><span class="w"> </span><span class="nv">connects</span><span class="w"> </span><span class="o">&gt;</span>
+<span class="w">        </span><span class="o">&lt;</span><span class="w"> </span><span class="nv">server</span><span class="w"> </span><span class="nv">sends</span><span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="nv">string</span><span class="w"> </span><span class="ss">(</span><span class="nv">Use</span><span class="w"> </span><span class="mi">3</span>.<span class="mi">3</span><span class="w"> </span><span class="nv">only</span><span class="ss">)</span>
+<span class="nv">Client</span><span class="w"> </span><span class="nv">replies</span><span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="nv">actual</span><span class="w"> </span><span class="nv">verison</span><span class="w"> </span><span class="nv">string</span><span class="w"> </span><span class="o">&gt;</span>
+<span class="w">        </span><span class="o">&lt;</span><span class="w"> </span><span class="nv">server</span><span class="w"> </span><span class="nv">sends</span><span class="w"> </span><span class="nv">security</span><span class="w"> </span><span class="nv">type</span><span class="c1">; NONE</span>
 <span class="nv">Client</span><span class="w"> </span><span class="k">send</span><span class="w"> </span><span class="nv">ClientInit</span><span class="w"> </span><span class="ss">(</span><span class="nv">shared</span><span class="w"> </span><span class="nv">flag</span><span class="ss">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>
-<span class="w">        </span><span class="o">&lt;</span><span class="w"> </span><span class="nv">sever</span><span class="w"> </span><span class="nv">sens</span><span class="w"> </span><span class="nv">ServerInit</span><span class="w"> </span><span class="ss">(</span><span class="nv">server</span><span class="w"> </span><span class="nv">details</span><span class="ss">)</span><span class="w"> </span><span class="nv">WxHxD</span><span class="w"> </span><span class="nv">Name</span><span class="w"></span>
-<span class="o">===</span><span class="w"> </span><span class="nv">standard</span><span class="w"> </span><span class="nv">stuff</span><span class="w"> </span><span class="o">===</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;</span><span class="w"> </span><span class="nv">sever</span><span class="w"> </span><span class="nv">sens</span><span class="w"> </span><span class="nv">ServerInit</span><span class="w"> </span><span class="ss">(</span><span class="nv">server</span><span class="w"> </span><span class="nv">details</span><span class="ss">)</span><span class="w"> </span><span class="nv">WxHxD</span><span class="w"> </span><span class="nv">Name</span>
+<span class="o">===</span><span class="w"> </span><span class="nv">standard</span><span class="w"> </span><span class="nv">stuff</span><span class="w"> </span><span class="o">===</span>
 </code></pre></div>
 
 <h3 id="2-versions">2 VERSIONS</h3>
@@ -487,36 +507,6 @@ internet …</p></p>
 <li>git</li>
 </ul>
 <p><a href="https://blog.packagecloud.io/eng/2015/05/11/building-rpm-packages-with-mock/">Building RPM packages with …</a></p></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2017-06-24T00:00:00+02:00" pubdate>Sat 24 June 2017</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2021-12-25 22:02:18+01:00</p>
-  in <a href="/category/c2017.html">2017</a>
-<p class="tags">tagged <a href="/tag/android.html">android</a>, <a href="/tag/java.html">java</a>, <a href="/tag/manager.html">manager</a>, <a href="/tag/sudo.html">sudo</a>, <a href="/tag/tools.html">tools</a></p></div>  <div>
-    <h2>
-      <a href="/posts/2017/2017-06-24-android-dev.html" rel="bookmark" title="Permalink to android development">android development</a>
-    </h2>
-    <p><p>Android devs</p>
-<h2 id="install-java">Install JAVA</h2>
-<div class="highlight"><pre><span></span><code>yum install java-1.8.0-openjdk java-1.8.0-openjdk-devel
-</code></pre></div>
-
-<h2 id="install-sdk-tools">Install SDK Tools:</h2>
-<p>Download the sdk-tools zip from <a href="https://developer.android.com/studio/index.html#download">here</a></p>
-<div class="highlight"><pre><span></span><code>mkdir /opt/android
-cd /opt/android
-</code></pre></div>
-
-<p>The sdk should go under <code>/opt/android/tools</code></p>
-<div class="highlight"><pre><span></span><code><span class="n">unzip</span><span class="w"> </span><span class="n">sdk</span><span class="o">-</span><span class="n">tools</span><span class="o">.</span><span class="n">zip</span><span class="w"></span>
-<span class="n">sudo</span><span class="w"> </span><span class="n">chmod</span><span class="w"> </span><span class="n">a</span><span class="o">+</span><span class="n">x</span><span class="w"> </span><span class="o">$</span><span class="p">(</span><span class="n">sudo</span><span class="w"> </span><span class="n">find</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">-</span><span class="n">type</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">-</span><span class="n">executable</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
-</code></pre></div>
-
-<p>Create a …</p></p>
   </div>
 </article>
 <div class="pagination">
