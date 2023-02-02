@@ -53,6 +53,26 @@
     </address>
   <p>Updated: 2021-12-25 22:02:18+01:00</p>
   in <a href="/category/c2016.html">2016</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2016/2016-11-14-building-chroots-with-yum.html" rel="bookmark" title="Permalink to Building chroots with yum">Building chroots with yum</a>
+    </h2>
+    <p><p>Building CHROOTs with Yum in a single command:</p>
+<div class="highlight"><pre><span></span><code>yum --releasever=7 --installroot=/chroot/jail2 -y install httpd
+</code></pre></div>
+
+<p>Will install httpd with all its dependancies.  If you are on x86_64 and want a 32 bit chroot:</p>
+<div class="highlight"><pre><span></span><code>setarch i386 yum --releasever=6 --installroot=/chroot/jail32 -y install httpd
+</code></pre></div></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2016-11-14T00:00:00+01:00" pubdate>Mon 14 November 2016</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
+  in <a href="/category/c2016.html">2016</a>
 <p class="tags">tagged <a href="/tag/integration.html">integration</a>, <a href="/tag/library.html">library</a></p></div>  <div>
     <h2>
       <a href="/posts/2016/2016-11-14-jaxon-call-php-classes-from-javascript-using-ajax.html" rel="bookmark" title="Permalink to 'Jaxon: Call PHP classes from JavaScript using AJAX'">'Jaxon: Call PHP classes from JavaScript using AJAX'</a>
@@ -546,36 +566,6 @@ preview</p>
 <span class="w">  </span><span class="cm">/* Change these lines to set key bindings for VOL_UP and VOL_DN */</span>
 <span class="w">   </span>{<span class="w"> </span><span class="s1">&#39;u&#39;</span>,<span class="w">      </span><span class="nv">VOL_UP</span><span class="w">  </span>},
 <span class="w">   </span>{<span class="w"> </span><span class="s1">&#39;d&#39;</span>,<span class="w">      </span><span class="nv">VOL_DN …</span></code></pre></div></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2015-09-21T00:00:00+02:00" pubdate>Mon 21 September 2015</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2021-12-25 22:02:18+01:00</p>
-  in <a href="/category/c2015.html">2015</a>
-</div>  <div>
-    <h2>
-      <a href="/posts/2015/2015-09-21-centos7rhel7-firewalld-the-least-you-need-to-know.html" rel="bookmark" title="Permalink to Centos7/RHEL7 FirewallD -- the least you need to know">Centos7/RHEL7 FirewallD -- the least you need to know</a>
-    </h2>
-    <p><p>This post is just a simple hints-tips to get something going with FirewallD without going into too much detail.</p>
-<ol>
-<li>Checking if you are using <strong>firewalld</strong>:<ul>
-<li>firewall-cmd --state</li>
-</ul>
-</li>
-<li>Check your zones (needed later when opening ports):<ul>
-<li>firewall-cmd --get-default-zone</li>
-<li>firewall-cmd --get-active-zones</li>
-</ul>
-</li>
-<li>Checking what is active:<ul>
-<li>firewall-cmd --zone=public --list-all</li>
-</ul>
-</li>
-<li>Opening services:<ul>
-<li>firewall-cmd …</li></ul></li></ol></p>
   </div>
 </article>
 <div class="pagination">

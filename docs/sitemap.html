@@ -29,6 +29,11 @@
   <h2>posts</h2>
   <ul>
    <li>
+    <a href="/posts/2023/2023-02-01-qsnap.html">QNAP Snapshots</a>
+    <em>(posted 2023-02-01 00:00:00+01:00)</em>
+    <br>I wrote a small tool to access QNAP snapshots from the Linux command line. Pre-requistes: Snapshots have to be enabled You need a /share/netcfg containing the file: In my case, I set this share as read-only with root-squash. `admin.yaml' : contains the private/public keys and the configuration of …
+   </li>
+   <li>
     <a href="/posts/2023/2023-01-20-docker-on-void.html">Docker on Void</a>
     <em>(posted 2023-01-20 00:00:00+01:00)</em>
     <br>This is a quick recipe to run Docker on void: Make sure your system is up-to-date: sudo xbps-install -Syu Install docker executables: sudo xbps-install -S docker Check if docker was installed properly: docker --version Enable services: sudo ln -s /etc/sv/containerd /var/service sudo ln -s /etc/sv/docker …

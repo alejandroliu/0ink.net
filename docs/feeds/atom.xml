@@ -1,5 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2023-01-20T00:00:00+01:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>Docker on Void</title><link href="https://0ink.net/posts/2023/2023-01-20-docker-on-void.html" rel="alternate"></link><published>2023-01-20T00:00:00+01:00</published><updated>2022-12-24T19:49:30+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-01-20:/posts/2023/2023-01-20-docker-on-void.html</id><summary type="html">&lt;p&gt;This is a quick recipe to run Docker on void:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2023-02-01T00:00:00+01:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>QNAP Snapshots</title><link href="https://0ink.net/posts/2023/2023-02-01-qsnap.html" rel="alternate"></link><published>2023-02-01T00:00:00+01:00</published><updated>2023-01-11T15:59:49+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-02-01:/posts/2023/2023-02-01-qsnap.html</id><summary type="html">&lt;p&gt;I wrote a small tool to access QNAP snapshots from the Linux command line.&lt;/p&gt;
+&lt;p&gt;Pre-requistes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Snapshots have to be enabled&lt;/li&gt;
+&lt;li&gt;You need a &lt;code&gt;/share/netcfg&lt;/code&gt; containing the file:&lt;/li&gt;
+&lt;li&gt;In my case, I set this share as &lt;code&gt;read-only&lt;/code&gt; with &lt;code&gt;root-squash&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;`admin.yaml' : contains the private/public keys and the configuration
+    of …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;I wrote a small tool to access QNAP snapshots from the Linux command line.&lt;/p&gt;
+&lt;p&gt;Pre-requistes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Snapshots have to be enabled&lt;/li&gt;
+&lt;li&gt;You need a &lt;code&gt;/share/netcfg&lt;/code&gt; containing the file:&lt;/li&gt;
+&lt;li&gt;In my case, I set this share as &lt;code&gt;read-only&lt;/code&gt; with &lt;code&gt;root-squash&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;`admin.yaml' : contains the private/public keys and the configuration
+    of the forced command.  For access control, it is only readable
+    to group and the file is owned by the UNIX group that can do snapshot
+    operations.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;registry.yaml&lt;/code&gt; : this is optional if you are changing the &lt;code&gt;admin&lt;/code&gt; username.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Afterwards run:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;install_key.sh&lt;/code&gt; &lt;strong&gt;server-name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This installs the public key into the &lt;code&gt;authorized keys&lt;/code&gt;.  You will need
+ssh access for this to work.&lt;/p&gt;
+&lt;p&gt;You need to do this on all the QNAP servers that offer snapshots.&lt;/p&gt;
+&lt;p&gt;Copy &lt;code&gt;qsnap&lt;/code&gt; to somewhere in your path.&lt;/p&gt;
+&lt;h2 id="usage"&gt;Usage&lt;/h2&gt;
+&lt;h3 id="listing-snapshots"&gt;Listing snapshots&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;qsnap
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;List snapshots for the current directory&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;bash
+qsnap ls file-path&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;List snapshots for the given &lt;code&gt;file-path&lt;/code&gt;.  &lt;code&gt;file-path&lt;/code&gt; can be provided
+multiple times.&lt;/p&gt;
+&lt;h3 id="reading-snapshot-files"&gt;Reading snapshot files&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;qsnap&lt;span class="w"&gt; &lt;/span&gt;cat&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;--snap&lt;span class="o"&gt;=&lt;/span&gt;snapid&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;file1&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;file2&lt;span class="w"&gt; &lt;/span&gt;file3&lt;span class="w"&gt; &lt;/span&gt;...&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Would display the given file(s) from the snapshot.  If &lt;code&gt;snapid&lt;/code&gt; is not
+specified will use the latest available snapshot.&lt;/p&gt;
+&lt;h3 id="dumping-snapshots"&gt;Dumping snapshots&lt;/h3&gt;
+&lt;p&gt;``bash
+qsnap tar [--snap=snapid] [options] path
+```&lt;/p&gt;
+&lt;p&gt;Will dump the given &lt;code&gt;path&lt;/code&gt; as a tarball.  If &lt;code&gt;snapid&lt;/code&gt; is not
+specified will use the latest available snapshot.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;path&lt;/code&gt; can be either a file or directory.&lt;/p&gt;
+&lt;p&gt;Additional options:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;--base64&lt;/code&gt; : Data will be dumped using MIME Base64 encoding&lt;/li&gt;
+&lt;li&gt;'--no-compress' : Default is to compress.  This disables compression&lt;/li&gt;
+&lt;li&gt;'-v' : Pass &lt;code&gt;v&lt;/code&gt; flag to &lt;code&gt;tar&lt;/code&gt; command.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;All this can be found on &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/qsnap"&gt;github&lt;/a&gt;.&lt;/p&gt;</content><category term="2023"></category><category term="configuration"></category><category term="directory"></category><category term="linux"></category></entry><entry><title>Docker on Void</title><link href="https://0ink.net/posts/2023/2023-01-20-docker-on-void.html" rel="alternate"></link><published>2023-01-20T00:00:00+01:00</published><updated>2022-12-24T19:49:30+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-01-20:/posts/2023/2023-01-20-docker-on-void.html</id><summary type="html">&lt;p&gt;This is a quick recipe to run Docker on void:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Make sure your system is up-to-date:&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;sudo xbps-install -Syu&lt;/code&gt;&lt;/li&gt;
