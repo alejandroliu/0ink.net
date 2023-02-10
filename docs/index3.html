@@ -47,6 +47,29 @@
 
 <article class="summary">
 <div class="metadata">
+  <time datetime="2020-10-03T00:00:00+02:00" pubdate>Sat 03 October 2020</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
+  in <a href="/category/c2020.html">2020</a>
+<p class="tags">tagged <a href="/tag/configuration.html">configuration</a>, <a href="/tag/linux.html">linux</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2020/2020-10-03-pa-hints.html" rel="bookmark" title="Permalink to PulseAudio hints and tricks">PulseAudio hints and tricks</a>
+    </h2>
+    <p><p><a href="https://www.freedesktop.org/wiki/Software/PulseAudio/">PulseAudio</a> is nowadays the default sound system in many Linux
+distributions.  It lets you do a number of useful things.</p>
+<p><a href="https://www.freedesktop.org/wiki/Software/PulseAudio/">PulseAudio</a> comes with a handy command line utility <code>pacmd</code> to do a
+number of things.</p>
+<h2 id="pacmd-commands"><code>pacmd</code> commands</h2>
+<ul>
+<li>pacmd exit</li>
+<li>pacmd help</li>
+<li>pacmd list-(modules|sinks|sources|clients|cards|samples)</li>
+<li>pacmd …</li></ul></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
   <time datetime="2020-10-02T00:00:00+02:00" pubdate>Fri 02 October 2020</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
@@ -489,30 +512,6 @@ work!  Your mileage may vary …</p></p>
 <li>Disconnect network shares</li>
 <li>Change password</li>
 </ul></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2018-07-11T00:00:00+02:00" pubdate>Wed 11 July 2018</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2021-12-25 22:02:18+01:00</p>
-  in <a href="/category/c2018.html">2018</a>
-</div>  <div>
-    <h2>
-      <a href="/posts/2018/2018-07-11-awk-vs-grep.html" rel="bookmark" title="Permalink to Skipping grep when using AWK">Skipping grep when using AWK</a>
-    </h2>
-    <p><p>Over the years, We've seen many people use this pattern (filter-map):</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="o">[</span>data<span class="w"> </span>is<span class="w"> </span>generated<span class="o">]</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>something<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span>
-</code></pre></div>
-
-<p>but it can be shortened to:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="o">[</span>data<span class="w"> </span>is<span class="w"> </span>generated<span class="o">]</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;/something/ {print $2}&#39;</span>
-</code></pre></div>
-
-<h2 id="you-probably-dont-need-grep">You (probably) don't need grep</h2>
-<p>Following this logic, you can replace a simple grep with:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="o">[</span>data<span class="w"> </span>is<span class="w"> </span>generated …</code></pre></div></p>
   </div>
 </article>
 <div class="pagination">

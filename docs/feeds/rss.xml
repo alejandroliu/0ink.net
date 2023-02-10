@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Wed, 01 Feb 2023 00:00:00 +0100</lastBuildDate><item><title>QNAP Snapshots</title><link>https://0ink.net/posts/2023/2023-02-01-qsnap.html</link><description>&lt;p&gt;I wrote a small tool to access QNAP snapshots from the Linux command line.&lt;/p&gt;
+<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Fri, 10 Feb 2023 00:00:00 +0100</lastBuildDate><item><title>RDP vs VNC</title><link>https://0ink.net/posts/2023/2023-02-10-rdp-vs-vnc.html</link><description>&lt;p&gt;For years I have been using &lt;a href="https://en.wikipedia.org/wiki/Virtual_Network_Computing"&gt;VNC&lt;/a&gt; for my remote desktop needs.  This works
+usually well enough.  The features that I like are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Basic set-up is easy&lt;/li&gt;
+&lt;li&gt;Desktop sessions are persistent&lt;/li&gt;
+&lt;li&gt;Can be used to view an actual X11.org desktop.&lt;/li&gt;
+&lt;li&gt;Browser based clients via &lt;a href="https://novnc.com/info.html"&gt;noVNC&lt;/a&gt; or &lt;a href="https://guacamole.apache.org/"&gt;Guacamole&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;On the …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Fri, 10 Feb 2023 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:None,2023-02-10:/posts/2023/2023-02-10-rdp-vs-vnc.html</guid><category>2023</category><category>browser</category><category>desktop</category><category>linux</category><category>remote</category><category>scripts</category></item><item><title>QNAP Snapshots</title><link>https://0ink.net/posts/2023/2023-02-01-qsnap.html</link><description>&lt;p&gt;I wrote a small tool to access QNAP snapshots from the Linux command line.&lt;/p&gt;
 &lt;p&gt;Pre-requistes:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Snapshots have to be enabled&lt;/li&gt;
