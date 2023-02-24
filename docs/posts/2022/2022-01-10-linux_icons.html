@@ -6,7 +6,7 @@
 	<meta name="author" content="Alejandro Liu">
 
 
-	<meta name="description" content="A quick note on how to add icons to menus in a Linux desktop. Create the icon image in: /usr/share/pixmaps. png and svg (and maybe others) are supported. 24x24 seems to be a good size for menus. You need to create a .desktop file in /usr/share/applications …">
+	<meta name="description" content="A quick note on how to add icons to menus in a Linux desktop. Create the icon image in: /usr/share/pixmaps. - png and svg (and maybe others) are supported. - 24x24 seems to be a good size for menus. You need to create a .desktop file in /usr/share/applications …">
 	<meta name="int-title" content="Linux Icons">
 	<meta name="tags" content="desktop, linux">
 	<meta name="date" content="2022-01-10 00:00:00+01:00">
@@ -65,32 +65,22 @@
 <p class="tags">tagged <a href="/tag/desktop.html">desktop</a>, <a href="/tag/linux.html">linux</a></p></div>
 		<p>A quick note on how to add icons to menus in a Linux desktop.</p>
 <ol>
-<li>Create the icon image in: <code>/usr/share/pixmaps</code>.<ul>
-<li>png and svg (and maybe others) are supported.</li>
-<li>24x24 seems to be a good size for menus.</li>
-</ul>
-</li>
-<li>You need to create a <code>.desktop</code> file in <code>/usr/share/applications</code>.<ul>
-<li><a href="https://specifications.freedesktop.org/menu-spec/latest/index.html">Desktop menu specification</a></li>
-<li><a href="https://specifications.freedesktop.org/menu-spec/latest/apa.html">Registered categories</a></li>
-</ul>
-</li>
+<li>Create the icon image in: <code>/usr/share/pixmaps</code>.
+    - png and svg (and maybe others) are supported.
+    - 24x24 seems to be a good size for menus.</li>
+<li>You need to create a <code>.desktop</code> file in <code>/usr/share/applications</code>.
+    - <a href="https://specifications.freedesktop.org/menu-spec/latest/index.html">Desktop menu specification</a>
+    - <a href="https://specifications.freedesktop.org/menu-spec/latest/apa.html">Registered categories</a></li>
 </ol>
 <p>User desktop files:</p>
 <ul>
-<li>These are located in:<ul>
-<li><code>$HOME/.local/share/applications</code></li>
-</ul>
-</li>
-<li>Icons can be found here:<ul>
-<li><code>$HOME/.local/icons</code></li>
-<li><strong>I am not sure about this one</strong></li>
-</ul>
-</li>
-<li>Autostart files:<ul>
-<li><code>$HOME/.config/autostart</code>.</li>
-</ul>
-</li>
+<li>These are located in:
+    - <code>$HOME/.local/share/applications</code></li>
+<li>Icons can be found here:
+    - <code>$HOME/.local/icons</code>
+    - <strong>I am not sure about this one</strong></li>
+<li>Autostart files:
+    - <code>$HOME/.config/autostart</code>.</li>
 </ul>
 <p>See also: <a href="https://wiki.archlinux.org/title/desktop_entries">archlinux wiki</a></p>
 <p>There is a command line utility:</p>

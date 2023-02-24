@@ -112,11 +112,9 @@ echo dockremap:100000:65535 | tee /etc/subgid
 <h3 id="useful-options-for-docker">Useful options for docker</h3>
 <ul>
 <li><code>docker run -d</code> : Run as a daemon (runs in the background).</li>
-<li>NFS mounting (pre 17.06)<ul>
-<li><code>you@host &gt; mount server:/dir /path/to/mount/point</code></li>
-<li><code>you@host &gt; docker run -v /path/to/mount/point:/path/to/mount/point</code></li>
-</ul>
-</li>
+<li>NFS mounting (pre 17.06)
+    - <code>you@host &gt; mount server:/dir /path/to/mount/point</code>
+    - <code>you@host &gt; docker run -v /path/to/mount/point:/path/to/mount/point</code></li>
 <li><code>docker run -p 4000:80</code> : Forward port 4000 to 80.
    So host listens on port 4000 and everything is forwarded to port 80 on the container.</li>
 </ul>
@@ -135,10 +133,8 @@ options in:</p>
 <li><code>docker run -i -t [--name guest] image_name /bin/bash|/bin/sh</code></li>
 <li>... make changes to it ...</li>
 <li><code>docker stop name|container_id</code></li>
-<li>`docker commit -m 'change name' -a 'A N Other' container_id image_name<ul>
-<li>container id: <code>$(docker ps -l -q)</code></li>
-</ul>
-</li>
+<li><code>docker commit -m 'change name' -a 'A N Other' container_id image_name
+    - container id:</code>$(docker ps -l -q)`</li>
 <li><code>docker rm guest|container_id</code></li>
 </ul>
 <h3 id="better-way-to-create-container-images">Better way to create container images:</h3>

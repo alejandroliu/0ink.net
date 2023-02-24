@@ -305,10 +305,14 @@ mkdir<span class="w"> </span>/boot/EFI/BOOT
 
 <p>For my hardware I had to add the option:</p>
 <ul>
-<li><code>intel_iommu=igfx_off</code></li>
+<li><code>intel_iommu=igfx_off</code><ul>
 <li>To work around some strange bug.</li>
-<li><code>i915.enable_ips=0</code></li>
+</ul>
+</li>
+<li><code>i915.enable_ips=0</code><ul>
 <li>fixes a power saving mode problem on 4.1-rc6+</li>
+</ul>
+</li>
 </ul>
 <p>Create the following script as <code>/boot/mkmenu.sh</code></p>
 <script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/mkmenu.sh"></script>
@@ -461,13 +465,17 @@ will spam the logs with error messages.  To correct use this command:</p>
 <h4 id="xen-tweaks">xen tweaks</h4>
 <p>For xen we need to make some adjustments...</p>
 <ol>
-<li>Tweak block device references.</li>
+<li>Tweak block device references.<ul>
 <li><code>/etc/fstab</code> : mount xvda and other devices</li>
 <li><code>/boot/cmdline</code> : get the right xvda root device</li>
-<li>Enable disable services</li>
+</ul>
+</li>
+<li>Enable disable services<ul>
 <li>Disable: <code>slim</code>, <code>agetty-ttyX</code></li>
 <li>Enable: <code>agetty-hvc0</code></li>
 <li>Decide if you want to use <code>NetworkManager</code> or <code>dhcpcd</code>.</li>
+</ul>
+</li>
 </ol>
 <p>Normally, I would create a tarball image to transfer over, in order
 for the image to work properly you need to save <code>capabilities</code>.</p>

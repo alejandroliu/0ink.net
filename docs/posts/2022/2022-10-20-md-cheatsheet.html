@@ -145,16 +145,22 @@ Strikethrough uses two tildes. <span class="gd">~~Scratch this.~~</span>
 <hr>
 <ol>
 <li>First ordered list item</li>
-<li>Another item</li>
+<li>Another item<ul>
 <li>Unordered sub-list.</li>
-<li>Actual numbers don't matter, just that it's a number</li>
+</ul>
+</li>
+<li>Actual numbers don't matter, just that it's a number<ol>
 <li>Ordered sub-list</li>
-<li>And another item.</li>
 </ol>
+</li>
+<li>
+<p>And another item.</p>
 <p>You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we'll use three here to also align the raw Markdown).</p>
 <p>To have a line break without a paragraph, you will need to use two trailing spaces.
-   Note that this line is separate, but within the same paragraph.
-   (This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)</p>
+ Note that this line is separate, but within the same paragraph.
+ (This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)</p>
+</li>
+</ol>
 <ul>
 <li>Unordered list can use asterisks</li>
 <li>Or minuses</li>

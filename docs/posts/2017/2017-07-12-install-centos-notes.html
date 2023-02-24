@@ -113,12 +113,10 @@ travis settings builds_only_with_travis_yml -t
   -module: centos/alpine
       -module: proot</p>
 <ul>
-<li>
-<p><a href="https://docs.travis-ci.com/user/customizing-the-build/">travis ci custom build</a></p>
-</li>
-<li>
-<p>install: install any dependencies required</p>
-</li>
+<li><a href="https://docs.travis-ci.com/user/customizing-the-build/">travis ci custom build</a></li>
+</ul>
+<ul>
+<li>install: install any dependencies required</li>
 <li>script: run the build script</li>
 </ul>
 <h2 id="nameing-conventions">Nameing conventions</h2>
@@ -126,12 +124,14 @@ travis settings builds_only_with_travis_yml -t
 <ul>
 <li>tmc7r1 : centos 7 template</li>
 <li>tmwin7r1 : not using these, I think it is better to do fresh install...</li>
-<li>tmal3r1 :  alpine linux template. </li>
+<li>tmal3r1 :  alpine linux template. <ul>
 <li>after boot:<ol>
 <li>mount xvda1 on /media/xvda1 and run setup-alpine</li>
 <li>modify /etc/inittab /etc/securetty to allow ttyS0 (console) login</li>
 <li>may need to switch cdrom as needed.</li>
 </ol>
+</li>
+</ul>
 </li>
 </ul>
 <p>Sample vm names:</p>

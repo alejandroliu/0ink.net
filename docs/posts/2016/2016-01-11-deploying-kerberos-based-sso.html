@@ -87,33 +87,23 @@ FireFox.</p>
 
 <h3 id="configuring-apache">Configuring Apache</h3>
 <ol>
-<li>Install any necessary modules on the server:<ul>
-<li><code>yum install mod_auth_kerb</code></li>
-</ul>
-</li>
-<li>Create a service principal for the web server (this needs to be done on the KDC.<ul>
-<li><code>kadmin.local -q "addprinc -randkey HTTP/www.example.com</code></li>
-</ul>
-</li>
-<li>Export the encpryption keys to a keytab:<ul>
-<li><code>kadmin.local -q "ktadd -k /tmp/http.keytab HTTP/www.example.com</code></li>
-</ul>
-</li>
+<li>Install any necessary modules on the server:
+    *   <code>yum install mod_auth_kerb</code></li>
+<li>Create a service principal for the web server (this needs to be done on the KDC.
+    *   <code>kadmin.local -q "addprinc -randkey HTTP/www.example.com</code></li>
+<li>Export the encpryption keys to a keytab:
+    *   <code>kadmin.local -q "ktadd -k /tmp/http.keytab HTTP/www.example.com</code></li>
 <li>Copy <code>/tmp/http.keytab</code> to the webserver at <code>/etc/httpd/http.keytab</code>.</li>
-<li>Set ownership and permissions:<ul>
-<li><code>chmod 600 /etc/httpd/http.keytab</code></li>
-<li><code>chown apache /etc/httpd/http.keytab</code></li>
-</ul>
-</li>
-<li>Enable authentication, configure this:<ul>
-<li><code>AuthType Kerberos</code></li>
-<li><code>AuthName "Acme Corporation"</code></li>
-<li><code>KrbMethodNegotiate on</code></li>
-<li><code>KrbMethodK5Passwd off</code></li>
-<li><code>Krb5Keytab /etc/httpd/http.keytab</code></li>
-<li><code>require valid-user</code></li>
-</ul>
-</li>
+<li>Set ownership and permissions:
+    *   <code>chmod 600 /etc/httpd/http.keytab</code>
+    *   <code>chown apache /etc/httpd/http.keytab</code></li>
+<li>Enable authentication, configure this:
+    *   <code>AuthType Kerberos</code>
+    *   <code>AuthName "Acme Corporation"</code>
+    *   <code>KrbMethodNegotiate on</code>
+    *   <code>KrbMethodK5Passwd off</code>
+    *   <code>Krb5Keytab /etc/httpd/http.keytab</code>
+    *   <code>require valid-user</code></li>
 <li>Re-start apache</li>
 </ol>
 <h3 id="configure-firefox">Configure FireFox</h3>
@@ -121,48 +111,34 @@ FireFox.</p>
 <li>Navigate to <code>about:config</code></li>
 <li>Search for: <code>negotiate-auth</code></li>
 <li>Double click on <code>network.negotiate-auth.trusted-uris</code>.</li>
-<li>Enter hostname's, URL prefixes, etc, separated by commas. Examples:<ul>
-<li>www.example.com</li>
-<li>http://www.example.com/</li>
-<li>.example.com</li>
-</ul>
-</li>
+<li>Enter hostname's, URL prefixes, etc, separated by commas. Examples:
+    *   www.example.com
+    *   http://www.example.com/
+    *   .example.com</li>
 </ol>
 <p>It is possible to configure this setting for all users by creating a global config file:</p>
 <ol>
-<li>Find configuration directory:<ul>
-<li><code>rpm -q firefox -l | grep preferences</code></li>
-</ul>
-</li>
+<li>Find configuration directory:
+    *   <code>rpm -q firefox -l | grep preferences</code></li>
 <li>Create a javascript file in that directory. (by convention, <code>autoconfig.js</code>; other file names will work, but for best results it should be early in the alphabet.)</li>
-<li>Add the following line:<ul>
-<li><code>pref("network.negotiate-auth.trusted-uris",".example.com");</code></li>
-</ul>
-</li>
+<li>Add the following line:
+    *   <code>pref("network.negotiate-auth.trusted-uris",".example.com");</code></li>
 </ol>
 <h3 id="configure-openssh-server">Configure OpenSSH server</h3>
 <ol>
-<li>Create a service principal for the host (this needs to be done on the KDC.<ul>
-<li><code>kadmin.local -q "addprinc -randkey host/shell.example.com</code></li>
-</ul>
-</li>
-<li>Export the encpryption keys to a keytab:<ul>
-<li><code>kadmin.local -q "ktadd -k /tmp/krb5.keytab host/shell.example.com</code></li>
-</ul>
-</li>
+<li>Create a service principal for the host (this needs to be done on the KDC.
+    *   <code>kadmin.local -q "addprinc -randkey host/shell.example.com</code></li>
+<li>Export the encpryption keys to a keytab:
+    *   <code>kadmin.local -q "ktadd -k /tmp/krb5.keytab host/shell.example.com</code></li>
 <li>Copy <code>/tmp/krb5.keytab</code> to the host at: <code>/etc/krb5.keytab</code>.</li>
-<li>Set ownership and permissions:<ul>
-<li><code>chmod 600 /etc/krb5.keytab</code></li>
-<li><code>chown root /etc/krb5.keytab</code></li>
-</ul>
-</li>
-<li>Enable authentication, change these settings in <code>/etc/ssh/sshd_config</code>:<ul>
-<li><code>KerberosAuthentication yes</code></li>
-<li><code>GSSAPIAuthentication yes</code></li>
-<li><code>GSSAPICleanupCredentials yes</code></li>
-<li><code>UsePAM no</code> <em># This is not supported by RHEL7 and should be left as <code>yes</code></em></li>
-</ul>
-</li>
+<li>Set ownership and permissions:
+    *   <code>chmod 600 /etc/krb5.keytab</code>
+    *   <code>chown root /etc/krb5.keytab</code></li>
+<li>Enable authentication, change these settings in <code>/etc/ssh/sshd_config</code>:
+    *   <code>KerberosAuthentication yes</code>
+    *   <code>GSSAPIAuthentication yes</code>
+    *   <code>GSSAPICleanupCredentials yes</code>
+    *   <code>UsePAM no</code> <em># This is not supported by RHEL7 and should be left as <code>yes</code></em></li>
 <li>Restart <code>sshd</code>.</li>
 </ol>
 <h3 id="configure-openssh-clients">Configure OpenSSH clients</h3>

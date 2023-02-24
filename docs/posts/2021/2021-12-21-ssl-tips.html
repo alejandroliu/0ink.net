@@ -84,33 +84,51 @@
 first and then create the <code>certificate</code>.</p>
 <h2 id="checking-and-verifying-certificates">Checking and verifying certificates</h2>
 <ul>
-<li>Check certificate</li>
+<li>Check certificate<ul>
 <li><code>openssl x509 -in server.crt -text -noout</code></li>
-<li>Check SSL key and verify consistency</li>
+</ul>
+</li>
+<li>Check SSL key and verify consistency<ul>
 <li><code>openssl rsa -in server.key -check</code></li>
-<li>Check CSR and print CSR data</li>
+</ul>
+</li>
+<li>Check CSR and print CSR data<ul>
 <li><code>openssl req -text -noout -verify -in server.csr</code></li>
-<li>Verify that certificate and key matches:</li>
+</ul>
+</li>
+<li>Verify that certificate and key matches:<ul>
 <li><code>openssl x509 -noout -modulus -in server.crt| openssl md5</code></li>
 <li><code>openssl rsa -noout -modulus -in server.key| openssl md5</code></li>
-<li>Check SSL Certificate expiration date</li>
+</ul>
+</li>
+<li>Check SSL Certificate expiration date<ul>
 <li><code>openssl x509 -dates -noout -in hydssl.cer</code></li>
+</ul>
+</li>
 </ul>
 <h2 id="check-ssl-connection">Check SSL connection</h2>
 <ul>
-<li>Tests connectivity to an HTTPS service:</li>
+<li>Tests connectivity to an HTTPS service:<ul>
 <li><code>openssl s_client -connect &lt;hostname&gt;:443</code></li>
+</ul>
+</li>
 <li>Prints all certificates in the certificate chain presented by the
   SSL service. Useful when troubleshooting missing intermediate CA
-  certificate issues.</li>
+  certificate issues.<ul>
 <li><code>openssl s_client -connect &lt;hostname&gt;:&lt;port&gt; -showcerts</code></li>
-<li>Forces TLSv1 and DTLSv1.</li>
+</ul>
+</li>
+<li>Forces TLSv1 and DTLSv1.<ul>
 <li><code>openssl s_client -connect &lt;hostname&gt;:&lt;port&gt; -tls1</code></li>
 <li><code>openssl s_client -connect &lt;hostname&gt;:&lt;port&gt; -dtls1</code></li>
+</ul>
+</li>
 <li>Forces a specific cipher. This option is useful in testing enabled
   SSL ciphers. Use the <code>openssl ciphers</code> command to see a list of
-  available ciphers for OpenSSL.</li>
+  available ciphers for OpenSSL.<ul>
 <li><code>openssl s_client -connect &lt;hostname&gt;:&lt;port&gt; -cipher DHE-RSA-AES256-SHA</code></li>
+</ul>
+</li>
 </ul>
 <p>For troubleshooting connection and SSL handshake problems, see the
 following:</p>
@@ -130,18 +148,30 @@ or not with the following command.</p>
 
 <h2 id="check-ssl-certificates-on-a-remote-server">Check SSL certificates on a remote server:</h2>
 <ul>
-<li>Check who has issued the SSL certificate:</li>
+<li>Check who has issued the SSL certificate:<ul>
 <li><code>echo | openssl s_client -servername howtouselinux.com -connect howtouselinux.com:443 2&gt;/dev/null | openssl x509 -noout -issuer</code></li>
-<li>Check whom the SSL certificate is issued to:</li>
+</ul>
+</li>
+<li>Check whom the SSL certificate is issued to:<ul>
 <li><code>echo | openssl s_client -servername howtouselinux.com -connect howtouselinux.com:443 2&gt;/dev/null | openssl x509 -noout -subject</code></li>
-<li>Check for what dates the SSL certificate is valid:</li>
+</ul>
+</li>
+<li>Check for what dates the SSL certificate is valid:<ul>
 <li><code>echo | openssl s_client -servername howtouselinux.com -connect howtouselinux.com:443 2&gt;/dev/null | openssl x509 -noout -dates</code></li>
-<li>Show the SHA1 fingerprint of the SSL certificate:</li>
+</ul>
+</li>
+<li>Show the SHA1 fingerprint of the SSL certificate:<ul>
 <li><code>echo | openssl s_client -servername www.howtouselinux.com -connect www.howtouselinux.com:443 2&gt;/dev/null | openssl x509 -noout -fingerprint</code></li>
-<li>Extract all information from the SSL certificate (decoded)</li>
+</ul>
+</li>
+<li>Extract all information from the SSL certificate (decoded)<ul>
 <li><code>echo | openssl s_client -servername www.howtouselinux.com -connect www.howtouselinux.com:443 2&gt;/dev/null | openssl x509 -noout -text</code></li>
-<li>Show the SSL certificate itself (encoded):</li>
+</ul>
+</li>
+<li>Show the SSL certificate itself (encoded):<ul>
 <li><code>echo | openssl s_client -servername howtouselinux.com -connect howtouselinux.com:443 2&gt;/dev/null | openssl x509</code></li>
+</ul>
+</li>
 </ul>
 <h2 id="becoming-your-own-ca">Becoming your own <code>CA</code></h2>
 <p>The easiest way is to use <a href="https://github.com/FiloSottile/mkcert">mkcert</a>.  <a href="https://github.com/FiloSottile/mkcert">mkcert</a> is a

@@ -71,27 +71,23 @@
 </ul>
 <h3 id="examples">Examples:</h3>
 <ul>
-<li>
-<p>Find everything in your home directory modified in the last 24 hours: <code>$ find $HOME -mtime 0</code></p>
-</li>
-<li>
-<p>Find everything in your home directory modified in the last 7 days: <code>$ find $HOME -mtime -7</code></p>
-</li>
-<li>
-<p>Find everything in your home directory that have <strong>NOT</strong> been modified in the last year: <code>$ find $HOME -mtime +365</code></p>
-</li>
-<li>
-<p>To find html files that have been modified in the last seven days, I can use -mtime with the argument -7 (include the hyphen): <code>$ find . -mtime -7 -name "*.html" -print</code></p>
-</li>
+<li>Find everything in your home directory modified in the last 24 hours: <code>$ find $HOME -mtime 0</code></li>
+</ul>
+<ul>
+<li>Find everything in your home directory modified in the last 7 days: <code>$ find $HOME -mtime -7</code></li>
+</ul>
+<ul>
+<li>Find everything in your home directory that have <strong>NOT</strong> been modified in the last year: <code>$ find $HOME -mtime +365</code></li>
+</ul>
+<ul>
+<li>To find html files that have been modified in the last seven days, I can use -mtime with the argument -7 (include the hyphen): <code>$ find . -mtime -7 -name "*.html" -print</code></li>
 </ul>
 <p>If you use the number <code>7</code> (without a hyphen), find will match only html files that were modified exactly seven days ago:</p>
 <div class="highlight"><pre><span></span><code> `$ find . -mtime 7 -name &quot;*.html&quot; -print`
 </code></pre></div>
 
 <ul>
-<li>
-<p>To find those html files that I haven't touched for at least 7 days, I use <code>+7</code>:</p>
-<p><code>$ find . -mtime +7 -name "*.html" -print</code></p>
+<li>To find those html files that I haven't touched for at least 7 days, I use <code>+7</code>:<p><code>$ find . -mtime +7 -name "*.html" -print</code></p>
 </li>
 </ul>
 

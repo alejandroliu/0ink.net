@@ -110,12 +110,14 @@ ssh to account and tar x data...</p>
 <h2 id="wordpress">WordPress</h2>
 <p>Standard Customizations:</p>
 <ol>
-<li>Appearance</li>
+<li>Appearance<ul>
 <li>Set theme</li>
 <li>Site Identity</li>
 <li>Header &amp; Background iamge</li>
 <li>Menus: Set-up top bar?</li>
-<li>Settings</li>
+</ul>
+</li>
+<li>Settings<ul>
 <li>General Settings<ol>
 <li>Membership: Not anyone can register</li>
 <li>Timezone UTC</li>
@@ -135,20 +137,32 @@ ssh to account and tar x data...</p>
 <li>Month and name</li>
 </ol>
 </li>
+</ul>
+</li>
 </ol>
 <p>Plugins</p>
 <ul>
-<li>Front Page Category</li>
+<li>Front Page Category<ul>
 <li>Customizer, Front Page Categories, select what to show</li>
-<li>Collapsing category list</li>
+</ul>
+</li>
+<li>Collapsing category list<ul>
 <li>Customizer, Widgets, Categories, customize...</li>
-<li>bbPress</li>
+</ul>
+</li>
+<li>bbPress<ul>
 <li>NO anonymous posting</li>
-<li>WP Social Login</li>
+</ul>
+</li>
+<li>WP Social Login<ul>
 <li>Bouncer</li>
 <li>Allow Username change</li>
-<li>Rich Revies</li>
+</ul>
+</li>
+<li>Rich Revies<ul>
 <li>Integrate user accounts</li>
+</ul>
+</li>
 </ul>
 <h2 id="openshift-recipe">OpenShift Recipe</h2>
 <p>The official deploy tool <a href="https://github.com/travis-ci/dpl">dpl</a> does not 
@@ -156,13 +170,17 @@ seem to work with secondary branches.</p>
 <h3 id="pre-requisistes">Pre-requisistes</h3>
 <ol>
 <li>Install git</li>
-<li>Install RHC command line</li>
+<li>Install RHC command line<ul>
 <li>yum install epel-release</li>
 <li>yum install rubygem-rhc</li>
-<li>Install Travis command line</li>
+</ul>
+</li>
+<li>Install Travis command line<ul>
 <li>yum install epel-release</li>
 <li>yum install ruby-devel rubygem-ffi (maybe others)</li>
 <li>gem install travis -v 1.8.2 --no-rdoc --no-ri</li>
+</ul>
+</li>
 <li>A github, travis-ci and opens</li>
 </ol>
 <h3 id="preparing-repo">Preparing Repo</h3>
@@ -170,7 +188,7 @@ seem to work with secondary branches.</p>
 <ol>
 <li>Fork <a href="https://github.com/openshift/wordpress-example.git">wordpress-example</a></li>
 <li>Create any additional branches as needed.</li>
-<li>Configure travis-ci by creating a basic <code>.travis.yml</code></li>
+<li>Configure travis-ci by creating a basic <code>.travis.yml</code><ul>
 <li>language: php</li>
 <li>php:</li>
 <li>
@@ -179,16 +197,16 @@ seem to work with secondary branches.</p>
 </ul>
 </li>
 <li>script: true</li>
+</ul>
+</li>
 <li>Since <code>travis setup openshift</code> doesn't work, we need to use the DIY
-   deploy script.  So make a copy of it.  And configure:</li>
+   deploy script.  So make a copy of it.  And configure:<ul>
 <li>env:</li>
 <li>_ global:</li>
 <li>__ OPENSHIFT_USER=$username</li>
 <li>__ OPENSHIFT_SECRET=$secret<ol>
-<li>Obviously the secret should be encrypted using:<ul>
-<li>travis encrypt OPENSHIFT_SECRET=$secret [--add env.global]</li>
-</ul>
-</li>
+<li>Obviously the secret should be encrypted using:
+    - travis encrypt OPENSHIFT_SECRET=$secret [--add env.global]</li>
 </ol>
 </li>
 <li>script:</li>
@@ -203,31 +221,41 @@ seem to work with secondary branches.</p>
 <li>deploy $branch:$openshift_app ... initially empty...</li>
 </ul>
 </li>
+</ul>
+</li>
 </ol>
 <h3 id="deploying-repo-to-openshift-app">Deploying Repo to OpenShift App</h3>
 <ol>
 <li>Create a new Application from the Openshift
-   <a href="https://www.openshift.com/">console</a>.</li>
+   <a href="https://www.openshift.com/">console</a>.<ul>
 <li>Use (WordPress 4)</li>
 <li>Just leave initial repo to the default</li>
 <li>Decide on scaling options.</li>
 <li>DO NOT GO THROUGH SITE INSTALL YET!</li>
+</ul>
+</li>
 <li>Add the $branch:$openshift_app to the <code>.travis.yml</code>, and push so
    travis-ci will deploy.</li>
-<li>Tweak configuration:</li>
+<li>Tweak configuration:<ul>
 <li>force https through .htaccess.</li>
 <li>Enable MULTISITE (if needed)</li>
-<li>Enable custom domain</li>
+</ul>
+</li>
+<li>Enable custom domain<ul>
 <li>Create Domain Name (on DNS) and add custom domain in OpenShift</li>
 <li>Add Certificate to OpenShift (self-signed or maybe CloudFlare)<ul>
 <li>openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 3650 -nodes</li>
 </ul>
 </li>
 <li>Wait for DNS to propagate</li>
-<li>Log-on to the site and go through installation.</li>
+</ul>
+</li>
+<li>Log-on to the site and go through installation.<ul>
 <li>Verify that URLs use https:<ul>
 <li>Dashboard -&gt; Settings -&gt; General</li>
 <li>Verify in Permalinks that https is used.</li>
+</ul>
+</li>
 </ul>
 </li>
 </ol>

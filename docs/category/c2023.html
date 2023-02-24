@@ -49,6 +49,24 @@
 
 <article class="summary">
 <div class="metadata">
+  <time datetime="2023-02-20T00:00:00+01:00" pubdate>Mon 20 February 2023</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2023-01-11 15:52:49+01:00</p>
+  in <a href="/category/c2023.html">2023</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2023/2023-02-20-wallpanel.html" rel="bookmark" title="Permalink to Home Assistant Wall Panel">Home Assistant Wall Panel</a>
+    </h2>
+    <p><p>For a while I was using <a href="https://github.com/HyperTechnology5/TabletClock">TabletClock</a> with old tablets.  But 
+this has not been updated in a while.  I was thinking of writing my
+own version until I found <a href="https://github.com/thecowan/wallpanel-android">WallPanel</a>.</p>
+<p>Essentially it is purposely built web-browser with special features which makes it
+possible to use it to replaces <a href="https://github.com/HyperTechnology5/TabletClock">TabletClock …</a></p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
   <time datetime="2023-02-10T00:00:00+01:00" pubdate>Fri 10 February 2023</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
@@ -85,10 +103,10 @@ usually well enough.  The features that I like are:</p>
 <p>Pre-requistes:</p>
 <ul>
 <li>Snapshots have to be enabled</li>
-<li>You need a <code>/share/netcfg</code> containing the file:</li>
+<li>You need a <code>/share/netcfg</code> containing the file:<ul>
 <li>In my case, I set this share as <code>read-only</code> with <code>root-squash</code>.</li>
 <li>`admin.yaml' : contains the private/public keys and the configuration
-    of …</li></ul></p>
+  of …</li></ul></li></ul></p>
   </div>
 </article><article class="summary">
 <div class="metadata">
@@ -104,15 +122,21 @@ usually well enough.  The features that I like are:</p>
     </h2>
     <p><p>This is a quick recipe to run Docker on void:</p>
 <ul>
-<li>Make sure your system is up-to-date:</li>
+<li>Make sure your system is up-to-date:<ul>
 <li><code>sudo xbps-install -Syu</code></li>
-<li>Install docker executables:</li>
+</ul>
+</li>
+<li>Install docker executables:<ul>
 <li><code>sudo xbps-install -S docker</code></li>
-<li>Check if docker was installed properly:</li>
+</ul>
+</li>
+<li>Check if docker was installed properly:<ul>
 <li><code>docker --version</code></li>
-<li>Enable services:</li>
+</ul>
+</li>
+<li>Enable services:<ul>
 <li><code>sudo ln -s /etc/sv/containerd /var/service</code></li>
-<li><code>sudo ln -s /etc/sv/docker …</code></li></ul></p>
+<li><code>sudo ln -s /etc/sv/docker …</code></li></ul></li></ul></p>
   </div>
 </article><article class="summary">
 <div class="metadata">

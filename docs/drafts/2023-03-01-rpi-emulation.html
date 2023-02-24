@@ -70,13 +70,15 @@ Raspberry Pi set-ups using <a href="https://www.qemu.org/">qemu</a> for emulatin
 <li>Raspberry Pi Zero and 1A+ (armhf)</li>
 <li>Raspberry Pi 2B (armv7)</li>
 <li>Raspberry Pi 3A+ (aarch64)</li>
-<li>Raspberry Pi 3B (aarch64)</li>
+<li>Raspberry Pi 3B (aarch64)<ul>
 <li>This is the version I am targetting in this article.  I already recycled all
-    my older boards.</li>
+  my older boards.</li>
 <li>Actually I tried emulating the other configurations but they did not work.
-    Either they failed to boot, or the graphic display wouldn't work.</li>
+  Either they failed to boot, or the graphic display wouldn't work.</li>
 <li>So <code>raspi3b</code> with 64-bit run-time is the only configuration I was able
-    to succesfully boot.</li>
+  to succesfully boot.</li>
+</ul>
+</li>
 <li><strong>NOTE that Raspberry Pi 4 is not supported at the moment.</strong></li>
 </ul>
 <p>So, unfortunately the state of things is far from perfect.</p>
@@ -140,8 +142,10 @@ boot further than that.</p>
   Linux related boot configuration.  You must provide a kernel and optional initrd
   files.  Usually you would extract them from your <code>sdcard</code> image.  The append
   is used for the kernel command line.  If you want a serial console make sure
-  you include:</li>
+  you include:<ul>
 <li><code>console=ttyAMA0,115200</code></li>
+</ul>
+</li>
 <li><code>sd $sd_image</code> : Image for the <code>sdcard</code> storage</li>
 <li><code>-usb</code> : Enable USB bus.  Needed for the emulated console mouse/keyboard and usb
   network.</li>

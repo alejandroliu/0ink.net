@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>Python Development 2023 - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="[toc] Python development on Windows For windows, you can use WinPython. I prefer to use this instead of the official distribution because: It is a portable distro. You can choose for a batteries included, or just the dot release which only contains Python and Pip. This way I can have …">
+	<meta name="int-title" content="Python Development 2023">
+	<meta name="tags" content="android, directory, python, scripts, windows">
+	<meta name="date" content="2023-03-20 00:00:00+01:00">
+	<meta name="modified" content="2023-02-24 12:46:48+01:00">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+    <link href="/feeds/atom.xml" type="application/atom+xml" rel="alternate" title="0ink.net Atom Feed" />
+    <link href="/feeds/rss.xml" type="application/rss+xml" rel="alternate" title="0ink.net RSS Feed" />
+</head>
+
+<body>
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	        <a href="/feeds/atom.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="atom feed" title="atom feed"/></a>
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>Python Development 2023</h1>
+
+<div class="metadata">
+  <time datetime="2023-03-20T00:00:00+01:00" pubdate>Mon 20 March 2023</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2023-02-24 12:46:48+01:00</p>
+  in <a href="/category/c2023.html">2023</a>
+<p class="tags">tagged <a href="/tag/android.html">android</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/python.html">python</a>, <a href="/tag/scripts.html">scripts</a>, <a href="/tag/windows.html">windows</a></p></div>
+		<p>[toc]</p>
+<hr>
+<h2 id="python-development-on-windows">Python development on Windows</h2>
+<p>For windows, you can use <a href="https://winpython.github.io/">WinPython</a>.
+I prefer to use this instead of the official distribution because:</p>
+<ol>
+<li>It is a portable distro.</li>
+<li>You can choose for a batteries included, or just the <code>dot</code> release
+   which only contains Python and Pip.</li>
+</ol>
+<p>This way I can have multiple versions available.  This is particularly
+useful for me because of my <a href="https://open-telekom-cloud.com" title="Open Telekom Cloud">OTC</a> development which uses
+<a href="https://wiki.openstack.org/wiki/SDKs">OpenStack SDK</a>.  In my Windows system, I was only able
+to make it work with Python v3.8.10 (due to some ancient dependancies).
+Because I usually don't have a compiler, I can only use binary distros
+and I am unable to find it for a newer Python version.</p>
+<h2 id="distributing-python-scripts-as-single-exe-or-directory">Distributing Python scripts as single EXE or Directory</h2>
+<p>When distributing I had good results with <a href="https://pyinstaller.org/en/stable/">pyinstaller</a>.
+You can create a single folder or a single exe distribution.  The
+results work suprisingly well (if they work).  Some hints when using
+<a href="https://pyinstaller.org/en/stable/">pyinstaller</a>:</p>
+<ul>
+<li>Cross packaging is not possible.  If you need a Windows package
+  you need to run it on Windows.</li>
+<li>Dependancies not always work correctly.  You may need to use
+  these options:<ul>
+<li><code>--hidden-import module</code></li>
+<li><code>--collect-data module</code></li>
+<li><code>--copy-metadata module</code></li>
+<li><code>--collect-all package</code></li>
+</ul>
+</li>
+<li>In some cases, you may need to force the inclusion of non-python
+  files.  Use:<ul>
+<li><code>set sitedir=%WINPYDIR%\Lib\site-packages</code></li>
+<li>And in the command line:</li>
+<li><code>--add-data %sitedir%\path\to\data\file;path\to\data</code></li>
+<li>I use the <code>%sitedir%</code> variable to find things in the Python packages
+  directory.</li>
+</ul>
+</li>
+<li>It is best to create a batch file to issue the <code>pyinstaller</code> command.</li>
+<li>Because the command-line could become quite long, you can use the <code>^</code>
+  escape.  Example:
+  <code>pyinstaller %buildtype% ^
+    --hidden-import keystoneauth1 ^
+    --collect-data keystoneauth1 ^
+    --copy-metadata keystoneauth1 ^
+    --hidden-import os_service_types ^
+    --collect-data os_service_types ^
+    --copy-metadata os_service_types ^
+    --collect-all openstacksdk ^
+    --copy-metadata openstacksdk ^
+    --add-data %sitedir%\openstack\config\defaults.json;openstack\config ^
+    --hidden-import keystoneauth1.loading._plugins ^
+    --hidden-import keystoneauth1.loading._plugins.identity ^
+    --hidden-import keystoneauth1.loading._plugins.identity.generic ^
+  urotc.py</code></li>
+</ul>
+<h2 id="installing-netifaces-on-windows">Installing <code>netifaces</code> on Windows</h2>
+<p>NOTE: I tested this on Feb 2023.  See
+<a href="https://allones.de/2018/11/05/python-netifaces-installation-microsoft-visual-c-14-0-is-required/">Original article here</a></p>
+<p><code>netifaces</code> is a <a href="https://wiki.openstack.org/wiki/SDKs">OpenStack SDK</a> dependancy.  Under
+version 3.8.10 I am able to install using <code>--only-binary=netifaces</code> option.</p>
+<p>For newer versions it will fail with <code>Microsoft Visual C++ 14.0 is required</code>
+error message.</p>
+<div class="highlight"><pre><span></span><code><span class="n">C</span><span class="p">:</span>\<span class="n">RH</span><span class="o">&gt;</span><span class="n">pip</span> <span class="n">install</span> <span class="n">netifaces</span>
+<span class="n">Collecting</span> <span class="n">netifaces</span>
+  <span class="n">Downloading</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">files</span><span class="o">.</span><span class="n">pythonhosted</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">packages</span><span class="o">/</span><span class="mi">81</span><span class="o">/</span><span class="mi">39</span><span class="o">/</span><span class="mf">4e9</span><span class="n">a026265ba944ddf1fea176dbb29e0fe50c43717ba4fcf3646d099fe38</span><span class="o">/</span><span class="n">netifaces</span><span class="o">-</span><span class="mf">0.10.7</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">Installing</span> <span class="n">collected</span> <span class="n">packages</span><span class="p">:</span> <span class="n">netifaces</span>
+  <span class="n">Running</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span> <span class="k">for</span> <span class="n">netifaces</span> <span class="o">...</span> <span class="n">error</span>
+    <span class="n">Complete</span> <span class="n">output</span> <span class="kn">from</span> <span class="nn">command</span> <span class="n">c</span><span class="p">:</span>\<span class="n">users</span>\<span class="n">rh</span>\<span class="n">appdata</span>\<span class="n">local</span>\<span class="n">programs</span>\<span class="n">python</span>\<span class="n">python37</span>\<span class="n">python</span><span class="o">.</span><span class="n">exe</span> <span class="o">-</span><span class="n">u</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import setuptools, tokenize;__file__=&#39;C:</span><span class="se">\\</span><span class="s2">Users</span><span class="se">\\</span><span class="s2">RH</span><span class="se">\\</span><span class="s2">AppData</span><span class="se">\\</span><span class="s2">Local</span><span class="se">\\</span><span class="s2">Temp</span><span class="se">\\</span><span class="s2">pip-install-wbfanly3</span><span class="se">\\</span><span class="s2">netifaces</span><span class="se">\\</span><span class="s2">setup.py&#39;;f=getattr(tokenize, &#39;open&#39;, open)(__file__);code=f.read().replace(&#39;</span><span class="se">\r\n</span><span class="s2">&#39;, &#39;</span><span class="se">\n</span><span class="s2">&#39;);f.close();exec(compile(code, __file__, &#39;exec&#39;))&quot;</span> <span class="n">install</span> <span class="o">--</span><span class="n">record</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">RONALD</span><span class="o">~</span><span class="mf">1.</span><span class="n">HEI</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Temp</span>\<span class="n">pip</span><span class="o">-</span><span class="n">record</span><span class="o">-</span><span class="n">m26yfbyt</span>\<span class="n">install</span><span class="o">-</span><span class="n">record</span><span class="o">.</span><span class="n">txt</span> <span class="o">--</span><span class="n">single</span><span class="o">-</span><span class="n">version</span><span class="o">-</span><span class="n">externally</span><span class="o">-</span><span class="n">managed</span> <span class="o">--</span><span class="nb">compile</span><span class="p">:</span>
+    <span class="n">running</span> <span class="n">install</span>
+    <span class="n">running</span> <span class="n">build</span>
+    <span class="n">running</span> <span class="n">build_ext</span>
+    <span class="n">building</span> <span class="s1">&#39;netifaces&#39;</span> <span class="n">extension</span>
+        <span class="n">error</span><span class="p">:</span> <span class="n">Microsoft</span> <span class="n">Visual</span> <span class="n">C</span><span class="o">++</span> <span class="mf">14.0</span> <span class="ow">is</span> <span class="n">required</span><span class="o">.</span> <span class="n">Get</span> <span class="n">it</span> <span class="k">with</span> <span class="s2">&quot;Microsoft Visual C++ Build Tools&quot;</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">landinghub</span><span class="o">.</span><span class="n">visualstudio</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">visual</span><span class="o">-</span><span class="n">cpp</span><span class="o">-</span><span class="n">build</span><span class="o">-</span><span class="n">tools</span>
+</code></pre></div>
+
+<p>Since the suggested URL doesn't work.  You need to do the following:</p>
+<ol>
+<li>Go to the Microsoft-Repository
+   <a href="https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2017">Tools for Visual Studio 2017</a>
+   or use the direct link to
+   <a href="https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools&amp;rel=15">vs_buildtools.exe</a>.<ul>
+<li>... it’s about 1.2MB</li>
+</ul>
+</li>
+<li>run „vs_buildtools.exe“<ul>
+<li>it downloads ~ 70 MB</li>
+</ul>
+</li>
+<li>Select <code>Workloads =&gt; Windows =&gt; [x] Visual C++ Build Tools“ =&gt; [Install]</code><ul>
+<li>it downloads 1.12 GB</li>
+<li>and installs</li>
+</ul>
+</li>
+<li>Re-boot (I don't know if it is required, but I did it just in case)</li>
+</ol>
+<p>Now <code>netifaces</code> can get installed:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">C</span>:\<span class="nv">RH</span><span class="o">&gt;</span><span class="nv">pip</span><span class="w"> </span><span class="nv">install</span><span class="w"> </span><span class="nv">netifaces</span>
+<span class="nv">Collecting</span><span class="w"> </span><span class="nv">netifaces</span>
+<span class="w">  </span><span class="nv">Using</span><span class="w"> </span><span class="nv">cached</span><span class="w"> </span><span class="nv">https</span>:<span class="o">//</span><span class="nv">files</span>.<span class="nv">pythonhosted</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">packages</span><span class="o">/</span><span class="mi">81</span><span class="o">/</span><span class="mi">39</span><span class="o">/</span><span class="mi">4</span><span class="nv">e9a026265ba944ddf1fea176dbb29e0fe50c43717ba4fcf3646d099fe38</span><span class="o">/</span><span class="nv">netifaces</span><span class="o">-</span><span class="mi">0</span>.<span class="mi">10</span>.<span class="mi">7</span>.<span class="nv">tar</span>.<span class="nv">gz</span>
+<span class="nv">Installing</span><span class="w"> </span><span class="nv">collected</span><span class="w"> </span><span class="nv">packages</span>:<span class="w"> </span><span class="nv">netifaces</span>
+<span class="w">  </span><span class="nv">Running</span><span class="w"> </span><span class="nv">setup</span>.<span class="nv">py</span><span class="w"> </span><span class="nv">install</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">netifaces</span><span class="w"> </span>...<span class="w"> </span><span class="nv">done</span>
+<span class="nv">Successfully</span><span class="w"> </span><span class="nv">installed</span><span class="w"> </span><span class="nv">netifaces</span><span class="o">-</span><span class="mi">0</span>.<span class="mi">10</span>.<span class="mi">7</span>
+</code></pre></div>
+
+<h2 id="gui-programming">GUI programming</h2>
+<hr>
+<ul>
+<li>Web programming using PYthon3<ul>
+<li>https://brython.info/index.html</li>
+<li>https://www.transcrypt.org/home</li>
+<li>https://github.com/metapensiero/metapensiero.pj</li>
+<li>https://github.com/atsepkov/RapydScript</li>
+</ul>
+</li>
+<li>https://www.geeksforgeeks.org/how-to-run-javascript-from-python/<ul>
+<li>convert js to python</li>
+</ul>
+</li>
+<li>Sharepoint connection<ul>
+<li>https://qurios-it.de/2020/10/16/connecting-to-sharepoint-using-python/</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="gui-programming-in-python">GUI programming in Python</h2>
+<p><strong>The TLDR</strong>: PySimpleGUI because it is <em>simple</em>.  Or Kivy because is multi-platform (i.e. Android and IOS and Desktop).</p>
+<ul>
+<li><a href="https://docs.python-guide.org/scenarios/gui/">Hitchikers guide to Python GUI</a></li>
+<li><a href="https://towardsdatascience.com/top-10-python-gui-frameworks-for-developers-adca32fbe6fc">Top 10 frameworks</a></li>
+<li><a href="https://realpython.com/pysimplegui-python/">PySimpleGUI</a></li>
+<li><a href="https://www.geeksforgeeks.org/python3-gui-application-overview/">Python3 GUI overview</a></li>
+<li><a href="https://medium.com/@fareedkhandev/modern-gui-using-tkinter-12da0b983e22">Modern Tkinter</a></li>
+</ul>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li class="active"><a href="/category/c2023.html">2023</a></li>
+	              <li ><a href="/category/c2022.html">2022</a></li>
+	              <li ><a href="/category/c2021.html">2021</a></li>
+	              <li ><a href="/category/c2020.html">2020</a></li>
+	              <li ><a href="/category/c2019.html">2019</a></li>
+	              <li ><a href="/category/c2018.html">2018</a></li>
+	              <li ><a href="/category/c2017.html">2017</a></li>
+	              <li ><a href="/category/c2016.html">2016</a></li>
+	              <li ><a href="/category/c2015.html">2015</a></li>
+	              <li ><a href="/category/c2014.html">2014</a></li>
+	              <li ><a href="/category/c2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="/sitemap.html">sitemap</a></li>
+	                <li><a href="/tags.html">Tags</a></li>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://home.0ink.net/nanowiki/">Wiki</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2021-2022 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+		  <span class="feeds">
+		    <a href="/feeds/rss.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="rss feed" title="rss feed"/></a>
+		  </span>
+		  </p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

@@ -49,6 +49,24 @@
 
 <article class="summary">
 <div class="metadata">
+  <time datetime="2020-10-04T00:00:00+02:00" pubdate>Sun 04 October 2020</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2022-01-04 18:38:11+01:00</p>
+  in <a href="/category/c2020.html">2020</a>
+<p class="tags">tagged <a href="/tag/alpine.html">alpine</a>, <a href="/tag/boot.html">boot</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/drive.html">drive</a>, <a href="/tag/partition.html">partition</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2020/2020-10-04-alpine-boot-switcher.html" rel="bookmark" title="Permalink to Alpine Boot switcher">Alpine Boot switcher</a>
+    </h2>
+    <p><p>I boot from a USB boot drive using UEFI.  Because of the UEFI boot,
+it just a matter of copying the files from the <a href="https://alpinelinux.org/">alpine</a>
+ISO to a USB thumbdrive VFAT32 partition.  Partition may be set to
+EFI (but this doesn't seem to be required).</p>
+<p>Since I would like to …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
   <time datetime="2020-10-03T00:00:00+02:00" pubdate>Sat 03 October 2020</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
@@ -125,10 +143,10 @@ screensaver hack collection with the <a href="https://mate-desktop.org/">MATE</a
 applet.</p>
 <ul>
 <li>Install <code>xscreensaver</code> and <code>mate-screensaver</code></li>
-<li>On my linux distribution this creates the following directories:</li>
+<li>On my linux distribution this creates the following directories:<ul>
 <li><code>/usr/libexec/xscreensaver</code>: contains the screensaver hacks executables</li>
 <li><code>/usr/libexec/mate-screensaver</code> : contains the <code>mate-screensaver</code> executables</li>
-<li><code>/usr/share/applications/screensavers</code> : containes the …</li></ul></p>
+<li><code>/usr/share/applications/screensavers</code> : containes the …</li></ul></li></ul></p>
   </div>
 </article><article class="summary">
 <div class="metadata">
@@ -481,39 +499,16 @@ work!  Your mileage may vary …</p></p>
     <p><p>These are just random thoughts nothing really was implemented.</p>
 <p>Alpine Linux image</p>
 <ul>
-<li>
-<p>preparation: jq and other deps to <code>/apks/x86_64</code></p>
-</li>
-<li>
-<p><code>/etc/local.d/</code>
-    <code>cloud-init-lite</code></p>
-</li>
-<li>
-<p>if <code>/etc/network/intefaces</code> exists we abort</p>
-</li>
-<li><code>apk add --force-non-repository /path oniguruma,jq</code> .. restore <code>/etc/apk/world</code></li>
-<li><code>udhcpc -b -p /var/run/udhcpc.eth0.pid -i …</code></li></ul></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2018-07-19T00:00:00+02:00" pubdate>Thu 19 July 2018</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2021-12-25 22:02:18+01:00</p>
-  in <a href="/category/c2018.html">2018</a>
-<p class="tags">tagged <a href="/tag/network.html">network</a>, <a href="/tag/password.html">password</a>, <a href="/tag/windows.html">windows</a></p></div>  <div>
-    <h2>
-      <a href="/posts/2018/2018-07-19-locking-account.html" rel="bookmark" title="Permalink to Windows Account Lockouts">Windows Account Lockouts</a>
-    </h2>
-    <p><p>To prevent windows lockouts the following can be done:</p>
+<li>preparation: jq and other deps to <code>/apks/x86_64</code></li>
+</ul>
 <ul>
-<li>Delete Internet Explorer browsing history</li>
-<li>Run the following:</li>
-<li>Open Start --&gt; Search filed--&gt; Type in Run --&gt; rundll32.exe keymgr.dll, KRShowKeyMgr --&gt; Delete</li>
-<li>Disconnect network shares</li>
-<li>Change password</li>
-</ul></p>
+<li><code>/etc/local.d/</code>
+    <code>cloud-init-lite</code></li>
+</ul>
+<ol>
+<li>if <code>/etc/network/intefaces</code> exists we abort</li>
+<li><code>apk add --force-non-repository /path oniguruma,jq</code> .. restore <code>/etc/apk/world</code></li>
+<li><code>udhcpc -b -p /var/run/udhcpc.eth0.pid -i …</code></li></ol></p>
   </div>
 </article>
 <div class="pagination">

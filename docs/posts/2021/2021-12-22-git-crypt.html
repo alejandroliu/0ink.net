@@ -123,13 +123,19 @@ with <code>git-crypt init</code> or <code>git-crypt unlock</code>), you can use 
 normally - encryption and decryption happen transparently.</p>
 <h3 id="verifying-that-git-crypt-is-working">Verifying that git-crypt is working</h3>
 <ul>
-<li>The simplest way:</li>
+<li>The simplest way:<ul>
 <li><code>git crypt status</code></li>
-<li>The native way:</li>
+</ul>
+</li>
+<li>The native way:<ul>
 <li><code>git check-attr -a -- &lt;path&gt;</code></li>
-<li>Checking object hashes (these shouldn't match):</li>
+</ul>
+</li>
+<li>Checking object hashes (these shouldn't match):<ul>
 <li><code>git hash-object &lt;path&gt;</code></li>
 <li><code>cat &lt;path&gt; | git hash-object --stdin</code></li>
+</ul>
+</li>
 </ul>
 
 	</article>

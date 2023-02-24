@@ -67,13 +67,15 @@
 <p>Pre-requistes:</p>
 <ul>
 <li>Snapshots have to be enabled</li>
-<li>You need a <code>/share/netcfg</code> containing the file:</li>
+<li>You need a <code>/share/netcfg</code> containing the file:<ul>
 <li>In my case, I set this share as <code>read-only</code> with <code>root-squash</code>.</li>
 <li>`admin.yaml' : contains the private/public keys and the configuration
-    of the forced command.  For access control, it is only readable
-    to group and the file is owned by the UNIX group that can do snapshot
-    operations.</li>
+  of the forced command.  For access control, it is only readable
+  to group and the file is owned by the UNIX group that can do snapshot
+  operations.</li>
 <li><code>registry.yaml</code> : this is optional if you are changing the <code>admin</code> username.</li>
+</ul>
+</li>
 </ul>
 <p>Afterwards run:</p>
 <ul>

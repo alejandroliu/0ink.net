@@ -122,22 +122,28 @@ command as root:</p>
 
 <p>More configuration commands:</p>
 <ul>
-<li>Set default paper size:</li>
+<li>Set default paper size:<ul>
 <li><code>echo a4 &gt; /etc/papersize</code></li>
+</ul>
+</li>
 </ul>
 <hr>
 <h2 id="updates">Updates</h2>
 <ul>
-<li>2022-11-06: Removed from voidlinux:</li>
+<li>2022-11-06: Removed from voidlinux:<ul>
 <li>uncompress PPD file (otherwise it is not recognized)
-    so that it runs:</li>
+  so that it runs:</li>
 <li><strong>removed OBSOLEtE patch</strong></li>
 <li>For scanning, uncoment <code>hpaio</code> from <code>/etc/sane/dll.conf</code>.</li>
-<li>2020-03-09 : Removed:</li>
+</ul>
+</li>
+<li>2020-03-09 : Removed:<ul>
 <li>To prevent this you should configure
-    the default <code>ErrorPolicy</code> in <code>/etc/cups/cupsd.conf</code> by adding in the top
-    scope: "ErrorPolicy retry-job"</li>
+  the default <code>ErrorPolicy</code> in <code>/etc/cups/cupsd.conf</code> by adding in the top
+  scope: "ErrorPolicy retry-job"</li>
 <li>References: <a href="https://superuser.com/questions/280396/how-to-resume-cups-printer-from-command-line">superuser.com</a></li>
+</ul>
+</li>
 <li>2019-02-19 : Added <a href="http://voidlinux.org">void linux</a> instructions.</li>
 </ul>
 

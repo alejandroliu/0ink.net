@@ -68,10 +68,12 @@ screensaver hack collection with the <a href="https://mate-desktop.org/">MATE</a
 applet.</p>
 <ul>
 <li>Install <code>xscreensaver</code> and <code>mate-screensaver</code></li>
-<li>On my linux distribution this creates the following directories:</li>
+<li>On my linux distribution this creates the following directories:<ul>
 <li><code>/usr/libexec/xscreensaver</code>: contains the screensaver hacks executables</li>
 <li><code>/usr/libexec/mate-screensaver</code> : contains the <code>mate-screensaver</code> executables</li>
 <li><code>/usr/share/applications/screensavers</code> : containes the <code>dekstop</code> files</li>
+</ul>
+</li>
 <li>Create a small script that will call the screensaver hack with the right
   arguments.  Make sure this script is in the <code>/usr/libexec/mate-screensaver</code>
   directory, as the <code>mate-screensaver</code> preferences will not accept any
@@ -307,16 +309,22 @@ op_<span class="si">${</span><span class="nv">cmd</span><span class="si">}</span
 <p>This simplifies the full process.  Just run the script (you may need to
 <code>sudo</code>) with the following options:</p>
 <ul>
-<li><code>$0 hacks [-e\|-d]</code></li>
+<li><code>$0 hacks [-e\|-d]</code><ul>
 <li>shows the list of hacks and its enabled or disabled status.</li>
 <li>the <code>-e</code> option will only show enabled hacks.</li>
 <li>the <code>-d</code> option will only show disabled hacks.</li>
-<li>`$0 enable [--all|hacks]</li>
+</ul>
+</li>
+<li>`$0 enable [--all|hacks]<ul>
 <li>enable the specified hacks.</li>
 <li>Use <code>--all</code> to enable all available hacks (excluding blacklisted hacks)</li>
-<li>`$0 disable [--all|hacks]</li>
+</ul>
+</li>
+<li>`$0 disable [--all|hacks]<ul>
 <li>disable the specified hacks.</li>
 <li>Use <code>--all</code> to disable all available hacks</li>
+</ul>
+</li>
 </ul>
 <hr>
 <p>If you like <a href="https://www.jwz.org/xscreensaver/">XScreenSaver</a> and would like to see the same software

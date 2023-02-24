@@ -6,7 +6,7 @@
 	<meta name="author" content="Alejandro Liu">
 
 
-	<meta name="description" content="These tips are for void linux as that is the distro I am using nowadays. mate tricks: change background from cli dconf write /org/mate/desktop/background/picture-filename "'PATH-TO-JPEG'" web page to check if your browser is html5 compliant: https://www.youtube.com/html5 HotKeys Install xbindkeys Add to startup …">
+	<meta name="description" content="These tips are for void linux as that is the distro I am using nowadays. mate tricks: change background from cli - dconf write /org/mate/desktop/background/picture-filename "'PATH-TO-JPEG'" web page to check if your browser is html5 compliant: - https://www.youtube.com/html5 HotKeys Install xbindkeys Add to startup …">
 	<meta name="int-title" content="Linux Post Install tasks">
 	<meta name="tags" content="browser, config, software">
 	<meta name="date" content="2021-12-21 00:00:00+01:00">
@@ -66,37 +66,31 @@
 		<p>These tips are for <a href="https://voidlinux.org" title="Void Linux">void linux</a> as that is the distro
 I am using nowadays.</p>
 <ul>
-<li>mate tricks: change background from cli<ul>
-<li><code>dconf write /org/mate/desktop/background/picture-filename "'PATH-TO-JPEG'"</code></li>
-</ul>
-</li>
-<li>web page to check if your browser is html5 compliant:<ul>
-<li><a href="https://www.youtube.com/html5">https://www.youtube.com/html5</a></li>
-</ul>
-</li>
+<li>mate tricks: change background from cli
+    - <code>dconf write /org/mate/desktop/background/picture-filename "'PATH-TO-JPEG'"</code></li>
+<li>web page to check if your browser is html5 compliant:
+    - <a href="https://www.youtube.com/html5">https://www.youtube.com/html5</a></li>
 </ul>
 <h2 id="hotkeys">HotKeys</h2>
 <ul>
 <li>Install <code>xbindkeys</code></li>
 <li>Add to startup? <code>$HOME/.xprofile</code></li>
 <li>Create default config with <code>xbindkeys -d &gt; $HOME/.xbindkeysrc</code></li>
-<li>Lookup key combinations:<ul>
-<li><code>xbindkeys --multikey</code> or</li>
-<li><code>xbindkeys --key</code></li>
-</ul>
-</li>
+<li>Lookup key combinations:
+    - <code>xbindkeys --multikey</code> or
+    - <code>xbindkeys --key</code></li>
 <li>update bindings <code>xbindkeys --poll-rc</code></li>
-<li><code>rofi</code><ul>
-<li>A good addition to this is <code>rofi</code>.  Which is a dynamic menu.</li>
-<li>Create a xbindkey shortcut to run rofi with:</li>
-<li><code>rofi -show-icons  -modi drun,window  -show drun</code></li>
-</ul>
-</li>
+<li><code>rofi</code>
+    - A good addition to this is <code>rofi</code>.  Which is a dynamic menu.
+    - Create a xbindkey shortcut to run rofi with:
+    - <code>rofi -show-icons  -modi drun,window  -show drun</code></li>
 </ul>
 <h2 id="additional-software">Additional software</h2>
 <ul>
-<li>Additional software (Tested on void linux):</li>
+<li>Additional software (Tested on void linux):<ul>
 <li>Tip: use <code>sed -e 's/#.*$//'</code> to strip comments!</li>
+</ul>
+</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="c1">#</span>
 <span class="c1"># Download this with:</span>

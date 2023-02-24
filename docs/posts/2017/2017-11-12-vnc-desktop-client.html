@@ -75,21 +75,25 @@
 
 <h3 id="2-versions">2 VERSIONS</h3>
 <ul>
-<li>kiosk</li>
+<li>kiosk<ul>
 <li>unmodified vncviewer connects to a multiplexer screen</li>
 <li>server (in inetd mode) first spawns a Xvnc (in inetd mode) which does a login authentication
-    and finds an existing desktop or spawns a new one
-    saves the port and exists</li>
+  and finds an existing desktop or spawns a new one
+  saves the port and exists</li>
 <li>server then connects to the new desktop port and does the VNC handshake.  Sends client
-    Desktop change and name change messages</li>
+  Desktop change and name change messages</li>
 <li>Forwards everything...</li>
-<li>command</li>
+</ul>
+</li>
+<li>command<ul>
 <li>User points command to a server.</li>
 <li>Script selects a new port.</li>
 <li>Ssh to server, look for vnc session, or spawn new one.</li>
 <li>netcat to vnc session.</li>
 <li>Listen to to new port, and netcat to ssh.</li>
 <li>vncviewer to netcat port.</li>
+</ul>
+</li>
 </ul>
 <p>We use only v3.3 because we don't want to mess with security types.  Security should be handled by SSH tunnel.</p>
 <p>Check if user can login</p>

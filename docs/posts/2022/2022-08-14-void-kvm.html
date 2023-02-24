@@ -105,35 +105,47 @@ virsh<span class="w"> </span>--connect<span class="w"> </span>qemu:///system<spa
 <li>Add CDROM, make readonly and shareable</li>
 <li>Add Network connected to internal bridge.</li>
 <li>Add boot device.</li>
-<li>Add shared filesystem:</li>
+<li>Add shared filesystem:<ul>
 <li>driver: virtio-9p</li>
 <li>source path: <code>/var/lib/libvirt/filesystems/shared</code></li>
 <li>target path: <code>/shared</code></li>
+</ul>
+</li>
 </ol>
 <p>Prepare system</p>
 <ol>
-<li>create filesystem</li>
+<li>create filesystem<ul>
 <li>mkfs.vfat /dev/vda</li>
 <li>apk add syslinux</li>
 <li>syslinux /dev/vda</li>
-<li>copy media</li>
+</ul>
+</li>
+<li>copy media<ul>
 <li>mount -t vfat /dev/vda /mnt</li>
 <li>cp -av /media/cdrom/. /mnt</li>
 <li>edit /mnt/boot/syslinux/syslinux.cfg
-    add: dom0_mem=1024M</li>
+  add: dom0_mem=1024M</li>
 <li>umount /mnt</li>
-<li>remove cdrom</li>
+</ul>
+</li>
+<li>remove cdrom<ul>
 <li>power off</li>
 <li>remove cdrom</li>
 <li>change boot options</li>
+</ul>
+</li>
 <li>re-start system</li>
-<li>setup-alpine</li>
+<li>setup-alpine<ul>
 <li>enter fqdn</li>
 <li>set interface eth0 to dhcp</li>
-<li>Mount shared fs:</li>
+</ul>
+</li>
+<li>Mount shared fs:<ul>
 <li>mount -t 9p -o trans=virtio /shared /shared</li>
 <li>fstab</li>
 <li>/sharepoint   /share    9p  trans=virtio,version=9p2000.L,rw    0   0</li>
+</ul>
+</li>
 </ol>
 <h2 id="thin-provisioning">Thin provisioning</h2>
 <p>Create an overlay file like so:</p>

@@ -90,18 +90,16 @@ work!  Your mileage may vary …</p></p>
     <p><p>These are just random thoughts nothing really was implemented.</p>
 <p>Alpine Linux image</p>
 <ul>
-<li>
-<p>preparation: jq and other deps to <code>/apks/x86_64</code></p>
-</li>
-<li>
-<p><code>/etc/local.d/</code>
-    <code>cloud-init-lite</code></p>
-</li>
-<li>
-<p>if <code>/etc/network/intefaces</code> exists we abort</p>
-</li>
+<li>preparation: jq and other deps to <code>/apks/x86_64</code></li>
+</ul>
+<ul>
+<li><code>/etc/local.d/</code>
+    <code>cloud-init-lite</code></li>
+</ul>
+<ol>
+<li>if <code>/etc/network/intefaces</code> exists we abort</li>
 <li><code>apk add --force-non-repository /path oniguruma,jq</code> .. restore <code>/etc/apk/world</code></li>
-<li><code>udhcpc -b -p /var/run/udhcpc.eth0.pid -i …</code></li></ul></p>
+<li><code>udhcpc -b -p /var/run/udhcpc.eth0.pid -i …</code></li></ol></p>
   </div>
 </article><article class="summary">
 <div class="metadata">
@@ -118,8 +116,10 @@ work!  Your mileage may vary …</p></p>
     <p><p>To prevent windows lockouts the following can be done:</p>
 <ul>
 <li>Delete Internet Explorer browsing history</li>
-<li>Run the following:</li>
+<li>Run the following:<ul>
 <li>Open Start --&gt; Search filed--&gt; Type in Run --&gt; rundll32.exe keymgr.dll, KRShowKeyMgr --&gt; Delete</li>
+</ul>
+</li>
 <li>Disconnect network shares</li>
 <li>Change password</li>
 </ul></p>
@@ -430,26 +430,28 @@ of the highest recommended tools, each …</p></p>
     <p><ul>
 <li>DVD player</li>
 <li>Bluetooth receiver </li>
-<li>
-<p>keyboard </p>
-</li>
-<li>
-<p>good keyboard bindings</p>
-</li>
+<li>keyboard </li>
+</ul>
+<ul>
+<li>good keyboard bindings</li>
 <li>how to exit games</li>
 <li>convert probox into binding keys</li>
 <li>where are key codes saved</li>
 </ul>
 <hr>
 <ul>
-<li>Write image:</li>
+<li>Write image:<ul>
 <li>gunzip &lt; retropie-4.3-rpi2_rpi3.img.gz | sudo dd of=/dev/sde bs=4M</li>
-<li>Configure config.txt</li>
+</ul>
+</li>
+<li>Configure config.txt<ul>
 <li>hdmi_force_hotplug=1</li>
 <li>hdmi_drive=2</li>
-<li>Boot and configure keyboard</li>
+</ul>
+</li>
+<li>Boot and configure keyboard<ul>
 <li>D-Pad =&gt; D-Pad</li>
-<li>start …</li></ul></p>
+<li>start …</li></ul></li></ul></p>
   </div>
 </article><article class="summary">
 <div class="metadata">

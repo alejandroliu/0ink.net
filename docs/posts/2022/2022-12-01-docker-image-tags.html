@@ -76,12 +76,16 @@ in <a href="https://hub.docker.com">docker.hub</a>.</p>
 </ul>
 <p>Examples:</p>
 <ul>
-<li><a href="https://hub.docker.com/_/alpine">Docker Official alpine image</a></li>
+<li><a href="https://hub.docker.com/_/alpine">Docker Official alpine image</a><ul>
 <li>namespace: library</li>
 <li>image : alpine</li>
-<li><a href="https://hub.docker.com/r/photoprism/photoprism">photoprism/photoprism</a></li>
+</ul>
+</li>
+<li><a href="https://hub.docker.com/r/photoprism/photoprism">photoprism/photoprism</a><ul>
 <li>namespace : photoprism</li>
 <li>image : photoprism</li>
+</ul>
+</li>
 </ul>
 <p>So, you can then use <code>curl</code> and <code>jq</code> to access the relevant data.  For example,
 to get the tags, last updated time and digest as a tsv:</p>

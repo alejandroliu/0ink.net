@@ -86,12 +86,10 @@
 <h2 id="windows-only">Windows only</h2>
 <ul>
 <li><a href="https://notepad-plus-plus.org/">nodepad++</a></li>
-<li>
-<p>Crimson or Emerald Editors</p>
-</li>
-<li>
-<p>Macros</p>
-</li>
+<li>Crimson or Emerald Editors</li>
+</ul>
+<ul>
+<li>Macros</li>
 <li>Split Views</li>
 <li>Interactive search</li>
 <li>File Browser?</li>
@@ -109,13 +107,17 @@
 <li>editra</li>
 <li>notepadqq</li>
 <li>Geany</li>
-<li><a href="http://www.scintilla.org/SciTE.html">Scintilla</a></li>
+<li><a href="http://www.scintilla.org/SciTE.html">Scintilla</a><ul>
 <li>curses based: <a href="http://foicica.com/scinterm/">scinterm</a><br>
-      includes <em>jinx</em> which is an example for it.</li>
+    includes <em>jinx</em> which is an example for it.</li>
 <li>SciTE - the default for Win and Linux.</li>
 <li><a href="http://www.scintilla.org/ScintillaRelated.html">Others</a></li>
-<li>http://tke.sourceforge.net/index.html</li>
+</ul>
+</li>
+<li>http://tke.sourceforge.net/index.html<ul>
 <li>TCL based.  Can we use cdk?  Can it be use in linux and windows?</li>
+</ul>
+</li>
 <li><a href="https://github.com/tihirvon/dex">dex</a></li>
 </ul>
 <h2 id="notes">Notes</h2>
@@ -146,15 +148,13 @@
 <code>(global-set-key [f10]  'start-kbd-macro)</code><br>
 <code>(global-set-key [f11]  'end-kbd-macro)</code><br>
 <code>(global-set-key [f12]  'call-last-kbd-macro)</code></li>
-<li>
-<p>Selective display:<br>
+<li>Selective display:<br>
 <code>M-1 C-x $</code> to activate<br>
 <code>C-x $</code> to go back<br>
-  Or create shortcuts:</p>
-<p>(defun jao-toggle-selective-display ()
-    (interactive)
-    (set-selective-display (if selective-display nil 1)))
-(global-set-key [f1] 'jao-toggle-selective-display)</p>
+  Or create shortcuts:<p>(defun jao-toggle-selective-display ()
+      (interactive)
+      (set-selective-display (if selective-display nil 1)))
+  (global-set-key [f1] 'jao-toggle-selective-display)</p>
 </li>
 </ul>
 <hr>

@@ -6,7 +6,7 @@
 	<meta name="author" content="Alejandro Liu">
 
 
-	<meta name="description" content="This is an article about different media (and more specifically) video files can be manipulated. This is just for historical purposes as now almost everything can be done using ffmpeg and the right options. libmp4v2 contains: mp4art - to extract a picture (or coverart from mp4) mp4info - to get meta data …">
+	<meta name="description" content="This is an article about different media (and more specifically) video files can be manipulated. This is just for historical purposes as now almost everything can be done using ffmpeg and the right options. libmp4v2 contains: * mp4art - to extract a picture (or coverart from mp4) * mp4info - to get meta data …">
 	<meta name="int-title" content="Media Tips">
 	<meta name="tags" content="feature">
 	<meta name="date" content="2013-06-02 00:00:00+02:00">
@@ -68,18 +68,14 @@ video files can be manipulated.</p>
 <p>This is just for historical purposes as now almost everything can be
 done using <code>ffmpeg</code> and the right options.</p>
 <ul>
-<li><a href="http://code.google.com/p/mp4v2/">libmp4v2</a> contains:<ul>
-<li>mp4art - to extract a picture (or coverart from mp4)</li>
-<li>mp4info - to get meta data from mp4 streams</li>
-<li>mp4tags - to set metadata and picture.</li>
-</ul>
-</li>
+<li><a href="http://code.google.com/p/mp4v2/">libmp4v2</a> contains:
+    *   mp4art - to extract a picture (or coverart from mp4)
+    *   mp4info - to get meta data from mp4 streams
+    *   mp4tags - to set metadata and picture.</li>
 <li>qt-fastload to move index to the front and making mp4 streamable</li>
-<li>When encoding:<ul>
-<li>Change max GOP or IDR to around 5 seconds.</li>
-<li>2-pass avg bitrate: 800 or even 500...</li>
-</ul>
-</li>
+<li>When encoding:
+    *   Change max GOP or IDR to around 5 seconds.
+    *   2-pass avg bitrate: 800 or even 500...</li>
 </ul>
 <h2 id="concatenating-files">Concatenating files:</h2>
 <h3 id="ffmpeg">ffmpeg</h3>

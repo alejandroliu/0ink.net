@@ -126,17 +126,25 @@ root filesystem was destroyed.  It requires to have a backup of the
 <li>Restore the <code>/crypto_keyfile.bin</code>.  Make sure it is in <code>/</code> and
    permissions are <code>chmod 000 /crypto_keyfile.bin</code>.</li>
 <li>If available, restore the <code>/etc/crypttab</code> otherwise look up the
-   block device UUID and re-create the <code>/etc/crypttab</code> entry:</li>
+   block device UUID and re-create the <code>/etc/crypttab</code> entry:<ul>
 <li>Look-up the UUID:</li>
 <li><code>blkid /dev/xda2</code></li>
 <li>Add the entry in <code>/etc/crypttab</code></li>
 <li><code>crypt-pool    UUID=xxxxxxxxxxxxxxxx /crypto_keyfile.bin luks</code></li>
-<li>Create <code>/etc/dracut.conf.d/10-crypt.conf</code></li>
+</ul>
+</li>
+<li>Create <code>/etc/dracut.conf.d/10-crypt.conf</code><ul>
 <li><code>install_items+="/etc/crypttab /crypto_keyfile.bin"</code></li>
-<li>Update initrd:</li>
+</ul>
+</li>
+<li>Update initrd:<ul>
 <li><code>xbps-reconfigure -f linux4.19</code></li>
-<li>Update boot menu entries:</li>
+</ul>
+</li>
+<li>Update boot menu entries:<ul>
 <li><code>bash /boot/mkmenu.sh</code></li>
+</ul>
+</li>
 </ol>
 
 	</article>

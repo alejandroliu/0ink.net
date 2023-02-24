@@ -133,27 +133,25 @@ comm<span class="w"> </span>-23<span class="w"> </span>&quot;<span class="nv">$f
 
 <h2 id="pacman-one-liners">Pacman one liners</h2>
 <ul>
-<li>
-<p>Remove packages and its dependancies. pacman -Rs ...</p>
-</li>
-<li>
-<p>List explicitly installed packages pacman -Qeq</p>
-</li>
-<li>
-<p>List orphans pacman -Qtdq</p>
-</li>
-<li>
-<p>Remove everything but base group pacman -Rs $(comm -23 &lt;(pacman -Qeq|sort) &lt;((for i in $(pacman -Qqg base); do pactree -ul $i; done)|sort -u|cut -d ' ' -f 1))</p>
-</li>
-<li>
-<p>Listing changed configuraiton files pacman -Qii | awk '/^MODIFIED/ {print $2}'</p>
-</li>
-<li>
-<p>Download a package without installing it pacman -Sw package_name</p>
-</li>
-<li>
-<p>Manage pacman cache</p>
-<p>paccache -h</p>
+<li>Remove packages and its dependancies. pacman -Rs ...</li>
+</ul>
+<ul>
+<li>List explicitly installed packages pacman -Qeq</li>
+</ul>
+<ul>
+<li>List orphans pacman -Qtdq</li>
+</ul>
+<ul>
+<li>Remove everything but base group pacman -Rs $(comm -23 &lt;(pacman -Qeq|sort) &lt;((for i in $(pacman -Qqg base); do pactree -ul $i; done)|sort -u|cut -d ' ' -f 1))</li>
+</ul>
+<ul>
+<li>Listing changed configuraiton files pacman -Qii | awk '/^MODIFIED/ {print $2}'</li>
+</ul>
+<ul>
+<li>Download a package without installing it pacman -Sw package_name</li>
+</ul>
+<ul>
+<li>Manage pacman cache<p>paccache -h</p>
 </li>
 </ul>
 

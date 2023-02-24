@@ -172,7 +172,7 @@ match, I modified it on the configuration:</p>
 <ul>
 <li><strong>Room-name</strong> : this should match the area.</li>
 <li><strong>room-section</strong> : <strong>optional</strong>, section of the room this applies to.</li>
-<li><strong>device</strong> : device type.</li>
+<li><strong>device</strong> : device type.<ul>
 <li>Chromecast : google chromecast device</li>
 <li>Display : google nest hub</li>
 <li>TV : with optional <strong>casting</strong>, <strong>upnp</strong> or <strong>api</strong></li>
@@ -183,19 +183,23 @@ match, I modified it on the configuration:</p>
 <li>Remote: Remote control</li>
 <li>Window Sensor</li>
 <li>Door Sensor</li>
+</ul>
+</li>
 <li><strong>optional</strong> : used for when multiple device of the same type are in the same room.</li>
 </ul>
 <h2 id="add-ons">Add-Ons</h2>
 <p>I installed the followng add-ons:</p>
 <ul>
-<li>Home Assistant Community Add-ons</li>
+<li>Home Assistant Community Add-ons<ul>
 <li><a href="https://github.com/hassio-addons/addon-vscode">Studio Code Server</a> : for
-    editing files.  Press ==F1== and start typing <code>home assistant</code> to view
-    available integration commands.  This is needed because (unfortunately)
-    not everything can be configured through the UI.</li>
+  editing files.  Press ==F1== and start typing <code>home assistant</code> to view
+  available integration commands.  This is needed because (unfortunately)
+  not everything can be configured through the UI.</li>
 <li><a href="https://github.com/hassio-addons/addon-zwave-js-ui">Z-Wave JS UI</a> : Instead
-    of <strong>Official add-ons</strong>.  The community add-on gives you a control panel with
-    more detailed control featires.  Specifically you can set group associations.</li>
+  of <strong>Official add-ons</strong>.  The community add-on gives you a control panel with
+  more detailed control featires.  Specifically you can set group associations.</li>
+</ul>
+</li>
 </ul>
 <p>Also, adding my own repository: https://github.com/iliu-net/hassio-addons</p>
 <ul>
@@ -260,12 +264,16 @@ easy and simple.</p>
 fairly good device support and is easy to use and set-up.</p>
 <p>The alternatives are:</p>
 <ul>
-<li><a href="https://www.zigbee2mqtt.io/">Zibgee2MQTT</a></li>
+<li><a href="https://www.zigbee2mqtt.io/">Zibgee2MQTT</a><ul>
 <li>Good for power users, execellent configuratbility and the best device support</li>
 <li>It can be complicated.</li>
-<li><a href="https://dresden-elektronik.github.io/deconz-rest-doc/">deCONZ Add-On</a></li>
+</ul>
+</li>
+<li><a href="https://dresden-elektronik.github.io/deconz-rest-doc/">deCONZ Add-On</a><ul>
 <li>Made by the ConBee2 developers.  There are no real benefits to using
-    this integration.</li>
+  this integration.</li>
+</ul>
+</li>
 </ul>
 <h3 id="z-wave-automation">Z-Wave automation</h3>
 <p>For Z-Wave I am using the

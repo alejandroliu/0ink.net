@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2023-02-10T00:00:00+01:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>RDP vs VNC</title><link href="https://0ink.net/posts/2023/2023-02-10-rdp-vs-vnc.html" rel="alternate"></link><published>2023-02-10T00:00:00+01:00</published><updated>2023-01-11T15:59:49+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-02-10:/posts/2023/2023-02-10-rdp-vs-vnc.html</id><summary type="html">&lt;p&gt;For years I have been using &lt;a href="https://en.wikipedia.org/wiki/Virtual_Network_Computing"&gt;VNC&lt;/a&gt; for my remote desktop needs.  This works
+<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2023-02-24T12:46:48+01:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>Home Assistant Wall Panel</title><link href="https://0ink.net/posts/2023/2023-02-20-wallpanel.html" rel="alternate"></link><published>2023-02-20T00:00:00+01:00</published><updated>2023-01-11T15:52:49+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-02-20:/posts/2023/2023-02-20-wallpanel.html</id><summary type="html">&lt;p&gt;For a while I was using &lt;a href="https://github.com/HyperTechnology5/TabletClock"&gt;TabletClock&lt;/a&gt; with old tablets.  But 
+this has not been updated in a while.  I was thinking of writing my
+own version until I found &lt;a href="https://github.com/thecowan/wallpanel-android"&gt;WallPanel&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Essentially it is purposely built web-browser with special features which makes it
+possible to use it to replaces &lt;a href="https://github.com/HyperTechnology5/TabletClock"&gt;TabletClock …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;For a while I was using &lt;a href="https://github.com/HyperTechnology5/TabletClock"&gt;TabletClock&lt;/a&gt; with old tablets.  But 
+this has not been updated in a while.  I was thinking of writing my
+own version until I found &lt;a href="https://github.com/thecowan/wallpanel-android"&gt;WallPanel&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Essentially it is purposely built web-browser with special features which makes it
+possible to use it to replaces &lt;a href="https://github.com/HyperTechnology5/TabletClock"&gt;TabletClock&lt;/a&gt;.  Essentially, I could
+replace &lt;a href="https://github.com/HyperTechnology5/TabletClock"&gt;TabletClock&lt;/a&gt; with a web-page showing the time and a weather
+forecast and have &lt;a href="https://github.com/thecowan/wallpanel-android"&gt;WallPanel&lt;/a&gt; point to it.  Easy and simple, and can be 
+customized in multiple ways.&lt;/p&gt;
+&lt;p&gt;Currently I am using &lt;a href="https://github.com/thecowan/wallpanel-android"&gt;WallPanel&lt;/a&gt; with &lt;a href="https://www.home-assistant.io/"&gt;HomeAssistant&lt;/a&gt;.  I am using 
+these features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Date/time screen saver with auto off by face recognition&lt;/li&gt;
+&lt;li&gt;Web Cam functionality&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I normally have it on a &lt;a href="https://www.home-assistant.io/"&gt;HomeAssistant&lt;/a&gt; panel showing time, weather forecaset
+and a few choice controls.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="panel" src="/images/2023/wallpanel.png"&gt;&lt;/p&gt;</content><category term="2023"></category></entry><entry><title>RDP vs VNC</title><link href="https://0ink.net/posts/2023/2023-02-10-rdp-vs-vnc.html" rel="alternate"></link><published>2023-02-10T00:00:00+01:00</published><updated>2023-01-11T15:59:49+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-02-10:/posts/2023/2023-02-10-rdp-vs-vnc.html</id><summary type="html">&lt;p&gt;For years I have been using &lt;a href="https://en.wikipedia.org/wiki/Virtual_Network_Computing"&gt;VNC&lt;/a&gt; for my remote desktop needs.  This works
 usually well enough.  The features that I like are:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Basic set-up is easy&lt;/li&gt;
@@ -39,29 +59,33 @@ not easily implementable.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;Still I have not been able to:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Enable sound re-direction&lt;/li&gt;
+&lt;li&gt;Enable sound re-direction&lt;ul&gt;
 &lt;li&gt;&lt;a href="https://c-nergy.be/blog/?p=13655"&gt;Configure sound&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Essentially compile &lt;a href="https://github.com/neutrinolabs/pulseaudio-module-xrdp"&gt;module&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;Use to view an actuall X11.org desktop.  For this I am simply using &lt;a href="https://en.wikipedia.org/wiki/X11vnc"&gt;x11vnc&lt;/a&gt;
   and just using the &lt;code&gt;vncviewer&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;</content><category term="2023"></category><category term="browser"></category><category term="desktop"></category><category term="linux"></category><category term="remote"></category><category term="scripts"></category></entry><entry><title>QNAP Snapshots</title><link href="https://0ink.net/posts/2023/2023-02-01-qsnap.html" rel="alternate"></link><published>2023-02-01T00:00:00+01:00</published><updated>2023-01-11T15:59:49+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-02-01:/posts/2023/2023-02-01-qsnap.html</id><summary type="html">&lt;p&gt;I wrote a small tool to access QNAP snapshots from the Linux command line.&lt;/p&gt;
 &lt;p&gt;Pre-requistes:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Snapshots have to be enabled&lt;/li&gt;
-&lt;li&gt;You need a &lt;code&gt;/share/netcfg&lt;/code&gt; containing the file:&lt;/li&gt;
+&lt;li&gt;You need a &lt;code&gt;/share/netcfg&lt;/code&gt; containing the file:&lt;ul&gt;
 &lt;li&gt;In my case, I set this share as &lt;code&gt;read-only&lt;/code&gt; with &lt;code&gt;root-squash&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;`admin.yaml' : contains the private/public keys and the configuration
-    of …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;I wrote a small tool to access QNAP snapshots from the Linux command line.&lt;/p&gt;
+  of …&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;I wrote a small tool to access QNAP snapshots from the Linux command line.&lt;/p&gt;
 &lt;p&gt;Pre-requistes:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Snapshots have to be enabled&lt;/li&gt;
-&lt;li&gt;You need a &lt;code&gt;/share/netcfg&lt;/code&gt; containing the file:&lt;/li&gt;
+&lt;li&gt;You need a &lt;code&gt;/share/netcfg&lt;/code&gt; containing the file:&lt;ul&gt;
 &lt;li&gt;In my case, I set this share as &lt;code&gt;read-only&lt;/code&gt; with &lt;code&gt;root-squash&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;`admin.yaml' : contains the private/public keys and the configuration
-    of the forced command.  For access control, it is only readable
-    to group and the file is owned by the UNIX group that can do snapshot
-    operations.&lt;/li&gt;
+  of the forced command.  For access control, it is only readable
+  to group and the file is owned by the UNIX group that can do snapshot
+  operations.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;registry.yaml&lt;/code&gt; : this is optional if you are changing the &lt;code&gt;admin&lt;/code&gt; username.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Afterwards run:&lt;/p&gt;
 &lt;ul&gt;
@@ -102,27 +126,43 @@ specified will use the latest available snapshot.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;All this can be found on &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/qsnap"&gt;github&lt;/a&gt;.&lt;/p&gt;</content><category term="2023"></category><category term="configuration"></category><category term="directory"></category><category term="linux"></category></entry><entry><title>Docker on Void</title><link href="https://0ink.net/posts/2023/2023-01-20-docker-on-void.html" rel="alternate"></link><published>2023-01-20T00:00:00+01:00</published><updated>2022-12-24T19:49:30+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-01-20:/posts/2023/2023-01-20-docker-on-void.html</id><summary type="html">&lt;p&gt;This is a quick recipe to run Docker on void:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Make sure your system is up-to-date:&lt;/li&gt;
+&lt;li&gt;Make sure your system is up-to-date:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;sudo xbps-install -Syu&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Install docker executables:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Install docker executables:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;sudo xbps-install -S docker&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Check if docker was installed properly:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Check if docker was installed properly:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;docker --version&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Enable services:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Enable services:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;sudo ln -s /etc/sv/containerd /var/service&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;sudo ln -s /etc/sv/docker …&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;This is a quick recipe to run Docker on void:&lt;/p&gt;
+&lt;li&gt;&lt;code&gt;sudo ln -s /etc/sv/docker …&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;This is a quick recipe to run Docker on void:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Make sure your system is up-to-date:&lt;/li&gt;
+&lt;li&gt;Make sure your system is up-to-date:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;sudo xbps-install -Syu&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Install docker executables:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Install docker executables:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;sudo xbps-install -S docker&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Check if docker was installed properly:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Check if docker was installed properly:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;docker --version&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Enable services:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Enable services:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;sudo ln -s /etc/sv/containerd /var/service&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;sudo ln -s /etc/sv/docker /var/service&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Add your user to the &lt;code&gt;docker&lt;/code&gt; group:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Add your user to the &lt;code&gt;docker&lt;/code&gt; group:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;sudo usermod -a -G docker $(whoami)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;You can start using docker.  You may need to logout and login again for the group
 membership to be updated.&lt;/p&gt;
@@ -176,10 +216,12 @@ manage/mantain.&lt;/p&gt;
   &lt;a href="https://support.getvera.com/hc/en-us/articles/360021950353-Welcome-to-Vera-Getting-Started"&gt;VeraEdge&lt;/a&gt; and gave accurate reading, they were (at least to me)
   not easy to open.  So every time I would want to replace the battery
   I would &lt;strong&gt;accidentally&lt;/strong&gt; break the latches.&lt;/li&gt;
-&lt;li&gt;Other door sensors : 
+&lt;li&gt;
+&lt;p&gt;Other door sensors : 
   Also, a number of sensors that I tried, made it difficult to stock up on
   spare batteries.  Furthermore, specially for the door/window sensors,
-  some had awkward shapes.&lt;/li&gt;
+  some had awkward shapes.&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;</content><category term="2023"></category><category term="power"></category></entry><entry><title>Happy New Year 2023</title><link href="https://0ink.net/posts/2023/2023-01-01-new-year.html" rel="alternate"></link><published>2023-01-01T00:00:00+01:00</published><updated>2023-01-11T15:52:49+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-01-01:/posts/2023/2023-01-01-new-year.html</id><content type="html">&lt;p&gt;&lt;img alt="NewYear2023" src="/images/2023/newyear-2023.png"&gt;&lt;/p&gt;
 &lt;p&gt;Best wishes for 2023!&lt;/p&gt;
 &lt;p&gt;This website is now &lt;strong&gt;10 Years Old&lt;/strong&gt;.&lt;/p&gt;</content><category term="2023"></category></entry><entry><title>Home Assistant RFXCOM Integration</title><link href="https://0ink.net/posts/2022/2022-12-20-hassio-rfx.html" rel="alternate"></link><published>2022-12-20T00:00:00+01:00</published><updated>2022-12-15T16:53:10+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-12-20:/posts/2022/2022-12-20-hassio-rfx.html</id><summary type="html">&lt;h3 id="rfxcom-rfxtrx"&gt;RFXCOM RFXtrx&lt;/h3&gt;
@@ -361,12 +403,16 @@ in &lt;a href="https://hub.docker.com"&gt;docker.hub&lt;/a&gt;.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;Examples:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://hub.docker.com/_/alpine"&gt;Docker Official alpine image&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hub.docker.com/_/alpine"&gt;Docker Official alpine image&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;namespace: library&lt;/li&gt;
 &lt;li&gt;image : alpine&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://hub.docker.com/r/photoprism/photoprism"&gt;photoprism/photoprism&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hub.docker.com/r/photoprism/photoprism"&gt;photoprism/photoprism&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;namespace : photoprism&lt;/li&gt;
 &lt;li&gt;image : photoprism&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;So, you can then use &lt;code&gt;curl&lt;/code&gt; and &lt;code&gt;jq&lt;/code&gt; to access the relevant data.  For example,
 to get the tags, last updated time and digest as a tsv:&lt;/p&gt;
@@ -414,7 +460,9 @@ card.&lt;/p&gt;
 &lt;p&gt;Other implementations:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;https://community.home-assistant.io/t/really-simple-big-clock/255971&lt;/li&gt;
-&lt;li&gt;https://community.home-assistant.io/t/just-a-big-clock/69976/2&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;https://community.home-assistant.io/t/just-a-big-clock/69976/2&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;</content><category term="2022"></category><category term="directory"></category></entry><entry><title>Home Assistant HTTP Based Authentication Backend</title><link href="https://0ink.net/posts/2022/2022-11-11-hassio-httpbasicauth.html" rel="alternate"></link><published>2022-11-11T00:00:00+01:00</published><updated>2022-10-21T10:08:55+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-11-11:/posts/2022/2022-11-11-hassio-httpbasicauth.html</id><summary type="html">&lt;p&gt;This recipe is to authenticate users using a web server providing
 &lt;a href="https://en.wikipedia.org/wiki/Basic_access_authentication"&gt;Basic HTTP authentication&lt;/a&gt;
 for it users.&lt;/p&gt;
@@ -566,7 +614,7 @@ match, I modified it on the configuration:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Room-name&lt;/strong&gt; : this should match the area.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;room-section&lt;/strong&gt; : &lt;strong&gt;optional&lt;/strong&gt;, section of the room this applies to.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt; : device type.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt; : device type.&lt;ul&gt;
 &lt;li&gt;Chromecast : google chromecast device&lt;/li&gt;
 &lt;li&gt;Display : google nest hub&lt;/li&gt;
 &lt;li&gt;TV : with optional &lt;strong&gt;casting&lt;/strong&gt;, &lt;strong&gt;upnp&lt;/strong&gt; or &lt;strong&gt;api&lt;/strong&gt;&lt;/li&gt;
@@ -577,19 +625,23 @@ match, I modified it on the configuration:&lt;/p&gt;
 &lt;li&gt;Remote: Remote control&lt;/li&gt;
 &lt;li&gt;Window Sensor&lt;/li&gt;
 &lt;li&gt;Door Sensor&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;optional&lt;/strong&gt; : used for when multiple device of the same type are in the same room.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="add-ons"&gt;Add-Ons&lt;/h2&gt;
 &lt;p&gt;I installed the followng add-ons:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Home Assistant Community Add-ons&lt;/li&gt;
+&lt;li&gt;Home Assistant Community Add-ons&lt;ul&gt;
 &lt;li&gt;&lt;a href="https://github.com/hassio-addons/addon-vscode"&gt;Studio Code Server&lt;/a&gt; : for
-    editing files.  Press ==F1== and start typing &lt;code&gt;home assistant&lt;/code&gt; to view
-    available integration commands.  This is needed because (unfortunately)
-    not everything can be configured through the UI.&lt;/li&gt;
+  editing files.  Press ==F1== and start typing &lt;code&gt;home assistant&lt;/code&gt; to view
+  available integration commands.  This is needed because (unfortunately)
+  not everything can be configured through the UI.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/hassio-addons/addon-zwave-js-ui"&gt;Z-Wave JS UI&lt;/a&gt; : Instead
-    of &lt;strong&gt;Official add-ons&lt;/strong&gt;.  The community add-on gives you a control panel with
-    more detailed control featires.  Specifically you can set group associations.&lt;/li&gt;
+  of &lt;strong&gt;Official add-ons&lt;/strong&gt;.  The community add-on gives you a control panel with
+  more detailed control featires.  Specifically you can set group associations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Also, adding my own repository: https://github.com/iliu-net/hassio-addons&lt;/p&gt;
 &lt;ul&gt;
@@ -654,12 +706,16 @@ easy and simple.&lt;/p&gt;
 fairly good device support and is easy to use and set-up.&lt;/p&gt;
 &lt;p&gt;The alternatives are:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.zigbee2mqtt.io/"&gt;Zibgee2MQTT&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.zigbee2mqtt.io/"&gt;Zibgee2MQTT&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;Good for power users, execellent configuratbility and the best device support&lt;/li&gt;
 &lt;li&gt;It can be complicated.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://dresden-elektronik.github.io/deconz-rest-doc/"&gt;deCONZ Add-On&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dresden-elektronik.github.io/deconz-rest-doc/"&gt;deCONZ Add-On&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;Made by the ConBee2 developers.  There are no real benefits to using
-    this integration.&lt;/li&gt;
+  this integration.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id="z-wave-automation"&gt;Z-Wave automation&lt;/h3&gt;
 &lt;p&gt;For Z-Wave I am using the
@@ -821,16 +877,22 @@ Strikethrough uses two tildes. &lt;span class="gd"&gt;~~Scratch this.~~&lt;/span
 &lt;hr&gt;
 &lt;ol&gt;
 &lt;li&gt;First ordered list item&lt;/li&gt;
-&lt;li&gt;Another item&lt;/li&gt;
+&lt;li&gt;Another item&lt;ul&gt;
 &lt;li&gt;Unordered sub-list.&lt;/li&gt;
-&lt;li&gt;Actual numbers don't matter, just that it's a number&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Actual numbers don't matter, just that it's a number&lt;ol&gt;
 &lt;li&gt;Ordered sub-list&lt;/li&gt;
-&lt;li&gt;And another item.&lt;/li&gt;
 &lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;And another item.&lt;/p&gt;
 &lt;p&gt;You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we'll use three here to also align the raw Markdown).&lt;/p&gt;
 &lt;p&gt;To have a line break without a paragraph, you will need to use two trailing spaces.
-   Note that this line is separate, but within the same paragraph.
-   (This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)&lt;/p&gt;
+ Note that this line is separate, but within the same paragraph.
+ (This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;ul&gt;
 &lt;li&gt;Unordered list can use asterisks&lt;/li&gt;
 &lt;li&gt;Or minuses&lt;/li&gt;
@@ -1294,29 +1356,39 @@ I added the following features:&lt;/p&gt;
 &lt;li&gt;MarkDown : Markdown content handler&lt;/li&gt;
 &lt;li&gt;Includes : Include Wiki documents in another&lt;/li&gt;
 &lt;li&gt;Vars : Expand variables.  Either from document metadata or from the NanoWiki config file.&lt;/li&gt;
-&lt;li&gt;WikiLinks : short hand for wiki links.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;WikiLinks : short hand for wiki links.&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;</content><category term="2022"></category><category term="config"></category><category term="editor"></category><category term="feature"></category><category term="markdown"></category><category term="network"></category><category term="software"></category></entry><entry><title>X728 kit for Raspberry Pi 4</title><link href="https://0ink.net/posts/2022/2022-10-01-x728.html" rel="alternate"></link><published>2022-10-01T00:00:00+02:00</published><updated>2022-10-12T02:15:39+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-10-01:/posts/2022/2022-10-01-x728.html</id><summary type="html">&lt;p&gt;As part of my small project of movng my Z-Wave Hub to a Raspberry PI, I got an
 &lt;a href="http://wiki.geekworm.com/X728"&gt;X728&lt;/a&gt; kit.  This has:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;UPS controller board&lt;/li&gt;
+&lt;li&gt;UPS controller board&lt;ul&gt;
 &lt;li&gt;RTC circuit&lt;/li&gt;
 &lt;li&gt;Battery and Power control board&lt;/li&gt;
-&lt;li&gt;Case&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Case&lt;ul&gt;
 &lt;li&gt;Button&lt;/li&gt;
 &lt;li&gt;Cooling fan&lt;/li&gt;
 &lt;li&gt;Additional Battery holder&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The case has holes for wall-mounting.&lt;/p&gt;
 &lt;p&gt;The Geekworm X728 kit is …&lt;/p&gt;</summary><content type="html">&lt;p&gt;As part of my small project of movng my Z-Wave Hub to a Raspberry PI, I got an
 &lt;a href="http://wiki.geekworm.com/X728"&gt;X728&lt;/a&gt; kit.  This has:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;UPS controller board&lt;/li&gt;
+&lt;li&gt;UPS controller board&lt;ul&gt;
 &lt;li&gt;RTC circuit&lt;/li&gt;
 &lt;li&gt;Battery and Power control board&lt;/li&gt;
-&lt;li&gt;Case&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Case&lt;ul&gt;
 &lt;li&gt;Button&lt;/li&gt;
 &lt;li&gt;Cooling fan&lt;/li&gt;
 &lt;li&gt;Additional Battery holder&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The case has holes for wall-mounting.&lt;/p&gt;
 &lt;p&gt;The Geekworm X728 kit is very easy to build.  There is a video to show how to do
@@ -1336,27 +1408,35 @@ image an micro-SD card.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Boot the Raspberry OS.  The first boot will resize the filesystems, so please
   wait.  Also, it will let you configure the default user and password.&lt;/li&gt;
-&lt;li&gt;Enable the i2c function:&lt;/li&gt;
+&lt;li&gt;Enable the i2c function:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;sudo raspi-config&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Go to &lt;code&gt;Interfacing Options&lt;/code&gt; -&amp;gt; &lt;code&gt;I2C - Enable/Disable automatic loading&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;While you are at-it, you may also enable &lt;code&gt;SSH&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Alternatively, you can a manual install by:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Alternatively, you can a manual install by:&lt;ul&gt;
 &lt;li&gt;Modify the &lt;code&gt;config.txt&lt;/code&gt; in the &lt;code&gt;/boot&lt;/code&gt; partition:&lt;/li&gt;
 &lt;li&gt;Add at the end:&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;[all]&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;dtparam=i2c_arm=on&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Install pre-requisites:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Install pre-requisites:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;sudo apt-get update&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;sudo apt-get upgrade&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;sudo apt-get -y install i2c-tools&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;This is only needed for &lt;code&gt;i2cdetect&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;Reboot the system.&lt;/li&gt;
-&lt;li&gt;Check if the hardware is detected:&lt;/li&gt;
+&lt;li&gt;Check if the hardware is detected:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;sudo i2cdetect -y 1&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;img alt="screenshot" src="https://raw.githubusercontent.com/alejandroliu/0ink.net/master/snippets/X728/imgs/X728x-i2c.png"&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;#36&lt;/code&gt; - the address of the battery fuel gauging chip&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;#68&lt;/code&gt; - the address of the RTC chip&lt;/li&gt;
 &lt;li&gt;Different x728 versions may have different values.  Mine used these values.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I personally did not like the example software.  This can be found in &lt;a href="https://github.com/geekworm-com/x728"&gt;github&lt;/a&gt;.
 Specifically, the &lt;code&gt;shutdown&lt;/code&gt; functionality seemed to have &lt;a href="https://en.wikipedia.org/wiki/Race_condition"&gt;race-conditions&lt;/a&gt;.&lt;/p&gt;
@@ -1521,12 +1601,16 @@ gpioInit&lt;span class="w"&gt; &lt;/span&gt;BUTTON&lt;span class="w"&gt; &lt;/sp
 
 &lt;p&gt;Afterwards, you can just:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;gpio[PIN]&lt;/code&gt; to read, i.e:&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;gpio[PIN]&lt;/code&gt; to read, i.e:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;gpioSHUTDOWN&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;gpioPLD&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;gpio[PIN] {1|0}&lt;/code&gt; to write i.e.:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;gpio[PIN] {1|0}&lt;/code&gt; to write i.e.:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;gpioBOOT 1&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;gpioBUZER 0&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="reading-battery-status"&gt;Reading Battery status&lt;/h2&gt;
 &lt;p&gt;You can read battery voltage and battery charge from the &lt;code&gt;smbus&lt;/code&gt;.  To read the &lt;code&gt;smbus&lt;/code&gt;
@@ -1537,10 +1621,14 @@ Specifically, I am only using the files &lt;code&gt;smbus.c&lt;/code&gt; and &lt
 &lt;li&gt;open &lt;code&gt;/dev/i2c-1&lt;/code&gt; in read/write mode.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;ioctl(fd, I2C_SLAVE, I2C_ADDRESS)&lt;/code&gt; where &lt;code&gt;I2C_ADDRESS = 0x36&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;From &lt;code&gt;smbus.c&lt;/code&gt; read &lt;code&gt;i2c_smbus_read_word_data(fd, address)&lt;/code&gt;, and byte swap.&lt;/li&gt;
-&lt;li&gt;Voltage can be read from address &lt;code&gt;2&lt;/code&gt;:&lt;/li&gt;
+&lt;li&gt;Voltage can be read from address &lt;code&gt;2&lt;/code&gt;:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;Voltage = (swapped) * 1.25 / 1000 / 16&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Battery charge can be read from address &lt;code&gt;4&lt;/code&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Battery charge can be read from address &lt;code&gt;4&lt;/code&gt;:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;Battery = (swapped) / 256&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The code to do this can be found on &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/X728/src"&gt;github&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;A precompiled 64bit static binary can be found there too.&lt;/p&gt;
@@ -1581,16 +1669,20 @@ simulate holding the button for 6 seconds to force the UPS board to power off.&l
 &lt;h2 id="ups-management"&gt;UPS management&lt;/h2&gt;
 &lt;p&gt;In addition, I wrote a small script to:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;graceful shutdown when power button is pressed.&lt;/li&gt;
+&lt;li&gt;graceful shutdown when power button is pressed.&lt;ul&gt;
 &lt;li&gt;hold the power button, after approximately 3 seconds, you will hear
-    2 beeps.  YOu can release the power button then.  The system will
-    do a graceful shutdown and power down.&lt;/li&gt;
-&lt;li&gt;When A/C power is lost:&lt;/li&gt;
+  2 beeps.  YOu can release the power button then.  The system will
+  do a graceful shutdown and power down.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;When A/C power is lost:&lt;ul&gt;
 &lt;li&gt;If battery status can not be determined, the system will do a graceful
-    powerdown.&lt;/li&gt;
+  powerdown.&lt;/li&gt;
 &lt;li&gt;If battery status can be read, it will beep once every 60 seconds until
-    power is restored.&lt;/li&gt;
+  power is restored.&lt;/li&gt;
 &lt;li&gt;If battery is low, it will do a graceful powerdown.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;Events are written to /dev/kmsg, so they could be forwarded to a syslog server.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The files to do this are:&lt;/p&gt;
@@ -1685,7 +1777,9 @@ image:&lt;/p&gt;
 &lt;li&gt;&lt;code&gt;etc/systemd/system/sockets.target.wants/munin-node.socket&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;etc/systemd/system/munin-node.socket&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;etc/systemd/system/munin-node@.service&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;etc/muninlite.conf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;etc/muninlite.conf&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;</content><category term="2022"></category><category term="address"></category><category term="boot"></category><category term="directory"></category><category term="installation"></category><category term="management"></category><category term="password"></category><category term="power"></category><category term="raspberry"></category><category term="scripts"></category><category term="software"></category></entry><entry><title>cuylib</title><link href="https://0ink.net/posts/2022/2022-09-20-cuylib.html" rel="alternate"></link><published>2022-09-20T00:00:00+02:00</published><updated>2022-09-20T16:28:05+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-09-20:/posts/2022/2022-09-20-cuylib.html</id><summary type="html">&lt;p&gt;This is a tiny library to implement Web server embedded editor.&lt;/p&gt;
 &lt;p&gt;You can find it in &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/cuylib"&gt;github&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Can be used either from &lt;a href="http://haserl.sourceforge.net/"&gt;haserl&lt;/a&gt; or directly from
@@ -1760,8 +1854,10 @@ on a private server, or in the cloud.&lt;/p&gt;
 &lt;p&gt;My implementation:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;I use a docker instance for &lt;a href="https://photoprism.app/"&gt;photoprism&lt;/a&gt; linked to a &lt;code&gt;mysql&lt;/code&gt; database.
-  (actually &lt;code&gt;mariadb&lt;/code&gt;).&lt;/li&gt;
+  (actually &lt;code&gt;mariadb&lt;/code&gt;).&lt;ul&gt;
 &lt;li&gt;&lt;a href="https://docs.photoprism.app/getting-started/advanced/databases/"&gt;database setup&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;This &lt;a href="https://photoprism.app/"&gt;photoprism&lt;/a&gt; instance is set as &lt;code&gt;AUTH=public&lt;/code&gt;, so no authentication.
   Users on my home network can connect directly.  From the Internet, I am using an
   &lt;a href="https://nginx.org/"&gt;nginx&lt;/a&gt; reverse proxy.  This reverse proxy requires authentication.&lt;/li&gt;
@@ -1840,13 +1936,11 @@ uses &lt;code&gt;php&lt;/code&gt; for backend access to the &lt;a href="http://s
 that it would make it more interactive.&lt;/p&gt;
 &lt;p&gt;My re-worked version is basically a PHP application.&lt;/p&gt;
 &lt;p&gt;As such, I removed the dependancies on&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://silex.sensiolabs.org/"&gt;Silex&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://twitter.github.com/bootstrap/"&gt;Twitter Bootstrap&lt;/a&gt; javascript, only
-    CSS is in use.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://jquery.com/"&gt;jQuery&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://documentcloud.github.com/backbone/"&gt;Backbone.js&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;* &lt;a href="http://silex.sensiolabs.org/"&gt;Silex&lt;/a&gt;
+  * &lt;a href="http://twitter.github.com/bootstrap/"&gt;Twitter Bootstrap&lt;/a&gt; javascript, only
+    CSS is in use.
+  * &lt;a href="http://jquery.com/"&gt;jQuery&lt;/a&gt;
+  * &lt;a href="http://documentcloud.github.com/backbone/"&gt;Backbone.js&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Also fixed &lt;a href="http://scripts.incutio.com/xmlrpc/"&gt;Incutio XML-RPC Library&lt;/a&gt;
 so that it works with PHP8.&lt;/p&gt;</content><category term="2022"></category><category term="application"></category><category term="javascript"></category><category term="library"></category><category term="power"></category><category term="software"></category><category term="tools"></category></entry><entry><title>voidlinux virtualization</title><link href="https://0ink.net/posts/2022/2022-08-14-void-kvm.html" rel="alternate"></link><published>2022-08-14T00:00:00+02:00</published><updated>2022-08-14T08:37:54+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-08-14:/posts/2022/2022-08-14-void-kvm.html</id><summary type="html">&lt;p&gt;This recipe is for setting virtualization on a voidlinux desktop.&lt;/p&gt;
 &lt;p&gt;Use this &lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-kvm/setup.sh"&gt;setup script&lt;/a&gt; to set things up on void linux.&lt;/p&gt;
@@ -1896,35 +1990,47 @@ virsh&lt;span class="w"&gt; &lt;/span&gt;--connect&lt;span class="w"&gt; &lt;/sp
 &lt;li&gt;Add CDROM, make readonly and shareable&lt;/li&gt;
 &lt;li&gt;Add Network connected to internal bridge.&lt;/li&gt;
 &lt;li&gt;Add boot device.&lt;/li&gt;
-&lt;li&gt;Add shared filesystem:&lt;/li&gt;
+&lt;li&gt;Add shared filesystem:&lt;ul&gt;
 &lt;li&gt;driver: virtio-9p&lt;/li&gt;
 &lt;li&gt;source path: &lt;code&gt;/var/lib/libvirt/filesystems/shared&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;target path: &lt;code&gt;/shared&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Prepare system&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;create filesystem&lt;/li&gt;
+&lt;li&gt;create filesystem&lt;ul&gt;
 &lt;li&gt;mkfs.vfat /dev/vda&lt;/li&gt;
 &lt;li&gt;apk add syslinux&lt;/li&gt;
 &lt;li&gt;syslinux /dev/vda&lt;/li&gt;
-&lt;li&gt;copy media&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;copy media&lt;ul&gt;
 &lt;li&gt;mount -t vfat /dev/vda /mnt&lt;/li&gt;
 &lt;li&gt;cp -av /media/cdrom/. /mnt&lt;/li&gt;
 &lt;li&gt;edit /mnt/boot/syslinux/syslinux.cfg
-    add: dom0_mem=1024M&lt;/li&gt;
+  add: dom0_mem=1024M&lt;/li&gt;
 &lt;li&gt;umount /mnt&lt;/li&gt;
-&lt;li&gt;remove cdrom&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;remove cdrom&lt;ul&gt;
 &lt;li&gt;power off&lt;/li&gt;
 &lt;li&gt;remove cdrom&lt;/li&gt;
 &lt;li&gt;change boot options&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;re-start system&lt;/li&gt;
-&lt;li&gt;setup-alpine&lt;/li&gt;
+&lt;li&gt;setup-alpine&lt;ul&gt;
 &lt;li&gt;enter fqdn&lt;/li&gt;
 &lt;li&gt;set interface eth0 to dhcp&lt;/li&gt;
-&lt;li&gt;Mount shared fs:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Mount shared fs:&lt;ul&gt;
 &lt;li&gt;mount -t 9p -o trans=virtio /shared /shared&lt;/li&gt;
 &lt;li&gt;fstab&lt;/li&gt;
 &lt;li&gt;/sharepoint   /share    9p  trans=virtio,version=9p2000.L,rw    0   0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id="thin-provisioning"&gt;Thin provisioning&lt;/h2&gt;
 &lt;p&gt;Create an overlay file like so:&lt;/p&gt;
@@ -2256,39 +2362,27 @@ option:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;./ghrelease&lt;span class="w"&gt; &lt;/span&gt;--purge
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="2022"></category><category term="directory"></category><category term="remote"></category><category term="scripts"></category></entry><entry><title>Linux Icons</title><link href="https://0ink.net/posts/2022/2022-01-10-linux_icons.html" rel="alternate"></link><published>2022-01-10T00:00:00+01:00</published><updated>2022-01-16T14:36:17+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-01-10:/posts/2022/2022-01-10-linux_icons.html</id><summary type="html">&lt;p&gt;A quick note on how to add icons to menus in a Linux desktop.&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Create the icon image in: &lt;code&gt;/usr/share/pixmaps&lt;/code&gt;.&lt;ul&gt;
-&lt;li&gt;png and svg (and maybe others) are supported.&lt;/li&gt;
-&lt;li&gt;24x24 seems to be a good size for menus.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;Create the icon image in: &lt;code&gt;/usr/share/pixmaps&lt;/code&gt;.
+    - png and svg (and maybe others) are supported.
+    - 24x24 seems to be a good size for menus.&lt;/li&gt;
 &lt;li&gt;You need to create a &lt;code&gt;.desktop&lt;/code&gt; file in &lt;code&gt;/usr/share/applications …&lt;/code&gt;&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;A quick note on how to add icons to menus in a Linux desktop.&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Create the icon image in: &lt;code&gt;/usr/share/pixmaps&lt;/code&gt;.&lt;ul&gt;
-&lt;li&gt;png and svg (and maybe others) are supported.&lt;/li&gt;
-&lt;li&gt;24x24 seems to be a good size for menus.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;You need to create a &lt;code&gt;.desktop&lt;/code&gt; file in &lt;code&gt;/usr/share/applications&lt;/code&gt;.&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://specifications.freedesktop.org/menu-spec/latest/index.html"&gt;Desktop menu specification&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://specifications.freedesktop.org/menu-spec/latest/apa.html"&gt;Registered categories&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;Create the icon image in: &lt;code&gt;/usr/share/pixmaps&lt;/code&gt;.
+    - png and svg (and maybe others) are supported.
+    - 24x24 seems to be a good size for menus.&lt;/li&gt;
+&lt;li&gt;You need to create a &lt;code&gt;.desktop&lt;/code&gt; file in &lt;code&gt;/usr/share/applications&lt;/code&gt;.
+    - &lt;a href="https://specifications.freedesktop.org/menu-spec/latest/index.html"&gt;Desktop menu specification&lt;/a&gt;
+    - &lt;a href="https://specifications.freedesktop.org/menu-spec/latest/apa.html"&gt;Registered categories&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;User desktop files:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;These are located in:&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;$HOME/.local/share/applications&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Icons can be found here:&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;$HOME/.local/icons&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;I am not sure about this one&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Autostart files:&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;$HOME/.config/autostart&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;These are located in:
+    - &lt;code&gt;$HOME/.local/share/applications&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Icons can be found here:
+    - &lt;code&gt;$HOME/.local/icons&lt;/code&gt;
+    - &lt;strong&gt;I am not sure about this one&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Autostart files:
+    - &lt;code&gt;$HOME/.config/autostart&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;See also: &lt;a href="https://wiki.archlinux.org/title/desktop_entries"&gt;archlinux wiki&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;There is a command line utility:&lt;/p&gt;
@@ -2932,13 +3026,19 @@ with &lt;code&gt;git-crypt init&lt;/code&gt; or &lt;code&gt;git-crypt unlock&lt;
 normally - encryption and decryption happen transparently.&lt;/p&gt;
 &lt;h3 id="verifying-that-git-crypt-is-working"&gt;Verifying that git-crypt is working&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;The simplest way:&lt;/li&gt;
+&lt;li&gt;The simplest way:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;git crypt status&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;The native way:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The native way:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;git check-attr -a -- &amp;lt;path&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Checking object hashes (these shouldn't match):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Checking object hashes (these shouldn't match):&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;git hash-object &amp;lt;path&amp;gt;&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;cat &amp;lt;path&amp;gt; | git hash-object --stdin&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;</content><category term="2021"></category><category term="encryption"></category><category term="git"></category><category term="installation"></category></entry><entry><title>Migration to Pelican</title><link href="https://0ink.net/posts/2021/2021-12-22-pelican.html" rel="alternate"></link><published>2021-12-22T00:00:00+01:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2021-12-22:/posts/2021/2021-12-22-pelican.html</id><summary type="html">&lt;p&gt;Finally got fedup with &lt;a href="https://pages.github.com/"&gt;github pages&lt;/a&gt; and its &lt;a href="https://jekyllrb.com/"&gt;jekyll&lt;/a&gt;
 static site generator.  Essentially things would break without
 any particular reason and there would be nearly no way to
@@ -2958,16 +3058,20 @@ very good.  But eventually I got it to work.&lt;/p&gt;
 tweaked to match my preferences.&lt;/p&gt;
 &lt;p&gt;I also was able to add:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;automatic tag generation&lt;/li&gt;
+&lt;li&gt;automatic tag generation&lt;ul&gt;
 &lt;li&gt;this is done before processing input files.  i.e. a script
-    reads existing content and modifies files as needed with
-    automatic tags.&lt;/li&gt;
-&lt;li&gt;sitemap generator&lt;/li&gt;
+  reads existing content and modifies files as needed with
+  automatic tags.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;sitemap generator&lt;ul&gt;
 &lt;li&gt;this is done as post-processing stage.  A script reads
-    generated html files and generates the sitemap accordingly.&lt;/li&gt;
+  generated html files and generates the sitemap accordingly.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The most useful feature I found is its that I can preview
-changes before commiting them.&lt;/p&gt;</content><category term="2021"></category><category term="feature"></category><category term="software"></category></entry><entry><title>My tale of IPv6 blues</title><link href="https://0ink.net/posts/2021/2021-12-21-ipv6-blues.html" rel="alternate"></link><published>2021-12-21T00:00:00+01:00</published><updated>2021-12-26T20:53:13+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2021-12-21:/posts/2021/2021-12-21-ipv6-blues.html</id><summary type="html">&lt;p&gt;My ISP provider is &lt;a href="https://www.kpn.com" title="KPN"&gt;KPN&lt;/a&gt;.  They recently enabled
+changes before commiting them.&lt;/p&gt;</content><category term="2021"></category><category term="feature"></category><category term="software"></category></entry><entry><title>My tale of IPv6 blues</title><link href="https://0ink.net/posts/2021/2021-12-21-ipv6-blues.html" rel="alternate"></link><published>2021-12-21T00:00:00+01:00</published><updated>2023-02-24T12:46:48+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2021-12-21:/posts/2021/2021-12-21-ipv6-blues.html</id><summary type="html">&lt;p&gt;My ISP provider is &lt;a href="https://www.kpn.com" title="KPN"&gt;KPN&lt;/a&gt;.  They recently enabled
 IPv6 in my street.  I was using before a IPv6 Tunnel Broker,
 starting with &lt;a href="https://www.sixxs.net" title="SixXS"&gt;SixXS&lt;/a&gt; and after they went out,
 with &lt;a href="https://tunnelbroker.net" title="Hurricane Electric"&gt;Hurricane Electric&lt;/a&gt;.  So naturally,
@@ -3010,31 +3114,7 @@ ip -6 address restore &amp;lt; $savefile 2&amp;gt;&amp;amp;1 | grep -v &amp;#39;
 &lt;p&gt;Again, I have no idea what is going on.&lt;/p&gt;
 &lt;p&gt;Eventually I changed my set-up to have something like
 this:&lt;/p&gt;
-&lt;p&gt;&lt;svg width="552.0" height="62.0" viewBox="0 0 552.0 62.0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
-&lt;!-- automatically generated by aafigure --&gt;&lt;line x1="10.0" y1="24.0" x2="150.0" y2="24.0" stroke="#000000" stroke-width="2.0" /&gt;
-&lt;line x1="206.0" y1="24.0" x2="304.0" y2="24.0" stroke="#000000" stroke-width="2.0" /&gt;
-&lt;line x1="360.0" y1="24.0" x2="542.0" y2="24.0" stroke="#000000" stroke-width="2.0" /&gt;
-&lt;line x1="10.0" y1="24.0" x2="10.0" y2="52.0" stroke="#000000" stroke-width="2.0" /&gt;
-&lt;line x1="150.0" y1="24.0" x2="150.0" y2="52.0" stroke="#000000" stroke-width="2.0" /&gt;
-&lt;line x1="157.0" y1="38.0" x2="199.0" y2="38.0" stroke="#000000" stroke-width="2.0" /&gt;
-&lt;line x1="206.0" y1="24.0" x2="206.0" y2="52.0" stroke="#000000" stroke-width="2.0" /&gt;
-&lt;line x1="304.0" y1="24.0" x2="304.0" y2="52.0" stroke="#000000" stroke-width="2.0" /&gt;
-&lt;line x1="311.0" y1="38.0" x2="353.0" y2="38.0" stroke="#000000" stroke-width="2.0" /&gt;
-&lt;line x1="360.0" y1="24.0" x2="360.0" y2="52.0" stroke="#000000" stroke-width="2.0" /&gt;
-&lt;line x1="542.0" y1="24.0" x2="542.0" y2="52.0" stroke="#000000" stroke-width="2.0" /&gt;
-&lt;line x1="10.0" y1="52.0" x2="150.0" y2="52.0" stroke="#000000" stroke-width="2.0" /&gt;
-&lt;line x1="206.0" y1="52.0" x2="304.0" y2="52.0" stroke="#000000" stroke-width="2.0" /&gt;
-&lt;line x1="360.0" y1="52.0" x2="542.0" y2="52.0" stroke="#000000" stroke-width="2.0" /&gt;
-&lt;text x="17.0" y="42.9" font-family="monospace" font-size="14.0" fill="#000000" &gt;
-  KPN modem
-&lt;/text&gt;
-&lt;text x="213.0" y="42.9" font-family="monospace" font-size="14.0" fill="#000000" &gt;
-  router
-&lt;/text&gt;
-&lt;text x="367.0" y="42.9" font-family="monospace" font-size="14.0" fill="#000000" &gt;
-  HOME NETWORK
-&lt;/text&gt;
-&lt;/svg&gt;&lt;/p&gt;
+&lt;p&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" width="320" height="80"&gt;    &lt;style&gt;        line, path, circle, rect, polygon{stroke:black;stroke-width:2;stroke-opacity:1;fill-opacity:1;stroke-linecap:round;stroke-linejoin:miter;}text{font-family:Iosevka Fixed, monospace;font-size:14px;}rect.backdrop{stroke:none;fill:white;}.broken{stroke-dasharray:8;}.filled{fill:black;}.bg_filled{fill:white;}.nofill{fill:white;}.end_marked_arrow{marker-end:url(#arrow);}.start_marked_arrow{marker-start:url(#arrow);}.end_marked_diamond{marker-end:url(#diamond);}.start_marked_diamond{marker-start:url(#diamond);}.end_marked_circle{marker-end:url(#circle);}.start_marked_circle{marker-start:url(#circle);}.end_marked_open_circle{marker-end:url(#open_circle);}.start_marked_open_circle{marker-start:url(#open_circle);}.end_marked_big_open_circle{marker-end:url(#big_open_circle);}.start_marked_big_open_circle{marker-start:url(#big_open_circle);}        &lt;!--separator--&gt;            &lt;/style&gt;    &lt;defs&gt;        &lt;marker id="arrow" viewBox="-2 -2 8 8" refX="4" refY="2" markerWidth="7" markerHeight="7" orient="auto-start-reverse"&gt;            &lt;polygon points="0,0 0,4 4,2 0,0"&gt;&lt;/polygon&gt;        &lt;/marker&gt;        &lt;marker id="diamond" viewBox="-2 -2 8 8" refX="4" refY="2" markerWidth="7" markerHeight="7" orient="auto-start-reverse"&gt;            &lt;polygon points="0,2 2,0 4,2 2,4 0,2"&gt;&lt;/polygon&gt;        &lt;/marker&gt;        &lt;marker id="circle" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"&gt;            &lt;circle cx="4" cy="4" r="2" class="filled"&gt;&lt;/circle&gt;        &lt;/marker&gt;        &lt;marker id="open_circle" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"&gt;            &lt;circle cx="4" cy="4" r="2" class="bg_filled"&gt;&lt;/circle&gt;        &lt;/marker&gt;        &lt;marker id="big_open_circle" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"&gt;            &lt;circle cx="4" cy="4" r="3" class="bg_filled"&gt;&lt;/circle&gt;        &lt;/marker&gt;    &lt;/defs&gt;    &lt;rect class="backdrop" x="0" y="0" width="320" height="80"&gt;&lt;/rect&gt;    &lt;text x="10" y="44" &gt;KPN&lt;/text&gt;    &lt;text x="42" y="44" &gt;modem&lt;/text&gt;    &lt;text x="122" y="44" &gt;router&lt;/text&gt;    &lt;text x="210" y="44" &gt;HOME&lt;/text&gt;    &lt;text x="250" y="44" &gt;NETWORK&lt;/text&gt;    &lt;g&gt;        &lt;line x1="4" y1="24" x2="84" y2="24" class="solid"&gt;&lt;/line&gt;        &lt;line x1="4" y1="24" x2="4" y2="56" class="solid"&gt;&lt;/line&gt;        &lt;line x1="84" y1="24" x2="84" y2="56" class="solid"&gt;&lt;/line&gt;        &lt;line x1="4" y1="56" x2="84" y2="56" class="solid"&gt;&lt;/line&gt;        &lt;line x1="116" y1="24" x2="172" y2="24" class="solid"&gt;&lt;/line&gt;        &lt;line x1="116" y1="24" x2="116" y2="56" class="solid"&gt;&lt;/line&gt;        &lt;line x1="172" y1="24" x2="172" y2="56" class="solid"&gt;&lt;/line&gt;        &lt;line x1="84" y1="40" x2="116" y2="40" class="solid"&gt;&lt;/line&gt;        &lt;line x1="116" y1="56" x2="172" y2="56" class="solid"&gt;&lt;/line&gt;        &lt;line x1="204" y1="24" x2="308" y2="24" class="solid"&gt;&lt;/line&gt;        &lt;line x1="204" y1="24" x2="204" y2="56" class="solid"&gt;&lt;/line&gt;        &lt;line x1="308" y1="24" x2="308" y2="56" class="solid"&gt;&lt;/line&gt;        &lt;line x1="172" y1="40" x2="204" y2="40" class="solid"&gt;&lt;/line&gt;        &lt;line x1="204" y1="56" x2="308" y2="56" class="solid"&gt;&lt;/line&gt;    &lt;/g&gt;&lt;/svg&gt;&lt;/p&gt;
 
 &lt;p&gt;The &lt;code&gt;router&lt;/code&gt; in between does Network Address Translation
 and Firewalling.  The reasons I chose this is:&lt;/p&gt;
@@ -3079,14 +3159,10 @@ myself.  Essentially it does the following:&lt;/p&gt;
 be found &lt;a href="https://quantum2.xyz/2019/03/08/ndp-proxy-route-ipv6-vpn-addresses/"&gt;here&lt;/a&gt;.&lt;/p&gt;</content><category term="2021"></category><category term="address"></category><category term="configuration"></category><category term="feature"></category><category term="idea"></category><category term="linux"></category><category term="network"></category><category term="proxy"></category><category term="service"></category><category term="software"></category></entry><entry><title>Linux Post Install tasks</title><link href="https://0ink.net/posts/2021/2021-12-21-linux-tips.html" rel="alternate"></link><published>2021-12-21T00:00:00+01:00</published><updated>2021-12-26T20:53:13+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2021-12-21:/posts/2021/2021-12-21-linux-tips.html</id><summary type="html">&lt;p&gt;These tips are for &lt;a href="https://voidlinux.org" title="Void Linux"&gt;void linux&lt;/a&gt; as that is the distro
 I am using nowadays.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;mate tricks: change background from cli&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;dconf write /org/mate/desktop/background/picture-filename "'PATH-TO-JPEG'"&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;web page to check if your browser is html5 compliant:&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.youtube.com/html5"&gt;https://www.youtube.com/html5&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;mate tricks: change background from cli
+    - &lt;code&gt;dconf write /org/mate/desktop/background/picture-filename "'PATH-TO-JPEG'"&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;web page to check if your browser is html5 compliant:
+    - &lt;a href="https://www.youtube.com/html5"&gt;https://www.youtube.com/html5&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="hotkeys"&gt;HotKeys&lt;/h2&gt;
 &lt;ul&gt;
@@ -3094,37 +3170,31 @@ I am using nowadays.&lt;/p&gt;
 &lt;li&gt;Add to startup …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;These tips are for &lt;a href="https://voidlinux.org" title="Void Linux"&gt;void linux&lt;/a&gt; as that is the distro
 I am using nowadays.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;mate tricks: change background from cli&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;dconf write /org/mate/desktop/background/picture-filename "'PATH-TO-JPEG'"&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;web page to check if your browser is html5 compliant:&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.youtube.com/html5"&gt;https://www.youtube.com/html5&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;mate tricks: change background from cli
+    - &lt;code&gt;dconf write /org/mate/desktop/background/picture-filename "'PATH-TO-JPEG'"&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;web page to check if your browser is html5 compliant:
+    - &lt;a href="https://www.youtube.com/html5"&gt;https://www.youtube.com/html5&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="hotkeys"&gt;HotKeys&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Install &lt;code&gt;xbindkeys&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Add to startup? &lt;code&gt;$HOME/.xprofile&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Create default config with &lt;code&gt;xbindkeys -d &amp;gt; $HOME/.xbindkeysrc&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Lookup key combinations:&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;xbindkeys --multikey&lt;/code&gt; or&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;xbindkeys --key&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;Lookup key combinations:
+    - &lt;code&gt;xbindkeys --multikey&lt;/code&gt; or
+    - &lt;code&gt;xbindkeys --key&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;update bindings &lt;code&gt;xbindkeys --poll-rc&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;rofi&lt;/code&gt;&lt;ul&gt;
-&lt;li&gt;A good addition to this is &lt;code&gt;rofi&lt;/code&gt;.  Which is a dynamic menu.&lt;/li&gt;
-&lt;li&gt;Create a xbindkey shortcut to run rofi with:&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;rofi -show-icons  -modi drun,window  -show drun&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rofi&lt;/code&gt;
+    - A good addition to this is &lt;code&gt;rofi&lt;/code&gt;.  Which is a dynamic menu.
+    - Create a xbindkey shortcut to run rofi with:
+    - &lt;code&gt;rofi -show-icons  -modi drun,window  -show drun&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="additional-software"&gt;Additional software&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Additional software (Tested on void linux):&lt;/li&gt;
+&lt;li&gt;Additional software (Tested on void linux):&lt;ul&gt;
 &lt;li&gt;Tip: use &lt;code&gt;sed -e 's/#.*$//'&lt;/code&gt; to strip comments!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;#&lt;/span&gt;
 &lt;span class="c1"&gt;# Download this with:&lt;/span&gt;
@@ -3252,33 +3322,51 @@ I am using nowadays.&lt;/p&gt;
 first and then create the &lt;code&gt;certificate&lt;/code&gt;.&lt;/p&gt;
 &lt;h2 id="checking-and-verifying-certificates"&gt;Checking and verifying certificates&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Check certificate&lt;/li&gt;
+&lt;li&gt;Check certificate&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;openssl x509 -in server.crt -text -noout&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Check SSL key and verify consistency&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Check SSL key and verify consistency&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;openssl rsa -in server.key -check&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Check CSR and print CSR data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Check CSR and print CSR data&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;openssl req -text -noout -verify -in server.csr&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Verify that certificate and key matches:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Verify that certificate and key matches:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;openssl x509 -noout -modulus -in server.crt| openssl md5&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;openssl rsa -noout -modulus -in server.key| openssl md5&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Check SSL Certificate expiration date&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Check SSL Certificate expiration date&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;openssl x509 -dates -noout -in hydssl.cer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="check-ssl-connection"&gt;Check SSL connection&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Tests connectivity to an HTTPS service:&lt;/li&gt;
+&lt;li&gt;Tests connectivity to an HTTPS service:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;openssl s_client -connect &amp;lt;hostname&amp;gt;:443&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;Prints all certificates in the certificate chain presented by the
   SSL service. Useful when troubleshooting missing intermediate CA
-  certificate issues.&lt;/li&gt;
+  certificate issues.&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;openssl s_client -connect &amp;lt;hostname&amp;gt;:&amp;lt;port&amp;gt; -showcerts&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Forces TLSv1 and DTLSv1.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Forces TLSv1 and DTLSv1.&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;openssl s_client -connect &amp;lt;hostname&amp;gt;:&amp;lt;port&amp;gt; -tls1&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;openssl s_client -connect &amp;lt;hostname&amp;gt;:&amp;lt;port&amp;gt; -dtls1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;Forces a specific cipher. This option is useful in testing enabled
   SSL ciphers. Use the &lt;code&gt;openssl ciphers&lt;/code&gt; command to see a list of
-  available ciphers for OpenSSL.&lt;/li&gt;
+  available ciphers for OpenSSL.&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;openssl s_client -connect &amp;lt;hostname&amp;gt;:&amp;lt;port&amp;gt; -cipher DHE-RSA-AES256-SHA&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;For troubleshooting connection and SSL handshake problems, see the
 following:&lt;/p&gt;
@@ -3298,18 +3386,30 @@ or not with the following command.&lt;/p&gt;
 
 &lt;h2 id="check-ssl-certificates-on-a-remote-server"&gt;Check SSL certificates on a remote server:&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Check who has issued the SSL certificate:&lt;/li&gt;
+&lt;li&gt;Check who has issued the SSL certificate:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;echo | openssl s_client -servername howtouselinux.com -connect howtouselinux.com:443 2&amp;gt;/dev/null | openssl x509 -noout -issuer&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Check whom the SSL certificate is issued to:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Check whom the SSL certificate is issued to:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;echo | openssl s_client -servername howtouselinux.com -connect howtouselinux.com:443 2&amp;gt;/dev/null | openssl x509 -noout -subject&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Check for what dates the SSL certificate is valid:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Check for what dates the SSL certificate is valid:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;echo | openssl s_client -servername howtouselinux.com -connect howtouselinux.com:443 2&amp;gt;/dev/null | openssl x509 -noout -dates&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Show the SHA1 fingerprint of the SSL certificate:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Show the SHA1 fingerprint of the SSL certificate:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;echo | openssl s_client -servername www.howtouselinux.com -connect www.howtouselinux.com:443 2&amp;gt;/dev/null | openssl x509 -noout -fingerprint&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Extract all information from the SSL certificate (decoded)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Extract all information from the SSL certificate (decoded)&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;echo | openssl s_client -servername www.howtouselinux.com -connect www.howtouselinux.com:443 2&amp;gt;/dev/null | openssl x509 -noout -text&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Show the SSL certificate itself (encoded):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Show the SSL certificate itself (encoded):&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;echo | openssl s_client -servername howtouselinux.com -connect howtouselinux.com:443 2&amp;gt;/dev/null | openssl x509&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="becoming-your-own-ca"&gt;Becoming your own &lt;code&gt;CA&lt;/code&gt;&lt;/h2&gt;
 &lt;p&gt;The easiest way is to use &lt;a href="https://github.com/FiloSottile/mkcert"&gt;mkcert&lt;/a&gt;.  &lt;a href="https://github.com/FiloSottile/mkcert"&gt;mkcert&lt;/a&gt; is a
@@ -3652,18 +3752,20 @@ screensaver hack collection with the &lt;a href="https://mate-desktop.org/"&gt;M
 applet.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Install &lt;code&gt;xscreensaver&lt;/code&gt; and &lt;code&gt;mate-screensaver&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;On my linux distribution this creates the following directories:&lt;/li&gt;
+&lt;li&gt;On my linux distribution this creates the following directories:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;/usr/libexec/xscreensaver&lt;/code&gt;: contains the screensaver hacks executables&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;/usr/libexec/mate-screensaver&lt;/code&gt; : contains the &lt;code&gt;mate-screensaver&lt;/code&gt; executables&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;/usr/share/applications/screensavers&lt;/code&gt; : containes the …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;Here we explain how to use &lt;a href="https://www.jwz.org/xscreensaver/"&gt;XScreenSaver&lt;/a&gt; &lt;strong&gt;EXCELLENT&lt;/strong&gt;
+&lt;li&gt;&lt;code&gt;/usr/share/applications/screensavers&lt;/code&gt; : containes the …&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;Here we explain how to use &lt;a href="https://www.jwz.org/xscreensaver/"&gt;XScreenSaver&lt;/a&gt; &lt;strong&gt;EXCELLENT&lt;/strong&gt;
 screensaver hack collection with the &lt;a href="https://mate-desktop.org/"&gt;MATE&lt;/a&gt; screensaver
 applet.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Install &lt;code&gt;xscreensaver&lt;/code&gt; and &lt;code&gt;mate-screensaver&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;On my linux distribution this creates the following directories:&lt;/li&gt;
+&lt;li&gt;On my linux distribution this creates the following directories:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;/usr/libexec/xscreensaver&lt;/code&gt;: contains the screensaver hacks executables&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;/usr/libexec/mate-screensaver&lt;/code&gt; : contains the &lt;code&gt;mate-screensaver&lt;/code&gt; executables&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;/usr/share/applications/screensavers&lt;/code&gt; : containes the &lt;code&gt;dekstop&lt;/code&gt; files&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;Create a small script that will call the screensaver hack with the right
   arguments.  Make sure this script is in the &lt;code&gt;/usr/libexec/mate-screensaver&lt;/code&gt;
   directory, as the &lt;code&gt;mate-screensaver&lt;/code&gt; preferences will not accept any
@@ -3899,16 +4001,22 @@ op_&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;cmd&lt;/span&gt;
 &lt;p&gt;This simplifies the full process.  Just run the script (you may need to
 &lt;code&gt;sudo&lt;/code&gt;) with the following options:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;$0 hacks [-e\|-d]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$0 hacks [-e\|-d]&lt;/code&gt;&lt;ul&gt;
 &lt;li&gt;shows the list of hacks and its enabled or disabled status.&lt;/li&gt;
 &lt;li&gt;the &lt;code&gt;-e&lt;/code&gt; option will only show enabled hacks.&lt;/li&gt;
 &lt;li&gt;the &lt;code&gt;-d&lt;/code&gt; option will only show disabled hacks.&lt;/li&gt;
-&lt;li&gt;`$0 enable [--all|hacks]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;`$0 enable [--all|hacks]&lt;ul&gt;
 &lt;li&gt;enable the specified hacks.&lt;/li&gt;
 &lt;li&gt;Use &lt;code&gt;--all&lt;/code&gt; to enable all available hacks (excluding blacklisted hacks)&lt;/li&gt;
-&lt;li&gt;`$0 disable [--all|hacks]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;`$0 disable [--all|hacks]&lt;ul&gt;
 &lt;li&gt;disable the specified hacks.&lt;/li&gt;
 &lt;li&gt;Use &lt;code&gt;--all&lt;/code&gt; to disable all available hacks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;p&gt;If you like &lt;a href="https://www.jwz.org/xscreensaver/"&gt;XScreenSaver&lt;/a&gt; and would like to see the same software
@@ -4852,17 +4960,25 @@ root filesystem was destroyed.  It requires to have a backup of the
 &lt;li&gt;Restore the &lt;code&gt;/crypto_keyfile.bin&lt;/code&gt;.  Make sure it is in &lt;code&gt;/&lt;/code&gt; and
    permissions are &lt;code&gt;chmod 000 /crypto_keyfile.bin&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;If available, restore the &lt;code&gt;/etc/crypttab&lt;/code&gt; otherwise look up the
-   block device UUID and re-create the &lt;code&gt;/etc/crypttab&lt;/code&gt; entry:&lt;/li&gt;
+   block device UUID and re-create the &lt;code&gt;/etc/crypttab&lt;/code&gt; entry:&lt;ul&gt;
 &lt;li&gt;Look-up the UUID:&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;blkid /dev/xda2&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Add the entry in &lt;code&gt;/etc/crypttab&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;crypt-pool    UUID=xxxxxxxxxxxxxxxx /crypto_keyfile.bin luks&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Create &lt;code&gt;/etc/dracut.conf.d/10-crypt.conf&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Create &lt;code&gt;/etc/dracut.conf.d/10-crypt.conf&lt;/code&gt;&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;install_items+="/etc/crypttab /crypto_keyfile.bin"&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Update initrd:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Update initrd:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;xbps-reconfigure -f linux4.19&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Update boot menu entries:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Update boot menu entries:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;bash /boot/mkmenu.sh&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ol&gt;</content><category term="2019"></category><category term="backup"></category><category term="boot"></category><category term="device"></category><category term="encryption"></category><category term="filesystem"></category><category term="idea"></category><category term="partition"></category></entry><entry><title>Installing Void Linux</title><link href="https://0ink.net/posts/2019/2019-02-19-installing-void.html" rel="alternate"></link><published>2019-02-19T00:00:00+01:00</published><updated>2022-01-10T17:29:50+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2019-02-19:/posts/2019/2019-02-19-installing-void.html</id><summary type="html">&lt;p&gt;I made the switch to &lt;a href="https://voidlinux.org" title="Void Linux"&gt;void linux&lt;/a&gt;.  Except for compatibility
 issues around &lt;code&gt;glibc&lt;/code&gt;, it works quite well.  Most compatibility
 I have worked around with a combination of &lt;code&gt;Flatpak&lt;/code&gt;s, &lt;code&gt;chroot&lt;/code&gt;s and
@@ -5112,10 +5228,14 @@ mkdir&lt;span class="w"&gt; &lt;/span&gt;/boot/EFI/BOOT
 
 &lt;p&gt;For my hardware I had to add the option:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;intel_iommu=igfx_off&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;intel_iommu=igfx_off&lt;/code&gt;&lt;ul&gt;
 &lt;li&gt;To work around some strange bug.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;i915.enable_ips=0&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;i915.enable_ips=0&lt;/code&gt;&lt;ul&gt;
 &lt;li&gt;fixes a power saving mode problem on 4.1-rc6+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Create the following script as &lt;code&gt;/boot/mkmenu.sh&lt;/code&gt;&lt;/p&gt;
 &lt;script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&amp;showBorder=on&amp;showLineNumbers=on&amp;showFileMeta=on&amp;showCopy=on&amp;fetchFromJsDelivr=on&amp;target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/mkmenu.sh"&gt;&lt;/script&gt;
@@ -5268,13 +5388,17 @@ will spam the logs with error messages.  To correct use this command:&lt;/p&gt;
 &lt;h4 id="xen-tweaks"&gt;xen tweaks&lt;/h4&gt;
 &lt;p&gt;For xen we need to make some adjustments...&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Tweak block device references.&lt;/li&gt;
+&lt;li&gt;Tweak block device references.&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;/etc/fstab&lt;/code&gt; : mount xvda and other devices&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;/boot/cmdline&lt;/code&gt; : get the right xvda root device&lt;/li&gt;
-&lt;li&gt;Enable disable services&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Enable disable services&lt;ul&gt;
 &lt;li&gt;Disable: &lt;code&gt;slim&lt;/code&gt;, &lt;code&gt;agetty-ttyX&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Enable: &lt;code&gt;agetty-hvc0&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Decide if you want to use &lt;code&gt;NetworkManager&lt;/code&gt; or &lt;code&gt;dhcpcd&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Normally, I would create a tarball image to transfer over, in order
 for the image to work properly you need to save &lt;code&gt;capabilities&lt;/code&gt;.&lt;/p&gt;
@@ -5828,11 +5952,9 @@ echo dockremap:100000:65535 | tee /etc/subgid
 &lt;h3 id="useful-options-for-docker"&gt;Useful options for docker&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;docker run -d&lt;/code&gt; : Run as a daemon (runs in the background).&lt;/li&gt;
-&lt;li&gt;NFS mounting (pre 17.06)&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;you@host &amp;gt; mount server:/dir /path/to/mount/point&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;you@host &amp;gt; docker run -v /path/to/mount/point:/path/to/mount/point&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;NFS mounting (pre 17.06)
+    - &lt;code&gt;you@host &amp;gt; mount server:/dir /path/to/mount/point&lt;/code&gt;
+    - &lt;code&gt;you@host &amp;gt; docker run -v /path/to/mount/point:/path/to/mount/point&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;docker run -p 4000:80&lt;/code&gt; : Forward port 4000 to 80.
    So host listens on port 4000 and everything is forwarded to port 80 on the container.&lt;/li&gt;
 &lt;/ul&gt;
@@ -5851,10 +5973,8 @@ options in:&lt;/p&gt;
 &lt;li&gt;&lt;code&gt;docker run -i -t [--name guest] image_name /bin/bash|/bin/sh&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;... make changes to it ...&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;docker stop name|container_id&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;`docker commit -m 'change name' -a 'A N Other' container_id image_name&lt;ul&gt;
-&lt;li&gt;container id: &lt;code&gt;$(docker ps -l -q)&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;docker commit -m 'change name' -a 'A N Other' container_id image_name
+    - container id:&lt;/code&gt;$(docker ps -l -q)`&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;docker rm guest|container_id&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id="better-way-to-create-container-images"&gt;Better way to create container images:&lt;/h3&gt;
@@ -5868,40 +5988,40 @@ options in:&lt;/p&gt;
 &lt;/ul&gt;</content><category term="2018"></category><category term="alpine"></category><category term="boot"></category><category term="installation"></category><category term="linux"></category><category term="service"></category><category term="ubuntu"></category></entry><entry><title>Alpine on OTC</title><link href="https://0ink.net/posts/2018/2018-08-29-alpine-on-otc.html" rel="alternate"></link><published>2018-08-29T00:00:00+02:00</published><updated>2022-01-04T18:38:11+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2018-08-29:/posts/2018/2018-08-29-alpine-on-otc.html</id><summary type="html">&lt;p&gt;These are just random thoughts nothing really was implemented.&lt;/p&gt;
 &lt;p&gt;Alpine Linux image&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;preparation: jq and other deps to &lt;code&gt;/apks/x86_64&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;/etc/local.d/&lt;/code&gt;
-    &lt;code&gt;cloud-init-lite&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;if &lt;code&gt;/etc/network/intefaces&lt;/code&gt; exists we abort&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;preparation: jq and other deps to &lt;code&gt;/apks/x86_64&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;/etc/local.d/&lt;/code&gt;
+    &lt;code&gt;cloud-init-lite&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;if &lt;code&gt;/etc/network/intefaces&lt;/code&gt; exists we abort&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;apk add --force-non-repository /path oniguruma,jq&lt;/code&gt; .. restore &lt;code&gt;/etc/apk/world&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;udhcpc -b -p /var/run/udhcpc.eth0.pid -i …&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;These are just random thoughts nothing really was implemented.&lt;/p&gt;
+&lt;li&gt;&lt;code&gt;udhcpc -b -p /var/run/udhcpc.eth0.pid -i …&lt;/code&gt;&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;These are just random thoughts nothing really was implemented.&lt;/p&gt;
 &lt;p&gt;Alpine Linux image&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;preparation: jq and other deps to &lt;code&gt;/apks/x86_64&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;/etc/local.d/&lt;/code&gt;
-    &lt;code&gt;cloud-init-lite&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;if &lt;code&gt;/etc/network/intefaces&lt;/code&gt; exists we abort&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;preparation: jq and other deps to &lt;code&gt;/apks/x86_64&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;/etc/local.d/&lt;/code&gt;
+    &lt;code&gt;cloud-init-lite&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;if &lt;code&gt;/etc/network/intefaces&lt;/code&gt; exists we abort&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;apk add --force-non-repository /path oniguruma,jq&lt;/code&gt; .. restore &lt;code&gt;/etc/apk/world&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;udhcpc -b -p /var/run/udhcpc.eth0.pid -i eth0&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;install &lt;code&gt;openssh&lt;/code&gt; and start it&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;wget&lt;/code&gt; meta data and create &lt;code&gt;/root/.ssh/authorized_keys&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;wget&lt;/code&gt; meta data and create &lt;code&gt;/root/.ssh/authorized_keys&lt;/code&gt;&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;wget -O- http://169.254.169.254/openstack/YYYY-MM-DD/meta_data.json&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><category term="2018"></category><category term="alpine"></category><category term="linux"></category></entry><entry><title>Windows Account Lockouts</title><link href="https://0ink.net/posts/2018/2018-07-19-locking-account.html" rel="alternate"></link><published>2018-07-19T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2018-07-19:/posts/2018/2018-07-19-locking-account.html</id><content type="html">&lt;p&gt;To prevent windows lockouts the following can be done:&lt;/p&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</content><category term="2018"></category><category term="alpine"></category><category term="linux"></category></entry><entry><title>Windows Account Lockouts</title><link href="https://0ink.net/posts/2018/2018-07-19-locking-account.html" rel="alternate"></link><published>2018-07-19T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2018-07-19:/posts/2018/2018-07-19-locking-account.html</id><content type="html">&lt;p&gt;To prevent windows lockouts the following can be done:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Delete Internet Explorer browsing history&lt;/li&gt;
-&lt;li&gt;Run the following:&lt;/li&gt;
+&lt;li&gt;Run the following:&lt;ul&gt;
 &lt;li&gt;Open Start --&amp;gt; Search filed--&amp;gt; Type in Run --&amp;gt; rundll32.exe keymgr.dll, KRShowKeyMgr --&amp;gt; Delete&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;Disconnect network shares&lt;/li&gt;
 &lt;li&gt;Change password&lt;/li&gt;
 &lt;/ul&gt;</content><category term="2018"></category><category term="network"></category><category term="password"></category><category term="windows"></category></entry><entry><title>Skipping grep when using AWK</title><link href="https://0ink.net/posts/2018/2018-07-11-awk-vs-grep.html" rel="alternate"></link><published>2018-07-11T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2018-07-11:/posts/2018/2018-07-11-awk-vs-grep.html</id><summary type="html">&lt;p&gt;Over the years, We've seen many people use this pattern (filter-map):&lt;/p&gt;
@@ -6725,46 +6845,50 @@ xterm xorg-twm xorg-xclock
 &lt;p&gt;budgie: budgie-desktop&lt;/p&gt;</content><category term="2018"></category><category term="boot"></category><category term="browser"></category><category term="manager"></category><category term="windows"></category></entry><entry><title>Retropie</title><link href="https://0ink.net/posts/2018/2018-03-01-retropie-notes.html" rel="alternate"></link><published>2018-03-01T00:00:00+01:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2018-03-01:/posts/2018/2018-03-01-retropie-notes.html</id><summary type="html">&lt;ul&gt;
 &lt;li&gt;DVD player&lt;/li&gt;
 &lt;li&gt;Bluetooth receiver &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;keyboard &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;good keyboard bindings&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;keyboard &lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;good keyboard bindings&lt;/li&gt;
 &lt;li&gt;how to exit games&lt;/li&gt;
 &lt;li&gt;convert probox into binding keys&lt;/li&gt;
 &lt;li&gt;where are key codes saved&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;ul&gt;
-&lt;li&gt;Write image:&lt;/li&gt;
+&lt;li&gt;Write image:&lt;ul&gt;
 &lt;li&gt;gunzip &amp;lt; retropie-4.3-rpi2_rpi3.img.gz | sudo dd of=/dev/sde bs=4M&lt;/li&gt;
-&lt;li&gt;Configure config.txt&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Configure config.txt&lt;ul&gt;
 &lt;li&gt;hdmi_force_hotplug=1&lt;/li&gt;
 &lt;li&gt;hdmi_drive=2&lt;/li&gt;
-&lt;li&gt;Boot and configure keyboard&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Boot and configure keyboard&lt;ul&gt;
 &lt;li&gt;D-Pad =&amp;gt; D-Pad&lt;/li&gt;
-&lt;li&gt;start …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;ul&gt;
+&lt;li&gt;start …&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;ul&gt;
 &lt;li&gt;DVD player&lt;/li&gt;
 &lt;li&gt;Bluetooth receiver &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;keyboard &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;good keyboard bindings&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;keyboard &lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;good keyboard bindings&lt;/li&gt;
 &lt;li&gt;how to exit games&lt;/li&gt;
 &lt;li&gt;convert probox into binding keys&lt;/li&gt;
 &lt;li&gt;where are key codes saved&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;ul&gt;
-&lt;li&gt;Write image:&lt;/li&gt;
+&lt;li&gt;Write image:&lt;ul&gt;
 &lt;li&gt;gunzip &amp;lt; retropie-4.3-rpi2_rpi3.img.gz | sudo dd of=/dev/sde bs=4M&lt;/li&gt;
-&lt;li&gt;Configure config.txt&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Configure config.txt&lt;ul&gt;
 &lt;li&gt;hdmi_force_hotplug=1&lt;/li&gt;
 &lt;li&gt;hdmi_drive=2&lt;/li&gt;
-&lt;li&gt;Boot and configure keyboard&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Boot and configure keyboard&lt;ul&gt;
 &lt;li&gt;D-Pad =&amp;gt; D-Pad&lt;/li&gt;
 &lt;li&gt;start : mike (F5)&lt;/li&gt;
 &lt;li&gt;select : menu key&lt;/li&gt;
@@ -6772,20 +6896,24 @@ xterm xorg-twm xorg-xclock
 &lt;li&gt;B : back&lt;/li&gt;
 &lt;li&gt;X : vol-&lt;/li&gt;
 &lt;li&gt;Y : vol+
-  ... skip all ...&lt;/li&gt;
+... skip all ...&lt;/li&gt;
 &lt;li&gt;HotKey : power&lt;/li&gt;
-&lt;li&gt;Configure SSH&lt;/li&gt;
-&lt;li&gt;sudo raspi-config&lt;ul&gt;
-&lt;li&gt;Interfacing Options&lt;/li&gt;
-&lt;li&gt;Enable SSH&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;Install Kodi&lt;/li&gt;
+&lt;li&gt;Configure SSH&lt;ul&gt;
+&lt;li&gt;sudo raspi-config
+    - Interfacing Options
+    - Enable SSH&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Install Kodi&lt;ul&gt;
 &lt;li&gt;?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;ul&gt;
-&lt;li&gt;NFS&lt;/li&gt;
+&lt;li&gt;NFS&lt;ul&gt;
 &lt;li&gt;nfs-common should be installed.&lt;/li&gt;
 &lt;li&gt;sudo vi /etc/default/nfs-common&lt;/li&gt;
 &lt;li&gt;activate statd&lt;/li&gt;
@@ -6802,7 +6930,9 @@ xterm xorg-twm xorg-xclock
 &lt;li&gt;vs1-xvdb1 -&amp;gt; /net/vs1/media/xvdb1&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://afterthoughtsoftware.com/products/rasclock"&gt;RTC&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://afterthoughtsoftware.com/products/rasclock"&gt;RTC&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;sudo raspi-config&lt;ul&gt;
 &lt;li&gt;Interfacing options&lt;/li&gt;
 &lt;li&gt;I2C&lt;/li&gt;
@@ -6812,29 +6942,29 @@ xterm xorg-twm xorg-xclock
 &lt;li&gt;dtoverlay=i2c-rtc,pcf2127&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://mausberry-circuits.myshopify.com/pages/setup"&gt;Power control:mausberry&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;git clone https://github.com/t-richards/mausberry-switch.git&lt;/li&gt;
-&lt;li&gt;autoreconf -i -f&lt;/li&gt;
-&lt;li&gt;./configure&lt;/li&gt;
-&lt;li&gt;make&lt;/li&gt;
-&lt;li&gt;sudo make install&lt;/li&gt;
-&lt;li&gt;Add also mausberry-switch &amp;amp; to /etc/rc.local&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/dillbyrne/es-cec-input"&gt;CEC control&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;sudo apt-get install cec-utils&lt;/li&gt;
-&lt;li&gt;sudo apt-get install python-pip&lt;/li&gt;
-&lt;li&gt;sudo pip install python-uinput&lt;/li&gt;
-&lt;li&gt;git clone https://github.com/dillbyrne/es-cec-input.git&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;input&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://mausberry-circuits.myshopify.com/pages/setup"&gt;Power control:mausberry&lt;/a&gt;
+    - git clone https://github.com/t-richards/mausberry-switch.git
+    - autoreconf -i -f
+    - ./configure
+    - make
+    - sudo make install
+    - Add also mausberry-switch &amp;amp; to /etc/rc.local&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/dillbyrne/es-cec-input"&gt;CEC control&lt;/a&gt;
+    - sudo apt-get install cec-utils
+    - sudo apt-get install python-pip
+    - sudo pip install python-uinput
+    - git clone https://github.com/dillbyrne/es-cec-input.git&lt;/li&gt;
+&lt;li&gt;input&lt;ul&gt;
 &lt;li&gt;&lt;a href="https://github.com/MerlijnWajer/uinput-mapper"&gt;uinput-mapper&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.pi3g.com/2014/03/uinput-mapper-redirecting-keyboard-and-mouse-to-any-linux-system-using-a-raspberry-pi/"&gt;redirection HID using uinput-mapper&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.raspberrypi.org/forums/viewtopic.php?t=85299"&gt;forums&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://tjjr.fi/sw/python-uinput/"&gt;python-uinput&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://python-evdev.readthedocs.io/en/latest/tutorial.html#"&gt;python evdev&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/pyusb/pyusb"&gt;pytusb&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;ul&gt;
@@ -6933,9 +7063,9 @@ cachefilesd.&lt;/p&gt;
 
 &lt;h3 id="2-versions"&gt;2 VERSIONS&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;kiosk&lt;/li&gt;
+&lt;li&gt;kiosk&lt;ul&gt;
 &lt;li&gt;unmodified vncviewer connects to a multiplexer screen&lt;/li&gt;
-&lt;li&gt;server (in inetd mode …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;IDEA:&lt;/p&gt;
+&lt;li&gt;server (in inetd mode …&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;IDEA:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;Client&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;connects&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
 &lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;server&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;sends&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;version&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;Use&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;.&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;only&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
 &lt;span class="nv"&gt;Client&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;replies&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;with&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;actual&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;verison&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
@@ -6947,21 +7077,25 @@ cachefilesd.&lt;/p&gt;
 
 &lt;h3 id="2-versions"&gt;2 VERSIONS&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;kiosk&lt;/li&gt;
+&lt;li&gt;kiosk&lt;ul&gt;
 &lt;li&gt;unmodified vncviewer connects to a multiplexer screen&lt;/li&gt;
 &lt;li&gt;server (in inetd mode) first spawns a Xvnc (in inetd mode) which does a login authentication
-    and finds an existing desktop or spawns a new one
-    saves the port and exists&lt;/li&gt;
+  and finds an existing desktop or spawns a new one
+  saves the port and exists&lt;/li&gt;
 &lt;li&gt;server then connects to the new desktop port and does the VNC handshake.  Sends client
-    Desktop change and name change messages&lt;/li&gt;
+  Desktop change and name change messages&lt;/li&gt;
 &lt;li&gt;Forwards everything...&lt;/li&gt;
-&lt;li&gt;command&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;command&lt;ul&gt;
 &lt;li&gt;User points command to a server.&lt;/li&gt;
 &lt;li&gt;Script selects a new port.&lt;/li&gt;
 &lt;li&gt;Ssh to server, look for vnc session, or spawn new one.&lt;/li&gt;
 &lt;li&gt;netcat to vnc session.&lt;/li&gt;
 &lt;li&gt;Listen to to new port, and netcat to ssh.&lt;/li&gt;
 &lt;li&gt;vncviewer to netcat port.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;We use only v3.3 because we don't want to mess with security types.  Security should be handled by SSH tunnel.&lt;/p&gt;
 &lt;p&gt;Check if user can login&lt;/p&gt;
@@ -6974,17 +7108,19 @@ cachefilesd.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://www.linuxdevcenter.com/pub/a/linux/2002/04/04/PamModules.html"&gt;PamModules&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content><category term="2017"></category><category term="authentication"></category><category term="desktop"></category><category term="login"></category><category term="security"></category></entry><entry><title>SimpleNote/Markdown editor</title><link href="https://0ink.net/posts/2017/2017-10-19-markdown-simplenote-editing.html" rel="alternate"></link><published>2017-10-19T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2017-10-19:/posts/2017/2017-10-19-markdown-simplenote-editing.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;We just load SimpleNote as a Desktop WebApp&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Create first a basic markdown editor&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;styling&lt;/p&gt;
+&lt;li&gt;Create first a basic markdown editor&lt;ul&gt;
+&lt;li&gt;styling&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Hack retext&lt;/p&gt;
-&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Hack retext&lt;ul&gt;
 &lt;li&gt;add stuff for multiple views&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;nvpy remixed with retext?&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.py2exe.org/"&gt;Wrapper python for Windows&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;/ul&gt;
 &lt;p&gt;Another option:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;SimpleNote native app + editor&lt;/li&gt;
@@ -6997,17 +7133,19 @@ cachefilesd.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;Or …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;We just load SimpleNote as a Desktop WebApp&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Create first a basic markdown editor&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;styling&lt;/p&gt;
+&lt;li&gt;Create first a basic markdown editor&lt;ul&gt;
+&lt;li&gt;styling&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Hack retext&lt;/p&gt;
-&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Hack retext&lt;ul&gt;
 &lt;li&gt;add stuff for multiple views&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;nvpy remixed with retext?&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.py2exe.org/"&gt;Wrapper python for Windows&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;/ul&gt;
 &lt;p&gt;Another option:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;SimpleNote native app + editor&lt;/li&gt;
@@ -7455,12 +7593,10 @@ travis settings builds_only_with_travis_yml -t
   -module: centos/alpine
       -module: proot&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://docs.travis-ci.com/user/customizing-the-build/"&gt;travis ci custom build&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;install: install any dependencies required&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.travis-ci.com/user/customizing-the-build/"&gt;travis ci custom build&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;install: install any dependencies required&lt;/li&gt;
 &lt;li&gt;script: run the build script&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="nameing-conventions"&gt;Nameing conventions&lt;/h2&gt;
@@ -7468,12 +7604,14 @@ travis settings builds_only_with_travis_yml -t
 &lt;ul&gt;
 &lt;li&gt;tmc7r1 : centos 7 template&lt;/li&gt;
 &lt;li&gt;tmwin7r1 : not using these, I think it is better to do fresh install...&lt;/li&gt;
-&lt;li&gt;tmal3r1 :  alpine linux template. &lt;/li&gt;
+&lt;li&gt;tmal3r1 :  alpine linux template. &lt;ul&gt;
 &lt;li&gt;after boot:&lt;ol&gt;
 &lt;li&gt;mount xvda1 on /media/xvda1 and run setup-alpine&lt;/li&gt;
 &lt;li&gt;modify /etc/inittab /etc/securetty to allow ttyS0 (console) login&lt;/li&gt;
 &lt;li&gt;may need to switch cdrom as needed.&lt;/li&gt;
 &lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Sample vm names:&lt;/p&gt;
@@ -8078,25 +8216,23 @@ Maybe we do by e-mail@something/folder&lt;/li&gt;
 &lt;p&gt;http://postieplugin.com/forcing-an-email-check/&lt;/p&gt;
 &lt;p&gt;Would be the call back to MailGun&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Check if we can add MailGun to Postie&lt;/li&gt;
+&lt;li&gt;Check if we can add MailGun to Postie&lt;ul&gt;
 &lt;li&gt;save transient when we start&lt;/li&gt;
 &lt;li&gt;Use event API to get message lists (since last transient)&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Use message API to retrieve and delete messages&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;E-mail archiving alternatives&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://lurker.sourceforge.net/"&gt;lurker &lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.enkive.org/"&gt;Enkive&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://terminal.se/code.html"&gt;mboxpurge.pl&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://archivemail.sourceforge.net/"&gt;archivemail&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://sourceforge.net/projects/openmailarchiva/"&gt;Open Mail Archiva&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://git.io/gyb"&gt;GYB&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://gmvault.org"&gt;gmvault&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.mailpiler.org/wiki/start"&gt;Mail Piler&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Use message API to retrieve and delete messages&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;E-mail archiving alternatives
+    * &lt;a href="http://lurker.sourceforge.net/"&gt;lurker &lt;/a&gt;
+    * &lt;a href="https://www.enkive.org/"&gt;Enkive&lt;/a&gt;
+    * &lt;a href="http://terminal.se/code.html"&gt;mboxpurge.pl&lt;/a&gt;
+    * &lt;a href="http://archivemail.sourceforge.net/"&gt;archivemail&lt;/a&gt;
+    * &lt;a href="https://sourceforge.net/projects/openmailarchiva/"&gt;Open Mail Archiva&lt;/a&gt;
+    * &lt;a href="http://git.io/gyb"&gt;GYB&lt;/a&gt;
+    * &lt;a href="http://gmvault.org"&gt;gmvault&lt;/a&gt;
+    * &lt;a href="http://www.mailpiler.org/wiki/start"&gt;Mail Piler&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content><category term="2017"></category><category term="address"></category><category term="information"></category></entry><entry><title>Fixed drive letters for removable USB sticks</title><link href="https://0ink.net/posts/2017/2017-02-03-fixed-drive-letters-for-removable-usb-sticks.html" rel="alternate"></link><published>2017-02-03T00:00:00+01:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2017-02-03:/posts/2017/2017-02-03-fixed-drive-letters-for-removable-usb-sticks.html</id><summary type="html">&lt;p&gt;If you use multiple USB drives, you've probably noticed that the drive letter can be
 different each time you plug one in. If you'd like to assign a static letter to a drive that's
 the same every time you plug it in, read on.&lt;/p&gt;
@@ -8163,7 +8299,7 @@ sleep&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
 - &lt;a href="https://gist.github.com/qertis/acd71e14db4168832f3b67c75182af04/"&gt;travis cordova build&lt;/a&gt;
 - &lt;a href="https://github.com/svenlaater/travis-ci-ionic-yml"&gt;travis ionic build&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;owx&lt;/li&gt;
+&lt;li&gt;owx&lt;ul&gt;
 &lt;li&gt;common&lt;ul&gt;
 &lt;li&gt;muninlite (can it support plugins?)&lt;/li&gt;
 &lt;li&gt;flock, pwgen, ifstat&lt;/li&gt;
@@ -8174,20 +8310,18 @@ sleep&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
 &lt;li&gt;sniffer: tcpdump[-mini] 317K/617K, libpcap 191K&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;owX&lt;/p&gt;
-&lt;ul&gt;
+&lt;li&gt;owX&lt;ul&gt;
 &lt;li&gt;FW/NAT&lt;/li&gt;
 &lt;li&gt;DNSMASQ: DHCP + DNS&lt;/li&gt;
 &lt;li&gt;NTP server&lt;/li&gt;
 &lt;li&gt;Dynamic DNS updating (mushu porker)&lt;/li&gt;
 &lt;li&gt;NFS&lt;/li&gt;
 &lt;li&gt;IPv6 tunnel&lt;/li&gt;
-&lt;li&gt;Provisioning server: (PXE, TFTP, NFS …&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;Development
+&lt;li&gt;Provisioning server: (PXE, TFTP, NFS …&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;Development
 - &lt;a href="https://gist.github.com/qertis/acd71e14db4168832f3b67c75182af04/"&gt;travis cordova build&lt;/a&gt;
 - &lt;a href="https://github.com/svenlaater/travis-ci-ionic-yml"&gt;travis ionic build&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;owx&lt;/li&gt;
+&lt;li&gt;owx&lt;ul&gt;
 &lt;li&gt;common&lt;ul&gt;
 &lt;li&gt;muninlite (can it support plugins?)&lt;/li&gt;
 &lt;li&gt;flock, pwgen, ifstat&lt;/li&gt;
@@ -8198,9 +8332,7 @@ sleep&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
 &lt;li&gt;sniffer: tcpdump[-mini] 317K/617K, libpcap 191K&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;owX&lt;/p&gt;
-&lt;ul&gt;
+&lt;li&gt;owX&lt;ul&gt;
 &lt;li&gt;FW/NAT&lt;/li&gt;
 &lt;li&gt;DNSMASQ: DHCP + DNS&lt;/li&gt;
 &lt;li&gt;NTP server&lt;/li&gt;
@@ -8212,10 +8344,12 @@ sleep&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
 &lt;li&gt;USB storage&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;owx - switches&lt;/p&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;cn1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;owx - switches&lt;/li&gt;
+&lt;li&gt;cn1&lt;ul class="checklist"&gt;
 &lt;li&gt;&lt;input type="checkbox" disabled&gt; data scrubbing&lt;/li&gt;
 &lt;li&gt;&lt;input type="checkbox" disabled&gt; backups&lt;/li&gt;
 &lt;li&gt;&lt;input type="checkbox" disabled&gt; boot cd mirroring&lt;/li&gt;
@@ -8243,16 +8377,16 @@ sleep&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
 &lt;/li&gt;
 &lt;li&gt;[ ] alvm5: DMZ Server&lt;ul class="checklist"&gt;
 &lt;li&gt;&lt;input type="checkbox" disabled&gt; reverse proxy&lt;/li&gt;
-&lt;li&gt;[ ] PocketMine&lt;ul&gt;
-&lt;li&gt;Muirfield&lt;/li&gt;
-&lt;li&gt;Niños&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;[ ] PocketMine
+    - Muirfield
+    - Niños&lt;/li&gt;
 &lt;li&gt;&lt;input type="checkbox" disabled&gt; asterisk&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;[ ] alvm6 : Scan&amp;amp;Print server&lt;ul&gt;
 &lt;li&gt;Spin-off cvm1, because SELINUX exception.  Shouldn't connect to DMZ, nor X10&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -8288,8 +8422,10 @@ sleep&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
 &lt;ul&gt;
 &lt;li&gt;PHP checks headers (passed by the reverse proxy), otherwise,&lt;/li&gt;
 &lt;li&gt;use authd:&lt;/li&gt;
-&lt;li&gt;If using selinux we need to set this boolean:&lt;/li&gt;
+&lt;li&gt;If using selinux we need to set this boolean:&lt;ul&gt;
 &lt;li&gt;setsebool -P httpd_can_network_connect on&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;PHP Function on server to determine user:&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="x"&gt;define(&amp;#39;IDENT_PORT&amp;#39;,113);&lt;/span&gt;
@@ -8319,11 +8455,11 @@ sleep&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
 &lt;li&gt;check firewall port&lt;/li&gt;
 &lt;li&gt;systemctl start authd.socket&lt;/li&gt;
 &lt;li&gt;Enable authd.socket&lt;/li&gt;
-&lt;li&gt;Add Override:&lt;/li&gt;
-&lt;li&gt;/etc/systemd/system/auth@.service.d/override.conf&lt;ul&gt;
-&lt;li&gt;[Service]&lt;/li&gt;
-&lt;li&gt;ExecStart=&lt;/li&gt;
-&lt;li&gt;ExecStart=-/usr/sbin/in.authd -t60 --xerror&lt;/li&gt;
+&lt;li&gt;Add Override:&lt;ul&gt;
+&lt;li&gt;/etc/systemd/system/auth@.service.d/override.conf
+    - [Service]
+    - ExecStart=
+    - ExecStart=-/usr/sbin/in.authd -t60 --xerror&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -8360,11 +8496,9 @@ cdrom=3,/xendat/installers/Win7AIO.x32-x64.preact.iso
 &lt;p&gt;Template preparation &lt;/p&gt;
 &lt;p&gt;Configure serial console:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Modify &lt;code&gt;/etc/default/grub&lt;/code&gt;&lt;ul&gt;
-&lt;li&gt;GRUB_TERMINAL_OUTPUT=serial&lt;/li&gt;
-&lt;li&gt;GRUB_CMDLINE_LINUX=console=ttyS0 --rhgb&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;Modify &lt;code&gt;/etc/default/grub&lt;/code&gt;
+    - GRUB_TERMINAL_OUTPUT=serial
+    - GRUB_CMDLINE_LINUX=console=ttyS0 --rhgb&lt;/li&gt;
 &lt;li&gt;Run &lt;code&gt;grub2-mkconfig -o $d/grub.cfg&lt;/code&gt; either on &lt;code&gt;/boot/efi/EFI&lt;/code&gt; or &lt;code&gt;/boot/grub2&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Stop ssh and remove all ssh keys. &lt;/p&gt;
@@ -8391,8 +8525,10 @@ cdrom=3,/xendat/installers/Win7AIO.x32-x64.preact.iso
 &lt;h4 id="munin"&gt;munin&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://munin-monitoring.org/wiki/HowToWritePlugins"&gt;plugin writing&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Monitored data using &lt;a href="http://support.citrix.com/article/CTX127896"&gt;xentop&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Monitored data using &lt;a href="http://support.citrix.com/article/CTX127896"&gt;xentop&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;CPU is done, what about vbd I/O or network I/O&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;xen wiki on &lt;a href="http://wiki.xenproject.org/wiki?title=Special%3ASearch&amp;amp;search=xentop&amp;amp;go=Go"&gt;xentop&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id="serial-xen-configuration"&gt;Serial xen configuration&lt;/h3&gt;
@@ -8728,12 +8864,10 @@ will reduce your chances of having bugs, and you should be sure to quote liberal
 &lt;h2 id="windows-only"&gt;Windows only&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://notepad-plus-plus.org/"&gt;nodepad++&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Crimson or Emerald Editors&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Macros&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;Crimson or Emerald Editors&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Macros&lt;/li&gt;
 &lt;li&gt;Split Views&lt;/li&gt;
 &lt;li&gt;Interactive search&lt;/li&gt;
 &lt;li&gt;File Browser?&lt;/li&gt;
@@ -8763,12 +8897,10 @@ will reduce your chances of having bugs, and you should be sure to quote liberal
 &lt;h2 id="windows-only"&gt;Windows only&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://notepad-plus-plus.org/"&gt;nodepad++&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Crimson or Emerald Editors&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Macros&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;Crimson or Emerald Editors&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Macros&lt;/li&gt;
 &lt;li&gt;Split Views&lt;/li&gt;
 &lt;li&gt;Interactive search&lt;/li&gt;
 &lt;li&gt;File Browser?&lt;/li&gt;
@@ -8786,13 +8918,17 @@ will reduce your chances of having bugs, and you should be sure to quote liberal
 &lt;li&gt;editra&lt;/li&gt;
 &lt;li&gt;notepadqq&lt;/li&gt;
 &lt;li&gt;Geany&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.scintilla.org/SciTE.html"&gt;Scintilla&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.scintilla.org/SciTE.html"&gt;Scintilla&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;curses based: &lt;a href="http://foicica.com/scinterm/"&gt;scinterm&lt;/a&gt;&lt;br&gt;
-      includes &lt;em&gt;jinx&lt;/em&gt; which is an example for it.&lt;/li&gt;
+    includes &lt;em&gt;jinx&lt;/em&gt; which is an example for it.&lt;/li&gt;
 &lt;li&gt;SciTE - the default for Win and Linux.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.scintilla.org/ScintillaRelated.html"&gt;Others&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;http://tke.sourceforge.net/index.html&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;http://tke.sourceforge.net/index.html&lt;ul&gt;
 &lt;li&gt;TCL based.  Can we use cdk?  Can it be use in linux and windows?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/tihirvon/dex"&gt;dex&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
@@ -8823,15 +8959,13 @@ will reduce your chances of having bugs, and you should be sure to quote liberal
 &lt;code&gt;(global-set-key [f10]  'start-kbd-macro)&lt;/code&gt;&lt;br&gt;
 &lt;code&gt;(global-set-key [f11]  'end-kbd-macro)&lt;/code&gt;&lt;br&gt;
 &lt;code&gt;(global-set-key [f12]  'call-last-kbd-macro)&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Selective display:&lt;br&gt;
+&lt;li&gt;Selective display:&lt;br&gt;
 &lt;code&gt;M-1 C-x $&lt;/code&gt; to activate&lt;br&gt;
 &lt;code&gt;C-x $&lt;/code&gt; to go back&lt;br&gt;
-  Or create shortcuts:&lt;/p&gt;
-&lt;p&gt;(defun jao-toggle-selective-display ()
-    (interactive)
-    (set-selective-display (if selective-display nil 1)))
-(global-set-key [f1] 'jao-toggle-selective-display)&lt;/p&gt;
+  Or create shortcuts:&lt;p&gt;(defun jao-toggle-selective-display ()
+      (interactive)
+      (set-selective-display (if selective-display nil 1)))
+  (global-set-key [f1] 'jao-toggle-selective-display)&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
@@ -9005,12 +9139,16 @@ event of autoscaling while keeping the github commit log fairly tidy.&lt;/p&gt;
 &lt;/ul&gt;</content><category term="2016"></category><category term="backups"></category><category term="cloud"></category><category term="database"></category><category term="drive"></category><category term="github"></category><category term="integration"></category><category term="scripts"></category><category term="storage"></category><category term="wordpress"></category></entry><entry><title>CSR ideas</title><link href="https://0ink.net/posts/2016/2016-10-14-csr-ideas.html" rel="alternate"></link><published>2016-10-14T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2016-10-14:/posts/2016/2016-10-14-csr-ideas.html</id><content type="html">&lt;p&gt;Work improvements&lt;/p&gt;
 &lt;h2 id="nfr"&gt;NFR&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Javascript single page application&lt;/li&gt;
+&lt;li&gt;Javascript single page application&lt;ul&gt;
 &lt;li&gt;JS GUI&lt;/li&gt;
-&lt;li&gt;Retargettable back-end:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Retargettable back-end:&lt;ul&gt;
 &lt;li&gt;Local&lt;/li&gt;
 &lt;li&gt;Remote&lt;/li&gt;
 &lt;li&gt;Synchronization utility&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;Multi-user (authentication?)&lt;/li&gt;
 &lt;li&gt;Output Excel&lt;/li&gt;
 &lt;li&gt;Output changes&lt;/li&gt;
@@ -9018,17 +9156,23 @@ event of autoscaling while keeping the github commit log fairly tidy.&lt;/p&gt;
 &lt;h2 id="fr"&gt;FR&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;requirements&lt;/li&gt;
-&lt;li&gt;roadmap objects&lt;/li&gt;
+&lt;li&gt;roadmap objects&lt;ul&gt;
 &lt;li&gt;release time lines&lt;/li&gt;
 &lt;li&gt;indicators&lt;/li&gt;
 &lt;li&gt;descriptive text&lt;/li&gt;
-&lt;li&gt;Meta data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Meta data&lt;ul&gt;
 &lt;li&gt;attributes (i.e owner, reviewers, etc)&lt;/li&gt;
 &lt;li&gt;versioning&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;Milestone data&lt;/li&gt;
-&lt;li&gt;Detail data&lt;/li&gt;
+&lt;li&gt;Detail data&lt;ul&gt;
 &lt;li&gt;release details&lt;/li&gt;
 &lt;li&gt;line items&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;</content><category term="2016"></category><category term="application"></category><category term="javascript"></category><category term="remote"></category></entry><entry><title>game lists</title><link href="https://0ink.net/posts/2016/2016-10-12-games-list.html" rel="alternate"></link><published>2016-10-12T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2016-10-12:/posts/2016/2016-10-12-games-list.html</id><summary type="html">&lt;ul&gt;
 &lt;li&gt;Cybernator&lt;/li&gt;
 &lt;li&gt;Darius Twin&lt;/li&gt;
@@ -9211,19 +9355,19 @@ event of autoscaling while keeping the github commit log fairly tidy.&lt;/p&gt;
 &lt;p&gt;Show:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Download counts for a project&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Latest release tag&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="http://www.typescriptlang.org/docs/tutorial.html"&gt;typescript tutorial&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;Latest release tag&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.typescriptlang.org/docs/tutorial.html"&gt;typescript tutorial&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.devbridge.com/articles/say-hello-to-typescript/"&gt;intro to typescript&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content><category term="2016"></category><category term="github"></category><category term="javascript"></category></entry><entry><title>Programming 2016</title><link href="https://0ink.net/posts/2016/2016-06-06-programming-2016.html" rel="alternate"></link><published>2016-06-06T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2016-06-06:/posts/2016/2016-06-06-programming-2016.html</id><summary type="html">&lt;h2 id="programming-2016"&gt;Programming 2016&lt;/h2&gt;
 &lt;ol&gt;
-&lt;li&gt;GWT and GWT on Mobile and Java servlets&lt;/li&gt;
+&lt;li&gt;GWT and GWT on Mobile and Java servlets&lt;ul&gt;
 &lt;li&gt;Generate Excel
-  http://www.gwtproject.org/overview.html
-  http://www.m-gwt.com/&lt;/li&gt;
+http://www.gwtproject.org/overview.html
+http://www.m-gwt.com/&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Java based:&lt;/p&gt;
 &lt;ul&gt;
@@ -9231,14 +9375,14 @@ event of autoscaling while keeping the github commit log fairly tidy.&lt;/p&gt;
 &lt;li&gt;Other Game lib &lt;a href="https://jmonkeyengine.org/"&gt;JMonkeyEngine&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://software.intel.com/en-us/multi-os-engine"&gt;MultiOS&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://j2objc.org/"&gt;j2objc&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;RoboVM forks:&lt;/li&gt;
+&lt;li&gt;RoboVM forks:&lt;ul&gt;
 &lt;li&gt;&lt;a href="https://github.com/FlexoVM"&gt;FlexoVM&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;BugVM&lt;/p&gt;
+&lt;li&gt;BugVM&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Swift?&lt;/p&gt;
-&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Swift?&lt;/li&gt;
 &lt;li&gt;D &lt;a href="https://wiki.dlang.org/LDC"&gt;status&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
@@ -9250,10 +9394,12 @@ event of autoscaling while keeping the github commit log fairly tidy.&lt;/p&gt;
 &lt;li&gt;Cross-Platform: Linux, Windows, Android, iOS, WebApp?&lt;/li&gt;
 &lt;li&gt;Run-Time: &amp;gt;100MB …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;h2 id="programming-2016"&gt;Programming 2016&lt;/h2&gt;
 &lt;ol&gt;
-&lt;li&gt;GWT and GWT on Mobile and Java servlets&lt;/li&gt;
+&lt;li&gt;GWT and GWT on Mobile and Java servlets&lt;ul&gt;
 &lt;li&gt;Generate Excel
-  http://www.gwtproject.org/overview.html
-  http://www.m-gwt.com/&lt;/li&gt;
+http://www.gwtproject.org/overview.html
+http://www.m-gwt.com/&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Java based:&lt;/p&gt;
 &lt;ul&gt;
@@ -9261,14 +9407,14 @@ event of autoscaling while keeping the github commit log fairly tidy.&lt;/p&gt;
 &lt;li&gt;Other Game lib &lt;a href="https://jmonkeyengine.org/"&gt;JMonkeyEngine&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://software.intel.com/en-us/multi-os-engine"&gt;MultiOS&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://j2objc.org/"&gt;j2objc&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;RoboVM forks:&lt;/li&gt;
+&lt;li&gt;RoboVM forks:&lt;ul&gt;
 &lt;li&gt;&lt;a href="https://github.com/FlexoVM"&gt;FlexoVM&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;BugVM&lt;/p&gt;
+&lt;li&gt;BugVM&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Swift?&lt;/p&gt;
-&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Swift?&lt;/li&gt;
 &lt;li&gt;D &lt;a href="https://wiki.dlang.org/LDC"&gt;status&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
@@ -9296,12 +9442,10 @@ event of autoscaling while keeping the github commit log fairly tidy.&lt;/p&gt;
 &lt;/ol&gt;
 &lt;p&gt;TypeScript&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Headers: http://definitelytyped.org/&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;TypeScript - compiled, optionally typed language that compiles to JavaScript&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;Headers: http://definitelytyped.org/&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;TypeScript - compiled, optionally typed language that compiles to JavaScript&lt;/li&gt;
 &lt;li&gt;node-webkit - Desktop apps&lt;/li&gt;
 &lt;li&gt;ionic framework - deploy to phone&lt;/li&gt;
 &lt;/ul&gt;
@@ -9312,19 +9456,15 @@ event of autoscaling while keeping the github commit log fairly tidy.&lt;/p&gt;
 &lt;li&gt;"app.js" : This is a UI library for writing mobile apps&lt;/li&gt;
 &lt;li&gt;TypeScript?&lt;/li&gt;
 &lt;li&gt;http://blog.scottlogic.com/2014/09/10/node-webkit.html&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Angular.JS? https://angular.io/&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;React Native https://facebook.github.io/react-native/&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;Angular.JS? https://angular.io/&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;React Native https://facebook.github.io/react-native/&lt;/li&gt;
 &lt;li&gt;http://appjs.com/ - &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Enyo? http://enyojs.com/&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;http://noeticforce.com/best-hybrid-mobile-app-ui-frameworks-html5-js-css&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;Enyo? http://enyojs.com/&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;http://noeticforce.com/best-hybrid-mobile-app-ui-frameworks-html5-js-css&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;RunTimes:&lt;/p&gt;
 &lt;ul&gt;
@@ -9591,12 +9731,14 @@ ssh to account and tar x data...&lt;/p&gt;
 &lt;h2 id="wordpress"&gt;WordPress&lt;/h2&gt;
 &lt;p&gt;Standard Customizations:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Appearance&lt;/li&gt;
+&lt;li&gt;Appearance&lt;ul&gt;
 &lt;li&gt;Set theme&lt;/li&gt;
 &lt;li&gt;Site Identity&lt;/li&gt;
 &lt;li&gt;Header &amp;amp; Background iamge&lt;/li&gt;
 &lt;li&gt;Menus: Set-up top bar?&lt;/li&gt;
-&lt;li&gt;Settings&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Settings&lt;ul&gt;
 &lt;li&gt;General Settings&lt;ol&gt;
 &lt;li&gt;Membership: Not anyone can register&lt;/li&gt;
 &lt;li&gt;Timezone UTC&lt;/li&gt;
@@ -9616,20 +9758,32 @@ ssh to account and tar x data...&lt;/p&gt;
 &lt;li&gt;Month and name&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Plugins&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Front Page Category&lt;/li&gt;
+&lt;li&gt;Front Page Category&lt;ul&gt;
 &lt;li&gt;Customizer, Front Page Categories, select what to show&lt;/li&gt;
-&lt;li&gt;Collapsing category list&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Collapsing category list&lt;ul&gt;
 &lt;li&gt;Customizer, Widgets, Categories, customize...&lt;/li&gt;
-&lt;li&gt;bbPress&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;bbPress&lt;ul&gt;
 &lt;li&gt;NO anonymous posting&lt;/li&gt;
-&lt;li&gt;WP Social Login&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;WP Social Login&lt;ul&gt;
 &lt;li&gt;Bouncer&lt;/li&gt;
 &lt;li&gt;Allow Username change&lt;/li&gt;
-&lt;li&gt;Rich Revies&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Rich Revies&lt;ul&gt;
 &lt;li&gt;Integrate user accounts&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="openshift-recipe"&gt;OpenShift Recipe&lt;/h2&gt;
 &lt;p&gt;The official deploy tool &lt;a href="https://github.com/travis-ci/dpl"&gt;dpl&lt;/a&gt; does not 
@@ -9637,13 +9791,17 @@ seem to work with secondary branches.&lt;/p&gt;
 &lt;h3 id="pre-requisistes"&gt;Pre-requisistes&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;Install git&lt;/li&gt;
-&lt;li&gt;Install RHC command line&lt;/li&gt;
+&lt;li&gt;Install RHC command line&lt;ul&gt;
 &lt;li&gt;yum install epel-release&lt;/li&gt;
 &lt;li&gt;yum install rubygem-rhc&lt;/li&gt;
-&lt;li&gt;Install Travis command line&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Install Travis command line&lt;ul&gt;
 &lt;li&gt;yum install epel-release&lt;/li&gt;
 &lt;li&gt;yum install ruby-devel rubygem-ffi (maybe others)&lt;/li&gt;
 &lt;li&gt;gem install travis -v 1.8.2 --no-rdoc --no-ri&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;A github, travis-ci and opens&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id="preparing-repo"&gt;Preparing Repo&lt;/h3&gt;
@@ -9651,7 +9809,7 @@ seem to work with secondary branches.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Fork &lt;a href="https://github.com/openshift/wordpress-example.git"&gt;wordpress-example&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Create any additional branches as needed.&lt;/li&gt;
-&lt;li&gt;Configure travis-ci by creating a basic &lt;code&gt;.travis.yml&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Configure travis-ci by creating a basic &lt;code&gt;.travis.yml&lt;/code&gt;&lt;ul&gt;
 &lt;li&gt;language: php&lt;/li&gt;
 &lt;li&gt;php:&lt;/li&gt;
 &lt;li&gt;
@@ -9660,16 +9818,16 @@ seem to work with secondary branches.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;script: true&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;Since &lt;code&gt;travis setup openshift&lt;/code&gt; doesn't work, we need to use the DIY
-   deploy script.  So make a copy of it.  And configure:&lt;/li&gt;
+   deploy script.  So make a copy of it.  And configure:&lt;ul&gt;
 &lt;li&gt;env:&lt;/li&gt;
 &lt;li&gt;_ global:&lt;/li&gt;
 &lt;li&gt;__ OPENSHIFT_USER=$username&lt;/li&gt;
 &lt;li&gt;__ OPENSHIFT_SECRET=$secret&lt;ol&gt;
-&lt;li&gt;Obviously the secret should be encrypted using:&lt;ul&gt;
-&lt;li&gt;travis encrypt OPENSHIFT_SECRET=$secret [--add env.global]&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;Obviously the secret should be encrypted using:
+    - travis encrypt OPENSHIFT_SECRET=$secret [--add env.global]&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;li&gt;script:&lt;/li&gt;
@@ -9684,31 +9842,41 @@ seem to work with secondary branches.&lt;/p&gt;
 &lt;li&gt;deploy $branch:$openshift_app ... initially empty...&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id="deploying-repo-to-openshift-app"&gt;Deploying Repo to OpenShift App&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;Create a new Application from the Openshift
-   &lt;a href="https://www.openshift.com/"&gt;console&lt;/a&gt;.&lt;/li&gt;
+   &lt;a href="https://www.openshift.com/"&gt;console&lt;/a&gt;.&lt;ul&gt;
 &lt;li&gt;Use (WordPress 4)&lt;/li&gt;
 &lt;li&gt;Just leave initial repo to the default&lt;/li&gt;
 &lt;li&gt;Decide on scaling options.&lt;/li&gt;
 &lt;li&gt;DO NOT GO THROUGH SITE INSTALL YET!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;Add the $branch:$openshift_app to the &lt;code&gt;.travis.yml&lt;/code&gt;, and push so
    travis-ci will deploy.&lt;/li&gt;
-&lt;li&gt;Tweak configuration:&lt;/li&gt;
+&lt;li&gt;Tweak configuration:&lt;ul&gt;
 &lt;li&gt;force https through .htaccess.&lt;/li&gt;
 &lt;li&gt;Enable MULTISITE (if needed)&lt;/li&gt;
-&lt;li&gt;Enable custom domain&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Enable custom domain&lt;ul&gt;
 &lt;li&gt;Create Domain Name (on DNS) and add custom domain in OpenShift&lt;/li&gt;
 &lt;li&gt;Add Certificate to OpenShift (self-signed or maybe CloudFlare)&lt;ul&gt;
 &lt;li&gt;openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 3650 -nodes&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;Wait for DNS to propagate&lt;/li&gt;
-&lt;li&gt;Log-on to the site and go through installation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Log-on to the site and go through installation.&lt;ul&gt;
 &lt;li&gt;Verify that URLs use https:&lt;ul&gt;
 &lt;li&gt;Dashboard -&amp;gt; Settings -&amp;gt; General&lt;/li&gt;
 &lt;li&gt;Verify in Permalinks that https is used.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
@@ -9847,33 +10015,23 @@ FireFox.&lt;/p&gt;
 
 &lt;h3 id="configuring-apache"&gt;Configuring Apache&lt;/h3&gt;
 &lt;ol&gt;
-&lt;li&gt;Install any necessary modules on the server:&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;yum install mod_auth_kerb&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Create a service principal for the web server (this needs to be done on the KDC.&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;kadmin.local -q "addprinc -randkey HTTP/www.example.com&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Export the encpryption keys to a keytab:&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;kadmin.local -q "ktadd -k /tmp/http.keytab HTTP/www.example.com&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;Install any necessary modules on the server:
+    *   &lt;code&gt;yum install mod_auth_kerb&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Create a service principal for the web server (this needs to be done on the KDC.
+    *   &lt;code&gt;kadmin.local -q "addprinc -randkey HTTP/www.example.com&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Export the encpryption keys to a keytab:
+    *   &lt;code&gt;kadmin.local -q "ktadd -k /tmp/http.keytab HTTP/www.example.com&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Copy &lt;code&gt;/tmp/http.keytab&lt;/code&gt; to the webserver at &lt;code&gt;/etc/httpd/http.keytab&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Set ownership and permissions:&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;chmod 600 /etc/httpd/http.keytab&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;chown apache /etc/httpd/http.keytab&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Enable authentication, configure this:&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;AuthType Kerberos&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;AuthName "Acme Corporation"&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;KrbMethodNegotiate on&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;KrbMethodK5Passwd off&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Krb5Keytab /etc/httpd/http.keytab&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;require valid-user&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;Set ownership and permissions:
+    *   &lt;code&gt;chmod 600 /etc/httpd/http.keytab&lt;/code&gt;
+    *   &lt;code&gt;chown apache /etc/httpd/http.keytab&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Enable authentication, configure this:
+    *   &lt;code&gt;AuthType Kerberos&lt;/code&gt;
+    *   &lt;code&gt;AuthName "Acme Corporation"&lt;/code&gt;
+    *   &lt;code&gt;KrbMethodNegotiate on&lt;/code&gt;
+    *   &lt;code&gt;KrbMethodK5Passwd off&lt;/code&gt;
+    *   &lt;code&gt;Krb5Keytab /etc/httpd/http.keytab&lt;/code&gt;
+    *   &lt;code&gt;require valid-user&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Re-start apache&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id="configure-firefox"&gt;Configure FireFox&lt;/h3&gt;
@@ -9881,48 +10039,34 @@ FireFox.&lt;/p&gt;
 &lt;li&gt;Navigate to &lt;code&gt;about:config&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Search for: &lt;code&gt;negotiate-auth&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Double click on &lt;code&gt;network.negotiate-auth.trusted-uris&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Enter hostname's, URL prefixes, etc, separated by commas. Examples:&lt;ul&gt;
-&lt;li&gt;www.example.com&lt;/li&gt;
-&lt;li&gt;http://www.example.com/&lt;/li&gt;
-&lt;li&gt;.example.com&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;Enter hostname's, URL prefixes, etc, separated by commas. Examples:
+    *   www.example.com
+    *   http://www.example.com/
+    *   .example.com&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;It is possible to configure this setting for all users by creating a global config file:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Find configuration directory:&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;rpm -q firefox -l | grep preferences&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;Find configuration directory:
+    *   &lt;code&gt;rpm -q firefox -l | grep preferences&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Create a javascript file in that directory. (by convention, &lt;code&gt;autoconfig.js&lt;/code&gt;; other file names will work, but for best results it should be early in the alphabet.)&lt;/li&gt;
-&lt;li&gt;Add the following line:&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;pref("network.negotiate-auth.trusted-uris",".example.com");&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;Add the following line:
+    *   &lt;code&gt;pref("network.negotiate-auth.trusted-uris",".example.com");&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id="configure-openssh-server"&gt;Configure OpenSSH server&lt;/h3&gt;
 &lt;ol&gt;
-&lt;li&gt;Create a service principal for the host (this needs to be done on the KDC.&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;kadmin.local -q "addprinc -randkey host/shell.example.com&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Export the encpryption keys to a keytab:&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;kadmin.local -q "ktadd -k /tmp/krb5.keytab host/shell.example.com&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;Create a service principal for the host (this needs to be done on the KDC.
+    *   &lt;code&gt;kadmin.local -q "addprinc -randkey host/shell.example.com&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Export the encpryption keys to a keytab:
+    *   &lt;code&gt;kadmin.local -q "ktadd -k /tmp/krb5.keytab host/shell.example.com&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Copy &lt;code&gt;/tmp/krb5.keytab&lt;/code&gt; to the host at: &lt;code&gt;/etc/krb5.keytab&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Set ownership and permissions:&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;chmod 600 /etc/krb5.keytab&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;chown root /etc/krb5.keytab&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Enable authentication, change these settings in &lt;code&gt;/etc/ssh/sshd_config&lt;/code&gt;:&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;KerberosAuthentication yes&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;GSSAPIAuthentication yes&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;GSSAPICleanupCredentials yes&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;UsePAM no&lt;/code&gt; &lt;em&gt;# This is not supported by RHEL7 and should be left as &lt;code&gt;yes&lt;/code&gt;&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;Set ownership and permissions:
+    *   &lt;code&gt;chmod 600 /etc/krb5.keytab&lt;/code&gt;
+    *   &lt;code&gt;chown root /etc/krb5.keytab&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Enable authentication, change these settings in &lt;code&gt;/etc/ssh/sshd_config&lt;/code&gt;:
+    *   &lt;code&gt;KerberosAuthentication yes&lt;/code&gt;
+    *   &lt;code&gt;GSSAPIAuthentication yes&lt;/code&gt;
+    *   &lt;code&gt;GSSAPICleanupCredentials yes&lt;/code&gt;
+    *   &lt;code&gt;UsePAM no&lt;/code&gt; &lt;em&gt;# This is not supported by RHEL7 and should be left as &lt;code&gt;yes&lt;/code&gt;&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;Restart &lt;code&gt;sshd&lt;/code&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id="configure-openssh-clients"&gt;Configure OpenSSH clients&lt;/h3&gt;
@@ -9931,9 +10075,11 @@ FireFox.&lt;/p&gt;
   GSSAPIAuthentication yes
   GSSAPIDelegateCredentials yes
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="2016"></category><category term="authentication"></category><category term="browser"></category><category term="config"></category><category term="configuration"></category><category term="directory"></category><category term="domain"></category><category term="integration"></category><category term="javascript"></category><category term="linux"></category><category term="login"></category><category term="password"></category><category term="service"></category><category term="settings"></category></entry><entry><title>clipping ideas</title><link href="https://0ink.net/posts/2015/2015-12-11-clipping-notes.html" rel="alternate"></link><published>2015-12-11T00:00:00+01:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2015-12-11:/posts/2015/2015-12-11-clipping-notes.html</id><content type="html">&lt;ul&gt;
-&lt;li&gt;Divide into&lt;/li&gt;
+&lt;li&gt;Divide into&lt;ul&gt;
 &lt;li&gt;Work : Only visible to company and clients&lt;/li&gt;
 &lt;li&gt;Personal: Public/Private areas&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Features:&lt;/p&gt;
 &lt;ul&gt;
@@ -10003,8 +10149,10 @@ preview&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://github.com/NextStepWebs/simplemde-markdown-editor/"&gt;simplemde&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/jbt/markdown-editor"&gt;markdown&lt;/a&gt; (With GFM)&lt;/li&gt;
 &lt;/ul&gt;</content><category term="2015"></category><category term="editor"></category><category term="markdown"></category></entry><entry><title>Picade Todo</title><link href="https://0ink.net/posts/2015/2015-10-11-picade-todo.html" rel="alternate"></link><published>2015-10-11T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2015-10-11:/posts/2015/2015-10-11-picade-todo.html</id><summary type="html">&lt;ol&gt;
-&lt;li&gt;&lt;a href="http://forums.pimoroni.com/t/picade-pcb-emulator-key-mapping/922"&gt;key mappings&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://forums.pimoroni.com/t/picade-pcb-emulator-key-mapping/922"&gt;key mappings&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;look up and label default mappings&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;  &lt;/span&gt;{&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;KEY_UP_ARROW&lt;/span&gt;,&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;UP&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;},
 &lt;span class="w"&gt;  &lt;/span&gt;{&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;KEY_DOWN_ARROW&lt;/span&gt;,&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nv"&gt;DOWN&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;},
@@ -10026,8 +10174,10 @@ preview&lt;/p&gt;
 &lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="cm"&gt;/* Change these lines to set key bindings for VOL_UP and VOL_DN */&lt;/span&gt;
 &lt;span class="w"&gt;   &lt;/span&gt;{&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;u&amp;#39;&lt;/span&gt;,&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nv"&gt;VOL_UP&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;},
 &lt;span class="w"&gt;   &lt;/span&gt;{&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;d&amp;#39;&lt;/span&gt;,&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nv"&gt;VOL_DN …&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;ol&gt;
-&lt;li&gt;&lt;a href="http://forums.pimoroni.com/t/picade-pcb-emulator-key-mapping/922"&gt;key mappings&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://forums.pimoroni.com/t/picade-pcb-emulator-key-mapping/922"&gt;key mappings&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;look up and label default mappings&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;  &lt;/span&gt;{&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;KEY_UP_ARROW&lt;/span&gt;,&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;UP&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;},
 &lt;span class="w"&gt;  &lt;/span&gt;{&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;KEY_DOWN_ARROW&lt;/span&gt;,&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nv"&gt;DOWN&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;},
@@ -10098,97 +10248,97 @@ GPIO----------------+
 
 &lt;p&gt;&lt;a href="https://www.arduino.cc/en/Tutorial/JoyStick"&gt;joystic&lt;/a&gt;&lt;/p&gt;</content><category term="2015"></category><category term="java"></category><category term="power"></category><category term="python"></category><category term="setup"></category></entry><entry><title>Centos7/RHEL7 FirewallD -- the least you need to know</title><link href="https://0ink.net/posts/2015/2015-09-21-centos7rhel7-firewalld-the-least-you-need-to-know.html" rel="alternate"></link><published>2015-09-21T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2015-09-21:/posts/2015/2015-09-21-centos7rhel7-firewalld-the-least-you-need-to-know.html</id><summary type="html">&lt;p&gt;This post is just a simple hints-tips to get something going with FirewallD without going into too much detail.&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Checking if you are using &lt;strong&gt;firewalld&lt;/strong&gt;:&lt;ul&gt;
-&lt;li&gt;firewall-cmd --state&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Check your zones (needed later when opening ports):&lt;ul&gt;
-&lt;li&gt;firewall-cmd --get-default-zone&lt;/li&gt;
-&lt;li&gt;firewall-cmd --get-active-zones&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Checking what is active:&lt;ul&gt;
-&lt;li&gt;firewall-cmd --zone=public --list-all&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Opening services:&lt;ul&gt;
-&lt;li&gt;firewall-cmd …&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;This post is just a simple hints-tips to get something going with FirewallD without going into too much detail.&lt;/p&gt;
+&lt;li&gt;Checking if you are using &lt;strong&gt;firewalld&lt;/strong&gt;:
+    *   firewall-cmd --state&lt;/li&gt;
+&lt;li&gt;Check your zones (needed later when opening ports):
+    *   firewall-cmd --get-default-zone
+    *   firewall-cmd --get-active-zones&lt;/li&gt;
+&lt;li&gt;Checking what is active:
+    *   firewall-cmd --zone=public --list-all&lt;/li&gt;
+&lt;li&gt;Opening services:
+    *   firewall-cmd …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;This post is just a simple hints-tips to get something going with FirewallD without going into too much detail.&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Checking if you are using &lt;strong&gt;firewalld&lt;/strong&gt;:&lt;ul&gt;
-&lt;li&gt;firewall-cmd --state&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Check your zones (needed later when opening ports):&lt;ul&gt;
-&lt;li&gt;firewall-cmd --get-default-zone&lt;/li&gt;
-&lt;li&gt;firewall-cmd --get-active-zones&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Checking what is active:&lt;ul&gt;
-&lt;li&gt;firewall-cmd --zone=public --list-all&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Opening services:&lt;ul&gt;
-&lt;li&gt;firewall-cmd --zone=public --add-service=http Or alternatively:&lt;/li&gt;
-&lt;li&gt;firewall-cmd --permanent --zone=public --add-service=http&lt;/li&gt;
-&lt;li&gt;firewall-cmd --reload Services are defined in /usr/lib/firewalld/services and /etc/firewalld/services.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Opening ports:&lt;ul&gt;
-&lt;li&gt;firewall-cmd --permanent --zone=public --add-port=443/tcp&lt;/li&gt;
-&lt;li&gt;firewall-cmd --reload&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;Checking if you are using &lt;strong&gt;firewalld&lt;/strong&gt;:
+    *   firewall-cmd --state&lt;/li&gt;
+&lt;li&gt;Check your zones (needed later when opening ports):
+    *   firewall-cmd --get-default-zone
+    *   firewall-cmd --get-active-zones&lt;/li&gt;
+&lt;li&gt;Checking what is active:
+    *   firewall-cmd --zone=public --list-all&lt;/li&gt;
+&lt;li&gt;Opening services:
+    *   firewall-cmd --zone=public --add-service=http Or alternatively:
+    *   firewall-cmd --permanent --zone=public --add-service=http
+    *   firewall-cmd --reload Services are defined in /usr/lib/firewalld/services and /etc/firewalld/services.&lt;/li&gt;
+&lt;li&gt;Opening ports:
+    *   firewall-cmd --permanent --zone=public --add-port=443/tcp
+    *   firewall-cmd --reload&lt;/li&gt;
 &lt;/ol&gt;</content><category term="2015"></category></entry><entry><title>Raspberry Pi Thin Client</title><link href="https://0ink.net/posts/2015/2015-08-17-raspberry-pi-thin-client.html" rel="alternate"></link><published>2015-08-17T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2015-08-17:/posts/2015/2015-08-17-raspberry-pi-thin-client.html</id><content type="html">&lt;p&gt;Thin Client project want to create a very low price thin client over
 Raspberry Pi board! Microsoft RDC, Citrix ICA, VMWare View, OpenNX &amp;amp;
 SPICE&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://rpitc.blogspot.nl/"&gt;RPITC&lt;/a&gt;&lt;/p&gt;</content><category term="2015"></category><category term="raspberry"></category></entry><entry><title>Raspberry pi notes</title><link href="https://0ink.net/posts/2015/2015-08-11-rasp-pi-notes.html" rel="alternate"></link><published>2015-08-11T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2015-08-11:/posts/2015/2015-08-11-rasp-pi-notes.html</id><summary type="html">&lt;h2 id="raspberry-pi-shops"&gt;raspberry pi shops&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;NL based&lt;/li&gt;
+&lt;li&gt;NL based&lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.sossolutions.nl"&gt;sos solutions&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.hackerstore.nl/"&gt;hackerstore&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.antratek.nl/"&gt;antratek&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.kiwi-electronics.nl/"&gt;kiwi-electonics&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;UK based&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;UK based&lt;ul&gt;
 &lt;li&gt;&lt;a href="http://thepihut.com/"&gt;the pi hut&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.modmypi.com/"&gt;modmypi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://shop.pimoroni.com/"&gt;pimorni&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;International&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;International&lt;ul&gt;
 &lt;li&gt;&lt;a href="http://mouser.com"&gt;mouser&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://conrad.nl"&gt;conrad&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Hardware to attach/secure Raspberry Pi boards&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;4 M2 16mm bolts, + nuts, + spacers?&lt;/li&gt;
+&lt;li&gt;4 M2 16mm bolts, + nuts, + spacers?&lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.conrad.nl/nl/zeskantmoeren-m25-din-934-kunststof-10-stuks-toolcraft-830405-830405.html"&gt;moeren&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.conrad.nl/nl/toolcraft-zeskantbouten-m25-16-mm-buitenzeskant-inbus-din-933-kunststof-10-stuks-830220.html"&gt;bouten&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.conrad.nl/nl/modelcraft-bec-verlengkabel-208429.html"&gt;verleng kabel&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.conrad.nl/nl/usb-20-verlengkabel-1x-usb-20-stekker-intern-8-polig-1x-usb-20-bus-intern-8-polig-030-m-grijs-vergulde-steekcontacten-ul-gecertificeerd-971778.html"&gt;USB Connectors&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Creating a Read-Only root for Raspbian:
     - &lt;a href="https://hallard.me/raspberry-pi-read-only/"&gt;read only&lt;/a&gt;
     - &lt;a href="http://blog.pi3g.com/2014/04/make-raspbian-system-read-only/"&gt;ro raspbian&lt;/a&gt;
     - &lt;a href="http://blog.gegg.us/2014/03/a-raspbian-read-only-root-fs-howto/"&gt;ro …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;h2 id="raspberry-pi-shops"&gt;raspberry pi shops&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;NL based&lt;/li&gt;
+&lt;li&gt;NL based&lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.sossolutions.nl"&gt;sos solutions&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.hackerstore.nl/"&gt;hackerstore&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.antratek.nl/"&gt;antratek&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.kiwi-electronics.nl/"&gt;kiwi-electonics&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;UK based&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;UK based&lt;ul&gt;
 &lt;li&gt;&lt;a href="http://thepihut.com/"&gt;the pi hut&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.modmypi.com/"&gt;modmypi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://shop.pimoroni.com/"&gt;pimorni&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;International&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;International&lt;ul&gt;
 &lt;li&gt;&lt;a href="http://mouser.com"&gt;mouser&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://conrad.nl"&gt;conrad&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Hardware to attach/secure Raspberry Pi boards&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;4 M2 16mm bolts, + nuts, + spacers?&lt;/li&gt;
+&lt;li&gt;4 M2 16mm bolts, + nuts, + spacers?&lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.conrad.nl/nl/zeskantmoeren-m25-din-934-kunststof-10-stuks-toolcraft-830405-830405.html"&gt;moeren&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.conrad.nl/nl/toolcraft-zeskantbouten-m25-16-mm-buitenzeskant-inbus-din-933-kunststof-10-stuks-830220.html"&gt;bouten&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.conrad.nl/nl/modelcraft-bec-verlengkabel-208429.html"&gt;verleng kabel&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.conrad.nl/nl/usb-20-verlengkabel-1x-usb-20-stekker-intern-8-polig-1x-usb-20-bus-intern-8-polig-030-m-grijs-vergulde-steekcontacten-ul-gecertificeerd-971778.html"&gt;USB Connectors&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Creating a Read-Only root for Raspbian:
     - &lt;a href="https://hallard.me/raspberry-pi-read-only/"&gt;read only&lt;/a&gt;
@@ -10312,45 +10462,59 @@ content-type:&lt;span class="w"&gt; &lt;/span&gt;text/html
 &lt;p&gt;Disable/Relocate cgi-bin&lt;/p&gt;</content><category term="2015"></category></entry><entry><title>organizing notes</title><link href="https://0ink.net/posts/2015/2015-06-11-org-notes.html" rel="alternate"></link><published>2015-06-11T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2015-06-11:/posts/2015/2015-06-11-org-notes.html</id><summary type="html">&lt;h2 id="my-documents"&gt;My Documents&lt;/h2&gt;
 &lt;p&gt;DOCUMENTS&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Project Folder&lt;/li&gt;
+&lt;li&gt;Project Folder&lt;ul&gt;
 &lt;li&gt;old&lt;/li&gt;
 &lt;li&gt;YYYY&lt;/li&gt;
 &lt;li&gt;deliverables&lt;/li&gt;
 &lt;li&gt;clips?&lt;/li&gt;
-&lt;li&gt;category folder&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;category folder&lt;ul&gt;
 &lt;li&gt;expenses? expense reports and digital receipts&lt;/li&gt;
 &lt;li&gt;regs - passwords, registrations, etc...&lt;/li&gt;
 &lt;li&gt;nice notes - thank you letters, etc.&lt;/li&gt;
-&lt;li&gt;Personal folder&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Personal folder&lt;ul&gt;
 &lt;li&gt;info or important
-    health account data, friends contacts, etc&lt;/li&gt;
+  health account data, friends contacts, etc&lt;/li&gt;
 &lt;li&gt;clips&lt;/li&gt;
 &lt;li&gt;writing - personal writing, notes, letter, drafts,&lt;/li&gt;
 &lt;li&gt;taxes &lt;year&gt;
-  &lt;year&gt; folder&lt;/li&gt;
-&lt;li&gt;logs&lt;/li&gt;
-&lt;li&gt;activity log …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;h2 id="my-documents"&gt;My Documents&lt;/h2&gt;
+&lt;year&gt; folder&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;logs&lt;ul&gt;
+&lt;li&gt;activity log …&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;h2 id="my-documents"&gt;My Documents&lt;/h2&gt;
 &lt;p&gt;DOCUMENTS&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Project Folder&lt;/li&gt;
+&lt;li&gt;Project Folder&lt;ul&gt;
 &lt;li&gt;old&lt;/li&gt;
 &lt;li&gt;YYYY&lt;/li&gt;
 &lt;li&gt;deliverables&lt;/li&gt;
 &lt;li&gt;clips?&lt;/li&gt;
-&lt;li&gt;category folder&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;category folder&lt;ul&gt;
 &lt;li&gt;expenses? expense reports and digital receipts&lt;/li&gt;
 &lt;li&gt;regs - passwords, registrations, etc...&lt;/li&gt;
 &lt;li&gt;nice notes - thank you letters, etc.&lt;/li&gt;
-&lt;li&gt;Personal folder&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Personal folder&lt;ul&gt;
 &lt;li&gt;info or important
-    health account data, friends contacts, etc&lt;/li&gt;
+  health account data, friends contacts, etc&lt;/li&gt;
 &lt;li&gt;clips&lt;/li&gt;
 &lt;li&gt;writing - personal writing, notes, letter, drafts,&lt;/li&gt;
 &lt;li&gt;taxes &lt;year&gt;
-  &lt;year&gt; folder&lt;/li&gt;
-&lt;li&gt;logs&lt;/li&gt;
+&lt;year&gt; folder&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;logs&lt;ul&gt;
 &lt;li&gt;activity log&lt;/li&gt;
 &lt;li&gt;travel log&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Naming convention:&lt;/p&gt;
 &lt;p&gt;&lt;initials&gt;-&lt;month&gt;&lt;day&gt;-&lt;type&gt;.&lt;ext&gt;&lt;/p&gt;
@@ -10361,13 +10525,17 @@ content-type:&lt;span class="w"&gt; &lt;/span&gt;text/html
 &lt;/ul&gt;
 &lt;h2 id="todo-lists"&gt;TODO Lists&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Work&lt;/li&gt;
+&lt;li&gt;Work&lt;ul&gt;
 &lt;li&gt;Outlook based&lt;/li&gt;
 &lt;li&gt;Tickler File&lt;/li&gt;
 &lt;li&gt;Must Do List&lt;/li&gt;
 &lt;li&gt;E-mail to TODO&lt;/li&gt;
-&lt;li&gt;Personal&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Personal&lt;ul&gt;
 &lt;li&gt;Google Tasks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="weekly-review-steps"&gt;Weekly Review Steps&lt;/h2&gt;
 &lt;p&gt;NOTE: Clean-up temp folders&lt;/p&gt;
@@ -10532,22 +10700,28 @@ command as root:&lt;/p&gt;
 
 &lt;p&gt;More configuration commands:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Set default paper size:&lt;/li&gt;
+&lt;li&gt;Set default paper size:&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;echo a4 &amp;gt; /etc/papersize&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;h2 id="updates"&gt;Updates&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;2022-11-06: Removed from voidlinux:&lt;/li&gt;
+&lt;li&gt;2022-11-06: Removed from voidlinux:&lt;ul&gt;
 &lt;li&gt;uncompress PPD file (otherwise it is not recognized)
-    so that it runs:&lt;/li&gt;
+  so that it runs:&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;removed OBSOLEtE patch&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;For scanning, uncoment &lt;code&gt;hpaio&lt;/code&gt; from &lt;code&gt;/etc/sane/dll.conf&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;2020-03-09 : Removed:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;2020-03-09 : Removed:&lt;ul&gt;
 &lt;li&gt;To prevent this you should configure
-    the default &lt;code&gt;ErrorPolicy&lt;/code&gt; in &lt;code&gt;/etc/cups/cupsd.conf&lt;/code&gt; by adding in the top
-    scope: "ErrorPolicy retry-job"&lt;/li&gt;
+  the default &lt;code&gt;ErrorPolicy&lt;/code&gt; in &lt;code&gt;/etc/cups/cupsd.conf&lt;/code&gt; by adding in the top
+  scope: "ErrorPolicy retry-job"&lt;/li&gt;
 &lt;li&gt;References: &lt;a href="https://superuser.com/questions/280396/how-to-resume-cups-printer-from-command-line"&gt;superuser.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;2019-02-19 : Added &lt;a href="http://voidlinux.org"&gt;void linux&lt;/a&gt; instructions.&lt;/li&gt;
 &lt;/ul&gt;</content><category term="2015"></category><category term="configuration"></category><category term="installation"></category><category term="linux"></category><category term="sudo"></category></entry><entry><title>Kerberos Client</title><link href="https://0ink.net/posts/2015/2015-02-06-kerberos-client.html" rel="alternate"></link><published>2015-02-06T00:00:00+01:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2015-02-06:/posts/2015/2015-02-06-kerberos-client.html</id><summary type="html">&lt;p&gt;This simple mini how-to goes over the configuration of a
 linux system so it can use a Kerberos Realm server
@@ -10560,19 +10734,19 @@ for authentication.&lt;/p&gt;
 &lt;li&gt;Make sure you have the pam_krb5 rpm files installed. You can check this by running the &lt;code&gt;rpm -qa | grep pam&lt;/code&gt; command and seeing whether the pam_krb5 rpm files are listed. If they aren't, you can typically download them in an update of the Linux or Unix operating system that you are running.&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Add the line to the "/etc/pam.d/system-auth" part of the auth section of Kerberos. Add it after the "pam_unix.so" line:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;auth sufficient /lib/security/pam_krb5.so use_first_pass forwardable
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;  auth sufficient /lib/security/pam_krb5.so use_first_pass forwardable
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Add the line to the "/etc/pam.d/system-auth" part of the password section of Kerberos. Add it after the "pam_unix.so" line:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;password sufficient /lib/security/pam_krb5.so use_authtok
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;  password sufficient /lib/security/pam_krb5.so use_authtok
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Add the line to the "/etc/pam.d/system-auth" part of the session section of Kerberos. Add it after the "pam_unix.so" line:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;session optional /lib/security/pam_krb5.so
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;  session optional /lib/security/pam_krb5.so
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;/li&gt;
@@ -10712,17 +10886,21 @@ Sync)
 &lt;/ul&gt;
 &lt;p&gt;We need to research:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Alternative to freewrap&lt;/li&gt;
+&lt;li&gt;Alternative to freewrap&lt;ul&gt;
 &lt;li&gt;&lt;a href="http://jsmooth.sourceforge.net/"&gt;jsmooth&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://launch4j.sourceforge.net/"&gt;launch4j&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.thisiscool.com/gcc_mingw.htm"&gt;gcc mingw&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://vertis.github.com/2007/06/24/native-java-with-gcj-and-swt.html"&gt;gcj+swt&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://winrun4j.sourceforge.net/"&gt;winrun4j&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Alternative to Canvas&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Alternative to Canvas&lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.piccolo2d.org/"&gt;piccolo2d&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.jhotdraw.org/"&gt;jhotdraw&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.manageability.org/blog/stuff/open-source-structured-graphics-libraries-in-java"&gt;Contains an overview of options...&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://jean-philippe.leboeuf.name/notebook/archives/000315.html"&gt;Another overview of options&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;Which Toolkit to use (SWT, Swing, AWT, etc)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;A freewrap like tool for python:&lt;/p&gt;
@@ -10928,18 +11106,14 @@ the software.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;So you need two WIFI adaptors, as one will not work as master and slave at the same time. Essentially, one WIFI interface will act as the client WIFI station. The other WIFI interface acts as a WIFI hotspot. I chose to use &lt;code&gt;buildroot&lt;/code&gt; instead of a normal Linux distro like &lt;a href="http://www.raspbian.org/"&gt;Raspbian&lt;/a&gt; or &lt;a href="http://archlinuxarm.org/platforms/armv6/raspberry-pi"&gt;Arch Linux Arm&lt;/a&gt; because I wanted to run it as an embedded system. Normal Linux distro's are supposed to be properly &lt;em&gt;shutdown&lt;/em&gt; and would complain when you simply yank the power cord. The &lt;code&gt;buildroot&lt;/code&gt; image I have is customized so that the file system is always mounted read-only. It will switch to read-write only to write persistent data and then switch back to read-only. The normal &lt;code&gt;hostapd&lt;/code&gt; that comes with &lt;code&gt;buildroot&lt;/code&gt; is the normal open source project and does not come with the &lt;code&gt;rtl8192cu&lt;/code&gt; driver. You need to download and build the &lt;code&gt;Realtek&lt;/code&gt; version. For this to work, I did the following:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Create a start-up scripts that set the whole thing up.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;sets-up the filesystem&lt;/li&gt;
-&lt;li&gt;starts &lt;code&gt;syslog&lt;/code&gt;, &lt;code&gt;sshd&lt;/code&gt;, &lt;code&gt;rngd&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;sets-up &lt;code&gt;eth0&lt;/code&gt; and &lt;code&gt;wlan0&lt;/code&gt; to be configured by &lt;code&gt;ifplugd&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;starts &lt;code&gt;wpa_supplicant&lt;/code&gt; on &lt;code&gt;wlan0&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;starts &lt;code&gt;httpd&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;start and configure &lt;code&gt;wlan1&lt;/code&gt; as an Access Point.&lt;/li&gt;
-&lt;li&gt;start and configure &lt;code&gt;dnsmasq&lt;/code&gt; for DNS and DHCP.&lt;/li&gt;
-&lt;li&gt;Wrote a small web UI to configure the WIFI client.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;Create a start-up scripts that set the whole thing up.&lt;p&gt;*   sets-up the filesystem
+  *   starts &lt;code&gt;syslog&lt;/code&gt;, &lt;code&gt;sshd&lt;/code&gt;, &lt;code&gt;rngd&lt;/code&gt;
+  *   sets-up &lt;code&gt;eth0&lt;/code&gt; and &lt;code&gt;wlan0&lt;/code&gt; to be configured by &lt;code&gt;ifplugd&lt;/code&gt;
+  *   starts &lt;code&gt;wpa_supplicant&lt;/code&gt; on &lt;code&gt;wlan0&lt;/code&gt;
+  *   starts &lt;code&gt;httpd&lt;/code&gt;
+  *   start and configure &lt;code&gt;wlan1&lt;/code&gt; as an Access Point.
+  *   start and configure &lt;code&gt;dnsmasq&lt;/code&gt; for DNS and DHCP.
+2.  Wrote a small web UI to configure the WIFI client.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;All this stuff can be found in &lt;a href="https://github.com/alejandroliu/harpy"&gt;github&lt;/a&gt;.&lt;/p&gt;</content><category term="2014"></category><category term="computer"></category><category term="device"></category><category term="filesystem"></category><category term="linux"></category><category term="power"></category><category term="raspberry"></category><category term="scripts"></category><category term="software"></category></entry><entry><title>DVD archiving</title><link href="https://0ink.net/posts/2014/2014-03-11-dvd-archiving.html" rel="alternate"></link><published>2014-03-11T00:00:00+01:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2014-03-11:/posts/2014/2014-03-11-dvd-archiving.html</id><content type="html">&lt;p&gt;This is my simple procedure for backing up my DVD movies:&lt;/p&gt;
@@ -10992,16 +11166,12 @@ worth doing on a regular basis.&lt;/p&gt;
 &lt;li&gt;Backup your calendar folder (just in case)&lt;/li&gt;
 &lt;li&gt;Create a temporary Calendar folder&lt;/li&gt;
 &lt;li&gt;Select your default Calendar&lt;/li&gt;
-&lt;li&gt;Switch to &lt;code&gt;All Appointments&lt;/code&gt; view:&lt;ul&gt;
-&lt;li&gt;View -&amp;gt; Current View -&amp;gt; All Appointments&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;Switch to &lt;code&gt;All Appointments&lt;/code&gt; view:
+    *   View -&amp;gt; Current View -&amp;gt; All Appointments&lt;/li&gt;
 &lt;li&gt;Select all the appointments and &lt;strong&gt;move&lt;/strong&gt; them to the temporary Calendar folder&lt;/li&gt;
 &lt;li&gt;Select the temporary Calendar folder&lt;/li&gt;
-&lt;li&gt;Switch to &lt;code&gt;Active Appointments&lt;/code&gt; vew:&lt;ul&gt;
-&lt;li&gt;View -&amp;gt; Current View -&amp;gt; Active Appointments&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;Switch to &lt;code&gt;Active Appointments&lt;/code&gt; vew:
+    *   View -&amp;gt; Current View -&amp;gt; Active Appointments&lt;/li&gt;
 &lt;li&gt;Select all the visible appointments and &lt;strong&gt;move&lt;/strong&gt; the m back to the default Calendar folder.&lt;/li&gt;
 &lt;li&gt;You can now dispose of the temporary folder (or backed it up for reference.&lt;/li&gt;
 &lt;/ol&gt;</content><category term="2013"></category><category term="backup"></category></entry><entry><title>Chrome Kerberos Authentication</title><link href="https://0ink.net/posts/2013/2013-12-02-chrome-kerberos-authentication.html" rel="alternate"></link><published>2013-12-02T00:00:00+01:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2013-12-02:/posts/2013/2013-12-02-chrome-kerberos-authentication.html</id><content type="html">&lt;p&gt;To config chrome to use kerberos authentication you need to start the application the following parameter:&lt;/p&gt;
@@ -11093,12 +11263,10 @@ chrome --auth-server-whitelist="*aai-logon.domain-a.com"&lt;/p&gt;&lt;/li&gt;
 &lt;h2 id="premium"&gt;Premium&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;GPS Test Plus - &lt;a href="http://market.android.com/details?id=com.chartcross.gpstestplus"&gt;Play Store&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://play.google.com/store/apps/details?id=com.access_company.graffiti_pro"&gt;Graffiti Pro for Android&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;em&gt;TEST&lt;/em&gt; Signal Booster - &lt;a href="http://market.android.com/details?id=com.s4bb.signalbooster"&gt;Play Store&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://play.google.com/store/apps/details?id=com.access_company.graffiti_pro"&gt;Graffiti Pro for Android&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;TEST&lt;/em&gt; Signal Booster - &lt;a href="http://market.android.com/details?id=com.s4bb.signalbooster"&gt;Play Store&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="kids"&gt;Kids&lt;/h2&gt;
 &lt;ul&gt;
@@ -11242,27 +11410,23 @@ chrome --auth-server-whitelist="*aai-logon.domain-a.com"&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id="examples"&gt;Examples:&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Find everything in your home directory modified in the last 24 hours: &lt;code&gt;$ find $HOME -mtime 0&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Find everything in your home directory modified in the last 7 days: &lt;code&gt;$ find $HOME -mtime -7&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Find everything in your home directory that have &lt;strong&gt;NOT&lt;/strong&gt; been modified in the last year: &lt;code&gt;$ find $HOME -mtime +365&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;To find html files that have been modified in the last seven days, I can use -mtime with the argument -7 (include the hyphen): &lt;code&gt;$ find . -mtime -7 -name "*.html" -print&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;Find everything in your home directory modified in the last 24 hours: &lt;code&gt;$ find $HOME -mtime 0&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Find everything in your home directory modified in the last 7 days: &lt;code&gt;$ find $HOME -mtime -7&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Find everything in your home directory that have &lt;strong&gt;NOT&lt;/strong&gt; been modified in the last year: &lt;code&gt;$ find $HOME -mtime +365&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;To find html files that have been modified in the last seven days, I can use -mtime with the argument -7 (include the hyphen): &lt;code&gt;$ find . -mtime -7 -name "*.html" -print&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;If you use the number &lt;code&gt;7&lt;/code&gt; (without a hyphen), find will match only html files that were modified exactly seven days ago:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt; `$ find . -mtime 7 -name &amp;quot;*.html&amp;quot; -print`
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;To find those html files that I haven't touched for at least 7 days, I use &lt;code&gt;+7&lt;/code&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;$ find . -mtime +7 -name "*.html" -print&lt;/code&gt;&lt;/p&gt;
+&lt;li&gt;To find those html files that I haven't touched for at least 7 days, I use &lt;code&gt;+7&lt;/code&gt;:&lt;p&gt;&lt;code&gt;$ find . -mtime +7 -name "*.html" -print&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;</content><category term="2013"></category><category term="directory"></category></entry><entry><title>Enable local file caching for NFS share on Linux</title><link href="https://0ink.net/posts/2013/2013-10-07-enable-local-file-caching-for-nfs-share-on-linux.html" rel="alternate"></link><published>2013-10-07T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2013-10-07:/posts/2013/2013-10-07-enable-local-file-caching-for-nfs-share-on-linux.html</id><summary type="html">&lt;p&gt;In Linux, there is a caching filesystem called &lt;code&gt;FS-Cache&lt;/code&gt; which enables
 file caching for network file systems such as NFS. &lt;code&gt;FS-Cache&lt;/code&gt; is built
@@ -12112,11 +12276,9 @@ Still trying to figure out where to keep Offsite backups.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;This is another tool to compare vendors &lt;a href="http://www.cloudwards.net/articles/online-backup/"&gt;CloudWards&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;iDrive API info:&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://github.com/idrivevangelist"&gt;Sample code&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://evs.idrive.com/web-developers-guide.htm"&gt;Reference&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;iDrive API info:
+    *   &lt;a href="https://github.com/idrivevangelist"&gt;Sample code&lt;/a&gt;
+    *   &lt;a href="http://evs.idrive.com/web-developers-guide.htm"&gt;Reference&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content><category term="2013"></category><category term="backups"></category><category term="cloud"></category><category term="drive"></category><category term="linux"></category></entry><entry><title>DID vendors</title><link href="https://0ink.net/posts/2013/2013-09-13-did-vendors.html" rel="alternate"></link><published>2013-09-13T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2013-09-13:/posts/2013/2013-09-13-did-vendors.html</id><summary type="html">&lt;p&gt;So I have been researching DID vendors with limited success.  So far my
 leading candidates are:&lt;/p&gt;
 &lt;table&gt;
@@ -12542,25 +12704,21 @@ video files can be manipulated.&lt;/p&gt;
 &lt;p&gt;This is just for historical purposes as now almost everything can be
 done using &lt;code&gt;ffmpeg&lt;/code&gt; and the right options.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="http://code.google.com/p/mp4v2/"&gt;libmp4v2&lt;/a&gt; contains:&lt;ul&gt;
-&lt;li&gt;mp4art - to extract a picture (or coverart from mp4)&lt;/li&gt;
-&lt;li&gt;mp4info - to get meta data …&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;This is an article about different media (and more specifically)
+&lt;li&gt;&lt;a href="http://code.google.com/p/mp4v2/"&gt;libmp4v2&lt;/a&gt; contains:
+    *   mp4art - to extract a picture (or coverart from mp4)
+    *   mp4info - to get meta data …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;This is an article about different media (and more specifically)
 video files can be manipulated.&lt;/p&gt;
 &lt;p&gt;This is just for historical purposes as now almost everything can be
 done using &lt;code&gt;ffmpeg&lt;/code&gt; and the right options.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="http://code.google.com/p/mp4v2/"&gt;libmp4v2&lt;/a&gt; contains:&lt;ul&gt;
-&lt;li&gt;mp4art - to extract a picture (or coverart from mp4)&lt;/li&gt;
-&lt;li&gt;mp4info - to get meta data from mp4 streams&lt;/li&gt;
-&lt;li&gt;mp4tags - to set metadata and picture.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://code.google.com/p/mp4v2/"&gt;libmp4v2&lt;/a&gt; contains:
+    *   mp4art - to extract a picture (or coverart from mp4)
+    *   mp4info - to get meta data from mp4 streams
+    *   mp4tags - to set metadata and picture.&lt;/li&gt;
 &lt;li&gt;qt-fastload to move index to the front and making mp4 streamable&lt;/li&gt;
-&lt;li&gt;When encoding:&lt;ul&gt;
-&lt;li&gt;Change max GOP or IDR to around 5 seconds.&lt;/li&gt;
-&lt;li&gt;2-pass avg bitrate: 800 or even 500...&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;When encoding:
+    *   Change max GOP or IDR to around 5 seconds.
+    *   2-pass avg bitrate: 800 or even 500...&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="concatenating-files"&gt;Concatenating files:&lt;/h2&gt;
 &lt;h3 id="ffmpeg"&gt;ffmpeg&lt;/h3&gt;
@@ -12940,18 +13098,14 @@ be easily be converted to HTML or PDF as needed.&lt;/p&gt;
 &lt;h2 id="api-reference-documentation"&gt;API reference documentation&lt;/h2&gt;
 &lt;p&gt;We need generation tools. So the candidates are:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;C :&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://www.khm.de/~rudi/ZehDok/"&gt;zehdok&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/angelortega/mp_doccer"&gt;mp_doccer&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;php : Multiples&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://www.phpdoc.org/"&gt;phpdoc&lt;/a&gt;: The main one&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/peej/phpdoctor"&gt;peej's phpdoctor&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.apigen.org/"&gt;ApiGen&lt;/a&gt; : more modern alternative.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/victorjonsson/PHP-Markdown-Documentation-Generator"&gt;PHP Markdown doc generator&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;C :
+    *   &lt;a href="http://www.khm.de/~rudi/ZehDok/"&gt;zehdok&lt;/a&gt;
+    *   &lt;a href="https://github.com/angelortega/mp_doccer"&gt;mp_doccer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;php : Multiples
+    *   &lt;a href="http://www.phpdoc.org/"&gt;phpdoc&lt;/a&gt;: The main one
+    *   &lt;a href="https://github.com/peej/phpdoctor"&gt;peej's phpdoctor&lt;/a&gt;
+    *   &lt;a href="http://www.apigen.org/"&gt;ApiGen&lt;/a&gt; : more modern alternative.
+    *   &lt;a href="https://github.com/victorjonsson/PHP-Markdown-Documentation-Generator"&gt;PHP Markdown doc generator&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;perl : &lt;a href="http://juerd.nl/site.plp/perlpodtut"&gt;pod&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;python : &lt;a href="http://docs.python.org/2/library/pydoc.html"&gt;pydoc&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;tcl : &lt;a href="http://tcl.jtang.org/tcldoc/tcldoc/"&gt;tcldoc&lt;/a&gt; or &lt;a href="http://www.doxygen.org"&gt;doctools&lt;/a&gt;&lt;/li&gt;
@@ -13061,27 +13215,25 @@ comm&lt;span class="w"&gt; &lt;/span&gt;-23&lt;span class="w"&gt; &lt;/span&gt;&
 
 &lt;h2 id="pacman-one-liners"&gt;Pacman one liners&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Remove packages and its dependancies. pacman -Rs ...&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;List explicitly installed packages pacman -Qeq&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;List orphans pacman -Qtdq&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Remove everything but base group pacman -Rs $(comm -23 &amp;lt;(pacman -Qeq|sort) &amp;lt;((for i in $(pacman -Qqg base); do pactree -ul $i; done)|sort -u|cut -d ' ' -f 1))&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Listing changed configuraiton files pacman -Qii | awk '/^MODIFIED/ {print $2}'&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Download a package without installing it pacman -Sw package_name&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Manage pacman cache&lt;/p&gt;
-&lt;p&gt;paccache -h&lt;/p&gt;
+&lt;li&gt;Remove packages and its dependancies. pacman -Rs ...&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;List explicitly installed packages pacman -Qeq&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;List orphans pacman -Qtdq&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Remove everything but base group pacman -Rs $(comm -23 &amp;lt;(pacman -Qeq|sort) &amp;lt;((for i in $(pacman -Qqg base); do pactree -ul $i; done)|sort -u|cut -d ' ' -f 1))&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Listing changed configuraiton files pacman -Qii | awk '/^MODIFIED/ {print $2}'&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Download a package without installing it pacman -Sw package_name&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Manage pacman cache&lt;p&gt;paccache -h&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;</content><category term="2013"></category><category term="boot"></category><category term="configuration"></category><category term="database"></category><category term="directory"></category><category term="installation"></category><category term="linux"></category><category term="mouse"></category><category term="network"></category><category term="settings"></category><category term="setup"></category></entry><entry><title>Emacs Cheat Sheet</title><link href="https://0ink.net/posts/2013/2013-05-27-emacs-cheat-sheet.html" rel="alternate"></link><published>2013-05-27T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2013-05-27:/posts/2013/2013-05-27-emacs-cheat-sheet.html</id><summary type="html">&lt;p&gt;Quick reference article for how to use Emacs.  Yes, it is really
 old skool!&lt;/p&gt;
@@ -13657,10 +13809,8 @@ twice or more (simultaneously avoiding KVNO's increment).&lt;/p&gt;
 &lt;h3 id="packages"&gt;Packages&lt;/h3&gt;
 &lt;h4 id="server"&gt;Server&lt;/h4&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;krb5-server&lt;/code&gt;&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;krb5-libs&lt;/code&gt; (dependency of &lt;strong&gt;krb5-server&lt;/strong&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;krb5-server&lt;/code&gt;
+    *   &lt;code&gt;krb5-libs&lt;/code&gt; (dependency of &lt;strong&gt;krb5-server&lt;/strong&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id="client"&gt;Client&lt;/h4&gt;
 &lt;ul&gt;
@@ -13974,26 +14124,18 @@ Kerberos TGT service to implement a true SSO configuration for OpenSSH.&lt;/p&gt
 &lt;p&gt;...as long as the cable is rated Cat5e (or better)&lt;/p&gt;
 &lt;h2 id="on-cable-standards-cat5-etc"&gt;On cable standards (Cat5, etc.)&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Cat5&lt;ul&gt;
-&lt;li&gt;rarely seen - it has fallen out of favour and is barely sold&lt;/li&gt;
-&lt;li&gt;(...but your company may still be wired with it)&lt;/li&gt;
-&lt;li&gt;regularly and informally refers to Cat5a&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Cat5a&lt;ul&gt;
-&lt;li&gt;Currently still quite common&lt;/li&gt;
-&lt;li&gt;100mBit, 1gBit at &amp;lt;100m&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Cat6&lt;ul&gt;
-&lt;li&gt;100mBit, 1gBit at &amp;lt;100m&lt;/li&gt;
-&lt;li&gt;&amp;lt;55m for 10gBit (less if many are bundled)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Cat6a&lt;ul&gt;
-&lt;li&gt;10GBit at &amp;lt;100m&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;Cat5
+    *   rarely seen - it has fallen out of favour and is barely sold
+    *   (...but your company may still be wired with it)
+    *   regularly and informally refers to Cat5a&lt;/li&gt;
+&lt;li&gt;Cat5a
+    *   Currently still quite common
+    *   100mBit, 1gBit at &amp;lt;100m&lt;/li&gt;
+&lt;li&gt;Cat6
+    *   100mBit, 1gBit at &amp;lt;100m
+    *   &amp;lt;55m for 10gBit (less if many are bundled)&lt;/li&gt;
+&lt;li&gt;Cat6a
+    *   10GBit at &amp;lt;100m&lt;/li&gt;
 &lt;li&gt;Cat7 - stricter about crosstalk (pairs individually insulated)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Any cabling that is not shielded will crosstalk, meaning permissible distances are lower when many are bundled (relevant to company wiring), or be likely to get a lot of outside interference.&lt;/p&gt;
@@ -15009,12 +15151,14 @@ CMS like Wordpress.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://www.google.com/webmasters/tools"&gt;http://www.google.com/webmasters/tools&lt;/a&gt;&lt;br&gt;
     Google Webmaster tools, gives you a peek of how your website&lt;br&gt;
     looks from google search engines perspective.&lt;/li&gt;
-&lt;li&gt;Free templates&lt;/li&gt;
+&lt;li&gt;Free templates&lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.freecsstemplates.org/"&gt;http://www.freecsstemplates.org/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://csscreme.com/"&gt;http://csscreme.com/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.templatemo.com/"&gt;http://www.templatemo.com/&lt;/a&gt; (Unrestricted)&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.free-css.com/"&gt;http://www.free-css.com/&lt;/a&gt; (GPL or CC)&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.free-css-templates.com/"&gt;http://www.free-css-templates.com/&lt;/a&gt; (CC)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;</content><category term="2013"></category><category term="scripts"></category><category term="tools"></category><category term="wordpress"></category></entry><entry><title>Local Perl packages</title><link href="https://0ink.net/posts/2013/2013-05-15-perl-tips.html" rel="alternate"></link><published>2013-05-15T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2013-05-15:/posts/2013/2013-05-15-perl-tips.html</id><summary type="html">&lt;p&gt;Determine what is the local PERL5LIB configuration:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;LIB&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;$&lt;span class="ss"&gt;(&lt;/span&gt;
 &lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;d&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;`&lt;span class="nv"&gt;tr&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39; &amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&amp;lt;&lt;/span&gt;$&lt;span class="nv"&gt;PERL5LIB&lt;/span&gt;

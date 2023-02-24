@@ -149,18 +149,16 @@ work!  Your mileage may vary …</p></p>
     <p><p>These are just random thoughts nothing really was implemented.</p>
 <p>Alpine Linux image</p>
 <ul>
-<li>
-<p>preparation: jq and other deps to <code>/apks/x86_64</code></p>
-</li>
-<li>
-<p><code>/etc/local.d/</code>
-    <code>cloud-init-lite</code></p>
-</li>
-<li>
-<p>if <code>/etc/network/intefaces</code> exists we abort</p>
-</li>
+<li>preparation: jq and other deps to <code>/apks/x86_64</code></li>
+</ul>
+<ul>
+<li><code>/etc/local.d/</code>
+    <code>cloud-init-lite</code></li>
+</ul>
+<ol>
+<li>if <code>/etc/network/intefaces</code> exists we abort</li>
 <li><code>apk add --force-non-repository /path oniguruma,jq</code> .. restore <code>/etc/apk/world</code></li>
-<li><code>udhcpc -b -p /var/run/udhcpc.eth0.pid -i …</code></li></ul></p>
+<li><code>udhcpc -b -p /var/run/udhcpc.eth0.pid -i …</code></li></ol></p>
   </div>
 </article><article class="summary">
 <div class="metadata">
@@ -215,7 +213,7 @@ work!  Your mileage may vary …</p></p>
 - <a href="https://gist.github.com/qertis/acd71e14db4168832f3b67c75182af04/">travis cordova build</a>
 - <a href="https://github.com/svenlaater/travis-ci-ionic-yml">travis ionic build</a></p>
 <ul>
-<li>owx</li>
+<li>owx<ul>
 <li>common<ul>
 <li>muninlite (can it support plugins?)</li>
 <li>flock, pwgen, ifstat</li>
@@ -226,16 +224,14 @@ work!  Your mileage may vary …</p></p>
 <li>sniffer: tcpdump[-mini] 317K/617K, libpcap 191K</li>
 </ul>
 </li>
-<li>
-<p>owX</p>
-<ul>
+<li>owX<ul>
 <li>FW/NAT</li>
 <li>DNSMASQ: DHCP + DNS</li>
 <li>NTP server</li>
 <li>Dynamic DNS updating (mushu porker)</li>
 <li>NFS</li>
 <li>IPv6 tunnel</li>
-<li>Provisioning server: (PXE, TFTP, NFS …</li></ul></li></ul></p>
+<li>Provisioning server: (PXE, TFTP, NFS …</li></ul></li></ul></li></ul></p>
   </div>
 </article>
 <div class="pagination">

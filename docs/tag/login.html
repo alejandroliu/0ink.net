@@ -61,15 +61,21 @@
     </h2>
     <p><p>This is a quick recipe to run Docker on void:</p>
 <ul>
-<li>Make sure your system is up-to-date:</li>
+<li>Make sure your system is up-to-date:<ul>
 <li><code>sudo xbps-install -Syu</code></li>
-<li>Install docker executables:</li>
+</ul>
+</li>
+<li>Install docker executables:<ul>
 <li><code>sudo xbps-install -S docker</code></li>
-<li>Check if docker was installed properly:</li>
+</ul>
+</li>
+<li>Check if docker was installed properly:<ul>
 <li><code>docker --version</code></li>
-<li>Enable services:</li>
+</ul>
+</li>
+<li>Enable services:<ul>
 <li><code>sudo ln -s /etc/sv/containerd /var/service</code></li>
-<li><code>sudo ln -s /etc/sv/docker …</code></li></ul></p>
+<li><code>sudo ln -s /etc/sv/docker …</code></li></ul></li></ul></p>
   </div>
 </article><article class="summary">
 <div class="metadata">
@@ -157,9 +163,9 @@ I have worked around with a combination of <code>Flatpak</code>s, <code>chroot</
 
 <h3 id="2-versions">2 VERSIONS</h3>
 <ul>
-<li>kiosk</li>
+<li>kiosk<ul>
 <li>unmodified vncviewer connects to a multiplexer screen</li>
-<li>server (in inetd mode …</li></ul></p>
+<li>server (in inetd mode …</li></ul></li></ul></p>
   </div>
 </article><article class="summary">
 <div class="metadata">

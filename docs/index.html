@@ -47,6 +47,24 @@
 
 <article class="summary">
 <div class="metadata">
+  <time datetime="2023-02-20T00:00:00+01:00" pubdate>Mon 20 February 2023</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2023-01-11 15:52:49+01:00</p>
+  in <a href="/category/c2023.html">2023</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2023/2023-02-20-wallpanel.html" rel="bookmark" title="Permalink to Home Assistant Wall Panel">Home Assistant Wall Panel</a>
+    </h2>
+    <p><p>For a while I was using <a href="https://github.com/HyperTechnology5/TabletClock">TabletClock</a> with old tablets.  But 
+this has not been updated in a while.  I was thinking of writing my
+own version until I found <a href="https://github.com/thecowan/wallpanel-android">WallPanel</a>.</p>
+<p>Essentially it is purposely built web-browser with special features which makes it
+possible to use it to replaces <a href="https://github.com/HyperTechnology5/TabletClock">TabletClock …</a></p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
   <time datetime="2023-02-10T00:00:00+01:00" pubdate>Fri 10 February 2023</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
@@ -83,10 +101,10 @@ usually well enough.  The features that I like are:</p>
 <p>Pre-requistes:</p>
 <ul>
 <li>Snapshots have to be enabled</li>
-<li>You need a <code>/share/netcfg</code> containing the file:</li>
+<li>You need a <code>/share/netcfg</code> containing the file:<ul>
 <li>In my case, I set this share as <code>read-only</code> with <code>root-squash</code>.</li>
 <li>`admin.yaml' : contains the private/public keys and the configuration
-    of …</li></ul></p>
+  of …</li></ul></li></ul></p>
   </div>
 </article><article class="summary">
 <div class="metadata">
@@ -102,15 +120,21 @@ usually well enough.  The features that I like are:</p>
     </h2>
     <p><p>This is a quick recipe to run Docker on void:</p>
 <ul>
-<li>Make sure your system is up-to-date:</li>
+<li>Make sure your system is up-to-date:<ul>
 <li><code>sudo xbps-install -Syu</code></li>
-<li>Install docker executables:</li>
+</ul>
+</li>
+<li>Install docker executables:<ul>
 <li><code>sudo xbps-install -S docker</code></li>
-<li>Check if docker was installed properly:</li>
+</ul>
+</li>
+<li>Check if docker was installed properly:<ul>
 <li><code>docker --version</code></li>
-<li>Enable services:</li>
+</ul>
+</li>
+<li>Enable services:<ul>
 <li><code>sudo ln -s /etc/sv/containerd /var/service</code></li>
-<li><code>sudo ln -s /etc/sv/docker …</code></li></ul></p>
+<li><code>sudo ln -s /etc/sv/docker …</code></li></ul></li></ul></p>
   </div>
 </article><article class="summary">
 <div class="metadata">
@@ -357,13 +381,17 @@ but somehow I was looking for:</p>
     <p><p>As part of my small project of movng my Z-Wave Hub to a Raspberry PI, I got an
 <a href="http://wiki.geekworm.com/X728">X728</a> kit.  This has:</p>
 <ul>
-<li>UPS controller board</li>
+<li>UPS controller board<ul>
 <li>RTC circuit</li>
 <li>Battery and Power control board</li>
-<li>Case</li>
+</ul>
+</li>
+<li>Case<ul>
 <li>Button</li>
 <li>Cooling fan</li>
 <li>Additional Battery holder</li>
+</ul>
+</li>
 </ul>
 <p>The case has holes for wall-mounting.</p>
 <p>The Geekworm X728 kit is …</p></p>
@@ -468,27 +496,6 @@ container is its own <a href="http://supervisord.org/index.html">supervisord</a>
 sessions by defauult.</p>
 <p><code>virsh</code> defaults to <code>qemu:///session</code> while <code>virt-manager</code> to <code>qemu:///system</code>.</p>
 <p>It is better …</p></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2022-05-29T00:00:00+02:00" pubdate>Sun 29 May 2022</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2022-05-29 07:07:25+02:00</p>
-  in <a href="/category/c2022.html">2022</a>
-</div>  <div>
-    <h2>
-      <a href="/posts/2022/2022-05-29-websites.html" rel="bookmark" title="Permalink to A couple of useful sites for development">A couple of useful sites for development</a>
-    </h2>
-    <p><h2 id="unicode"><a href="https://www.compart.com/en/unicode/">Unicode</a></h2>
-<p>Can be useful for looking up <code>unicode</code> code points.  Particularly
-useful for looking up accented characters.  Another interesting
-use is for UI graphics characters.</p>
-<h2 id="gist-hkan"><a href="https://gist.github.com/hkan/264423ab0ee720efb55e05a0f5f90887">gist-hkan</a></h2>
-<p>This can be used to look-up emojis and shortcode for emojis.</p>
-<h2 id="color-picker"><a href="https://www.w3schools.com/colors/colors_picker.asp">color picker</a></h2>
-<p>Let you visually select a color so that you can paste …</p></p>
   </div>
 </article>
 <div class="pagination">

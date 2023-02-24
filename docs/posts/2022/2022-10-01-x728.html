@@ -66,13 +66,17 @@
 		<p>As part of my small project of movng my Z-Wave Hub to a Raspberry PI, I got an
 <a href="http://wiki.geekworm.com/X728">X728</a> kit.  This has:</p>
 <ul>
-<li>UPS controller board</li>
+<li>UPS controller board<ul>
 <li>RTC circuit</li>
 <li>Battery and Power control board</li>
-<li>Case</li>
+</ul>
+</li>
+<li>Case<ul>
 <li>Button</li>
 <li>Cooling fan</li>
 <li>Additional Battery holder</li>
+</ul>
+</li>
 </ul>
 <p>The case has holes for wall-mounting.</p>
 <p>The Geekworm X728 kit is very easy to build.  There is a video to show how to do
@@ -92,27 +96,35 @@ image an micro-SD card.</p>
 <ul>
 <li>Boot the Raspberry OS.  The first boot will resize the filesystems, so please
   wait.  Also, it will let you configure the default user and password.</li>
-<li>Enable the i2c function:</li>
+<li>Enable the i2c function:<ul>
 <li><code>sudo raspi-config</code></li>
 <li>Go to <code>Interfacing Options</code> -&gt; <code>I2C - Enable/Disable automatic loading</code>.</li>
 <li>While you are at-it, you may also enable <code>SSH</code>.</li>
-<li>Alternatively, you can a manual install by:</li>
+</ul>
+</li>
+<li>Alternatively, you can a manual install by:<ul>
 <li>Modify the <code>config.txt</code> in the <code>/boot</code> partition:</li>
 <li>Add at the end:</li>
 <li><code>[all]</code></li>
 <li><code>dtparam=i2c_arm=on</code></li>
-<li>Install pre-requisites:</li>
+</ul>
+</li>
+<li>Install pre-requisites:<ul>
 <li><code>sudo apt-get update</code></li>
 <li><code>sudo apt-get upgrade</code></li>
 <li><code>sudo apt-get -y install i2c-tools</code></li>
 <li>This is only needed for <code>i2cdetect</code>.</li>
+</ul>
+</li>
 <li>Reboot the system.</li>
-<li>Check if the hardware is detected:</li>
+<li>Check if the hardware is detected:<ul>
 <li><code>sudo i2cdetect -y 1</code></li>
 <li><img alt="screenshot" src="https://raw.githubusercontent.com/alejandroliu/0ink.net/master/snippets/X728/imgs/X728x-i2c.png"></li>
 <li><code>#36</code> - the address of the battery fuel gauging chip</li>
 <li><code>#68</code> - the address of the RTC chip</li>
 <li>Different x728 versions may have different values.  Mine used these values.</li>
+</ul>
+</li>
 </ul>
 <p>I personally did not like the example software.  This can be found in <a href="https://github.com/geekworm-com/x728">github</a>.
 Specifically, the <code>shutdown</code> functionality seemed to have <a href="https://en.wikipedia.org/wiki/Race_condition">race-conditions</a>.</p>
@@ -277,12 +289,16 @@ gpioInit<span class="w"> </span>BUTTON<span class="w"> </span><span class="m">26
 
 <p>Afterwards, you can just:</p>
 <ul>
-<li><code>gpio[PIN]</code> to read, i.e:</li>
+<li><code>gpio[PIN]</code> to read, i.e:<ul>
 <li><code>gpioSHUTDOWN</code></li>
 <li><code>gpioPLD</code></li>
-<li><code>gpio[PIN] {1|0}</code> to write i.e.:</li>
+</ul>
+</li>
+<li><code>gpio[PIN] {1|0}</code> to write i.e.:<ul>
 <li><code>gpioBOOT 1</code></li>
 <li><code>gpioBUZER 0</code></li>
+</ul>
+</li>
 </ul>
 <h2 id="reading-battery-status">Reading Battery status</h2>
 <p>You can read battery voltage and battery charge from the <code>smbus</code>.  To read the <code>smbus</code>
@@ -293,10 +309,14 @@ Specifically, I am only using the files <code>smbus.c</code> and <code>smbus.h</
 <li>open <code>/dev/i2c-1</code> in read/write mode.</li>
 <li><code>ioctl(fd, I2C_SLAVE, I2C_ADDRESS)</code> where <code>I2C_ADDRESS = 0x36</code>.</li>
 <li>From <code>smbus.c</code> read <code>i2c_smbus_read_word_data(fd, address)</code>, and byte swap.</li>
-<li>Voltage can be read from address <code>2</code>:</li>
+<li>Voltage can be read from address <code>2</code>:<ul>
 <li><code>Voltage = (swapped) * 1.25 / 1000 / 16</code></li>
-<li>Battery charge can be read from address <code>4</code>:</li>
+</ul>
+</li>
+<li>Battery charge can be read from address <code>4</code>:<ul>
 <li><code>Battery = (swapped) / 256</code></li>
+</ul>
+</li>
 </ul>
 <p>The code to do this can be found on <a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/X728/src">github</a>.</p>
 <p>A precompiled 64bit static binary can be found there too.</p>
@@ -337,16 +357,20 @@ simulate holding the button for 6 seconds to force the UPS board to power off.</
 <h2 id="ups-management">UPS management</h2>
 <p>In addition, I wrote a small script to:</p>
 <ul>
-<li>graceful shutdown when power button is pressed.</li>
+<li>graceful shutdown when power button is pressed.<ul>
 <li>hold the power button, after approximately 3 seconds, you will hear
-    2 beeps.  YOu can release the power button then.  The system will
-    do a graceful shutdown and power down.</li>
-<li>When A/C power is lost:</li>
+  2 beeps.  YOu can release the power button then.  The system will
+  do a graceful shutdown and power down.</li>
+</ul>
+</li>
+<li>When A/C power is lost:<ul>
 <li>If battery status can not be determined, the system will do a graceful
-    powerdown.</li>
+  powerdown.</li>
 <li>If battery status can be read, it will beep once every 60 seconds until
-    power is restored.</li>
+  power is restored.</li>
 <li>If battery is low, it will do a graceful powerdown.</li>
+</ul>
+</li>
 <li>Events are written to /dev/kmsg, so they could be forwarded to a syslog server.</li>
 </ul>
 <p>The files to do this are:</p>
@@ -441,7 +465,9 @@ image:</p>
 <li><code>etc/systemd/system/sockets.target.wants/munin-node.socket</code></li>
 <li><code>etc/systemd/system/munin-node.socket</code></li>
 <li><code>etc/systemd/system/munin-node@.service</code></li>
-<li><code>etc/muninlite.conf</code></li>
+<li>
+<p><code>etc/muninlite.conf</code></p>
+</li>
 </ul>
 
 	</article>

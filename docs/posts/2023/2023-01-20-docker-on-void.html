@@ -65,17 +65,27 @@
 <p class="tags">tagged <a href="/tag/login.html">login</a></p></div>
 		<p>This is a quick recipe to run Docker on void:</p>
 <ul>
-<li>Make sure your system is up-to-date:</li>
+<li>Make sure your system is up-to-date:<ul>
 <li><code>sudo xbps-install -Syu</code></li>
-<li>Install docker executables:</li>
+</ul>
+</li>
+<li>Install docker executables:<ul>
 <li><code>sudo xbps-install -S docker</code></li>
-<li>Check if docker was installed properly:</li>
+</ul>
+</li>
+<li>Check if docker was installed properly:<ul>
 <li><code>docker --version</code></li>
-<li>Enable services:</li>
+</ul>
+</li>
+<li>Enable services:<ul>
 <li><code>sudo ln -s /etc/sv/containerd /var/service</code></li>
 <li><code>sudo ln -s /etc/sv/docker /var/service</code></li>
-<li>Add your user to the <code>docker</code> group:</li>
+</ul>
+</li>
+<li>Add your user to the <code>docker</code> group:<ul>
 <li><code>sudo usermod -a -G docker $(whoami)</code></li>
+</ul>
+</li>
 </ul>
 <p>You can start using docker.  You may need to logout and login again for the group
 membership to be updated.</p>

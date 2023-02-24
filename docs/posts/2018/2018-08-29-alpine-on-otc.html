@@ -66,22 +66,22 @@
 		<p>These are just random thoughts nothing really was implemented.</p>
 <p>Alpine Linux image</p>
 <ul>
-<li>
-<p>preparation: jq and other deps to <code>/apks/x86_64</code></p>
-</li>
-<li>
-<p><code>/etc/local.d/</code>
-    <code>cloud-init-lite</code></p>
-</li>
-<li>
-<p>if <code>/etc/network/intefaces</code> exists we abort</p>
-</li>
+<li>preparation: jq and other deps to <code>/apks/x86_64</code></li>
+</ul>
+<ul>
+<li><code>/etc/local.d/</code>
+    <code>cloud-init-lite</code></li>
+</ul>
+<ol>
+<li>if <code>/etc/network/intefaces</code> exists we abort</li>
 <li><code>apk add --force-non-repository /path oniguruma,jq</code> .. restore <code>/etc/apk/world</code></li>
 <li><code>udhcpc -b -p /var/run/udhcpc.eth0.pid -i eth0</code></li>
 <li>install <code>openssh</code> and start it</li>
-<li><code>wget</code> meta data and create <code>/root/.ssh/authorized_keys</code></li>
+<li><code>wget</code> meta data and create <code>/root/.ssh/authorized_keys</code><ul>
 <li><code>wget -O- http://169.254.169.254/openstack/YYYY-MM-DD/meta_data.json</code></li>
 </ul>
+</li>
+</ol>
 
 	</article>
 

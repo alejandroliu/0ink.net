@@ -87,8 +87,10 @@ on a private server, or in the cloud.</p>
 <p>My implementation:</p>
 <ul>
 <li>I use a docker instance for <a href="https://photoprism.app/">photoprism</a> linked to a <code>mysql</code> database.
-  (actually <code>mariadb</code>).</li>
+  (actually <code>mariadb</code>).<ul>
 <li><a href="https://docs.photoprism.app/getting-started/advanced/databases/">database setup</a></li>
+</ul>
+</li>
 <li>This <a href="https://photoprism.app/">photoprism</a> instance is set as <code>AUTH=public</code>, so no authentication.
   Users on my home network can connect directly.  From the Internet, I am using an
   <a href="https://nginx.org/">nginx</a> reverse proxy.  This reverse proxy requires authentication.</li>
