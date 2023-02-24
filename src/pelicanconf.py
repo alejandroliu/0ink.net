@@ -102,6 +102,9 @@ MARKDOWN = {
         'markdown_aafigure': {
           'tag_type': 'inline_svg',
         },
+        'markdown_svgbob': {
+          'tag_type': 'inline_svg',
+        },
         'mdx_include': {
           'base_path': 'include',
         },
@@ -110,7 +113,12 @@ MARKDOWN = {
           'vars': {
             'SNIPPETS': 'https://github.com/alejandroliu/0ink.net/tree/master/snippets',
           },
+        },
+        'mdx_truly_sane_lists': {
+          'nested_indent': 2,
+          'truly_sane': True,
         }
+
     },
     'output_format': 'html5',
 }

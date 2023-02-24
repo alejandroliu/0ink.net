@@ -22,6 +22,8 @@
 - [markdown include](https://github.com/neurobin/mdx_include)
 - [blockdiag](https://github.com/gisce/markdown-blockdiag)
 - [aafigure](https://github.com/mbarkhau/markdown-aafigure)
+- [svgbob](https://github.com/mbarkhau/markdown-svgbob)
+- [truly_sane_lists](https://github.com/radude/mdx_truly_sane_lists)
 - graphviz
 
 # known issues or non-issues
@@ -31,12 +33,6 @@
     no.
   - [graphviz](https://github.com/pelican-plugins/graphviz) :
     note that `liquid_tags` does some of this already.
-- markdown extensions:
-  - [svgbob](https://github.com/mbarkhau/markdown-svgbob) :
-    Did not add this one as it requres an `svgbob` executable.
-    Using `aafigure` instead which is pure python.
-  - [mermaid](https://github.com/oruelle/md_mermaid) : no, as `aafigure` is sufficient
-  - [goat](https://github.com/blampe/goat) : no extension found
 - Enable plugins
   - python3 -m venv --system-site-packages $(pwd)/.venv
   - . .venv/bin/activate

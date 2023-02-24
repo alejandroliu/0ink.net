@@ -1,6 +1,6 @@
 ---
 title: Python Development 2023
-tags: android, python, windows
+tags: android, directory, python, scripts, windows
 ---
 [toc]
 ***
