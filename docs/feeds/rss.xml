@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Fri, 24 Feb 2023 12:46:48 +0100</lastBuildDate><item><title>Home Assistant Wall Panel</title><link>https://0ink.net/posts/2023/2023-02-20-wallpanel.html</link><description>&lt;p&gt;For a while I was using &lt;a href="https://github.com/HyperTechnology5/TabletClock"&gt;TabletClock&lt;/a&gt; with old tablets.  But 
+<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Wed, 01 Mar 2023 00:00:00 +0100</lastBuildDate><item><title>Raspberry Pi emulation with Qemu</title><link>https://0ink.net/posts/2023/2023-03-01-rpi-emulation.html</link><description>&lt;p&gt;The idea here is that we use a Desktop PC for developing/debugging
+Raspberry Pi set-ups using &lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; for emulating Rasperrby Pi.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; currently supports the following configurations:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Raspberry Pi Zero and 1A+ (armhf)&lt;/li&gt;
+&lt;li&gt;Raspberry Pi 2B (armv7)&lt;/li&gt;
+&lt;li&gt;Raspberry Pi 3A+ (aarch64)&lt;/li&gt;
+&lt;li&gt;Raspberry Pi 3B (aarch64)&lt;ul&gt;
+&lt;li&gt;This is the version …&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Wed, 01 Mar 2023 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:None,2023-03-01:/posts/2023/2023-03-01-rpi-emulation.html</guid><category>2023</category><category>boot</category><category>configuration</category><category>desktop</category><category>idea</category><category>linux</category><category>login</category><category>mouse</category><category>network</category><category>partition</category><category>raspberry</category><category>storage</category></item><item><title>Home Assistant Wall Panel</title><link>https://0ink.net/posts/2023/2023-02-20-wallpanel.html</link><description>&lt;p&gt;For a while I was using &lt;a href="https://github.com/HyperTechnology5/TabletClock"&gt;TabletClock&lt;/a&gt; with old tablets.  But 
 this has not been updated in a while.  I was thinking of writing my
 own version until I found &lt;a href="https://github.com/thecowan/wallpanel-android"&gt;WallPanel&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Essentially it is purposely built web-browser with special features which makes it

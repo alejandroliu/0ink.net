@@ -47,6 +47,32 @@
 
 <article class="summary">
 <div class="metadata">
+  <time datetime="2018-08-29T00:00:00+02:00" pubdate>Wed 29 August 2018</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2022-01-04 18:38:11+01:00</p>
+  in <a href="/category/c2018.html">2018</a>
+<p class="tags">tagged <a href="/tag/alpine.html">alpine</a>, <a href="/tag/linux.html">linux</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2018/2018-08-29-alpine-on-otc.html" rel="bookmark" title="Permalink to Alpine on OTC">Alpine on OTC</a>
+    </h2>
+    <p><p>These are just random thoughts nothing really was implemented.</p>
+<p>Alpine Linux image</p>
+<ul>
+<li>preparation: jq and other deps to <code>/apks/x86_64</code></li>
+</ul>
+<ul>
+<li><code>/etc/local.d/</code>
+    <code>cloud-init-lite</code></li>
+</ul>
+<ol>
+<li>if <code>/etc/network/intefaces</code> exists we abort</li>
+<li><code>apk add --force-non-repository /path oniguruma,jq</code> .. restore <code>/etc/apk/world</code></li>
+<li><code>udhcpc -b -p /var/run/udhcpc.eth0.pid -i …</code></li></ol></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
   <time datetime="2018-07-19T00:00:00+02:00" pubdate>Thu 19 July 2018</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
@@ -481,26 +507,6 @@ systems such …</p></p>
 <li>Poll website for changes</li>
 </ul>
 <p>Or …</p></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2017-10-02T00:00:00+02:00" pubdate>Mon 02 October 2017</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2021-12-25 22:02:18+01:00</p>
-  in <a href="/category/c2017.html">2017</a>
-</div>  <div>
-    <h2>
-      <a href="/posts/2017/2017-10-02-wordpress-plugins.html" rel="bookmark" title="Permalink to Interesting wordpress plugins">Interesting wordpress plugins</a>
-    </h2>
-    <p><ul>
-<li><a href="https://wordpress.org/plugins/restrict-categories/">restrict categories</a></li>
-<li><a href="https://wordpress.org/plugins/access-control-by-category/">access control by category</a></li>
-<li><a href="https://wordpress.org/plugins/s2member/">site member</a></li>
-<li><a href="https://wordpress.org/plugins/user-access-manager/">user access mgr</a></li>
-<li><a href="https://wordpress.org/plugins/paid-memberships-pro/">paid members</a></li>
-</ul></p>
   </div>
 </article>
 <div class="pagination">
