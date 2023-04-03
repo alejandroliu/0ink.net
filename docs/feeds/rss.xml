@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Mon, 03 Apr 2023 13:33:38 +0200</lastBuildDate><item><title>Python Development 2023</title><link>https://0ink.net/posts/2023/2023-04-01-python-dev-1.html</link><description>&lt;div class="toc"&gt;&lt;span class="toctitle"&gt;Table of Contents&lt;/span&gt;&lt;ul&gt;
+<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Mon, 03 Apr 2023 13:36:11 +0200</lastBuildDate><item><title>Python Development 2023</title><link>https://0ink.net/posts/2023/2023-04-01-python-dev-1.html</link><description>&lt;div class="toc"&gt;&lt;span class="toctitle"&gt;Table of Contents&lt;/span&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href="#python-development-on-windows"&gt;Python development on Windows&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#distributing-python-scripts-as-single-exe-or-directory"&gt;Distributing Python scripts as single EXE or Directory&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#installing-netifaces-on-windows"&gt;Installing netifaces on Windows&lt;/a&gt;&lt;/li&gt;
