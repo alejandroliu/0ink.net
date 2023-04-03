@@ -38,7 +38,7 @@ if nobody has pulled your remote repo yet, you can change your branch HEAD and f
 
     git reset --hard HEAD^
     git push -f
-    
+
 
 Restoring changes
 =================
@@ -46,17 +46,17 @@ Restoring changes
 So in the event that you want to go back to a previous version of a file. First you must identify the version using:
 
     git log $file
-    
+
 
 Once you know which commit to go to, do:
 
     git checkout $hash $file
-    
+
 
 Then
 
     git commit $file
-    
+
 
 User friendly version ids
 =========================
@@ -64,12 +64,12 @@ User friendly version ids
 Creating version ids Use:
 
      git describe
-    
+
 
 Gives:
 
      $tag-$commit_count-$hash
-    
+
 
 However for this to work, you need to have a good tag set and a good tag naming convention.
 
@@ -87,13 +87,13 @@ Also a variety of supporting branches to aid parallel development between team m
      # Creates a branch called "new_branch" from "develop" and switches to it
       git push -u origin new_branch
       # Pushes "new_branch" to the remote repo
-    
+
 
 Listing branches
 
      git branch      # List all local branches
-     git branch -a  # List local and remote branches    
-    
+     git branch -a  # List local and remote branches
+
 
 Merging branches
 
@@ -101,20 +101,20 @@ Merging branches
      # Switches to branch that will receive the commits...
      git merge --no-ff "feature_branch"
      # makes the a single commit (instead of replaying all the commits from the feature branch)
-    
+
 
 Deleting branches
 
     git branch -d branch_name    # Only local branches
     git push origin --delete branch_name # Remote branch
     git push origin :branch_name # Old format for deleting... prefix with ":"
-    
+
 
 Clean-up delete branches in remote repo from local repo...
 
     git branch --delete branch
     git remote prune origin
-    
+
 
 Tagging
 =======
@@ -125,7 +125,7 @@ Creating tags
 Tag releases with
 
     git tag -a $tagname -m "$descr"
-    
+
 
 This creates an annotated tag that has full meta data content and it is favored by Git describe.
 
@@ -133,7 +133,7 @@ Temporary snapshots
 -------------------
 
     git tag $tagname
-    
+
 
 These are lightweight tag that are associated to a specific commit.
 
@@ -143,18 +143,18 @@ Sharing tags
 By default are not pushed. They need to be exported with:
 
     git push origin $tagname
-    
+
 
 or
 
     git push origin --tags
-    
+
 
 To pull tags (if there aren't any)
 ----------------------------------
 
     git fetch --tags
-    
+
 
 Deleting tags
 -------------
@@ -162,8 +162,8 @@ Deleting tags
     git tag -d $tagname    # Local tags
     git push --delete origin $tagname # Remote tags
     git push origin :refs/tags/$tagname   # Remote tags (OLD VERSION)
-    
-    
+
+
 
 Rename a tag:
 -------------
@@ -171,14 +171,14 @@ Rename a tag:
     git tag new old
     git tag -d old
     git push origin :refs/tags/old
-    
+
 
 Setting up GIT
 ==============
 
     git config --global user.name "user"
     git config --global user.email "email"
-    
+
 
 Other settings:
 
@@ -188,7 +188,7 @@ Other settings:
     [user]
       email = alejandro_liu@hotmail.com
       name = alex
-    
+
 
 Using ~/.netrc for persistent authentication
 --------------------------------------------
@@ -196,12 +196,12 @@ Using ~/.netrc for persistent authentication
 Create a file called `.netrc` in your home directory. Make sure you sets permissions `600` so that it is only readable by user. With Windows, create a file `_netrc` in your home directory. You may need to define a %HOME% environment variable. In Windows 7 you can use:
 
     setx HOME %USERPROFILE%
-    
+
 
 or
 
     set HOME=%HOMEDRIVE%%HOMEPATH%
-    
+
 
 The contents of `.netrc` (or `_netrc`) are as follows:
 
@@ -211,7 +211,7 @@ The contents of `.netrc` (or `_netrc`) are as follows:
     |machine $system
     |   login $user
     |   password $pwd
-    
+
 
 Creating new repositories
 =========================
@@ -228,7 +228,7 @@ Creating new repositories
     # Creates a remote name for push/pull
     git push origin master
     # Send commits to remote
-    
+
 
 Creating a bare repo:
 
@@ -237,8 +237,8 @@ Creating a bare repo:
     echo "Initial commit" &gt; README.md
     git add README.md
     git commit -m"Initial commit"
-    git clone --bare . 
-    
+    git clone --bare .
+
 
 Vendor Branches
 ===============
@@ -246,7 +246,7 @@ Vendor Branches
 Set-up
 
     unzip wordpress-2.3.zip
-    cd wordpress 
+    cd wordpress
     # Note, unzip creates this directory...
     git init
     git add .
@@ -254,13 +254,13 @@ Set-up
     git tag v2.3
     git branch upstream
     # Create the upstream branch used to track new vendor releases
-    
+
 
 When a new release comes out:
 
     cd wordpress
     git checkout upstream
-    rm -r *
+    rm -r \*
     # Delete all files in the main directory but doesn't touch dot files (like .git)
     (cd .. &amp;&amp; unzip wordpress-2.3.1.zip)
     git add .
@@ -268,7 +268,7 @@ When a new release comes out:
     git tag v2.3.1
     git checkout master
     git merge upstream
-    
+
 
 A variation of vendor branches is to sync with an upstream fork in github. Read this guide on how to do that: [Syncing a fork on github](https://help.github.com/articles/syncing-a-fork/)
 
@@ -283,7 +283,7 @@ Creating a patch:
      git commit -a
      .. create the patch from branch "master"...
      git format-patch master --stdout &gt; file.patch
-    
+
 
 To apply patch..
 
@@ -293,7 +293,7 @@ To apply patch..
      git apply --check file.patch
      .. apply with am (so you can sign-off)
      git am --signoff &lt; file.patch
-    
+
 
 Maintenance
 ===========
@@ -301,7 +301,7 @@ Maintenance
     git fsck
     git gc --prune=now     # Clean-up
     git remote prune origin # Clean-up stale references to deleted remote objects
-    
+
 
 Submodules
 ==========
@@ -309,7 +309,7 @@ Submodules
 Add submodules to a project:
 
     git submodule add $repo_url $dir
-    
+
 
 Clone a project with submodules:
 
@@ -317,27 +317,53 @@ Clone a project with submodules:
     cd $repo
     git submodule init
     git submodule update
-    
+
 
 Or in a single command (Git >1.6.5):
 
     git clone --recursive $repo_url
-    
+
 
 For already cloned (Git >1.6.5):
 
     git clone $repo_url
     cd $repo
     git submodule update --init --recursive
-    
+
 
 To keep a submodule up-to-date:
 
     git pull
     git submodule update
-    
+
 
 Remove sub-modules:
 
     git submodule deinit $submodule
     git rm $submodule # No trailing slash!
+
+# setting git email per repository
+
+Navigate to the work repository, then at the root folder run the
+following command to change the email.
+
+```
+git config --local user.email name@work.com
+```
+
+**Note:** this command only affects the current repository. Any
+other repositories will still use the default email specified in
+`~/.gitconfig`.
+
+Alternatively, you can have different configurations based on a
+directory path by using:
+
+Contents of `$HOME/.gitconfig`
+
+```
+[includeIf "gitdir:~/work/"]
+    path = .gitconfig-work
+[includeIf "gitdir:~/personal/"]
+    path = .gitconfig-personal
+```
+

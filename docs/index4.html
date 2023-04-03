@@ -47,6 +47,34 @@
 
 <article class="summary">
 <div class="metadata">
+  <time datetime="2018-09-22T00:00:00+02:00" pubdate>Sat 22 September 2018</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2022-01-04 18:38:11+01:00</p>
+  in <a href="/category/c2018.html">2018</a>
+<p class="tags">tagged <a href="/tag/alpine.html">alpine</a>, <a href="/tag/boot.html">boot</a>, <a href="/tag/installation.html">installation</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/service.html">service</a>, <a href="/tag/ubuntu.html">ubuntu</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2018/2018-09-22-docker-notes.html" rel="bookmark" title="Permalink to Docker on Alpine Linux">Docker on Alpine Linux</a>
+    </h2>
+    <p><p>Alpine Linux Quick installation</p>
+<p>See <a href="https://wiki.alpinelinux.org/wiki/Docker">wiki</a>  For Alpine Linux &gt; 3.8</p>
+<ol>
+<li>Un-comment community repo from <code>/etc/apk/repositories</code></li>
+<li>apk add docker</li>
+<li>rc-update add docker boot</li>
+<li>service docker start</li>
+</ol>
+<p>Optional: (docker compose)</p>
+<div class="highlight"><pre><span></span><code>apk add docker-compose
+</code></pre></div>
+
+<hr>
+<p>Note 2021-03-21: When I tested this, the <code>daemon.json</code> did not
+work!  Your mileage may vary …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
   <time datetime="2018-08-29T00:00:00+02:00" pubdate>Wed 29 August 2018</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
@@ -468,45 +496,6 @@ systems such …</p></p>
 <li>kiosk<ul>
 <li>unmodified vncviewer connects to a multiplexer screen</li>
 <li>server (in inetd mode …</li></ul></li></ul></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2017-10-19T00:00:00+02:00" pubdate>Thu 19 October 2017</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2021-12-25 22:02:18+01:00</p>
-  in <a href="/category/c2017.html">2017</a>
-<p class="tags">tagged <a href="/tag/desktop.html">desktop</a>, <a href="/tag/editor.html">editor</a>, <a href="/tag/markdown.html">markdown</a>, <a href="/tag/python.html">python</a></p></div>  <div>
-    <h2>
-      <a href="/posts/2017/2017-10-19-markdown-simplenote-editing.html" rel="bookmark" title="Permalink to SimpleNote/Markdown editor">SimpleNote/Markdown editor</a>
-    </h2>
-    <p><p><strong>We just load SimpleNote as a Desktop WebApp</strong></p>
-<ol>
-<li>Create first a basic markdown editor<ul>
-<li>styling</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li>Hack retext<ul>
-<li>add stuff for multiple views</li>
-</ul>
-</li>
-<li>nvpy remixed with retext?</li>
-<li><a href="http://www.py2exe.org/">Wrapper python for Windows</a></li>
-</ul>
-<p>Another option:</p>
-<ul>
-<li>SimpleNote native app + editor</li>
-</ul>
-<p>Features:</p>
-<ul>
-<li>Search tags from a menu</li>
-<li>Search within document</li>
-<li>Poll website for changes</li>
-</ul>
-<p>Or …</p></p>
   </div>
 </article>
 <div class="pagination">

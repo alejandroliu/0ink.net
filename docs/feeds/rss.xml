@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Wed, 01 Mar 2023 00:00:00 +0100</lastBuildDate><item><title>Raspberry Pi emulation with Qemu</title><link>https://0ink.net/posts/2023/2023-03-01-rpi-emulation.html</link><description>&lt;p&gt;The idea here is that we use a Desktop PC for developing/debugging
+<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Mon, 03 Apr 2023 13:33:38 +0200</lastBuildDate><item><title>Python Development 2023</title><link>https://0ink.net/posts/2023/2023-04-01-python-dev-1.html</link><description>&lt;div class="toc"&gt;&lt;span class="toctitle"&gt;Table of Contents&lt;/span&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#python-development-on-windows"&gt;Python development on Windows&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#distributing-python-scripts-as-single-exe-or-directory"&gt;Distributing Python scripts as single EXE or Directory&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#installing-netifaces-on-windows"&gt;Installing netifaces on Windows&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#documentation-generation"&gt;Documentation generation&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#using-sphinx-for-documentation"&gt;Using sphinx for documentation&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#example-docstring"&gt;Example docstring&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id="python-development-on-windows"&gt;Python development on Windows&lt;/h2&gt;
+&lt;p&gt;For windows, you can use &lt;a href="https://winpython.github.io/"&gt;WinPython&lt;/a&gt;.
+I prefer to use this instead of the official distribution because:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;It is …&lt;/li&gt;&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Sat, 01 Apr 2023 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:None,2023-04-01:/posts/2023/2023-04-01-python-dev-1.html</guid><category>2023</category><category>directory</category><category>python</category><category>scripts</category><category>windows</category></item><item><title>Raspberry Pi emulation with Qemu</title><link>https://0ink.net/posts/2023/2023-03-01-rpi-emulation.html</link><description>&lt;p&gt;The idea here is that we use a Desktop PC for developing/debugging
 Raspberry Pi set-ups using &lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; for emulating Rasperrby Pi.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; currently supports the following configurations:&lt;/p&gt;
 &lt;ul&gt;
@@ -183,10 +201,12 @@ sessions by defauult.&lt;/p&gt;
 &lt;p&gt;Can be useful for looking up &lt;code&gt;unicode&lt;/code&gt; code points.  Particularly
 useful for looking up accented characters.  Another interesting
 use is for UI graphics characters.&lt;/p&gt;
+&lt;h2 id="unicode-search"&gt;&lt;a href="http://xahlee.info/comp/unicode_index.html"&gt;Unicode search&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Another site to search for unicode characters.&lt;/p&gt;
 &lt;h2 id="gist-hkan"&gt;&lt;a href="https://gist.github.com/hkan/264423ab0ee720efb55e05a0f5f90887"&gt;gist-hkan&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This can be used to look-up emojis and shortcode for emojis.&lt;/p&gt;
 &lt;h2 id="color-picker"&gt;&lt;a href="https://www.w3schools.com/colors/colors_picker.asp"&gt;color picker&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Let you visually select a color so that you can paste …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Sun, 29 May 2022 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:None,2022-05-29:/posts/2022/2022-05-29-websites.html</guid><category>2022</category></item><item><title>Keyboard Mouse control</title><link>https://0ink.net/posts/2022/2022-02-13-keyboard_mouse.html</link><description>&lt;p&gt;This comes in handy when working at a &lt;strong&gt;colo&lt;/strong&gt; or someplace where you
+&lt;p&gt;Let you …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Sun, 29 May 2022 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:None,2022-05-29:/posts/2022/2022-05-29-websites.html</guid><category>2022</category></item><item><title>Keyboard Mouse control</title><link>https://0ink.net/posts/2022/2022-02-13-keyboard_mouse.html</link><description>&lt;p&gt;This comes in handy when working at a &lt;strong&gt;colo&lt;/strong&gt; or someplace where you
 don't have a mouse and then find yourself needing to use &lt;em&gt;X11&lt;/em&gt;. Press
 the following key combo:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Ctrl-Shift-Numlock

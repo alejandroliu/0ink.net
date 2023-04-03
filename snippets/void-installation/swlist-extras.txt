@@ -10,6 +10,7 @@
 #
 git			# I need this to interact with github
 git-crypt		# transparent git encryption
+git-extras		# additional git thingies
 github-cli
 rcm			# dot file manager
 
@@ -67,7 +68,7 @@ atf			# dev support
 kyua
 jq yq jc		# manipulate data in scripts
 
-# php
+# php composer
 # gcc
 # make
 # ltrace

@@ -1,5 +1,231 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2023-03-01T00:00:00+01:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>Raspberry Pi emulation with Qemu</title><link href="https://0ink.net/posts/2023/2023-03-01-rpi-emulation.html" rel="alternate"></link><published>2023-03-01T00:00:00+01:00</published><updated>2023-01-11T15:59:49+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-03-01:/posts/2023/2023-03-01-rpi-emulation.html</id><summary type="html">&lt;p&gt;The idea here is that we use a Desktop PC for developing/debugging
+<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2023-04-03T13:33:38+02:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>Python Development 2023</title><link href="https://0ink.net/posts/2023/2023-04-01-python-dev-1.html" rel="alternate"></link><published>2023-04-01T00:00:00+02:00</published><updated>2023-04-03T13:33:38+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-04-01:/posts/2023/2023-04-01-python-dev-1.html</id><summary type="html">&lt;div class="toc"&gt;&lt;span class="toctitle"&gt;Table of Contents&lt;/span&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#python-development-on-windows"&gt;Python development on Windows&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#distributing-python-scripts-as-single-exe-or-directory"&gt;Distributing Python scripts as single EXE or Directory&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#installing-netifaces-on-windows"&gt;Installing netifaces on Windows&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#documentation-generation"&gt;Documentation generation&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#using-sphinx-for-documentation"&gt;Using sphinx for documentation&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#example-docstring"&gt;Example docstring&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id="python-development-on-windows"&gt;Python development on Windows&lt;/h2&gt;
+&lt;p&gt;For windows, you can use &lt;a href="https://winpython.github.io/"&gt;WinPython&lt;/a&gt;.
+I prefer to use this instead of the official distribution because:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;It is …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;div class="toc"&gt;&lt;span class="toctitle"&gt;Table of Contents&lt;/span&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#python-development-on-windows"&gt;Python development on Windows&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#distributing-python-scripts-as-single-exe-or-directory"&gt;Distributing Python scripts as single EXE or Directory&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#installing-netifaces-on-windows"&gt;Installing netifaces on Windows&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#documentation-generation"&gt;Documentation generation&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#using-sphinx-for-documentation"&gt;Using sphinx for documentation&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#example-docstring"&gt;Example docstring&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id="python-development-on-windows"&gt;Python development on Windows&lt;/h2&gt;
+&lt;p&gt;For windows, you can use &lt;a href="https://winpython.github.io/"&gt;WinPython&lt;/a&gt;.
+I prefer to use this instead of the official distribution because:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;It is a portable distro.&lt;/li&gt;
+&lt;li&gt;You can choose for a batteries included, or just the &lt;code&gt;dot&lt;/code&gt; release
+   which only contains Python and Pip.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This way I can have multiple versions available.  This is particularly
+useful for me because of my &lt;a href="https://open-telekom-cloud.com" title="Open Telekom Cloud"&gt;OTC&lt;/a&gt; development which uses
+&lt;a href="https://wiki.openstack.org/wiki/SDKs"&gt;OpenStack SDK&lt;/a&gt;.  In my Windows system, I was only able
+to make it work with Python v3.8.10 (due to some ancient dependancies).
+Because I usually don't have a compiler, I can only use binary distros
+and I am unable to find it for a newer Python version.&lt;/p&gt;
+&lt;h2 id="distributing-python-scripts-as-single-exe-or-directory"&gt;Distributing Python scripts as single EXE or Directory&lt;/h2&gt;
+&lt;p&gt;When distributing I had good results with &lt;a href="https://pyinstaller.org/en/stable/"&gt;pyinstaller&lt;/a&gt;.
+You can create a single folder or a single exe distribution.  The
+results work suprisingly well (if they work).  Some hints when using
+&lt;a href="https://pyinstaller.org/en/stable/"&gt;pyinstaller&lt;/a&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cross packaging is not possible.  If you need a Windows package
+  you need to run it on Windows.&lt;/li&gt;
+&lt;li&gt;Dependancies not always work correctly.  You may need to use
+  these options:&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;--hidden-import module&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--collect-data module&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--copy-metadata module&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--collect-all package&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;In some cases, you may need to force the inclusion of non-python
+  files.  Use:&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;set sitedir=%WINPYDIR%\Lib\site-packages&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;And in the command line:&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--add-data %sitedir%\path\to\data\file;path\to\data&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;I use the &lt;code&gt;%sitedir%&lt;/code&gt; variable to find things in the Python packages
+  directory.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;It is best to create a batch file to issue the &lt;code&gt;pyinstaller&lt;/code&gt; command.&lt;/li&gt;
+&lt;li&gt;Because the command-line could become quite long, you can use the &lt;code&gt;^&lt;/code&gt;
+  escape.  Example:
+  &lt;code&gt;pyinstaller %buildtype% ^
+    --hidden-import keystoneauth1 ^
+    --collect-data keystoneauth1 ^
+    --copy-metadata keystoneauth1 ^
+    --hidden-import os_service_types ^
+    --collect-data os_service_types ^
+    --copy-metadata os_service_types ^
+    --collect-all openstacksdk ^
+    --copy-metadata openstacksdk ^
+    --add-data %sitedir%\openstack\config\defaults.json;openstack\config ^
+    --hidden-import keystoneauth1.loading._plugins ^
+    --hidden-import keystoneauth1.loading._plugins.identity ^
+    --hidden-import keystoneauth1.loading._plugins.identity.generic ^
+  urotc.py&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="installing-netifaces-on-windows"&gt;Installing &lt;code&gt;netifaces&lt;/code&gt; on Windows&lt;/h2&gt;
+&lt;p&gt;NOTE: I tested this on Feb 2023.  See
+&lt;a href="https://allones.de/2018/11/05/python-netifaces-installation-microsoft-visual-c-14-0-is-required/"&gt;Original article here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;netifaces&lt;/code&gt; is a &lt;a href="https://wiki.openstack.org/wiki/SDKs"&gt;OpenStack SDK&lt;/a&gt; dependancy.  Under
+version 3.8.10 I am able to install using &lt;code&gt;--only-binary=netifaces&lt;/code&gt; option.&lt;/p&gt;
+&lt;p&gt;For newer versions it will fail with &lt;code&gt;Microsoft Visual C++ 14.0 is required&lt;/code&gt;
+error message.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;\&lt;span class="n"&gt;RH&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;netifaces&lt;/span&gt;
+&lt;span class="n"&gt;Collecting&lt;/span&gt; &lt;span class="n"&gt;netifaces&lt;/span&gt;
+  &lt;span class="n"&gt;Downloading&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;files&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pythonhosted&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;81&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;39&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;4e9&lt;/span&gt;&lt;span class="n"&gt;a026265ba944ddf1fea176dbb29e0fe50c43717ba4fcf3646d099fe38&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;netifaces&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;0.10.7&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gz&lt;/span&gt;
+&lt;span class="n"&gt;Installing&lt;/span&gt; &lt;span class="n"&gt;collected&lt;/span&gt; &lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;netifaces&lt;/span&gt;
+  &lt;span class="n"&gt;Running&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;netifaces&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="n"&gt;error&lt;/span&gt;
+    &lt;span class="n"&gt;Complete&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;command&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;\&lt;span class="n"&gt;users&lt;/span&gt;\&lt;span class="n"&gt;rh&lt;/span&gt;\&lt;span class="n"&gt;appdata&lt;/span&gt;\&lt;span class="n"&gt;local&lt;/span&gt;\&lt;span class="n"&gt;programs&lt;/span&gt;\&lt;span class="n"&gt;python&lt;/span&gt;\&lt;span class="n"&gt;python37&lt;/span&gt;\&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;import setuptools, tokenize;__file__=&amp;#39;C:&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s2"&gt;Users&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s2"&gt;RH&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s2"&gt;AppData&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s2"&gt;Local&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s2"&gt;Temp&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s2"&gt;pip-install-wbfanly3&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s2"&gt;netifaces&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s2"&gt;setup.py&amp;#39;;f=getattr(tokenize, &amp;#39;open&amp;#39;, open)(__file__);code=f.read().replace(&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\r\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;#39;, &amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;#39;);f.close();exec(compile(code, __file__, &amp;#39;exec&amp;#39;))&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;record&lt;/span&gt; &lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;\&lt;span class="n"&gt;Users&lt;/span&gt;\&lt;span class="n"&gt;RONALD&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="n"&gt;HEI&lt;/span&gt;\&lt;span class="n"&gt;AppData&lt;/span&gt;\&lt;span class="n"&gt;Local&lt;/span&gt;\&lt;span class="n"&gt;Temp&lt;/span&gt;\&lt;span class="n"&gt;pip&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;record&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m26yfbyt&lt;/span&gt;\&lt;span class="n"&gt;install&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;record&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;single&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;externally&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;managed&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nb"&gt;compile&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;running&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt;
+    &lt;span class="n"&gt;running&lt;/span&gt; &lt;span class="n"&gt;build&lt;/span&gt;
+    &lt;span class="n"&gt;running&lt;/span&gt; &lt;span class="n"&gt;build_ext&lt;/span&gt;
+    &lt;span class="n"&gt;building&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;netifaces&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;extension&lt;/span&gt;
+        &lt;span class="n"&gt;error&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Microsoft&lt;/span&gt; &lt;span class="n"&gt;Visual&lt;/span&gt; &lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt; &lt;span class="mf"&gt;14.0&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;Get&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Microsoft Visual C++ Build Tools&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;landinghub&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;visualstudio&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;visual&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;cpp&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;build&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tools&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Since the suggested URL doesn't work.  You need to do the following:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Go to the Microsoft-Repository
+   &lt;a href="https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2017"&gt;Tools for Visual Studio 2017&lt;/a&gt;
+   or use the direct link to
+   &lt;a href="https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools&amp;amp;rel=15"&gt;vs_buildtools.exe&lt;/a&gt;.&lt;ul&gt;
+&lt;li&gt;... it’s about 1.2MB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;run „vs_buildtools.exe“&lt;ul&gt;
+&lt;li&gt;it downloads ~ 70 MB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Select &lt;code&gt;Workloads =&amp;gt; Windows =&amp;gt; [x] Visual C++ Build Tools“ =&amp;gt; [Install]&lt;/code&gt;&lt;ul&gt;
+&lt;li&gt;it downloads 1.12 GB&lt;/li&gt;
+&lt;li&gt;and installs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Re-boot (I don't know if it is required, but I did it just in case)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Now &lt;code&gt;netifaces&lt;/code&gt; can get installed:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;C&lt;/span&gt;:\&lt;span class="nv"&gt;RH&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="nv"&gt;pip&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;install&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;netifaces&lt;/span&gt;
+&lt;span class="nv"&gt;Collecting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;netifaces&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nv"&gt;Using&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;cached&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;https&lt;/span&gt;:&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nv"&gt;files&lt;/span&gt;.&lt;span class="nv"&gt;pythonhosted&lt;/span&gt;.&lt;span class="nv"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;81&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;39&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="nv"&gt;e9a026265ba944ddf1fea176dbb29e0fe50c43717ba4fcf3646d099fe38&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;netifaces&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;10&lt;/span&gt;.&lt;span class="mi"&gt;7&lt;/span&gt;.&lt;span class="nv"&gt;tar&lt;/span&gt;.&lt;span class="nv"&gt;gz&lt;/span&gt;
+&lt;span class="nv"&gt;Installing&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;collected&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;packages&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;netifaces&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nv"&gt;Running&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;setup&lt;/span&gt;.&lt;span class="nv"&gt;py&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;install&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;netifaces&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;...&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;done&lt;/span&gt;
+&lt;span class="nv"&gt;Successfully&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;installed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;netifaces&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;10&lt;/span&gt;.&lt;span class="mi"&gt;7&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2 id="documentation-generation"&gt;Documentation generation&lt;/h2&gt;
+&lt;p&gt;When programming documentation is important, allthough very often
+it takes a back seat.&lt;/p&gt;
+&lt;p&gt;To help keep it up to date, it is good to make it so it is easier to
+maintain and update.  One way to do that is with keeping documentation
+and code together, and automating the way documentation is generated.&lt;/p&gt;
+&lt;p&gt;There is a number of solutions to do this.  The one I looked at the most
+were:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.mkdocs.org/"&gt;mkdocs&lt;/a&gt; with &lt;a href="https://mkdocstrings.github.io/python/"&gt;mkdocstrings&lt;/a&gt; :
+  which is nice because it uses &lt;code&gt;markdown&lt;/code&gt;, however, because it is
+  essentially a static site generator, a lot of things needed to be done manually.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.sphinx-doc.org/en/master/"&gt;sphinx&lt;/a&gt; : At the end, &lt;a href="https://www.sphinx-doc.org/en/master/"&gt;sphinx&lt;/a&gt; was the option that I liked
+  the most.  It uses &lt;a href="https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html"&gt;RST&lt;/a&gt;
+  for markup which is different from &lt;code&gt;markdown&lt;/code&gt;, but it is close enough.
+  Also, &lt;a href="https://www.sphinx-doc.org/en/master/"&gt;sphinx&lt;/a&gt; can also support &lt;code&gt;markdown&lt;/code&gt; via some extensions
+  but I did not try that.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="using-sphinx-for-documentation"&gt;Using &lt;a href="https://www.sphinx-doc.org/en/master/"&gt;sphinx&lt;/a&gt; for documentation&lt;/h3&gt;
+&lt;p&gt;Prepare your environment:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip install sphinx sphinx-argparse
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In your project directory, I have two folders:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;docs&lt;/code&gt; : where the documentation source resides&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;src&lt;/code&gt; : where the &lt;code&gt;python&lt;/code&gt; code resides&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Also, I ignore:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;public&lt;/code&gt; : where the generated documentation is created.  This can
+  then be added into a CI pipeline to publish documentation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Run:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sphinx-quickstart
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In the &lt;code&gt;docs&lt;/code&gt; folder, to initialize things.  This will create the files:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;conf.py&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Makefile&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;index.rst&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Modify &lt;code&gt;conf.py&lt;/code&gt; to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;include the source:
+  &lt;code&gt;python
+  sys.path.insert(0, os.path.abspath('../src'))&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Customize project meta data&lt;/li&gt;
+&lt;li&gt;Include enable desired extensions.  For max automation I enable:&lt;ul&gt;
+&lt;li&gt;sphinx.ext.autodoc&lt;/li&gt;
+&lt;li&gt;sphinx.ext.autosummary&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Modify &lt;code&gt;Makefile&lt;/code&gt; to run:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sphinx-apidoc -o apidoc ../src
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This command extracts from &lt;code&gt;python&lt;/code&gt; docstrings and creates the
+relevant &lt;code&gt;rst&lt;/code&gt; files.&lt;/p&gt;
+&lt;p&gt;For command line arguments, I use &lt;code&gt;arparse&lt;/code&gt; extension.  Create a
+&lt;code&gt;cli.rst&lt;/code&gt; like so:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;CLI&lt;/span&gt;
+&lt;span class="gh"&gt;===&lt;/span&gt;
+
+&lt;span class="p"&gt;..&lt;/span&gt; &lt;span class="ow"&gt;argparse&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;
+   &lt;span class="nc"&gt;:filename:&lt;/span&gt; ../src/cli.py
+   &lt;span class="nc"&gt;:func:&lt;/span&gt; cli_args
+   &lt;span class="nc"&gt;:prog:&lt;/span&gt; cli.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Where &lt;code&gt;cli.py&lt;/code&gt; contains a function &lt;code&gt;cli_args&lt;/code&gt; that returns an &lt;code&gt;ArgumentParser&lt;/code&gt;
+object.&lt;/p&gt;
+&lt;h4 id="example-docstring"&gt;Example &lt;code&gt;docstring&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;This is an example doc string to add to your code, after the element
+declaration:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="sd"&gt;&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+&lt;span class="sd"&gt;   Summary text&lt;/span&gt;
+
+&lt;span class="sd"&gt;   Description of the function&lt;/span&gt;
+
+&lt;span class="sd"&gt;   :param str argname: argument passed&lt;/span&gt;
+&lt;span class="sd"&gt;   :returns bool: Returns a boolean True on success, False on failure&lt;/span&gt;
+&lt;span class="sd"&gt;   &amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;No Need to make it too complicated.&lt;/p&gt;</content><category term="2023"></category><category term="directory"></category><category term="python"></category><category term="scripts"></category><category term="windows"></category></entry><entry><title>Raspberry Pi emulation with Qemu</title><link href="https://0ink.net/posts/2023/2023-03-01-rpi-emulation.html" rel="alternate"></link><published>2023-03-01T00:00:00+01:00</published><updated>2023-01-11T15:59:49+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-03-01:/posts/2023/2023-03-01-rpi-emulation.html</id><summary type="html">&lt;p&gt;The idea here is that we use a Desktop PC for developing/debugging
 Raspberry Pi set-ups using &lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; for emulating Rasperrby Pi.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; currently supports the following configurations:&lt;/p&gt;
 &lt;ul&gt;
@@ -2224,17 +2450,21 @@ virsh&lt;span class="w"&gt; &lt;/span&gt;--connect&lt;span class="w"&gt; &lt;/sp
 &lt;h2 id="thin-provisioning"&gt;Thin provisioning&lt;/h2&gt;
 &lt;p&gt;Create an overlay file like so:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;qemu-img&lt;span class="w"&gt; &lt;/span&gt;create&lt;span class="w"&gt; &lt;/span&gt;-b&lt;span class="w"&gt; &lt;/span&gt;ubuntu-20.04-server-cloudimg-amd64-disk-kvm.img&lt;span class="w"&gt; &lt;/span&gt;-F&lt;span class="w"&gt; &lt;/span&gt;qcow2&lt;span class="w"&gt; &lt;/span&gt;-f&lt;span class="w"&gt; &lt;/span&gt;qcow2&lt;span class="w"&gt; &lt;/span&gt;guest-1.qcow2
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="2022"></category><category term="alpine"></category><category term="boot"></category><category term="configuration"></category><category term="desktop"></category><category term="device"></category><category term="filesystem"></category><category term="linux"></category><category term="network"></category><category term="power"></category><category term="setup"></category><category term="storage"></category></entry><entry><title>A couple of useful sites for development</title><link href="https://0ink.net/posts/2022/2022-05-29-websites.html" rel="alternate"></link><published>2022-05-29T00:00:00+02:00</published><updated>2022-05-29T07:07:25+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-05-29:/posts/2022/2022-05-29-websites.html</id><summary type="html">&lt;h2 id="unicode"&gt;&lt;a href="https://www.compart.com/en/unicode/"&gt;Unicode&lt;/a&gt;&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="2022"></category><category term="alpine"></category><category term="boot"></category><category term="configuration"></category><category term="desktop"></category><category term="device"></category><category term="filesystem"></category><category term="linux"></category><category term="network"></category><category term="power"></category><category term="setup"></category><category term="storage"></category></entry><entry><title>A couple of useful sites for development</title><link href="https://0ink.net/posts/2022/2022-05-29-websites.html" rel="alternate"></link><published>2022-05-29T00:00:00+02:00</published><updated>2023-04-03T13:33:38+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2022-05-29:/posts/2022/2022-05-29-websites.html</id><summary type="html">&lt;h2 id="unicode"&gt;&lt;a href="https://www.compart.com/en/unicode/"&gt;Unicode&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Can be useful for looking up &lt;code&gt;unicode&lt;/code&gt; code points.  Particularly
 useful for looking up accented characters.  Another interesting
 use is for UI graphics characters.&lt;/p&gt;
+&lt;h2 id="unicode-search"&gt;&lt;a href="http://xahlee.info/comp/unicode_index.html"&gt;Unicode search&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Another site to search for unicode characters.&lt;/p&gt;
 &lt;h2 id="gist-hkan"&gt;&lt;a href="https://gist.github.com/hkan/264423ab0ee720efb55e05a0f5f90887"&gt;gist-hkan&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This can be used to look-up emojis and shortcode for emojis.&lt;/p&gt;
 &lt;h2 id="color-picker"&gt;&lt;a href="https://www.w3schools.com/colors/colors_picker.asp"&gt;color picker&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Let you visually select a color so that you can paste …&lt;/p&gt;</summary><content type="html">&lt;h2 id="unicode"&gt;&lt;a href="https://www.compart.com/en/unicode/"&gt;Unicode&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Let you …&lt;/p&gt;</summary><content type="html">&lt;h2 id="unicode"&gt;&lt;a href="https://www.compart.com/en/unicode/"&gt;Unicode&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Can be useful for looking up &lt;code&gt;unicode&lt;/code&gt; code points.  Particularly
 useful for looking up accented characters.  Another interesting
 use is for UI graphics characters.&lt;/p&gt;
+&lt;h2 id="unicode-search"&gt;&lt;a href="http://xahlee.info/comp/unicode_index.html"&gt;Unicode search&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Another site to search for unicode characters.&lt;/p&gt;
 &lt;h2 id="gist-hkan"&gt;&lt;a href="https://gist.github.com/hkan/264423ab0ee720efb55e05a0f5f90887"&gt;gist-hkan&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This can be used to look-up emojis and shortcode for emojis.&lt;/p&gt;
 &lt;h2 id="color-picker"&gt;&lt;a href="https://www.w3schools.com/colors/colors_picker.asp"&gt;color picker&lt;/a&gt;&lt;/h2&gt;
@@ -3397,6 +3627,7 @@ I am using nowadays.&lt;/p&gt;
 &lt;span class="c1"&gt;#&lt;/span&gt;
 &lt;span class="n"&gt;git&lt;/span&gt;&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="c1"&gt;# I need this to interact with github&lt;/span&gt;
 &lt;span class="n"&gt;git&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;crypt&lt;/span&gt;&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="c1"&gt;# transparent git encryption&lt;/span&gt;
+&lt;span class="n"&gt;git&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;extras&lt;/span&gt;&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="c1"&gt;# additional git thingies&lt;/span&gt;
 &lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;cli&lt;/span&gt;
 &lt;span class="n"&gt;rcm&lt;/span&gt;&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="c1"&gt;# dot file manager&lt;/span&gt;
 
@@ -3454,7 +3685,7 @@ I am using nowadays.&lt;/p&gt;
 &lt;span class="n"&gt;kyua&lt;/span&gt;
 &lt;span class="n"&gt;jq&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;yq&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;jc&lt;/span&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;# manipulate data in scripts&lt;/span&gt;
 
-&lt;span class="c1"&gt;# php&lt;/span&gt;
+&lt;span class="c1"&gt;# php composer&lt;/span&gt;
 &lt;span class="c1"&gt;# gcc&lt;/span&gt;
 &lt;span class="c1"&gt;# make&lt;/span&gt;
 &lt;span class="c1"&gt;# ltrace&lt;/span&gt;
@@ -14483,7 +14714,7 @@ br0   Link encap:Ethernet  HWaddr 00:02:44:2A:03:30
 #
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;When all of described steps will be completed, our computers in both networks will be able to communicate with each other. IP addresses on bridge interfaces can be used for troubleshooting network connection. And last, if you need, you can turn on compression or enrtyption of data within created tunnel.&lt;/p&gt;</content><category term="2013"></category><category term="address"></category><category term="computer"></category><category term="config"></category><category term="configuration"></category><category term="device"></category><category term="domain"></category><category term="encryption"></category><category term="idea"></category><category term="management"></category><category term="network"></category><category term="password"></category><category term="remote"></category><category term="setup"></category><category term="software"></category><category term="speed"></category></entry><entry><title>Git recipes</title><link href="https://0ink.net/posts/2013/2013-05-23-git-recipes.html" rel="alternate"></link><published>2013-05-23T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2013-05-23:/posts/2013/2013-05-23-git-recipes.html</id><summary type="html">&lt;p&gt;A collection of small useful recipes for using with &lt;code&gt;Git&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;When all of described steps will be completed, our computers in both networks will be able to communicate with each other. IP addresses on bridge interfaces can be used for troubleshooting network connection. And last, if you need, you can turn on compression or enrtyption of data within created tunnel.&lt;/p&gt;</content><category term="2013"></category><category term="address"></category><category term="computer"></category><category term="config"></category><category term="configuration"></category><category term="device"></category><category term="domain"></category><category term="encryption"></category><category term="idea"></category><category term="management"></category><category term="network"></category><category term="password"></category><category term="remote"></category><category term="setup"></category><category term="software"></category><category term="speed"></category></entry><entry><title>Git recipes</title><link href="https://0ink.net/posts/2013/2013-05-23-git-recipes.html" rel="alternate"></link><published>2013-05-23T00:00:00+02:00</published><updated>2023-04-03T13:33:38+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2013-05-23:/posts/2013/2013-05-23-git-recipes.html</id><summary type="html">&lt;p&gt;A collection of small useful recipes for using with &lt;code&gt;Git&lt;/code&gt;.&lt;/p&gt;
 &lt;h2 id="rewriting-history"&gt;Rewriting history&lt;/h2&gt;
 &lt;h3 id="rolling-back-the-last-commit"&gt;Rolling back the last commit&lt;/h3&gt;
 &lt;p&gt;if nobody has pulled your remote repo yet, you can change your branch HEAD and force push it to said remote repo:&lt;/p&gt;
@@ -14655,7 +14886,7 @@ git clone --bare .
 &lt;h2 id="vendor-branches"&gt;Vendor Branches&lt;/h2&gt;
 &lt;p&gt;Set-up&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;unzip wordpress-2.3.zip
-cd wordpress 
+cd wordpress
 # Note, unzip creates this directory...
 git init
 git add .
@@ -14668,8 +14899,8 @@ git branch upstream
 &lt;p&gt;When a new release comes out:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;cd wordpress
 git checkout upstream
-rm -r *
-# Delete all files in the main directory but doesn&amp;#39;t touch dot files (like .git)
+rm -r \*
+&lt;span class="gh"&gt;#&lt;/span&gt; Delete all files in the main directory but doesn&amp;#39;t touch dot files (like .git)
 (cd .. &amp;amp;amp;&amp;amp;amp; unzip wordpress-2.3.1.zip)
 git add .
 git commit -a -m &amp;#39;Import wordpress 2.3.1&amp;#39;
@@ -14734,6 +14965,24 @@ git submodule update
 &lt;p&gt;Remove sub-modules:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git submodule deinit $submodule
 git rm $submodule # No trailing slash!
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="setting-git-email-per-repository"&gt;setting git email per repository&lt;/h2&gt;
+&lt;p&gt;Navigate to the work repository, then at the root folder run the
+following command to change the email.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;git&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;--local user.email name@work.com&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; this command only affects the current repository. Any
+other repositories will still use the default email specified in
+&lt;code&gt;~/.gitconfig&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Alternatively, you can have different configurations based on a
+directory path by using:&lt;/p&gt;
+&lt;p&gt;Contents of &lt;code&gt;$HOME/.gitconfig&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;[includeIf &amp;quot;gitdir:~/work/&amp;quot;]&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="na"&gt;path&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;.gitconfig-work&lt;/span&gt;
+&lt;span class="k"&gt;[includeIf &amp;quot;gitdir:~/personal/&amp;quot;]&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="na"&gt;path&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;.gitconfig-personal&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="2013"></category><category term="authentication"></category><category term="config"></category><category term="directory"></category><category term="feature"></category><category term="git"></category><category term="github"></category><category term="login"></category><category term="password"></category><category term="proxy"></category><category term="remote"></category><category term="windows"></category><category term="wordpress"></category></entry><entry><title>PHP notes</title><link href="https://0ink.net/posts/2013/2013-05-23-php-coding-style.html" rel="alternate"></link><published>2013-05-23T00:00:00+02:00</published><updated>2021-12-25T22:02:18+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2013-05-23:/posts/2013/2013-05-23-php-coding-style.html</id><summary type="html">&lt;p&gt;Notes on doing different things within the PHP language.&lt;/p&gt;
 &lt;h2 id="object-oriented-introspection"&gt;Object oriented introspection&lt;/h2&gt;
 &lt;ul&gt;
