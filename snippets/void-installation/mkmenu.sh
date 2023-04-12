@@ -21,7 +21,7 @@ find_kernels() {
     kver=$(basename "$k" | cut -d- -f2-)
     [ -f "$bootdir/initramfs-$kver.img" ] || continue
     echo "$kver"
-  done) | sort -r
+  done) | sort -r -V
 }
 
 find_kernels
