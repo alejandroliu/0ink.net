@@ -67,6 +67,7 @@ syslinux mtools	squashfs-tools-ng	# misc script for working with USB boot drives
 atf			# dev support
 kyua
 jq yq jc		# manipulate data in scripts
+busybox
 
 # php composer
 # gcc
@@ -76,11 +77,12 @@ jq yq jc		# manipulate data in scripts
 # tcpdump
 # luakit
 
-pelican				# static site generator
+# pelican				# static site generator
 mdcat
 python3-yaml
 python3-Markdown
 python3-GitPython
+python3-pikepdf
 graphviz
 
 asciidoc 			# alt: ruby-asciidoctor
