@@ -984,18 +984,22 @@ fi
 ##
 #end-output
 if [ -f $mnt/etc/X11/xdm/xdm-config ] ; then
+  #~ sed \
+	#~ -i-void \
+	#~ -e 's!^DisplayManager.*session:.*$!DisplayManager*session:	/etc/X11/xdm/Xsession!' \
+	#~ -e 's!^DisplayManager._0.setup:.*$!DisplayManager._0.setup:	/etc/X11/xdm/Xsetup_0!' \
+	#~ -e 's!^DisplayManager._0.startup:.*$!DisplayManager._0.startup:	/etc/X11/xdm/GiveConsole!' \
+	#~ $mnt/etc/X11/xdm/xdm-config
   sed \
 	-i-void \
 	-e 's!^DisplayManager.*session:.*$!DisplayManager*session:	/etc/X11/xdm/Xsession!' \
-	-e 's!^DisplayManager._0.setup:.*$!DisplayManager._0.setup:	/etc/X11/xdm/Xsetup_0!' \
-	-e 's!^DisplayManager._0.startup:.*$!DisplayManager._0.startup:	/etc/X11/xdm/GiveConsole!' \
 	$mnt/etc/X11/xdm/xdm-config
-  for f in Xsession Xsetup_0 GiveConsole
+  for f in Xsession # Xsetup_0 GiveConsole
   do
     repofile xdm/$f $mnt/etc/X11/xdm/$f
     chmod 755 $mnt/etc/X11/xdm/$f
   done
-  repofile xdm/xscreensaver $mnt/root/.xscreensaver
+  #~ repofile xdm/xscreensaver $mnt/root/.xscreensaver
 fi
 #begin-output
 ##
