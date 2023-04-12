@@ -1,7 +1,11 @@
 ---
-title: Rsync-tips
+title: rsync tips
+date: "2022-12-24"
 tags: backups
 ---
+[toc]
+
+
 - snapshot style backups
 - using filters
 - securing access
