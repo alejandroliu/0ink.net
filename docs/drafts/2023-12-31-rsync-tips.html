@@ -2,15 +2,15 @@
 <html lang="">
 <head>
 	<meta charset="utf-8"/>
-	<title>Rsync-tips - 0ink.net</title>
+	<title>rsync tips - 0ink.net</title>
 	<meta name="author" content="Alejandro Liu">
 
 
-	<meta name="description" content="snapshot style backups using filters securing access Links https://stackoverflow.com/questions/50706415/trouble-in-understanding-use-chroot-parameter-in-rsyncd-conf https://sites.google.com/site/rsync2u/home/rsync-tutorial/how-rsync-works3 https://linuxconfig.org/how-to-setup-the-rsync-daemon-on-linux https://www.atlantic.net/vps-hosting/how-to-setup-rsync-daemon-linux-server/ rsync man page Another Config Tutorial Configure rsync daemon Here is how the "rsync --link-dest=DIR" algorithm …">
-	<meta name="int-title" content="Rsync-tips">
+	<meta name="description" content="[toc] snapshot style backups using filters securing access Links https://stackoverflow.com/questions/50706415/trouble-in-understanding-use-chroot-parameter-in-rsyncd-conf https://sites.google.com/site/rsync2u/home/rsync-tutorial/how-rsync-works3 https://linuxconfig.org/how-to-setup-the-rsync-daemon-on-linux https://www.atlantic.net/vps-hosting/how-to-setup-rsync-daemon-linux-server/ rsync man page Another Config Tutorial Configure rsync daemon Here is how the "rsync --link-dest=DIR …">
+	<meta name="int-title" content="rsync tips">
 	<meta name="tags" content="backups">
 	<meta name="date" content="2023-12-31 00:00:00+01:00">
-	<meta name="modified" content="2022-12-24 19:49:30+01:00">
+	<meta name="modified" content="2023-04-15 22:01:11.503543+02:00">
 
 
 	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
@@ -53,29 +53,30 @@
 
 	<article class="full">
 
-		<h1>Rsync-tips</h1>
+		<h1>rsync tips</h1>
 
 <div class="metadata">
   <time datetime="2023-12-31T00:00:00+01:00" pubdate>Sun 31 December 2023</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2022-12-24 19:49:30+01:00</p>
+  <p>Updated: 2023-04-15 22:01:11.503543+02:00</p>
   in <a href="/category/c2023.html">2023</a>
 <p class="tags">tagged <a href="/tag/backups.html">backups</a></p></div>
-		<ul>
+		<p>[toc]</p>
+<ul>
 <li>snapshot style backups</li>
 <li>using filters</li>
 <li>securing access</li>
 </ul>
-<p>Links </p>
+<p>Links</p>
 <ul>
 <li>https://stackoverflow.com/questions/50706415/trouble-in-understanding-use-chroot-parameter-in-rsyncd-conf</li>
 <li>https://sites.google.com/site/rsync2u/home/rsync-tutorial/how-rsync-works3</li>
 <li>https://linuxconfig.org/how-to-setup-the-rsync-daemon-on-linux</li>
 <li>https://www.atlantic.net/vps-hosting/how-to-setup-rsync-daemon-linux-server/</li>
 <li><a href="http://linuxcommand.org/man_pages/rsync1.html">rsync</a> man page<ul>
-<li>Another <a href="http://www.fatdex.net/php/2013/05/20/how-to-turn-a-dlink-dns-323-into-a-rsync-backup-location/">Config  Tutorial</a>  </li>
+<li>Another <a href="http://www.fatdex.net/php/2013/05/20/how-to-turn-a-dlink-dns-323-into-a-rsync-backup-location/">Config  Tutorial</a></li>
 <li>Configure <a href="http://www.jveweb.net/en/archives/2011/01/running-rsync-as-a-daemon.html">rsync daemon</a></li>
 </ul>
 </li>

@@ -10,7 +10,7 @@
 	<meta name="int-title" content="Installing Void Linux">
 	<meta name="tags" content="backups, boot, configuration, desktop, device, directory, drive, filesystem, installation, linux, login, manager, network, partition, password, power, scripts, security, software, sudo, windows">
 	<meta name="date" content="2019-02-19 00:00:00+01:00">
-	<meta name="modified" content="2022-01-10 17:29:50+01:00">
+	<meta name="modified" content="2023-04-15 21:58:42.248530+02:00">
 
 
 	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
@@ -60,7 +60,7 @@
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2022-01-10 17:29:50+01:00</p>
+  <p>Updated: 2023-04-15 21:58:42.248530+02:00</p>
   in <a href="/category/c2019.html">2019</a>
 <p class="tags">tagged <a href="/tag/backups.html">backups</a>, <a href="/tag/boot.html">boot</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/desktop.html">desktop</a>, <a href="/tag/device.html">device</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/drive.html">drive</a>, <a href="/tag/filesystem.html">filesystem</a>, <a href="/tag/installation.html">installation</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/login.html">login</a>, <a href="/tag/manager.html">manager</a>, <a href="/tag/network.html">network</a>, <a href="/tag/partition.html">partition</a>, <a href="/tag/password.html">password</a>, <a href="/tag/power.html">power</a>, <a href="/tag/scripts.html">scripts</a>, <a href="/tag/security.html">security</a>, <a href="/tag/software.html">software</a>, <a href="/tag/sudo.html">sudo</a>, <a href="/tag/windows.html">windows</a></p></div>
 		<p>I made the switch to <a href="https://voidlinux.org" title="Void Linux">void linux</a>.  Except for compatibility
@@ -104,6 +104,8 @@ doing bare metal backups and restore just a simple file copy.</p>
 <span class="w">    </span><span class="k">-</span><span class="w"> </span>bios : create a BIOS boot system (needs syslinux)
 <span class="w">    </span><span class="k">-</span><span class="w"> </span>cache=path : use the file path for download cache
 <span class="w">    </span><span class="k">-</span><span class="w"> </span>xen : do some xen specific tweaks
+<span class="w">    </span><span class="k">-</span><span class="w"> </span>xdm-candy : Enable xdm candy
+<span class="w">    </span><span class="k">-</span><span class="w"> </span>noxdm : disable graphical login
 </code></pre></div>
 
 <h4 id="command-line-examples">Command line examples</h4>
@@ -406,8 +408,8 @@ default:</p>
 <p>I have switched to <a href="https://en.wikipedia.org/wiki/XDM_(display_manager)">xdm</a> as my display manager.  This is
 configured in <code>/etc/X11/xdm/xdm-config</code>.</p>
 <p>Specifically, I update the Xsession setting to be the following:</p>
-<div class="highlight"><pre><span></span><code><span class="n">! DisplayManager*session</span><span class="p">:</span><span class="w"> </span><span class="s">      /usr/lib64/X11/xdm/Xsession</span>
-<span class="n">DisplayManager*session</span><span class="p">:</span><span class="w"> </span><span class="s">    /etc/X11/Xsession</span>
+<div class="highlight"><pre><span></span><code>! DisplayManager*session:       /usr/lib64/X11/xdm/Xsession
+DisplayManager*session:     /etc/X11/Xsession
 </code></pre></div>
 
 <p>And have a custom <a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/xdm/Xsession">Xsession</a> script in
@@ -438,6 +440,20 @@ a <code>xterm</code> window covers the login widget.</p>
 <p>On the other hand, the <a href="https://www.jwz.org/xscreensaver/">xscreensaver</a> collection of screen
 hacks seem to accept the <code>-root</code> parameter, which can be used
 to kick off the hack, drawing on the root window.</p>
+<h3 id="not-using-a-display-manager"><em>NOT</em> using a display manager</h3>
+<p>If you do not want to run a display manager, you can simply
+start your session from the Linux console and use <code>startx</code> and
+<code>xinitrc</code> combination.</p>
+<p>Alternatively, you can add a file in <code>/etc/profile.d</code> to start X
+at login if on tty1.</p>
+<ul>
+<li><a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/noxdm/session">session</a></li>
+<li><a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/noxdm/zzdm.sh">zzdm.sh</a></li>
+</ul>
+<p>I am using the <code>session</code> script, which is a modified version of
+the earlier <code>Xsession</code> script that I am using for <code>xdm</code> to
+launch a desktop session.</p>
+<p>The script <code>zzdm.sh</code> is used to <code>startx</code> on login.</p>
 <h3 id="tweaks-and-bug-fixes">Tweaks and Bug-fixes</h3>
 <h4 id="etcmachine-id-or-varlibdbusmachine-id">/etc/machine-id or /var/lib/dbus/machine-id</h4>
 <p>Because we don't use <code>systemd</code>, we need to create <code>/etc/machine-id</code>

@@ -1,10 +1,10 @@
 ---
 title: Pulse Audio control in python
-date: "2023-04-15"
+tags: desktop
 ---
 I have been using a [shell script][old] to toggle pulse audio sinks for some time.  It worked well enough for
 switching output among several profiles on a single audio card.  I recently upgraded
-my set-up to new hardware.  This hardware for some reason, reported the analog stereo output and 
+my set-up to new hardware.  This hardware for some reason, reported the analog stereo output and
 the digital HDMI output as different sound cards.  So my patoggle script did not work well enough
 anymore.
 

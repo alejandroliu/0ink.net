@@ -2,14 +2,15 @@
 <html lang="">
 <head>
 	<meta charset="utf-8"/>
-	<title>NacoWiki - 0ink.net</title>
+	<title>Pulse Audio control in python - 0ink.net</title>
 	<meta name="author" content="Alejandro Liu">
 
 
-	<meta name="description" content="Update to [[(../2022/2022-10-10-nanowiki.md|NanoWiki]]">
-	<meta name="int-title" content="NacoWiki">
-	<meta name="date" content="2023-04-15 00:00:00+02:00">
-	<meta name="modified" content="2023-04-03 13:36:11+02:00">
+	<meta name="description" content="I have been using a shell script to toggle pulse audio sinks for some time. It worked well enough for switching output among several profiles on a single audio card. I recently upgraded my set-up to new hardware. This hardware for some reason, reported the analog stereo output and the …">
+	<meta name="int-title" content="Pulse Audio control in python">
+	<meta name="tags" content="desktop">
+	<meta name="date" content="2023-12-31 00:00:00+01:00">
+	<meta name="modified" content="2023-04-15 21:59:44.511536+02:00">
 
 
 	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
@@ -52,17 +53,30 @@
 
 	<article class="full">
 
-		<h1>NacoWiki</h1>
+		<h1>Pulse Audio control in python</h1>
 
 <div class="metadata">
-  <time datetime="2023-04-15T00:00:00+02:00" pubdate>Sat 15 April 2023</time>
+  <time datetime="2023-12-31T00:00:00+01:00" pubdate>Sun 31 December 2023</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2023-04-03 13:36:11+02:00</p>
+  <p>Updated: 2023-04-15 21:59:44.511536+02:00</p>
   in <a href="/category/c2023.html">2023</a>
-</div>
-		<p>Update to [[(../2022/2022-10-10-nanowiki.md|NanoWiki]]</p>
+<p class="tags">tagged <a href="/tag/desktop.html">desktop</a></p></div>
+		<p>I have been using a <a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/pa-hints/patoggle">shell script</a> to toggle pulse audio sinks for some time.  It worked well enough for
+switching output among several profiles on a single audio card.  I recently upgraded
+my set-up to new hardware.  This hardware for some reason, reported the analog stereo output and
+the digital HDMI output as different sound cards.  So my patoggle script did not work well enough
+anymore.</p>
+<p>Since parsing the output of the <code>pacmd</code> in shell script was becoming a pain, I decided to re-write
+the toggling script in <code>python</code>.  The new script is <a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/pa-hints/patoggle.py">here</a>.</p>
+<p>This script depends of two packages:</p>
+<ul>
+<li><a href="https://pypi.org/project/pulsectl/">pulsectl</a> : used to control pulse audio</li>
+<li>
+<p><a href="https://pypi.org/project/notify2/">notify2</a> : used to send desktop notifications</p>
+</li>
+</ul>
 
 	</article>
 

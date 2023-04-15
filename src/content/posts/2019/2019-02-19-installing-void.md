@@ -1,5 +1,6 @@
 ---
 title: Installing Void Linux
+tags: backups, boot, configuration, desktop, device, directory, drive, filesystem, installation, linux, login, manager, network, partition, password, power, scripts, security, software, sudo, windows
 ---
 
 I made the switch to [void linux][void].  Except for compatibility

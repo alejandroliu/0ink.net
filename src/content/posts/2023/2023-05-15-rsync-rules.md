@@ -1,7 +1,6 @@
 ---
 title: rsync filter rules
-date: "2022-12-24"
-tags: backups
+tags: device, directory, information, remote
 ---
 [toc]
 
@@ -290,7 +289,7 @@ Here are the available rule prefixes:
 * `merge, '.'` \
   specifies a merge-file on the client side to read for more
   rules.
-* `dir-merge, ':'` \ 
+* `dir-merge, ':'` \
   specifies a per-directory merge-file.  Using this kind of
   filter rule requires that you trust the sending side's
   filter checking, so it has the side-effect mentioned under

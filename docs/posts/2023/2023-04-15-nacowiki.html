@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>NacoWiki - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="A few months ago I extensibly modify picowiki and creeated NanoWiki. After using NanoWiki for a few months, the code became somewhat of an spaghetti mess. This has to do that picowiki was designed as a single file, single class application with Plugin extension. Since every change went to a …">
+	<meta name="int-title" content="NacoWiki">
+	<meta name="tags" content="application, feature, installation, markdown">
+	<meta name="date" content="2023-04-15 00:00:00+02:00">
+	<meta name="modified" content="2023-04-15 22:00:48.388541+02:00">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+    <link href="/feeds/atom.xml" type="application/atom+xml" rel="alternate" title="0ink.net Atom Feed" />
+    <link href="/feeds/rss.xml" type="application/rss+xml" rel="alternate" title="0ink.net RSS Feed" />
+</head>
+
+<body>
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	        <a href="/feeds/atom.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="atom feed" title="atom feed"/></a>
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>NacoWiki</h1>
+
+<div class="metadata">
+  <time datetime="2023-04-15T00:00:00+02:00" pubdate>Sat 15 April 2023</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2023-04-15 22:00:48.388541+02:00</p>
+  in <a href="/category/c2023.html">2023</a>
+<p class="tags">tagged <a href="/tag/application.html">application</a>, <a href="/tag/feature.html">feature</a>, <a href="/tag/installation.html">installation</a>, <a href="/tag/markdown.html">markdown</a></p></div>
+		<p>A few months ago I extensibly modify <a href="https://github.com/luckyshot/picowiki">picowiki</a> and creeated <a href="https://github.com/iliu-net/nanowiki">NanoWiki</a>.</p>
+<p>After using <a href="https://github.com/iliu-net/nanowiki">NanoWiki</a> for a few months, the code became somewhat of an
+spaghetti mess.  This has to do that <a href="https://github.com/luckyshot/picowiki">picowiki</a> was designed as a single
+file, single class application with Plugin extension.  Since every change went
+to a single class this quickly became difficult to manage.</p>
+<p>Additionally, I realized that "NanoWiki" was not a very good name as this
+name was used by several projects and organizations.</p>
+<p>So, I went ahead and re-wrote the whole thing into <a href="https://github.com/iliu-net/NacoWiki/">NacoWiki</a>.  These are
+the changes:</p>
+<ul>
+<li>Cleaner and more functional UI.</li>
+<li>Initial REST-API support.</li>
+<li>Added a CLI interface.</li>
+<li>Off-tree installation, with the option of co-existing multiple instances.</li>
+<li>Code modularization,<ul>
+<li><code>nacowiki</code> main class that integrates everything together.</li>
+<li><code>Core</code>: main WIKI functionality</li>
+<li><code>Cli</code>: CLI interface</li>
+<li><code>PluginCollection</code>: plugin support</li>
+</ul>
+</li>
+<li><code>CodeMirror</code> support now in the <code>Core</code> (instead of depending of Plugin implementations.</li>
+<li>Re-organized CSS files</li>
+<li>Raw/source code display.</li>
+</ul>
+<p>As plugins:</p>
+<ul>
+<li>Page handlers:<ul>
+<li>HTML</li>
+<li>Markdown</li>
+<li><em>NEW</em> source code</li>
+</ul>
+</li>
+<li><em>NEW</em> YouTube Links</li>
+<li><em>NEW</em> Static site generator</li>
+<li>Emojis</li>
+<li>File includes</li>
+<li>Var snippets</li>
+<li>WikiLinks (<em>NEW</em>: search article names)</li>
+</ul>
+<p>Features/improvements over <a href="https://github.com/luckyshot/picowiki">picowiki</a>:</p>
+<ul>
+<li>file management: create, delete, rename, modify, attach, etc.</li>
+<li>hooks for access control</li>
+<li>meta data support</li>
+<li>Disabled code execution.  This can be considered a <em>"security"</em> feature.</li>
+<li>Support for byte ranges.  This lets you stream video files directly
+  from the wiki.</li>
+<li>toggable, folder or document views.</li>
+<li>theme support</li>
+<li>Multiple file type handling</li>
+</ul>
+<h2 id="documentation">Documentation</h2>
+<p>Documentation is now handled by <a href="https://www.phpdoc.org/">phpDocumentor</a> plus HTML generated using
+<a href="https://github.com/iliu-net/NacoWiki/">NacoWiki</a>'s own <code>SiteGen</code> plugin.  You can find that here:</p>
+<ul>
+<li><a href="https://iliu-net.github.io/NacoWiki/php-api/">phpdoc generated documentation</a></li>
+<li>
+<p><a href="https://iliu-net.github.io/NacoWiki/">NacoWiki SiteGen generated docs</a></p>
+</li>
+</ul>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li class="active"><a href="/category/c2023.html">2023</a></li>
+	              <li ><a href="/category/c2022.html">2022</a></li>
+	              <li ><a href="/category/c2021.html">2021</a></li>
+	              <li ><a href="/category/c2020.html">2020</a></li>
+	              <li ><a href="/category/c2019.html">2019</a></li>
+	              <li ><a href="/category/c2018.html">2018</a></li>
+	              <li ><a href="/category/c2017.html">2017</a></li>
+	              <li ><a href="/category/c2016.html">2016</a></li>
+	              <li ><a href="/category/c2015.html">2015</a></li>
+	              <li ><a href="/category/c2014.html">2014</a></li>
+	              <li ><a href="/category/c2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="/sitemap.html">sitemap</a></li>
+	                <li><a href="/tags.html">Tags</a></li>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://home.0ink.net/nanowiki/">Wiki</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2021-2022 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+		  <span class="feeds">
+		    <a href="/feeds/rss.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="rss feed" title="rss feed"/></a>
+		  </span>
+		  </p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

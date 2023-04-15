@@ -1,5 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2023-04-03T13:36:11+02:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>Python Development 2023</title><link href="https://0ink.net/posts/2023/2023-04-01-python-dev-1.html" rel="alternate"></link><published>2023-04-01T00:00:00+02:00</published><updated>2023-04-03T13:36:11+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-04-01:/posts/2023/2023-04-01-python-dev-1.html</id><summary type="html">&lt;div class="toc"&gt;&lt;span class="toctitle"&gt;Table of Contents&lt;/span&gt;&lt;ul&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2023-04-15T22:00:48+02:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>NacoWiki</title><link href="https://0ink.net/posts/2023/2023-04-15-nacowiki.html" rel="alternate"></link><published>2023-04-15T00:00:00+02:00</published><updated>2023-04-15T22:00:48+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-04-15:/posts/2023/2023-04-15-nacowiki.html</id><summary type="html">&lt;p&gt;A few months ago I extensibly modify &lt;a href="https://github.com/luckyshot/picowiki"&gt;picowiki&lt;/a&gt; and creeated &lt;a href="https://github.com/iliu-net/nanowiki"&gt;NanoWiki&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;After using &lt;a href="https://github.com/iliu-net/nanowiki"&gt;NanoWiki&lt;/a&gt; for a few months, the code became somewhat of an
+spaghetti mess.  This has to do that &lt;a href="https://github.com/luckyshot/picowiki"&gt;picowiki&lt;/a&gt; was designed as a single
+file, single class application with Plugin extension.  Since every change went
+to a …&lt;/p&gt;</summary><content type="html">&lt;p&gt;A few months ago I extensibly modify &lt;a href="https://github.com/luckyshot/picowiki"&gt;picowiki&lt;/a&gt; and creeated &lt;a href="https://github.com/iliu-net/nanowiki"&gt;NanoWiki&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;After using &lt;a href="https://github.com/iliu-net/nanowiki"&gt;NanoWiki&lt;/a&gt; for a few months, the code became somewhat of an
+spaghetti mess.  This has to do that &lt;a href="https://github.com/luckyshot/picowiki"&gt;picowiki&lt;/a&gt; was designed as a single
+file, single class application with Plugin extension.  Since every change went
+to a single class this quickly became difficult to manage.&lt;/p&gt;
+&lt;p&gt;Additionally, I realized that "NanoWiki" was not a very good name as this
+name was used by several projects and organizations.&lt;/p&gt;
+&lt;p&gt;So, I went ahead and re-wrote the whole thing into &lt;a href="https://github.com/iliu-net/NacoWiki/"&gt;NacoWiki&lt;/a&gt;.  These are
+the changes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cleaner and more functional UI.&lt;/li&gt;
+&lt;li&gt;Initial REST-API support.&lt;/li&gt;
+&lt;li&gt;Added a CLI interface.&lt;/li&gt;
+&lt;li&gt;Off-tree installation, with the option of co-existing multiple instances.&lt;/li&gt;
+&lt;li&gt;Code modularization,&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;nacowiki&lt;/code&gt; main class that integrates everything together.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Core&lt;/code&gt;: main WIKI functionality&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Cli&lt;/code&gt;: CLI interface&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;PluginCollection&lt;/code&gt;: plugin support&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CodeMirror&lt;/code&gt; support now in the &lt;code&gt;Core&lt;/code&gt; (instead of depending of Plugin implementations.&lt;/li&gt;
+&lt;li&gt;Re-organized CSS files&lt;/li&gt;
+&lt;li&gt;Raw/source code display.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As plugins:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Page handlers:&lt;ul&gt;
+&lt;li&gt;HTML&lt;/li&gt;
+&lt;li&gt;Markdown&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;NEW&lt;/em&gt; source code&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;NEW&lt;/em&gt; YouTube Links&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;NEW&lt;/em&gt; Static site generator&lt;/li&gt;
+&lt;li&gt;Emojis&lt;/li&gt;
+&lt;li&gt;File includes&lt;/li&gt;
+&lt;li&gt;Var snippets&lt;/li&gt;
+&lt;li&gt;WikiLinks (&lt;em&gt;NEW&lt;/em&gt;: search article names)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Features/improvements over &lt;a href="https://github.com/luckyshot/picowiki"&gt;picowiki&lt;/a&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;file management: create, delete, rename, modify, attach, etc.&lt;/li&gt;
+&lt;li&gt;hooks for access control&lt;/li&gt;
+&lt;li&gt;meta data support&lt;/li&gt;
+&lt;li&gt;Disabled code execution.  This can be considered a &lt;em&gt;"security"&lt;/em&gt; feature.&lt;/li&gt;
+&lt;li&gt;Support for byte ranges.  This lets you stream video files directly
+  from the wiki.&lt;/li&gt;
+&lt;li&gt;toggable, folder or document views.&lt;/li&gt;
+&lt;li&gt;theme support&lt;/li&gt;
+&lt;li&gt;Multiple file type handling&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="documentation"&gt;Documentation&lt;/h2&gt;
+&lt;p&gt;Documentation is now handled by &lt;a href="https://www.phpdoc.org/"&gt;phpDocumentor&lt;/a&gt; plus HTML generated using
+&lt;a href="https://github.com/iliu-net/NacoWiki/"&gt;NacoWiki&lt;/a&gt;'s own &lt;code&gt;SiteGen&lt;/code&gt; plugin.  You can find that here:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://iliu-net.github.io/NacoWiki/php-api/"&gt;phpdoc generated documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://iliu-net.github.io/NacoWiki/"&gt;NacoWiki SiteGen generated docs&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content><category term="2023"></category><category term="application"></category><category term="feature"></category><category term="installation"></category><category term="markdown"></category></entry><entry><title>Python Development 2023</title><link href="https://0ink.net/posts/2023/2023-04-01-python-dev-1.html" rel="alternate"></link><published>2023-04-01T00:00:00+02:00</published><updated>2023-04-03T13:36:11+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-04-01:/posts/2023/2023-04-01-python-dev-1.html</id><summary type="html">&lt;div class="toc"&gt;&lt;span class="toctitle"&gt;Table of Contents&lt;/span&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href="#python-development-on-windows"&gt;Python development on Windows&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#distributing-python-scripts-as-single-exe-or-directory"&gt;Distributing Python scripts as single EXE or Directory&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#installing-netifaces-on-windows"&gt;Installing netifaces on Windows&lt;/a&gt;&lt;/li&gt;
@@ -3684,6 +3748,7 @@ I am using nowadays.&lt;/p&gt;
 &lt;span class="n"&gt;atf&lt;/span&gt;&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="c1"&gt;# dev support&lt;/span&gt;
 &lt;span class="n"&gt;kyua&lt;/span&gt;
 &lt;span class="n"&gt;jq&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;yq&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;jc&lt;/span&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;# manipulate data in scripts&lt;/span&gt;
+&lt;span class="n"&gt;busybox&lt;/span&gt;
 
 &lt;span class="c1"&gt;# php composer&lt;/span&gt;
 &lt;span class="c1"&gt;# gcc&lt;/span&gt;
@@ -3693,11 +3758,13 @@ I am using nowadays.&lt;/p&gt;
 &lt;span class="c1"&gt;# tcpdump&lt;/span&gt;
 &lt;span class="c1"&gt;# luakit&lt;/span&gt;
 
-&lt;span class="n"&gt;pelican&lt;/span&gt;&lt;span class="w"&gt;             &lt;/span&gt;&lt;span class="c1"&gt;# static site generator&lt;/span&gt;
+&lt;span class="c1"&gt;# pelican               # static site generator&lt;/span&gt;
 &lt;span class="n"&gt;mdcat&lt;/span&gt;
 &lt;span class="n"&gt;python3&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;yaml&lt;/span&gt;
 &lt;span class="n"&gt;python3&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Markdown&lt;/span&gt;
 &lt;span class="n"&gt;python3&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;GitPython&lt;/span&gt;
+&lt;span class="n"&gt;python3&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pikepdf&lt;/span&gt;
+&lt;span class="n"&gt;poppler&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;glib&lt;/span&gt;
 &lt;span class="n"&gt;graphviz&lt;/span&gt;
 
 &lt;span class="n"&gt;asciidoc&lt;/span&gt;&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="c1"&gt;# alt: ruby-asciidoctor&lt;/span&gt;
@@ -5399,7 +5466,7 @@ root filesystem was destroyed.  It requires to have a backup of the
 &lt;li&gt;&lt;code&gt;bash /boot/mkmenu.sh&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;/ol&gt;</content><category term="2019"></category><category term="backup"></category><category term="boot"></category><category term="device"></category><category term="encryption"></category><category term="filesystem"></category><category term="idea"></category><category term="partition"></category></entry><entry><title>Installing Void Linux</title><link href="https://0ink.net/posts/2019/2019-02-19-installing-void.html" rel="alternate"></link><published>2019-02-19T00:00:00+01:00</published><updated>2022-01-10T17:29:50+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2019-02-19:/posts/2019/2019-02-19-installing-void.html</id><summary type="html">&lt;p&gt;I made the switch to &lt;a href="https://voidlinux.org" title="Void Linux"&gt;void linux&lt;/a&gt;.  Except for compatibility
+&lt;/ol&gt;</content><category term="2019"></category><category term="backup"></category><category term="boot"></category><category term="device"></category><category term="encryption"></category><category term="filesystem"></category><category term="idea"></category><category term="partition"></category></entry><entry><title>Installing Void Linux</title><link href="https://0ink.net/posts/2019/2019-02-19-installing-void.html" rel="alternate"></link><published>2019-02-19T00:00:00+01:00</published><updated>2023-04-15T21:58:42+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2019-02-19:/posts/2019/2019-02-19-installing-void.html</id><summary type="html">&lt;p&gt;I made the switch to &lt;a href="https://voidlinux.org" title="Void Linux"&gt;void linux&lt;/a&gt;.  Except for compatibility
 issues around &lt;code&gt;glibc&lt;/code&gt;, it works quite well.  Most compatibility
 I have worked around with a combination of &lt;code&gt;Flatpak&lt;/code&gt;s, &lt;code&gt;chroot&lt;/code&gt;s and
 &lt;code&gt;namespaces&lt;/code&gt;.&lt;/p&gt;
@@ -5447,6 +5514,8 @@ doing bare metal backups and restore just a simple file copy.&lt;/p&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;bios : create a BIOS boot system (needs syslinux)
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;cache=path : use the file path for download cache
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;xen : do some xen specific tweaks
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;xdm-candy : Enable xdm candy
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;noxdm : disable graphical login
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h4 id="command-line-examples"&gt;Command line examples&lt;/h4&gt;
@@ -5749,8 +5818,8 @@ default:&lt;/p&gt;
 &lt;p&gt;I have switched to &lt;a href="https://en.wikipedia.org/wiki/XDM_(display_manager)"&gt;xdm&lt;/a&gt; as my display manager.  This is
 configured in &lt;code&gt;/etc/X11/xdm/xdm-config&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Specifically, I update the Xsession setting to be the following:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;! DisplayManager*session&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;      /usr/lib64/X11/xdm/Xsession&lt;/span&gt;
-&lt;span class="n"&gt;DisplayManager*session&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;    /etc/X11/Xsession&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;! DisplayManager*session:       /usr/lib64/X11/xdm/Xsession
+DisplayManager*session:     /etc/X11/Xsession
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;And have a custom &lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/xdm/Xsession"&gt;Xsession&lt;/a&gt; script in
@@ -5781,6 +5850,20 @@ a &lt;code&gt;xterm&lt;/code&gt; window covers the login widget.&lt;/p&gt;
 &lt;p&gt;On the other hand, the &lt;a href="https://www.jwz.org/xscreensaver/"&gt;xscreensaver&lt;/a&gt; collection of screen
 hacks seem to accept the &lt;code&gt;-root&lt;/code&gt; parameter, which can be used
 to kick off the hack, drawing on the root window.&lt;/p&gt;
+&lt;h3 id="not-using-a-display-manager"&gt;&lt;em&gt;NOT&lt;/em&gt; using a display manager&lt;/h3&gt;
+&lt;p&gt;If you do not want to run a display manager, you can simply
+start your session from the Linux console and use &lt;code&gt;startx&lt;/code&gt; and
+&lt;code&gt;xinitrc&lt;/code&gt; combination.&lt;/p&gt;
+&lt;p&gt;Alternatively, you can add a file in &lt;code&gt;/etc/profile.d&lt;/code&gt; to start X
+at login if on tty1.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/noxdm/session"&gt;session&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/noxdm/zzdm.sh"&gt;zzdm.sh&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I am using the &lt;code&gt;session&lt;/code&gt; script, which is a modified version of
+the earlier &lt;code&gt;Xsession&lt;/code&gt; script that I am using for &lt;code&gt;xdm&lt;/code&gt; to
+launch a desktop session.&lt;/p&gt;
+&lt;p&gt;The script &lt;code&gt;zzdm.sh&lt;/code&gt; is used to &lt;code&gt;startx&lt;/code&gt; on login.&lt;/p&gt;
 &lt;h3 id="tweaks-and-bug-fixes"&gt;Tweaks and Bug-fixes&lt;/h3&gt;
 &lt;h4 id="etcmachine-id-or-varlibdbusmachine-id"&gt;/etc/machine-id or /var/lib/dbus/machine-id&lt;/h4&gt;
 &lt;p&gt;Because we don't use &lt;code&gt;systemd&lt;/code&gt;, we need to create &lt;code&gt;/etc/machine-id&lt;/code&gt;
