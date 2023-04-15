@@ -83,6 +83,7 @@ python3-yaml
 python3-Markdown
 python3-GitPython
 python3-pikepdf
+poppler-glib
 graphviz
 
 asciidoc 			# alt: ruby-asciidoctor

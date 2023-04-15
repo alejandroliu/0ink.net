@@ -10,38 +10,13 @@ candy=""
 #~ }
 #candy="display -window root /home/alex/bg/event-horizon-2-1920×1080.jpg"
 
-case "$(date +%m)" in
-01)
-  candy="/usr/libexec/xscreensaver/phosphor -root"
-  ;;
-02)
-  candy="/usr/libexec/xscreensaver/xmatrix -root"
-  ;;
-04)
-  candy="/usr/libexec/xscreensaver/boing -root"
-  ;;
-05)
-  candy="/usr/libexec/xscreensaver/starwars -root"
-  ;;
-06)
-  candy="/usr/libexec/xscreensaver/unknownpleasures -root"
-  ;;
-07)
-  candy="/usr/libexec/xscreensaver/pyro -root"
-  ;;
-08)
-  candy="/usr/libexec/xscreensaver/atlantis -root"
-  ;;
-09)
-  candy="/usr/libexec/xscreensaver/bouboule -root"
-  ;;
-10)
-  candy="/usr/libexec/xscreensaver/rocks -root"
-  ;;
-*)
-  candy="/usr/libexec/xscreensaver/glmatrix -root"
-  ;;
-esac
+pick_hack() {
+  set - phosphor xmatrix boing starwars unknownpleasures pyro atlantis bouboule rocks glmatrix
+  local n=$(expr $(date +%s) % $# + 1)
+  eval "local hack='$'$n"
+  echo "/usr/libexec/xscreensaver/$hack -root"
+}
+candy=$(pick_hack)
 
 if [ -n "$candy" ] ; then
   (

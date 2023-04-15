@@ -1,0 +1,40 @@
+# Cinnamon desktop environment
+
+cinnamon
+
+# Extras
+xreader
+gnome-keyring seahorse
+network-manager-applet
+
+# Just the web browser
+firefox-esr
+gst-libav		# void-linux: add mp4 support to firefox
+
+xdg-user-dirs-gtk
+xdotool
+xdg-utils
+wmctrl			# windows scripting
+xscreensaver		# cross DE screen saver
+fortune-mod
+fortune-mod-void
+xbindkeys		# hot keys
+x11vnc
+parcellite
+paprefs
+
+#udisks2
+#papirus-icon-theme
+#gnome-control-center
+#nautilus
+#gedit
+#gnome-terminal
+#gnome-calculator
+#gnome-calendar
+#gnome-disk-utility
+#eog
+#gvfs-afc
+#gvfs-mtp
+#gvfs-smb
+
+

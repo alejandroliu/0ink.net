@@ -1,6 +1,5 @@
 ---
 title: Installing Void Linux
-tags: backups, boot, configuration, desktop, device, directory, drive, filesystem, installation, linux, login, manager, network, partition, password, power, scripts, security, software, sudo, windows
 ---
 
 I made the switch to [void linux][void].  Except for compatibility
@@ -49,6 +48,8 @@ Script usage:
 	- bios : create a BIOS boot system (needs syslinux)
 	- cache=path : use the file path for download cache
 	- xen : do some xen specific tweaks
+	- xdm-candy : Enable xdm candy
+	- noxdm : disable graphical login
 ```
 
 ### Command line examples
@@ -444,7 +445,7 @@ configured in `/etc/X11/xdm/xdm-config`.
 
 Specifically, I update the Xsession setting to be the following:
 
-```nt
+```
 ! DisplayManager*session:		/usr/lib64/X11/xdm/Xsession
 DisplayManager*session:		/etc/X11/Xsession
 
@@ -487,6 +488,24 @@ On the other hand, the [xscreensaver][xs] collection of screen
 hacks seem to accept the `-root` parameter, which can be used
 to kick off the hack, drawing on the root window.
 
+
+## *NOT* using a display manager
+
+If you do not want to run a display manager, you can simply
+start your session from the Linux console and use `startx` and
+`xinitrc` combination.
+
+Alternatively, you can add a file in `/etc/profile.d` to start X
+at login if on tty1.
+
+- [session](https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/noxdm/session)
+- [zzdm.sh](https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/noxdm/zzdm.sh)
+
+I am using the `session` script, which is a modified version of
+the earlier `Xsession` script that I am using for `xdm` to
+launch a desktop session.
+
+The script `zzdm.sh` is used to `startx` on login.
 
 ## Tweaks and Bug-fixes
 

@@ -1,0 +1,18 @@
+# GNOME desktop environment
+gnome
+gnome-flashback
+gnome-apps
+
+network-manager-applet
+udisks2
+gnome-keyring seahorse
+gvfs-afc
+gvfs-mtp
+gvfs-smb
+caja-open-terminal
+paprefs
+parcellite
+
+# Just the web browser
+firefox-esr
+gst-libav		# void-linux: add mp4 support to firefox

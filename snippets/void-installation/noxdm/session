@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Install as /etc/X11/Xsession
+# Install as /etc/X11/xinit/session
 #
 # Loosely based on: [LighDM Session script](https://github.com/canonical/lightdm/blob/master/debian/lightdm-session)
 # and xdm's Xsession scripts.
@@ -131,4 +131,5 @@ if $sshagent ; then
 fi
 
 echo "$$ $(id -un) $desktop" > /run/xsession.pid
-exec /bin/sh -l -c "exec $ckcmd $agentcmd $desktop"
+
+exec $ckcmd $agentcmd $desktop

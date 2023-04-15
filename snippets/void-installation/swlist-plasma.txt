@@ -1,0 +1,26 @@
+# KDE Plasma desktop environment
+
+kde5
+kde5-baseapps
+kdeplasma-addons5
+
+# Just the web browser
+firefox-esr
+gst-libav		# void-linux: add mp4 support to firefox
+
+#parcellite
+#paprefs
+
+#udisks2
+#papirus-icon-theme
+#gnome-control-center
+#nautilus
+#gedit
+#gnome-terminal
+#gnome-calculator
+#gnome-calendar
+#gnome-disk-utility
+#eog
+#gvfs-afc
+#gvfs-mtp
+#gvfs-smb

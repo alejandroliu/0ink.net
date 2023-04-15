@@ -71,7 +71,13 @@ die() {
 is_valid_desktop() {
   case "$1" in
     mate) return 0 ;;
-    budgie) return 0 ;;
+    xfce) return 0 ;;
+    lxqt) return 0 ;;
+    plasma) return 0 ;;
+    gnome) return 0 ;; # Works either from gdm (starts a wayland session) or flashback session
+    cinnamon) return 0 ;; # DIDN'T WORK 2023-04-14
+    budgie) return 0 ;;  # DOESN'T REALLY WORK! 2023-04-15
+    # custom?
   esac
   return 1
 }
@@ -148,6 +154,8 @@ if [ $# -lt 2 ] ; then
 	- bios : create a BIOS boot system (needs syslinux)
 	- cache=path : use the file path for download cache
 	- xen : do some xen specific tweaks
+	- xdm-candy : Enable xdm candy
+	- noxdm : disable graphical login
 #end-output
 	_EOF_
   exit 1
@@ -162,8 +170,6 @@ fi
 ## - sudo sh install.sh --dir=$HOME/vx11 vx11 swap=4G       passwd=1234567890 cache=$HOME/void-cache xen
 ##
 #end-output
-
-
 
 sysdev="$1"
 syshost="$2"
@@ -856,7 +862,11 @@ if check_opt noxwin "$@" ; then
 else
   net_svcs="dbus NetworkManager"
   #ws_svcs="consolekit lxdm polkitd rtkit"
-  ws_svcs="consolekit xdm"
+  if check_opt noxdm "$@" ; then
+    ws_svcs="consolekit"
+  else
+    ws_svcs="consolekit xdm"
+  fi
 fi
 echo -n 'Enabling services:'
 for svc in $common_svcs $net_svcs $ws_svcs
@@ -939,7 +949,7 @@ fi
 ##
 ## Specifically, I update the Xsession setting to be the following:
 ##
-## ```nt
+## ```
 ## ! DisplayManager*session:		/usr/lib64/X11/xdm/Xsession
 ## DisplayManager*session:		/etc/X11/Xsession
 ##
@@ -984,23 +994,58 @@ fi
 ##
 #end-output
 if [ -f $mnt/etc/X11/xdm/xdm-config ] ; then
-  #~ sed \
-	#~ -i-void \
-	#~ -e 's!^DisplayManager.*session:.*$!DisplayManager*session:	/etc/X11/xdm/Xsession!' \
-	#~ -e 's!^DisplayManager._0.setup:.*$!DisplayManager._0.setup:	/etc/X11/xdm/Xsetup_0!' \
-	#~ -e 's!^DisplayManager._0.startup:.*$!DisplayManager._0.startup:	/etc/X11/xdm/GiveConsole!' \
-	#~ $mnt/etc/X11/xdm/xdm-config
-  sed \
-	-i-void \
-	-e 's!^DisplayManager.*session:.*$!DisplayManager*session:	/etc/X11/xdm/Xsession!' \
-	$mnt/etc/X11/xdm/xdm-config
-  for f in Xsession # Xsetup_0 GiveConsole
-  do
-    repofile xdm/$f $mnt/etc/X11/xdm/$f
-    chmod 755 $mnt/etc/X11/xdm/$f
-  done
-  #~ repofile xdm/xscreensaver $mnt/root/.xscreensaver
+  if check_opt xdm-candy ; then
+    sed \
+	  -i-void \
+	  -e 's!^DisplayManager.*session:.*$!DisplayManager*session:	/etc/X11/xdm/Xsession!' \
+	  -e 's!^DisplayManager._0.setup:.*$!DisplayManager._0.setup:	/etc/X11/xdm/Xsetup_0!' \
+	  -e 's!^DisplayManager._0.startup:.*$!DisplayManager._0.startup:	/etc/X11/xdm/GiveConsole!' \
+	  $mnt/etc/X11/xdm/xdm-config
+    for f in Xsession Xsetup_0 GiveConsole
+    do
+      repofile xdm/$f $mnt/etc/X11/xdm/$f
+      chmod 755 $mnt/etc/X11/xdm/$f
+    done
+    repofile xdm/xscreensaver $mnt/root/.xscreensaver
+  else
+    sed \
+	  -i-void \
+	  -e 's!^DisplayManager.*session:.*$!DisplayManager*session:	/etc/X11/xdm/Xsession!' \
+	  $mnt/etc/X11/xdm/xdm-config
+    for f in Xsession
+    do
+      repofile xdm/$f $mnt/etc/X11/xdm/$f
+      chmod 755 $mnt/etc/X11/xdm/$f
+    done
+  fi
 fi
+#begin-output
+##
+## ## *NOT* using a display manager
+##
+## If you do not want to run a display manager, you can simply
+## start your session from the Linux console and use `startx` and
+## `xinitrc` combination.
+##
+## Alternatively, you can add a file in `/etc/profile.d` to start X
+## at login if on tty1.
+##
+## - [session]($repourl/noxdm/session)
+## - [zzdm.sh]($repourl/noxdm/zzdm.sh)
+##
+## I am using the `session` script, which is a modified version of
+## the earlier `Xsession` script that I am using for `xdm` to
+## launch a desktop session.
+##
+## The script `zzdm.sh` is used to `startx` on login.
+#end-output
+if is_valid_desktop "$desktop" ; then
+  if check_opt noxdm ; then
+    repofile noxdm/session $mnt/etc/X11/xinit/session
+    repofile noxdm/zzdm.sh $mnt/etc/profile.d/zzdm.sh
+  fi
+fi
+
 #begin-output
 ##
 ## ## Tweaks and Bug-fixes

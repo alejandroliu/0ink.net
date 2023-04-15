@@ -1,0 +1,31 @@
+# LXQT desktop environment
+
+lxqt
+nm-tray
+
+# Needed for virtual file systems in file manager
+udisks2
+gvfs
+gvfs-afc
+gvfs-mtp
+gvfs-smb
+xarchiver
+
+# Accesories
+speedcrunch
+FeatherPad
+# roxterm
+qpdfview
+lximage-qt
+libnotify
+pavucontrol-qt
+rofi
+xosview
+
+# Just the web browser
+firefox-esr
+gst-libav		# void-linux: add mp4 support to firefox
+
+parcellite
+paprefs
+

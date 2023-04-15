@@ -9,7 +9,7 @@ papirus-icon-theme
 gnome-control-center
 nautilus
 gedit
-mate-terminal
+gnome-terminal
 gnome-calculator
 gnome-calendar
 gnome-disk-utility

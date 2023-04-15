@@ -1,0 +1,53 @@
+# XFCE desktop environment
+
+xfce4
+
+gnome-keyring seahorse
+network-manager-applet
+xdg-user-dirs-gtk
+
+
+# Just the web browser
+firefox-esr
+gst-libav		# void-linux: add mp4 support to firefox
+
+xdotool
+xdg-utils
+wmctrl			# windows scripting
+xscreensaver		# cross DE screen saver
+fortune-mod
+fortune-mod-void
+xbindkeys		# hot keys
+x11vnc
+
+
+# Maybe
+xfburn
+#parcellite
+xfce4-clipman-plugin
+xfce4-docklike-plugin
+xfce4-panel-appmenu
+xfce4-places-plugin
+xfce4-plugins
+xfce4-screenshooter
+xfce4-time-out-plugin
+xfce4-timer-plugin
+
+xfce4-verve-plugin
+xfce4-weather-plugin
+xfce4-whiskermenu-plugin
+
+#udisks2
+#papirus-icon-theme
+#gnome-control-center
+#nautilus
+#gedit
+#gnome-terminal
+#gnome-calculator
+#gnome-calendar
+#gnome-disk-utility
+#eog
+#gvfs-afc
+#gvfs-mtp
+#gvfs-smb
+#paprefs

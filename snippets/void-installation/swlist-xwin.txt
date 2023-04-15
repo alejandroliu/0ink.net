@@ -13,3 +13,14 @@ terminus-font
 font-misc-misc
 ipafont-fonts-otf
 
+# Additional components for X (scripting and automation)
+xdotool
+xdg-utils
+wmctrl			# windows scripting
+xscreensaver		# cross DE screen saver
+fortune-mod
+fortune-mod-void
+x11vnc
+
+xbindkeys		# hot keys
+scrot
