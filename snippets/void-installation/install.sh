@@ -955,7 +955,7 @@ fi
 ##
 ## ```
 ##
-## And have a custom [Xsession]($repourl/xdm/Xsession) script in
+## And have a custom [Xsession]($repourl/Xsession) script in
 ## `/etc/X11/Xsession`.
 ##
 ## Particularly important is the fact that the default Xsession
@@ -997,11 +997,11 @@ if [ -f $mnt/etc/X11/xdm/xdm-config ] ; then
   if check_opt xdm-candy ; then
     sed \
 	  -i-void \
-	  -e 's!^DisplayManager.*session:.*$!DisplayManager*session:	/etc/X11/xdm/Xsession!' \
+	  -e 's!^DisplayManager.*session:.*$!DisplayManager*session:	/etc/X11/Xsession!' \
 	  -e 's!^DisplayManager._0.setup:.*$!DisplayManager._0.setup:	/etc/X11/xdm/Xsetup_0!' \
 	  -e 's!^DisplayManager._0.startup:.*$!DisplayManager._0.startup:	/etc/X11/xdm/GiveConsole!' \
 	  $mnt/etc/X11/xdm/xdm-config
-    for f in Xsession Xsetup_0 GiveConsole
+    for f in Xsetup_0 GiveConsole
     do
       repofile xdm/$f $mnt/etc/X11/xdm/$f
       chmod 755 $mnt/etc/X11/xdm/$f
@@ -1010,14 +1010,15 @@ if [ -f $mnt/etc/X11/xdm/xdm-config ] ; then
   else
     sed \
 	  -i-void \
-	  -e 's!^DisplayManager.*session:.*$!DisplayManager*session:	/etc/X11/xdm/Xsession!' \
+	  -e 's!^DisplayManager.*session:.*$!DisplayManager*session:	/etc/X11/Xsession!' \
 	  $mnt/etc/X11/xdm/xdm-config
-    for f in Xsession
-    do
-      repofile xdm/$f $mnt/etc/X11/xdm/$f
-      chmod 755 $mnt/etc/X11/xdm/$f
-    done
   fi
+  # Create Xsession
+  repofile Xsession "$mnt/etc/X11/Xsession"
+  chmod 755 "$mnt/etc/X11/Xsession"
+
+  # We need this for the Xsession script to work properly
+  grep -q /run/xsession.pid $mnt/etc/rc.local || echo "chmod 666 /run/xsession.pid > /run/xsession.pid" >> $mnt/etc/rc.local
 fi
 #begin-output
 ##
@@ -1030,7 +1031,7 @@ fi
 ## Alternatively, you can add a file in `/etc/profile.d` to start X
 ## at login if on tty1.
 ##
-## - [session]($repourl/noxdm/session)
+## - [session]($repourl/Xsession)
 ## - [zzdm.sh]($repourl/noxdm/zzdm.sh)
 ##
 ## I am using the `session` script, which is a modified version of
@@ -1040,10 +1041,13 @@ fi
 ## The script `zzdm.sh` is used to `startx` on login.
 #end-output
 if is_valid_desktop "$desktop" ; then
-  if check_opt noxdm ; then
-    repofile noxdm/session $mnt/etc/X11/xinit/session
+  if check_opt noxdm "$@" ; then
+    repofile Xsession $mnt/etc/X11/Xsession
     repofile noxdm/zzdm.sh $mnt/etc/profile.d/zzdm.sh
+    chmod 755 $mnt/etc/X11/Xsession
   fi
+  # We need this for the Xsession script to work properly
+  grep -q /run/xsession.pid $mnt/etc/rc.local || echo "chmod 666 /run/xsession.pid > /run/xsession.pid" >> $mnt/etc/rc.local
 fi
 
 #begin-output
@@ -1071,10 +1075,22 @@ fi
 
 ## ### power button handling
 ##
-## This patch prevents the /etc/acpi/handler.sh to handle the power button
+## This patch prevents the `/etc/acpi/handler.sh` to handle the power button
 ## instead, letting the Desktop Environment handle the event.
 ##
-## It does it by checking if the Desktop Environment power manager
+## It does it by checking if a X session is running.  In the
+## `/etc/rc.local` script, we create a file called
+## `/run/xsession.pid` which is made writeable by all.
+## The system is configured so that `xdm` or `/etc/profile/zzdm.sh`
+## (when login as normal user on `tty1`) will start an X session
+## and will use the scripts `/etc/X11/xinit/session` or
+## `/etc/X11/xdm/Xsession` to start the session.
+## From these scripts, the current X session information is saved
+## to `/run/xsession.pid`.
+##
+## When `/etc/acpi/handler.sh` starts, it will check
+## `/run/session.pid` if it contains a running session.  It will
+## also check if a  Desktop Environment power manager
 ## (in this case `mate-power-manager`) is running.  If it is, then
 ## it will exit.
 ##

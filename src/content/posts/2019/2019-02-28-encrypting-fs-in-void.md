@@ -1,8 +1,8 @@
 ---
 title: Encrypting FileSystem in Void Linux
+date: 2022-10-21
 tags: backup, boot, device, encryption, filesystem, idea, partition
 ---
-
 The point of this recipe is to create a encrypted file sytem
 so that when the disc is disposed, it does not need to be
 securely erased.  This is particularly important for SSD devices
@@ -22,11 +22,20 @@ Generate a passphrase and save it a safe place for later.
 xbps-install -S lvm2 cryptsetup
 cryptsetup luksFormat /dev/xda2
 cryptsetup luksOpen /dev/xda2 crypt-pool
-vgcreate pool /dev/mapper/crypt-pool
-lvcreate --name home0 -L 20G pool
+
+```
+
+Alternate commands
 
 
 ```
+dd if=/dev/urandom of=/crypto_keyfile.bin bs=1024 count=4
+chmod 000 /crypto_keyfile.bin
+cryptsetup luksFormat /dev/xda2 /crypto_keyfile.bin
+cryptsetup luksOpen --key-file=/crypto_keyfile.bin /dev/xda2 crypt-pool
+
+```
+
 Add `rd.luks.crypttab=1 rd.luks=1` to the kernel command line.
 
 # Create a decryption key
@@ -81,6 +90,11 @@ Reboot and make sure that the block device gets created on start-up.
 
 Create your file-system and add it to `/etc/fstab`.
 
+```
+vgcreate pool /dev/mapper/crypt-pool
+lvcreate --name home0 -L 20G pool
+
+```
 # Re-using an existing fs in a new OS install
 
 Usually this procedure would be used on a fresh install when the

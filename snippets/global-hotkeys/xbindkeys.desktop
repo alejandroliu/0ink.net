@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=HotKey Helper
+TryExec=hk_helper
+Exec=hk_helper startup
+NotShowIn=KDE;GNOME;
+

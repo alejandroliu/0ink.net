@@ -16,8 +16,18 @@ This script depends of two packages:
 - [pulsectl][pypulse] : used to control pulse audio
 - [notify2][pynotify] : used to send desktop notifications
 
+It can be used to control volume and switch audio output.
+
+
+TODO: make it a GUI app
+
+- void: python3-xcffib
+- pip: system_hotkey
+
   [old]: https://github.com/alejandroliu/0ink.net/blob/master/snippets/pa-hints/patoggle
   [new]: https://github.com/alejandroliu/0ink.net/blob/master/snippets/pa-hints/patoggle.py
   [pypulse]: https://pypi.org/project/pulsectl/
   [pynotify]: https://pypi.org/project/notify2/
+  [syshotkey]: https://pypi.org/project/system_hotkey/
+
 

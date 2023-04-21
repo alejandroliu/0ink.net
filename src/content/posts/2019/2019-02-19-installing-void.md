@@ -1,6 +1,5 @@
 ---
 title: Installing Void Linux
-tags: backups, boot, configuration, desktop, device, directory, drive, filesystem, installation, linux, login, manager, network, partition, password, power, scripts, security, software, sudo, windows
 ---
 
 I made the switch to [void linux][void].  Except for compatibility
@@ -452,7 +451,7 @@ DisplayManager*session:		/etc/X11/Xsession
 
 ```
 
-And have a custom [Xsession](https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/xdm/Xsession) script in
+And have a custom [Xsession](https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/Xsession) script in
 `/etc/X11/Xsession`.
 
 Particularly important is the fact that the default Xsession
@@ -499,7 +498,7 @@ start your session from the Linux console and use `startx` and
 Alternatively, you can add a file in `/etc/profile.d` to start X
 at login if on tty1.
 
-- [session](https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/noxdm/session)
+- [session](https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/Xsession)
 - [zzdm.sh](https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/noxdm/zzdm.sh)
 
 I am using the `session` script, which is a modified version of
@@ -525,10 +524,22 @@ info.
 
 ### power button handling
 
-This patch prevents the /etc/acpi/handler.sh to handle the power button
+This patch prevents the `/etc/acpi/handler.sh` to handle the power button
 instead, letting the Desktop Environment handle the event.
 
-It does it by checking if the Desktop Environment power manager
+It does it by checking if a X session is running.  In the
+`/etc/rc.local` script, we create a file called
+`/run/xsession.pid` which is made writeable by all.
+The system is configured so that `xdm` or `/etc/profile/zzdm.sh`
+(when login as normal user on `tty1`) will start an X session
+and will use the scripts `/etc/X11/xinit/session` or
+`/etc/X11/xdm/Xsession` to start the session.
+From these scripts, the current X session information is saved
+to `/run/xsession.pid`.
+
+When `/etc/acpi/handler.sh` starts, it will check
+`/run/session.pid` if it contains a running session.  It will
+also check if a  Desktop Environment power manager
 (in this case `mate-power-manager`) is running.  If it is, then
 it will exit.
 

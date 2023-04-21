@@ -1,7 +1,11 @@
 ---
 title: Linux HDMI hotplug
+date: "2022-10-21"
 tags: configuration, device, linux, windows
 ---
+<!--
+  **UPDATE**: This is Xserver focused.  For console solution see [[../2023/2023-12-31-console-hotplug.md|Console Hotplug]] article.
+-->
 
 The point of this article is to document I workaround that I came
 up with to handle a HDMI KVM switch.
@@ -23,6 +27,13 @@ be looking at.  For that, we use the command:
 ```
 udevadm monitor
 ```
+
+or
+
+```
+udevadm monitor --property
+```
+
 
 With that we can determine what kind of [udev][udev] events to look
 for (if any).
@@ -55,7 +66,7 @@ the following rules file (99-xwin-hotplug.rules):
 {! xwin-hotplug/99-xwin-hotplug.rules !}
 
 ```
-See: [hot-plug rules](https://github.com/alejandroliu/0ink.net/tree/master/snippets/xwin-hotplug/99-xwin-hotplug.rules)
+See: [hot-plug rules](https://github.com/alejandroliu/0ink.net/blob/master/snippets/xwin-hotplug/99-xwin-hotplug.rules)
 
 # Running xrandr
 
@@ -74,7 +85,7 @@ See script:
 ```bash
 {! xwin-hotplug/xwin-hotplug !}
 ```
-See: [hot-plug script](https://github.com/alejandroliu/0ink.net/tree/master/snippets/xwin-hotplug/xwin-hotplug/xwin-hotplug)
+See: [hot-plug script](https://github.com/alejandroliu/0ink.net/blob/master/snippets/xwin-hotplug/xwin-hotplug)
 
 
 # See Also

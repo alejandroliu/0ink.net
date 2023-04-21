@@ -24,3 +24,7 @@ x11vnc
 
 xbindkeys		# hot keys
 scrot
+python3-pulsectl
+python3-notify2
+python3-tkinter
+libnotify

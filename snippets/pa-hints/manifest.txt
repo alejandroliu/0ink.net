@@ -1,5 +1,5 @@
 #
 # Paths to install
 #
-patoggle /usr/local/bin/patoggle 0755
+patoggle.py /usr/local/bin/patoggle 0755
 

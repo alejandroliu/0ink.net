@@ -20,5 +20,8 @@ if xpid=$(pidof Xorg) ; then
   xrandr --output "$port" --auto
   sleep 1
   xrefresh
+else
+  # X is not running!
+  :
 fi
 

@@ -1,0 +1,244 @@
+#!/bin/sh
+
+#############################################################
+#
+# Window management shortcuts
+#
+#############################################################
+desktop_query() {
+  wmctrl -d | while read D C _ DG _ VP _ WA_XY WA_WH DESKTOP_NAME
+  do
+    [ x"$C" != x"*" ] && continue
+    eval echo '$'$1 | cut -d"$2" -f"$3"
+  done
+}
+desktop_width() {
+  desktop_query DG x 1
+}
+
+desktop_height() {
+  desktop_query DG x 2
+
+}
+
+op_show_desktop() {
+  notify-send "wmex.sh"
+  local mode=$(wmctrl -m | grep 'showing the desktop' | cut -d: -f2 | tr A-Z a-z | tr -d ' ')
+  case "$mode" in
+    on) wmctrl -k off ;;
+    off) wmctrl -k on ;;
+  esac
+}
+op_tile_to_side() {
+  local width=$(desktop_width) height=$(desktop_height)
+  local xcenter=$(expr $width / 2)
+  case "$1" in
+    w) local x=0 w=$xcenter ;;
+    e) local x=$xcenter w=$xcenter ;;
+    *) return ;;
+  esac
+  wmctrl -r ':ACTIVE:' -b remove,maximized_horz
+  wmctrl -r ':ACTIVE:' -b add,maximized_vert
+  wmctrl -r ":ACTIVE:" -e "0,$x,-1,$w,-1"
+}
+op_maximize() {
+  local wid=$(xdotool getactivewindow)
+  local state=$(xprop -id "$wid" | grep _NET_WM_STATE)
+  if (echo "$state" | grep -q _NET_WM_STATE_MAXIMIZED_VERT ) && (echo "$state" | grep -q _NET_WM_STATE_MAXIMIZED_HORZ ) ; then
+    wmctrl -r ':ACTIVE:' -b remove,maximized_horz
+    wmctrl -r ':ACTIVE:' -b remove,maximized_vert
+  else
+    wmctrl -r ':ACTIVE:' -b add,maximized_horz
+    wmctrl -r ':ACTIVE:' -b add,maximized_vert
+  fi
+}
+op_minimize() {
+  xdotool windowminimize $(xdotool getactivewindow)
+}
+
+#############################################################
+#
+# System accesories launch stuff
+#
+#############################################################
+
+run_desktop() {
+  local do_exec=""
+  while [ $# -gt 0 ]
+  do
+    case "$1" in
+      --exec) do_exec=exec ;;
+      *) break ;;
+    esac
+    shift
+  done
+
+  case "$1" in
+  *.desktop) : ;;
+  *)
+    $do_exec "$@"
+    return $? ;;
+  esac
+  local f="" d
+  for d in "$HOME/.local/share/applications/" "/usr/share/applications/" ""
+  do
+    [ -f "$d$1" ] && break
+  done
+  if [ -z "$d" ] ; then
+    echo "$1: not found" 1>&2
+    return 89
+  fi
+  local desktop="$d$1" ; shift
+  local cmd=$(grep '^Exec=' "$desktop" | head -1 | sed \
+	-e 's/^Exec=//' \
+	-e 's/%[A-Za-z]//g')
+  if [ -z "$cmd" ] ; then
+    echo "$1: Missing Exec line" 1>&2
+    return 97
+  fi
+  $do_exec $cmd "$@"
+}
+
+try_cmd() {
+  local cmd="" rcmd="" tries=""
+
+  while [ $# -gt 0 ]
+  do
+    [ x"$1" = x"--" ] && break
+    if (echo "$1" | grep -q ':') ; then
+      cmd=$(echo "$1" | cut -d: -f1)
+      rcmd=$(echo "$1" | cut -d: -f2-)
+    else
+      cmd="$1"
+      rcmd="$1"
+    fi
+
+    if type "$cmd" >/dev/null 2>&1 ; then
+      shift
+      echo "Running $rcmd"
+      while [ $# -gt 0 ]
+      do
+        [ x"$1" = x"--" ] && break
+	shift
+      done
+      $rcmd "$@" &
+      return 0
+    else
+      [ -n "$tries" ] && tries="$tries:"
+      tries="$tries$cmd"
+    fi
+
+    shift
+  done
+  notify-send -a "ERROR" "$(basename "$0")" "No suitable command found $tries"
+  return 1
+}
+
+#############################################################
+#
+# System accesories short cuts
+#
+#############################################################
+
+op_home_page() {
+  if type xdg-settings >/dev/null 2>&1 ; then
+    run_desktop "$(xdg-settings get default-web-browser)" &
+  else
+    try_cmd firefox
+  fi
+}
+
+op_mail() {
+  if type xdg-settings >/dev/null 2>&1 ; then
+    run_desktop "$(xdg-settings get default-url-scheme-handler mailto)" &
+  else
+    try_cmd firefox
+  fi
+}
+
+op_file_mgr() {
+  try_cmd pcmanfm-qt pcmanfm
+}
+
+op_calculator() {
+  try_cmd speedcrunch galculator
+}
+
+op_runcmd() {
+  try_cmd "mate-panel:mate-panel --run-dialog" lxqt-runner
+}
+
+op_win_switcher() {
+  winsw_rofi() {
+    rofi -show window
+  }
+  try_cmd rofi:winsw_rofi
+}
+
+op_run_menu() {
+  runmenu_rofi() {
+    rofi -show combi -modes combi -combi-modes 'drun,run'
+  }
+  try_cmd rofi:runmenu_rofi
+}
+
+op_sysmon() {
+  try_cmd mate-system-monitor xosview
+}
+
+op_cad() {
+  : HELP Control-Alt-Delete handler
+  try_cmd lxqt-leave
+}
+
+op_lockscreen() {
+  xdg-screensaver lock
+}
+
+op_search() {
+  : HELP search tool
+  try_cmd mate-search-tool catfish
+}
+
+op_print_screen() {
+  prsc_scrot() {
+    cd "$(xdg-user-dir DESKTOP)"
+    notify-send -a scrot 'Select area to capture' 'Press any key to abort'
+    scrot -s -F '%Y-%m-%d_$wx$h.png' -e  'notify-send -a scrot Captured $f'
+  }
+  try_cmd scrot:prsc_scrot
+}
+
+
+op_startup() {
+  : HELP To be run from the desktop autostart file to set-up hotkeys
+  for f in $HOME/.xbindkeysrc /etc/X11/xbindkeysrc
+  do
+    [ ! -f $f ] && continue
+    xbindkeys -n -f "$f" &
+  done
+}
+
+
+usage() {
+  exec 1>&2
+  echo "Usage: $(basename "$0") cmd [args]"
+  echo ''
+  echo 'Available commands:'
+  declare -F  | grep ' -f op_' | sed -e 's/declare -f op_//' | sort | while read op
+  do
+    echo "- $(echo "$op" | tr _ -)$(declare -f "op_$op" | grep ': HELP'| sed -e 's/^.*: HELP/ :/' -e 's/;$//' )"
+  done
+  exit 0
+}
+
+[ $# -eq 0 ] && usage
+op="$1" ; shift
+fn=op_$(echo "$op" | tr A-Z- a-z_)
+
+if ! type "$fn" >/dev/null 2>&1 ; then
+  echo "Unknown op: $op" 1>&2
+  usage
+fi
+
+"$fn" "$@"

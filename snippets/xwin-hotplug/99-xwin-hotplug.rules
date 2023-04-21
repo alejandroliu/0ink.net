@@ -1,2 +1,2 @@
-ACTION=="change", KERNEL=="card*", SUBSYSTEM=="drm", RUN+="/usr/local/bin/xwin-hotplug"
+ACTION=="change", KERNEL=="card*", SUBSYSTEM=="drm", RUN+="/usr/local/sbin/xwin-hotplug"
 

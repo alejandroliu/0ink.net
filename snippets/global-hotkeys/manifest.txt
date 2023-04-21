@@ -1,0 +1,9 @@
+#
+# Paths to install
+#
+xbindkeysrc /etc/X11/xbindkeysrc
+#hk_helper /usr/local/bin/hk_helper 0755
+hk_helper.tk /usr/local/bin/hk_helper 0755
+xbindkeys.desktop /etc/xdg/autostart/xbindkeys.desktop
+# <DIR> /etc/X11/profile.d
+# profile.sh /etc/X11/profile.d/xbindkeys.sh

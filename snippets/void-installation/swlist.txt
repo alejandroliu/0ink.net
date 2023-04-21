@@ -33,3 +33,4 @@ screen
 bash-completion
 psmisc
 
+read-edid # Used for console hotplug

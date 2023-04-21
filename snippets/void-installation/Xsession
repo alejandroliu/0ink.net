@@ -2,7 +2,8 @@
 #
 # Install as /etc/X11/Xsession
 #
-# Loosely based on: [LighDM Session script](https://github.com/canonical/lightdm/blob/master/debian/lightdm-session)
+# Loosely based on:
+# [LighDM Session script](https://github.com/canonical/lightdm/blob/master/debian/lightdm-session)
 # and xdm's Xsession scripts.
 #
 if [ -z "$(pidof xconsole)" ] ; then
@@ -15,9 +16,16 @@ if [ -z "$(pidof xconsole)" ] ; then
 fi
 
 # Load profile
-for file in "/etc/profile" "$HOME/.profile" "/etc/xprofile" "$HOME/.xprofile"; do
+for file in "/etc/profile" "$HOME/.profile" "/etc/xprofile" "$HOME/.xprofile" ; do
   [ -f "$file" ] && . "$file"
 done
+unset file
+if [ -d /etc/X11/profile.d ] ; then
+  for f in /etc/X11/profile.d/*.sh ; do
+    [ -r "$f" ] && . "$f"
+  done
+  unset f
+fi
 
 # Load resources
 if type xrdb >/dev/null 2>&1; then
@@ -71,10 +79,11 @@ if [ -d "$xinitdir" ]; then
   done
 fi
 
-#
-# We need this so MATE and/or XFCE4 desktops can start succesfully!
-#
-xhost +local:
+#~ # Not sure if we need this!
+#~ #
+#~ # We need this so MATE and/or XFCE4 desktops can start succesfully!
+#~ #
+#~ xhost +local:
 
 #
 # Try the user's .xsession if it exists...
@@ -85,50 +94,35 @@ fi
 # If it did not exec'ed it will trt checking $HOME/.xdesktop
 # for a preferred desktop.
 #
-cklaunch=false
-sshagent=false
-
 if [ -f $HOME/.xdesktop ] ; then
   # Customer selected desktop
   desktop=$(cat $HOME/.xdesktop)
 else
-  if type mate-session >/dev/null 2>&1 ; then
-    desktop="mate-session"
-    cklaunch=true
-  elif type startxfce4 >/dev/null 2>&1 ; then
-    desktop="startxfce4"
-  elif type startlxqt >/dev/null 2>&1 ; then
-    sshagent=true
-    desktop="startlxqt"
-  elif type startplasma-x11 >/dev/null 2>&1 ; then
-    desktop="startplasma-x11"
-  elif type gnome-session >/dev/null 2>&1 ; then
+  function gnome_session_tweak() {
     export XDG_CURRENT_DESKTOP=GNOME-Flashback:GNOME
     desktop="gnome-session --session=gnome-flashback-metacity"
-  elif type cinnamon-session >/dev/null 2>&1 ; then
-    desktop="cinnamon-session"
-  elif type budgie-desktop >/dev/null 2>&1 ; then
-    desktop="budgie-desktop"
-    cklaunch=true
-  elif type xsm >/dev/null 2>&1 ; then
-    desktop=xsm
-  else
-    desktop=xterm
-  fi
+  }
+  desktop=xterm # Hope this actually is there!
+  for i in mate-session startxfce4 startlxqt startplasma-x11 \
+		gnome-session \
+		cinnamon-session budgie-desktop \
+		xsm xterm
+  do
+    type "$i" >/dev/null 2>&1 || continue
+    desktop="$i"
+    i=$(echo $i | tr - _)
+    type "$i"_tweak >/dev/null 2>&1 &&  ${i}-tweak
+    break
+  done
 fi
 
-ckcmd=""
-if $cklaunch ; then
-  if type ck-launch-session >/dev/null 2>&1 ; then
-    ckcmd=ck-launch-session
-  fi
-fi
-agentcmd=""
-if $sshagent ; then
-  if type ssh-agent >/dev/null 2>&1 ; then
-    agentcmd=ssh-agent
-  fi
-fi
+[ -w /run/xsession.pid ] && echo "$$ $(id -un) $desktop" > /run/xsession.pid
 
-echo "$$ $(id -un) $desktop" > /run/xsession.pid
-exec /bin/sh -l -c "exec $ckcmd $agentcmd $desktop"
+spawner=$(readlink -f /proc/$PPID/exe)
+if [ x"$(basename "$spawner")" = x"xinit" ] ; then
+  # Run from xinit
+  exec $desktop
+else
+  # Otherwise assume it is xdm
+  exec /bin/sh -l -c "exec $desktop"
+fi

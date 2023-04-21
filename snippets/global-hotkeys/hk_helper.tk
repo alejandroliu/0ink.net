@@ -1,0 +1,493 @@
+#!/usr/bin/env wish
+#
+# TCL/TK version
+#
+set DEFAULT_DELAY 3000
+
+proc find_in_path { exe } {
+  global env
+  foreach dir [split $env(PATH) :] {
+    if {[file isfile [file join $dir $exe]]} {
+      return [file join $dir $exe]
+    }
+  }
+  return {}
+}
+
+proc center_the_toplevel { w } {
+  # Callback on the <Configure> event for a toplevel
+  # that should be centered on the screen
+  # From: https://wiki.tcl-lang.org/page/Centering+a+window
+
+  # Make sure that we aren't configuring a child window
+  if { [string equal $w [winfo toplevel $w]] } {
+    # Calculate the desired geometry
+    set width [winfo reqwidth $w]
+    set height [winfo reqheight $w]
+    set x [expr { ( [winfo vrootwidth  $w] - $width  ) / 2 }]
+    set y [expr { ( [winfo vrootheight $w] - $height ) / 2 }]
+
+    # Hand the geometry off to the window manager
+    wm geometry $w ${width}x${height}+${x}+${y}
+
+    # Unbind <Configure> so that this procedure is
+    # not called again when the window manager finishes
+    # centering the window
+    bind $w <Configure> {}
+  }
+  return
+}
+
+proc show_message {title msg {delay {}} } {
+  wm resizable . 0 0
+  wm title . $title
+  message .t -text $msg -width 320
+  pack .t -side top
+  button .b -text { OK } -command exit
+  pack .b -side bottom -pady 5
+  focus -force .b
+  bind . <Key-Escape> exit
+  bind . <Key-Return> exit
+  #~ bind . <Configure> {center_the_toplevel %W}
+  after idle center_the_toplevel .
+  if {$delay != {}} {
+    if {[string is integer $delay]} {
+      after $delay exit
+    } else {
+      global DEFAULT_DELAY
+      after $DEFAULT_DELAY exit
+    }
+  }
+  tkwait window .
+}
+
+proc run {args} {
+  set bg 0
+  if {[lindex $args 0] == "--bg"} {
+    set bg 1
+    set args [lrange $args 1 end]
+  }
+  if {$bg} {
+    exec {*}$args <@stdin >@stdout 2>@stderr &
+  } else {
+    exec {*}$args <@stdin >@stdout 2>@stderr
+  }
+}
+
+proc try_exec {args} {
+  set error 0
+  if {[lindex $args 0] == "--error"} {
+    set error 1
+    set args [lrange $args 1 end]
+  }
+  foreach cmd $args {
+    if {[set exe [find_in_path $cmd]] == {}} continue
+    return [list $cmd $exe]
+  }
+  if {$error} {
+    show_message "Error" "Unable to find command\n\n$args"
+    exit
+  }
+  return {{} {}}
+}
+proc try_run {args} {
+  if {[lindex $args 0] == "--args"} {
+    set xargs [lindex $args 1]
+    set args [lrange $args 2 end]
+  } else {
+    set xargs {}
+  }
+  foreach {cmd exe} [try_exec --error {*}$args] break
+  run $cmd {*}$xargs
+}
+
+proc run_desktop {desktop args} {
+  switch -glob $desktop {
+    *.desktop {
+      global env
+      set f {}
+      foreach d [list [file join $env(HOME) ".local/share/applications"] "/usr/share/applications" ""] {
+	if {[file isfile [file join $d $desktop]]} break
+      }
+      if {$d == {}} {
+	show_message Error "$desktop: Not found"
+	exit
+      }
+      if {[catch {open [file join $d $desktop] r} fp]} {
+	show_message "Error: $desktop" $fp
+	exit
+      }
+      set ini [read $fp]
+      foreach ln [split $ini "\n"] {
+	if {[regexp {^Exec=(.*)$} [string trim $ln] --> execline]} {
+	  run --bg [lindex $execline 0] {*}$args
+	  exit
+	}
+      }
+      show_message "Error: $desktop" "Unable to determine exec name"
+    }
+    default {
+      run --bg $desktop {*}$args
+    }
+  }
+}
+
+proc usage {} {
+  global argv0
+
+  puts stderr "Usage:\n  $argv0 cmd \[args ...\]"
+  puts stderr "\nAvailable commands:\n"
+  foreach procname [lsort [info procs]] {
+    if {[regexp {^op:(.+)$} $procname --> op]} {
+      set help {}
+      foreach line [split [info body $procname] "\n"] {
+	set line [string trim $line]
+	if {[regexp {^#\s[Hh][Ee][Ll][Pp]\s(.*)} $line --> hlp]} {
+	  if {$help == ""} {
+	    set help ": $hlp"
+	  } else {
+	    append help "\n\t$hlp"
+	  }
+	}
+      }
+      puts stderr "- $op $help"
+    }
+  }
+  exit
+}
+
+proc pipe_reader {chan eof_cb} {
+  set data [read $chan]
+  if {$data != {}} {
+    puts stderr "[string len $data] $data"
+  }
+  if {[eof $chan]} {
+    fileevent $chan readable {}
+    {*}$eof_cb eof
+  }
+}
+
+proc pipe_run {cb args} {
+  if {[catch {
+    set pipe [open "|$args 2>@1" r]
+    fconfigure $pipe -blocking 0
+    fileevent $pipe readable [list pipe_reader $pipe $cb]
+  } err]} {
+    puts stderr $err
+    global errorInfo
+    puts stderr $errorInfo
+    {*}$cb error
+  }
+}
+
+proc wm_max_state {id} {
+  set xprop [exec xprop -id $id]
+  if {![regexp {_NET_WM_STATE(.*)} $xprop --> ln]} {return {}}
+  foreach ln [split $ln "\n"] break
+  if {![regexp {=\s*(.*)\s*} $ln --> res]} {return {}}
+  set res [string map {{, } { }} $res]
+  return $res
+}
+
+proc wm_showing_desktop {} {
+  set modes [exec wmctrl -m]
+  if {![regexp {showing the desktop. mode:\s(\w+)} $modes --> mode]} {return 0}
+  switch -nocase $mode {
+    on { return 1 }
+    default {return 0}
+  }
+}
+
+proc op:show-desktop {} {
+  # help Minimize all windows and show the desktop
+  if  {[wm_showing_desktop]} {
+    exec wmctrl -k off
+  } else {
+    exec wmctrl -k on
+  }
+}
+
+proc op:tile-to-side {side} {
+  # help Tile current window to side "w" or "e"
+  set scw [winfo screenwidth .]
+  set sch [winfo screenheight .]
+  set xcenter [expr {$scw / 2}]
+
+  set x -1
+  set y -1
+  set w -1
+  set h -1
+
+  switch $side {
+    w {
+      set remove maximized_horz
+      set add maximized_vert
+      set x 0
+      set w $xcenter
+
+    }
+    e {
+      set remove maximized_horz
+      set add maximized_vert
+      set x $xcenter
+      set w $xcenter
+    }
+    default {
+      show_message Error "Unknown side $side"
+      exit
+    }
+  }
+  puts "w=$w"
+  exec wmctrl -r :ACTIVE: -b "remove,$remove"
+  exec wmctrl -r :ACTIVE: -b "add,$add"
+  exec wmctrl -r :ACTIVE: -e "0,$x,$y,$w,$h"
+}
+
+proc op:maximize {} {
+  # help Maximize current window
+  set wid [exec xdotool getactivewindow]
+  set state [wm_max_state $wid]
+
+  if {[lsearch $state _NET_WM_STATE_MAXIMIZED_VERT] != -1 && [lsearch $state _NET_WM_STATE_MAXIMIZED_HORZ] != -1} {
+    exec wmctrl -r :ACTIVE: -b remove,maximized_horz
+    exec wmctrl -r :ACTIVE: -b remove,maximized_vert
+  } else {
+    exec wmctrl -r :ACTIVE: -b add,maximized_horz
+    exec wmctrl -r :ACTIVE: -b add,maximized_vert
+  }
+}
+
+proc op:minimize {} {
+  # help minimize current window
+  run xdotool windowminimize [exec xdotool getactivewindow]
+}
+
+proc scrot:cb {op} { exit }
+proc scrot:run {mode args} {
+
+  pipe_run scrot:cb scrot -F {%Y-%m-%d.%H:%M:%S_$wx$h.png} \
+	-e  [format {notify-send -a scrot Captured:%s $f} $mode]\
+	{*}$args
+}
+proc scrot:pr-sc {t mode} {
+  if {$t != "."} { destroy $t }
+  switch $mode {
+    r {
+      if {[catch {
+	set w .q
+	toplevel $w
+	wm deiconify $w
+	wm overrideredirect $w 1
+	wm resizable $w 0 0
+	wm title $w scrot
+	message $w.m -text "Select area to capture\n\nPress any key to abort" -width 320 -font "Helvetica 16 bold"
+	pack $w.m -padx 10 -pady 10
+	wm geometry $w -64+64
+
+	global DEFAULT_DELAY
+	after $DEFAULT_DELAY [list wm withdraw $w]
+
+	after 100 {scrot:run region -s}
+	tkwait window $w
+      } err]} {
+	global errorInfo
+	puts $errorInfo
+      }
+    }
+    w {
+      after 100 {
+	if {[catch {
+	  set wid [exec xdotool getactivewindow]
+	  scrot:run window -w $wid
+	} err]} {
+	  puts stderr $err
+	  exit
+	}
+      }
+      tkwait window .
+    }
+    s {
+      after 100 {
+	scrot:run screen
+      }
+      tkwait window .
+    }
+  }
+}
+proc op:print-screen {args} {
+  # help Handle print screen
+  foreach {cmd exe} [try_exec --error scrot] break
+  if {$cmd == "scrot"} {
+    cd [exec xdg-user-dir DESKTOP]
+    wm withdraw .
+
+    switch -glob [lindex $args 0] {
+      r* { scrot:pr-sc . r }
+      w* { scrot:pr-sc . w }
+      s* { scrot:pr-sc . s }
+      default {
+	set t .t
+	toplevel $t
+	wm resizable $t 0 0
+	#~ wm overrideredirect $t 1
+	wm title $t $cmd
+	set packopts {-side top -padx 10 -pady 5 -fill x}
+	button $t.b1 -text "Select region" -command [list scrot:pr-sc $t r] ; pack $t.b1 {*}$packopts
+	button $t.b2 -text "Current window" -command [list scrot:pr-sc $t w] ; pack $t.b2 {*}$packopts
+	button $t.b3 -text "Full screen"  -command [list scrot:pr-sc $t s] ; pack $t.b3 {*}$packopts
+	button $t.b4 -text "Cancel"  -command exit ; pack $t.b4 {*}$packopts
+
+	focus -force $t.b1
+	bind $t <Key-Escape> exit
+	bind $t <Key-Down> {focus [tk_focusNext %W]}
+	bind $t <Key-Up> {focus [tk_focusPrev %W]}
+	bind $t <Key-Return> {%W invoke}
+	after idle center_the_toplevel $t
+	tkwait window $t
+	exit
+      }
+    }
+  } else {
+    show_message "Error" "Un-implemented print-screen method: $cmd"
+    exit
+  }
+}
+
+proc op:search {} {
+  # help search tool
+  try_run mate-search-tool catfish
+}
+
+proc op:lockscreen {} {
+  # help Screen saver lock
+  run xdg-screensaver lock
+}
+
+proc op:cad {} {
+  # help Control-Alt-Delete handler
+  try_run lxqt-leave
+}
+
+proc op:sysmon {} {
+  # help System monitor
+  try_run mate-system-monitor xosview
+}
+
+proc op:run-menu {} {
+  # help run command menu
+  foreach {cmd exe} [try_exec --error rofi] break
+  switch $cmd {
+    rofi {
+      run rofi -show combi -modes combi -combi-modes "drun,run"
+    }
+  }
+}
+
+proc op:win-switcher {} {
+  # help run command menu
+  foreach {cmd exe} [try_exec --error rofi] break
+  switch $cmd {
+    rofi {
+      run rofi -show window
+    }
+  }
+}
+
+proc op:runcmd {} {
+  # help basic run dialog
+  foreach {cmd exe} [try_exec --error mate-panel lxqt-runner] break
+  switch $cmd {
+    mate-panel {
+      run mate-panel --run-dialog
+    }
+    default {
+      run $cmd
+    }
+  }
+}
+
+proc op:calculator {} {
+  # help Basic calculator
+  try_run speedcrunch galculator
+}
+
+proc op:file-mgr {} {
+  # help File manager
+  try_run pcmanfm-qt pcmanfm
+}
+
+proc op:mail {} {
+  # help Open mail reader
+  set exe [find_in_path xdg-settings]
+  if {$exe != {}} {
+    set desktop [exec $exe get default-url-scheme-handler mailto]
+    run_desktop $desktop
+  } else {
+    try_run thunderbird
+  }
+}
+
+proc op:web-browser {url} {
+  # help Start web browser with url
+  set exe [find_in_path xdg-settings]
+  if {$exe != {}} {
+    set desktop [exec $exe get default-web-browser]
+    run_desktop $desktop $url
+  } else {
+    try_run --args $url firefox
+  }
+}
+
+proc op:home-page {} {
+  # help Open home page on the web browser
+  op:web-browser {}
+}
+
+
+proc op:startup {} {
+  # help To be run from the desktop autostart file to set-up hotkeys
+  global env
+  unset env(IN_HK_HELPER)
+  foreach f [list "$env(HOME)/.xbindkeysrc" "/etc/X11/xbindkeysrc"] {
+    if {![file isfile "$f"]} continue
+    run --bg xbindkeys -n -f $f
+  }
+  wm overrideredirect . 1
+  show_message "Hotkey Helper" {
+This is a private access system.
+
+ACCESS ALLOWED TO AUTHORISED USERS ONLY.
+
+Unauthorised use or misuse of these services may be a breach of the
+relevant computer misuse legislation and subject to legal and/or
+disciplinary action.
+
+Activities on this system are logged and monitored.
+} 3000
+}
+
+option add *Font "Helvetica 11" widgetDefault
+option add *Button.font "Helvetica 12 bold" widgetDefault
+
+if {[info exists env(IN_HK_HELPER)]} {
+  show_message Error {Recursion detected}
+  exit
+} else {
+  set env(IN_HK_HELPER) [pid]
+}
+
+if {$argc == 0} { usage }
+set argv1 [string tolower [lindex $argv 0]]
+set argv [lrange $argv 1 end]
+if {[info proc "op:$argv1"] != "op:$argv1"} {
+  puts stderr "Unknown sub-command $argv1"
+  usage
+}
+
+op:$argv1 {*}$argv
+exit
+
+
+#~ puts [exec wmctrl -m]
+#~ puts [exec wmctrl -d]
+

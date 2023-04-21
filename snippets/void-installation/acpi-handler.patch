@@ -1,10 +1,22 @@
---- handler.sh-void	2019-08-24 22:17:29.000000000 +0200
-+++ handler.sh	2020-03-19 23:08:49.753978989 +0100
-@@ -1,6 +1,15 @@
+--- handler.sh-void	2023-02-09 13:30:21.000000000 +0100
++++ handler.sh	2023-04-16 10:46:37.503084747 +0200
+@@ -1,6 +1,27 @@
  #!/bin/sh
  # Default acpi script that takes an entry for all actions
  
 +# Ignore things if running Desktop power-manager
++if [ -f /run/xsession.pid ] ; then
++  read pid uname desktop < /run/xsession.pid
++  echo pid=$pid uname=$uname desktop=$desktop
++  if [ -n "$pid" ] && [ -n "$uname" ] ; then
++    if [ -d /proc/$pid ] && [ x"$(stat -c '%U' /proc/$pid)" = x"$uname" ] ; then
++      echo "$desktop desktop session running for $uname"
++      exit 0
++    fi
++  fi
++fi
++
++exit
 +for mgr in mate-power-manager gsd-power
 +do
 +  if [ -n "$(pidof $mgr)" ] ; then

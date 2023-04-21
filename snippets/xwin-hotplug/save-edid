@@ -1,0 +1,31 @@
+#!/bin/sh
+#
+# Saves the EDID data for possible later use.
+#
+fwdir=/usr/lib/firmware
+mkdir -p $fwdir/edid
+
+for p in /sys/class/drm/*/status
+do
+  [ x"$(cat $p)" != x"connected" ] && continue
+  sysdir=$(dirname "$p")
+  [ $(wc -c < "$sysdir/edid") -eq 0 ] && continue
+
+  echo "$sysdir"
+  id=""
+  if type parse-edid ; then
+    if parse-edid < "$sysdir/edid" >/dev/null 2>&1 ; then
+      id=$(parse-edid < "$sysdir/edid" | awk '$1 == "Identifier" {
+	  $1 = "";
+	  print $0;
+	}' | tr -d '" ')
+    fi
+  fi
+  [ -z "$id" ] && id=$(printf '%x' $(cksum < "$sysdir/edid" | (read x y ; echo $x)))
+  if [ ! -f "$fwdir/edid/$id.bin" ] || [ x"$(md5sum < $sysdir/edid)" != x"$(md5sum < $sysdir/edid)" ] ; then
+    cp -av "$sysdir/edid" "$fwdir/edid/$id.bin"
+  fi
+  # Save where the port that was used
+  port=$(basename "$sysdir")
+  ln -sf "$id.bin" "$fwdir/edid/$port.bin"
+done

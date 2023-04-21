@@ -1,0 +1,140 @@
+###########################
+# xbindkeys configuration #
+###########################
+#
+# Global Hot Keys (Desktop Environment independant)
+#
+###########################
+#
+# The format of a command line is:
+#    "command to start"
+#       associated key
+#
+# Use the command
+# $ xbindkeys --key
+# to find the associated key
+#
+# List of modifier:
+#   Release, Control, Shift, Mod1 (Alt), Mod2 (NumLock),
+#   Mod3 (CapsLock), Mod4 (Super), Mod5 (Scroll).
+#
+
+# The release modifier is not a standard X modifier, but you can
+# use it if you want to catch release events instead of press events
+
+# By defaults, xbindkeys does not pay attention with the modifiers
+# NumLock, CapsLock and ScrollLock.
+# Uncomment the lines above if you want to pay attention to them.
+
+#keystate_numlock = enable
+#keystate_capslock = enable
+#keystate_scrolllock= enable
+
+#
+# Show configuration
+#
+"xbindkeys_show -f /etc/X11/xbindkeysrc"
+  Control + Mod4 + h
+
+#
+# Volume control
+#
+# Increase volume
+"patoggle vol --down"
+  Mod4 + KP_Divide
+
+# Decrease volume
+"patoggle vol --up"
+  Mod4 + KP_Multiply
+
+# Mute volume
+"patoggle vol --mute"
+  Mod4 + KP_Subtract
+
+# Toggle audio output
+"patoggle output"
+  Mod4 + KP_0
+
+#
+# Most of these short-cuts are copied from Windows
+#
+"hk_helper lockscreen"
+  Mod4 + l
+
+"hk_helper CAD"
+  Control + Alt + Delete
+"hk_helper run-menu"
+  Control + Escape
+"hk_helper file-mgr"
+  Mod4 + e
+"hk_helper runcmd"
+  Mod4 + r
+"hk_helper search"
+  Mod4 + f
+
+"hk_helper sysmon"
+  Mod4 + s
+
+"hk_helper sysmon"
+  Control + Shift + Escape
+
+#
+# Screen capture options
+#
+
+"hk_helper print-screen w"
+  Mod4 + Print
+
+"hk_helper print-screen s"
+  Shift + Print
+
+"hk_helper print-screen r"
+  Print
+
+"hk_helper print-screen"
+  Control + Print
+
+
+
+#
+# Window manager shortcuts
+#
+"hk_helper show-desktop"
+  Mod4 + d
+
+"hk_helper tile-to-side w"
+  Mod4 + Left
+
+"hk_helper tile-to-side e"
+  Mod4 + Right
+
+"hk_helper maximize"
+  Mod4 + Up
+
+"hk_helper minimize"
+  Mod4 + Down
+
+#
+# Hardware Media keys
+#
+"hk_helper home-page"
+  XF86HomePage
+
+"hk_helper mail"
+  XF86Mail
+
+"hk_helper calculator"
+  XF86Calculator
+
+#
+# Menus
+#
+"hk_helper win-switcher"
+  Mod4 + Tab
+
+#####################################
+
+
+##################################
+# End of xbindkeys configuration #
+##################################

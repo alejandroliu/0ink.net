@@ -12,15 +12,17 @@ gvfs-smb
 xarchiver
 
 # Accesories
-speedcrunch
+gnome-keyring seahorse
+galculator speedcrunch # calculators
 FeatherPad
-# roxterm
+roxterm # I don't like the default qterminal
 qpdfview
 lximage-qt
-libnotify
 pavucontrol-qt
+mate-system-monitor xosview # system monitors (xosview is a bit too oldschool)
+
 rofi
-xosview
+catfish
 
 # Just the web browser
 firefox-esr
