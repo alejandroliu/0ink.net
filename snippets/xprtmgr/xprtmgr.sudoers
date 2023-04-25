@@ -1,0 +1,5 @@
+
+
+ALL ALL=(ALL:ALL) NOPASSWD: /bin/cupsenable, /bin/cupsdisable, \
+			    /bin/cupsaccept, /bin/cupsreject
+

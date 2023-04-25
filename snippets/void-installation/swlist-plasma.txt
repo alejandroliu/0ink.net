@@ -24,3 +24,5 @@ gst-libav		# void-linux: add mp4 support to firefox
 #gvfs-afc
 #gvfs-mtp
 #gvfs-smb
+
+bluedevil      # bluetooth management

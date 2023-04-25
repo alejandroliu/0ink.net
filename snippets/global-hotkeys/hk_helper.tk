@@ -370,7 +370,7 @@ proc op:cad {} {
 
 proc op:sysmon {} {
   # help System monitor
-  try_run mate-system-monitor xosview
+  try_run mate-system-monitor qps xosview
 }
 
 proc op:run-menu {} {

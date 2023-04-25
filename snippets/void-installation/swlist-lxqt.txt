@@ -19,7 +19,8 @@ roxterm # I don't like the default qterminal
 qpdfview
 lximage-qt
 pavucontrol-qt
-mate-system-monitor xosview # system monitors (xosview is a bit too oldschool)
+mate-system-monitor xosview qps # system monitors (xosview is a bit too oldschool)
+blueman	# bluetooth management
 
 rofi
 catfish

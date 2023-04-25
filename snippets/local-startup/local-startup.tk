@@ -1,0 +1,353 @@
+#!/usr/bin/wish
+#
+# Local startup preferences
+#
+proc LOCAL_CONFIG {} { return "/etc/xdg/local-startup.cfg" }
+proc USER_CONFIG {} {
+  global env
+  return [file join $env(HOME) ".config/local-startup.cfg" ]
+}
+
+proc LOCAL-DEFAULT {x} { return "local-default ($x)" }
+proc ENABLED {} { return "enabled" }
+proc DISABLED {} { return "disabled" }
+
+proc DELAY {} {return 3000}
+
+proc trim_ln {ln} {
+  set i [string first # $ln]
+  if {$i == 0} return
+  if {$i != -1} {
+    set ln [string range $ln 0 $i-1]
+  }
+  if {[set ln [string trim $ln]] == {}} return
+  if {![regexp {^(\S+)\s*(.*)$} $ln --> k v]} return
+  if {$v == {}} { set v 1 }
+  return [list $k [string trim $v]]
+}
+
+proc read_config {file cfg_r} {
+  if {[catch {open $file "r"} fp]} {
+    puts stderr "$file: $fp"
+    return
+  }
+  upvar $cfg_r cfg
+  array set cfg {}
+  foreach ln [split [read $fp] "\n"] {
+    set ln [trim_ln $ln]
+    if {$ln == {}} continue
+    set cfg([lindex $ln 0]) [lindex $ln 1]
+  }
+}
+
+proc write_config {file cfg_r} {
+  upvar $cfg_r cfg
+  set fd [open $file "w"]
+  foreach {k v} [array get cfg] {
+    puts $fd "$k $v"
+  }
+  close $fd
+}
+
+proc cfg_sort {a b} {
+  foreach x {a b} {
+    foreach {y z} [split [set $x] "."] break
+    if {$z == {}} { set z "_" }
+    set $x [string tolower "$z.$y"]
+  }
+  return [string compare $a $b]
+}
+
+proc prefs_ui {args} {
+  global dlgdata localcfg usercfg
+
+  array set dlgdata {}
+  array set localcfg {}
+  array set usercfg {}
+
+  read_config [LOCAL_CONFIG] localcfg
+  read_config [USER_CONFIG] usercfg
+
+  set c 0
+  set t [toplevel .d -class dialog]
+
+  wm title $t "Local Startup Prefernces"
+  wm resizable $t 0 0
+
+  foreach k [lsort -command cfg_sort [array names localcfg]] {
+    incr c
+
+    label "$t.l$c" -text $k
+    grid "$t.l$c" -row $c -column 1 -sticky nws -padx 5 -pady 5
+
+    switch -glob $k {
+      *.desktop {
+	tk_optionMenu "$t.o$c" dlgdata(o,$k) \
+		[ENABLED] \
+		[DISABLED] \
+		[LOCAL-DEFAULT $localcfg($k)]
+	grid "$t.o$c" -row $c -column 2 -columnspan 2 -sticky news -padx 5 -pady 5
+	if {[info exists usercfg($k)]} {
+	  set dlgdata(o,$k) $usercfg($k)
+	} else {
+	  set dlgdata(o,$k) [LOCAL-DEFAULT $localcfg($k)]
+	}
+	"$t.o$c" config -takefocus 1
+      }
+      default {
+	if {[info exists usercfg($k)]} {
+	  set dlgdata(c,$k) 1
+	  set dlgdata(e,$k) $usercfg($k)
+	  set state normal
+	} else {
+	  set dlgdata(c,$k) 0
+	  set dlgdata(e,$k) $localcfg($k)
+	  set state disabled
+	}
+	entry "$t.e$c" -textvariable dlgdata(e,$k) -state $state
+	grid "$t.e$c" -row $c -column 2 -sticky news -padx 5 -pady 5
+	checkbutton "$t.c$c" -variable dlgdata(c,$k) -command [list prefs_ui:ckb $t $c $k]
+	grid "$t.c$c" -row $c -column 3 -sticky news -padx 5 -pady 5
+      }
+    }
+  }
+  frame "$t.f[incr c]"
+  grid "$t.f$c" -row $c -column 1 -columnspan 3 -sticky news -padx 10 -pady 10
+
+  button "$t.f$c.ok" -text " OK " -command prefs_ui:ok
+  pack "$t.f$c.ok" -side left -padx 20
+  button "$t.f$c.cancel" -text " Cancel " -command prefs_ui:cancel
+  pack "$t.f$c.cancel" -side left -padx 20
+  bind $t.f$c.ok <Key-Return> prefs_ui:ok
+
+  message "$t.m[incr c]" -aspect 400 -text {Changes are only applied after log out and log back in.}
+  grid "$t.m$c" -row $c -column 1 -columnspan 3 -sticky news -padx 5 -pady 5
+
+  bind $t "<Key-Escape>" prefs_ui:cancel
+
+  wm protocol $t WM_DELETE_WINDOW prefs_ui:cancel
+}
+
+proc prefs_ui:cancel {args} {
+  exit
+}
+
+proc prefs_ui:ok {args} {
+  global dlgdata usercfg localcfg
+
+  foreach {k v} [array get localcfg] {
+    switch -glob $k {
+      *.desktop {
+	if {$dlgdata(o,$k) == [ENABLED]} {
+	  set usercfg($k) [ENABLED]
+	} elseif {$dlgdata(o,$k) == [DISABLED]} {
+	  set usercfg($k) [DISABLED]
+	} else {
+	  catch {unset usercfg($k)}
+	}
+      }
+      default {
+	if {$dlgdata(c,$k)} {
+	  set usercfg($k) $dlgdata(e,$k)
+	} else {
+	  catch {unset usercfg($k)}
+	}
+      }
+    }
+  }
+
+  #~ parray dlgdata
+  #~ parray usercfg
+  write_config [USER_CONFIG] usercfg
+  exit
+
+}
+
+proc prefs_ui:ckb {t c k} {
+  global dlgdata usercfg localcfg
+  if {$dlgdata(c,$k)} {
+    "$t.e$c" config -state normal
+    if {[info exists usercfg($k)]} {
+      set dlgdata(e,$k) $usercfg($k)
+    }
+  } else {
+    set usercfg($k) $dlgdata(e,$k)
+    set dlgdata(e,$k) $localcfg($k)
+    "$t.e$c" config -state disabled
+  }
+}
+
+proc center_the_toplevel { w } {
+  # Callback on the <Configure> event for a toplevel
+  # that should be centered on the screen
+  # From: https://wiki.tcl-lang.org/page/Centering+a+window
+
+  # Make sure that we aren't configuring a child window
+  if { [string equal $w [winfo toplevel $w]] } {
+    # Calculate the desired geometry
+    set width [winfo reqwidth $w]
+    set height [winfo reqheight $w]
+    set x [expr { ( [winfo vrootwidth  $w] - $width  ) / 2 }]
+    set y [expr { ( [winfo vrootheight $w] - $height ) / 2 }]
+
+    # Hand the geometry off to the window manager
+    wm geometry $w ${width}x${height}+${x}+${y}
+
+    # Unbind <Configure> so that this procedure is
+    # not called again when the window manager finishes
+    # centering the window
+    bind $w <Configure> {}
+  }
+  return
+}
+
+proc notify {title msg {delay {}} } {
+  set t [toplevel .notice -class Notification]
+  wm resizable $t 0 0
+  wm override $t 1
+  wm geometry $t -48+48
+
+  wm title $t $title
+  message $t.m -text $msg -aspect 500
+  pack $t.m -side top
+
+  #~ button $t.b -text { OK } -command exit
+  #~ pack $t.b -side bottom -pady 5
+  #~ focus -force $t.b
+
+  bind $t <Key-Escape> exit
+  bind $t <Key-Return> exit
+  after idle center_the_toplevel $t
+
+
+  if {$delay == {}} { set delay [DELAY] }
+  after $delay exit
+  tkwait window $t
+}
+
+proc run {args} {
+  set bg 0
+  if {[lindex $args 0] == "--bg"} {
+    set bg 1
+    set args [lrange $args 1 end]
+  }
+  if {$bg} {
+    exec {*}$args <@stdin >@stdout 2>@stderr &
+  } else {
+    exec {*}$args <@stdin >@stdout 2>@stderr
+  }
+}
+
+proc run_desktop {desktop} {
+  global env
+  set f {}
+
+  foreach d [list [file join $env(HOME) ".local/share/applications"] "/usr/share/applications" ""] {
+    if {[file isfile [file join $d $desktop]]} break
+  }
+
+  set fp [open [file join $d $desktop] "r"]
+  set ini [read $fp]
+  close $fp
+
+  foreach ln [split $ini "\n"] {
+    if {[regexp {^Exec=(.*)$} [string trim $ln] --> execline]} {
+      puts stderr "Exec=>$execline"
+      run --bg {*}$execline
+      return
+    }
+  }
+  error "No Exec found in $desktop"
+}
+
+proc getcfg {k} {
+  global localcfg usercfg
+
+  if {[info exists usercfg($k)]} {
+    return $usercfg($k)
+  }
+
+  return $localcfg($k)
+}
+
+proc sys_startup:next {args} {
+  global localcfg usercfg
+
+  set msg {}
+  foreach desktop [array names localcfg -glob *.desktop] {
+    set status [getcfg $desktop]
+    #~ puts "$desktop: $status"
+    if {$status == [ENABLED]} {
+      puts stderr "Starting $desktop"
+      if {[catch {run_desktop $desktop} err]} {
+	append msg $desktop ": " $err "\n"
+      }
+    } else {
+      puts stderr "Skipping $desktop"
+    }
+  }
+  if {$msg != {}} {
+    puts stderr $msg
+    notify ERROR $msg
+  }
+  exit
+}
+
+
+proc sys_startup {args} {
+  puts "args: $args"
+
+  global localcfg usercfg
+  array set localcfg {}
+  array set usercfg {}
+  read_config [LOCAL_CONFIG] localcfg
+  read_config [USER_CONFIG] usercfg
+  #~ parray localcfg
+  #~ parray usercfg
+
+  if {[catch {getcfg delay} delay]} {
+    set delay [DELAY]
+  }
+  puts stderr "Waiting $delay ms"
+  after $delay sys_startup:next
+}
+
+proc usage {{exit 0}} {
+  global argv0
+
+  puts stderr "Usage: $argv0 {subcommand} \[options\]"
+  puts stderr ""
+  puts stderr "Sub commands:"
+  puts stderr "  - prefs : edit preferences dialog"
+  puts stderr "  - startup - run at xdg-startup to apply preferences"
+  if {$exit != "no_exit"} { exit $exit }
+}
+
+proc main {args} {
+  if {[llength $args] == 0} usage
+
+  if {[lindex $args 0] == "--debug"} {
+    set args [lrange $args 1 end]
+    proc LOCAL_CONFIG {} { return "local.cfg" }
+    proc USER_CONFIG {} { return "user.cfg" }
+    proc run {args} { puts "RUN(DEBUG): $args" }
+  }
+
+  switch -glob [lindex $args 0] {
+    prefs -
+    p* {
+      prefs_ui {*}[lrange $args 1 end]
+    }
+    startup -
+    s* {
+      sys_startup {*}[lrange $args 1 end]
+    }
+  }
+}
+
+wm withdraw .
+option add "*Font" "Helvetica 12" widgetDefault
+option add "*Button.font" "Helvetica 12 bold" widgetDefault
+
+main {*}$argv
+

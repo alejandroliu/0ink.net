@@ -2,7 +2,7 @@
 title: rsync filter rules
 tags: device, directory, information, remote
 ---
-[toc]
+[TOC]
 
 The basic options for filtering files in rsync are:
 

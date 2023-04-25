@@ -855,7 +855,7 @@ $run xbps-reconfigure -f linux${kver}
 ## ln -s /etc/sv/{consolekit,xdm} /var/service
 ## ```
 #end-output
-common_svcs="sshd acpid chronyd crond uuidd statd rpcbind autofs"
+common_svcs="sshd acpid chronyd crond uuidd statd rpcbind autofs bluetoothd"
 if check_opt noxwin "$@" ; then
   net_svcs="dhcpcd"
   ws_svcs=""
@@ -1203,6 +1203,16 @@ fi
 ##  [xs]: https://www.jwz.org/xscreensaver/
 ##
 #end-output
+
+# Remember install configuration settings...
+if [ -d "$mnt/root" ] ; then
+  (
+    for opt in "$@"
+    do
+      echo "$opt"
+    done
+  ) > "$mnt/root/install-args.txt"
+fi
 
 # customization stuff...
 if ovl=$(check_opt ovl "$@") ; then

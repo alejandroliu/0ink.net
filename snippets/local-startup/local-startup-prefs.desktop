@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Local Startup
+Comment=Change local startup preferences
+
+Icon=local-startup
+Type=Application
+Categories=GTK;Settings;X-MATE-PersonalSettings;
+
+Exec=local-startup prefs
+StartupNotify=false
+Terminal=false

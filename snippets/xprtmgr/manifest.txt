@@ -1,0 +1,19 @@
+
+<DIR> /usr/local/lib/xprtmgr
+xprtmgr.sudoers /etc/sudoers.d/xprtmgr 0440 root:root
+
+icons8-accept-48.png /usr/local/lib/xprtmgr/icons8-accept-48.png
+icons8-document-48.png /usr/local/lib/xprtmgr/icons8-document-48.png
+icons8-documents-48.png /usr/local/lib/xprtmgr/icons8-documents-48.png
+icons8-info-48.png /usr/local/lib/xprtmgr/icons8-info-48.png
+icons8-pause-48.png /usr/local/lib/xprtmgr/icons8-pause-48.png
+icons8-play-48.png /usr/local/lib/xprtmgr/icons8-play-48.png
+icons8-print-48.png /usr/local/lib/xprtmgr/icons8-print-48.png
+icons8-print_mgr-48.png /usr/local/lib/xprtmgr/icons8-print_mgr-48.png
+icons8-x-48.png /usr/local/lib/xprtmgr/icons8-x-48.png
+xprtmgr.py /usr/local/lib/xprtmgr/xprtmgr.py
+tkinter-tooltip-2.1.0/tktooltip/tooltip.py /usr/local/lib/xprtmgr/tooltip.py
+
+icons8-print_mgr-48.png /usr/share/pixmaps/xprtmgr.png
+xprtmgr.desktop /usr/share/applications/xprtmgr.desktop
+

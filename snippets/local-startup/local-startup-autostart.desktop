@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Local Startup Autostart
+TryExec=local-startup
+Exec=local-startup startup
+NotShowIn=KDE;GNOME;
+X-LXQt-Need-Tray=true

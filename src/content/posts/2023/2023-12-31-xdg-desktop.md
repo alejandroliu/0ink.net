@@ -1,6 +1,6 @@
 ---
 title: Linux Desktop file tipes
-tags: github, library, linux
+tags: desktop, github, library, linux
 ---
 
 - desktop specification

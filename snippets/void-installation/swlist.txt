@@ -16,7 +16,7 @@ xtools
 dos2unix
 bridge-utils
 
-
+bluez			# Add bluetooth support
 autofs			# for NFS and automounting
 nfs-utils
 cryptsetup		# encrypted LUKS filesystem

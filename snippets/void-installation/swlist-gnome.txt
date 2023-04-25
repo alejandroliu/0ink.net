@@ -16,3 +16,5 @@ parcellite
 # Just the web browser
 firefox-esr
 gst-libav		# void-linux: add mp4 support to firefox
+
+blueman        # bluetooth management

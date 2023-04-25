@@ -1,6 +1,6 @@
 ---
 title: svgbob tips
-date: "2023-04-20"
+tags: editor
 ---
 - Syntax: https://ivanceras.github.io/content/Svgbob/Specification.html
 - online editor: https://ivanceras.github.io/svgbob-editor/

@@ -7,7 +7,7 @@
 +# Ignore things if running Desktop power-manager
 +if [ -f /run/xsession.pid ] ; then
 +  read pid uname desktop < /run/xsession.pid
-+  echo pid=$pid uname=$uname desktop=$desktop
++  # echo pid=$pid uname=$uname desktop=$desktop
 +  if [ -n "$pid" ] && [ -n "$uname" ] ; then
 +    if [ -d /proc/$pid ] && [ x"$(stat -c '%U' /proc/$pid)" = x"$uname" ] ; then
 +      echo "$desktop desktop session running for $uname"
@@ -16,7 +16,7 @@
 +  fi
 +fi
 +
-+exit
++
 +for mgr in mate-power-manager gsd-power
 +do
 +  if [ -n "$(pidof $mgr)" ] ; then

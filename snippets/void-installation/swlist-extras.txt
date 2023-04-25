@@ -17,6 +17,8 @@ rcm			# dot file manager
 tcl			# gui scripts
 tk
 
+conspy			# Allow remote access to linux console
+
 # VeraCrypt		# Encrypted drives
 tc-play			# Encrypted drives
 

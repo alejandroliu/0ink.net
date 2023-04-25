@@ -37,4 +37,5 @@ paprefs
 #gvfs-mtp
 #gvfs-smb
 
+blueman        # bluetooth management
 

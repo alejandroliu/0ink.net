@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=x-printer-manager
+Comment=Manage printer queues and jobs
+
+Icon=xprtmgr
+Type=Application
+Categories=System;Printing;
+
+Exec=python3 /usr/local/lib/xprtmgr/xprtmgr.py
+StartupNotify=false
+Terminal=false

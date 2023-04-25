@@ -1,6 +1,6 @@
 ---
 title: Linux HDMI hotplug
-date: "2022-10-21"
+date: 2022-10-21
 tags: configuration, device, linux, windows
 ---
 <!--

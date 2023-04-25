@@ -1,6 +1,6 @@
 ---
 title: Console hot plug
-date: "2023-04-21"
+tags: boot, linux
 ---
 This is an update to my post about [[../2021/2021-02-28-hotplug-hdmi.md|HDMI hotplug]].
 

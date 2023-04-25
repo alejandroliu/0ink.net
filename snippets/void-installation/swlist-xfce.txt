@@ -20,6 +20,7 @@ fortune-mod-void
 xbindkeys		# hot keys
 x11vnc
 
+blueman        # bluetooth management
 
 # Maybe
 xfburn

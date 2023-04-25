@@ -1,7 +1,7 @@
 ---
 title: javascript snippets
 ---
-[toc]
+[TOC]
 
 # Compute how an element is hidden
 
