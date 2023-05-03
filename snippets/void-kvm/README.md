@@ -1,0 +1,1 @@
+../../src/content/posts/2022/2022-08-14-void-kvm.md

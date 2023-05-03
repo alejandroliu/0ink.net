@@ -1,5 +1,6 @@
 ---
 title: Local Startup
+date: "2023-04-25"
 tags: application, config, configuration, desktop, directory, editor, linux
 ---
 This is a method to control start-up of applications in a Linux Desktop session
@@ -45,15 +46,4 @@ Files:
 
 
 
-
-
-
-
-
-
-
-# Local startup
-
-This is a way to have startup configuration that is system wide, but
-still can be overriden by end-user.
 

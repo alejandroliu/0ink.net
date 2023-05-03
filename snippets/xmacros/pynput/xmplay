@@ -1,0 +1,29 @@
+#!/bin/sh
+pynput=pynput-1.7.6/lib
+mydir=$(dirname $(readlink -f "$0"))
+export PYTHONPATH="$PYTHONPATH:$mydir/$pynput:$mydir"
+
+macro=${XDG_RUNTIME_DIR:-/tmp}/xmacro.py
+
+if [ $# -eq 0 ] ; then
+  echo "Usage: $0 1|q message"
+  exit 1
+fi
+if [ x"$1" = x"1" ] ; then
+  opt=
+elif [ x"$1" = x"q" ] ; then
+  opt=q
+else
+  echo "$1: unknow option"
+  exit 1
+fi
+
+shift
+message="$*"
+
+if [ ! -f $macro ] ; then
+  exec python "$mydir/xmplay.py" m  "$message"
+else
+  exec python $macro $opt
+fi
+

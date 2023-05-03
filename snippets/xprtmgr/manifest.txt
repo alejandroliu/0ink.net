@@ -12,7 +12,7 @@ icons8-print-48.png /usr/local/lib/xprtmgr/icons8-print-48.png
 icons8-print_mgr-48.png /usr/local/lib/xprtmgr/icons8-print_mgr-48.png
 icons8-x-48.png /usr/local/lib/xprtmgr/icons8-x-48.png
 xprtmgr.py /usr/local/lib/xprtmgr/xprtmgr.py
-tkinter-tooltip-2.1.0/tktooltip/tooltip.py /usr/local/lib/xprtmgr/tooltip.py
+tooltip.py /usr/local/lib/xprtmgr/tooltip.py
 
 icons8-print_mgr-48.png /usr/share/pixmaps/xprtmgr.png
 xprtmgr.desktop /usr/share/applications/xprtmgr.desktop

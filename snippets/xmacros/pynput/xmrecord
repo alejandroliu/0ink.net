@@ -1,0 +1,9 @@
+#!/bin/sh
+pynput=pynput-1.7.6/lib
+mydir=$(dirname $(readlink -f "$0"))
+export PYTHONPATH="$PYTHONPATH:$mydir/$pynput:$mydir"
+
+exec python "$mydir/xmrec.py" "$@"
+hello
+one
+

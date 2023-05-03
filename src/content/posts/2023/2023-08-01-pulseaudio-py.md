@@ -1,5 +1,6 @@
 ---
 title: Pulse Audio control in python
+date: "2023-04-21"
 tags: desktop
 ---
 I have been using a [shell script][old] to toggle pulse audio sinks for some time.  It worked well enough for
@@ -14,20 +15,15 @@ the toggling script in `python`.  The new script is [here][new].
 This script depends of two packages:
 
 - [pulsectl][pypulse] : used to control pulse audio
-- [notify2][pynotify] : used to send desktop notifications
+- [tkinter][tkinter] : used to show info on screen
 
-It can be used to control volume and switch audio output.
+It can be used to control volume and switch audio output.  
 
-
-TODO: make it a GUI app
-
-- void: python3-xcffib
-- pip: system_hotkey
 
   [old]: https://github.com/alejandroliu/0ink.net/blob/master/snippets/pa-hints/patoggle
   [new]: https://github.com/alejandroliu/0ink.net/blob/master/snippets/pa-hints/patoggle.py
   [pypulse]: https://pypi.org/project/pulsectl/
-  [pynotify]: https://pypi.org/project/notify2/
-  [syshotkey]: https://pypi.org/project/system_hotkey/
+  [tkinter]: https://docs.python.org/3/library/tkinter.html
+
 
 

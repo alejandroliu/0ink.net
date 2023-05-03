@@ -1,0 +1,1 @@
+../../src/content/posts/2023/2023-07-15-global-hk.md
