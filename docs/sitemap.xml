@@ -562,6 +562,12 @@
   <loc>https://0ink.net/posts/2021/2021-12-26-pelican_tests.html</loc>
  </url>
  <url>
+  <loc>https://0ink.net/posts/2022/2019-02-28-encrypting-fs-in-void.html</loc>
+ </url>
+ <url>
+  <loc>https://0ink.net/posts/2022/2021-02-28-hotplug-hdmi.html</loc>
+ </url>
+ <url>
   <loc>https://0ink.net/posts/2022/2022-01-04-graphviz.html</loc>
  </url>
  <url>
@@ -662,5 +668,8 @@
  </url>
  <url>
   <loc>https://0ink.net/posts/2023/2023-04-15-nacowiki.html</loc>
+ </url>
+ <url>
+  <loc>https://0ink.net/posts/2023/2023-05-01-gui-programming.html</loc>
  </url>
 </urlset>

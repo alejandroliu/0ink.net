@@ -1,6 +1,5 @@
 ---
 title: Local Startup
-date: "2023-04-25"
 tags: application, config, configuration, desktop, directory, editor, linux
 ---
 This is a method to control start-up of applications in a Linux Desktop session

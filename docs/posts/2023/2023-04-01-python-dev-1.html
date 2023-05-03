@@ -6,11 +6,11 @@
 	<meta name="author" content="Alejandro Liu">
 
 
-	<meta name="description" content="Table of Contents Python development on Windows Distributing Python scripts as single EXE or Directory Installing netifaces on Windows Documentation generation Using sphinx for documentation Example docstring Python development on Windows For windows, you can use WinPython. I prefer to use this instead of the official distribution because: It is …">
+	<meta name="description" content="Table of Contents Python development on Windows Distributing Python scripts as single EXE or Directory Installing netifaces on Windows Documentation generation Using sphinx for documentation Example docstring Passing Reserved Keywords as Keyword arguments Python development on Windows For windows, you can use WinPython. I prefer to use this instead of …">
 	<meta name="int-title" content="Python Development 2023">
 	<meta name="tags" content="directory, python, scripts, windows">
-	<meta name="date" content="2023-04-01 00:00:00+02:00">
-	<meta name="modified" content="2023-04-03 13:36:11+02:00">
+	<meta name="date" content="2023-04-03 00:00:00+02:00">
+	<meta name="modified" content="2023-04-25 12:58:58+02:00">
 
 
 	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
@@ -56,11 +56,11 @@
 		<h1>Python Development 2023</h1>
 
 <div class="metadata">
-  <time datetime="2023-04-01T00:00:00+02:00" pubdate>Sat 01 April 2023</time>
+  <time datetime="2023-04-03T00:00:00+02:00" pubdate>Mon 03 April 2023</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2023-04-03 13:36:11+02:00</p>
+  <p>Updated: 2023-04-25 12:58:58+02:00</p>
   in <a href="/category/c2023.html">2023</a>
 <p class="tags">tagged <a href="/tag/directory.html">directory</a>, <a href="/tag/python.html">python</a>, <a href="/tag/scripts.html">scripts</a>, <a href="/tag/windows.html">windows</a></p></div>
 		<div class="toc"><span class="toctitle">Table of Contents</span><ul>
@@ -74,6 +74,7 @@
 </li>
 </ul>
 </li>
+<li><a href="#passing-reserved-keywords-as-keyword-arguments">Passing Reserved Keywords as Keyword arguments</a></li>
 </ul>
 </div>
 <hr>
@@ -175,12 +176,12 @@ error message.</p>
 <li>Re-boot (I don't know if it is required, but I did it just in case)</li>
 </ol>
 <p>Now <code>netifaces</code> can get installed:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">C</span>:\<span class="nv">RH</span><span class="o">&gt;</span><span class="nv">pip</span><span class="w"> </span><span class="nv">install</span><span class="w"> </span><span class="nv">netifaces</span>
-<span class="nv">Collecting</span><span class="w"> </span><span class="nv">netifaces</span>
-<span class="w">  </span><span class="nv">Using</span><span class="w"> </span><span class="nv">cached</span><span class="w"> </span><span class="nv">https</span>:<span class="o">//</span><span class="nv">files</span>.<span class="nv">pythonhosted</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">packages</span><span class="o">/</span><span class="mi">81</span><span class="o">/</span><span class="mi">39</span><span class="o">/</span><span class="mi">4</span><span class="nv">e9a026265ba944ddf1fea176dbb29e0fe50c43717ba4fcf3646d099fe38</span><span class="o">/</span><span class="nv">netifaces</span><span class="o">-</span><span class="mi">0</span>.<span class="mi">10</span>.<span class="mi">7</span>.<span class="nv">tar</span>.<span class="nv">gz</span>
-<span class="nv">Installing</span><span class="w"> </span><span class="nv">collected</span><span class="w"> </span><span class="nv">packages</span>:<span class="w"> </span><span class="nv">netifaces</span>
-<span class="w">  </span><span class="nv">Running</span><span class="w"> </span><span class="nv">setup</span>.<span class="nv">py</span><span class="w"> </span><span class="nv">install</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">netifaces</span><span class="w"> </span>...<span class="w"> </span><span class="nv">done</span>
-<span class="nv">Successfully</span><span class="w"> </span><span class="nv">installed</span><span class="w"> </span><span class="nv">netifaces</span><span class="o">-</span><span class="mi">0</span>.<span class="mi">10</span>.<span class="mi">7</span>
+<div class="highlight"><pre><span></span><code><span class="nx">C</span><span class="p">:</span><span class="err">\</span><span class="nx">RH</span><span class="p">&gt;</span><span class="nx">pip</span><span class="w"> </span><span class="nx">install</span><span class="w"> </span><span class="nx">netifaces</span>
+<span class="nx">Collecting</span><span class="w"> </span><span class="nx">netifaces</span>
+<span class="w">  </span><span class="nx">Using</span><span class="w"> </span><span class="nx">cached</span><span class="w"> </span><span class="nx">https</span><span class="p">:</span><span class="c1">//files.pythonhosted.org/packages/81/39/4e9a026265ba944ddf1fea176dbb29e0fe50c43717ba4fcf3646d099fe38/netifaces-0.10.7.tar.gz</span>
+<span class="nx">Installing</span><span class="w"> </span><span class="nx">collected</span><span class="w"> </span><span class="nx">packages</span><span class="p">:</span><span class="w"> </span><span class="nx">netifaces</span>
+<span class="w">  </span><span class="nx">Running</span><span class="w"> </span><span class="nx">setup</span><span class="p">.</span><span class="nx">py</span><span class="w"> </span><span class="nx">install</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">netifaces</span><span class="w"> </span><span class="o">...</span><span class="w"> </span><span class="nx">done</span>
+<span class="nx">Successfully</span><span class="w"> </span><span class="nx">installed</span><span class="w"> </span><span class="nx">netifaces</span><span class="o">-</span><span class="m m-Double">0.10.7</span>
 </code></pre></div>
 
 <hr>
@@ -272,6 +273,27 @@ declaration:</p>
 </code></pre></div>
 
 <p>No Need to make it too complicated.</p>
+<h2 id="passing-reserved-keywords-as-keyword-arguments">Passing Reserved Keywords as Keyword arguments</h2>
+<p>Very often when using <em>wrapped</em> APIs, that used functions with
+Keyword arguments that you would need to pass reserved
+keywords (such as <code>class</code>, or <code>import</code>) as function keywords.</p>
+<p>Of course, this is <strong>NOT</strong> allowed in python.  And you will get an error
+like:</p>
+<div class="highlight"><pre><span></span><code><span class="n">SyntaxError</span><span class="o">:</span><span class="w"> </span><span class="n">Invalid</span><span class="w"> </span><span class="n">syntax</span>
+</code></pre></div>
+
+<p>To work around that, you need to place those keywords in a dictionary
+and use <code>**</code> notation.  So instead of:</p>
+<div class="highlight"><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">SendSMS</span><span class="p">(</span> <span class="n">toNum</span> <span class="o">=</span> <span class="s1">&#39;0666666666666&#39;</span><span class="p">,</span>
+                <span class="k">pass</span> <span class="o">=</span> <span class="s1">&#39;123456&#39;</span><span class="p">}</span>
+           <span class="p">)</span>
+</code></pre></div>
+
+<p>you would:</p>
+<div class="highlight"><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">SendSMS</span><span class="p">(</span> <span class="n">toNum</span> <span class="o">=</span> <span class="s1">&#39;0666666666666&#39;</span><span class="p">,</span>
+                <span class="o">**</span><span class="p">{</span><span class="s1">&#39;pass&#39;</span><span class="p">:</span> <span class="s1">&#39;123456&#39;</span><span class="p">}</span>
+           <span class="p">)</span>
+</code></pre></div>
 
 	</article>
 

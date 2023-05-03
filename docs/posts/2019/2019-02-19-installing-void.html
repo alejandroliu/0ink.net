@@ -8,9 +8,9 @@
 
 	<meta name="description" content="I made the switch to void linux. Except for compatibility issues around glibc, it works quite well. Most compatibility I have worked around with a combination of Flatpaks, chroots and namespaces. The high lights of void linux: musl build - which is very lightweigth Does not depend on systemd …">
 	<meta name="int-title" content="Installing Void Linux">
-	<meta name="tags" content="backups, boot, configuration, desktop, device, directory, drive, filesystem, installation, linux, login, manager, network, partition, password, power, scripts, security, software, sudo, windows">
+	<meta name="tags" content="backups, boot, configuration, desktop, device, directory, drive, filesystem, information, installation, linux, login, manager, network, partition, password, power, scripts, security, software, sudo, windows">
 	<meta name="date" content="2019-02-19 00:00:00+01:00">
-	<meta name="modified" content="2023-04-15 21:58:42.248530+02:00">
+	<meta name="modified" content="2023-04-25 12:58:58+02:00">
 
 
 	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
@@ -60,9 +60,9 @@
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2023-04-15 21:58:42.248530+02:00</p>
+  <p>Updated: 2023-04-25 12:58:58+02:00</p>
   in <a href="/category/c2019.html">2019</a>
-<p class="tags">tagged <a href="/tag/backups.html">backups</a>, <a href="/tag/boot.html">boot</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/desktop.html">desktop</a>, <a href="/tag/device.html">device</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/drive.html">drive</a>, <a href="/tag/filesystem.html">filesystem</a>, <a href="/tag/installation.html">installation</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/login.html">login</a>, <a href="/tag/manager.html">manager</a>, <a href="/tag/network.html">network</a>, <a href="/tag/partition.html">partition</a>, <a href="/tag/password.html">password</a>, <a href="/tag/power.html">power</a>, <a href="/tag/scripts.html">scripts</a>, <a href="/tag/security.html">security</a>, <a href="/tag/software.html">software</a>, <a href="/tag/sudo.html">sudo</a>, <a href="/tag/windows.html">windows</a></p></div>
+<p class="tags">tagged <a href="/tag/backups.html">backups</a>, <a href="/tag/boot.html">boot</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/desktop.html">desktop</a>, <a href="/tag/device.html">device</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/drive.html">drive</a>, <a href="/tag/filesystem.html">filesystem</a>, <a href="/tag/information.html">information</a>, <a href="/tag/installation.html">installation</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/login.html">login</a>, <a href="/tag/manager.html">manager</a>, <a href="/tag/network.html">network</a>, <a href="/tag/partition.html">partition</a>, <a href="/tag/password.html">password</a>, <a href="/tag/power.html">power</a>, <a href="/tag/scripts.html">scripts</a>, <a href="/tag/security.html">security</a>, <a href="/tag/software.html">software</a>, <a href="/tag/sudo.html">sudo</a>, <a href="/tag/windows.html">windows</a></p></div>
 		<p>I made the switch to <a href="https://voidlinux.org" title="Void Linux">void linux</a>.  Except for compatibility
 issues around <code>glibc</code>, it works quite well.  Most compatibility
 I have worked around with a combination of <code>Flatpak</code>s, <code>chroot</code>s and
@@ -412,7 +412,7 @@ configured in <code>/etc/X11/xdm/xdm-config</code>.</p>
 DisplayManager*session:     /etc/X11/Xsession
 </code></pre></div>
 
-<p>And have a custom <a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/xdm/Xsession">Xsession</a> script in
+<p>And have a custom <a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/Xsession">Xsession</a> script in
 <code>/etc/X11/Xsession</code>.</p>
 <p>Particularly important is the fact that the default Xsession
 script is not able to start a <code>mate</code> or <code>xfce4</code> sessions
@@ -447,7 +447,7 @@ start your session from the Linux console and use <code>startx</code> and
 <p>Alternatively, you can add a file in <code>/etc/profile.d</code> to start X
 at login if on tty1.</p>
 <ul>
-<li><a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/noxdm/session">session</a></li>
+<li><a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/Xsession">session</a></li>
 <li><a href="https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/noxdm/zzdm.sh">zzdm.sh</a></li>
 </ul>
 <p>I am using the <code>session</code> script, which is a modified version of
@@ -465,9 +465,20 @@ info.</p>
 </code></pre></div>
 
 <h4 id="power-button-handling">power button handling</h4>
-<p>This patch prevents the /etc/acpi/handler.sh to handle the power button
+<p>This patch prevents the <code>/etc/acpi/handler.sh</code> to handle the power button
 instead, letting the Desktop Environment handle the event.</p>
-<p>It does it by checking if the Desktop Environment power manager
+<p>It does it by checking if a X session is running.  In the
+<code>/etc/rc.local</code> script, we create a file called
+<code>/run/xsession.pid</code> which is made writeable by all.
+The system is configured so that <code>xdm</code> or <code>/etc/profile/zzdm.sh</code>
+(when login as normal user on <code>tty1</code>) will start an X session
+and will use the scripts <code>/etc/X11/xinit/session</code> or
+<code>/etc/X11/xdm/Xsession</code> to start the session.
+From these scripts, the current X session information is saved
+to <code>/run/xsession.pid</code>.</p>
+<p>When <code>/etc/acpi/handler.sh</code> starts, it will check
+<code>/run/session.pid</code> if it contains a running session.  It will
+also check if a  Desktop Environment power manager
 (in this case <code>mate-power-manager</code>) is running.  If it is, then
 it will exit.</p>
 <script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/void-installation/acpi-handler.patch"></script>

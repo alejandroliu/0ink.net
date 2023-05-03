@@ -166,11 +166,11 @@ Network 1  |     |                         |     |   Network 2
 </code></pre></div>
 
 <p>To bring up bridge between LAN ethernet interface and our newly created tunnel interface we need to create bridge interface. To complete this task we will add br0 interface description to /etc/network/interfaces file:</p>
-<div class="highlight"><pre><span></span><code>auto br0
-iface br0 inet static
-    address 192.168.1.199
-    netmask 255.255.255.0
-    bridge_ports eth0
+<div class="highlight"><pre><span></span><code><span class="kt">auto</span><span class="w"> </span><span class="nx">br0</span>
+<span class="nx">iface</span><span class="w"> </span><span class="nx">br0</span><span class="w"> </span><span class="nx">inet</span><span class="w"> </span><span class="nx">static</span>
+<span class="w">    </span><span class="nx">address</span><span class="w"> </span><span class="m m-Double">192.168.1.1</span><span class="mi">99</span>
+<span class="w">    </span><span class="nx">netmask</span><span class="w"> </span><span class="m m-Double">255.255.255.0</span>
+<span class="w">    </span><span class="nx">bridge_ports</span><span class="w"> </span><span class="nx">eth0</span>
 </code></pre></div>
 
 <p><em>Notice: IP-addresses on both sides of our bridge must be unique in both networks. eth0 is LAN interface.</em> Now, we need to bring this interface up:</p>
@@ -178,24 +178,24 @@ iface br0 inet static
 </code></pre></div>
 
 <p>When br0 interface will be created, we will be able to start vtun. # /etc/init.d/vtund restart If everything was done correctly, we will see following results on both sersers (br0 and tap0 interfaces):</p>
-<div class="highlight"><pre><span></span><code># ifconfig tap0
-tap0  Link encap:Ethernet  HWaddr 00:FF:B2:91:CA:DE
-      UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-      RX packets:701818 errors:0 dropped:0 overruns:0 frame:0
-      TX packets:405939 errors:0 dropped:0 overruns:0 carrier:0
-      collisions:0 txqueuelen:1000
-      RX bytes:975889241 (930.6 MiB)  TX bytes:44704104 (42.6 MiB)
+<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="nx">ifconfig</span><span class="w"> </span><span class="nx">tap0</span>
+<span class="nx">tap0</span><span class="w">  </span><span class="nx">Link</span><span class="w"> </span><span class="nx">encap</span><span class="p">:</span><span class="nx">Ethernet</span><span class="w">  </span><span class="nx">HWaddr</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="nx">FF</span><span class="p">:</span><span class="nx">B2</span><span class="p">:</span><span class="mi">91</span><span class="p">:</span><span class="nx">CA</span><span class="p">:</span><span class="nx">DE</span>
+<span class="w">      </span><span class="nx">UP</span><span class="w"> </span><span class="nx">BROADCAST</span><span class="w"> </span><span class="nx">RUNNING</span><span class="w"> </span><span class="nx">MULTICAST</span><span class="w">  </span><span class="nx">MTU</span><span class="p">:</span><span class="mi">1500</span><span class="w">  </span><span class="nx">Metric</span><span class="p">:</span><span class="mi">1</span>
+<span class="w">      </span><span class="nx">RX</span><span class="w"> </span><span class="nx">packets</span><span class="p">:</span><span class="mi">701818</span><span class="w"> </span><span class="nx">errors</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">dropped</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">overruns</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">frame</span><span class="p">:</span><span class="mi">0</span>
+<span class="w">      </span><span class="nx">TX</span><span class="w"> </span><span class="nx">packets</span><span class="p">:</span><span class="mi">405939</span><span class="w"> </span><span class="nx">errors</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">dropped</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">overruns</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">carrier</span><span class="p">:</span><span class="mi">0</span>
+<span class="w">      </span><span class="nx">collisions</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">txqueuelen</span><span class="p">:</span><span class="mi">1000</span>
+<span class="w">      </span><span class="nx">RX</span><span class="w"> </span><span class="nx">bytes</span><span class="p">:</span><span class="mi">975889241</span><span class="w"> </span><span class="p">(</span><span class="m m-Double">930.6</span><span class="w"> </span><span class="nx">MiB</span><span class="p">)</span><span class="w">  </span><span class="nx">TX</span><span class="w"> </span><span class="nx">bytes</span><span class="p">:</span><span class="mi">44704104</span><span class="w"> </span><span class="p">(</span><span class="m m-Double">42.6</span><span class="w"> </span><span class="nx">MiB</span><span class="p">)</span>
 
-# ifconfig br0
-br0   Link encap:Ethernet  HWaddr 00:02:44:2A:03:30
-      inet addr:192.168.1.199  Bcast:192.168.1.255  Mask:255.255.255.0
-      UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-      RX packets:2660 errors:0 dropped:0 overruns:0 frame:0
-      TX packets:42 errors:0 dropped:0 overruns:0 carrier:0
-      collisions:0 txqueuelen:0
-      RX bytes:239368 (233.7 KiB)  TX bytes:2338 (2.2 KiB)
+<span class="err">#</span><span class="w"> </span><span class="nx">ifconfig</span><span class="w"> </span><span class="nx">br0</span>
+<span class="nx">br0</span><span class="w">   </span><span class="nx">Link</span><span class="w"> </span><span class="nx">encap</span><span class="p">:</span><span class="nx">Ethernet</span><span class="w">  </span><span class="nx">HWaddr</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mi">2</span><span class="nx">A</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">30</span>
+<span class="w">      </span><span class="nx">inet</span><span class="w"> </span><span class="kd">addr</span><span class="p">:</span><span class="m m-Double">192.168.1.1</span><span class="mi">99</span><span class="w">  </span><span class="nx">Bcast</span><span class="p">:</span><span class="m m-Double">192.168.1.2</span><span class="mi">55</span><span class="w">  </span><span class="nx">Mask</span><span class="p">:</span><span class="m m-Double">255.255.255.0</span>
+<span class="w">      </span><span class="nx">UP</span><span class="w"> </span><span class="nx">BROADCAST</span><span class="w"> </span><span class="nx">RUNNING</span><span class="w"> </span><span class="nx">MULTICAST</span><span class="w">  </span><span class="nx">MTU</span><span class="p">:</span><span class="mi">1500</span><span class="w">  </span><span class="nx">Metric</span><span class="p">:</span><span class="mi">1</span>
+<span class="w">      </span><span class="nx">RX</span><span class="w"> </span><span class="nx">packets</span><span class="p">:</span><span class="mi">2660</span><span class="w"> </span><span class="nx">errors</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">dropped</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">overruns</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">frame</span><span class="p">:</span><span class="mi">0</span>
+<span class="w">      </span><span class="nx">TX</span><span class="w"> </span><span class="nx">packets</span><span class="p">:</span><span class="mi">42</span><span class="w"> </span><span class="nx">errors</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">dropped</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">overruns</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">carrier</span><span class="p">:</span><span class="mi">0</span>
+<span class="w">      </span><span class="nx">collisions</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">txqueuelen</span><span class="p">:</span><span class="mi">0</span>
+<span class="w">      </span><span class="nx">RX</span><span class="w"> </span><span class="nx">bytes</span><span class="p">:</span><span class="mi">239368</span><span class="w"> </span><span class="p">(</span><span class="m m-Double">233.7</span><span class="w"> </span><span class="nx">KiB</span><span class="p">)</span><span class="w">  </span><span class="nx">TX</span><span class="w"> </span><span class="nx">bytes</span><span class="p">:</span><span class="mi">2338</span><span class="w"> </span><span class="p">(</span><span class="m m-Double">2.2</span><span class="w"> </span><span class="nx">KiB</span><span class="p">)</span>
 
-#
+<span class="err">#</span>
 </code></pre></div>
 
 <p>If we need to see current state of bridge interface, we can use brctl tool:</p>

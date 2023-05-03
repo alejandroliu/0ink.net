@@ -1,0 +1,782 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>rsync filter rules - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="Table of Contents Rules Simple include/exclude rules Simple include/exclude example Filter rules when deleting Filter rules in depth Pattern matching rules Filter rule modifiers Merge-file filter rules List-clearing filter rule Anchoring include/exclude patterns Per-directory rules and delete The basic options for filtering files in rsync are: --exclude …">
+	<meta name="int-title" content="rsync filter rules">
+	<meta name="tags" content="device, directory, information, remote">
+	<meta name="date" content="2023-06-15 00:00:00+02:00">
+	<meta name="modified" content="2023-04-25 12:58:58+02:00">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+    <link href="/feeds/atom.xml" type="application/atom+xml" rel="alternate" title="0ink.net Atom Feed" />
+    <link href="/feeds/rss.xml" type="application/rss+xml" rel="alternate" title="0ink.net RSS Feed" />
+</head>
+
+<body>
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	        <a href="/feeds/atom.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="atom feed" title="atom feed"/></a>
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>rsync filter rules</h1>
+
+<div class="metadata">
+  <time datetime="2023-06-15T00:00:00+02:00" pubdate>Thu 15 June 2023</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2023-04-25 12:58:58+02:00</p>
+  in <a href="/category/c2023.html">2023</a>
+<p class="tags">tagged <a href="/tag/device.html">device</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/information.html">information</a>, <a href="/tag/remote.html">remote</a></p></div>
+		<div class="toc"><span class="toctitle">Table of Contents</span><ul>
+<li><a href="#rules">Rules</a></li>
+<li><a href="#simple-includeexclude-rules">Simple include/exclude rules</a></li>
+<li><a href="#simple-includeexclude-example">Simple include/exclude example</a></li>
+<li><a href="#filter-rules-when-deleting">Filter rules when deleting</a></li>
+<li><a href="#filter-rules-in-depth">Filter rules in depth</a></li>
+<li><a href="#pattern-matching-rules">Pattern matching rules</a></li>
+<li><a href="#filter-rule-modifiers">Filter rule modifiers</a></li>
+<li><a href="#merge-file-filter-rules">Merge-file filter rules</a></li>
+<li><a href="#list-clearing-filter-rule">List-clearing filter rule</a></li>
+<li><a href="#anchoring-includeexclude-patterns">Anchoring include/exclude patterns</a></li>
+<li><a href="#per-directory-rules-and-delete">Per-directory rules and delete</a></li>
+</ul>
+</div>
+<p>The basic options for filtering files in rsync are:</p>
+<ul>
+<li><code>--exclude=PATTERN</code> \
+  This option pecifies an exclude rule.</li>
+<li><code>--exclude-from=FILE</code>
+  This option is related to the <code>--exclude</code> option, but it
+  specifies a <em>FILE</em> that contains exclude patterns (one per
+  line).  Blank lines in the file are ignored, as are whole-
+  line comments that start with ';' or '#' (filename rules
+  that contain those characters are unaffected). \
+  If a line consists of just "!", then the current filter
+  rules are cleared before adding any further rules. \
+  If FILE is '-', the list will be read from standard input.</li>
+<li><code>--include=PATTERN</code> \
+  This option specifies an include rule.</li>
+<li><code>--include-from=FILE</code>
+  This option is related to the <code>--include</code> option, but it
+  specifies a <em>FILE</em> that contains include patterns (one per
+  line).  Blank lines in the file are ignored, as are whole-
+  line comments that start with ';' or '#' (filename rules
+  that contain those characters are unaffected).\
+  If a line consists of just "!", then the current filter
+  rules are cleared before adding any further rules.\
+  If FILE is '-', the list will be read from standard input.</li>
+<li><code>--cvs-exclude</code>, <code>-C</code>\
+  This is a useful shorthand for excluding a broad range of
+  files that you often don't want to transfer between
+  systems.  It uses a similar algorithm to CVS to determine
+  if a file should be ignored.\
+  The exclude list is initialized to exclude the following
+  items (these initial items are marked as perishable:
+  <code>RCS SCCS CVS CVS.adm RCSLOG cvslog.*  tags TAGS
+  .make.state .nse_depinfo *~ #* .#* ,* _$* *$ *.old
+  *.bak *.BAK *.orig *.rej .del-* *.a *.olb *.o *.obj
+  *.so *.exe *.Z *.elc *.ln core .svn/ .git/ .hg/ .bzr/</code>
+  then, files listed in a <code>$HOME/.cvsignore</code> are added to the
+  list and any files listed in the <code>CVSIGNORE</code> environment
+  variable (all cvsignore names are delimited by
+  whitespace).\
+  Finally, any file is ignored if it is in the same
+  directory as a <code>.cvsignore</code> file and matches one of the
+  patterns listed therein.  Unlike rsync's filter/exclude
+  files, these patterns are split on whitespace.\
+  If you're combining <code>-C</code> with your own <code>--filter</code> rules, you
+  should note that these CVS excludes are appended at the
+  end of your own rules, regardless of where the <code>-C</code> was
+  placed on the command-line.  This makes them a lower
+  priority than any rules you specified explicitly.  If you
+  want to control where these CVS excludes get inserted into
+  your filter rules, you should omit the <code>-C</code> as a command-
+  line option and use a combination of <code>--filter=:C</code> and
+  <code>--filter=-C</code> (either on your command-line or by putting the
+  <code>":C"</code> and <code>"-C"</code> rules into a filter file with your other
+  rules).  The first option turns on the per-directory
+  scanning for the <code>.cvsignore</code> file.  The second option does
+  a one-time import of the CVS excludes mentioned above.</li>
+</ul>
+<p>Rsync supports old-style include/exclude rules and new-style
+filter rules.  The older rules are specified using <code>--include</code> and
+<code>--exclude</code> as well as the <code>--include-from</code> and <code>--exclude-from</code>. These
+are limited in behavior but they don't require a <code>"-"</code> or <code>"+"</code>
+prefix.  An old-style exclude rule is turned into a <code>"- name"</code>
+filter rule (with no modifiers) and an old-style include rule is
+turned into a <code>"+ name"</code> filter rule (with no modifiers).</p>
+<p>For more control on included/excluded files you should use
+these options:</p>
+<ul>
+<li><code>--filter=RULE</code>, <code>-f</code> \
+  This option allows you to add rules to selectively exclude
+  certain files from the list of files to be transferred.
+  This is most useful in combination with a recursive
+  transfer.\
+  You may use as many <code>--filter</code> options on the command line
+  as you like to build up the list of files to exclude.  If
+  the filter contains whitespace, be sure to quote it so
+  that the shell gives the rule to rsync as a single
+  argument.  The text below also mentions that you can use
+  an underscore to replace the space that separates a rule
+  from its arg.</li>
+<li><code>-F</code> \
+  The <code>-F</code> option is a shorthand for adding two <code>--filter</code> rules
+  to your command.  The first time it is used is a shorthand
+  for this rule:
+  <code>--filter='dir-merge /.rsync-filter'</code>
+  This tells rsync to look for per-directory <code>.rsync-filter</code>
+  files that have been sprinkled through the hierarchy and
+  use their rules to filter the files in the transfer.  If
+  <code>-F</code> is repeated, it is a shorthand for this rule:
+  <code>--filter='exclude .rsync-filter'</code>
+  This filters out the <code>.rsync-filter</code> files themselves from
+  the transfer.</li>
+</ul>
+<h2 id="rules">Rules</h2>
+<p>The filter rules allow for custom control of several aspects of
+how files are handled:</p>
+<ul>
+<li>Control which files the sending side puts into the file
+  list that describes the transfer hierarchy</li>
+<li>Control which files the receiving side protects from
+  deletion when the file is not in the sender's file list</li>
+<li>Control which extended attribute names are skipped when
+  copying xattrs</li>
+</ul>
+<p>The rules are either directly specified via option arguments or
+they can be read in from one or more files.  The filter-rule
+files can even be a part of the hierarchy of files being copied,
+affecting different parts of the tree in different ways.</p>
+<h2 id="simple-includeexclude-rules">Simple include/exclude rules</h2>
+<p>We will first cover the basics of how include &amp; exclude rules
+affect what files are transferred, ignoring any deletion side-
+effects.  Filter rules mainly affect the contents of directories
+that rsync is "recursing" into, but they can also affect a top-level
+item in the transfer that was specified as a argument.</p>
+<p>The default for any unmatched file/dir is for it to be included
+in the transfer, which puts the file/dir into the sender's file
+list.  The use of an exclude rule causes one or more matching
+files/dirs to be left out of the sender's file list.  An include
+rule can be used to limit the effect of an exclude rule that is
+matching too many files.</p>
+<p>The order of the rules is important because the first rule that
+matches is the one that takes effect.  Thus, if an early rule
+excludes a file, no include rule that comes after it can have any
+effect. This means that you must place any include overrides
+somewhere prior to the exclude that it is intended to limit.</p>
+<p>When a directory is excluded, all its contents and sub-contents
+are also excluded.  The sender doesn't scan through any of it at
+all, which can save a lot of time when skipping large unneeded
+sub-trees.</p>
+<p>It is also important to understand that the include/exclude rules
+are applied to every file and directory that the sender is
+recursing into. Thus, if you want a particular deep file to be
+included, you have to make sure that none of the directories that
+must be traversed on the way down to that file are excluded or
+else the file will never be discovered to be included. As an
+example, if the directory "a/path" was given as a transfer
+argument and you want to ensure that the file
+"a/path/down/deep/wanted.txt" is a part of the transfer, then the
+sender must not exclude the directories "a/path", "a/path/down",
+or "a/path/down/deep" as it makes it way scanning through the
+file tree.</p>
+<p>When you are working on the rules, it can be helpful to ask rsync
+to tell you what is being excluded/included and why.  Specifying
+<code>--debug=FILTER</code> or (when pulling files) <code>-M--debug=FILTER</code> turns on
+level 1 of the <code>FILTER</code> debug information that will output a
+message any time that a file or directory is included or excluded
+and which rule it matched.  Beginning in 3.2.4 it will also warn
+if a filter rule has trailing whitespace, since an exclude of
+"foo " (with a trailing space) will not exclude a file named
+"foo".</p>
+<p>Exclude and include rules can specify wildcard <strong>PATTERN MATCHING RULES</strong>
+(similar to shell wildcards) that allow you to match things
+like a file suffix or a portion of a filename.</p>
+<p>A rule can be limited to only affecting a directory by putting a
+trailing slash onto the filename.</p>
+<h2 id="simple-includeexclude-example">Simple include/exclude example</h2>
+<p>With the following file tree created on the sending side:</p>
+<div class="highlight"><pre><span></span><code>mkdir x/
+touch x/file.txt
+mkdir x/y/
+touch x/y/file.txt
+touch x/y/zzz.txt
+mkdir x/z/
+touch x/z/file.txt
+</code></pre></div>
+
+<p>Then the following rsync command will transfer the file
+<code>"x/y/file.txt"</code> and the directories needed to hold it, resulting
+in the path <code>"/tmp/x/y/file.txt"</code> existing on the remote host:</p>
+<div class="highlight"><pre><span></span><code>rsync -ai -f&#39;+ x/&#39; -f&#39;+ x/y/&#39; -f&#39;+ x/y/file.txt&#39; -f&#39;- *&#39; x host:/tmp/
+</code></pre></div>
+
+<p>Aside: this copy could also have been accomplished using the <code>-R</code>
+option (though the two commands behave differently if deletions are
+enabled):</p>
+<div class="highlight"><pre><span></span><code>rsync -aiR x/y/file.txt host:/tmp/
+</code></pre></div>
+
+<p>The following command does not need an include of the <code>"x"</code>
+directory because it is not a part of the transfer (note the
+traililng slash).  Running this command would copy just
+<code>"/tmp/x/file.txt"</code> because the <code>"y"</code> and <code>"z"</code> dirs get excluded:</p>
+<div class="highlight"><pre><span></span><code>rsync -ai -f&#39;+ file.txt&#39; -f&#39;- *&#39; x/ host:/tmp/x/
+</code></pre></div>
+
+<p>This command would omit the <code>zzz.txt</code> file while copying <code>"x"</code> and
+everything else it contains:</p>
+<div class="highlight"><pre><span></span><code>rsync -ai -f&#39;- zzz.txt&#39; x host:/tmp/
+</code></pre></div>
+
+<h2 id="filter-rules-when-deleting">Filter rules when deleting</h2>
+<p>By default the include &amp; exclude filter rules affect both the
+sender (as it creates its file list) and the receiver (as it
+creates its file lists for calculating deletions).  If no delete
+option is in effect, the receiver skips creating the delete-
+related file lists.  This two-sided default can be manually
+overridden so that you are only specifying sender rules or
+receiver rules, as described in the
+<strong>FILTER RULES IN DEPTH</strong>
+section.</p>
+<p>When deleting, an exclude protects a file from being removed on
+the receiving side while an include overrides that protection
+(putting the file at risk of deletion). The default is for a file
+to be at risk -- its safety depends on it matching a
+corresponding file from the sender.</p>
+<p>An example of the two-sided exclude effect can be illustrated by
+the copying of a C development directory between two systems.  When
+doing a touch-up copy, you might want to skip copying the built
+executable and the .o files (sender hide) so that the receiving
+side can build their own and not lose any object files that are
+already correct (receiver protect).  For instance:</p>
+<div class="highlight"><pre><span></span><code>rsync -ai --del -f&#39;- *.o&#39; -f&#39;- cmd&#39; src host:/dest/
+</code></pre></div>
+
+<p>Note that using <code>-f'-p *.o'</code> is even better than <code>-f'- *.o'</code> if there
+is a chance that the directory structure may have changed.  The
+<code>"p"</code> modifier is discussed in <strong>FILTER RULE MODIFIERS</strong>.</p>
+<p>One final note, if your shell doesn't mind unexpanded wildcards,
+you could simplify the typing of the filter options by using an
+underscore in place of the space and leaving off the quotes.  For
+instance, <code>-f -_*.o -f -_cmd</code> (and similar) could be used instead
+of the filter options above.</p>
+<h2 id="filter-rules-in-depth">Filter rules in depth</h2>
+<p>Rsync builds an ordered list of filter rules as specified on the
+command-line and/or read-in from files.  New style filter rules
+have the following syntax:</p>
+<div class="highlight"><pre><span></span><code><span class="k">RULE</span><span class="w"> </span><span class="o">[</span><span class="n">PATTERN_OR_FILENAME</span><span class="o">]</span>
+<span class="k">RULE</span><span class="p">,</span><span class="n">MODIFIERS</span><span class="w"> </span><span class="o">[</span><span class="n">PATTERN_OR_FILENAME</span><span class="o">]</span>
+</code></pre></div>
+
+<p>You have your choice of using either short or long <em>RULE</em> names, as
+described below.  If you use a short-named rule, the <code>','</code>
+separating the <em>RULE</em> from the <em>MODIFIERS</em> is optional.  The <em>PATTERN</em>
+or <em>FILENAME</em> that follows (when present) must come after either a
+single space or an underscore (_). Any additional spaces and/or
+underscores are considered to be a part of the pattern name.
+Here are the available rule prefixes:</p>
+<ul>
+<li><code>exclude, '-'</code> \
+  specifies an exclude pattern that (by default) is both a
+  hide and a protect.</li>
+<li><code>include, '+'</code> \
+  specifies an include pattern that (by default) is both a
+  show and a risk.</li>
+<li><code>merge, '.'</code> \
+  specifies a merge-file on the client side to read for more
+  rules.</li>
+<li><code>dir-merge, ':'</code> \
+  specifies a per-directory merge-file.  Using this kind of
+  filter rule requires that you trust the sending side's
+  filter checking, so it has the side-effect mentioned under
+  the <code>--trust-sender</code> option.</li>
+<li><code>hide, 'H'</code> \
+  specifies a pattern for hiding files from the transfer.
+  Equivalent to a sender-only exclude, so <code>-f'H foo'</code> could
+  also be specified as <code>-f'-s foo'</code>.</li>
+<li><code>show, 'S'</code> \
+  files that match the pattern are not hidden. Equivalent to
+  a sender-only include, so <code>-f'S foo'</code> could also be
+  specified as <code>-f'+s foo'</code>.</li>
+<li><code>protect, 'P'</code> \
+  specifies a pattern for protecting files from deletion.
+  Equivalent to a receiver-only exclude, so <code>-f'P foo'</code> could
+  also be specified as <code>-f'-r foo'</code>.</li>
+<li><code>risk, 'R'</code> \
+  files that match the pattern are not protected. Equivalent
+  to a receiver-only include, so <code>-f'R foo'</code> could also be
+  specified as <code>-f'+r foo'</code>.</li>
+<li><code>clear, '!'</code>
+  clears the current include/exclude list (takes no arg)</li>
+</ul>
+<p>When rules are being read from a file (using <code>merge</code> or <code>dir-merge</code>),
+empty lines are ignored, as are whole-line comments that start
+with a <code>'#'</code> (filename rules that contain a hash character are
+unaffected).</p>
+<p>Note also that the <code>--filter</code>, <code>--include</code>, and <code>--exclude</code> options
+take one rule/pattern each.  To add multiple ones, you can repeat
+the options on the command-line, use the merge-file syntax of the
+<code>--filter</code> option, or the <code>--include-from</code> / <code>--exclude-from</code> options.</p>
+<h2 id="pattern-matching-rules">Pattern matching rules</h2>
+<p>Most of the rules mentioned above take an argument that specifies
+what the rule should match.  If rsync is recursing through a
+directory hierarchy, keep in mind that each pattern is matched
+against the name of every directory in the descent path as rsync
+finds the filenames to send.</p>
+<p>The matching rules for the pattern argument take several forms:</p>
+<ul>
+<li>If a pattern contains a <code>/</code> (not counting a trailing slash)
+  or a <code>"**"</code> (which can match a slash), then the pattern is
+  matched against the full pathname, including any leading
+  directories within the transfer.  If the pattern doesn't
+  contain a (non-trailing) <code>/</code> or a <code>"**"</code>, then it is matched
+  only against the final component of the filename or
+  pathname. For example, <code>foo</code> means that the final path
+  component must be <code>"foo"</code> while <code>foo/bar</code> would match the last
+  2 elements of the path (as long as both elements are
+  within the transfer).</li>
+<li>A pattern that ends with a <code>/</code> only matches a directory, not
+  a regular file, symlink, or device.</li>
+<li>A pattern that starts with a <code>/</code> is anchored to the start of
+  the transfer path instead of the end.  For example,
+  /foo/<strong> or /foo/bar/</strong> match only leading elements in the
+  path.  If the rule is read from a per-directory filter
+  file, the transfer path being matched will begin at the
+  level of the filter file instead of the top of the
+  transfer.  See the section on
+  <strong>ANCHORING INCLUDE/EXCLUDE PATTERNS</strong>
+  for a full discussion of how to specify a pattern
+  that matches at the root of the transfer.</li>
+</ul>
+<p>Rsync chooses between doing a simple string match and wildcard
+matching by checking if the pattern contains one of these three
+wildcard characters: '*', '?', and '[' :</p>
+<ul>
+<li>a <code>'?'</code> matches any single character except a slash (<code>/</code>).</li>
+<li>a <code>'*'</code> matches zero or more non-slash characters.</li>
+<li>a <code>'**'</code> matches zero or more characters, including slashes.</li>
+<li>a <code>'['</code> introduces a character class, such as <code>[a-z]</code> or
+  <code>[[:alpha:]]</code>, that must match one character.</li>
+<li>a trailing <code>***</code> in the pattern is a shorthand that allows
+  you to match a directory and all its contents using a
+  single rule.  For example, specifying <code>"dir_name/***"</code> will
+  match both the <code>"dir_name"</code> directory (as if <code>"dir_name/"</code> had
+  been specified) and everything in the directory (as if
+  <code>"dir_name/**"</code> had been specified).</li>
+<li>a backslash can be used to escape a wildcard character,
+  but it is only interpreted as an escape character if at
+  least one wildcard character is present in the match
+  pattern. For instance, the pattern <code>"foo\bar"</code> matches that
+  single backslash literally, while the pattern <code>"foo\bar*"</code>
+  would need to be changed to <code>"foo\\bar*"</code> to avoid the <code>"\b"</code>
+  becoming just <code>"b"</code>.</li>
+</ul>
+<p>Here are some examples of exclude/include matching:</p>
+<ul>
+<li>Option <code>-f'- *.o'</code> would exclude all filenames ending with
+  <code>.o</code></li>
+<li>Option <code>-f'- /foo'</code> would exclude a file (or directory)
+  named <code>foo</code> in the transfer-root directory</li>
+<li>Option <code>-f'- foo/'</code> would exclude any directory named <code>foo</code></li>
+<li>Option <code>-f'- foo/*/bar'</code> would exclude any file/dir named
+  bar which is at two levels below a directory named <code>foo</code> (if
+  <code>foo</code> is in the transfer)</li>
+<li>Option <code>-f'- /foo/**/bar'</code> would exclude any file/dir named
+  <code>bar</code> that was two or more levels below a top-level
+  directory named <code>foo</code> (note that <code>/foo/bar</code> is not excluded by
+  this)</li>
+<li>Options <code>-f'+ */'</code> <code>-f'+ *.c'</code> <code>-f'- *'</code> would include all
+  directories and <code>.c</code> source files but nothing else</li>
+<li>Options <code>-f'+ foo/'</code> <code>-f'+ foo/bar.c'</code> <code>-f'- *'</code> would include
+  only the <code>foo</code> directory and <code>foo/bar.c</code> (the <code>foo</code> directory
+  must be explicitly included or it would be excluded by the
+  <code>"- *"</code>)</li>
+</ul>
+<h2 id="filter-rule-modifiers">Filter rule modifiers</h2>
+<p>The following modifiers are accepted after an include <code>(+)</code> or
+exclude <code>(-)</code> rule:</p>
+<ul>
+<li>A <code>/</code> specifies that the include/exclude rule should be
+  matched against the absolute pathname of the current item.
+  For example, <code>-f'-/ /etc/passwd'</code> would exclude the <code>passwd</code>
+  file any time the transfer was sending files from the
+  <code>"/etc"</code> directory, and <code>"-/ subdir/foo"</code> would always exclude
+  <code>"foo"</code> when it is in a dir named <code>"subdir"</code>, even if <code>"foo"</code> is
+  at the root of the current transfer.</li>
+<li>A <code>!</code> specifies that the include/exclude should take effect
+  if the pattern fails to match.  For instance, <code>-f'-! */'</code>
+  would exclude all non-directories.</li>
+<li>A <code>C</code> is used to indicate that all the global CVS-exclude
+  rules should be inserted as excludes in place of the <code>"-C"</code>.
+  No arg should follow.</li>
+<li>An <code>s</code> is used to indicate that the rule applies to the
+  sending side.  When a rule affects the sending side, it
+  affects what files are put into the sender's file list.
+  The default is for a rule to affect both sides unless
+  <code>--delete-excluded</code> was specified, in which case default
+  rules become sender-side only.  See also the hide <code>(H)</code> and
+  show <code>(S)</code> rules, which are an alternate way to specify
+  sending-side includes/excludes.</li>
+<li>An <code>r</code> is used to indicate that the rule applies to the
+  receiving side.  When a rule affects the receiving side,
+  it prevents files from being deleted.  See the <code>s</code> modifier
+  for more info.  See also the protect <code>(P)</code> and risk <code>(R)</code>
+  rules, which are an alternate way to specify receiver-side
+  includes/excludes.</li>
+<li>A <code>p</code> indicates that a rule is perishable, meaning that it
+  is ignored in directories that are being deleted.  For
+  instance, the <code>--cvs-exclude</code> <code>(-C)</code> option's default rules
+  that exclude things like <code>"CVS"</code> and <code>"*.o"</code> are marked as
+  perishable, and will not prevent a directory that was
+  removed on the source from being deleted on the
+  destination.</li>
+<li>An <code>x</code> indicates that a rule affects <code>xattr</code> names in <code>xattr</code>
+  copy/delete operations (and is thus ignored when matching
+  file/dir names).  If no xattr-matching rules are
+  specified, a default xattr filtering rule is used.</li>
+</ul>
+<h2 id="merge-file-filter-rules">Merge-file filter rules</h2>
+<p>You can merge whole files into your filter rules by specifying
+either a <code>merge</code> (.) or a <code>dir-merge</code> (:) filter rule (as introduced
+in the <strong>FILTER RULES</strong> section above).</p>
+<p>There are two kinds of merged files -- single-instance ('.') and
+per-directory (':').  A single-instance merge file is read one
+time, and its rules are incorporated into the filter list in the
+place of the "." rule.  For per-directory merge files, rsync will
+scan every directory that it traverses for the named file,
+merging its contents when the file exists into the current list
+of inherited rules.  These per-directory rule files must be
+created on the sending side because it is the sending side that
+is being scanned for the available files to transfer.  These rule
+files may also need to be transferred to the receiving side if
+you want them to affect what files don't get deleted (see
+<strong>PER-DIRECTORY RULES AND DELETE</strong>
+below).</p>
+<p>Some examples:</p>
+<div class="highlight"><pre><span></span><code>merge /etc/rsync/default.rules
+. /etc/rsync/default.rules
+dir-merge .per-dir-filter
+dir-merge,n- .non-inherited-per-dir-excludes
+:n- .non-inherited-per-dir-excludes
+</code></pre></div>
+
+<p>The following modifiers are accepted after a merge or dir-merge
+rule:</p>
+<ul>
+<li>A <code>-</code> specifies that the file should consist of only exclude
+  patterns, with no other rule-parsing except for in-file
+  comments.</li>
+<li>A <code>+</code> specifies that the file should consist of only include
+  patterns, with no other rule-parsing except for in-file
+  comments.</li>
+<li>A <code>C</code> is a way to specify that the file should be read in a
+  CVS-compatible manner.  This turns on <code>'n'</code>, <code>'w'</code>, and <code>'-'</code>,
+  but also allows the list-clearing token <code>(!)</code> to be
+  specified.  If no filename is provided, <code>".cvsignore"</code> is
+  assumed.</li>
+<li>A <code>e</code> will exclude the merge-file name from the transfer;
+  e.g.  <code>"dir-merge,e .rules"</code> is like <code>"dir-merge .rules"</code> and
+  <code>"- .rules".</code></li>
+<li>An <code>n</code> specifies that the rules are not inherited by
+  subdirectories.</li>
+<li>A <code>w</code> specifies that the rules are word-split on whitespace
+  instead of the normal line-splitting.  This also turns off
+  comments.  Note: the space that separates the prefix from
+  the rule is treated specially, so <code>"- foo + bar"</code> is parsed
+  as two rules (assuming that prefix-parsing wasn't also
+  disabled).</li>
+<li>You may also specify any of the modifiers for the <code>"+"</code> or
+  <code>"-"</code> rules (above) in order to have the rules that are read
+  in from the file default to having that modifier set
+  (except for the <code>!</code> modifier, which would not be useful).
+  For instance, <code>"merge,-/ .excl"</code> would treat the contents of
+  <code>.excl</code> as absolute-path excludes, while <code>"dir-merge,s .filt"</code>
+  and <code>":sC"</code> would each make all their per-directory rules
+  apply only on the sending side.  If the merge rule
+  specifies sides to affect (via the <code>s</code> or <code>r</code> modifier or
+  both), then the rules in the file must not specify sides
+  (via a modifier or a rule prefix such as hide).</li>
+</ul>
+<p>Per-directory rules are inherited in all subdirectories of the
+directory where the merge-file was found unless the <code>'n'</code> modifier
+was used.  Each subdirectory's rules are prefixed to the
+inherited per-directory rules from its parents, which gives the
+newest rules a higher priority than the inherited rules.  The
+entire set of dir-merge rules are grouped together in the spot
+where the merge-file was specified, so it is possible to override
+dir-merge rules via a rule that got specified earlier in the list
+of global rules.  When the list-clearing rule <code>("!")</code> is read from
+a per-directory file, it only clears the inherited rules for the
+current merge file.</p>
+<p>Another way to prevent a single rule from a dir-merge file from
+being inherited is to anchor it with a leading slash.  Anchored
+rules in a per-directory merge-file are relative to the merge-
+file's directory, so a pattern <code>"/foo"</code> would only match the file
+<code>"foo"</code> in the directory where the dir-merge filter file was found.</p>
+<p>Here's an example filter file which you'd specify via
+<code>--filter=". file"</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">merge</span><span class="w"> </span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="k">user</span><span class="o">/</span><span class="p">.</span><span class="k">global</span><span class="o">-</span><span class="k">filter</span>
+<span class="o">-</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="n">gz</span>
+<span class="n">dir</span><span class="o">-</span><span class="k">merge</span><span class="w"> </span><span class="p">.</span><span class="n">rules</span>
+<span class="o">+</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">[</span><span class="n">ch</span><span class="o">]</span>
+<span class="o">-</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="n">o</span>
+<span class="o">-</span><span class="w"> </span><span class="n">foo</span><span class="o">*</span>
+</code></pre></div>
+
+<p>This will merge the contents of the <code>/home/user/.global-filter</code>
+file at the start of the list and also turns the <code>".rules"</code>
+filename into a per-directory filter file.  All rules read in
+prior to the start of the directory scan follow the global
+anchoring rules (i.e. a leading slash matches at the root of the
+transfer).</p>
+<p>If a per-directory merge-file is specified with a path that is a
+parent directory of the first transfer directory, rsync will scan
+all the parent dirs from that starting point to the transfer
+directory for the indicated per-directory file.  For instance,
+here is a common filter (see -F):</p>
+<div class="highlight"><pre><span></span><code>--filter=&#39;: /.rsync-filter&#39;
+</code></pre></div>
+
+<p>That rule tells rsync to scan for the file .rsync-filter in all
+directories from the root down through the parent directory of
+the transfer prior to the start of the normal directory scan of
+the file in the directories that are sent as a part of the
+transfer. (Note: for an rsync daemon, the root is always the same
+as the module's "path".)</p>
+<p>Some examples of this pre-scanning for per-directory files:</p>
+<div class="highlight"><pre><span></span><code>rsync -avF /src/path/ /dest/dir
+rsync -av --filter=&#39;: ../../.rsync-filter&#39; /src/path/ /dest/dir
+rsync -av --filter=&#39;: .rsync-filter&#39; /src/path/ /dest/dir
+</code></pre></div>
+
+<p>The first two commands above will look for <code>".rsync-filter"</code> in <code>"/"</code>
+and <code>"/src"</code> before the normal scan begins looking for the file in
+<code>"/src/path"</code> and its subdirectories.  The last command avoids the
+parent-dir scan and only looks for the <code>".rsync-filter"</code> files in
+each directory that is a part of the transfer.</p>
+<p>If you want to include the contents of a <code>".cvsignore"</code> in your
+patterns, you should use the rule <code>":C"</code>, which creates a dir-merge
+of the <code>.cvsignore file</code>, but parsed in a CVS-compatible manner.
+You can use this to affect where the <code>--cvs-exclude</code> <code>(-C)</code> option's
+inclusion of the per-directory .cvsignore file gets placed into
+your rules by putting the <code>":C"</code> wherever you like in your filter
+rules.  Without this, rsync would add the dir-merge rule for the
+<code>.cvsignore</code> file at the end of all your other rules (giving it a
+lower priority than your command-line rules).  For example:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">cat</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="nv">EOT</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">rsync</span><span class="w"> </span><span class="o">-</span><span class="nv">avC</span><span class="w"> </span><span class="o">--</span><span class="nv">filter</span><span class="o">=</span><span class="s1">&#39;. -&#39;</span><span class="w"> </span><span class="nv">a</span><span class="o">/</span><span class="w"> </span><span class="nv">b</span>
+<span class="o">+</span><span class="w"> </span><span class="nv">foo</span>.<span class="nv">o</span>
+<span class="nl">:C</span>
+<span class="o">-</span><span class="w"> </span><span class="o">*</span>.<span class="nv">old</span>
+<span class="nv">EOT</span>
+<span class="nv">rsync</span><span class="w"> </span><span class="o">-</span><span class="nv">avC</span><span class="w"> </span><span class="o">--</span><span class="k">include</span><span class="o">=</span><span class="nv">foo</span>.<span class="nv">o</span><span class="w"> </span><span class="o">-</span><span class="nv">f</span><span class="w"> </span>:<span class="nv">C</span><span class="w"> </span><span class="o">--</span><span class="nv">exclude</span><span class="o">=</span><span class="s1">&#39;*.old&#39;</span><span class="w"> </span><span class="nv">a</span><span class="o">/</span><span class="w"> </span><span class="nv">b</span>
+</code></pre></div>
+
+<p>Both of the above rsync commands are identical.  Each one will
+merge all the per-directory <code>.cvsignore</code> rules in the middle of the
+list rather than at the end.  This allows their dir-specific
+rules to supersede the rules that follow the <code>:C</code> instead of being
+subservient to all your rules.  To affect the other CVS exclude
+rules (i.e. the default list of exclusions, the contents of
+<code>$HOME/.cvsignore</code>, and the value of <code>$CVSIGNORE</code>) you should omit
+the <code>-C</code> command-line option and instead insert a <code>"-C"</code> rule into
+your filter rules; e.g.  <code>"--filter=-C"</code>.</p>
+<h2 id="list-clearing-filter-rule">List-clearing filter rule</h2>
+<p>You can clear the current include/exclude list by using the <code>"!"</code>
+filter rule (as introduced in the
+<strong>FILTER RULES</strong>
+section above).
+The <em>"current"</em> list is either the global list of rules (if the
+rule is encountered while parsing the filter options) or a set of
+per-directory rules (which are inherited in their own sub-list,
+so a subdirectory can use this to clear out the parent's rules).</p>
+<h2 id="anchoring-includeexclude-patterns">Anchoring include/exclude patterns</h2>
+<p>As mentioned earlier, global include/exclude patterns are
+anchored at the "root of the transfer" (as opposed to per-
+directory patterns, which are anchored at the merge-file's
+directory).  If you think of the transfer as a subtree of names
+that are being sent from sender to receiver, the transfer-root is
+where the tree starts to be duplicated in the destination
+directory.  This root governs where patterns that start with a /
+match.</p>
+<p>Because the matching is relative to the transfer-root, changing
+the trailing slash on a source path or changing your use of the
+<code>--relative</code> option affects the path you need to use in your
+matching (in addition to changing how much of the file tree is
+duplicated on the destination host).  The following examples
+demonstrate this.</p>
+<p>Let's say that we want to match two source files, one with an
+absolute path of <code>"/home/me/foo/bar"</code>, and one with a path of
+<code>"/home/you/bar/baz"</code>.  Here is how the various command choices
+differ for a 2-source transfer:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">Example</span><span class="w"> </span><span class="nt">cmd</span><span class="o">:</span><span class="w"> </span><span class="nt">rsync</span><span class="w"> </span><span class="nt">-a</span><span class="w"> </span><span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">me</span><span class="w"> </span><span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">you</span><span class="w"> </span><span class="o">/</span><span class="nt">dest</span>
+<span class="o">+/</span><span class="nt">-</span><span class="w"> </span><span class="nt">pattern</span><span class="o">:</span><span class="w"> </span><span class="o">/</span><span class="nt">me</span><span class="o">/</span><span class="nt">foo</span><span class="o">/</span><span class="nt">bar</span>
+<span class="o">+/</span><span class="nt">-</span><span class="w"> </span><span class="nt">pattern</span><span class="o">:</span><span class="w"> </span><span class="o">/</span><span class="nt">you</span><span class="o">/</span><span class="nt">bar</span><span class="o">/</span><span class="nt">baz</span>
+<span class="nt">Target</span><span class="w"> </span><span class="nt">file</span><span class="o">:</span><span class="w"> </span><span class="o">/</span><span class="nt">dest</span><span class="o">/</span><span class="nt">me</span><span class="o">/</span><span class="nt">foo</span><span class="o">/</span><span class="nt">bar</span>
+<span class="nt">Target</span><span class="w"> </span><span class="nt">file</span><span class="o">:</span><span class="w"> </span><span class="o">/</span><span class="nt">dest</span><span class="o">/</span><span class="nt">you</span><span class="o">/</span><span class="nt">bar</span><span class="o">/</span><span class="nt">baz</span>
+
+<span class="nt">Example</span><span class="w"> </span><span class="nt">cmd</span><span class="o">:</span><span class="w"> </span><span class="nt">rsync</span><span class="w"> </span><span class="nt">-a</span><span class="w"> </span><span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">me</span><span class="o">/</span><span class="w"> </span><span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">you</span><span class="o">/</span><span class="w"> </span><span class="o">/</span><span class="nt">dest</span>
+<span class="o">+/</span><span class="nt">-</span><span class="w"> </span><span class="nt">pattern</span><span class="o">:</span><span class="w"> </span><span class="o">/</span><span class="nt">foo</span><span class="o">/</span><span class="nt">bar</span><span class="w">               </span><span class="o">(</span><span class="nt">note</span><span class="w"> </span><span class="nt">missing</span><span class="w"> </span><span class="s2">&quot;me&quot;</span><span class="o">)</span>
+<span class="o">+/</span><span class="nt">-</span><span class="w"> </span><span class="nt">pattern</span><span class="o">:</span><span class="w"> </span><span class="o">/</span><span class="nt">bar</span><span class="o">/</span><span class="nt">baz</span><span class="w">               </span><span class="o">(</span><span class="nt">note</span><span class="w"> </span><span class="nt">missing</span><span class="w"> </span><span class="s2">&quot;you&quot;</span><span class="o">)</span>
+<span class="nt">Target</span><span class="w"> </span><span class="nt">file</span><span class="o">:</span><span class="w"> </span><span class="o">/</span><span class="nt">dest</span><span class="o">/</span><span class="nt">foo</span><span class="o">/</span><span class="nt">bar</span>
+<span class="nt">Target</span><span class="w"> </span><span class="nt">file</span><span class="o">:</span><span class="w"> </span><span class="o">/</span><span class="nt">dest</span><span class="o">/</span><span class="nt">bar</span><span class="o">/</span><span class="nt">baz</span>
+
+<span class="nt">Example</span><span class="w"> </span><span class="nt">cmd</span><span class="o">:</span><span class="w"> </span><span class="nt">rsync</span><span class="w"> </span><span class="nt">-a</span><span class="w"> </span><span class="nt">--relative</span><span class="w"> </span><span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">me</span><span class="o">/</span><span class="w"> </span><span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">you</span><span class="w"> </span><span class="o">/</span><span class="nt">dest</span>
+<span class="o">+/</span><span class="nt">-</span><span class="w"> </span><span class="nt">pattern</span><span class="o">:</span><span class="w"> </span><span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">me</span><span class="o">/</span><span class="nt">foo</span><span class="o">/</span><span class="nt">bar</span><span class="w">       </span><span class="o">(</span><span class="nt">note</span><span class="w"> </span><span class="nt">full</span><span class="w"> </span><span class="nt">path</span><span class="o">)</span>
+<span class="o">+/</span><span class="nt">-</span><span class="w"> </span><span class="nt">pattern</span><span class="o">:</span><span class="w"> </span><span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">you</span><span class="o">/</span><span class="nt">bar</span><span class="o">/</span><span class="nt">baz</span><span class="w">      </span><span class="o">(</span><span class="nt">ditto</span><span class="o">)</span>
+<span class="nt">Target</span><span class="w"> </span><span class="nt">file</span><span class="o">:</span><span class="w"> </span><span class="o">/</span><span class="nt">dest</span><span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">me</span><span class="o">/</span><span class="nt">foo</span><span class="o">/</span><span class="nt">bar</span>
+<span class="nt">Target</span><span class="w"> </span><span class="nt">file</span><span class="o">:</span><span class="w"> </span><span class="o">/</span><span class="nt">dest</span><span class="o">/</span><span class="nt">home</span><span class="o">/</span><span class="nt">you</span><span class="o">/</span><span class="nt">bar</span><span class="o">/</span><span class="nt">baz</span>
+
+<span class="nt">Example</span><span class="w"> </span><span class="nt">cmd</span><span class="o">:</span><span class="w"> </span><span class="nt">cd</span><span class="w"> </span><span class="o">/</span><span class="nt">home</span><span class="o">;</span><span class="w"> </span><span class="nt">rsync</span><span class="w"> </span><span class="nt">-a</span><span class="w"> </span><span class="nt">--relative</span><span class="w"> </span><span class="nt">me</span><span class="o">/</span><span class="nt">foo</span><span class="w"> </span><span class="nt">you</span><span class="o">/</span><span class="w"> </span><span class="o">/</span><span class="nt">dest</span>
+<span class="o">+/</span><span class="nt">-</span><span class="w"> </span><span class="nt">pattern</span><span class="o">:</span><span class="w"> </span><span class="o">/</span><span class="nt">me</span><span class="o">/</span><span class="nt">foo</span><span class="o">/</span><span class="nt">bar</span><span class="w">      </span><span class="o">(</span><span class="nt">starts</span><span class="w"> </span><span class="nt">at</span><span class="w"> </span><span class="nt">specified</span><span class="w"> </span><span class="nt">path</span><span class="o">)</span>
+<span class="o">+/</span><span class="nt">-</span><span class="w"> </span><span class="nt">pattern</span><span class="o">:</span><span class="w"> </span><span class="o">/</span><span class="nt">you</span><span class="o">/</span><span class="nt">bar</span><span class="o">/</span><span class="nt">baz</span><span class="w">     </span><span class="o">(</span><span class="nt">ditto</span><span class="o">)</span>
+<span class="nt">Target</span><span class="w"> </span><span class="nt">file</span><span class="o">:</span><span class="w"> </span><span class="o">/</span><span class="nt">dest</span><span class="o">/</span><span class="nt">me</span><span class="o">/</span><span class="nt">foo</span><span class="o">/</span><span class="nt">bar</span>
+<span class="nt">Target</span><span class="w"> </span><span class="nt">file</span><span class="o">:</span><span class="w"> </span><span class="o">/</span><span class="nt">dest</span><span class="o">/</span><span class="nt">you</span><span class="o">/</span><span class="nt">bar</span><span class="o">/</span><span class="nt">baz</span>
+</code></pre></div>
+
+<p>The easiest way to see what name you should filter is to just
+look at the output when using <code>--verbose</code> and put a <code>/</code> in front of
+the name (use the <code>--dry-run</code> option if you're not yet ready to
+copy any files).</p>
+<h2 id="per-directory-rules-and-delete">Per-directory rules and delete</h2>
+<p>Without a delete option, per-directory rules are only relevant on
+the sending side, so you can feel free to exclude the merge files
+themselves without affecting the transfer.  To make this easy,
+the <code>'e'</code> modifier adds this exclude for you, as seen in these two
+equivalent commands:</p>
+<div class="highlight"><pre><span></span><code>rsync -av --filter=&#39;: .excl&#39; --exclude=.excl host:src/dir /dest
+rsync -av --filter=&#39;:e .excl&#39; host:src/dir /dest
+</code></pre></div>
+
+<p>However, if you want to do a delete on the receiving side AND you
+want some files to be excluded from being deleted, you'll need to
+be sure that the receiving side knows what files to exclude.  The
+easiest way is to include the per-directory merge files in the
+transfer and use <code>--delete-after</code>, because this ensures that the
+receiving side gets all the same exclude rules as the sending
+side before it tries to delete anything:</p>
+<div class="highlight"><pre><span></span><code>rsync -avF --delete-after host:src/dir /dest
+</code></pre></div>
+
+<p>However, if the merge files are not a part of the transfer,
+you'll need to either specify some global exclude rules (i.e.
+specified on the command line), or you'll need to maintain your
+own per-directory merge files on the receiving side.  An example
+of the first is this (assume that the remote .rules files exclude
+themselves):</p>
+<div class="highlight"><pre><span></span><code>rsync -av --filter=&#39;: .rules&#39; --filter=&#39;. /my/extra.rules&#39; --delete host:src/dir /dest
+</code></pre></div>
+
+<p>In the above example the extra.rules file can affect both sides
+of the transfer, but (on the sending side) the rules are
+subservient to the rules merged from the <code>.rules</code> files because
+they were specified after the per-directory merge rule.</p>
+<p>In one final example, the remote side is excluding the
+<code>.rsync-filter</code> files from the transfer, but we want to use our own
+<code>.rsync-filter</code> files to control what gets deleted on the receiving
+side.  To do this we must specifically exclude the per-directory
+merge files (so that they don't get deleted) and then put rules
+into the local files to control what else should not get deleted.
+Like one of these commands:</p>
+<div class="highlight"><pre><span></span><code>rsync -av --filter=&#39;:e /.rsync-filter&#39; --delete host:src/dir /dest
+rsync -avFF --delete host:src/dir /dest
+</code></pre></div>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li class="active"><a href="/category/c2023.html">2023</a></li>
+	              <li ><a href="/category/c2022.html">2022</a></li>
+	              <li ><a href="/category/c2021.html">2021</a></li>
+	              <li ><a href="/category/c2020.html">2020</a></li>
+	              <li ><a href="/category/c2019.html">2019</a></li>
+	              <li ><a href="/category/c2018.html">2018</a></li>
+	              <li ><a href="/category/c2017.html">2017</a></li>
+	              <li ><a href="/category/c2016.html">2016</a></li>
+	              <li ><a href="/category/c2015.html">2015</a></li>
+	              <li ><a href="/category/c2014.html">2014</a></li>
+	              <li ><a href="/category/c2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="/sitemap.html">sitemap</a></li>
+	                <li><a href="/tags.html">Tags</a></li>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://home.0ink.net/nanowiki/">Wiki</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2021-2022 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+		  <span class="feeds">
+		    <a href="/feeds/rss.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="rss feed" title="rss feed"/></a>
+		  </span>
+		  </p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

@@ -87,15 +87,15 @@ working after a few minutes (often after 65 seconds).</p>
 use <a href="https://en.wikipedia.org/wiki/NetworkManager">NetworkManager</a> so I guess this helps.</p>
 <p>Even googling around I was not able to find a solution.  Apparently
 doing this would re-enable things:</p>
-<div class="highlight"><pre><span></span><code>ip -6 a del $ip6_addr dev $IFACE
-ip -6 a add $ip6_addr dev $IFACE
+<div class="highlight"><pre><span></span><code><span class="nx">ip</span><span class="w"> </span><span class="o">-</span><span class="mi">6</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">del</span><span class="w"> </span><span class="err">$</span><span class="nx">ip6_addr</span><span class="w"> </span><span class="nx">dev</span><span class="w"> </span><span class="err">$</span><span class="nx">IFACE</span>
+<span class="nx">ip</span><span class="w"> </span><span class="o">-</span><span class="mi">6</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="err">$</span><span class="nx">ip6_addr</span><span class="w"> </span><span class="nx">dev</span><span class="w"> </span><span class="err">$</span><span class="nx">IFACE</span>
 </code></pre></div>
 
 <p>So what I did is, I wrote a small little script that would run
 every 45 seconds, and do this:</p>
-<div class="highlight"><pre><span></span><code>ip -6 address save dev $IFACE scope global &gt; $savefile
-ip -6 address flush dev $IFACE scope global
-ip -6 address restore &lt; $savefile 2&gt;&amp;1 | grep -v &#39;RTNETLINK answers: File exists&#39; || :
+<div class="highlight"><pre><span></span><code><span class="nx">ip</span><span class="w"> </span><span class="o">-</span><span class="mi">6</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="nx">save</span><span class="w"> </span><span class="nx">dev</span><span class="w"> </span><span class="err">$</span><span class="nx">IFACE</span><span class="w"> </span><span class="nx">scope</span><span class="w"> </span><span class="nx">global</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="err">$</span><span class="nx">savefile</span>
+<span class="nx">ip</span><span class="w"> </span><span class="o">-</span><span class="mi">6</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="nx">flush</span><span class="w"> </span><span class="nx">dev</span><span class="w"> </span><span class="err">$</span><span class="nx">IFACE</span><span class="w"> </span><span class="nx">scope</span><span class="w"> </span><span class="nx">global</span>
+<span class="nx">ip</span><span class="w"> </span><span class="o">-</span><span class="mi">6</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="nx">restore</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="err">$</span><span class="nx">savefile</span><span class="w"> </span><span class="mi">2</span><span class="p">&gt;</span><span class="o">&amp;</span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">grep</span><span class="w"> </span><span class="o">-</span><span class="nx">v</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">RTNETLINK</span><span class="w"> </span><span class="nx">answers</span><span class="p">:</span><span class="w"> </span><span class="nx">File</span><span class="w"> </span><span class="nx">exists</span><span class="err">&#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">:</span>
 </code></pre></div>
 
 <p>Again, I have no idea what is going on.</p>

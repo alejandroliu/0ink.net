@@ -1,6 +1,5 @@
 ---
 title: Pulse Audio control in python
-date: "2023-04-21"
 tags: desktop
 ---
 I have been using a [shell script][old] to toggle pulse audio sinks for some time.  It worked well enough for
