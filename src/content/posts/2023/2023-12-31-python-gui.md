@@ -1,7 +1,6 @@
 ---
 title: Python GUI 2023
-date: "2023-04-21"
-tags: android, python
+tags: python, windows
 ---
 After looking a multiple options of GUI programming under [python][python] I 
 eventually settled for [tkinter][tkinter].  The main reason was that 

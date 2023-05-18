@@ -49,6 +49,31 @@
 
 <article class="summary">
 <div class="metadata">
+  <time datetime="2017-01-24T00:00:00+01:00" pubdate>Tue 24 January 2017</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
+  in <a href="/category/c2017.html">2017</a>
+</div>  <div>
+    <h2>
+      <a href="/posts/2017/2017-01-24-xnest.html" rel="bookmark" title="Permalink to Xnest">Xnest</a>
+    </h2>
+    <p><p>This trick lets you run X-Windows within an X-Windows session.</p>
+<p>This is kinda like running VNC.  It is useful for testing scenarios.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="ch">#!/bin/sh</span>
+Xnest<span class="w"> </span>:1<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;Bla&quot;</span><span class="w"> </span>-ac<span class="w"> </span>-geometry<span class="w"> </span>800x600<span class="w"> </span><span class="p">&amp;</span>amp<span class="p">;</span>
+sleep<span class="w"> </span><span class="m">1</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">DISPLAY</span><span class="o">=</span>:1
+<span class="nb">exec</span><span class="w"> </span>xterm
+</code></pre></div></td></tr></table></div></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
   <time datetime="2017-01-20T00:00:00+01:00" pubdate>Fri 20 January 2017</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
@@ -565,22 +590,6 @@ through …</p></p>
 <p>OpenShift migration further notes</p>
 <p>Encrypt a file using a supplied password :</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>openssl<span class="w"> </span>enc<span class="w"> </span>-aes-256-cbc<span class="w"> </span>-salt<span class="w"> </span>-in<span class="w"> </span>file.txt<span class="w"> </span>-out<span class="w"> </span>file.txt.enc<span class="w"> </span>-k …</code></pre></div></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2016-02-02T00:00:00+01:00" pubdate>Tue 02 February 2016</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2022-03-03 22:34:42+01:00</p>
-  in <a href="/category/c2016.html">2016</a>
-<p class="tags">tagged <a href="/tag/address.html">address</a>, <a href="/tag/computer.html">computer</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/database.html">database</a>, <a href="/tag/device.html">device</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/editor.html">editor</a>, <a href="/tag/management.html">management</a>, <a href="/tag/manager.html">manager</a>, <a href="/tag/mouse.html">mouse</a>, <a href="/tag/network.html">network</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/security.html">security</a>, <a href="/tag/service.html">service</a>, <a href="/tag/settings.html">settings</a>, <a href="/tag/storage.html">storage</a>, <a href="/tag/terminal.html">terminal</a>, <a href="/tag/tools.html">tools</a>, <a href="/tag/windows.html">windows</a></p></div>  <div>
-    <h2>
-      <a href="/posts/2016/2016-02-02-windows-administration-from-the-command-line.html" rel="bookmark" title="Permalink to Windows administration from the command line">Windows administration from the command line</a>
-    </h2>
-    <p><p>Windows system administration is very mouse driven and to reach
-all tools you need to browse through Windows explorer.</p>
-<p>If you are like me and prefer to log on a limited privilege account and use Runas to perform admin tasks, you can open these consoles with the .msc file names …</p></p>
   </div>
 </article>
 <div class="pagination">

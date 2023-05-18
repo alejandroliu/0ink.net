@@ -49,6 +49,44 @@
 
 <article class="summary">
 <div class="metadata">
+  <time datetime="2018-03-01T00:00:00+01:00" pubdate>Thu 01 March 2018</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2021-12-25 22:02:18+01:00</p>
+  in <a href="/category/c2018.html">2018</a>
+<p class="tags">tagged <a href="/tag/backup.html">backup</a>, <a href="/tag/boot.html">boot</a>, <a href="/tag/git.html">git</a>, <a href="/tag/power.html">power</a>, <a href="/tag/sudo.html">sudo</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2018/2018-03-01-retropie-notes.html" rel="bookmark" title="Permalink to Retropie">Retropie</a>
+    </h2>
+    <p><ul>
+<li>DVD player</li>
+<li>Bluetooth receiver </li>
+<li>keyboard </li>
+</ul>
+<ul>
+<li>good keyboard bindings</li>
+<li>how to exit games</li>
+<li>convert probox into binding keys</li>
+<li>where are key codes saved</li>
+</ul>
+<hr>
+<ul>
+<li>Write image:<ul>
+<li>gunzip &lt; retropie-4.3-rpi2_rpi3.img.gz | sudo dd of=/dev/sde bs=4M</li>
+</ul>
+</li>
+<li>Configure config.txt<ul>
+<li>hdmi_force_hotplug=1</li>
+<li>hdmi_drive=2</li>
+</ul>
+</li>
+<li>Boot and configure keyboard<ul>
+<li>D-Pad =&gt; D-Pad</li>
+<li>start …</li></ul></li></ul></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
   <time datetime="2018-01-30T00:00:00+01:00" pubdate>Tue 30 January 2018</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
@@ -489,31 +527,6 @@ the same every time you plug it in, read on.</p>
 <p>However, it is easier/better to do:</p>
 <div class="highlight"><pre><span></span><code>stty<span class="w"> </span>rows<span class="w"> </span><span class="m">24</span><span class="w"> </span>cols<span class="w"> </span><span class="m">80</span>
 </code></pre></div></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2017-01-24T00:00:00+01:00" pubdate>Tue 24 January 2017</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2021-12-25 22:02:18+01:00</p>
-  in <a href="/category/c2017.html">2017</a>
-</div>  <div>
-    <h2>
-      <a href="/posts/2017/2017-01-24-xnest.html" rel="bookmark" title="Permalink to Xnest">Xnest</a>
-    </h2>
-    <p><p>This trick lets you run X-Windows within an X-Windows session.</p>
-<p>This is kinda like running VNC.  It is useful for testing scenarios.</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="ch">#!/bin/sh</span>
-Xnest<span class="w"> </span>:1<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;Bla&quot;</span><span class="w"> </span>-ac<span class="w"> </span>-geometry<span class="w"> </span>800x600<span class="w"> </span><span class="p">&amp;</span>amp<span class="p">;</span>
-sleep<span class="w"> </span><span class="m">1</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">DISPLAY</span><span class="o">=</span>:1
-<span class="nb">exec</span><span class="w"> </span>xterm
-</code></pre></div></td></tr></table></div></p>
   </div>
 </article>
 <div class="pagination">

@@ -1,5 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2023-05-01T00:00:00+02:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>Personal thoughts on GUI programming</title><link href="https://0ink.net/posts/2023/2023-05-01-gui-programming.html" rel="alternate"></link><published>2023-05-01T00:00:00+02:00</published><updated>2023-04-25T12:58:58+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-05-01:/posts/2023/2023-05-01-gui-programming.html</id><summary type="html">&lt;p&gt;I have been programming for about 40 years.  Going through a lot of different languages
+<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2023-05-15T00:00:00+02:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>Desktop Environments 2023</title><link href="https://0ink.net/posts/2023/2023-05-15-de-2023.html" rel="alternate"></link><published>2023-05-15T00:00:00+02:00</published><updated>2023-05-03T10:49:56+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-05-15:/posts/2023/2023-05-15-de-2023.html</id><summary type="html">&lt;p&gt;Around April 2023, I decided to look for a new &lt;a href="https://en.wikipedia.org/wiki/Desktop_environment"&gt;Linux Desktop Environment&lt;/a&gt; for my
+personal &lt;a href="https://voidlinux.org/"&gt;void linux&lt;/a&gt;.  So I tried these distros:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://lxqt-project.org/about/"&gt;lxqt&lt;/a&gt;: This is the one I eventually chose to switch to.  I liked it that it
+  was very small and light, and very modular, almost like a …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;Around April 2023, I decided to look for a new &lt;a href="https://en.wikipedia.org/wiki/Desktop_environment"&gt;Linux Desktop Environment&lt;/a&gt; for my
+personal &lt;a href="https://voidlinux.org/"&gt;void linux&lt;/a&gt;.  So I tried these distros:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://lxqt-project.org/about/"&gt;lxqt&lt;/a&gt;: This is the one I eventually chose to switch to.  I liked it that it
+  was very small and light, and very modular, almost like a kit that you assemble
+  yourself.  Because I have thinking for some time that I would like to make my 
+  own &lt;a href="https://en.wikipedia.org/wiki/Desktop_environment"&gt;Desktop environment&lt;/a&gt; from a &lt;a href="https://en.wikipedia.org/wiki/Window_manager"&gt;Window Manager&lt;/a&gt;, &lt;a href="https://lxqt-project.org/about/"&gt;lxqt&lt;/a&gt; is very close
+  to what I wanted to do with that idea.&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;PROS&lt;/strong&gt;:&lt;ul&gt;
+&lt;li&gt;Light and modular&lt;/li&gt;
+&lt;li&gt;Classic User Experience (great since I am very old computer user).&lt;/li&gt;
+&lt;li&gt;Uses &lt;a href="https://www.jwz.org/xscreensaver/"&gt;XScreenSaver&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Uses QT widget set.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CONS&lt;/strong&gt;&lt;ul&gt;
+&lt;li&gt;not as visually appealing as the other desktops here.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://mate-desktop.org/"&gt;MATE Desktop&lt;/a&gt;: This is the desktop that I was using before.  It is light on
+  resources and has all the features you would expect.  Nothing against it, but I thought
+  it was time to move on.  Also my &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/mate-screensaver-hacks"&gt;XScreenSaver&lt;/a&gt; stopped working in the latest
+  &lt;a href="https://voidlinux.org/"&gt;void&lt;/a&gt; update.&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;PROS&lt;/strong&gt;&lt;ul&gt;
+&lt;li&gt;Full feature yet light on resources&lt;/li&gt;
+&lt;li&gt;Classic User Experience (great since I am very old computer user).&lt;/li&gt;
+&lt;li&gt;Was possible to use &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/mate-screensaver-hacks"&gt;XScreenSaver&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.gnome.org/"&gt;standard gnome&lt;/a&gt;: This is supposed to be the &lt;strong&gt;Premier&lt;/strong&gt; Linux [Desktop Environment].
+  Personally, I find it hard to use, as it completely deviates from User Experienced of
+  &lt;a href="https://microsoft.fandom.com/wiki/Windows_95"&gt;Microsoft Windows 95&lt;/a&gt;.  WHile it may be innovative, for me, an old computer user,
+  it just gets in the way of getting things done.  So for me it is a total turn-off.
+  Also, under &lt;a href="https://voidlinux.org/"&gt;void&lt;/a&gt; I was only able to use the &lt;a href="https://en.wikipedia.org/wiki/Wayland_(protocol)"&gt;Wayland&lt;/a&gt; session.&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;PROS&lt;/strong&gt;&lt;ul&gt;
+&lt;li&gt;Very modern and popular desktop&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CONS&lt;/strong&gt;&lt;ul&gt;
+&lt;li&gt;Too modern for my taste&lt;/li&gt;
+&lt;li&gt;Could only run on &lt;a href="https://en.wikipedia.org/wiki/Wayland_(protocol)"&gt;wayland&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://wiki.gnome.org/Projects/GnomeFlashback"&gt;gnome flashback&lt;/a&gt; : This returns the &lt;a href="https://www.gnome.org/"&gt;gnome&lt;/a&gt; desktop back to a &lt;em&gt;classic&lt;/em&gt;
+  user experience.  I personally find this UX much better than the &lt;a href="https://www.gnome.org/"&gt;standard gnome&lt;/a&gt; user
+  experience.  Visually, was very smooth and appealing.  I found it quite pleasant.  I was also
+  able to run it as part of the X session.&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;PROS&lt;/strong&gt;&lt;ul&gt;
+&lt;li&gt;Buttery smooth look and feel&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://kde.org/plasma-desktop/"&gt;KDE plasma&lt;/a&gt; : This is the &lt;a href="https://kde.org/plasma-desktop/"&gt;KDE project&lt;/a&gt; &lt;a href="https://en.wikipedia.org/wiki/Desktop_environment"&gt;Desktop Environment&lt;/a&gt;.  I found
+  it OK, but not particularly special.  I just tried it on &lt;a href="https://voidlinux.org/"&gt;void&lt;/a&gt; and managed it to get it
+  to work and do stuff, but didn't feel worth it to stick around too much.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.xfce.org/"&gt;XFCE4&lt;/a&gt;: This is another classic UX &lt;a href="https://en.wikipedia.org/wiki/Desktop_environment"&gt;Desktop Environment&lt;/a&gt;.  Just like &lt;a href="https://mate-desktop.org/"&gt;MATE&lt;/a&gt;
+  is a full featured desktop that tends to be light on resources.  I find it stable and a 
+  good performer.  The main reason why I did not opt for &lt;a href="https://www.xfce.org/"&gt;xfce&lt;/a&gt; is that this is the desktop
+  I usually use for Virtual Machines that I spin up on the cloud.  So it is useful to have a 
+  visually different UX so as not to get confused between working locally and working on a cloud
+  system.&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;PROS&lt;/strong&gt;:&lt;ul&gt;
+&lt;li&gt;Classic User Experience (great since I am very old computer user).  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Budgie_(desktop_environment)"&gt;budgie&lt;/a&gt;: Did not work for me on &lt;a href="https://voidlinux.org/"&gt;void linux&lt;/a&gt;.  It would start, but the mouse
+  and keyboard would be unresponsive.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Cinnamon_(desktop_environment)"&gt;cinnamon&lt;/a&gt;: Did not work for me on &lt;a href="https://voidlinux.org/"&gt;void linux&lt;/a&gt;.  It would start, but the mouse
+  and keyboard would be unresponsive.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.fosslinux.com/4652/pantheon-everything-you-need-to-know-about-the-elementary-os-desktop.htm"&gt;pantheon&lt;/a&gt;: This is a desktop that I would like to try, but it is
+  not available on &lt;a href="https://voidlinux.org/"&gt;Void Linux&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="pet-peeves"&gt;Pet Peeves&lt;/h2&gt;
+&lt;h3 id="wayland"&gt;Wayland&lt;/h3&gt;
+&lt;p&gt;The &lt;a href="https://en.wikipedia.org/wiki/Wayland_(protocol)"&gt;Wayland&lt;/a&gt; project started back in 2008.  It started as a modern Window
+system implementation, slated to replace &lt;a href="https://en.wikipedia.org/wiki/X.Org_Server"&gt;Xorg&lt;/a&gt;.  I am writing this is 2023,
+and after 15 years, it is only partially available.  As far as I can tell, the only
+desktop environments that support &lt;a href="https://en.wikipedia.org/wiki/Wayland_(protocol)"&gt;wayland&lt;/a&gt; are &lt;a href="https://www.gnome.org/"&gt;gnome&lt;/a&gt; and
+&lt;a href="https://kde.org/plasma-desktop/"&gt;plasma&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I think this is a pity, but that is how things are in Open Source without a real
+corporate sponsor.&lt;/p&gt;
+&lt;h3 id="gtk-libraries"&gt;GTK+ libraries&lt;/h3&gt;
+&lt;p&gt;I find this is a bit of a mess.  I think it is ude with how the &lt;a href="https://www.gnome.org/"&gt;gnome&lt;/a&gt; project
+is evolving it software components.  I use &lt;a href="https://voidlinux.org/"&gt;void linux&lt;/a&gt; and at the time of this
+writing I can install from the &lt;a href="https://voidlinux.org/"&gt;void&lt;/a&gt; repositories three different versions of
+&lt;a href="https://en.wikipedia.org/wiki/GTK"&gt;GTK+&lt;/a&gt;, v2, v3 and v4.  Also, I tried compiling a package called &lt;a href="https://xnee.wordpress.com/"&gt;Xnee&lt;/a&gt; and
+that actually seemed to require v1.&lt;/p&gt;
+&lt;p&gt;Anyways, because different programs require different &lt;a href="https://en.wikipedia.org/wiki/GTK"&gt;GTK+&lt;/a&gt; release levels, this
+means that my working &lt;a href="https://voidlinux.org/"&gt;void&lt;/a&gt; desktop has all three versions installed.&lt;/p&gt;
+&lt;p&gt;I personally find this quite messy.  Again, this is a fact of life with fully Open Source
+Software.&lt;/p&gt;</content><category term="2023"></category><category term="cloud"></category><category term="computer"></category><category term="desktop"></category><category term="feature"></category><category term="idea"></category><category term="linux"></category><category term="mouse"></category><category term="software"></category><category term="windows"></category></entry><entry><title>Personal thoughts on GUI programming</title><link href="https://0ink.net/posts/2023/2023-05-01-gui-programming.html" rel="alternate"></link><published>2023-05-01T00:00:00+02:00</published><updated>2023-04-25T12:58:58+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-05-01:/posts/2023/2023-05-01-gui-programming.html</id><summary type="html">&lt;p&gt;I have been programming for about 40 years.  Going through a lot of different languages
 and programming paradims.&lt;/p&gt;
 &lt;p&gt;Lately most of my programming is done in:&lt;/p&gt;
 &lt;ul&gt;
