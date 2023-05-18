@@ -266,7 +266,7 @@ proc scrot:cb {op} { exit }
 proc scrot:run {mode args} {
 
   pipe_run scrot:cb scrot -F {%Y-%m-%d.%H:%M:%S_$wx$h.png} \
-	-e  [format {notify-send -a scrot Captured:%s $f} $mode]\
+	-e  [format {notify-send -a scrot Captured:%s $f ; xclip -selection clipboard -t image/png < $f} $mode]\
 	{*}$args
 }
 proc scrot:pr-sc {t mode} {

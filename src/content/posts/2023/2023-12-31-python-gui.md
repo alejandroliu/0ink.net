@@ -1,7 +1,26 @@
 ---
 title: Python GUI 2023
+date: "2023-04-21"
 tags: android, python
 ---
+After looking a multiple options of GUI programming under [python][python] I 
+eventually settled for [tkinter][tkinter].  The main reason was that 
+[tkinter][tkinter] is very ubiquitous and initially though the learning
+curve wuld have shorter as I was very used to GUI programming using
+[TCL/TK][tcl].  Turned out that known [TCL/TK][tcl] did not translate
+very well to [tkinter][tkinter] in [python][python].
+
+Also I found out some **BASIC** features that I was used to in [TCL/TK][tcl] were
+not available in [python][python].  For example:
+
+- Implementing optional scrollbars
+- Scrollable frames
+- Centering windows
+
+At some time I considered using [kivy][kivy] but at the end, I did not.  Since the
+main advantage for it is that you can create mobile apps.  But since my primary
+phone is an iPhone, I don't think I would be able to create iPhone apps 
+due to Apple's walled garden thing.
 
 # GUI programming
 
@@ -20,7 +39,6 @@ tags: android, python
 
 # GUI programming in Python
 
-**The TLDR**: PySimpleGUI because it is _simple_.  Or Kivy because is multi-platform (i.e. Android and IOS and Desktop).
 
 - [Hitchikers guide to Python GUI](https://docs.python-guide.org/scenarios/gui/)
 - [Top 10 frameworks](https://towardsdatascience.com/top-10-python-gui-frameworks-for-developers-adca32fbe6fc)
@@ -28,8 +46,17 @@ tags: android, python
 - [Python3 GUI overview](https://www.geeksforgeeks.org/python3-gui-application-overview/)
 - [Modern Tkinter](https://medium.com/@fareedkhandev/modern-gui-using-tkinter-12da0b983e22)
 
-[otc]: https://open-telekom-cloud.com "Open Telekom Cloud"
-[openstacksdk]: https://wiki.openstack.org/wiki/SDKs
-[winpython]: https://winpython.github.io/
-[pyinstaller]: https://pyinstaller.org/en/stable/
-[sphinx]: https://www.sphinx-doc.org/en/master/
+  [tcl]: https://www.tcl.tk/
+  [tkinter]: https://en.wikipedia.org/wiki/Tkinter
+  [python]: https://www.python.org/
+  [kivy]: https://kivy.org/
+
+  [javascript]: https://en.wikipedia.org/wiki/JavaScript
+  [bash]: https://www.gnu.org/software/bash/
+  [mate]: https://mate-desktop.org/
+  [lxqt]: https://lxqt-project.org/about/
+  [survey]: https://distantjob.com/blog/programming-languages-rank/
+  [patoggle]: https://github.com/alejandroliu/0ink.net/tree/master/snippets/pa-hints
+  [xm]: https://github.com/alejandroliu/0ink.net/tree/master/snippets/xmpy
+  [local-startup]: https://github.com/alejandroliu/0ink.net/tree/master/snippets/local-startup
+  [hk_helper]: https://github.com/alejandroliu/0ink.net/tree/master/snippets/global-hotkeys
