@@ -6,11 +6,11 @@
 	<meta name="author" content="Alejandro Liu">
 
 
-	<meta name="description" content="The idea here is that we use a Desktop PC for developing/debugging Raspberry Pi set-ups using qemu for emulating Rasperrby Pi. qemu currently supports the following configurations: Raspberry Pi Zero and 1A+ (armhf) Raspberry Pi 2B (armv7) Raspberry Pi 3A+ (aarch64) Raspberry Pi 3B (aarch64) This is the version …">
+	<meta name="description" content="raspberry, storage The idea here is that we use a Desktop PC for developing/debugging Raspberry Pi set-ups using qemu for emulating Rasperrby Pi. qemu currently supports the following configurations: Raspberry Pi Zero and 1A+ (armhf) Raspberry Pi 2B (armv7) Raspberry Pi 3A+ (aarch64) Raspberry Pi 3B (aarch64) This is …">
 	<meta name="int-title" content="Raspberry Pi emulation with Qemu">
 	<meta name="tags" content="boot, configuration, desktop, idea, linux, login, mouse, network, partition, raspberry, storage">
-	<meta name="date" content="2023-03-01 00:00:00+01:00">
-	<meta name="modified" content="2023-01-11 15:59:49+01:00">
+	<meta name="date" content="2023-04-21 00:00:00+02:00">
+	<meta name="modified" content="2023-06-03 12:52:32.504730+02:00">
 
 
 	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
@@ -56,14 +56,15 @@
 		<h1>Raspberry Pi emulation with Qemu</h1>
 
 <div class="metadata">
-  <time datetime="2023-03-01T00:00:00+01:00" pubdate>Wed 01 March 2023</time>
+  <time datetime="2023-04-21T00:00:00+02:00" pubdate>Fri 21 April 2023</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2023-01-11 15:59:49+01:00</p>
+  <p>Updated: 2023-06-03 12:52:32.504730+02:00</p>
   in <a href="/category/c2023.html">2023</a>
 <p class="tags">tagged <a href="/tag/boot.html">boot</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/desktop.html">desktop</a>, <a href="/tag/idea.html">idea</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/login.html">login</a>, <a href="/tag/mouse.html">mouse</a>, <a href="/tag/network.html">network</a>, <a href="/tag/partition.html">partition</a>, <a href="/tag/raspberry.html">raspberry</a>, <a href="/tag/storage.html">storage</a></p></div>
-		<p>The idea here is that we use a Desktop PC for developing/debugging
+		<h3 id="raspberry-storage">raspberry, storage</h3>
+<p>The idea here is that we use a Desktop PC for developing/debugging
 Raspberry Pi set-ups using <a href="https://www.qemu.org/">qemu</a> for emulating Rasperrby Pi.</p>
 <p><a href="https://www.qemu.org/">qemu</a> currently supports the following configurations:</p>
 <ul>
@@ -203,7 +204,7 @@ this configuration <code>Ctrl-C</code> is handled properly.</p>
 <div class="highlight"><pre><span></span><code><span class="n">raspi</span><span class="o">-</span><span class="n">emu</span><span class="w"> </span><span class="n">prep</span><span class="w"> </span><span class="o">[</span><span class="n">options</span><span class="o">]</span><span class="w"> </span><span class="n">src</span>
 </code></pre></div>
 
-<p>Prepares the downloaded image so it can be used as a <a href="https://www.qemu.org/">qemu</a> thin-provisioned
+<p>Prepares the downloaded image so it can be used as a base for a <a href="https://www.qemu.org/">qemu</a> thin-provisioned
 image.</p>
 <p>Options:</p>
 <ul>
@@ -211,8 +212,8 @@ image.</p>
 <li><code>-c</code> | <code>--compress</code> : For <code>qcow2</code> images, create a compressed image.</li>
 <li><code>--qcow2</code> : Create a <code>qcow2</code> format image.  This is the default.</li>
 <li><code>--raw</code> : Create a <code>raw</code> image.</li>
-<li><code>--label=name</code> : When creating <a href="https://alpinelinux.org/">AlpineLinux</a> images, use <code>name</code> as the
-  volume name.</li>
+<li><code>--volume=name</code> : When creating <a href="https://alpinelinux.org/">AlpineLinux</a> images, use <code>name</code> as the
+  volume name.  Otherwise a random name is generated.</li>
 </ul>
 <h3 id="formatting-sdcard-image">Formatting SDCARD image</h3>
 <div class="highlight"><pre><span></span><code><span class="n">raspi</span><span class="o">-</span><span class="n">emu</span><span class="w"> </span><span class="nf">format</span><span class="w"> </span><span class="o">[</span><span class="n">options</span><span class="o">]</span><span class="w"> </span><span class="n">base</span><span class="w"> </span><span class="n">dest</span>
@@ -222,7 +223,7 @@ image.</p>
 create a thin-provisioned image when possible.</p>
 <p>Options:</p>
 <ul>
-<li><code>--reize=size</code> : Set the SDCARD image to the given size.</li>
+<li><code>--resize=size</code> : Set the SDCARD image to the given size.</li>
 </ul>
 <h3 id="running-emulation">Running Emulation</h3>
 <div class="highlight"><pre><span></span><code><span class="n">raspi</span><span class="o">-</span><span class="n">emu</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">[</span><span class="n">options</span><span class="o">]</span><span class="w"> </span><span class="n">sdimg</span>
@@ -240,7 +241,8 @@ when possible is read from the boot partition of the SDCARD.</p>
 <li><code>--vnet</code> : Enable virtual network.  (Default)</li>
 <li><code>--no-vnet</code> : Disables hte virtual network.</li>
 <li><code>--portfwd</code> : Enables virtual network.  Forwards port 5555 on host to port 22 on VM.</li>
-<li><code>--portfwd=rule</code> : Adds the given port forwarding rule.</li>
+<li><code>--portfwd=rule</code> : Adds the given port forwarding rule. \
+     Example rule: <code>tcp::5555-:22</code></li>
 <li><code>--no-portfwd</code> : Dsiables port forwarding.  (Default)</li>
 <li><code>--raspi3b</code> : Emulate a Raspberry Pi Model 3B.  (Default)</li>
 </ul>

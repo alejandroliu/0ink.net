@@ -49,6 +49,28 @@
 
 <article class="summary">
 <div class="metadata">
+  <time datetime="2023-06-01T00:00:00+02:00" pubdate>Thu 01 June 2023</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2023-04-25 12:58:58+02:00</p>
+  in <a href="/category/c2023.html">2023</a>
+<p class="tags">tagged <a href="/tag/address.html">address</a>, <a href="/tag/configuration.html">configuration</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2023/2023-06-01-munin-tweaks.html" rel="bookmark" title="Permalink to Munin-tweaks">Munin-tweaks</a>
+    </h2>
+    <p><p>Small recipes to tweak munin configurations.</p>
+<h2 id="overriding-critical-and-warning-levels">Overriding critical and warning levels</h2>
+<p>In the node configuration enter:</p>
+<div class="highlight"><pre><span></span><code>plugin.field_name.critical value
+plugin.field_name.warning value
+</code></pre></div>
+
+<p>The plugin name can be found by clicking in the graph with the value
+you want to override.  The last component of the url (without the …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
   <time datetime="2023-05-15T00:00:00+02:00" pubdate>Mon 15 May 2023</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
@@ -86,6 +108,29 @@ and programming paradims.</p>
 <li><a href="https://www.php.net/manual/en/intro-whatis.php">PHP</a>, with some bits in <a href="https://en.wikipedia.org/wiki/JavaScript">JavaScript</a></li>
 </ul>
 <p>So lately, after hitting some bugs in a recent update of the <a href="https://mate-desktop.org/">MATE</a> desktop …</p></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
+  <time datetime="2023-04-21T00:00:00+02:00" pubdate>Fri 21 April 2023</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2023-06-03 12:52:32.504730+02:00</p>
+  in <a href="/category/c2023.html">2023</a>
+<p class="tags">tagged <a href="/tag/boot.html">boot</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/desktop.html">desktop</a>, <a href="/tag/idea.html">idea</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/login.html">login</a>, <a href="/tag/mouse.html">mouse</a>, <a href="/tag/network.html">network</a>, <a href="/tag/partition.html">partition</a>, <a href="/tag/raspberry.html">raspberry</a>, <a href="/tag/storage.html">storage</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2023/2023-03-01-rpi-emulation.html" rel="bookmark" title="Permalink to Raspberry Pi emulation with Qemu">Raspberry Pi emulation with Qemu</a>
+    </h2>
+    <p><h3 id="raspberry-storage">raspberry, storage</h3>
+<p>The idea here is that we use a Desktop PC for developing/debugging
+Raspberry Pi set-ups using <a href="https://www.qemu.org/">qemu</a> for emulating Rasperrby Pi.</p>
+<p><a href="https://www.qemu.org/">qemu</a> currently supports the following configurations:</p>
+<ul>
+<li>Raspberry Pi Zero and 1A+ (armhf)</li>
+<li>Raspberry Pi 2B (armv7)</li>
+<li>Raspberry Pi 3A+ (aarch64)</li>
+<li>Raspberry Pi 3B (aarch64)<ul>
+<li>This is …</li></ul></li></ul></p>
   </div>
 </article><article class="summary">
 <div class="metadata">
@@ -135,28 +180,6 @@ to a …</p></p>
 <h2 id="python-development-on-windows">Python development on Windows</h2>
 <p>For windows, you can use <a href="https://winpython.github.io/">WinPython</a>.
 I prefer to use this instead of …</p></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2023-03-01T00:00:00+01:00" pubdate>Wed 01 March 2023</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2023-01-11 15:59:49+01:00</p>
-  in <a href="/category/c2023.html">2023</a>
-<p class="tags">tagged <a href="/tag/boot.html">boot</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/desktop.html">desktop</a>, <a href="/tag/idea.html">idea</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/login.html">login</a>, <a href="/tag/mouse.html">mouse</a>, <a href="/tag/network.html">network</a>, <a href="/tag/partition.html">partition</a>, <a href="/tag/raspberry.html">raspberry</a>, <a href="/tag/storage.html">storage</a></p></div>  <div>
-    <h2>
-      <a href="/posts/2023/2023-03-01-rpi-emulation.html" rel="bookmark" title="Permalink to Raspberry Pi emulation with Qemu">Raspberry Pi emulation with Qemu</a>
-    </h2>
-    <p><p>The idea here is that we use a Desktop PC for developing/debugging
-Raspberry Pi set-ups using <a href="https://www.qemu.org/">qemu</a> for emulating Rasperrby Pi.</p>
-<p><a href="https://www.qemu.org/">qemu</a> currently supports the following configurations:</p>
-<ul>
-<li>Raspberry Pi Zero and 1A+ (armhf)</li>
-<li>Raspberry Pi 2B (armv7)</li>
-<li>Raspberry Pi 3A+ (aarch64)</li>
-<li>Raspberry Pi 3B (aarch64)<ul>
-<li>This is the version …</li></ul></li></ul></p>
   </div>
 </article><article class="summary">
 <div class="metadata">
@@ -454,54 +477,9 @@ up with to handle a HDMI KVM switch.</p>
 is selecting the other PC, it fails to initialize the display, so
 when you …</p></p>
   </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2022-10-20T00:00:00+02:00" pubdate>Thu 20 October 2022</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2022-10-12 02:15:39+02:00</p>
-  in <a href="/category/c2022.html">2022</a>
-<p class="tags">tagged <a href="/tag/application.html">application</a>, <a href="/tag/github.html">github</a>, <a href="/tag/markdown.html">markdown</a></p></div>  <div>
-    <h2>
-      <a href="/posts/2022/2022-10-20-md-cheatsheet.html" rel="bookmark" title="Permalink to Markdown cheat sheet">Markdown cheat sheet</a>
-    </h2>
-    <p><p>This is intended as a quick reference and showcase. For more complete info,
-see <a href="http://daringfireball.net/projects/markdown/">John Gruber's original spec</a>
-and the <a href="http://github.github.com/github-flavored-markdown/">Github-flavored Markdown info page</a>.</p>
-<h2 id="headers">Headers</h2>
-<p>Source:</p>
-<hr>
-<div class="highlight"><pre><span></span><code><span class="gh"># H1</span>
-<span class="gu">## H2</span>
-<span class="gu">### H3</span>
-<span class="gu">#### H4</span>
-<span class="gu">##### H5</span>
-<span class="gu">###### H6</span>
-
-Alternatively, for H1 and H2, an underline-ish style:
-
-<span class="gh">Alt-H1</span>
-<span class="gh">======</span>
-
-<span class="gu">Alt-H2</span>
-<span class="gu">------</span>
-</code></pre></div>
-
-<hr>
-<p>Output:</p>
-<hr>
-<h2 id="h1">H1</h2>
-<h3 id="h2">H2</h3>
-<h4 id="h3">H3</h4>
-<h5 id="h4">H4</h5>
-<h6 id="h5">H5</h6>
-<h6 id="h6">H6</h6>
-<p>Alternatively …</p></p>
-  </div>
 </article>
 <div class="pagination">
-    Page 1 / 11
+    Page 1 / 12
         <a href="/author/alejandro-liu2.html">&raquo;</a>
 </div>
 

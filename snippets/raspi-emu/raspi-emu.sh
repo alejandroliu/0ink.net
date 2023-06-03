@@ -168,7 +168,7 @@ prep() {
     --qcow2) oformat=qcow2 ;;
     --compress|-c) compress=-c ;;
     --raw) oformat=raw ;;
-    --volume=*) label=${1#--volume} ;;
+    --volume=*) label=${1#--volume=} ;;
     *) break ;;
     esac
     shift
@@ -447,13 +447,57 @@ run() {
   return $rc
 }
 
-[ $# -eq 0 ] && die 15 "Usage: $0 {op} args"
+usage() {
+  O=$(basename "$0")
+  cat <<-_EOF_
+	Usasge: $0 {cmd} [options]
+
+	Commands:
+
+	- $O prep [options] tarball
+	  Prepares a base image file for use.
+	  Options:
+	  * --sz=value : image base size
+	  * --qcow2 : use qcow2 format (default)
+	  * --compress|-c : compress the base image
+	  * --raw : use raw format
+	  * --volume : volume label, if not specified a random value is used
+
+	- $O format [options] {base-img} {working-img}
+	  Prepares a working image based on base image.
+	  Options:
+	  * --resize=value : create a working image of different size as base
+	  * base-img : base image to use
+	  * working-img : working image to use
+
+	- $O run [options] work-image
+	  Runs a working image
+	  Options:
+	  * --vfb-only : use virtual console (disables serial console)
+	  * --vfb : enable virtual console
+	  * --no-vfb : disable virtual console
+	  * --ttycon : enable serial console
+	  * --no-ttycon : disable serial console
+	  * --vnet : enable virtual networking
+	  * --no-vnet : disable virtual networking
+	  * --portfwd : enable networking and port forward 5555 to 22
+	  * --portfwd=rule : enable networking and specify a prot forwarding rule
+	      Example rule: tcp::5555-:22
+	  * --no-portfwd : disable port forwarding
+	  * --raspi3b:  model=raspi3b, only working option
+	  The default is running headless (only serial console) with networking enabled.
+
+	_EOF_
+  exit
+}
+
+[ $# -eq 0 ] && usage
 
 case "$1" in
   prep) shift; prep "$@" ;;
   format) shift ; format "$@" ;;
   run) shift; run "$@" ;;
-  *) die 19 "$1: Unknown op" ;;
+  *) usage ;;
 esac
 
 

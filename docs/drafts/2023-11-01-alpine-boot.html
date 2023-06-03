@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8"/>
+	<title>Alpine boot menu - 0ink.net</title>
+	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="This article is an update to my [[../2020/2020-10-04-alpine-boot-switcher.md|Alpine Boot Switcher]] article. Contents: Table of Contents Preparing boot device Booting the system Adding a new kernel After a succesful reboot Alternative workflow Removing installed kernels Downloads The weakness of that approach was that you needed to be on …">
+	<meta name="int-title" content="Alpine boot menu">
+	<meta name="tags" content="alpine, boot, configuration, device, drive, filesystem, linux, network, partition, speed">
+	<meta name="date" content="2023-11-01 00:00:00+01:00">
+	<meta name="modified" content="2023-06-03 12:52:32.540730+02:00">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+
+
+    <link href="/feeds/atom.xml" type="application/atom+xml" rel="alternate" title="0ink.net Atom Feed" />
+    <link href="/feeds/rss.xml" type="application/rss+xml" rel="alternate" title="0ink.net RSS Feed" />
+</head>
+
+<body>
+    <div class="container">
+
+	  <header role="banner">
+	    <div class="feeds">
+	        <a href="/feeds/atom.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="atom feed" title="atom feed"/></a>
+	    </div>
+		<nav class="pages">
+			    <a href="/pages/about.html">About</a>
+-			    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+		</nav>
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		0ink.net</a>
+	      <div class="logo">
+		<a href="/" class="title"
+ title="Not the site you are looking for..."		>
+		  <img src="/images/2021/0ink.png" width="44" height="44" />
+		</a>
+	      </div>
+
+
+
+      </header>
+
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
+
+	<article class="full">
+
+		<h1>Alpine boot menu</h1>
+
+<div class="metadata">
+  <time datetime="2023-11-01T00:00:00+01:00" pubdate>Wed 01 November 2023</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2023-06-03 12:52:32.540730+02:00</p>
+  in <a href="/category/c2023.html">2023</a>
+<p class="tags">tagged <a href="/tag/alpine.html">alpine</a>, <a href="/tag/boot.html">boot</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/device.html">device</a>, <a href="/tag/drive.html">drive</a>, <a href="/tag/filesystem.html">filesystem</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/network.html">network</a>, <a href="/tag/partition.html">partition</a>, <a href="/tag/speed.html">speed</a></p></div>
+		<p>This article is an update to my 
+[[../2020/2020-10-04-alpine-boot-switcher.md|Alpine Boot Switcher]] article.</p>
+<hr>
+<p>Contents:</p>
+<div class="toc"><span class="toctitle">Table of Contents</span><ul>
+<li><a href="#preparing-boot-device">Preparing boot device</a></li>
+<li><a href="#booting-the-system">Booting the system</a></li>
+<li><a href="#adding-a-new-kernel">Adding a new kernel</a></li>
+<li><a href="#after-a-succesful-reboot">After a succesful reboot</a></li>
+<li><a href="#alternative-workflow">Alternative workflow</a></li>
+<li><a href="#removing-installed-kernels">Removing installed kernels</a></li>
+<li><a href="#downloads">Downloads</a></li>
+</ul>
+</div>
+<hr>
+<p>The weakness of that approach was that you needed to be on a running system
+to select the active kernel.  So, if you switched to a broken kernel then
+you wouldn't be able to revert back without having to get the media device out
+and modifying the file system to switch to a different kernel.</p>
+<p>The approach described here makes use of syslinux or grub menu system to allow you to
+select a new kernel.  It requires modifying the <code>init</code> script in the
+<code>initramfs</code> image so that you can specifically select the right APK boot repository
+otherwise it will use the first one found in the boot file system.</p>
+<p>This solution is suitable for physical and virtualized systems using BIOS and UEFI
+boot methods.</p>
+<p>The high level approach is:</p>
+<ul>
+<li>prepare a bootable USB or virtual disk image.</li>
+<li>during system operation, use the <code>inst_iso</code> script to install a new
+  Alpine release.</li>
+<li>You can use the <code>mkmenu</code> script to select the new kernel or ...</li>
+<li>Re-boot the system, syslinux (on BIOS systems) or grub (on UEFI) systems
+  will show a menu to let you select the boot kernel or boot a default
+  kernel after 10 seconds (unless configured for a different time-out).</li>
+<li>If the boot was succesful, you can use <code>mkmenu</code> to make the current
+  kernel the default kernel.</li>
+<li>If the boot fails, then you can hard boot the system and use the boot
+  menu to select a known working kernel.</li>
+</ul>
+<h2 id="preparing-boot-device">Preparing boot device</h2>
+<p>Use the <code>mkuub</code> script to create a bootable USB drive or a bootable disk image.</p>
+<p>The USB drive can be used
+on a physical system and supports UEFI and BIOS boot methods (BIOS boot is untested).  </p>
+<p>The bootable disk image is meant to be used on a virtualized environment.  I have tested
+it on <code>virsh on kvm</code> and uses the BIOS boot method.  It has UEFI boot support files but
+I have not tested this.</p>
+<p>Usage:</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="p">.</span><span class="o">/</span><span class="n">mkuusb</span><span class="p">.</span><span class="n">sh</span><span class="w"> </span><span class="o">[</span><span class="n">options</span><span class="o">]</span><span class="w"> </span><span class="n">isofile</span><span class="w"> </span><span class="o">[</span><span class="n">usbdev</span><span class="o">]</span>
+</code></pre></div>
+
+<p>Options:</p>
+<ul>
+<li><code>--serial</code> : Enable serial console</li>
+<li><code>--ovl=ovlfile</code> : overlay file to use</li>
+<li><code>--boot-label=label</code> : boot partition label \
+  Defaults to a random label unless ovl is specifed.
+  In that case, it will take the label from the filesystem mounted as
+  <code>/media/boot</code> from <code>/etc/fstab</code>.</li>
+<li><code>--boot-size=size</code> : boot partition size \
+  If not specified it will default to the entire drive
+  or up to half the drive (if data partition is enabled)
+  up to 8GB.</li>
+<li><code>--data</code> : create a data partition</li>
+<li><code>--data-label=label</code> : label for data partition_disc \
+  Defaults to a random label unless ovl is specifed
+  then will take the label from the filesystem mounted as
+  <code>/media/data</code> from <code>/etc/fstab</code>.</li>
+<li><code>--data-size=size</code> : data partition size \
+  size defaults to the remaining of the disk</li>
+<li><code>isofile</code>: ISO file to use as the base alpine install</li>
+<li><code>usbhdd</code> : <code>/dev/path</code> to the thumb drive that will be installed. \
+  It will try to use a suitable default by looking an unused drive from
+  the currently connected drives on the system.  Otherwise a target
+  image file can be specified using:<ul>
+<li><code>img:path/to/image/file[,size]</code></li>
+</ul>
+</li>
+</ul>
+<p>if <code>--serial</code> was used, the boot menu will be configure to use the first
+serial port (Usually <code>COM1</code>) with a speed of 115200.  So you can use
+a serial console or the normal display to select the desired kernel.</p>
+<p>When configured using <code>serial</code>, kernel boot message would be displayed on
+the serial console.</p>
+<h2 id="booting-the-system">Booting the system</h2>
+<p>After creating the boot device, you can connected to a physical server or
+in the case of a bootable image add it to a virtual machine configuration.</p>
+<p>Booting the system will show a boot menu letting you select a kernel.  If
+nothing is selected after the time-out period, a configured default
+will be used.</p>
+<h2 id="adding-a-new-kernel">Adding a new kernel</h2>
+<p>During normal operation, you may want to upgrade to a new kernel.  To do this
+you can use the script:</p>
+<ul>
+<li><code>$bootmedia/scripts/inst_iso.sh</code> <em>file-or-url</em></li>
+</ul>
+<p>You can pass a iso file name or the URL of an ISO over the network.  If using
+an URL, the script will download the image first.</p>
+<p>This will prepare the environment to include the new kernel and add a menu
+entry to boot the new kernel.  The default kernel remains as the currently
+running kernel.</p>
+<p>At this point, the system can be rebooted. You can then use the
+boot menu to select the latest kernel manually.</p>
+<p>If the new kernel fails to boot succesfully, then you may need to hard boot
+the system.</p>
+<p>Since the default kernel was not changed, it should boot to the last working
+kernel and proceed normally.</p>
+<h2 id="after-a-succesful-reboot">After a succesful reboot</h2>
+<p>If the new kernel was succesfully booted, you can use the command:</p>
+<ul>
+<li><code>$bootmedia/mkmenu.sh</code></li>
+</ul>
+<p>to make the currently running kernel the default.</p>
+<h2 id="alternative-workflow">Alternative workflow</h2>
+<p>Alternatively, after the new kernel is installed, you can use the command:</p>
+<ul>
+<li><code>$bootmedia/mkmenu.sh --latest</code></li>
+</ul>
+<p>to make the new kernel the default one.  You can then re-boot the system
+and if everything goes fine, you are done.</p>
+<p>If the system fails to boot then you probably will need to do a hard boot of
+the system and use the boot menu to select a working Alpine Linux kernel.</p>
+<p>After a succesful boot, then you can use the command:</p>
+<ul>
+<li><code>$bootmedia/mkmenu.sh</code></li>
+</ul>
+<p>To make the current running kernel the default.</p>
+<h2 id="removing-installed-kernels">Removing installed kernels</h2>
+<p>Alpine Linux boot images are installed in their own folders.  If you want
+to remove a kernel, just remove the folder that you want to un-install and
+run <code>mkemnu.sh</code> again to update the boot menu.</p>
+<h2 id="downloads">Downloads</h2>
+<p>The code can be found in my repository:</p>
+<ul>
+<li><a href="https://github.com/TortugaLabs/mab/tree/main/uub">github</a></li>
+</ul>
+<p>Alpine Linux boot images:</p>
+<ul>
+<li><a href="https://alpinelinux.org/downloads/">Alpine Linux ISO downloads</a></li>
+</ul>
+
+	</article>
+
+
+		  </div>
+
+		  <div class="sidebar">
+
+	        <nav>
+	          <h2>Years</h2>
+	          <ul>
+	              <li class="active"><a href="/category/c2023.html">2023</a></li>
+	              <li ><a href="/category/c2022.html">2022</a></li>
+	              <li ><a href="/category/c2021.html">2021</a></li>
+	              <li ><a href="/category/c2020.html">2020</a></li>
+	              <li ><a href="/category/c2019.html">2019</a></li>
+	              <li ><a href="/category/c2018.html">2018</a></li>
+	              <li ><a href="/category/c2017.html">2017</a></li>
+	              <li ><a href="/category/c2016.html">2016</a></li>
+	              <li ><a href="/category/c2015.html">2015</a></li>
+	              <li ><a href="/category/c2014.html">2014</a></li>
+	              <li ><a href="/category/c2013.html">2013</a></li>
+	          </ul>
+	        </nav>
+
+	          <aside>
+	          <h2>Social</h2>
+			    <ul class="social">
+				  <li><a href="https://github.com/alejandroliu/">github</a><i></i></li>
+				  <li><a href="https://www.linkedin.com/in/alejandro-liu-ly/">LinkedIn</a><i></i></li>
+			    </ul>
+			  </aside>
+
+	          <aside>
+	            <h2>Links</h2>
+	            <ul>
+	                <li><a href="/sitemap.html">sitemap</a></li>
+	                <li><a href="/tags.html">Tags</a></li>
+	                <li><a href="https://github.com/alejandroliu/0ink.net">Repo</a></li>
+	                <li><a href="https://home.0ink.net/nanowiki/">Wiki</a></li>
+	            </ul>
+	          </aside>
+	      </div>
+
+	  </div>
+
+      <footer>
+
+		<p role="contentinfo">
+		  © 2021-2022 Alejandro Liu - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
+		  <span class="feeds">
+		    <a href="/feeds/rss.xml" rel="alternate"><img src="/theme/images/icons/feed-32px.png" alt="rss feed" title="rss feed"/></a>
+		  </span>
+		  </p>
+
+	  </footer>
+
+	</div>
+
+
+</body>
+</html>

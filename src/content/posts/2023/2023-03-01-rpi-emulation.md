@@ -1,6 +1,8 @@
 ---
 title: Raspberry Pi emulation with Qemu
+date: 2023-04-21
 tags: boot, configuration, desktop, idea, linux, login, mouse, network, partition, raspberry, storage
+raspberry, storage
 ---
 The idea here is that we use a Desktop PC for developing/debugging
 Raspberry Pi set-ups using [qemu][qemu] for emulating Rasperrby Pi.
@@ -139,7 +141,7 @@ Usage:
 ```
 raspi-emu prep [options] src
 ```
-Prepares the downloaded image so it can be used as a [qemu][qemu] thin-provisioned
+Prepares the downloaded image so it can be used as a base for a [qemu][qemu] thin-provisioned
 image.
 
 Options:
@@ -148,8 +150,8 @@ Options:
 - `-c` | `--compress` : For `qcow2` images, create a compressed image.
 - `--qcow2` : Create a `qcow2` format image.  This is the default.
 - `--raw` : Create a `raw` image.
-- `--label=name` : When creating [AlpineLinux][al] images, use `name` as the
-  volume name.
+- `--volume=name` : When creating [AlpineLinux][al] images, use `name` as the
+  volume name.  Otherwise a random name is generated.
 
 ## Formatting SDCARD image
 
@@ -161,7 +163,7 @@ create a thin-provisioned image when possible.
 
 Options:
 
-- `--reize=size` : Set the SDCARD image to the given size.
+- `--resize=size` : Set the SDCARD image to the given size.
 
 ## Running Emulation
 
@@ -182,7 +184,8 @@ Options:
 - `--vnet` : Enable virtual network.  (Default)
 - `--no-vnet` : Disables hte virtual network.
 - `--portfwd` : Enables virtual network.  Forwards port 5555 on host to port 22 on VM.
-- `--portfwd=rule` : Adds the given port forwarding rule.
+- `--portfwd=rule` : Adds the given port forwarding rule. \
+     Example rule: `tcp::5555-:22`
 - `--no-portfwd` : Dsiables port forwarding.  (Default)
 - `--raspi3b` : Emulate a Raspberry Pi Model 3B.  (Default)
 

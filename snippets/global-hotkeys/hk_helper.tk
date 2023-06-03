@@ -264,9 +264,16 @@ proc op:minimize {} {
 
 proc scrot:cb {op} { exit }
 proc scrot:run {mode args} {
+  global env
+  set rm_file {; rm -f $f}
+  if {[info exists env(HK_HELPER_SAVE_SCREENSHOT_FILE)]} {
+    if {[string is true $env(HK_HELPER_SAVE_SCREENSHOT_FILE)]} {
+      set rm_file {}
+    }
+  }
 
   pipe_run scrot:cb scrot -F {%Y-%m-%d.%H:%M:%S_$wx$h.png} \
-	-e  [format {notify-send -a scrot Captured:%s $f ; xclip -selection clipboard -t image/png < $f} $mode]\
+	-e  [format {notify-send -a scrot Captured:%s $f ; xclip -selection clipboard -t image/png < $f %s} $mode $rm_file] \
 	{*}$args
 }
 proc scrot:pr-sc {t mode} {

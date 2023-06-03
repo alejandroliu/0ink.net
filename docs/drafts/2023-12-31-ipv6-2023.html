@@ -2,8 +2,15 @@
 <html lang="">
 <head>
 	<meta charset="utf-8"/>
-	<title>0ink.net - Authors</title>
+	<title>IPv6 on 2023 - 0ink.net</title>
 	<meta name="author" content="Alejandro Liu">
+
+
+	<meta name="description" content="This is a sequel to my article [[../2021/2021-12-21-ipv6-blues.md|IPv6 blues]]. At the time it looked that only /64 prefix address was being allocated. However, when I recently checked my ADSL modem router configuration I noticed that actually the ADSL modem gets assigned /48 prefix. Thids makes the configuration …">
+	<meta name="int-title" content="IPv6 on 2023">
+	<meta name="tags" content="address, configuration, linux">
+	<meta name="date" content="2023-12-31 00:00:00+01:00">
+	<meta name="modified" content="2023-06-03 12:52:32.542730+02:00">
 
 
 	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
@@ -44,10 +51,34 @@
 		  <div role="main" class="content">
 			<iframe src="https://duckduckgo.com/search.html?site=0ink.net&prefill=Search with DuckDuckGo" style="overflow:hidden;margin:5px;padding:0;width:408px;height:40px;" frameborder="0"></iframe>
 
-    <h1>Authors on 0ink.net</h1>
-    <ul>
-        <li><a href="/author/alejandro-liu.html">Alejandro Liu</a> (221)</li>
-    </ul>
+	<article class="full">
+
+		<h1>IPv6 on 2023</h1>
+
+<div class="metadata">
+  <time datetime="2023-12-31T00:00:00+01:00" pubdate>Sun 31 December 2023</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2023-06-03 12:52:32.542730+02:00</p>
+  in <a href="/category/c2023.html">2023</a>
+<p class="tags">tagged <a href="/tag/address.html">address</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/linux.html">linux</a></p></div>
+		<p>This is a sequel to my article [[../2021/2021-12-21-ipv6-blues.md|IPv6 blues]].</p>
+<p>At the time it looked that only /64 prefix address was being allocated.
+However, when I recently checked my ADSL modem router configuration I
+noticed that actually the ADSL modem gets assigned /48 prefix.  Thids makes
+the configuration <em>much</em> easier.</p>
+<p>What is nice, is that for <strong>"reasonable"</strong> configurations, IPv6 usually does the
+right thing and configures most things by itself.  For IPv6 routing, you only
+need to enable the right functionality and most of the addressing is determined
+automatically.</p>
+<ul>
+<li><a href="https://wiki.alpinelinux.org/wiki/Linux_Router_with_VPN_on_a_Raspberry_Pi_(IPv6)">alpine linux wiki</a></li>
+</ul>
+
+	</article>
+
+
 		  </div>
 
 		  <div class="sidebar">
@@ -55,7 +86,7 @@
 	        <nav>
 	          <h2>Years</h2>
 	          <ul>
-	              <li ><a href="/category/c2023.html">2023</a></li>
+	              <li class="active"><a href="/category/c2023.html">2023</a></li>
 	              <li ><a href="/category/c2022.html">2022</a></li>
 	              <li ><a href="/category/c2021.html">2021</a></li>
 	              <li ><a href="/category/c2020.html">2020</a></li>

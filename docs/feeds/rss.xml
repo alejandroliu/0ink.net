@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Mon, 15 May 2023 00:00:00 +0200</lastBuildDate><item><title>Desktop Environments 2023</title><link>https://0ink.net/posts/2023/2023-05-15-de-2023.html</link><description>&lt;p&gt;Around April 2023, I decided to look for a new &lt;a href="https://en.wikipedia.org/wiki/Desktop_environment"&gt;Linux Desktop Environment&lt;/a&gt; for my
+<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Sat, 03 Jun 2023 12:52:32 +0200</lastBuildDate><item><title>Munin-tweaks</title><link>https://0ink.net/posts/2023/2023-06-01-munin-tweaks.html</link><description>&lt;p&gt;Small recipes to tweak munin configurations.&lt;/p&gt;
+&lt;h2 id="overriding-critical-and-warning-levels"&gt;Overriding critical and warning levels&lt;/h2&gt;
+&lt;p&gt;In the node configuration enter:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;plugin.field_name.critical value
+plugin.field_name.warning value
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The plugin name can be found by clicking in the graph with the value
+you want to override.  The last component of the url (without the …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Thu, 01 Jun 2023 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:None,2023-06-01:/posts/2023/2023-06-01-munin-tweaks.html</guid><category>2023</category><category>address</category><category>configuration</category></item><item><title>Desktop Environments 2023</title><link>https://0ink.net/posts/2023/2023-05-15-de-2023.html</link><description>&lt;p&gt;Around April 2023, I decided to look for a new &lt;a href="https://en.wikipedia.org/wiki/Desktop_environment"&gt;Linux Desktop Environment&lt;/a&gt; for my
 personal &lt;a href="https://voidlinux.org/"&gt;void linux&lt;/a&gt;.  So I tried these distros:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://lxqt-project.org/about/"&gt;lxqt&lt;/a&gt;: This is the one I eventually chose to switch to.  I liked it that it
@@ -11,7 +19,16 @@ and programming paradims.&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://www.python.org/"&gt;Python&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.php.net/manual/en/intro-whatis.php"&gt;PHP&lt;/a&gt;, with some bits in &lt;a href="https://en.wikipedia.org/wiki/JavaScript"&gt;JavaScript&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;So lately, after hitting some bugs in a recent update of the &lt;a href="https://mate-desktop.org/"&gt;MATE&lt;/a&gt; desktop …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Mon, 01 May 2023 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:None,2023-05-01:/posts/2023/2023-05-01-gui-programming.html</guid><category>2023</category><category>desktop</category><category>idea</category><category>library</category><category>linux</category><category>scripts</category></item><item><title>NacoWiki</title><link>https://0ink.net/posts/2023/2023-04-15-nacowiki.html</link><description>&lt;p&gt;A few months ago I extensibly modify &lt;a href="https://github.com/luckyshot/picowiki"&gt;picowiki&lt;/a&gt; and creeated &lt;a href="https://github.com/iliu-net/nanowiki"&gt;NanoWiki&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So lately, after hitting some bugs in a recent update of the &lt;a href="https://mate-desktop.org/"&gt;MATE&lt;/a&gt; desktop …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Mon, 01 May 2023 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:None,2023-05-01:/posts/2023/2023-05-01-gui-programming.html</guid><category>2023</category><category>desktop</category><category>idea</category><category>library</category><category>linux</category><category>scripts</category></item><item><title>Raspberry Pi emulation with Qemu</title><link>https://0ink.net/posts/2023/2023-03-01-rpi-emulation.html</link><description>&lt;h3 id="raspberry-storage"&gt;raspberry, storage&lt;/h3&gt;
+&lt;p&gt;The idea here is that we use a Desktop PC for developing/debugging
+Raspberry Pi set-ups using &lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; for emulating Rasperrby Pi.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; currently supports the following configurations:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Raspberry Pi Zero and 1A+ (armhf)&lt;/li&gt;
+&lt;li&gt;Raspberry Pi 2B (armv7)&lt;/li&gt;
+&lt;li&gt;Raspberry Pi 3A+ (aarch64)&lt;/li&gt;
+&lt;li&gt;Raspberry Pi 3B (aarch64)&lt;ul&gt;
+&lt;li&gt;This is …&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Fri, 21 Apr 2023 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:None,2023-04-21:/posts/2023/2023-03-01-rpi-emulation.html</guid><category>2023</category><category>boot</category><category>configuration</category><category>desktop</category><category>idea</category><category>linux</category><category>login</category><category>mouse</category><category>network</category><category>partition</category><category>raspberry</category><category>storage</category></item><item><title>NacoWiki</title><link>https://0ink.net/posts/2023/2023-04-15-nacowiki.html</link><description>&lt;p&gt;A few months ago I extensibly modify &lt;a href="https://github.com/luckyshot/picowiki"&gt;picowiki&lt;/a&gt; and creeated &lt;a href="https://github.com/iliu-net/nanowiki"&gt;NanoWiki&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;After using &lt;a href="https://github.com/iliu-net/nanowiki"&gt;NanoWiki&lt;/a&gt; for a few months, the code became somewhat of an
 spaghetti mess.  This has to do that &lt;a href="https://github.com/luckyshot/picowiki"&gt;picowiki&lt;/a&gt; was designed as a single
 file, single class application with Plugin extension.  Since every change went
@@ -32,15 +49,7 @@ to a …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/element
 &lt;hr&gt;
 &lt;h2 id="python-development-on-windows"&gt;Python development on Windows&lt;/h2&gt;
 &lt;p&gt;For windows, you can use &lt;a href="https://winpython.github.io/"&gt;WinPython&lt;/a&gt;.
-I prefer to use this instead of …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Mon, 03 Apr 2023 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:None,2023-04-03:/posts/2023/2023-04-01-python-dev-1.html</guid><category>2023</category><category>directory</category><category>python</category><category>scripts</category><category>windows</category></item><item><title>Raspberry Pi emulation with Qemu</title><link>https://0ink.net/posts/2023/2023-03-01-rpi-emulation.html</link><description>&lt;p&gt;The idea here is that we use a Desktop PC for developing/debugging
-Raspberry Pi set-ups using &lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; for emulating Rasperrby Pi.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; currently supports the following configurations:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Raspberry Pi Zero and 1A+ (armhf)&lt;/li&gt;
-&lt;li&gt;Raspberry Pi 2B (armv7)&lt;/li&gt;
-&lt;li&gt;Raspberry Pi 3A+ (aarch64)&lt;/li&gt;
-&lt;li&gt;Raspberry Pi 3B (aarch64)&lt;ul&gt;
-&lt;li&gt;This is the version …&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Wed, 01 Mar 2023 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:None,2023-03-01:/posts/2023/2023-03-01-rpi-emulation.html</guid><category>2023</category><category>boot</category><category>configuration</category><category>desktop</category><category>idea</category><category>linux</category><category>login</category><category>mouse</category><category>network</category><category>partition</category><category>raspberry</category><category>storage</category></item><item><title>Home Assistant Wall Panel</title><link>https://0ink.net/posts/2023/2023-02-20-wallpanel.html</link><description>&lt;p&gt;For a while I was using &lt;a href="https://github.com/HyperTechnology5/TabletClock"&gt;TabletClock&lt;/a&gt; with old tablets.  But 
+I prefer to use this instead of …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Mon, 03 Apr 2023 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:None,2023-04-03:/posts/2023/2023-04-01-python-dev-1.html</guid><category>2023</category><category>directory</category><category>python</category><category>scripts</category><category>windows</category></item><item><title>Home Assistant Wall Panel</title><link>https://0ink.net/posts/2023/2023-02-20-wallpanel.html</link><description>&lt;p&gt;For a while I was using &lt;a href="https://github.com/HyperTechnology5/TabletClock"&gt;TabletClock&lt;/a&gt; with old tablets.  But 
 this has not been updated in a while.  I was thinking of writing my
 own version until I found &lt;a href="https://github.com/thecowan/wallpanel-android"&gt;WallPanel&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Essentially it is purposely built web-browser with special features which makes it

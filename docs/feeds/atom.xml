@@ -1,5 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2023-05-15T00:00:00+02:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>Desktop Environments 2023</title><link href="https://0ink.net/posts/2023/2023-05-15-de-2023.html" rel="alternate"></link><published>2023-05-15T00:00:00+02:00</published><updated>2023-05-03T10:49:56+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-05-15:/posts/2023/2023-05-15-de-2023.html</id><summary type="html">&lt;p&gt;Around April 2023, I decided to look for a new &lt;a href="https://en.wikipedia.org/wiki/Desktop_environment"&gt;Linux Desktop Environment&lt;/a&gt; for my
+<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2023-06-03T12:52:32+02:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>Munin-tweaks</title><link href="https://0ink.net/posts/2023/2023-06-01-munin-tweaks.html" rel="alternate"></link><published>2023-06-01T00:00:00+02:00</published><updated>2023-04-25T12:58:58+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-06-01:/posts/2023/2023-06-01-munin-tweaks.html</id><summary type="html">&lt;p&gt;Small recipes to tweak munin configurations.&lt;/p&gt;
+&lt;h2 id="overriding-critical-and-warning-levels"&gt;Overriding critical and warning levels&lt;/h2&gt;
+&lt;p&gt;In the node configuration enter:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;plugin.field_name.critical value
+plugin.field_name.warning value
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The plugin name can be found by clicking in the graph with the value
+you want to override.  The last component of the url (without the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Small recipes to tweak munin configurations.&lt;/p&gt;
+&lt;h2 id="overriding-critical-and-warning-levels"&gt;Overriding critical and warning levels&lt;/h2&gt;
+&lt;p&gt;In the node configuration enter:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;plugin.field_name.critical value
+plugin.field_name.warning value
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The plugin name can be found by clicking in the graph with the value
+you want to override.  The last component of the url (without the &lt;code&gt;.html&lt;/code&gt;)
+is the plugin name.&lt;/p&gt;
+&lt;p&gt;The field name is in this view under the column &lt;code&gt;Internal name&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;[xenhosts;cn4.localnet]&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;address cn4.localnet&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;use_node_name no&lt;/span&gt;
+
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;vgs.pool0_.warning 99.00&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;vgs.pool0_.critical 99.50&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id="reference-documentation"&gt;Reference documentation&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://guide.munin-monitoring.org/en/latest/reference/munin.conf.html#field-directives"&gt;config field directives&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="2023"></category><category term="address"></category><category term="configuration"></category></entry><entry><title>Desktop Environments 2023</title><link href="https://0ink.net/posts/2023/2023-05-15-de-2023.html" rel="alternate"></link><published>2023-05-15T00:00:00+02:00</published><updated>2023-05-03T10:49:56+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-05-15:/posts/2023/2023-05-15-de-2023.html</id><summary type="html">&lt;p&gt;Around April 2023, I decided to look for a new &lt;a href="https://en.wikipedia.org/wiki/Desktop_environment"&gt;Linux Desktop Environment&lt;/a&gt; for my
 personal &lt;a href="https://voidlinux.org/"&gt;void linux&lt;/a&gt;.  So I tried these distros:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://lxqt-project.org/about/"&gt;lxqt&lt;/a&gt;: This is the one I eventually chose to switch to.  I liked it that it
@@ -146,7 +177,199 @@ in &lt;a href="https://www.tcl.tk/"&gt;tcl&lt;/a&gt;, was driven not just for th
 spawning new processes, which in &lt;a href="https://www.tcl.tk/"&gt;tcl&lt;/a&gt; is far easier than in &lt;a href="https://www.python.org/"&gt;python&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Sometimes I think using a more &lt;em&gt;pythonic&lt;/em&gt; GUI library instead of &lt;a href="https://en.wikipedia.org/wiki/Tkinter"&gt;tkinter&lt;/a&gt; would
 be better.  But, like I mentioned earlier, &lt;a href="https://en.wikipedia.org/wiki/Tkinter"&gt;tkinter&lt;/a&gt; gets the job done, and can
-be found with &lt;a href="https://www.python.org/"&gt;python&lt;/a&gt; very often.&lt;/p&gt;</content><category term="2023"></category><category term="desktop"></category><category term="idea"></category><category term="library"></category><category term="linux"></category><category term="scripts"></category></entry><entry><title>NacoWiki</title><link href="https://0ink.net/posts/2023/2023-04-15-nacowiki.html" rel="alternate"></link><published>2023-04-15T00:00:00+02:00</published><updated>2023-04-15T22:07:59+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-04-15:/posts/2023/2023-04-15-nacowiki.html</id><summary type="html">&lt;p&gt;A few months ago I extensibly modify &lt;a href="https://github.com/luckyshot/picowiki"&gt;picowiki&lt;/a&gt; and creeated &lt;a href="https://github.com/iliu-net/nanowiki"&gt;NanoWiki&lt;/a&gt;.&lt;/p&gt;
+be found with &lt;a href="https://www.python.org/"&gt;python&lt;/a&gt; very often.&lt;/p&gt;</content><category term="2023"></category><category term="desktop"></category><category term="idea"></category><category term="library"></category><category term="linux"></category><category term="scripts"></category></entry><entry><title>Raspberry Pi emulation with Qemu</title><link href="https://0ink.net/posts/2023/2023-03-01-rpi-emulation.html" rel="alternate"></link><published>2023-04-21T00:00:00+02:00</published><updated>2023-06-03T12:52:32+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-04-21:/posts/2023/2023-03-01-rpi-emulation.html</id><summary type="html">&lt;h3 id="raspberry-storage"&gt;raspberry, storage&lt;/h3&gt;
+&lt;p&gt;The idea here is that we use a Desktop PC for developing/debugging
+Raspberry Pi set-ups using &lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; for emulating Rasperrby Pi.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; currently supports the following configurations:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Raspberry Pi Zero and 1A+ (armhf)&lt;/li&gt;
+&lt;li&gt;Raspberry Pi 2B (armv7)&lt;/li&gt;
+&lt;li&gt;Raspberry Pi 3A+ (aarch64)&lt;/li&gt;
+&lt;li&gt;Raspberry Pi 3B (aarch64)&lt;ul&gt;
+&lt;li&gt;This is …&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;h3 id="raspberry-storage"&gt;raspberry, storage&lt;/h3&gt;
+&lt;p&gt;The idea here is that we use a Desktop PC for developing/debugging
+Raspberry Pi set-ups using &lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; for emulating Rasperrby Pi.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; currently supports the following configurations:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Raspberry Pi Zero and 1A+ (armhf)&lt;/li&gt;
+&lt;li&gt;Raspberry Pi 2B (armv7)&lt;/li&gt;
+&lt;li&gt;Raspberry Pi 3A+ (aarch64)&lt;/li&gt;
+&lt;li&gt;Raspberry Pi 3B (aarch64)&lt;ul&gt;
+&lt;li&gt;This is the version I am targetting in this article.  I already recycled all
+  my older boards.&lt;/li&gt;
+&lt;li&gt;Actually I tried emulating the other configurations but they did not work.
+  Either they failed to boot, or the graphic display wouldn't work.&lt;/li&gt;
+&lt;li&gt;So &lt;code&gt;raspi3b&lt;/code&gt; with 64-bit run-time is the only configuration I was able
+  to succesfully boot.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NOTE that Raspberry Pi 4 is not supported at the moment.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So, unfortunately the state of things is far from perfect.&lt;/p&gt;
+&lt;h2 id="missing-display-bug"&gt;Missing display bug&lt;/h2&gt;
+&lt;p&gt;During my tests on the &lt;code&gt;raspi3b&lt;/code&gt; configuration, I was not able to get a working
+console.  This has to do with this
+&lt;a href="https://github.com/raspberrypi/linux/commit/6513403f73e9bdf842597d10cb0b4775ae74d165"&gt;commit&lt;/a&gt;,
+which disables the Frame Buffer driver because &lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; doesn't seem to
+report the display properly.  This causes the error to show up on the kernel log:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;bcm2708_fb soc:fb: Unable to determine number of FBs. Disabling driver.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Before the commit, the kernel would assume that there was always &lt;strong&gt;one&lt;/strong&gt; display.
+On the other hand, this only affects use-cases that require display.  For headless
+development, using the serial port works just fine.&lt;/p&gt;
+&lt;p&gt;For &lt;a href="https://alpinelinux.org/"&gt;Alpine Linux&lt;/a&gt;, the last working Frame Buffer version seems to be
+&lt;code&gt;3.16.3-aarch64&lt;/code&gt;.  The display did not work for &lt;code&gt;3.17.0-aarch64&lt;/code&gt;.  The 32 bit
+&lt;code&gt;3.16.3&lt;/code&gt; would display the &lt;code&gt;Disabling driver.&lt;/code&gt; message but I wasn't able to
+boot further than that.&lt;/p&gt;
+&lt;h2 id="emulated-hardware"&gt;Emulated hardware&lt;/h2&gt;
+&lt;p&gt;According to the &lt;a href="https://www.qemu.org/docs/master/system/arm/raspi.html"&gt;qemu documentation&lt;/a&gt;, the following is impleted:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ARM1176JZF-S, Cortex-A7 or Cortex-A53 CPU.  I only tested the Cortex-A53 CPU
+  for the &lt;code&gt;raspi3b&lt;/code&gt; configuration.&lt;/li&gt;
+&lt;li&gt;Interrupt controller&lt;/li&gt;
+&lt;li&gt;DMA controller&lt;/li&gt;
+&lt;li&gt;Clock and reset controller (CPRMAN)&lt;/li&gt;
+&lt;li&gt;System Timer&lt;/li&gt;
+&lt;li&gt;GPIO controller&lt;/li&gt;
+&lt;li&gt;Serial ports (BCM2835 AUX - 16550 based - and PL011)&lt;/li&gt;
+&lt;li&gt;Random Number Generator (RNG)&lt;/li&gt;
+&lt;li&gt;Frame Buffer : However the Linux kernel does not seem to find it.&lt;/li&gt;
+&lt;li&gt;USB host (USBH)&lt;/li&gt;
+&lt;li&gt;GPIO controller&lt;/li&gt;
+&lt;li&gt;SD/MMC host controller&lt;/li&gt;
+&lt;li&gt;SoC thermal sensor&lt;/li&gt;
+&lt;li&gt;USB2 host controller (DWC2 and MPHI)&lt;/li&gt;
+&lt;li&gt;MailBox controller (MBOX)&lt;/li&gt;
+&lt;li&gt;VideoCore firmware (property)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As you can see, no network interface is implemented, so you must use a USB network.&lt;/p&gt;
+&lt;h2 id="getting-started"&gt;Getting started&lt;/h2&gt;
+&lt;p&gt;The basic command line I am using is:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;  qemu-system-aarch64 \
+     -machine raspi3b -cpu cortex-a53 -m 1G -smp 4 -dtb bcm2710-rpi-3-b-plus.dtb \
+     -kernel $linux_kernel -initrd $linux_initrd -append &amp;quot;$cmdline&amp;quot; \
+     -sd $sd_image \
+     -serial stdio \
+     -usb \
+     -device usb-mouse -device usb-kbd \
+     -device usb-net,netdev=net0 -netdev user,id=net0,hostfwd=tcp::5555-:22
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Command explanation:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;qemu-system-aarch64&lt;/code&gt; : emulate a 64-bit ARM system&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-machine raspi3b -cpu cortex-a53 -m 1G -smp 4 -dtb bcm2710-rpi-3-b-plus.dtb&lt;/code&gt; :
+  Matches the Raspberry Pi model 3B configuration.  The &lt;code&gt;dtb&lt;/code&gt; is a file from the
+  Raspberry Pi boot partition that is normally loaded by the Firmware.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-kernel $linux_kernel -initrd $linux_initrd -append "$cmdline"&lt;/code&gt; : 
+  Linux related boot configuration.  You must provide a kernel and optional initrd
+  files.  Usually you would extract them from your &lt;code&gt;sdcard&lt;/code&gt; image.  The append
+  is used for the kernel command line.  If you want a serial console make sure
+  you include:&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;console=ttyAMA0,115200&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sd $sd_image&lt;/code&gt; : Image for the &lt;code&gt;sdcard&lt;/code&gt; storage&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-usb&lt;/code&gt; : Enable USB bus.  Needed for the emulated console mouse/keyboard and usb
+  network.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-serial stdio&lt;/code&gt; : enable a serial console (if you are using the emulated
+  framebuffer.  Note that &lt;code&gt;Ctrl+C&lt;/code&gt; are not caught and would kill the emulation.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-device usb-mouse -device usb-kbd&lt;/code&gt; : these are used with the virtual framebuffer
+  for providing keyboard and mouse.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-device usb-net,netdev=net0 -netdev user,id=net0,hostfwd=tcp::5555-:22&lt;/code&gt; :
+  Enable virtual networking using &lt;a href="https://en.wikipedia.org/wiki/Slirp"&gt;slirp&lt;/a&gt;.  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you wish to run a headless (only serial console) configuration, you should
+remove the &lt;code&gt;-serial stdio -device usb-mouse -device usb-kbd&lt;/code&gt; options and
+just use:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-nographic&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This would automatically enable &lt;code&gt;-serial stdio&lt;/code&gt; and remove the framebuffer.  In
+this configuration &lt;code&gt;Ctrl-C&lt;/code&gt; is handled properly.&lt;/p&gt;
+&lt;h2 id="tested-os"&gt;Tested OS&lt;/h2&gt;
+&lt;p&gt;I tested the following images, with these results:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Operating System&lt;/th&gt;
+&lt;th&gt;Status&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href="https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-2020-08-24/"&gt;2020-08-20-raspios-buster-arm64-lite.zip&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;fully working&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href="https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-2022-09-26/"&gt;2022-09-22-raspios-bullseye-arm64-lite.img.xz&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Only works &lt;em&gt;headless&lt;/em&gt;.  Default user is not set properly, so the image needs to be modified to inject login credentials&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href="https://dl-cdn.alpinelinux.org/alpine/v3.16/releases/aarch64/"&gt;alpine-rpi-3.16.3-aarch64.tar.gz&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;fully working&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href="https://dl-cdn.alpinelinux.org/alpine/v3.17/releases/aarch64/"&gt;alpine-rpi-3.17.0-aarch64.tar.gz&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Only works &lt;em&gt;headless&lt;/em&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="raspi-emu"&gt;raspi-emu&lt;/h2&gt;
+&lt;p&gt;For convenicne, I wrote the &lt;code&gt;raspi-emu&lt;/code&gt; script:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/raspi-emu"&gt;rasi-emu&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This can be used to prepare images and run emulation sessions.&lt;/p&gt;
+&lt;p&gt;Usage:&lt;/p&gt;
+&lt;h3 id="preparing-base-image"&gt;Preparing base image&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;raspi&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;emu&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;prep&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Prepares the downloaded image so it can be used as a base for a &lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; thin-provisioned
+image.&lt;/p&gt;
+&lt;p&gt;Options:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;--sz=size&lt;/code&gt; : Set the base image to the given &lt;code&gt;size&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-c&lt;/code&gt; | &lt;code&gt;--compress&lt;/code&gt; : For &lt;code&gt;qcow2&lt;/code&gt; images, create a compressed image.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--qcow2&lt;/code&gt; : Create a &lt;code&gt;qcow2&lt;/code&gt; format image.  This is the default.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--raw&lt;/code&gt; : Create a &lt;code&gt;raw&lt;/code&gt; image.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--volume=name&lt;/code&gt; : When creating &lt;a href="https://alpinelinux.org/"&gt;AlpineLinux&lt;/a&gt; images, use &lt;code&gt;name&lt;/code&gt; as the
+  volume name.  Otherwise a random name is generated.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="formatting-sdcard-image"&gt;Formatting SDCARD image&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;raspi&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;emu&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;base&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dest&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Create an SDCARD image to be used for &lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; emulation.  It will
+create a thin-provisioned image when possible.&lt;/p&gt;
+&lt;p&gt;Options:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;--resize=size&lt;/code&gt; : Set the SDCARD image to the given size.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="running-emulation"&gt;Running Emulation&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;raspi&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;emu&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sdimg&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Will boot &lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; emulation with the specified SDCARD image.  Configuration
+when possible is read from the boot partition of the SDCARD.&lt;/p&gt;
+&lt;p&gt;Options:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;--vfb-only&lt;/code&gt; : Enable the virtual framebuffer and disables the serial console.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--vfb&lt;/code&gt; :  Enables the virtual framebuffer.  The serial console is kept enabled.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--no-vfb&lt;/code&gt; : Disables virtual framebuffer.  This is the default.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--ttycon&lt;/code&gt; : Enables the serial console for Linux logins.  (Default)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--no-ttycon&lt;/code&gt; : Disables the serial console for Linux logins.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--vnet&lt;/code&gt; : Enable virtual network.  (Default)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--no-vnet&lt;/code&gt; : Disables hte virtual network.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--portfwd&lt;/code&gt; : Enables virtual network.  Forwards port 5555 on host to port 22 on VM.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--portfwd=rule&lt;/code&gt; : Adds the given port forwarding rule. \
+     Example rule: &lt;code&gt;tcp::5555-:22&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--no-portfwd&lt;/code&gt; : Dsiables port forwarding.  (Default)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--raspi3b&lt;/code&gt; : Emulate a Raspberry Pi Model 3B.  (Default)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The default is running headless (only serial console) with networking enabled.&lt;/p&gt;</content><category term="2023"></category><category term="boot"></category><category term="configuration"></category><category term="desktop"></category><category term="idea"></category><category term="linux"></category><category term="login"></category><category term="mouse"></category><category term="network"></category><category term="partition"></category><category term="raspberry"></category><category term="storage"></category></entry><entry><title>NacoWiki</title><link href="https://0ink.net/posts/2023/2023-04-15-nacowiki.html" rel="alternate"></link><published>2023-04-15T00:00:00+02:00</published><updated>2023-04-15T22:07:59+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-04-15:/posts/2023/2023-04-15-nacowiki.html</id><summary type="html">&lt;p&gt;A few months ago I extensibly modify &lt;a href="https://github.com/luckyshot/picowiki"&gt;picowiki&lt;/a&gt; and creeated &lt;a href="https://github.com/iliu-net/nanowiki"&gt;NanoWiki&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;After using &lt;a href="https://github.com/iliu-net/nanowiki"&gt;NanoWiki&lt;/a&gt; for a few months, the code became somewhat of an
 spaghetti mess.  This has to do that &lt;a href="https://github.com/luckyshot/picowiki"&gt;picowiki&lt;/a&gt; was designed as a single
 file, single class application with Plugin extension.  Since every change went
@@ -457,196 +680,7 @@ and use &lt;code&gt;**&lt;/code&gt; notation.  So instead of:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;service&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SendSMS&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;toNum&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;0666666666666&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
                 &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;pass&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;123456&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
            &lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="2023"></category><category term="directory"></category><category term="python"></category><category term="scripts"></category><category term="windows"></category></entry><entry><title>Raspberry Pi emulation with Qemu</title><link href="https://0ink.net/posts/2023/2023-03-01-rpi-emulation.html" rel="alternate"></link><published>2023-03-01T00:00:00+01:00</published><updated>2023-01-11T15:59:49+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-03-01:/posts/2023/2023-03-01-rpi-emulation.html</id><summary type="html">&lt;p&gt;The idea here is that we use a Desktop PC for developing/debugging
-Raspberry Pi set-ups using &lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; for emulating Rasperrby Pi.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; currently supports the following configurations:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Raspberry Pi Zero and 1A+ (armhf)&lt;/li&gt;
-&lt;li&gt;Raspberry Pi 2B (armv7)&lt;/li&gt;
-&lt;li&gt;Raspberry Pi 3A+ (aarch64)&lt;/li&gt;
-&lt;li&gt;Raspberry Pi 3B (aarch64)&lt;ul&gt;
-&lt;li&gt;This is the version …&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;The idea here is that we use a Desktop PC for developing/debugging
-Raspberry Pi set-ups using &lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; for emulating Rasperrby Pi.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; currently supports the following configurations:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Raspberry Pi Zero and 1A+ (armhf)&lt;/li&gt;
-&lt;li&gt;Raspberry Pi 2B (armv7)&lt;/li&gt;
-&lt;li&gt;Raspberry Pi 3A+ (aarch64)&lt;/li&gt;
-&lt;li&gt;Raspberry Pi 3B (aarch64)&lt;ul&gt;
-&lt;li&gt;This is the version I am targetting in this article.  I already recycled all
-  my older boards.&lt;/li&gt;
-&lt;li&gt;Actually I tried emulating the other configurations but they did not work.
-  Either they failed to boot, or the graphic display wouldn't work.&lt;/li&gt;
-&lt;li&gt;So &lt;code&gt;raspi3b&lt;/code&gt; with 64-bit run-time is the only configuration I was able
-  to succesfully boot.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;NOTE that Raspberry Pi 4 is not supported at the moment.&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;So, unfortunately the state of things is far from perfect.&lt;/p&gt;
-&lt;h2 id="missing-display-bug"&gt;Missing display bug&lt;/h2&gt;
-&lt;p&gt;During my tests on the &lt;code&gt;raspi3b&lt;/code&gt; configuration, I was not able to get a working
-console.  This has to do with this
-&lt;a href="https://github.com/raspberrypi/linux/commit/6513403f73e9bdf842597d10cb0b4775ae74d165"&gt;commit&lt;/a&gt;,
-which disables the Frame Buffer driver because &lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; doesn't seem to
-report the display properly.  This causes the error to show up on the kernel log:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;bcm2708_fb soc:fb: Unable to determine number of FBs. Disabling driver.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Before the commit, the kernel would assume that there was always &lt;strong&gt;one&lt;/strong&gt; display.
-On the other hand, this only affects use-cases that require display.  For headless
-development, using the serial port works just fine.&lt;/p&gt;
-&lt;p&gt;For &lt;a href="https://alpinelinux.org/"&gt;Alpine Linux&lt;/a&gt;, the last working Frame Buffer version seems to be
-&lt;code&gt;3.16.3-aarch64&lt;/code&gt;.  The display did not work for &lt;code&gt;3.17.0-aarch64&lt;/code&gt;.  The 32 bit
-&lt;code&gt;3.16.3&lt;/code&gt; would display the &lt;code&gt;Disabling driver.&lt;/code&gt; message but I wasn't able to
-boot further than that.&lt;/p&gt;
-&lt;h2 id="emulated-hardware"&gt;Emulated hardware&lt;/h2&gt;
-&lt;p&gt;According to the &lt;a href="https://www.qemu.org/docs/master/system/arm/raspi.html"&gt;qemu documentation&lt;/a&gt;, the following is impleted:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;ARM1176JZF-S, Cortex-A7 or Cortex-A53 CPU.  I only tested the Cortex-A53 CPU
-  for the &lt;code&gt;raspi3b&lt;/code&gt; configuration.&lt;/li&gt;
-&lt;li&gt;Interrupt controller&lt;/li&gt;
-&lt;li&gt;DMA controller&lt;/li&gt;
-&lt;li&gt;Clock and reset controller (CPRMAN)&lt;/li&gt;
-&lt;li&gt;System Timer&lt;/li&gt;
-&lt;li&gt;GPIO controller&lt;/li&gt;
-&lt;li&gt;Serial ports (BCM2835 AUX - 16550 based - and PL011)&lt;/li&gt;
-&lt;li&gt;Random Number Generator (RNG)&lt;/li&gt;
-&lt;li&gt;Frame Buffer : However the Linux kernel does not seem to find it.&lt;/li&gt;
-&lt;li&gt;USB host (USBH)&lt;/li&gt;
-&lt;li&gt;GPIO controller&lt;/li&gt;
-&lt;li&gt;SD/MMC host controller&lt;/li&gt;
-&lt;li&gt;SoC thermal sensor&lt;/li&gt;
-&lt;li&gt;USB2 host controller (DWC2 and MPHI)&lt;/li&gt;
-&lt;li&gt;MailBox controller (MBOX)&lt;/li&gt;
-&lt;li&gt;VideoCore firmware (property)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;As you can see, no network interface is implemented, so you must use a USB network.&lt;/p&gt;
-&lt;h2 id="getting-started"&gt;Getting started&lt;/h2&gt;
-&lt;p&gt;The basic command line I am using is:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;  qemu-system-aarch64 \
-     -machine raspi3b -cpu cortex-a53 -m 1G -smp 4 -dtb bcm2710-rpi-3-b-plus.dtb \
-     -kernel $linux_kernel -initrd $linux_initrd -append &amp;quot;$cmdline&amp;quot; \
-     -sd $sd_image \
-     -serial stdio \
-     -usb \
-     -device usb-mouse -device usb-kbd \
-     -device usb-net,netdev=net0 -netdev user,id=net0,hostfwd=tcp::5555-:22
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Command explanation:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;qemu-system-aarch64&lt;/code&gt; : emulate a 64-bit ARM system&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;-machine raspi3b -cpu cortex-a53 -m 1G -smp 4 -dtb bcm2710-rpi-3-b-plus.dtb&lt;/code&gt; :
-  Matches the Raspberry Pi model 3B configuration.  The &lt;code&gt;dtb&lt;/code&gt; is a file from the
-  Raspberry Pi boot partition that is normally loaded by the Firmware.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;-kernel $linux_kernel -initrd $linux_initrd -append "$cmdline"&lt;/code&gt; : 
-  Linux related boot configuration.  You must provide a kernel and optional initrd
-  files.  Usually you would extract them from your &lt;code&gt;sdcard&lt;/code&gt; image.  The append
-  is used for the kernel command line.  If you want a serial console make sure
-  you include:&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;console=ttyAMA0,115200&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;sd $sd_image&lt;/code&gt; : Image for the &lt;code&gt;sdcard&lt;/code&gt; storage&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;-usb&lt;/code&gt; : Enable USB bus.  Needed for the emulated console mouse/keyboard and usb
-  network.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;-serial stdio&lt;/code&gt; : enable a serial console (if you are using the emulated
-  framebuffer.  Note that &lt;code&gt;Ctrl+C&lt;/code&gt; are not caught and would kill the emulation.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;-device usb-mouse -device usb-kbd&lt;/code&gt; : these are used with the virtual framebuffer
-  for providing keyboard and mouse.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;-device usb-net,netdev=net0 -netdev user,id=net0,hostfwd=tcp::5555-:22&lt;/code&gt; :
-  Enable virtual networking using &lt;a href="https://en.wikipedia.org/wiki/Slirp"&gt;slirp&lt;/a&gt;.  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;If you wish to run a headless (only serial console) configuration, you should
-remove the &lt;code&gt;-serial stdio -device usb-mouse -device usb-kbd&lt;/code&gt; options and
-just use:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;-nographic&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;This would automatically enable &lt;code&gt;-serial stdio&lt;/code&gt; and remove the framebuffer.  In
-this configuration &lt;code&gt;Ctrl-C&lt;/code&gt; is handled properly.&lt;/p&gt;
-&lt;h2 id="tested-os"&gt;Tested OS&lt;/h2&gt;
-&lt;p&gt;I tested the following images, with these results:&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Operating System&lt;/th&gt;
-&lt;th&gt;Status&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-2020-08-24/"&gt;2020-08-20-raspios-buster-arm64-lite.zip&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;fully working&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-2022-09-26/"&gt;2022-09-22-raspios-bullseye-arm64-lite.img.xz&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Only works &lt;em&gt;headless&lt;/em&gt;.  Default user is not set properly, so the image needs to be modified to inject login credentials&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://dl-cdn.alpinelinux.org/alpine/v3.16/releases/aarch64/"&gt;alpine-rpi-3.16.3-aarch64.tar.gz&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;fully working&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href="https://dl-cdn.alpinelinux.org/alpine/v3.17/releases/aarch64/"&gt;alpine-rpi-3.17.0-aarch64.tar.gz&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Only works &lt;em&gt;headless&lt;/em&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id="raspi-emu"&gt;raspi-emu&lt;/h2&gt;
-&lt;p&gt;For convenicne, I wrote the &lt;code&gt;raspi-emu&lt;/code&gt; script:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/raspi-emu"&gt;rasi-emu&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;This can be used to prepare images and run emulation sessions.&lt;/p&gt;
-&lt;p&gt;Usage:&lt;/p&gt;
-&lt;h3 id="preparing-base-image"&gt;Preparing base image&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;raspi&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;emu&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;prep&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Prepares the downloaded image so it can be used as a &lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; thin-provisioned
-image.&lt;/p&gt;
-&lt;p&gt;Options:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;--sz=size&lt;/code&gt; : Set the base image to the given &lt;code&gt;size&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;-c&lt;/code&gt; | &lt;code&gt;--compress&lt;/code&gt; : For &lt;code&gt;qcow2&lt;/code&gt; images, create a compressed image.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;--qcow2&lt;/code&gt; : Create a &lt;code&gt;qcow2&lt;/code&gt; format image.  This is the default.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;--raw&lt;/code&gt; : Create a &lt;code&gt;raw&lt;/code&gt; image.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;--label=name&lt;/code&gt; : When creating &lt;a href="https://alpinelinux.org/"&gt;AlpineLinux&lt;/a&gt; images, use &lt;code&gt;name&lt;/code&gt; as the
-  volume name.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="formatting-sdcard-image"&gt;Formatting SDCARD image&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;raspi&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;emu&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;base&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dest&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Create an SDCARD image to be used for &lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; emulation.  It will
-create a thin-provisioned image when possible.&lt;/p&gt;
-&lt;p&gt;Options:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;--reize=size&lt;/code&gt; : Set the SDCARD image to the given size.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="running-emulation"&gt;Running Emulation&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;raspi&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;emu&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sdimg&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Will boot &lt;a href="https://www.qemu.org/"&gt;qemu&lt;/a&gt; emulation with the specified SDCARD image.  Configuration
-when possible is read from the boot partition of the SDCARD.&lt;/p&gt;
-&lt;p&gt;Options:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;--vfb-only&lt;/code&gt; : Enable the virtual framebuffer and disables the serial console.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;--vfb&lt;/code&gt; :  Enables the virtual framebuffer.  The serial console is kept enabled.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;--no-vfb&lt;/code&gt; : Disables virtual framebuffer.  This is the default.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;--ttycon&lt;/code&gt; : Enables the serial console for Linux logins.  (Default)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;--no-ttycon&lt;/code&gt; : Disables the serial console for Linux logins.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;--vnet&lt;/code&gt; : Enable virtual network.  (Default)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;--no-vnet&lt;/code&gt; : Disables hte virtual network.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;--portfwd&lt;/code&gt; : Enables virtual network.  Forwards port 5555 on host to port 22 on VM.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;--portfwd=rule&lt;/code&gt; : Adds the given port forwarding rule.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;--no-portfwd&lt;/code&gt; : Dsiables port forwarding.  (Default)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;--raspi3b&lt;/code&gt; : Emulate a Raspberry Pi Model 3B.  (Default)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The default is running headless (only serial console) with networking enabled.&lt;/p&gt;</content><category term="2023"></category><category term="boot"></category><category term="configuration"></category><category term="desktop"></category><category term="idea"></category><category term="linux"></category><category term="login"></category><category term="mouse"></category><category term="network"></category><category term="partition"></category><category term="raspberry"></category><category term="storage"></category></entry><entry><title>Home Assistant Wall Panel</title><link href="https://0ink.net/posts/2023/2023-02-20-wallpanel.html" rel="alternate"></link><published>2023-02-20T00:00:00+01:00</published><updated>2023-01-11T15:52:49+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-02-20:/posts/2023/2023-02-20-wallpanel.html</id><summary type="html">&lt;p&gt;For a while I was using &lt;a href="https://github.com/HyperTechnology5/TabletClock"&gt;TabletClock&lt;/a&gt; with old tablets.  But 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="2023"></category><category term="directory"></category><category term="python"></category><category term="scripts"></category><category term="windows"></category></entry><entry><title>Home Assistant Wall Panel</title><link href="https://0ink.net/posts/2023/2023-02-20-wallpanel.html" rel="alternate"></link><published>2023-02-20T00:00:00+01:00</published><updated>2023-01-11T15:52:49+01:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-02-20:/posts/2023/2023-02-20-wallpanel.html</id><summary type="html">&lt;p&gt;For a while I was using &lt;a href="https://github.com/HyperTechnology5/TabletClock"&gt;TabletClock&lt;/a&gt; with old tablets.  But 
 this has not been updated in a while.  I was thinking of writing my
 own version until I found &lt;a href="https://github.com/thecowan/wallpanel-android"&gt;WallPanel&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Essentially it is purposely built web-browser with special features which makes it
