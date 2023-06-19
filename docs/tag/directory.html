@@ -49,6 +49,36 @@
 
 <article class="summary">
 <div class="metadata">
+  <time datetime="2023-06-15T00:00:00+02:00" pubdate>Thu 15 June 2023</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2023-04-25 12:58:58+02:00</p>
+  in <a href="/category/c2023.html">2023</a>
+<p class="tags">tagged <a href="/tag/device.html">device</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/information.html">information</a>, <a href="/tag/remote.html">remote</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2023/2023-06-15-rsync-rules.html" rel="bookmark" title="Permalink to rsync filter rules">rsync filter rules</a>
+    </h2>
+    <p><div class="toc"><span class="toctitle">Table of Contents</span><ul>
+<li><a href="#rules">Rules</a></li>
+<li><a href="#simple-includeexclude-rules">Simple include/exclude rules</a></li>
+<li><a href="#simple-includeexclude-example">Simple include/exclude example</a></li>
+<li><a href="#filter-rules-when-deleting">Filter rules when deleting</a></li>
+<li><a href="#filter-rules-in-depth">Filter rules in depth</a></li>
+<li><a href="#pattern-matching-rules">Pattern matching rules</a></li>
+<li><a href="#filter-rule-modifiers">Filter rule modifiers</a></li>
+<li><a href="#merge-file-filter-rules">Merge-file filter rules</a></li>
+<li><a href="#list-clearing-filter-rule">List-clearing filter rule</a></li>
+<li><a href="#anchoring-includeexclude-patterns">Anchoring include/exclude patterns</a></li>
+<li><a href="#per-directory-rules-and-delete">Per-directory rules and delete</a></li>
+</ul>
+</div>
+<p>The basic options for filtering files in rsync are:</p>
+<ul>
+<li><code>--exclude …</code></li></ul></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
   <time datetime="2023-04-03T00:00:00+02:00" pubdate>Mon 03 April 2023</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
@@ -460,22 +490,6 @@ vulnerabilities. Here are some tips on how to make your shell scripts safer.</p>
 <p>OpenShift migration further notes</p>
 <p>Encrypt a file using a supplied password :</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>openssl<span class="w"> </span>enc<span class="w"> </span>-aes-256-cbc<span class="w"> </span>-salt<span class="w"> </span>-in<span class="w"> </span>file.txt<span class="w"> </span>-out<span class="w"> </span>file.txt.enc<span class="w"> </span>-k …</code></pre></div></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2016-02-02T00:00:00+01:00" pubdate>Tue 02 February 2016</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2022-03-03 22:34:42+01:00</p>
-  in <a href="/category/c2016.html">2016</a>
-<p class="tags">tagged <a href="/tag/address.html">address</a>, <a href="/tag/computer.html">computer</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/database.html">database</a>, <a href="/tag/device.html">device</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/editor.html">editor</a>, <a href="/tag/management.html">management</a>, <a href="/tag/manager.html">manager</a>, <a href="/tag/mouse.html">mouse</a>, <a href="/tag/network.html">network</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/security.html">security</a>, <a href="/tag/service.html">service</a>, <a href="/tag/settings.html">settings</a>, <a href="/tag/storage.html">storage</a>, <a href="/tag/terminal.html">terminal</a>, <a href="/tag/tools.html">tools</a>, <a href="/tag/windows.html">windows</a></p></div>  <div>
-    <h2>
-      <a href="/posts/2016/2016-02-02-windows-administration-from-the-command-line.html" rel="bookmark" title="Permalink to Windows administration from the command line">Windows administration from the command line</a>
-    </h2>
-    <p><p>Windows system administration is very mouse driven and to reach
-all tools you need to browse through Windows explorer.</p>
-<p>If you are like me and prefer to log on a limited privilege account and use Runas to perform admin tasks, you can open these consoles with the .msc file names …</p></p>
   </div>
 </article>
 <div class="pagination">

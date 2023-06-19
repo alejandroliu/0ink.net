@@ -49,6 +49,36 @@
 
 <article class="summary">
 <div class="metadata">
+  <time datetime="2023-06-15T00:00:00+02:00" pubdate>Thu 15 June 2023</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2023-04-25 12:58:58+02:00</p>
+  in <a href="/category/c2023.html">2023</a>
+<p class="tags">tagged <a href="/tag/device.html">device</a>, <a href="/tag/directory.html">directory</a>, <a href="/tag/information.html">information</a>, <a href="/tag/remote.html">remote</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2023/2023-06-15-rsync-rules.html" rel="bookmark" title="Permalink to rsync filter rules">rsync filter rules</a>
+    </h2>
+    <p><div class="toc"><span class="toctitle">Table of Contents</span><ul>
+<li><a href="#rules">Rules</a></li>
+<li><a href="#simple-includeexclude-rules">Simple include/exclude rules</a></li>
+<li><a href="#simple-includeexclude-example">Simple include/exclude example</a></li>
+<li><a href="#filter-rules-when-deleting">Filter rules when deleting</a></li>
+<li><a href="#filter-rules-in-depth">Filter rules in depth</a></li>
+<li><a href="#pattern-matching-rules">Pattern matching rules</a></li>
+<li><a href="#filter-rule-modifiers">Filter rule modifiers</a></li>
+<li><a href="#merge-file-filter-rules">Merge-file filter rules</a></li>
+<li><a href="#list-clearing-filter-rule">List-clearing filter rule</a></li>
+<li><a href="#anchoring-includeexclude-patterns">Anchoring include/exclude patterns</a></li>
+<li><a href="#per-directory-rules-and-delete">Per-directory rules and delete</a></li>
+</ul>
+</div>
+<p>The basic options for filtering files in rsync are:</p>
+<ul>
+<li><code>--exclude …</code></li></ul></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
   <time datetime="2023-06-01T00:00:00+02:00" pubdate>Thu 01 June 2023</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
@@ -115,7 +145,7 @@ and programming paradims.</p>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
     </address>
-  <p>Updated: 2023-06-03 12:52:32.504730+02:00</p>
+  <p>Updated: 2023-06-03 12:55:47+02:00</p>
   in <a href="/category/c2023.html">2023</a>
 <p class="tags">tagged <a href="/tag/boot.html">boot</a>, <a href="/tag/configuration.html">configuration</a>, <a href="/tag/desktop.html">desktop</a>, <a href="/tag/idea.html">idea</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/login.html">login</a>, <a href="/tag/mouse.html">mouse</a>, <a href="/tag/network.html">network</a>, <a href="/tag/partition.html">partition</a>, <a href="/tag/raspberry.html">raspberry</a>, <a href="/tag/storage.html">storage</a></p></div>  <div>
     <h2>
@@ -454,28 +484,6 @@ securely erased.  This is particularly important for SSD devices
 since because of block remapping (for wear levelling) data can't
 be overwritten consistently.</p>
 <p>The idea is …</p></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2022-10-21T00:00:00+02:00" pubdate>Fri 21 October 2022</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2023-04-25 12:58:58+02:00</p>
-  in <a href="/category/c2021.html">2021</a>
-<p class="tags">tagged <a href="/tag/configuration.html">configuration</a>, <a href="/tag/device.html">device</a>, <a href="/tag/linux.html">linux</a>, <a href="/tag/windows.html">windows</a></p></div>  <div>
-    <h2>
-      <a href="/posts/2022/2021-02-28-hotplug-hdmi.html" rel="bookmark" title="Permalink to Linux HDMI hotplug">Linux HDMI hotplug</a>
-    </h2>
-    <p><!--
-  **UPDATE**: This is Xserver focused.  For console solution see [[../2023/2023-12-31-console-hotplug.md|Console Hotplug]] article.
--->
-
-<p>The point of this article is to document I workaround that I came
-up with to handle a HDMI KVM switch.</p>
-<p>What happens is that if my Linux PC is turned on while the KVM switch
-is selecting the other PC, it fails to initialize the display, so
-when you …</p></p>
   </div>
 </article>
 <div class="pagination">
