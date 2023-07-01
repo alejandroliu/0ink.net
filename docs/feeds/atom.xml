@@ -1,5 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2023-06-15T00:00:00+02:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>rsync filter rules</title><link href="https://0ink.net/posts/2023/2023-06-15-rsync-rules.html" rel="alternate"></link><published>2023-06-15T00:00:00+02:00</published><updated>2023-04-25T12:58:58+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-06-15:/posts/2023/2023-06-15-rsync-rules.html</id><summary type="html">&lt;div class="toc"&gt;&lt;span class="toctitle"&gt;Table of Contents&lt;/span&gt;&lt;ul&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2023-07-01T00:00:00+02:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>XPrinterMgr</title><link href="https://0ink.net/posts/2023/2023-07-01-xprtmgr.html" rel="alternate"></link><published>2023-07-01T00:00:00+02:00</published><updated>2023-05-03T10:49:56+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-07-01:/posts/2023/2023-07-01-xprtmgr.html</id><summary type="html">&lt;p&gt;This is a small utility to manage a local printer(s) in
+a home office setting.&lt;/p&gt;
+&lt;p&gt;It will show the state of the printer:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;accepting or rejecting jobs&lt;/li&gt;
+&lt;li&gt;enable or disabled printing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And if &lt;code&gt;sudo&lt;/code&gt; is configured correctly would allow users to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;enable or disable printing&lt;/li&gt;
+&lt;li&gt;accept or reject new …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;This is a small utility to manage a local printer(s) in
+a home office setting.&lt;/p&gt;
+&lt;p&gt;It will show the state of the printer:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;accepting or rejecting jobs&lt;/li&gt;
+&lt;li&gt;enable or disabled printing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And if &lt;code&gt;sudo&lt;/code&gt; is configured correctly would allow users to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;enable or disable printing&lt;/li&gt;
+&lt;li&gt;accept or reject new print jobs&lt;/li&gt;
+&lt;li&gt;print a test page&lt;/li&gt;
+&lt;li&gt;Show device info.  It would try to start &lt;code&gt;hp-toolbox&lt;/code&gt; if relevant.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It also let's you manage the local printer job queue.  Allowing you to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;show what jobs are in the queue&lt;/li&gt;
+&lt;li&gt;cancel a job&lt;/li&gt;
+&lt;li&gt;cancel all job&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It is not intended to replace the CUPS WebUI.  It is just a simple
+gui to handle the most common cases for a home office allowing
+end-users some simple control of printer management functions.&lt;/p&gt;
+&lt;p&gt;It makes use of:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/OpenPrinting/pycups"&gt;pycups&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.python.org/3/library/tkinter.html"&gt;python tkinter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/gnikit/tkinter-tooltip"&gt;tkinter-tooltip&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://icons8.com/"&gt;icons8&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The code is in &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/xprtmgr"&gt;github&lt;/a&gt;.&lt;/p&gt;</content><category term="2023"></category><category term="device"></category><category term="management"></category></entry><entry><title>rsync filter rules</title><link href="https://0ink.net/posts/2023/2023-06-15-rsync-rules.html" rel="alternate"></link><published>2023-06-15T00:00:00+02:00</published><updated>2023-04-25T12:58:58+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-06-15:/posts/2023/2023-06-15-rsync-rules.html</id><summary type="html">&lt;div class="toc"&gt;&lt;span class="toctitle"&gt;Table of Contents&lt;/span&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href="#rules"&gt;Rules&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#simple-includeexclude-rules"&gt;Simple include/exclude rules&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#simple-includeexclude-example"&gt;Simple include/exclude example&lt;/a&gt;&lt;/li&gt;
