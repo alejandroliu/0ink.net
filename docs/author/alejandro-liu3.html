@@ -49,6 +49,32 @@
 
 <article class="summary">
 <div class="metadata">
+  <time datetime="2022-01-04T00:00:00+01:00" pubdate>Tue 04 January 2022</time>
+    <address class="vcard author">
+      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
+    </address>
+  <p>Updated: 2022-01-10 17:09:50+01:00</p>
+  in <a href="/category/c2022.html">2022</a>
+<p class="tags">tagged <a href="/tag/sudo.html">sudo</a></p></div>  <div>
+    <h2>
+      <a href="/posts/2022/2022-01-04-linuxstuff.html" rel="bookmark" title="Permalink to Linux stuff">Linux stuff</a>
+    </h2>
+    <p><h2 id="sudoers">Sudoers</h2>
+<p>Since <a href="https://www.sudo.ws/">sudo</a> v1.9, it is possible to use the following
+statements:</p>
+<ul>
+<li><code>#includedir</code></li>
+<li><code>@includedir</code></li>
+</ul>
+<p>This is useful better for adding sudo rules rather than modifying
+the <code>/etc/sudoers</code> file.</p>
+<p>Make sure that the <code>includedir</code> statement is the <strong>LAST</strong> entry
+in <code>/etc/sudoers</code> and the files in the directory:</p>
+<ul>
+<li>names …</li></ul></p>
+  </div>
+</article><article class="summary">
+<div class="metadata">
   <time datetime="2021-12-26T00:00:00+01:00" pubdate>Sun 26 December 2021</time>
     <address class="vcard author">
       by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
@@ -469,24 +495,6 @@ var nodes = parseInt(document.getElementById('nodes').value,10);
 var sava = parseFloat(document.getElementById('savail').value);
 var result = (1-(1-sava/100.0)**(nodes))*100
 document.getElementById …</script></p>
-  </div>
-</article><article class="summary">
-<div class="metadata">
-  <time datetime="2019-03-20T00:00:00+01:00" pubdate>Wed 20 March 2019</time>
-    <address class="vcard author">
-      by <a class="url fn" href="/author/alejandro-liu.html">Alejandro Liu</a>
-    </address>
-  <p>Updated: 2021-12-26 20:53:13+01:00</p>
-  in <a href="/category/c2019.html">2019</a>
-<p class="tags">tagged <a href="/tag/encryption.html">encryption</a>, <a href="/tag/network.html">network</a>, <a href="/tag/remote.html">remote</a>, <a href="/tag/scripts.html">scripts</a></p></div>  <div>
-    <h2>
-      <a href="/posts/2019/2019-03-20-adhoc-rsync.html" rel="bookmark" title="Permalink to Ad-Hoc rsync daemons">Ad-Hoc rsync daemons</a>
-    </h2>
-    <p><p>The other day I needed to copy a bunch of files between to servers
-in my home network.  Because of the volume I wanted to copy the files
-without having to go through <code>ssh</code>'s encryption overhead.  So I
-figured I could use <code>netcat</code> for the data transport.</p>
-<p>To do …</p></p>
   </div>
 </article>
 <div class="pagination">

@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2023-07-01T00:00:00+02:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>XPrinterMgr</title><link href="https://0ink.net/posts/2023/2023-07-01-xprtmgr.html" rel="alternate"></link><published>2023-07-01T00:00:00+02:00</published><updated>2023-05-03T10:49:56+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-07-01:/posts/2023/2023-07-01-xprtmgr.html</id><summary type="html">&lt;p&gt;This is a small utility to manage a local printer(s) in
+<feed xmlns="http://www.w3.org/2005/Atom"><title>0ink.net</title><link href="https://0ink.net/" rel="alternate"></link><link href="https://0ink.net/feeds/atom.xml" rel="self"></link><id>/</id><updated>2023-07-15T00:00:00+02:00</updated><subtitle>Not the site you are looking for...</subtitle><entry><title>Global hotkeys</title><link href="https://0ink.net/posts/2023/2023-07-15-global-hk.html" rel="alternate"></link><published>2023-07-15T00:00:00+02:00</published><updated>2023-05-03T10:49:56+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-07-15:/posts/2023/2023-07-15-global-hk.html</id><summary type="html">&lt;p&gt;To make it easier to switch desktop environment I am using 
+a Desktop Environment independant hot keys configuration using
+&lt;a href="https://www.nongnu.org/xbindkeys/"&gt;xbindkeys&lt;/a&gt;.  This lets me use the same
+keybindings on different Window managers and Desktop Environments.&lt;/p&gt;
+&lt;p&gt;This code can be found in &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/global-hotkeys"&gt;github&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Included are the follwoing:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;hk_helper : a bash or a …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;To make it easier to switch desktop environment I am using 
+a Desktop Environment independant hot keys configuration using
+&lt;a href="https://www.nongnu.org/xbindkeys/"&gt;xbindkeys&lt;/a&gt;.  This lets me use the same
+keybindings on different Window managers and Desktop Environments.&lt;/p&gt;
+&lt;p&gt;This code can be found in &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/global-hotkeys"&gt;github&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Included are the follwoing:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;hk_helper : a bash or a tcl/tk implementations.  The latest
+  version is based on tcl/tk.&lt;/li&gt;
+&lt;li&gt;xbindkeysrc : hotkey configuration file&lt;/li&gt;
+&lt;li&gt;xbindkeys.desktop : &lt;code&gt;/etc/xdg/startup&lt;/code&gt; file.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;obsolete&lt;/em&gt; profile.sh : &lt;code&gt;/etc/X11/profiles.d&lt;/code&gt; file (not used).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The script starts from &lt;code&gt;/etc/xdg/startup&lt;/code&gt;, so as to make sure to 
+let the desktop environment work and grab as many keys as possible.&lt;/p&gt;
+&lt;p&gt;Afterwards, if there is a &lt;code&gt;$HOME/.xbindkeysrc&lt;/code&gt; it will start it first.
+This is to allow home user keys to work.&lt;/p&gt;
+&lt;p&gt;Finally it will use the global &lt;code&gt;xbindkeysrc&lt;/code&gt; file.&lt;/p&gt;
+&lt;p&gt;Defined hotkeys can be seen in the &lt;code&gt;xbindkeysrc&lt;/code&gt; config file here:&lt;/p&gt;
+&lt;script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&amp;showBorder=on&amp;showLineNumbers=on&amp;showFileMeta=on&amp;showCopy=on&amp;fetchFromJsDelivr=on&amp;target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/global-hotkeys/xbindkeysrc"&gt;&lt;/script&gt;</content><category term="2023"></category><category term="config"></category><category term="configuration"></category><category term="desktop"></category></entry><entry><title>XPrinterMgr</title><link href="https://0ink.net/posts/2023/2023-07-01-xprtmgr.html" rel="alternate"></link><published>2023-07-01T00:00:00+02:00</published><updated>2023-05-03T10:49:56+02:00</updated><author><name>Alejandro Liu</name></author><id>tag:None,2023-07-01:/posts/2023/2023-07-01-xprtmgr.html</id><summary type="html">&lt;p&gt;This is a small utility to manage a local printer(s) in
 a home office setting.&lt;/p&gt;
 &lt;p&gt;It will show the state of the printer:&lt;/p&gt;
 &lt;ul&gt;

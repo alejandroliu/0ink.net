@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Sat, 01 Jul 2023 00:00:00 +0200</lastBuildDate><item><title>XPrinterMgr</title><link>https://0ink.net/posts/2023/2023-07-01-xprtmgr.html</link><description>&lt;p&gt;This is a small utility to manage a local printer(s) in
+<rss version="2.0"><channel><title>0ink.net</title><link>https://0ink.net/</link><description>Not the site you are looking for...</description><lastBuildDate>Sat, 15 Jul 2023 00:00:00 +0200</lastBuildDate><item><title>Global hotkeys</title><link>https://0ink.net/posts/2023/2023-07-15-global-hk.html</link><description>&lt;p&gt;To make it easier to switch desktop environment I am using 
+a Desktop Environment independant hot keys configuration using
+&lt;a href="https://www.nongnu.org/xbindkeys/"&gt;xbindkeys&lt;/a&gt;.  This lets me use the same
+keybindings on different Window managers and Desktop Environments.&lt;/p&gt;
+&lt;p&gt;This code can be found in &lt;a href="https://github.com/alejandroliu/0ink.net/tree/master/snippets/global-hotkeys"&gt;github&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Included are the follwoing:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;hk_helper : a bash or a …&lt;/li&gt;&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alejandro Liu</dc:creator><pubDate>Sat, 15 Jul 2023 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:None,2023-07-15:/posts/2023/2023-07-15-global-hk.html</guid><category>2023</category><category>config</category><category>configuration</category><category>desktop</category></item><item><title>XPrinterMgr</title><link>https://0ink.net/posts/2023/2023-07-01-xprtmgr.html</link><description>&lt;p&gt;This is a small utility to manage a local printer(s) in
 a home office setting.&lt;/p&gt;
 &lt;p&gt;It will show the state of the printer:&lt;/p&gt;
 &lt;ul&gt;
