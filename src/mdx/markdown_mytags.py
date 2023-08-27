@@ -32,7 +32,8 @@ class MyTagsExtension(Extension):
     list_class = self.getConfig('list_class')
     renderer = self.getConfig('render_item')
     postprocessor = ChecklistPostprocessor(list_class, renderer, md)
-    md.postprocessors.add('checklist', postprocessor, '>raw_html')
+    # ~ md.postprocessors.add('checklist', postprocessor, '>raw_html')
+    md.postprocessors.register(postprocessor, 'checklist', 200)
 
 def makeExtension(*args,**kwargs):
   return MyTagsExtension(*args, **kwargs)

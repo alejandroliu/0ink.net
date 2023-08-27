@@ -92,12 +92,8 @@ MARKDOWN = {
         'markdown.extensions.toc': {
             'title': 'Table of Contents',
         },
-        'markdown_mytags': {},
         'mdx_headdown': {
             'offset': 1,
-        },
-        'markdown_blockdiag': {
-          'format': 'svg',
         },
         'markdown_aafigure': {
           'tag_type': 'inline_svg',
@@ -108,7 +104,6 @@ MARKDOWN = {
         'mdx_include': {
           'base_path': 'include',
         },
-        'mdx_graphviz': {},
         'mdx_vars': {
           'vars': {
             'SNIPPETS': 'https://github.com/alejandroliu/0ink.net/tree/master/snippets',
@@ -117,7 +112,12 @@ MARKDOWN = {
         'mdx_truly_sane_lists': {
           'nested_indent': 2,
           'truly_sane': True,
-        }
+        },
+        'markdown_mytags': {},
+        # ~ 'markdown_blockdiag': {
+          # ~ 'format': 'svg',
+        # ~ },
+        'mdx_graphviz': {},
 
     },
     'output_format': 'html5',

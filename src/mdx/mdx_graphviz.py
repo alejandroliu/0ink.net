@@ -5,7 +5,7 @@
 
 from markdown.extensions import Extension
 from markdown.blockprocessors import BlockProcessor
-from markdown.util import etree
+import xml.etree.ElementTree as etree
 import re
 import subprocess
 import base64
@@ -98,7 +98,7 @@ class GraphVizExtension(Extension):
         }
         super(GraphVizExtension, self).__init__(**kwargs)
 
-    def extendMarkdown(self, md, md_globals):
+    def extendMarkdown(self, md):
         md.parser.blockprocessors.register(
             GraphVizProcessor(md.parser,self), 'grapviz',175)
         md.registerExtension(self)

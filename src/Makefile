@@ -78,12 +78,15 @@ serve:
 devserver:
 	$(PELICAN) -lr "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
 
+#~ 			 markdown
+
 setup:
 	[ ! -d .venv ] && python3 -m venv  .venv || :
 	( . .venv/bin/activate ; \
 		pip install \
-			pelican markdown GitPython \
+			'pelican[markdown]' \
 			markdown-aafigure markdown-svgbob Pillow \
+			GitPython \
 			markdown-blockdiag \
 			markdown-headdown \
 			mdx_truly_sane_lists \
@@ -92,7 +95,7 @@ setup:
 	)
 	# Fix the svgbob executable so that it uses our local instead of the provided one
 	bin=$$(find .venv -type f -name 'svgbob_*-Linux') ; \
-		printf '#!/bin/sh\nexec svgbob "$$@"\n' > "$$bin"
+		type svgbob && printf '#!/bin/sh\nexec svgbob "$$@"\n' > "$$bin" || :
 	printf '#!/bin/sh\n. $$(dirname $$0)/activate\nexec $$(dirname $$0)/python "$$@"\n' > .venv/bin/run
 	chmod 755 .venv/bin/run
 
