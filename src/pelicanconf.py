@@ -114,9 +114,9 @@ MARKDOWN = {
           'truly_sane': True,
         },
         'markdown_mytags': {},
-        # ~ 'markdown_blockdiag': {
-          # ~ 'format': 'svg',
-        # ~ },
+        'markdown_blockdiag': {
+          'format': 'svg',
+        },
         'mdx_graphviz': {},
 
     },
