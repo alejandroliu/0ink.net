@@ -79,10 +79,10 @@ devserver:
 	$(PELICAN) -lr "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
 
 setup:
-	[ ! -d .venv ] && python3 -m venv --system-site-packages .venv || :
+	[ ! -d .venv ] && python3 -m venv  .venv || :
 	( . .venv/bin/activate ; \
 		pip install \
-			pelican \
+			pelican markdown GitPython \
 			markdown-aafigure markdown-svgbob Pillow \
 			markdown-blockdiag \
 			markdown-headdown \
