@@ -1,6 +1,6 @@
 ---
 title: Inetd like service with systemd
-date: "2023-09-01"
+tags: boot, service
 ---
 ## README
 

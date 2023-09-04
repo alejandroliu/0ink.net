@@ -1,6 +1,6 @@
 ---
 title: Tunneling NFS over SSH
-date: "2023-09-01"
+tags: address, authentication, configuration, device, encryption, filesystem, information, security, settings
 ---
 This recipe is for tunneling NFS traffic over SSH.  This adds encryption
 and Public Key authentication to otherwise insecure NFS traffic.

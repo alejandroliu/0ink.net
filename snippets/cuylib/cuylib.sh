@@ -355,7 +355,7 @@ cuy_editapp() {
 	      "$(echo "$payload" | tee "$doc" | html_enc)" \
 	      "</pre>"
       else
-	html_msg
+	html_msg \
 	      --status="403 Permission denied" \
 	      --title="Error" \
 	      --home="$home" \
