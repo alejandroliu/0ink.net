@@ -87,7 +87,7 @@ setup:
 			'pelican[markdown]' \
 			markdown-aafigure markdown-svgbob Pillow \
 			GitPython \
-      blockdiag seqdiag actdiag nwdiag \
+      blockdiag==1.5.4 seqdiag actdiag nwdiag \
 			markdown-headdown \
 			mdx_truly_sane_lists \
 			mdx_include ; \
