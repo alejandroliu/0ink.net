@@ -11,15 +11,6 @@ xdg-user-dirs-gtk
 firefox-esr
 gst-libav		# void-linux: add mp4 support to firefox
 
-xdotool
-xdg-utils
-wmctrl			# windows scripting
-xscreensaver		# cross DE screen saver
-fortune-mod
-fortune-mod-void
-xbindkeys		# hot keys
-x11vnc
-
 blueman        # bluetooth management
 
 # Maybe

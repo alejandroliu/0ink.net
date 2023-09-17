@@ -17,7 +17,8 @@ ipafont-fonts-otf
 xdotool
 xdg-utils
 wmctrl			# windows scripting
-xscreensaver		# cross DE screen saver
+xscreensaver 		# cross DE screen saver
+appres
 fortune-mod
 fortune-mod-void
 x11vnc
