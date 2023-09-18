@@ -1,0 +1,78 @@
+# We disable props (and versions) since this is a git
+# repo, so that data should come from git.
+disable-props: true
+
+# Alabtros settings
+albatros:
+  AUTHOR: 'Alejandro Liu'
+  SITENAME: '0ink.net'
+  SITESUBTITLE: 'Not the site you are looking for...'
+  SITEURL: ''
+  TIMEZONE: 'Europe/Amsterdam'
+  DEFAULT_LANG: 'en'
+  use-git: true
+
+  # Blogroll
+  LINKS:
+    #~ sitemap: /sitemap.html
+    Tags: /tags/index.html
+    Repo: https://github.com/alejandroliu/0ink.net
+    Wiki: https://home.0ink.net/nanowiki/
+
+  LOGO_IMG: '/images/2021/0ink.png'
+  DISPLAY_PAGES_ON_MENU: true
+
+  SEARCH_SITE: "0ink.net"
+  SEARCH_PREFILL: "Search with DuckDuckGo"
+
+  # Social widget
+  SOCIAL:
+   github: https://github.com/alejandroliu/
+   LinkedIn: https://www.linkedin.com/in/alejandro-liu-ly/'
+
+  ARTICLES: 'posts'
+  PAGES: 'pages'
+
+  THEME: 'themes/pelican-simplegrey'
+  # ~ THEME: 'themes/pelican-sober' # Maybe
+
+  # Pagination
+  DEFAULT_PAGINATION: 20
+
+  #~ # Feed generation is usually not desired when developing
+  #~ # Generate feeds:
+  #~ FEED_ALL_ATOM: 'feeds/atom.xml'
+  #~ FEED_ALL_RSS: 'feeds/rss.xml'
+  #~ FEED_ALL_ATOM: ~
+  #~ CATEGORY_FEED_ATOM: ~
+  #~ TRANSLATION_FEED_ATOM: ~
+  #~ AUTHOR_FEED_ATOM: ~
+  #~ AUTHOR_FEED_RSS: ~
+
+
+  #~ # Uncomment following line if you want document-relative URLs when developing
+  #~ #RELATIVE_URLS = True
+
+  #~ STATIC_PATHS:
+  #~ - images
+  #~ - extras
+
+  #~ EXTRA_PATH_METADATA:
+    #~ 'extras/favicon.ico': {'path': 'favicon.ico'}
+    #~ 'extras/CNAME': {'path': 'CNAME'}
+    #~ 'extras/robots.txt': {'path': 'robots.txt'}
+
+  #~ FILENAME_METADATA = '(?P<date>\d{4}-\d{2}-\d{2})-(?P<postname>.*)'
+  #~ SLUGIFY_SOURCE = 'basename'
+  #~ ARTICLE_URL = 'posts/{date:%Y}/{slug}.html'
+  #~ ARTICLE_SAVE_AS = 'posts/{date:%Y}/{slug}.html'
+  #~ PAGE_URL = 'pages/{slug}.html'
+  #~ PAGE_SAVE_AS = 'pages/{slug}.html'
+  #~ CATEGORY_URL = 'category/c{slug}.html'
+  #~ CATEGORY_SAVE_AS = 'category/c{slug}.html'
+  #~ WITH_FUTURE_DATES = False
+
+
+
+
+
