@@ -8,13 +8,14 @@ albatros:
   SITENAME: '0ink.net'
   SITESUBTITLE: 'Not the site you are looking for...'
   SITEURL: ''
+  XML_SITEURL: 'https://www.0ink.net'
   TIMEZONE: 'Europe/Amsterdam'
   DEFAULT_LANG: 'en'
   use-git: true
 
   # Blogroll
   LINKS:
-    #~ sitemap: /sitemap.html
+    sitemap: /sitemap.html
     Tags: /tags/index.html
     Repo: https://github.com/alejandroliu/0ink.net
     Wiki: https://home.0ink.net/nanowiki/
