@@ -1,102 +1,36 @@
-PY?=python3
-#~ PELICAN?=pelican
-PELICAN=env PYTHONPATH=$$(pwd)/mdx .venv/bin/run .venv/bin/pelican
-PELICANOPTS=
-
 BASEDIR=$(CURDIR)
 INPUTDIR=$(BASEDIR)/content
 OUTPUTDIR=$(BASEDIR)/../docs
-CONFFILE=$(BASEDIR)/pelicanconf.py
-PUBLISHCONF=$(BASEDIR)/publishconf.py
-
-
-DEBUG ?= 0
-ifeq ($(DEBUG), 1)
-	PELICANOPTS += -D
-endif
-
-RELATIVE ?= 0
-ifeq ($(RELATIVE), 1)
-	PELICANOPTS += --relative-urls
-endif
-
-SERVER ?= "0.0.0.0"
-
-PORT ?= 0
-ifneq ($(PORT), 0)
-	PELICANOPTS += -p $(PORT)
-endif
-
+NACOWIKI_VER=3.2.0-rel
+NACOWIKI_URL=https://github.com/iliu-net/NacoWiki/archive/refs/tags/$(NACOWIKI_VER).tar.gz
 
 help:
-	@echo 'Makefile for a pelican Web site                                           '
-	@echo '                                                                          '
-	@echo 'Usage:                                                                    '
-	@echo '   make html                           (re)generate the web site          '
-	@echo '   make clean                          remove the generated files         '
-	@echo '   make regenerate                     regenerate files upon modification '
-	@echo '   make serve [PORT=8000]              serve site at http://localhost:8000'
-	@echo '   make devserver [PORT=8000]          serve and regenerate together      '
-	@echo '   make setup                          Set-up venv                        '
-	@echo '                                                                          '
-	@echo 'Set the DEBUG variable to 1 to enable debugging, e.g. make DEBUG=1 html   '
-	@echo 'Set the RELATIVE variable to 1 to enable relative urls                    '
-	@echo '                                                                          '
+	@echo 'Usage;'
+	@echo '   make html : (re)generate web site'
+	@echo '   make serve: serve site'
+	@echo '   make setup : Download dependancies'
+	@echo ''
+
+setup:
+	type composer || ( echo composer needs to be installed ; exit 1)
+	[ ! -d NacoWiki ] && (( wget -O- $(NACOWIKI_URL) | tar -zxf - && \
+		rm -f NacoWiki && \
+		ln -s NacoWiki-$(NACOWIKI_VER) NacoWiki && \
+		( cd NacoWiki && composer install ) ) || \
+		( rm -rf NacoWiki NacoWiki-$(NACOWIKI_VER) ; exit 1)) || :
+	sed  -i~ \
+		-e 's!\(file_store.\).*!\1 => "$(INPUTDIR)",!' \
+		NacoWiki/web/albatros.php
 
 html:
-	[ -d $(OUTPUTDIR)/drafts ] && git rm -r $(OUTPUTDIR)/drafts || :
-	[ -d $(OUTPUTDIR)/drafts ] && rm -rf $(OUTPUTDIR)/drafts || :
-
-	# Fix stuff that the NacoWiki yaml generator breaks.
-	set -x ; find content/posts -name '*.md' \
-		| xargs -r grep -l '^date: "[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"$$' \
-		| xargs -r sed -i -e 's/^date: "\(.*\)"/date: \1/'
-	set -x ; find content/posts -name '*.md' \
-			| awk -vFS=/ -vTODAY=$$(date +%Y-%m-%d) '$$4 > TODAY { print }' \
-			| xargs -r grep -l '^date: ' \
-			| xargs -r sed -i -e 's/^date: .*$$//'
-
-	python3 hax.py --tags=tagcloud $(INPUTDIR)/pages/*.md $(INPUTDIR)/posts/*/*.md
-	$(PELICAN) "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
-	python3 sitemap.py --strip=2 --prefix=https://0ink.net/ --xml=$(OUTPUTDIR)/sitemap.xml --html=$(OUTPUTDIR)/sitemap.html ../docs/pages/*.html ../docs/posts/*/*.html
-	# Fix links in site feeds...
-	sed -i -e 's!<link>/!<link>https://0ink.net/!g' "$(OUTPUTDIR)/feeds/rss.xml"
-	sed -i -e 's!<link href="/!<link href="https://0ink.net/!g' "$(OUTPUTDIR)/feeds/atom.xml"
-	# Create drafts index
-	[ -d $(OUTPUTDIR)/drafts ] && sh mkindex.sh $(OUTPUTDIR)/drafts || :
-	> $(OUTPUTDIR)/.nojekyll
+	php NacoWiki/web/albatros.php bloggen \
+			--output=$(OUTPUTDIR)
 
 clean:
 	[ ! -d "$(OUTPUTDIR)" ] || rm -rf "$(OUTPUTDIR)"
 
-regenerate:
-	$(PELICAN) -r "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
-
 serve:
-	$(PELICAN) -l "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
+	php NacoWiki/web/albatros.php serve \
+			--output=$(OUTPUTDIR)
 
-devserver:
-	$(PELICAN) -lr "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
-
-#~ 			 markdown
-
-setup:
-	[ ! -d .venv ] && python3 -m venv  .venv || :
-	( . .venv/bin/activate ; \
-		pip install \
-			'pelican[markdown]' \
-			markdown-aafigure markdown-svgbob Pillow \
-			GitPython \
-      blockdiag==1.5.4 seqdiag actdiag nwdiag \
-			markdown-headdown \
-			mdx_truly_sane_lists \
-			mdx_include ; \
-		: \
-	)
-	# Fix the svgbob executable so that it uses our local instead of the provided one
-	bin=$$(find .venv -type f -name 'svgbob_*-Linux') ; \
-		type svgbob && printf '#!/bin/sh\nexec svgbob "$$@"\n' > "$$bin" || :
-	printf '#!/bin/sh\n. $$(dirname $$0)/activate\nexec $$(dirname $$0)/python "$$@"\n' > .venv/bin/run
-	chmod 755 .venv/bin/run
-
-.PHONY: html help clean regenerate serve devserver setup
+.PHONY: html help clean serve setup

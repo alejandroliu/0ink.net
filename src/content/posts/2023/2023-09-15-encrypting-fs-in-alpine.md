@@ -1,7 +1,6 @@
 ---
 title: File system encryption in Alpine Linux
 tags: alpine, boot, configuration, device, encryption, filesystem, idea, linux, service
-service
 ---
 This is similar to my previous article
 [[../2019/2019-02-28-encrypting-fs-in-void.md|Encrypting Filesystem in Void Linux]]

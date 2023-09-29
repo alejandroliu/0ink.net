@@ -41,7 +41,7 @@ any of their other derivatives.
 
 ```
 $ sudo apt-get install cryptsetup
-````
+```
 
 ## CentOS/Fedora
 
@@ -131,7 +131,7 @@ the following.
 secure and memorable. If you forget it, your data *will be lost.*
 That will probably take a few seconds to complete, but when it's
 done, it will have successfully converted your partition into an
-encrypted LUKS volume. 
+encrypted LUKS volume.
 
 Next, you have to open the volume onto the device mapper. This is the
 stage at which you will be prompted for your passphrase. You can

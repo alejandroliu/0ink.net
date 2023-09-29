@@ -2,7 +2,6 @@
 title: Raspberry Pi emulation with Qemu
 date: 2023-04-21
 tags: boot, configuration, desktop, idea, linux, login, mouse, network, partition, raspberry, storage
-raspberry, storage
 ---
 The idea here is that we use a Desktop PC for developing/debugging
 Raspberry Pi set-ups using [qemu][qemu] for emulating Rasperrby Pi.
@@ -89,7 +88,7 @@ Command explanation:
 - `-machine raspi3b -cpu cortex-a53 -m 1G -smp 4 -dtb bcm2710-rpi-3-b-plus.dtb` :
   Matches the Raspberry Pi model 3B configuration.  The `dtb` is a file from the
   Raspberry Pi boot partition that is normally loaded by the Firmware.
-- `-kernel $linux_kernel -initrd $linux_initrd -append "$cmdline"` : 
+- `-kernel $linux_kernel -initrd $linux_initrd -append "$cmdline"` :
   Linux related boot configuration.  You must provide a kernel and optional initrd
   files.  Usually you would extract them from your `sdcard` image.  The append
   is used for the kernel command line.  If you want a serial console make sure
@@ -103,7 +102,7 @@ Command explanation:
 - `-device usb-mouse -device usb-kbd` : these are used with the virtual framebuffer
   for providing keyboard and mouse.
 - `-device usb-net,netdev=net0 -netdev user,id=net0,hostfwd=tcp::5555-:22` :
-  Enable virtual networking using [slirp][slirp].  
+  Enable virtual networking using [slirp][slirp].
 
 If you wish to run a headless (only serial console) configuration, you should
 remove the `-serial stdio -device usb-mouse -device usb-kbd` options and

@@ -27,9 +27,9 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  run-pelican:
+  run-albatros:
     runs-on: ubuntu-latest
-    name: pelican to gh-pages
+    name: albatros to gh-pages
     steps:
       - uses: actions/checkout@v3
       - name: Setup Pages
@@ -38,10 +38,12 @@ jobs:
       - name: Install packages
         run: |
           sudo apt-get install -y graphviz
-      - name: create python venv
+          sudo snap install svgbob --edge --devmode
+          type svgbob
+      - name: set-up albatros
         run: |
           cd src && make setup
-      - name: Generating Pelican site
+      - name: Generating albatros site
         run: |
           ( cd src && make html )
           cp -av docs _site
@@ -54,7 +56,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: run-pelican
+    needs: run-albatros
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

@@ -1,0 +1,32 @@
+name: automatic doc generation testing
+
+on:
+  push:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  run-albatros:
+    runs-on: ubuntu-latest
+    name: albatros to gh-pages
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install packages
+        run: |
+          sudo apt-get install -y graphviz
+          sudo snap install svgbob --edge --devmode
+          type svgbob
+      - name: set-up albatros
+        run: |
+          cd src && make setup
+      - name: Generating albatros site
+        run: |
+          ( cd src && make html )
+
+
+
+
+
+
+
+
