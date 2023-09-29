@@ -19,7 +19,7 @@ keys are stored in a different device as the encrypted file system.
 
 # Create block devices
 
-```
+```bash
 apk add lvm2 cryptsetup
 
 dd if=/dev/urandom of=/etc/crypto_keyfile.bin bs=1024 count=4
@@ -31,14 +31,14 @@ cryptsetup luksOpen --key-file=/etc/crypto_keyfile.bin /dev/xda2 crypt-pool
 
 Look up the UUID
 
-```
+```bash
 blkid /dev/xda2
 ```
 
 Edit `dmcrypt` service configuration in `/etc/conf.d/dmcrypt`:
 
 
-```
+```bash
 target=crypt-pool
 source="UUID=xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 key=/etc/crypto_keyfile.bin
@@ -62,7 +62,7 @@ Reboot and make sure that the block device gets created on start-up.
 
 Add to LVM:
 
-```
+```bash
 vgcreate pool /dev/mapper/crypt-pool
 lvcreate --name home0 -L 20G pool
 
