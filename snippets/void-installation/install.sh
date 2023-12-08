@@ -434,11 +434,11 @@ fi
 if ! check_opt glibc "$@" ; then
   # MUSL installation
   arch="x86_64-musl"
-  voidurl="http://alpha.de.repo.voidlinux.org/current/musl"
+  voidurl="http://repo-default.voidlinux.org/current/musl"
 else
   # GLIBC installation
   arch="x86_64"
-  voidurl="http://alpha.de.repo.voidlinux.org/current"
+  voidurl="http://repo-default.repo.voidlinux.org/current"
 fi
 desktop=$(check_opt desktop "$@") || :
 [ -z "$desktop" ] && desktop=mate

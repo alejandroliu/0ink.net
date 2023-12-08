@@ -58,6 +58,7 @@ xorg-apps		# Basic X apps
 mesa-demos
 xterm
 tigervnc
+freerdp
 glxinfo
 glmark2
 
