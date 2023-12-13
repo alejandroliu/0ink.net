@@ -14,6 +14,10 @@ proc DISABLED {} { return "disabled" }
 
 proc DELAY {} {return 3000}
 
+proc count_ch {str ch} {
+   expr {[string length $str]-[string length [string map [list $ch {}] $str]]}
+}
+
 proc trim_ln {ln} {
   set i [string first # $ln]
   if {$i == 0} return
@@ -74,10 +78,15 @@ proc prefs_ui {args} {
   wm title $t "Local Startup Prefernces"
   wm resizable $t 0 0
 
+  puts [array get localcfg]
   foreach k [lsort -command cfg_sort [array names localcfg]] {
     incr c
 
-    label "$t.l$c" -text $k
+    if {[string match "*.desktop" $k]} {
+      label "$t.l$c" -text [desktop_name $k]
+    } else {
+      label "$t.l$c" -text $k
+    }
     grid "$t.l$c" -row $c -column 1 -sticky nws -padx 5 -pady 5
 
     switch -glob $k {
@@ -238,7 +247,7 @@ proc run {args} {
   }
 }
 
-proc run_desktop {desktop} {
+proc read_desktop { desktop attr } {
   global env
   set f {}
 
@@ -251,13 +260,24 @@ proc run_desktop {desktop} {
   close $fp
 
   foreach ln [split $ini "\n"] {
-    if {[regexp {^Exec=(.*)$} [string trim $ln] --> execline]} {
-      puts stderr "Exec=>$execline"
-      run --bg {*}$execline
-      return
+    if {[regexp "^$attr=(.*)\$" [string trim $ln] --> execline]} {
+      return $execline
     }
   }
-  error "No Exec found in $desktop"
+  return {}
+}
+
+proc desktop_name {desktop} {
+  set name [read_desktop $desktop Name]
+  if {$name == {}} {return $desktop}
+  return $name
+}
+
+proc run_desktop {desktop} {
+  set execline [read_desktop $desktop Exec]
+  if {$execline == {}} { error "No Exec found in $desktop" }
+  puts stderr "Exec=>$execline"
+  run --bg {*}$execline
 }
 
 proc getcfg {k} {
@@ -286,6 +306,12 @@ proc sys_startup:next {args} {
       puts stderr "Skipping $desktop"
     }
   }
+  if {![catch {getcfg run-command} run_cmd]} {
+    if {[file executable $run_cmd]} {
+      puts "Running: $run_cmd"
+      run --bg {*}$run_cmd
+    }
+  }
   if {$msg != {}} {
     puts stderr $msg
     notify ERROR $msg
@@ -295,8 +321,6 @@ proc sys_startup:next {args} {
 
 
 proc sys_startup {args} {
-  puts "args: $args"
-
   global localcfg usercfg
   array set localcfg {}
   array set usercfg {}
@@ -341,6 +365,10 @@ proc main {args} {
     startup -
     s* {
       sys_startup {*}[lrange $args 1 end]
+    }
+    default {
+      puts stderr "Unknown command [lindex $args 0]"
+      exit 1
     }
   }
 }

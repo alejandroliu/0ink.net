@@ -1,0 +1,80 @@
+#!/bin/sh
+#
+# Some additional scripts to tweak configurations...
+#
+
+after() {
+  sleep "$1" ; shift
+  "$@"
+}
+
+wait_win() {
+  local t=30
+  while [ $t -gt 0 ]
+  do
+    t=$(expr $t - 1)
+    (wmctrl -l | grep -q "$*") && return 0
+    sleep 0.1
+  done
+  return 1
+}
+
+fix_max_non_max_wins() {
+  local threshold=4
+
+  # Use this to compute dimensions
+  xlogo &
+  local xlpid=$!
+  wait_win xlogo || return 1
+  wmctrl -r xlogo -b add,maximized_horz
+  wmctrl -r xlogo -b remove,maximized_vert
+  local $(wmctrl -lG | awk '$8 == "xlogo" { print "w_mx=" $3,"w_mw=" $5 }')
+  wmctrl -r xlogo -b add,maximized_horz,maximized_vert
+  #~ wmctrl -r xlogo -b add,
+  local $(wmctrl -lG | awk '$8 == "xlogo" {
+      print "m_mx=" $3,"m_my=" $4, "m_mw=" $5, "m_mh=" $6
+    }')
+  wmctrl -r xlogo -b remove,maximized_horz
+  wmctrl -r xlogo -b add,maximized_vert
+  local $(wmctrl -lG | awk '$8 == "xlogo" { print "w_my=" $4,"w_mh=" $6 }')
+  kill $xlpid
+
+  echo w_mx=$w_mx w_my=$w_my w_mw=$w_mw w_mh=$w_mh
+  echo m_mx=$w_mx m_my=$w_my m_mw=$w_mw m_mh=$m_mh
+
+  while :
+  do
+    wmctrl -lG | while read w_id desktop c_x c_y c_w c_h ignore
+    do
+      [ $desktop -eq -1 ] && continue
+      # Check if window is properly maximized!
+      if [ $(expr $c_x - $m_mx) -eq 0 ] && \
+	  [ $(expr $c_y - $m_my) -eq 0 ] && \
+	  [ $(expr $m_mw - $c_w) -eq 0 ] && \
+	  [ $(expr $m_mh - $c_h) -eq 0 ] ; then
+	continue
+      fi
+      # Check if window should be maximized
+      if [ $(expr $c_x - $w_mx) -gt $threshold ] || \
+	  [ $(expr $c_y - $w_my) -gt $threshold ] || \
+	  [ $(expr $w_mw - $c_w) -gt $threshold ] || \
+	  [ $(expr $w_mh - $c_h) -gt $threshold ] ; then
+	# Did not match criteria...
+	continue
+      fi
+      echo "==== $ignore"
+      echo "  curren: $c_x $c_y $c_w $c_h"
+      echo "  W-diff: $(expr $c_x - $w_mx) $(expr $c_y - $w_my) $(expr $w_mw - $c_w) $(expr $w_mh - $c_h)"
+      echo "  M-diff: $(expr $c_x - $m_mx) $(expr $c_y - $m_my) $(expr $m_mw - $c_w) $(expr $m_mh - $c_h)"
+
+      wmctrl -i -r $w_id -b add,maximized_horz,maximized_vert
+    done
+
+    sleep 600
+  done
+}
+
+
+( wait_win "Buddy List" && wmctrl -c "Buddy List" ) &
+(( fix_max_non_max_wins ) & ) &
+wait
