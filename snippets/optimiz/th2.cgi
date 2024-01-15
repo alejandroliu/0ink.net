@@ -3,7 +3,7 @@
 _txmenu() {
   local HM=true APP=true T ARGS oIFS="$IFS"
   local  \
-	elem2o='<span style="background-color: #d0e0e0; font-size: x-small">[' \
+	elem2o='<span style="font-size: x-small">[' \
 	elem2c=']</span>'
 
   sed \

@@ -81,7 +81,7 @@ _txmenu() {
       [ $# -eq 0 ] && continue
       $APP || continue
       [ $# -gt 2 ] && ! is_$3 && continue
-      elem2o='<span style="background-color: #d0e0e0; font-size: x-small">['
+      elem2o='<span style="font-size: x-small">['
       elem2c=']</span>'
       echo "  ${elem2o}[$1]($2)${elem2c}"
       ;;
