@@ -1,0 +1,1 @@
+../../../src/content/posts/2023/2023-08-15-local-startup.md

@@ -1,1 +1,0 @@
-../../src/content/posts/2019/2019-03-20-adhoc-rsync.md

@@ -66,7 +66,7 @@ the following rules file (99-xwin-hotplug.rules):
 {! xwin-hotplug/99-xwin-hotplug.rules !}
 
 ```
-See: [hot-plug rules](https://github.com/alejandroliu/0ink.net/blob/master/snippets/xwin-hotplug/99-xwin-hotplug.rules)
+See: [hot-plug rules](https://github.com/alejandroliu/0ink.net/blob/master/snippets/2021/xwin-hotplug/99-xwin-hotplug.rules)
 
 # Running xrandr
 
@@ -85,7 +85,7 @@ See script:
 ```bash
 {! xwin-hotplug/xwin-hotplug !}
 ```
-See: [hot-plug script](https://github.com/alejandroliu/0ink.net/blob/master/snippets/xwin-hotplug/xwin-hotplug)
+See: [hot-plug script](https://github.com/alejandroliu/0ink.net/blob/master/snippets/2021/xwin-hotplug/xwin-hotplug)
 
 
 # See Also

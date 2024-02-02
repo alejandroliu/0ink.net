@@ -16,18 +16,11 @@ Copy these scripts on the remote server.  Make sure they are executable.
 
 - Remote CLI
 
-
-```bash
-{! adhoc-rsync/recv-nc !}
-```
-[adhoc-rsync/recv-nc](${SNIPPETS}/adhoc-rsync/recv-nc)
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=${SNIPPETS}/2019/adhoc-rsync/recv-nc"></script>
 
 - Remote Helper script
 
-```bash
-{! adhoc-rsync/recv !}
-```
-[adhoc-rsync/recv](${SNIPPETS}/adhoc-rsync/recv)
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=${SNIPPETS}/2019/adhoc-rsync/recv"></script>
 
 # Local scripts
 
@@ -35,20 +28,11 @@ Copy these scripts on the local server.  Make sure they are executable
 
 - Local CLI
 
-
-```bash
-{! adhoc-rsync/send !}
-```
-[adhoc-rsync/send](${SNIPPETS}/adhoc-rsync/send)
-
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=${SNIPPETS}/2019/adhoc-rsync/send"></script>
 
 - Local Helper Script
 
-
-```bash
-{! adhoc-rsync/send-nc !}
-```
-[adhoc-rsync/send-nc](${SNIPPETS}/adhoc-rsync/send-nc)
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=${SNIPPETS}/2019/adhoc-rsync/send-nc"></script>
 
 # Usage
 

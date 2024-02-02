@@ -1,1 +1,0 @@
-../../src/content/posts/2021/2021-02-28-hotplug-hdmi.md

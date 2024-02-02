@@ -1,0 +1,1 @@
+../../../src/content/posts/2019/2019-02-19-installing-void.md

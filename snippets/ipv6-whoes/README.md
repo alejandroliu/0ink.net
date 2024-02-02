@@ -1,1 +1,0 @@
-../../src/content/posts/2021/2021-12-21-ipv6-blues.md

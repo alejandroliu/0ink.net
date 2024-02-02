@@ -1,0 +1,1 @@
+../../../src/content/posts/2022/2022-01-10-lnbin.md

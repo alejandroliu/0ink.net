@@ -47,7 +47,7 @@ Once this is set-up you need a small program to kick off the `glibc` executables
 ```clang
 {! void-glibc-in-musl/glibc.c !}
 ```
-[void-glibc-in-musl/glibc.c](${SNIPPETS}/void-glibc-in-musl/glibc.c)
+[void-glibc-in-musl/glibc.c](${SNIPPETS}/2019/void-glibc-in-musl/glibc.c)
 
 
 To compile and install:

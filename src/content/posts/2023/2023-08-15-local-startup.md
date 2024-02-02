@@ -35,15 +35,15 @@ in their `$HOME/.config/local-startup.cfg` file.
 
 Files:
 
-- [local-startup.tk](https://github.com/alejandroliu/0ink.net/blob/master/snippets/local-startup/local-startup.tk)
+- [local-startup.tk](https://github.com/alejandroliu/0ink.net/blob/master/snippets/2023/local-startup/local-startup.tk)
   : main implementation script
-- [local.cfg](https://github.com/alejandroliu/0ink.net/blob/master/snippets/local-startup/local.cfg) :
+- [local.cfg](https://github.com/alejandroliu/0ink.net/blob/master/snippets/2023/local-startup/local.cfg) :
   example configuration file
-- [local-startup-autostart.desktop](https://github.com/alejandroliu/0ink.net/blob/master/snippets/local-startup/local-startup-autostart.desktop) :
+- [local-startup-autostart.desktop](https://github.com/alejandroliu/0ink.net/blob/master/snippets/2023/local-startup/local-startup-autostart.desktop) :
   desktop file to run when session starts
-- [local-startup-prefs.desktop](https://github.com/alejandroliu/0ink.net/blob/master/snippets/local-startup/local-startup-prefs.desktop)
+- [local-startup-prefs.desktop](https://github.com/alejandroliu/0ink.net/blob/master/snippets/2023/local-startup/local-startup-prefs.desktop)
   : desktop file for preferences editor
-- [local-startup.run](https://github.com/alejandroliu/0ink.net/blob/master/snippets/local-startup/local-startup.run) :
+- [local-startup.run](https://github.com/alejandroliu/0ink.net/blob/master/snippets/2023/local-startup/local-startup.run) :
   example run file.
 
 # local-startup.run

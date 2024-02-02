@@ -17,7 +17,7 @@ authentication provider and the `curl` command.
 To make it work is quite simple.  Copy this script to your `/config`
 directory as `curl_auth.sh`:
 
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/hassio/curl_auth.sh"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/2022/hassio/curl_auth.sh"></script>
 
 Add the following lines to your `configure.yaml`:
 

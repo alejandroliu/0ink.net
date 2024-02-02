@@ -1,0 +1,1 @@
+../../../src/content/posts/2024/2024-01-15-optimiz.md

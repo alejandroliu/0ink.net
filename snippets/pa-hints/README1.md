@@ -1,1 +1,0 @@
-../../src/content/posts/2020/2020-10-03-pa-hints.md

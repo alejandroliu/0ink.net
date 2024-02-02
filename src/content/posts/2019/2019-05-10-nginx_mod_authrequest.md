@@ -136,10 +136,7 @@ the user is redirected to the original URL.
 
 This is implemented using the following script:
 
-```python
-{! nginx_mod_authrequest/auth1.py !}
-```
-[nginx_mod_authrequest/auth1.py](${SNIPPETS}/nginx_mod_authrequest/auth1.py)
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=${SNIPPETS}/2019/nginx_mod_authrequest/auth1.py"></script>
 
 This makes uses of the [bottle][bottlepy] micro framework.
 
@@ -220,10 +217,8 @@ Sub-request configuration:
 
 The python implementation (again, using [bottle][bottlepy]):
 
-```python
-{! nginx_mod_authrequest/auth2.py !}
-```
-[nginx_mod_authrequest/auth2.py](${SNIPPETS}/nginx_mod_authrequest/auth2.py)
+
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=${SNIPPETS}/2019/nginx_mod_authrequest/auth2.py"></script>
 
 
 Like in the previous example, we are not doing any user/password verification.  We are only
@@ -241,11 +236,7 @@ same as in the [Basic][basicauth] authentication.
 
 The implentation in python (using [bottle][bottlepy] framework):
 
-```python
-{! nginx_mod_authrequest/auth3.py !}
-```
-[nginx_mod_authrequest/auth3.py](${SNIPPETS}/nginx_mod_authrequest/auth3.py)
-
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=${SNIPPETS}/2019/nginx_mod_authrequest/auth3.py"></script>
 
 * * *
 

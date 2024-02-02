@@ -1,1 +1,0 @@
-../../src/content/posts/2020/2020-03-19-mate-screensaver-hacks.md

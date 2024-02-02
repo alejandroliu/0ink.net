@@ -1,1 +1,0 @@
-../../src/content/posts/2023/2023-02-01-qsnap.md

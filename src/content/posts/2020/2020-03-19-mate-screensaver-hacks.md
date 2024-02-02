@@ -25,11 +25,7 @@ applet.
 
 For my computers I use this script:
 
-
-```bash
-{! mate-screensaver-hacks/installer.sh !}
-```
-[mate-screensaver-hacks/installer.sh](${SNIPPETS}/mate-screensaver-hacks/installer.sh)
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=${SNIPPETS}/2020/mate-screensaver-hacks/installer.sh"></script>
 
 This simplifies the full process.  Just run the script (you may need to
 `sudo`) with the following options:
@@ -50,8 +46,6 @@ This simplifies the full process.  Just run the script (you may need to
 If you like [XScreenSaver][xscr] and would like to see the same software
 on Windows, you should read [this article][no-win-xscr] from the
 [XScreenSaver][xscr] author.
-
-
 
 
 [xscr]: https://www.jwz.org/xscreensaver/

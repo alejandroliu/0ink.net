@@ -14,7 +14,7 @@ Enable serving local static files:
 Place the HTML with your clock in a file i.e. `$config/www/clock.html`.
 I am using this:
 
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/hassio/clock.html"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/2022/hassio/clock.html"></script>
 
 Then add a [webpage](https://www.home-assistant.io/dashboards/iframe/) card:
 
@@ -29,7 +29,7 @@ exactly like you want.
 
 I wrote this because I couldn't get the
 [markdown](https://www.home-assistant.io/dashboards/markdown/) card
-to style properly.  Also, I wasn't keen on installing the 
+to style properly.  Also, I wasn't keen on installing the
 [time and date](https://www.home-assistant.io/integrations/time_date/)
 sensor which is required for the clock examples based on the
 [picture elements](https://www.home-assistant.io/dashboards/picture-elements/)
