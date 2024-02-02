@@ -1,7 +1,7 @@
 #
 # Download this with:
 #
-#	wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation/swlist-extras.txt | sed -e 's/#.*$//'
+#	wget -O- https://github.com/alejandroliu/0ink.net/raw/main/snippets/2019/void-installation/swlist-extras.txt | sed -e 's/#.*$//'
 #
 # use:
 #	xbps-query -m

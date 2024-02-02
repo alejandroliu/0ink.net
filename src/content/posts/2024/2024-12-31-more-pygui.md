@@ -37,7 +37,6 @@ author: alex
   [mate]: https://mate-desktop.org/
   [lxqt]: https://lxqt-project.org/about/
   [survey]: https://distantjob.com/blog/programming-languages-rank/
-  [patoggle]: https://github.com/alejandroliu/0ink.net/tree/master/snippets/pa-hints
-  [xm]: https://github.com/alejandroliu/0ink.net/tree/master/snippets/xmpy
-  [local-startup]: https://github.com/alejandroliu/0ink.net/tree/master/snippets/local-startup
-  [hk_helper]: https://github.com/alejandroliu/0ink.net/tree/master/snippets/global-hotkeys
+  [patoggle]: https://github.com/alejandroliu/0ink.net/tree/main/snippets/2020/pa-hints
+  [local-startup]: https://github.com/alejandroliu/0ink.net/tree/main/snippets/2023/local-startup
+  [hk_helper]: https://github.com/alejandroliu/0ink.net/tree/main/snippets/2023/global-hotkeys

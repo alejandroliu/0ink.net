@@ -3,9 +3,9 @@
 # Tweak PolKit RUles
 #
 # Use this command:
-#	wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/tweak-polkit-rules.sh | sh
+#	wget -O- https://github.com/alejandroliu/0ink.net/raw/main/snippets/2019/void-installation/tweak-polkit-rules.sh | sh
 # or
-#	wget -O- https://github.com/alejandroliu/0ink.net/raw/master/snippets/installing-void/tweak-polkit-rules.sh | sudo sh
+#	wget -O- https://github.com/alejandroliu/0ink.net/raw/main/snippets/2019/void-installation/tweak-polkit-rules.sh | sudo sh
 #
 # In file `/etc/polkit-1/rules.d/10-udisks2.rules`:
 

@@ -14,7 +14,7 @@ Enable serving local static files:
 Place the HTML with your clock in a file i.e. `$config/www/clock.html`.
 I am using this:
 
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/2022/hassio/clock.html"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/main/snippets/2022/hassio/clock.html"></script>
 
 Then add a [webpage](https://www.home-assistant.io/dashboards/iframe/) card:
 

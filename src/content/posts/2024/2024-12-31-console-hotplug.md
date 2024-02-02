@@ -38,7 +38,7 @@ EDID data from here.
 2. force the kernel to re-read the EDID data.
 
 ```
-640 	480 	60 Hz 	31.475 kHz 	ModeLine "640x480" 25.18 640 656 752 800 480 490 492 525 -HSync -VSync 
+640 	480 	60 Hz 	31.475 kHz 	ModeLine "640x480" 25.18 640 656 752 800 480 490 492 525 -HSync -VSync
 ```
 
 References:
@@ -48,6 +48,6 @@ References:
 - https://www.mythtv.org/wiki/Modeline_Database#VESA_ModePool
 - https://github.com/akatrevorjay/edid-generator
 
- [xwin-hotplug]: https://github.com/alejandroliu/0ink.net/blob/master/snippets/xwin-hotplug/xwin-hotplug
- [edid-cache]:  https://github.com/alejandroliu/0ink.net/blob/master/snippets/xwin-hotplug/edid-cache
- [udev-rules]: https://github.com/alejandroliu/0ink.net/blob/master/snippets/xwin-hotplug/99-xwin-hotplug.rules
+ [xwin-hotplug]: https://github.com/alejandroliu/0ink.net/blob/main/snippets/2021/xwin-hotplug/xwin-hotplug
+ [edid-cache]:  https://github.com/alejandroliu/0ink.net/blob/main/snippets/2021/xwin-hotplug/edid-cache
+ [udev-rules]: https://github.com/alejandroliu/0ink.net/blob/main/snippets/2021/xwin-hotplug/99-xwin-hotplug.rules

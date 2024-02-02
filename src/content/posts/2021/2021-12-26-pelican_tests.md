@@ -71,7 +71,7 @@ blockdiag {
 
 # my mdx variables
 
-We use [snippets](${SNIPPETS}/adhoc-rsync/send-nc) as an example.
+We use [snippets](https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/adhoc-rsync/send-nc) as an example.
 
 How we handle missing ${VARS}.
 
