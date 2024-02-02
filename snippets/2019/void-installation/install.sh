@@ -5,9 +5,10 @@ set -euf -o pipefail
 script=$(readlink -f "$0")
 mydir=$(dirname "$script")
 
-repourl="https://github.com/alejandroliu/0ink.net/raw/master/snippets/void-installation"
+repourl="https://github.com/alejandroliu/0ink.net/raw/main/snippets/2019/void-installation"
 embedopts='?style=github\&showBorder=on\&showLineNumbers=on\&showFileMeta=on\&showCopy=on\&fetchFromJsDelivr=on\&'
 embedurl="https://tortugalabs.github.io/embed-like-gist/embed.js${embedopts}target="
+embedprefix="${embedurl}https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation"
 
 mnt=/mnt
 hmnt="$mnt"
@@ -40,6 +41,7 @@ if [ $# -eq 0 ] ; then
     | sed \
 	-e 's!$repourl!'"$repourl!" \
 	-e 's!$embedurl!'"$embedurl!" \
+	-e 's!$embedprefix!'"$embedprefix!" \
 	-e 's!$0!installer.sh!' \
 	-e 's!$run!!' \
 	-e 's!$mnt!!' \
@@ -424,9 +426,9 @@ fi
 ##
 ## But actually, for the package list I have been using these lists:
 ##
-## <script src="$embedurl$repourl/swlist.txt"></script>
-## <script src="$embedurl$repourl/swlist-xwin.txt?footer=minimal"></script>
-## <script src="$embedurl$repourl/swlist-mate.txt?footer=minimal"></script>
+## <script src="$embedprefix/swlist.txt"></script>
+## <script src="$embedprefix/swlist-xwin.txt?footer=minimal"></script>
+## <script src="$embedprefix/swlist-mate.txt?footer=minimal"></script>
 ##
 ## This installs a [MATE][mate] desktop environment.
 ##
@@ -513,7 +515,7 @@ echo y | env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $mnt $(
 ##
 ## Then you can install non-free software, like:
 ##
-## <script src="$embedurl$repourl/swlist-nonfree.txt"></script>
+## <script src="$embedprefix/swlist-nonfree.txt"></script>
 ##
 #end-output
 if ! check_opt glibc "$@" ; then
@@ -769,14 +771,14 @@ repofile BOOTX64.EFI $mnt/boot/EFI/BOOT/BOOTX64.EFI
 ##
 ## Create the following script as `/boot/mkmenu.sh`
 ##
-## <script src="$embedurl$repourl/mkmenu.sh"></script>
+## <script src="$embedprefix/mkmenu.sh"></script>
 ##
 ## Add the following scripts to:
 ##
 ## - `/etc/kernel.d/post-install/99-refind`
 ## - `/etc/kernel.d/post-remove/99-refind`
 ##
-## <script src="$embedurl$repourl/hook.sh"></script>
+## <script src="$embedprefix/hook.sh"></script>
 ##
 ## Make sure they are executable.  This is supposed to re-create
 ## menu entries whenever the kernel gets upgraded.
@@ -1094,7 +1096,7 @@ fi
 ## (in this case `mate-power-manager`) is running.  If it is, then
 ## it will exit.
 ##
-## <script src="$embedurl$repourl/acpi-handler.patch"></script>
+## <script src="$embedprefix/acpi-handler.patch"></script>
 ##
 #end-output
 (
@@ -1165,7 +1167,7 @@ fi
 ##
 ## To enable this I had to create/tweak the PolKit rules...
 ##
-## <script src="$embedurl$repourl/_attic_/tweak-polkit-rules.sh"></script>
+## <script src="$embedprefix/_attic_/tweak-polkit-rules.sh"></script>
 ##
 ## ## Using SLIM
 ##

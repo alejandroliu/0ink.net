@@ -43,12 +43,7 @@ sudo env XBPS_ARCH=x86_64 xbps-install --repository=http://alpha.de.repo.voidlin
 
 Once this is set-up you need a small program to kick off the `glibc` executables.  I copied this one:
 
-
-```clang
-{! void-glibc-in-musl/glibc.c !}
-```
-[void-glibc-in-musl/glibc.c](${SNIPPETS}/2019/void-glibc-in-musl/glibc.c)
-
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-glibc-in-musl/glibc.c"></script>
 
 To compile and install:
 

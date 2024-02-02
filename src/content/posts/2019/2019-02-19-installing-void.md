@@ -1,6 +1,5 @@
 ---
 title: Installing Void Linux
-tags: backups, boot, configuration, desktop, device, directory, drive, filesystem, information, installation, linux, login, manager, network, partition, password, power, scripts, security, software, sudo, windows
 ---
 
 I made the switch to [void linux][void].  Except for compatibility
@@ -22,7 +21,7 @@ My installation process roughly follows the [UEFI chroot install][void-uefi].
 
 This process is implemented in a script and can be found here:
 
-- [install.sh](https://github.com/alejandroliu/0ink.net/blob/master/snippets/2019/void-installation/install.sh)
+- [install.sh](https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/install.sh)
 
 Script usage:
 
@@ -113,9 +112,9 @@ env XBPS_ARCH=x86_64 xbps-install -S -R http://alpha.de.repo.voidlinux.org/curre
 
 But actually, for the package list I have been using these lists:
 
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/2019/void-installation/swlist.txt"></script>
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/2019/void-installation/swlist-xwin.txt?footer=minimal"></script>
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/2019/void-installation/swlist-mate.txt?footer=minimal"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/swlist.txt"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/swlist-xwin.txt?footer=minimal"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/swlist-mate.txt?footer=minimal"></script>
 
 This installs a [MATE][mate] desktop environment.
 
@@ -154,7 +153,7 @@ env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r /mnt void-repo-nonfree
 
 Then you can install non-free software, like:
 
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/2019/void-installation/swlist-nonfree.txt"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/swlist-nonfree.txt"></script>
 
 
 ## Enter the void chroot
@@ -300,7 +299,7 @@ mkdir /boot/EFI/BOOT
 Copy from the `zip file` the file `refind-bin-{version}/refind/refind_x64.efi` to
 `/boot/EFI/BOOT/BOOTX64.EFI`.
 
-The version I am using right now can be found here: [v0.11.4 BOOTX64.EFI](https://github.com/alejandroliu/0ink.net/blob/master/snippets/2019/void-installation/BOOTX64.EFI)
+The version I am using right now can be found here: [v0.11.4 BOOTX64.EFI](https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/BOOTX64.EFI)
 
 Create kernel options files `/boot/cmdline`:
 
@@ -318,14 +317,14 @@ For my hardware I had to add the option:
 
 Create the following script as `/boot/mkmenu.sh`
 
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/2019/void-installation/mkmenu.sh"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/mkmenu.sh"></script>
 
 Add the following scripts to:
 
 - `/etc/kernel.d/post-install/99-refind`
 - `/etc/kernel.d/post-remove/99-refind`
 
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/2019/void-installation/hook.sh"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/hook.sh"></script>
 
 Make sure they are executable.  This is supposed to re-create
 menu entries whenever the kernel gets upgraded.
@@ -452,7 +451,7 @@ DisplayManager*session:		/etc/X11/Xsession
 
 ```
 
-And have a custom [Xsession](https://github.com/alejandroliu/0ink.net/blob/master/snippets/2019/void-installation/Xsession) script in
+And have a custom [Xsession](https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/Xsession) script in
 `/etc/X11/Xsession`.
 
 Particularly important is the fact that the default Xsession
@@ -477,8 +476,8 @@ still some opportunities to add some eye-candy to
 it.  For that, we change the `setup` and `startup` scripts
 `Xsetup_0` and `GiveConsole` into custom scripts:
 
-- [Xsetup_0](https://github.com/alejandroliu/0ink.net/blob/master/snippets/2019/void-installation/xdm/Xsetup_0)
-- [GiveConsole](https://github.com/alejandroliu/0ink.net/blob/master/snippets/2019/void-installation/xdm/GiveConsole)
+- [Xsetup_0](https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/xdm/Xsetup_0)
+- [GiveConsole](https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/xdm/GiveConsole)
 
 Unfortunately, it only works for applications that draw
 directly to the root window as it is not possible to control
@@ -499,8 +498,8 @@ start your session from the Linux console and use `startx` and
 Alternatively, you can add a file in `/etc/profile.d` to start X
 at login if on tty1.
 
-- [session](https://github.com/alejandroliu/0ink.net/blob/master/snippets/2019/void-installation/Xsession)
-- [zzdm.sh](https://github.com/alejandroliu/0ink.net/blob/master/snippets/2019/void-installation/noxdm/zzdm.sh)
+- [session](https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/Xsession)
+- [zzdm.sh](https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/noxdm/zzdm.sh)
 
 I am using the `session` script, which is a modified version of
 the earlier `Xsession` script that I am using for `xdm` to
@@ -544,7 +543,7 @@ also check if a  Desktop Environment power manager
 (in this case `mate-power-manager`) is running.  If it is, then
 it will exit.
 
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/2019/void-installation/acpi-handler.patch"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/acpi-handler.patch"></script>
 
 ### rtkit spamming logs
 
@@ -586,7 +585,7 @@ were not available using the [MATE][mate] desktop.
 
 To enable this I had to create/tweak the PolKit rules...
 
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/master/snippets/2019/void-installation/_attic_/tweak-polkit-rules.sh"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/_attic_/tweak-polkit-rules.sh"></script>
 
 ## Using SLIM
 

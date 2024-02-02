@@ -62,11 +62,7 @@ Essentially, we are waiting for the monitor configuration to change
 and when that happens we will run a script. This is accomplish with
 the following rules file (99-xwin-hotplug.rules):
 
-```bash
-{! xwin-hotplug/99-xwin-hotplug.rules !}
-
-```
-See: [hot-plug rules](https://github.com/alejandroliu/0ink.net/blob/master/snippets/2021/xwin-hotplug/99-xwin-hotplug.rules)
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/main/snippets/2021/xwin-hotplug/99-xwin-hotplug.rules"></script>
 
 # Running xrandr
 
@@ -82,11 +78,7 @@ The script that is kicked off by [udev][udev] does the following:
 
 See script:
 
-```bash
-{! xwin-hotplug/xwin-hotplug !}
-```
-See: [hot-plug script](https://github.com/alejandroliu/0ink.net/blob/master/snippets/2021/xwin-hotplug/xwin-hotplug)
-
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/main/snippets/2021/xwin-hotplug/xwin-hotplug"></script>
 
 # See Also
 

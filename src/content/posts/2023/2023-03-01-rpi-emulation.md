@@ -129,7 +129,7 @@ I tested the following images, with these results:
 
 For convenicne, I wrote the `raspi-emu` script:
 
-- [rasi-emu](${SNIPPETS}/2023/raspi-emu)
+- [rasi-emu](https://github.com/alejandroliu/0ink.net/blob/main/snippets/2023/raspi-emu)
 
 This can be used to prepare images and run emulation sessions.
 

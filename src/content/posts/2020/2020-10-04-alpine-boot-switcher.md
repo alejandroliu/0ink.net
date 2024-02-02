@@ -15,8 +15,8 @@ will automatically remount `rw`.
 
 In your boot/EFI partition, you need to have these two scripts:
 
-- [select.sh](https://github.com/alejandroliu/0ink.net/blob/master/snippets/2020/alpine-boot-switcher/select.sh)
-- [fixup.sh](https://github.com/alejandroliu/0ink.net/blob/master/snippets/2020/alpine-boot-switcher/fixup.sh)
+- [select.sh](https://github.com/alejandroliu/0ink.net/blob/main/snippets/2020/alpine-boot-switcher/select.sh)
+- [fixup.sh](https://github.com/alejandroliu/0ink.net/blob/main/snippets/2020/alpine-boot-switcher/fixup.sh)
 
 The `select.sh` script is the main script.  `fixup.sh` is called from
 `select.sh` to tweak the boot command line parameters.  I use it to add

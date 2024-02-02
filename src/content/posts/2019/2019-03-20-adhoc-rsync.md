@@ -16,11 +16,11 @@ Copy these scripts on the remote server.  Make sure they are executable.
 
 - Remote CLI
 
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=${SNIPPETS}/2019/adhoc-rsync/recv-nc"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/adhoc-rsync/recv-nc"></script>
 
 - Remote Helper script
 
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=${SNIPPETS}/2019/adhoc-rsync/recv"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/adhoc-rsync/recv"></script>
 
 # Local scripts
 
@@ -28,11 +28,11 @@ Copy these scripts on the local server.  Make sure they are executable
 
 - Local CLI
 
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=${SNIPPETS}/2019/adhoc-rsync/send"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/adhoc-rsync/send"></script>
 
 - Local Helper Script
 
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=${SNIPPETS}/2019/adhoc-rsync/send-nc"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/adhoc-rsync/send-nc"></script>
 
 # Usage
 

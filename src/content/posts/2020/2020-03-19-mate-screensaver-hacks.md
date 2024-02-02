@@ -25,7 +25,7 @@ applet.
 
 For my computers I use this script:
 
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=${SNIPPETS}/2020/mate-screensaver-hacks/installer.sh"></script>
+<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/main/snippets/2020/mate-screensaver-hacks/installer.sh"></script>
 
 This simplifies the full process.  Just run the script (you may need to
 `sudo`) with the following options:

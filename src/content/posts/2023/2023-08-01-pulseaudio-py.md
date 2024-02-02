@@ -19,8 +19,8 @@ This script depends of two packages:
 It can be used to control volume and switch audio output.
 
 
-  [old]: https://github.com/alejandroliu/0ink.net/blob/master/snippets/2020/pa-hints/patoggle
-  [new]: https://github.com/alejandroliu/0ink.net/blob/master/snippets/2020/pa-hints/patoggle.py
+  [old]: https://github.com/alejandroliu/0ink.net/blob/main/snippets/2020/pa-hints/patoggle
+  [new]: https://github.com/alejandroliu/0ink.net/blob/main/snippets/2020/pa-hints/patoggle.py
   [pypulse]: https://pypi.org/project/pulsectl/
   [tkinter]: https://docs.python.org/3/library/tkinter.html
 
