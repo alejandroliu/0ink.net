@@ -1,7 +1,7 @@
 BASEDIR=$(CURDIR)
 INPUTDIR=$(BASEDIR)/content
 OUTPUTDIR=$(BASEDIR)/../docs
-NACOWIKI_VER=3.2.1-rel
+NACOWIKI_VER=3.2.2-rel
 NACOWIKI_URL=https://github.com/iliu-net/NacoWiki/archive/refs/tags/$(NACOWIKI_VER).tar.gz
 
 help:
