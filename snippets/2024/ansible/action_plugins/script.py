@@ -174,6 +174,7 @@ class ActionModule(ActionBase):
                 raise AnsibleActionFail('non-zero return code')
             else:
               if 'rc' in result:
+                result['orc'] = result['rc'] # Record the original return code...
                 if result['rc'] == no_change_rc:
                   result['changed'] = False
                   result['rc'] = 0 # Otherrwise it fails!
