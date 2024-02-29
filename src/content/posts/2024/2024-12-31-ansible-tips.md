@@ -16,6 +16,15 @@ author: alex
   This creates the directory _role-name_ in the `roles` directory.
   
 
+# Execution order
+
+1. pre_tasks
+2. roles (in the order they are listed)
+3. tasks
+4. handlers (only if notified by a task and before post_tasks)
+5. post_tasks
+
+
 # Report no changes when running a script
 
 ```yaml
@@ -130,6 +139,28 @@ for more details.
 You can use the [ansible-inventory](https://docs.ansible.com/ansible/latest/cli/ansible-inventory.html#ansible-inventory)
 command to see what [ansible][aa] will process for its inventory.
 
+# Writing ansible modules in sh
+
+[Ansible][aa] playbooks are meant to be declarative in nature.  So for handling more
+complex tasks the recommendation is to write modules, which then can be used from a
+playbook.  To create a module in shell script, you just need to create a file in your
+module's path (ANSIBLE_LIBRARY).   Input parameters are given as a file in "$1".  This
+file is formatted as a `source`able file so using:
+
+```bash
+. "$1"
+````
+
+The return code of the script is used to determine if the module was succesful or 
+an error happened.
+
+The output of the script *must* be in JSON format.  And it should contain the following
+keys:
+
+- `changed` : boolean indicating if changes were made
+- `msg` : optional informational message, particularly useful in an error condition.
+- `ansible_facts` : dictionary containing facts that will be added to the playbook run.
+  This is optiona.
 
   [aa]: https://www.ansible.com/
 
