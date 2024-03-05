@@ -4,6 +4,9 @@ date: "2023-08-27"
 author: alex
 tags: python, windows
 ---
+![pygui]({static}/images/2024/pygui.jpg)
+
+
 After looking a multiple options of GUI programming under [python][python] I
 eventually settled for [tkinter][tkinter].  The main reason was that
 [tkinter][tkinter] is very ubiquitous and initially though the learning
@@ -24,7 +27,7 @@ due to Apple's walled garden restrictions.
 
 So try things out, I wrote a couiple of scripts:
 
-- [aptoggle][patoggle] \
+- [patoggle][patoggle] \
   This one is not that interesting as it only shows things on the screen but does not
   have any inputs.  But I though was a good starting project.
 - [xprtmgr][xprtmgr] \

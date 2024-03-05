@@ -5,6 +5,9 @@ author: alex
 ---
 [toc]
 ***
+![openssh logo]({static}/images/2024/OpenSSH_logo.png)
+
+
 # Intro
 
 OpenSSH supports a **Certificate Authority** (**CA**) function.

@@ -5,6 +5,9 @@ author: alex
 tags: address, authentication, configuration, device, encryption, filesystem, information,
   security, settings
 ---
+![padlock]({static}/images/2024/padlock.png)
+
+
 This recipe is for tunneling NFS traffic over SSH.  This adds encryption
 and Public Key authentication to otherwise insecure NFS traffic.
 
@@ -138,3 +141,6 @@ References:
 
 
   [ubuntu]: https://en.wikipedia.org/wiki/Ubuntu
+
+***
+<a href="https://www.flaticon.com/free-icons/lock" title="lock icons">Lock icons created by Freepik - Flaticon</a>

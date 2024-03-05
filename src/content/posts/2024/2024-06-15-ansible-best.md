@@ -3,6 +3,9 @@ title: Ansible Best Practices
 date: "2024-02-29"
 author: alex
 ---
+![ansible logo]({static}/images/2024/ansible_logo2.png)
+
+
 This is a conversion from a [presentation/pdf](https://www.ansible.com/hubfs/2018_Content/Ansible%20Best%20Practices%20Roles%20&%20Modules.pdf)
 by Tim Appnel.
 

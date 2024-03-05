@@ -25,36 +25,6 @@ author: alex
 5. post_tasks
 
 
-# Report no changes when running a script
-
-```yaml
-tasks:
-
-- name: Exec sh command
-  shell:
-    cmd: "echo ''; exit 254;"
-  register: result
-  failed_when: result.rc != 0 and result.rc != 254
-  changed_when: result.rc != 254
-```
-
-I have customized `command` module and the `script` action plugin to simplify these
-three lines of code into a single line.  So the previous example becomes:
-
-```yaml
-tasks:
-
-- name: Exec sh command
-  shell:
-    cmd: "echo ''; exit 254;"
-  no_change_rc: 254
-```
-
-Scripts:
-
-- [Custom script action](https://github.com/alejandroliu/0ink.net/blob/main/snippets/2024/ansible/action_plugins/script.py)
-- [Custom command module](https://github.com/alejandroliu/0ink.net/blob/main/snippets/2024/ansible/modules/command.py)
-
 # Create a file without external template
 
 Normally you can use the [template module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html)
@@ -141,6 +111,12 @@ command to see what [ansible][aa] will process for its inventory.
 
 # Writing ansible modules in sh
 
+See [Ansible Module architecture](https://docs.ansible.com/ansible/latest/dev_guide/developing_program_flow_modules.html)
+for more details.
+
+This documents how to create [Old-style](https://docs.ansible.com/ansible/latest/dev_guide/developing_program_flow_modules.html)
+Ansible module.  These are less efficient but are asier to implement in shell script.
+
 [Ansible][aa] playbooks are meant to be declarative in nature.  So for handling more
 complex tasks the recommendation is to write modules, which then can be used from a
 playbook.  To create a module in shell script, you just need to create a file in your
@@ -160,7 +136,192 @@ keys:
 - `changed` : boolean indicating if changes were made
 - `msg` : optional informational message, particularly useful in an error condition.
 - `ansible_facts` : dictionary containing facts that will be added to the playbook run.
-  This is optiona.
+  This is optional.
+
+There are additional arguments sent to the script.  These are [internal ansible](https://docs.ansible.com/ansible/latest/dev_guide/developing_program_flow_modules.html#internal-arguments)
+arguments.  Worth mentioning are:
+
+- `_ansible_no_log` (boolean) : do not log output.  Used to keep sensitive strings from logging.
+- `_ansible_debug` (boolean) : debugging
+- `_ansible_diff` (boolean) : Running in diff mode.
+- `_ansible_check_mode` (boolean) : Running in check mode.
+
+## Check mode
+
+If `_ansible_check_mode` is set to `True`, the user is running the playbook with the
+`--check` flag.  Modules should only show that changes would be made, without making
+any actual changes.
+
+More details [here](https://medium.com/opsops/understanding-ansibles-check-mode-299fd8a6a532)
+
+## Diff mode
+
+If `_ansible_diff` is set to `True`, the user is running the playbook with the `--diff`
+flag.  Modules that support this should add a key named `diff` with either:
+
+1. two keys, `before` and `after`.  This contains the contents before and after the change.
+2. single `prepared` key.  This contains a list with a textual descriptions of the changes
+   to be made.
+
+See [article](https://blog.devops.dev/writing-ansible-modules-with-support-for-diff-mode-cae70de1c25f)
+
+# Writing Ansible Action Plugins
+
+Modules described earlier, run on the managed node.  While they can return data to the control
+node, sometimes is necessary to do some preparatory work on the control node before
+calling a Module proper.  This is done using [Action Plugins](https://docs.ansible.com/ansible/latest/dev_guide/developing_plugins.html#action-plugins)
+
+Essentially, action plugins let you integrate local processing and local data with module functionality.
+
+To create an action plugin, create a new class with the Base(ActionBase) class as the parent:
+
+```python
+from ansible.plugins.action import ActionBase
+
+class ActionModule(ActionBase):
+    pass
+
+```
+
+From there, execute the module using the `_execute_module` method to call the original module.
+After successful execution of the module, you can modify the module return data.
+
+```python
+module_return = self._execute_module(module_name='<NAME_OF_MODULE>',
+                                     module_args=module_args,
+                                     task_vars=task_vars, tmp=tmp)
+```
+
+A simple example template:
+
+```python
+#!/usr/bin/python
+# Make coding more python3-ish, this is required for contributions to Ansible
+from __future__ import (absolute_import, division, print_function)
+__metaclass__ = type
+
+from ansible.plugins.action import ActionBase
+from datetime import datetime
+
+
+class ActionModule(ActionBase):
+    def run(self, tmp=None, task_vars=None):
+        result = super(ActionModule, self).run(tmp, task_vars)
+        module_args = self._task.args.copy()
+        module_return = self._execute_module(module_name='setup',
+                                             module_args=module_args,
+                                             task_vars=task_vars, tmp=tmp)
+        result.update(module_return)
+        return result
+```
+
+## Transferring data from an ActionPlugin
+
+So you need to copy a large file from the control node to the managed node
+in an Action Plugin.  To do this you need to declar in your class:
+
+```python
+TRANSFERS_FILES = True
+```
+
+Next in your Action implementation, you can use this command to create 
+temporary file:
+
+```python
+tmp_src = self._connection._shell.join_path(self._connection._shell.tmpdir, 'archive.zip')
+```
+Then you can copy bytes:
+
+```python
+self._transfer_data(tmp_src, bytes_object)
+```
+or copy a file:
+
+```python
+self._transfer_file(local_file, tmp_src)
+```
+
+A complete example:
+
+```python
+#!/usr/bin/python
+
+# Make coding more python3-ish, this is required for contributions to Ansible
+from __future__ import (absolute_import, division, print_function)
+__metaclass__ = type
+
+
+from ansible.plugins.action import ActionBase
+from ansible.errors import AnsibleActionFail, AnsibleError
+
+class ActionModule(ActionBase):
+  TRANSFERS_FILES = True
+
+  def run(self, tmp=None, task_vars=None):
+    result = super(ActionModule, self).run(tmp, task_vars)
+
+    # Get the arguments passed to the action plugin
+    src = self._task.args.get('src', '')
+    if len(src) == 0:
+      raise AnsibleActionFail('Missing or empty src parameter',result=result)
+
+    # Copy archive to remote/managed node:
+    try:
+      tmp_src = self._connection._shell.join_path(self._connection._shell.tmpdir, 'archive.zip')
+      self._transfer_file(src, tmp_src)
+    except AnsibleError as e:
+      raise AnsibleActionFail(to_text(e))
+
+    return result
+
+
+
+```
+
+
+# Report no changes when running a script
+
+Running a script always assume that it causes changes.
+
+Using scripts is *not recommenteded* because it is just as easy to convert the script into
+a proper [Ansible][aa] module.  Doing so makes it also possible to:
+
+- Return ansible facts
+- Report change status
+- Support __check__ and __diff__ modes.
+
+Regardless, this is an example:
+
+```yaml
+tasks:
+
+- name: Exec sh command
+  shell:
+    cmd: "echo ''; exit 254;"
+  register: result
+  failed_when: result.rc != 0 and result.rc != 254
+  changed_when: result.rc != 254
+```
+
+I have customized `command` module and the `script` action plugin to simplify these
+three lines of code into a single line.  So the previous example becomes:
+
+```yaml
+tasks:
+
+- name: Exec sh command
+  shell:
+    cmd: "echo ''; exit 254;"
+  no_change_rc: 254
+```
+
+Scripts:
+
+- [Custom script action](https://github.com/alejandroliu/0ink.net/blob/main/snippets/2024/ansible/action_plugins/script.py)
+- [Custom command module](https://github.com/alejandroliu/0ink.net/blob/main/snippets/2024/ansible/modules/command.py)
+
+
+  
 
   [aa]: https://www.ansible.com/
 
