@@ -29,9 +29,11 @@ So try things out, I wrote a couiple of scripts:
 
 - [patoggle][patoggle] \
   This one is not that interesting as it only shows things on the screen but does not
-  have any inputs.  But I though was a good starting project.
+  have any inputs.  But I though was a good starting project. \
+  ![patoggle screenshot]({static}/images/2024/patoggle.png)
 - [xprtmgr][xprtmgr] \
-  This is a more complete application.  It was a good learning experience.
+  This is a more complete application.  It was a good learning experience. \
+  ![xprtmgr screenshot]({static}/images/2024/xprtmgr.png)
 
 I assume that as I get more experience, things should be easier.
 
