@@ -215,6 +215,7 @@ class ActionModule(ActionBase):
         return result
 ```
 
+
 ## Transferring data from an ActionPlugin
 
 So you need to copy a large file from the control node to the managed node
@@ -278,10 +279,86 @@ class ActionModule(ActionBase):
 
 ```
 
+# Using Ansible playbooks through SSH bastion hosts/jump servers
+
+There are two approaches:
+
+## Inventory vars
+
+The first way to do it with Ansible is to describe how to connect through the proxy server
+in Ansible's inventory. This is helpful for a project that might be run from various workstations
+or servers without the same SSH configuration (the configuration is stored alongside the
+playbook, in the inventory).
+
+Example Inventory:
+
+```ini
+[proxy]
+bastion.example.com
+
+[nodes]
+private-server-1.example.com
+private-server-2.example.com
+private-server-3.example.com
+
+
+[nodes:vars]
+ansible_ssh_common_args='-o ProxyCommand="ssh -p 2222 -W %h:%p -q username@bastion.example.com"'
+
+```
+
+This sets up an SSH proxy through bastion.example.com on port 2222 (if using the default port,
+22, you can drop the port argument). The -W argument tells SSH it can forward stdin and stdout
+through the host and port, effectively allowing Ansible to manage the node behind the
+bastion/jump server.
+
+The important config line is `ansible_ssh_common_args`, which adds the relevant options to
+the ansible `ssh` command.  A few notes on the options:
+
+Recent SSH versions could just use:
+
+```ini
+ansible_ssh_common_args='-J username@bastion.example.com:2222"'
+```
+
+## SSH config
+
+The alternative, which would apply the proxy configuration to all SSH connections on a
+given workstation, is to add the following configuration inside your `~/.ssh/config` file:
+
+```text
+
+Host private-server-*.example.com
+   ProxyJump user@bastion:2222
+```
+
+Ansible will automatically use whatever SSH options are defined in the user or global SSH
+config, so it should pick these settings up even if you don't modify your inventory.
+
+This method is most helpful if you know your playbook will always be run from a server or
+workstation where the SSH config is present.  Also, this applies to normal `ssh` invokations
+so if you also use the `ssh` and related utilities directly, then, htey will use the 
+same configuration.
+
+## TCP Tunneling
+
+These options assume that the bastion host has TCP Tunneling/Forwarding enabled.  If your
+bastion host has this feature **disabled**, you can replace the `ProxyJump` with
+proxy command:
+
+```text
+  ProxyCommand ssh user@bastion nc %h %p
+```
+
+This replaces the `-W` option with the `nc` (netcat) command.
+
+
+Source: https://www.jeffgeerling.com/blog/2022/using-ansible-playbook-ssh-bastion-jump-host
+
 
 # Report no changes when running a script
 
-Running a script always assume that it causes changes.
+Running a script always assume that it makes changes.
 
 Using scripts is *not recommenteded* because it is just as easy to convert the script into
 a proper [Ansible][aa] module.  Doing so makes it also possible to:
@@ -314,6 +391,28 @@ tasks:
     cmd: "echo ''; exit 254;"
   no_change_rc: 254
 ```
+
+## Adding check_mode to a script
+
+In addition, it is actually possible to support `check_mode` in a script.  You need to:
+
+- Pass the appropriate settings to your script indicating to it that it is in `check_mode`. \
+  This can be done by adding a check for the `ansible_check_mode` variable in a Jinja2 template.
+- Set-up the task so that it will also execute in `check_mode` by adding the tag: `check_mode: false`
+  to it.
+- Example:
+  ```yaml
+  - name: "Apply config to {{domu_name}}"
+    command: |
+      xop cfg --no-change-rc=127 {% if ansible_check_mode %}--dry-run{% endif %} {{domu_name}}
+    register: res
+    failed_when: res.rc != 0 and res.rc != 127
+    changed_when: res.rc != 127
+    check_mode: false
+  ```
+- In this example, the `xop cfg` command gets executed regardless if `check_mode` is on or off. 
+- The script then is passed the `--dry-run` option if `ansible_check_mode` is on.  So the script
+  will not make any actual changes to the system.
 
 Scripts:
 
