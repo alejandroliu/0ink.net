@@ -1,9 +1,9 @@
 ---
-title: 2024-12-31-openssl-ca
+title: 2024-12-31-openssh-ca
 date: "2024-02-19"
 author: alex
 ---
-How to do a OpenSSL CA
+How to do a OpenSSH CA
 
 - Used for a more decentralized access control
 - https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Certificate-based_Authentication
