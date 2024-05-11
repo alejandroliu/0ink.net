@@ -1,4 +1,7 @@
 ---
+title: Git recipes
+date: "2023-08-27"
+author: alex
 ID: "289"
 post_author: "2"
 post_date: "2013-05-23 12:34:41"
@@ -21,11 +24,56 @@ menu_order: "0"
 post_type: post
 post_mime_type: ""
 comment_count: "0"
-title: Git recipes
-tags: authentication, config, directory, feature, git, github, login, password, proxy, remote, windows, wordpress
+tags: authentication, config, directory, feature, git, github, login, password, proxy,
+  remote, windows, wordpress
 ---
+[TOC]
+***
 
 A collection of small useful recipes for using with `Git`.
+
+# Sharing repositories
+
+Use the command:
+
+```bash
+git init --bare --shared /srv/git/myrepo.git
+```
+
+Creates a repo with the following config:
+
+1. `core.bare = true`: make it a bare repo
+2. `core.sharedrepository = 1` (same as `core.sharedrepository = group`): the repo
+   directory and all directories later created in it will be managed by git to allow
+   group read, write, and execute permissions (with the sgid bit set as well -- so as
+   to work with users different primary group)
+3. `receive.denyNonFastforwards = 1`: deny non fast-forward pushes to the repo
+
+Make sure that the user and group ownership of the files is correct.  You may need to
+run `chown -R ` or `chgrp -R` to correct this.
+
+If you want to fine-tune the user, group, or other users' permissions, use 
+`--shared=0NNN`, where `NNN` are the standard user, group, and other bits for files
+(the execute and sgid bits on directories will be managed appropriately by git). For
+example, this allows read and write access to the user, and read-only access to the
+group (and no access to other):
+
+```bash
+git init --bare --shared=0640 /srv/git/myrepo.git
+```
+
+This allows read and write access to the user and group (and no access to other):
+
+```bash
+git init --bare --shared=0660 /srv/git/myrepo.git
+```
+This allows read and write access to the user and group, and read-only access to other:
+
+```bash
+git init --bare --shared=0664 /srv/git/myrepo.git
+```
+This is the default.
+
 
 
 Rewriting history
