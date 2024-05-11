@@ -419,8 +419,71 @@ Scripts:
 - [Custom script action](https://github.com/alejandroliu/0ink.net/blob/main/snippets/2024/ansible/action_plugins/script.py)
 - [Custom command module](https://github.com/alejandroliu/0ink.net/blob/main/snippets/2024/ansible/modules/command.py)
 
+# Role File structure
 
-  
+- roles
+  - *role name*
+    - tasks
+      - main.yml : tasks file can include smaller files if warranted
+    - handlers
+      - main.yml : handlers file
+    - templates : files to use in the template resource
+      - ntp.conf.j2 : templates end in `.j2`
+    - files
+      - bar.txt : files for use with the copy resource
+      - foo.sh : script files for use with the script resource
+    - vars
+      - main.yml : variables associated with this role
+    - defaults
+      - main.yml : default lower priority variables for this role
+    - meta
+       - main.yml : role dependencies
+    - library : roles can also include custom modules
+    - module_utils : roles can also include custom module_utils
+    - lookup_plugins : or other types of plugins, like lookup in this case
+
+See: https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse_roles.html
+
+# Disable gathering facts
+
+This needed for managing hosts that do not have a python interpreter by default.
+Specially for scenarios where it is needed to bootstrap the python interpreter.
+
+There are different ways to do this.
+
+1. Disabling on a per playbook basis. \
+   Example:
+   ```yaml
+   # sample playbook
+   - hosts: sites
+     user: root
+     tags:
+     - configuration
+     gather_facts: no
+     tasks:
+     - ....
+     # ... tasks to install python ...
+     - ...
+     # Optionally, call setup explicitly
+     - setup
+     # ... more tasks ...
+   ```
+2. Using an environment variable \
+   `ANSIBLE_GATHERING` \
+   This can be set to `explicit`.  For example: \
+   `ANSIBLE_GATHERING=0 ansible-playbook playbook.yaml -i inventory.yaml`
+3. From `ansible.cfg`:
+   - plays will gather facts by default, which contain information about
+     the remote system.
+   - Options:
+     - smart - gather by default, but don't regather if already gathered
+     - implicit - gather by default, turn off with gather_facts: False
+     - explicit - do not gather by default, must say gather_facts: True
+   - example:
+     ```
+     gathering = explicit
+     ```
+
 
   [aa]: https://www.ansible.com/
 
