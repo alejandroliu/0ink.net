@@ -18,11 +18,12 @@ tcl			# gui scripts
 tk
 
 conspy			# Allow remote access to linux console
+barrier barrier-gui	# Mouse sharing
 
-# VeraCrypt		# Encrypted drives
 tc-play			# Encrypted drives
 
 flatpak			# application distrib
+gnome-software		# Manage flatpaks
 xdg-desktop-portal
 xdg-desktop-portal-gtk
 xdg-user-dirs
@@ -43,14 +44,9 @@ ImageMagick
 catimg feh viu		# barebones img viewers
 
 libreoffice		# Office applications
-dia			# vector drawings
 simple-scan		# scanner support
-calibre			# e-book management
 cups			# Printer support
 hplip-gui		# Printer+scanner support for HP
-# MSPaint alternatives
-#azpaint : still too complicated
-mtpaint # almost there...
 
 redshift-gtk		# blue blocker
 safeeyes xprintidle	# eye care
@@ -66,6 +62,10 @@ font-bh-ttf		# Additional fonts
 noto-fonts-ttf
 
 syslinux mtools	squashfs-tools-ng	# misc script for working with USB boot drives and images
+bsdtar
+banner
+netpbm
+lldpd
 
 atf			# dev support
 kyua
