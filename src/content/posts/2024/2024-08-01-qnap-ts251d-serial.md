@@ -46,7 +46,7 @@ Pins from left to right.
 4. TX
 
 For the bracket to hold the serial port I printed this
-[3D Model]({static}/images/2024/3dp/bracket.stl).
+[3D Model](https://github.com/alejandroliu/0ink.net/blob/main/src/content/images/2024/3dp/bracket.stl).
 
 Place the Serial module on the 3D printed bracket.
 
