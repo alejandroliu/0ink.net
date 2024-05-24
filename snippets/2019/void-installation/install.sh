@@ -847,6 +847,8 @@ $run xbps-reconfigure -f linux${kver}
 ## ln -s /etc/sv/{acpid,chronyd,cgmanager,crond,uuidd,statd,rcpbind,autofs} /var/service
 ## ```
 ##
+## If you want logging enable: `socklog-unix nanoklogd` too.
+##
 ## Full workstation set-up:
 ##
 ## ```bash
@@ -857,7 +859,7 @@ $run xbps-reconfigure -f linux${kver}
 ## ln -s /etc/sv/{consolekit,xdm} /var/service
 ## ```
 #end-output
-common_svcs="sshd acpid chronyd crond uuidd statd rpcbind autofs bluetoothd"
+common_svcs="sshd acpid chronyd crond uuidd statd rpcbind autofs bluetoothd socklog-unix nanoklogd"
 if check_opt noxwin "$@" ; then
   net_svcs="dhcpcd"
   ws_svcs=""

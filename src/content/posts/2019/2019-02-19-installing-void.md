@@ -379,6 +379,8 @@ ln -s /etc/sv/sshd /var/service
 ln -s /etc/sv/{acpid,chronyd,cgmanager,crond,uuidd,statd,rcpbind,autofs} /var/service
 ```
 
+If you want logging enable: `socklog-unix nanoklogd` too.
+
 Full workstation set-up:
 
 ```bash

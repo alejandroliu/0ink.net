@@ -22,6 +22,7 @@ nfs-utils
 cryptsetup		# encrypted LUKS filesystem
 chrony			# ntp client
 dcron			# cron support
+socklog-void 		# logging
 
 # Additional utilities
 dmidecode
@@ -30,7 +31,9 @@ smartmontools
 
 # More utils
 screen
+tmux
 bash-completion
 psmisc
 
 read-edid # Used for console hotplug
+
