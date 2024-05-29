@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 7.5.1.2 (Linux)"/>
+	<meta name="created" content="2023-05-31T08:50:57.474080804"/>
+	<meta name="changed" content="2023-05-31T08:52:37.417206614"/>
+</head>
+<body lang="en-US" dir="ltr"><p style="margin-bottom: 0in"><br/>
+
+</p>
+<div id="body" dir="ltr">
+	<div id="bea" dir="ltr"><p style="margin-bottom: 0in">feel free to
+		email me at <a href="mailto:kefeer@brokestream.com">kefeer@brokestream.com</a></p>
+	</div>
+	<h1>Tiny serial terminal.</h1>
+	<p>Small minicom replacement for accessing serial ports (com ports)
+	on Linux inspired by FreeBSD &quot;tip&quot;. Mainly intended for
+	use to access serial consoles of various hardware.</p>
+	<p>If you want more control over port without minicom's ugly
+	menu-driven interface i suggest <a href="http://code.google.com/p/picocom/">picocom</a>
+	by Nick Patavalis. Picocom has same spartan interface but much more
+	features.</p>
+	<p><a href="http://www.knossos.net.nz/dterm.html">dterm</a> by
+	Knossos Networks Ltd have a built-in command-line instead of menus.
+	It can do almost everything with serial line. Very nice.</p>
+	<p>There is a <a href="http://svn.clifford.at/tools/trunk/teletype.c">teletype</a>
+	tool written by Clifford Wolf based on tinyserial which is much more
+	advanced.</p>
+	<pre>Download: <a href="http://brokestream.com/com.c">com.c</a>
+Building: cc -o com com.c
+Usage   : ./com /dev/device [speed]
+Example : ./com /dev/ttyS0 [115200]
+Keys    : Ctrl-A - exit, Ctrl-X - display control lines status
+Darcs   : darcs get http://tinyserial.sf.net/
+Scr.shot:<br/>
+ <img src="com-screenshot.png" name="Image1" align="bottom" width="593" height="445" border="0"/>
+</pre><p>
+	Aug 18 17:50:33 UTC 2006: In release 1.0 speed option do not work.
+	Fixed in 1.1.</p>
+	<p>Dec 20 08:25:29 UTC 2006: Version 2006-12-20 incorporates patch
+	from Jim Kou, jimkou@malico.com.tw which fixes compiler warnings.</p>
+	<p>Sep 9 09:27:49 UTC 2008: Version 2008-09-09 patch from Jon Miner
+	fixes cursor control problems.</p>
+	<p>Mar 5 06:14:26 UTC 2009: Version 2009-03-05 patch from Alan
+	Horstmann fixes bug in com port reading and adds handling of EINTR.
+	</p>
+</div>
+<p><br/>
+<br/>
+
+</p>
+</body>
+</html>

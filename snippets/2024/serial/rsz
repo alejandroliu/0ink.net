@@ -1,0 +1,51 @@
+#!/bin/sh
+# From https://unix.stackexchange.com/questions/16578/resizable-serial-console-window
+#
+
+rsz() {
+  local altmode=false print=false
+  while [ $# -gt 0 ]
+  do
+    case "$1" in
+    --alt|-a) altmode=true ;;
+    --std|-s) altmode=false ;;
+    --print) print=true ;;
+    --help|-h|help) cat <<-_EOF_
+	Usage: rsz [options]
+	* --alt | -a : alt mode.  Use a different escape code
+	* --std | -s : standard.  Use the default escape code
+	* --print : Just show queried size (don't call stty)
+	* --help|-h|help : This message
+	_EOF_
+	return 0
+	;;
+      *) break
+    esac
+    shift
+  done
+  if [ $# -ne 0 ] ; then
+    echo "Usage error" 1>&2
+    rsz -h
+    return 1
+  fi
+  local old=$(stty -g) _ rows cols
+  stty raw -echo min 0 time 5
+  if $altmode ; then
+    printf '\033[18t' > /dev/tty
+    IFS=';t' read -t 1 -r _ rows cols _ < /dev/tty
+  else
+    printf '\0337\033[r\033[999;999H\033[6n\0338' > /dev/tty
+    IFS='[;R' read -t 1 -r _ rows cols _ < /dev/tty
+  fi
+  stty "$old"
+  if $print ; then
+    echo "cols:$cols"
+    echo "rows:$rows"
+  else
+    stty cols "$cols" rows "$rows"
+  fi
+}
+
+rsz "$@"
+
+# Add to BASH PROMPT_COMMAND to automatically change it.
