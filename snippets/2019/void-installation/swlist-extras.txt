@@ -86,6 +86,7 @@ python3-yaml
 python3-Markdown
 python3-GitPython
 python3-pikepdf
+python3-dateutil
 poppler-glib
 graphviz
 
