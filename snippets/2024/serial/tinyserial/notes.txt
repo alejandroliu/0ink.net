@@ -1,0 +1,4 @@
+To compile for rpi:
+
+- sudo xbps-install cross-aarch64-linux-musl
+- make aarch64
