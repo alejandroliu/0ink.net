@@ -3,6 +3,8 @@ pynput=pynput-1.7.6/lib
 mydir=$(dirname $(readlink -f "$0"))
 export PYTHONPATH="$PYTHONPATH:$mydir/$pynput:$mydir"
 
+echo '***'
+sleep 0.5
 macro=${XDG_RUNTIME_DIR:-/tmp}/xmacro.py
 
 if [ $# -eq 0 ] ; then

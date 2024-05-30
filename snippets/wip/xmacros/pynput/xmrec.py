@@ -133,12 +133,18 @@ class MouseRecorder():
     print('mctl = mouse.Controller()')
 
 class KeyboardRecorder:
+  debounce_map = set()
+
   def keycmd(mode,key):
     print('  kbd.{mode}({key})'.format(
               mode = mode,
               key = key))
 
   def on_press(key):
+    if not str(key) in KeyboardRecorder.debounce_map:
+      KeyboardRecorder.debounce_map ^= { str(key) }
+
+    sys.stderr.write(' key={key} type={tt}\n'.format(key = key, tt = type(key)))
     if key == keyboard.Key.f12 or key == keyboard.Key.media_play_pause:
         # Stop listener
         return False
@@ -151,12 +157,18 @@ class KeyboardRecorder:
           # ~ key))
 
   def on_release(key):
+    if not str(key) in KeyboardRecorder.debounce_map:
+      sys.stderr.write('Debouncing {key}\n'.format(key=key))
+      return
     if key == keyboard.Key.f12 or key == keyboard.Key.media_play_pause:
         # Stop listener
         return False
     KeyboardRecorder.keycmd('release',key)
 
   def __init__(self):
+    sys.stderr.write('MOD: {mods}\n'.format(mods=keyboard.Controller.modifiers))
+    if keyboard.Controller.ctrl_pressed:
+      sys.stderr.write('CTRL is down\n')
     self.listener = keyboard.Listener(
         on_press=KeyboardRecorder.on_press,
         on_release=KeyboardRecorder.on_release)
@@ -181,7 +193,7 @@ def record(do_mouse = True, do_keyboard = True):
   Notice.run('''
 Recording macro...
 
-Press F12 or <media-play-pause> to stop recording.
+Press <media-play-pause> to stop recording.
 ''')
   thread.listener.join()
   print('xmplay.args(run)')

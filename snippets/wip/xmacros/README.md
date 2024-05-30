@@ -8,6 +8,8 @@ I tried the following:
   - Library that does monitoring and playback.
   - requires writting my own stuff.
   - Kinda works but not well.
+    - Need to get current key statuses and reset them.  Could probably
+      work better if it was its own thing instead of xbindsrc executables.
 - xmacro
   - [homepage](https://xmacro.sourceforge.net/)
   - Just a couple of `cpp` files.  Compiles with `Makefile`?
@@ -49,3 +51,27 @@ it is very wonky.
 
 Playback kinda works, but not reliabily either.
 
+***
+
+- Replaces xbindkeyrc and related functionalyt
+- Use pynput for input
+- emwh for window manager functions
+- we launch on start-up and monitor keyboard state
+- Functions
+  - global hotkeys
+    - debouncing
+    - launch internal function
+    - launch external command
+  - global config and per-user config
+  - Integrate macro recording/playback
+  - size screen area, patch nom max windows
+
+Hotkeys internal functions
+- paste text only (??)
+- show desktop
+- wm control (tile, max, min, other tile positions)
+
+***
+
+Replace pidgin.desktop with mypidgin.desktop
+- Launches pidgin but monitor things so that it is minimized

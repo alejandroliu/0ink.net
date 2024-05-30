@@ -4,6 +4,3 @@ mydir=$(dirname $(readlink -f "$0"))
 export PYTHONPATH="$PYTHONPATH:$mydir/$pynput:$mydir"
 
 exec python "$mydir/xmrec.py" "$@"
-hello
-one
-

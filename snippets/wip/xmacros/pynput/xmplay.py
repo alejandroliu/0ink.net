@@ -1,6 +1,8 @@
 
 import sys
 import tkinter as tk
+from pynput import keyboard
+from pynput.keyboard import Key
 
 class Message(tk.Frame):
   def __init__(self, master,text):
@@ -84,6 +86,8 @@ class InputNum(tk.Frame):
 
 def args(runme):
   if len(sys.argv) == 1:
+    if keyboard.Controller.ctrl_pressed:
+      sys.stderr.write('CTRL is down\n')
     runme()
   elif len(sys.argv) == 2 and sys.argv[1] == 'q':
     # Ask for count
