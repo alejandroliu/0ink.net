@@ -47,6 +47,7 @@ libreoffice		# Office applications
 simple-scan		# scanner support
 cups			# Printer support
 hplip-gui		# Printer+scanner support for HP
+pdfarranger
 
 redshift-gtk		# blue blocker
 safeeyes xprintidle	# eye care
@@ -85,8 +86,6 @@ mdcat
 python3-yaml
 python3-Markdown
 python3-GitPython
-python3-pikepdf
-python3-dateutil
 poppler-glib
 graphviz
 
