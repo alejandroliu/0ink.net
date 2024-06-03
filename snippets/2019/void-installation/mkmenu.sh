@@ -9,8 +9,12 @@ set -euf -o pipefail
 bootdir=$(cd $(dirname $0) && pwd)
 [ -z "$bootdir" ] &&  exit 1
 
+read_cmdline() {
+  sed -e 's/#.*$//' < "$1" | xargs
+}
+
 if [ -f "$bootdir/cmdline" ] ; then
-  def_cmdline="$(cat $bootdir/cmdline)"
+  def_cmdline="$(read_cmdline $bootdir/cmdline)"
 else
   def_cmdline="auto"
 fi
