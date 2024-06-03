@@ -64,10 +64,31 @@ and the standard for DTE is to use a Male DB9 (or DB25) connector for DTEs.  The
 PC would connect to a modem.  Modems were catagorized as DCE (Data COmmunication Equipment)
 and the standard for DCE is to use a Female DB9 (or DB25) connector.
 
+![USB serial cable]({static}/images/2024/usb_serial.png)
+
 Since we are connecting two PCs, we would have 2 male DB9 connectors on each end.  Now,
 do *NOT* use a simple gender changer to connect the two.  Unlike modern equipment that
 can automatically negotiate transmit and receive pins, serial ports require what is
 called a [null-modem][null] cable/connector.  So a gender changer is *not* enough.
+
+## Null modem
+
+Null modem is a communication method to directly connect two DTEs (computer, terminal,
+printer, etc.) using an RS-232 serial cable.
+
+Wiring:
+
+Signal | One Side (DB9) | Signal Direction | Other Side (DB9) | Signal
+--:|--:|:---:|---|---
+Carrier Detect (CD) | 1 |&larr; | 4 | DTR
+Received Data (RxD) | 2 |&larr; | 3 | TxD
+Transmitted Data (TxD) | 3 | &rarr; | 2 | RxD
+Data Terminal Ready (DTR) | 4 | &rarr; | 1 | CD
+Data Terminal Ready (DTR) | 4 | &rarr; | 6 | DSR
+Ground (GND) | 5 | - | 5 | GND
+Data Set Ready (DSR) | 6 | &larr; | 4 | DTR
+Request to Send (RTS) | 7 | &rarr; | 8 | CTS
+Clear to Send (CTS) | 8 | &larr; | 7 | RTS
 
 ## Cisco style ports
 
@@ -77,8 +98,13 @@ they can use a [rollover cable][ciscon] which act as a null-modemm cable, so
 you can connect these ports back to back (with the right cable), in addition
 to being smaller than even a DB9 connector.
 
+![Cisco cable]({static}/images/2024/CiscoConsoleCable.jpg)
+
 While sometimes the right adaptors are not readily availabke, you can buy DB9
 to RJ45 adaptors that need to be wired ([Example](https://www.startech.com/en-nl/cables/gc98ff)).
+
+![GC98FF]({static}/images/2024/db9_rj45.png)
+
 This is not difficult to do and once wired everything snaps into place.
 
 The basic wiring is as follows:
@@ -384,9 +410,11 @@ First determine the name of the port that the system allocated to the serial por
 `device manager`.  It may warn you that you are running as standard user.  That is fine
 as we only need to look up stuff, and **not** make any changes.
 
-Expand **Ports (COM & LPT), the serial adapter should be listed:
+Expand **Ports (COM & LPT)**, the serial adapter should be listed:
 
 ![device manager]({static}/images/2024/sputty0.png)
+
+Alternatively you can use the `mode` command from the Windows command line.
 
 Open `PuTTY`, and click **Serial** from the Category: **Connection**.
 
