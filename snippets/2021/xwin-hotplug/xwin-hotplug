@@ -1,27 +1,77 @@
 #!/bin/sh
 #
-if xpid=$(pidof Xorg) ; then
-  DISPLAY=":0.0"
-  XAUTHORITY=""
-  set - $(tr '\0' ' ' </proc/$xpid/cmdline)
+set -euf ; (set -o pipefail)2>/dev/null && set -o pipefail
+
+vprefs=/etc/X11/vmode.prefs
+
+get_xauth() {
   while [ $# -gt 0 ]
   do
     case "$1" in
     -auth)
-      XAUTHORITY="$2" ; shift
+      echo "$2" ; return 0
       ;;
     esac
     shift
   done
+  return 1
+}
+
+get_display() {
+  if [ $# -gt 1 ] ; then
+    case "$2" in
+      :*) echo "$2" ; return
+    esac
+  fi
+  # Default to display :0
+  echo ":0"
+}
+
+if [ -z "${DISPLAY:-}" ] ; then
+  if ! xpid=$(pidof Xorg) ; then
+    echo Xorg not running 1>&2
+    exit
+  fi
+  xorg_args="$(tr '\0' ' ' </proc/$xpid/cmdline)"
+  DISPLAY=$(get_display $xorg_args)
+  if ! XAUTHORITY=$(get_xauth $xorg_args) ; then
+    echo "Unable to initialize XAUTHORITY" 1>&2
+    exit
+  fi
   export DISPLAY XAUTHORITY
-  output=$(xrandr) || exit 1
-  port=$(echo "$output" | awk '$2 == "connected" { print $1 }')
-  [ -z "$port" ] && exit 0
-  xrandr --output "$port" --auto
-  sleep 1
-  xrefresh
-else
-  # X is not running!
-  :
 fi
+
+xrandr="$(xrandr)" || exit 1
+outputs=$(echo "$xrandr" | awk '$2 == "connected" { print $1 }' | xargs)
+if [ -z "$outputs" ] ; then
+  echo "No connected outputs" 1>&2
+  exit
+fi
+prefs="$([ -f "$vprefs" ] && cat "$vprefs" || :)"
+
+for output in $outputs
+do
+  pref=$(echo "$prefs" | awk -vFS=":" '$1 == "'"$output"'" { print $2 }')
+  if [ -n "$pref" ] ; then
+    valid=$(echo "$xrandr" | awk \
+	-vselected="$output" \
+	-vpref="$pref" \
+	'
+	$2 == "connected" { output=$1 }
+	/^  / { if (output == selected && pref == $1) { print $1 } }
+	')
+    [ -z "$valid" ] && echo "$output:$pref is not a valid mode, ignored" 1>&2
+  else
+    valid=""
+  fi
+  if [ -z "$valid" ] ; then
+    xrandr --output $output --auto
+  else
+    xrandr --output $output --mode $valid
+  fi
+done
+sleep 1
+xrefresh
+
+
 
