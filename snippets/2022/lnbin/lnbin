@@ -65,6 +65,9 @@ sed s/^#// << 'EOT'
 #    Show the actions being executed
 # *-f|--forced*::
 #    Overwrite any existing files (not managed by lnbin)
+# *-s|--srcdir* _directory_::
+#    Override the srcdir target directory.  Defaults to
+#    the basename of target directory.
 #
 # == SAMPLE USAGE
 #
@@ -95,6 +98,12 @@ sed s/^#// << 'EOT'
 #     cd /usr/local/bin
 #     lnbin -v -x ../pkgs
 #
+# For packages that install additional files like man pages
+# or desktop files you can use the commands:
+#
+#    lnbin -v -x -s share/man/man1 -t /usr/local/share/man/man1 ../../../pkgs
+#    lnbin -v -x -s share/applications -t /usr/local/share/applications ../../pkgs
+#
 # == AUTHOR
 #
 # Alejandro Liu Ly
@@ -102,8 +111,8 @@ sed s/^#// << 'EOT'
 # == REFERENCES
 #
 # There are a number of packages that do similar things.  The main
-# attractiveness of this one is that it is a `/bin/sh` script intended
-# to have low dependancies.
+# attractiveness of this one is that it is a `/bin/sh` script
+# intended to have low dependancies.
 #
 # Other options:
 #
@@ -151,20 +160,22 @@ create_link() {
 
 op_update() {
   [ $# -ne 1 ] && fatal "Usage: $0 {pkgdir}"
-  lnkdir=$(basename $(pwd)) target="$1"
+  pkgdir="$1"
+  [ -z "$srcdir" ] && srcdir=$(basename $(pwd))
 
-  [ ! -d "$target" ] && fatal "$target: directory not found"
-  target=$(echo "$target" | sed -e 's!/*$!!')
+  [ ! -d "$pkgdir" ] && fatal "$pkgdir: directory not found"
+  pkgdir=$(echo "$pkgdir" | sed -e 's!/*$!!')
 
-  $vv "PKGDIR: $target"
-  $vv "LNKDIR: $lnkdir"
+  $vv "PKGDIR: $pkgdir"
+  $vv "SRCDIR: $srcdir"
 
   # Remove outdated links
   find . -mindepth 1 -maxdepth 1 -type l | while read lnk
   do
     exe=$(readlink "$lnk")
+    #~ echo exe=$exe
     case "$exe" in
-    ${target}*)
+    ${pkgdir}*)
       if [ ! -e "$lnk" ] ; then
 	# target is gone!
 	$vv "removing: $lnk => $exe"
@@ -175,10 +186,12 @@ op_update() {
       ;;
     esac
   done
+  #~ find $target -mindepth 2 -maxdepth 2 -name "$lnkdir" -type d
 
-  find $target -mindepth 2 -maxdepth 2 -name "$lnkdir" -type d | while read appdir
+  depth=$(expr $(echo "$srcdir" | tr '/' '\n' | wc -l) + 1)
+
+  find $pkgdir -mindepth $depth -maxdepth $depth -type d | grep -e "/$srcdir\$" | while read appdir
   do
-
     # Link all the files in this directory
     find "$appdir" -mindepth 1 -maxdepth 1 | while read exe
     do
@@ -223,6 +236,7 @@ v=
 vv=:
 ACTION=
 forced=false
+srcdir=""
 
 while [ $# -gt 0 ]
 do
@@ -234,6 +248,14 @@ do
     -t|--target)
       [ -z "$2" ] && fatal "No target specified"
       cd "$2" || exit 1
+      shift
+      ;;
+    --srcdir=*)
+      lnkdir=${1#--lnkdir}
+      ;;
+    -s|--srcdir)
+      [ -z "$2" ] && fatal "No srcdir specified"
+      srcdir="$2"
       shift
       ;;
     -f|--forced)
