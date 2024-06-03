@@ -5,19 +5,25 @@ if [ $(id -u) -ne 0 ] ; then
   exec sudo /bin/sh "$0" "$@"
 fi
 
-vgroup=libvirt
+svc=/var/service
+[ ! -e "$svc" ] && svc="/etc/runit/runsvdir/default"
+
+vgroups="libvirt kvm"
+# adding users to "kvm" group.  According to the
+# documentation, using polkitd should add "kvm"
+# to the user's groups, but that doesn't seem to
+# work all the time.
 
 xbps-install -y -S libvirt dbus qemu
 
 echo -n "Enabling services: "
-for sv in dbus libvirtd virtlockd virtlogd
+for sv in dbus libvirtd virtlockd virtlogd polkitd
 do
-  [ -e /var/service/$sv ] && continue
+  [ -e "$svc"/$sv ] && continue
   echo -n " $sv"
-  ln -s /etc/sv/$sv /var/service
+  ln -s /etc/sv/$sv "$svc"
 done
 echo ' ... done'
-
 
 if [ -d /sys/module/kvm_intel ] ; then
   kvm_variant=kvm_intel
@@ -57,15 +63,14 @@ fi
 if [ -n "${SUDO_USER:-}" ] ; then
   echo "SUDO_USER: $SUDO_USER"
 
-  if ! (id -nG $SUDO_USER | grep -q '\b'"$vgroup"'\b') ; then
-    echo "Adding $SUDO_USER to $vgroup" 1>&2
-    usermod -a -G "$vgroup" "$SUDO_USER"
-    echo "You must logout and login again for this to work"
-  fi
-
+  for vgroup in $vgroups
+  do
+    if ! (id -nG $SUDO_USER | grep -q '\b'"$vgroup"'\b') ; then
+      echo "Adding $SUDO_USER to $vgroup" 1>&2
+      usermod -a -G "$vgroup" "$SUDO_USER"
+    fi
+  done
+  echo "You must logout and login again for this to work"
 fi
 
-# Note the documentation says that polkitd (from polkit package) needs
-# to be enable in /var/service, but that doesn't seem to be the case
-# as it starts automatically.
 
