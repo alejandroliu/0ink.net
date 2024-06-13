@@ -122,6 +122,8 @@ CTS	   | White	| 8
 
 For a female adapter, the wiring becomes:
 
+![db9-female-pinout]({static}/images/2024/db9-pinout-female.png)
+
 DB9 Pin | Signal | Color  | RJ45 Pin
 --------|--------|--------|----------
 1       | CD     | N/A    | N/A
@@ -135,6 +137,8 @@ DB9 Pin | Signal | Color  | RJ45 Pin
 8       | RTS    | Blue   | 1
 
 For a male adapter, the wiring meaning is reversed however the RJ45 to DB9 pin assignments are the same:
+
+![db9-male-pinout]({static}/images/2024/db9-pinout-male.png)
 
 DB9 Pin | Signal | Color  | RJ45 Pin
 --------|--------|--------|----------
