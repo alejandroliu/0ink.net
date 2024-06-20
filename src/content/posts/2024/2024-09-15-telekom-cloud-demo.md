@@ -38,22 +38,15 @@ Architecture:
 
 When implemented the CI/CD pipeline looks as follows:
 
-<table>
-  <tr>
-    <td>
-      <img src="{static}/images/2024/telekom-cloud/pipeline.png"/>
-    </td>
-    <td>
-      <ul>
-        <li>Trigger: code commit</li>
-        <li>Prepare for build</li>
-        <li>Build Java components via Maven</li>
-        <li>Build Docker Image<br/>Push image to SWR</li>
-        <li>Deploy Image to running Pod</li>
-      </ul>
-    </td>
-  </tr>
-</table>
+- Trigger: code commit
+- Prepare for build
+- Build Java components via Maven
+- Build Docker Image\
+  Push image to SWR
+- Deploy Image to running Pod
+
+![pipeline]({static}/images/2024/telekom-cloud/pipeline.png)
+
 
 Additional tasks can be added such as Static code analysis and linting, Unit tests,
 Integration tests, Static application security testing, vulnerability scanning, etc.
