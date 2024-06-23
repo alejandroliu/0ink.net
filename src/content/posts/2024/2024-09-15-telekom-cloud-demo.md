@@ -45,7 +45,7 @@ When implemented the CI/CD pipeline looks as follows:
   Push image to SWR
 - Deploy Image to running Pod
 
-![pipeline]({static}/images/2024/telekom-cloud/pipeline.png)
+![pipes]({static}/images/2024/telekom-cloud/pipeline.png)
 
 
 Additional tasks can be added such as Static code analysis and linting, Unit tests,
@@ -194,7 +194,7 @@ have been generated via [Terraform][tf] scripts.
 We are creating a VM to run Jenkins.  This could be replaced with a Jenkins Pod on the
 K8s cluster with external executors as K8s pods.  Initially I did not do it like that
 because of my dependancies on docker for the application build process.  However
-you can use tools like the ones listed [here][did1] or [therer][did2] and still perform
+you can use tools like the ones listed [here][did1] or [there][did2] and still perform
 the builds from a running K8s pod.  To create dynamic executor from K8s pods you 
 need the [Kubernetes plugin][k8s-executor].
 
