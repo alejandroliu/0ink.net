@@ -4,11 +4,11 @@ date: "2022-10-21"
 author: alex
 tags: configuration, device, linux, windows
 ---
-<!--
-  **UPDATE**: This is Xserver focused.  For console solution see [[../2023/2023-12-31-console-hotplug.md|Console Hotplug]] article.
--->
-**TODO:**
-- https://github.com/phillipberndt/autorandr : Can this replace everything?
+Now in *2024* this is usually no longer needed.
+
+A more current solution is:
+
+- https://github.com/phillipberndt/autorandr
 
 
 The point of this article is to document I workaround that I came
