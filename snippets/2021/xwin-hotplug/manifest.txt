@@ -1,9 +1,9 @@
 #
 # Used for HDMI hotplug
 #
-<DIR> /etc/udev/rules.d/ 0755
-<DIR> /usr/local/sbin/ 0755
-99-xwin-hotplug.rules /etc/udev/rules.d/99-xwin-hotplug.rules 0644
-00-xwin-warmplug.sh /etc/X11/profile.d/00-xwin-warmplug.sh 0644
-xwin-hotplug /usr/local/sbin/xwin-hotplug 0755
+# <DIR> /etc/udev/rules.d/ 0755
+# <DIR> /usr/local/sbin/ 0755
+# 99-xwin-hotplug.rules /etc/udev/rules.d/99-xwin-hotplug.rules 0644
+# 00-xwin-warmplug.sh /etc/X11/profile.d/00-xwin-warmplug.sh 0644
+# xwin-hotplug /usr/local/sbin/xwin-hotplug 0755
 # save-edid /usr/local/sbin/save-edid 0755
