@@ -1,4 +1,7 @@
 ---
+title: 10 tips for making documentation crystal clear
+date: "2023-08-27"
+author: alex
 ID: "1075"
 post_author: "2"
 post_date: "2017-03-24 11:00:44"
@@ -21,9 +24,7 @@ menu_order: "0"
 post_type: post
 post_mime_type: ""
 comment_count: "0"
-title: 10 tips for maiking documentation crystal clear
 ---
-
 So you've some written excellent documentation. Now what? Now it's
 time to go back and edit it. When you first sit down to write your
 documentation, you want to focus on what you're trying to say instead
