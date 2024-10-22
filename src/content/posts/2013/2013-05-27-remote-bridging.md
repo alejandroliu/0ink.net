@@ -1,4 +1,7 @@
 ---
+title: Remote Bridging
+date: "2023-08-27"
+author: alex
 ID: "381"
 post_author: "2"
 post_date: "2013-05-27 12:15:42"
@@ -21,12 +24,10 @@ menu_order: "0"
 post_type: post
 post_mime_type: ""
 comment_count: "0"
-title: Remote Bridging
-tags: address, computer, config, configuration, device, domain, encryption, idea, management, network, password, remote, setup, software, speed
+tags: address, computer, config, configuration, device, domain, encryption, idea,
+  management, network, password, remote, setup, software, speed
 ---
-
-
-Sometimes we need to connect two or more geographically distrubuted ethernet networks to one broadcast domain. There can be two different office networks of some company which uses smb protocol partially based on broadcast network messages. Another example of such situation is computer cafes: a couple of computer cafes can provide to users more convinient environment forr playing multiplayer computer games without dedicated servers. Both sample networks in this article need to have one *nix server for bridging. Our networks can be connected by any possible hardware that provides IP connection between them.
+Sometimes we need to connect two or more geographically distributed ethernet networks to one broadcast domain. There can be two different office networks of some company which uses smb protocol partially based on broadcast network messages. Another example of such situation is computer cafes: a couple of computer cafes can provide to users more convinient environment forr playing multiplayer computer games without dedicated servers. Both sample networks in this article need to have one *nix server for bridging. Our networks can be connected by any possible hardware that provides IP connection between them.
 
 Connecting Two Remote Local Networks With Transparent Bridging Technique
 ========================================================================
@@ -37,13 +38,15 @@ Short description
 
 In described configuration we are connecting two remote LANs to make them appearing as one network with 192.168.1.0/24 address space (however physically, presense of bridges in network configuration is not affecting IP protocol and is fully transparent for it, so you can freely select any address space). Both of the bridging servers has two network interfaces: one (as eth0 in our example) connested to the LAN, and second (eth1) is being used as transport to connect networks. When ethernet tunnel between gateways in both networks will be bringed up we will connect tunnel interfaces with appropriate LAN interfaces with bridge interfaces. Schematically this configuration can be following:
 
+```lineart
               +-------+                       +-------+
               |  br0  |                       |  br0  |
               +-------+                       +-------+
                |     |                         |     |
     Network 1  |     |                         |     |   Network 2
     ----------eth0  tap0---eth1........eth1---tap0  eth0---------------
-    
+```
+
 
 Setting Up Bridging Servers
 ===========================
