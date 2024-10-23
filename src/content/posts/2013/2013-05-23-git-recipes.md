@@ -24,8 +24,7 @@ menu_order: "0"
 post_type: post
 post_mime_type: ""
 comment_count: "0"
-tags: authentication, config, directory, feature, git, github, login, password, proxy,
-  remote, windows, wordpress
+tags: authentication, config, directory, feature, git, github, login, password, proxy, remote, windows, wordpress
 ---
 [TOC]
 ***
@@ -52,7 +51,7 @@ Creates a repo with the following config:
 Make sure that the user and group ownership of the files is correct.  You may need to
 run `chown -R ` or `chgrp -R` to correct this.
 
-If you want to fine-tune the user, group, or other users' permissions, use 
+If you want to fine-tune the user, group, or other users' permissions, use
 `--shared=0NNN`, where `NNN` are the standard user, group, and other bits for files
 (the execute and sgid bits on directories will be managed appropriately by git). For
 example, this allows read and write access to the user, and read-only access to the

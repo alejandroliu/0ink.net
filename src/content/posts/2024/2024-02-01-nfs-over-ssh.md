@@ -2,8 +2,7 @@
 title: Tunneling NFS over SSH
 date: "2023-09-29"
 author: alex
-tags: address, authentication, configuration, device, encryption, filesystem, information,
-  security, settings
+tags: address, authentication, configuration, device, encryption, filesystem, information,security, settings
 ---
 ![padlock]({static}/images/2024/padlock.png)
 

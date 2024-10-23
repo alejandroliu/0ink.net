@@ -24,8 +24,7 @@ menu_order: "0"
 post_type: post
 post_mime_type: ""
 comment_count: "0"
-tags: address, computer, config, configuration, device, domain, encryption, idea,
-  management, network, password, remote, setup, software, speed
+tags: address, computer, config, configuration, device, domain, encryption, idea, management, network, password, remote, setup, software, speed
 ---
 Sometimes we need to connect two or more geographically distributed ethernet networks to one broadcast domain. There can be two different office networks of some company which uses smb protocol partially based on broadcast network messages. Another example of such situation is computer cafes: a couple of computer cafes can provide to users more convinient environment forr playing multiplayer computer games without dedicated servers. Both sample networks in this article need to have one *nix server for bridging. Our networks can be connected by any possible hardware that provides IP connection between them.
 
@@ -57,7 +56,7 @@ _Notice: This article describes Debian GNU/Linux servers setup. If you are using
     # ./MAKEDEV tun
     # mkdir misc
     # ln -s /dev/net /dev/misc/net
-    
+
 
 _Notice: Last command is needed to make vtun work, because authors build for debian is looking for tunnel device driver at /dev/misc/net/tun._ To create ethernet tunnel between bridging servers we will use **vtun** software. When `vtun` will be installed, we will need to select one of the bridging servers as master and second server will be slave and appropriately change vtund-start.conf and vtund.conf file in /etc/ on buth servers. Complete config files for master is following.
 
@@ -65,28 +64,28 @@ _Notice: Last command is needed to make vtun work, because authors build for deb
     ----cut-here------------------------------------
     --server-- 5000
     ----cut-here------------------------------------
-    
+
     /etc/vtund.conf
     ----cut-here------------------------------------
     options {
         port 5000;            # Listen on this port.
-    
+
         # Syslog facility
         syslog        daemon;
-    
+
         # Path to various programs
         ifconfig      /sbin/ifconfig;
         route         /sbin/route;
         firewall      /sbin/iptables;
         ip            /sbin/ip;
     }
-    
+
     default {
         compress no;
         encrypt no;
         speed 0;
     }
-    
+
     rembridge {
         passwd Pa$$Wd;
         type ether;
@@ -94,20 +93,20 @@ _Notice: Last command is needed to make vtun work, because authors build for deb
         keepalive yes;
         compress no;
         encrypt yes;
-    
+
         up {
             # Connection is Up
             ifconfig "%% up";
             program "brctl addif br0 %%";
         };
-    
+
         down {
             # Connection is Down
             ifconfig "%% down";
         };
     }
     ----cut-here------------------------------------
-    
+
 
 Slave server config files is following:
 
@@ -115,7 +114,7 @@ Slave server config files is following:
     ----cut-here------------------------------------
     rembridge 10.1.1.1 -p
     ----cut-here------------------------------------
-    
+
 
 _Notice: In this example 10.1.1.1 is transport address of master server._
 
@@ -127,7 +126,7 @@ _Notice: In this example 10.1.1.1 is transport address of master server._
       route         /sbin/route;
       firewall      /sbin/iptables;
     }
-    
+
     korsar {
       pass  Pa$$Wd;         # Password
       type  ether;          # Ethernet tunnel
@@ -142,7 +141,7 @@ _Notice: In this example 10.1.1.1 is transport address of master server._
       };
     }
     ----cut-here------------------------------------
-    
+
 
 To bring up bridge between LAN ethernet interface and our newly created tunnel interface we need to create bridge interface. To complete this task we will add br0 interface description to /etc/network/interfaces file:
 
@@ -151,12 +150,12 @@ To bring up bridge between LAN ethernet interface and our newly created tunnel i
         address 192.168.1.199
         netmask 255.255.255.0
         bridge_ports eth0
-    
+
 
 _Notice: IP-addresses on both sides of our bridge must be unique in both networks. eth0 is LAN interface._ Now, we need to bring this interface up:
 
     # ifup br0
-    
+
 
 When br0 interface will be created, we will be able to start vtun. # /etc/init.d/vtund restart If everything was done correctly, we will see following results on both sersers (br0 and tap0 interfaces):
 
@@ -167,7 +166,7 @@ When br0 interface will be created, we will be able to start vtun. # /etc/init.d
           TX packets:405939 errors:0 dropped:0 overruns:0 carrier:0
           collisions:0 txqueuelen:1000
           RX bytes:975889241 (930.6 MiB)  TX bytes:44704104 (42.6 MiB)
-    
+
     # ifconfig br0
     br0   Link encap:Ethernet  HWaddr 00:02:44:2A:03:30
           inet addr:192.168.1.199  Bcast:192.168.1.255  Mask:255.255.255.0
@@ -176,9 +175,9 @@ When br0 interface will be created, we will be able to start vtun. # /etc/init.d
           TX packets:42 errors:0 dropped:0 overruns:0 carrier:0
           collisions:0 txqueuelen:0
           RX bytes:239368 (233.7 KiB)  TX bytes:2338 (2.2 KiB)
-    
+
     #
-    
+
 
 If we need to see current state of bridge interface, we can use brctl tool:
 
@@ -187,6 +186,6 @@ If we need to see current state of bridge interface, we can use brctl tool:
     br0             8000.0002442a0330       no              eth0
                                                             tap0
     #
-    
+
 
 When all of described steps will be completed, our computers in both networks will be able to communicate with each other. IP addresses on bridge interfaces can be used for troubleshooting network connection. And last, if you need, you can turn on compression or enrtyption of data within created tunnel.

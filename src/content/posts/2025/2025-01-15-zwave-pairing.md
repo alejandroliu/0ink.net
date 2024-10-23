@@ -7,6 +7,7 @@ author: alex
 ***
 This is an update to [[../2019/2019-03-01-z-wave-associations-with-vera.md|Z-Wave associations with Vera UI]].
 
+# Introduction
 
 Z-Wave associations lets you control _slave_ devices from a _master_
 device without the Z-Wave controller or Hub.
