@@ -15,6 +15,7 @@ I chose [Utterances][ut] because:
 - it is lightweight
 - makes use of the `issues` API, which at the moment should be more stable than the
   `discussions` API.
+- Has its own bot, so there is no need to embed javascript with an app ID/secret.
   
 
   [gh]: https://github.com/
