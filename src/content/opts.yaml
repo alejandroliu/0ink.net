@@ -45,3 +45,6 @@ albatros:
   FEED_ALL_ATOM: 'feeds/atom.xml'
   FEED_ALL_RSS: 'feeds/rss.xml'
 
+  # Enable/Disable Utterances https://utteranc.es/ comments
+  UTTERANCES_REPO: alejandroliu/0ink.net
+
