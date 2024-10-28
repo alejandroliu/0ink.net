@@ -83,17 +83,23 @@ class InputNum(tk.Frame):
     root.wm_withdraw()
     return dlg.done, dlg.vcount.get()
 
+def no_mods():
+  k = keyboard.Controller()
+  k.release(Key.shift)
+  k.release(Key.cmd)
+  k.release(Key.alt)
+  k.release(Key.ctrl)
 
 def args(runme):
   if len(sys.argv) == 1:
-    if keyboard.Controller.ctrl_pressed:
-      sys.stderr.write('CTRL is down\n')
+    no_mods()
     runme()
   elif len(sys.argv) == 2 and sys.argv[1] == 'q':
     # Ask for count
     okcancel, count = InputNum.run()
     print('ok={0} count={1}'.format(okcancel, count))
     if okcancel:
+      no_mods()
       for x in range(0,count):
         runme()
   elif len(sys.argv) > 2 and sys.argv[1] == 'm':

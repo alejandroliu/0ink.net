@@ -8,15 +8,15 @@
 
 # Record keys
 "xmrecord k 'Macro recorded.  Press Play to Play back'"
-  Control + XF86AudioPlay
+  Mod4 + XF86AudioPlay
 
 # Ask (query) for record mode
 #"xmrecord q  'Macro recorded.  Press Super+F11 or Control+Super+F11 to Play back'"
 #  Control + Mod4 + F12
-
+#
 # Play macro once
 "xmplay 1 'No macro found, Control + Play to record'"
-  XF86AudioPlay
+  Control + XF86AudioPlay
 
 # Ask for a number of repeats, play macro
 #"xmplay q 'No macro found, use Mod4 + F12 to record'"

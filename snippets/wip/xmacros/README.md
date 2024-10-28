@@ -1,5 +1,42 @@
 # Macros
 
+## Alternative approach
+
+- Use python's
+  - uinput : for synthetic events
+  - libevdev : for reading events
+- This approach works independantly or Xorg, console or Wayland
+- Requires elevated priviledges (unless we can use polkit)
+- A daemon runs in the background reading kernel events and
+  accepting clients on a UNIX socket.
+- Clients connect to daemon and receive keyboard events and
+  can send simulated key-presses
+- Client can then read keyboard events for global hotkeys or
+  recording macros.
+- Client can send synthetic keyboard events to run macros.
+
+## Possible approach
+
+- Use pynput for input
+- Replaces xbindkeys and related functionality
+- emwh for window manager functions
+- we launch on start-up and monitor keyboard state
+- Functions
+  - global hotkeys
+    - debouncing
+    - launch internal function
+    - launch external command
+  - global config and per-user config
+  - Integrate macro recording/playback
+  - size screen area, patch nom max windows
+
+Hotkeys internal functions
+- paste text only (??)
+- show desktop
+- wm control (tile, max, min, other tile positions)
+
+***
+
 **This doesn't work**
 
 I tried the following:
@@ -53,23 +90,6 @@ Playback kinda works, but not reliabily either.
 
 ***
 
-- Replaces xbindkeyrc and related functionalyt
-- Use pynput for input
-- emwh for window manager functions
-- we launch on start-up and monitor keyboard state
-- Functions
-  - global hotkeys
-    - debouncing
-    - launch internal function
-    - launch external command
-  - global config and per-user config
-  - Integrate macro recording/playback
-  - size screen area, patch nom max windows
-
-Hotkeys internal functions
-- paste text only (??)
-- show desktop
-- wm control (tile, max, min, other tile positions)
 
 ***
 

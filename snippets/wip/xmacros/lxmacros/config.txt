@@ -1,0 +1,18 @@
+#
+# Input file
+#
+KEY_ENTER,ALT,!NUML: exec run menu
+KEY_PLAYPAUSE: play_macro
+KEY_PLAYPAUSE,CTRL: # Comment
+KEY_PLAYPAUSE,ALT: record_macro # Blah
+KEY_B,LEFTALT: exec menu1
+KEY_B,RIGHTALT: exec menu2
+KEY_L,ALT: exec ls -l
+# Comment
+KEY_C,ALT:
+  run alt_c
+KEY_xkdf,ALT:
+  run bad_alt
+
+
+
