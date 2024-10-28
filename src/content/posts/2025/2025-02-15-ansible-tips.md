@@ -7,6 +7,8 @@ author: alex
 
 ***
 
+I initially wrote this last year, but stayed in the queue until now.
+
 # Bootstraping
 
 - Create a default config file: \
@@ -14,7 +16,7 @@ author: alex
 - Createa new ansible role directory: \
   `ansible-galaxy init --init-path roles _role-name_` \
   This creates the directory _role-name_ in the `roles` directory.
-  
+
 
 # Execution order
 
@@ -89,7 +91,7 @@ command line arguments:
   a list of hosts.  Empty elements of a group can be omitted. \
   An optional `_meta` block can be added to contain host specific variables.  If
   this is omitted, the `--host` command line argument is used to query host variables.
-  
+
 - `script --host` _hostname_ \
   Where _hostname_ is a host from the `--list`.  The script should return
   either an empty JSON object, or a JSON dictionary containing meta varaibles specific
@@ -127,7 +129,7 @@ file is formatted as a `source`able file so using:
 . "$1"
 ````
 
-The return code of the script is used to determine if the module was succesful or 
+The return code of the script is used to determine if the module was succesful or
 an error happened.
 
 The output of the script *must* be in JSON format.  And it should contain the following
@@ -225,7 +227,7 @@ in an Action Plugin.  To do this you need to declar in your class:
 TRANSFERS_FILES = True
 ```
 
-Next in your Action implementation, you can use this command to create 
+Next in your Action implementation, you can use this command to create
 temporary file:
 
 ```python
@@ -337,7 +339,7 @@ config, so it should pick these settings up even if you don't modify your invent
 
 This method is most helpful if you know your playbook will always be run from a server or
 workstation where the SSH config is present.  Also, this applies to normal `ssh` invokations
-so if you also use the `ssh` and related utilities directly, then, htey will use the 
+so if you also use the `ssh` and related utilities directly, then, htey will use the
 same configuration.
 
 ## TCP Tunneling
@@ -410,7 +412,7 @@ In addition, it is actually possible to support `check_mode` in a script.  You n
     changed_when: res.rc != 127
     check_mode: false
   ```
-- In this example, the `xop cfg` command gets executed regardless if `check_mode` is on or off. 
+- In this example, the `xop cfg` command gets executed regardless if `check_mode` is on or off.
 - The script then is passed the `--dry-run` option if `ansible_check_mode` is on.  So the script
   will not make any actual changes to the system.
 
