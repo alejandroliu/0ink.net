@@ -7,5 +7,4 @@ local-startup-prefs.desktop	/usr/share/applications/local-startup-prefs.desktop
 local-startup.png		/usr/share/pixmaps/local-startup.png
 local.cfg			/etc/xdg/local-startup.cfg
 local-startup.run		/etc/xdg/local-startup.run
-
-
+start-pidgin.sh			/usr/local/bin/start-pidgin.sh	0755

@@ -75,7 +75,7 @@ proc prefs_ui {args} {
   set c 0
   set t [toplevel .d -class dialog]
 
-  wm title $t "Local Startup Prefernces"
+  wm title $t "Local Startup Preferences"
   wm resizable $t 0 0
 
   puts [array get localcfg]
@@ -84,12 +84,15 @@ proc prefs_ui {args} {
 
     if {[string match "*.desktop" $k]} {
       label "$t.l$c" -text [desktop_name $k]
+    } elseif {[string match "*.sh" $k]} {
+      label "$t.l$c" -text [file rootname [file tail $k]]
     } else {
       label "$t.l$c" -text $k
     }
     grid "$t.l$c" -row $c -column 1 -sticky nws -padx 5 -pady 5
 
     switch -glob $k {
+      *.sh -
       *.desktop {
 	tk_optionMenu "$t.o$c" dlgdata(o,$k) \
 		[ENABLED] \
@@ -146,6 +149,7 @@ proc prefs_ui:ok {args} {
 
   foreach {k v} [array get localcfg] {
     switch -glob $k {
+      *.sh -
       *.desktop {
 	if {$dlgdata(o,$k) == [ENABLED]} {
 	  set usercfg($k) [ENABLED]
@@ -306,6 +310,20 @@ proc sys_startup:next {args} {
       puts stderr "Skipping $desktop"
     }
   }
+  foreach script [array names localcfg -glob *.sh] {
+    set status [getcfg $script]
+    puts "$script: $status"
+    if {$status == [ENABLED]} {
+      puts stderr "Starting $script"
+      if {[file executable $script]} {
+	puts "Running: $script"
+	run --bg {*}$script
+      }
+    } else {
+      puts stderr "Skipping $script"
+    }
+  }
+
   if {![catch {getcfg run-command} run_cmd]} {
     if {[file executable $run_cmd]} {
       puts "Running: $run_cmd"

@@ -3,11 +3,6 @@
 # Some additional scripts to tweak configurations...
 #
 
-after() {
-  sleep "$1" ; shift
-  "$@"
-}
-
 wait_win() {
   local t=30
   while [ $t -gt 0 ]
@@ -75,6 +70,4 @@ fix_max_non_max_wins() {
 }
 
 
-( wait_win "Buddy List" && wmctrl -c "Buddy List" ) &
 (( fix_max_non_max_wins ) & ) &
-wait
