@@ -287,7 +287,7 @@ def pa_set_volume(vopts):
   else:
     cvol = pa_volume_level()
 
-    nvol = cvol + (vopts.vctl * 0.1)
+    nvol = cvol + (vopts.vctl * 0.05)
     if nvol < 0.0:
       nvol = 0.0
     elif nvol > 1.0:
