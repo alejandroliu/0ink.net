@@ -486,6 +486,46 @@ There are different ways to do this.
      gathering = explicit
      ```
 
+# vars and defaults in roles
+
+In an [ansible][aa] role, there are two places where you can define variables,
+`defaults` and `vars` directories.  It always was confusing to me when
+would you use one over the other one.
+
+1. `defaults`
+   - Contains default variables for the role.
+   - Variables in this directory have the lowest precedence, meaning they can be
+     easily overridden by other variable sources (e.g., playbooks, command line).
+   - Use this for variables that can be set by users or other roles but need to be
+     initialized with a default value.
+   - Example:
+     ```yaml
+     # defaults/main.yml
+     my_default_variable: "default_value"
+     ```
+2. `vars`
+   - Contains variables that are generally more static and not meant to be easily
+     overridden.
+   - Variables in this directory have higher precedence than those in `defaults`
+     but lower than those defined in inventory files or extra vars.
+   - Use this for essential role-specific variables that should rarely change.
+   - Example:
+     ```yaml
+     # vars/main.yml
+     my_static_variable: "static_value"
+     ```
+     
+## Best practices
+
+- **Use** `defaults/` for configurable options: Place variables here if you expect
+  them to be overridden by the user or other roles.
+- **Use** `vars/` for crucial settings: Use this directory for variables that are
+  critical to the role and not intended to be changed.
+- **Document Variables:** Always document the purpose and acceptable values for
+  your variables, especially in `defaults/` since users might change them.
+- **Keep it Simple:** Avoid overly complex variable hierarchies. Keep your
+  role's variables understandable and maintainable.
+
 
   [aa]: https://www.ansible.com/
 
