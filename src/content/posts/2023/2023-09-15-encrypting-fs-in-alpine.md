@@ -1,5 +1,7 @@
 ---
 title: File system encryption in Alpine Linux
+date: "2023-09-29"
+author: alex
 tags: alpine, boot, configuration, device, encryption, filesystem, idea, linux, service
 ---
 This is similar to my previous article
@@ -68,4 +70,10 @@ lvcreate --name home0 -L 20G pool
 ```
 
 Create your file-system and add it to `/etc/fstab`.
+
+Alpine Linux uses the same encryption infrastructure as gentoo,
+so the [gentoo instructions][gentoo-dmcrypt] apply here.
+
+  [gentoo-dmcrypt]: https://wiki.gentoo.org/wiki/Dm-crypt
+
 
