@@ -6,7 +6,7 @@ author: alex
 [toc]
 
 ***
-
+![ansible logo]({static}/images/2024/ansible_logo.png)
 
 # Bootstraping
 
@@ -513,7 +513,7 @@ would you use one over the other one.
      # vars/main.yml
      my_static_variable: "static_value"
      ```
-     
+
 ## Best practices
 
 - **Use** `defaults/` for configurable options: Place variables here if you expect
