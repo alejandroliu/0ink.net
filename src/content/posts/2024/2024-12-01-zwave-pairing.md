@@ -5,6 +5,8 @@ author: alex
 ---
 [toc]
 ***
+![z-wave logo]({static}/images/2024/zassoc/zwavelogo.png)
+
 This is an update to [[../2019/2019-03-01-z-wave-associations-with-vera.md|Z-Wave associations with Vera UI]].
 
 # Introduction
@@ -39,16 +41,16 @@ required.
 
 # Configuring associations
 
-![addon]({static}/images/2025/zassoc/addon-lo.png)
+![addon]({static}/images/2024/zassoc/addon-lo.png)
 
 Open the [Z-Wave JS UI][uiaddon] user interface by using the sidebar link (if enabled in the
 addon settings page) or from the settings addon page, using the link **OPEN WEB UI**.
 
-![control panel]({static}/images/2025/zassoc/menu-lo.png)
+![control panel]({static}/images/2024/zassoc/menu-lo.png)
 
 Select control panel from the tab menu.
 
-![devinfo]({static}/images/2025/zassoc/device-grp-lo.png)
+![devinfo]({static}/images/2024/zassoc/device-grp-lo.png)
 
 Find the _master_ device from the list of devices, and open its properties.  Click on the **GROUPS**
 tab.
@@ -58,7 +60,7 @@ tab.
 
 To create a new association click on the **ADD** option.
 
-![new]({static}/images/2025/zassoc/new-lo.png)
+![new]({static}/images/2024/zassoc/new-lo.png)
 
 Complete the form:
 

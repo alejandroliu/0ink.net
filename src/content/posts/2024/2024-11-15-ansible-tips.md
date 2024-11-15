@@ -7,7 +7,6 @@ author: alex
 
 ***
 
-I initially wrote this last year, but stayed in the queue until now.
 
 # Bootstraping
 

@@ -3,7 +3,7 @@ title: DRBD Preload
 date: "2024-10-21"
 author: alex
 ---
-![hd]({static}/images/2024/hd.png)
+![hd]({static}/images/2025/hd.png)
 
 
 This is a continuation to [[2024-11-15-vm-disk-repl.md|VM disk replication]].

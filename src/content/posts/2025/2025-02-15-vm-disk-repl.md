@@ -5,7 +5,7 @@ author: alex
 ---
 [toc]
 
-![repl]({static}/images/2024/repl.png)
+![repl]({static}/images/2025/repl.png)
 
 
 # Introduction
@@ -19,7 +19,7 @@ replicated storage service.
 # High level overview
 
 
-![Block diagram]({static}/images/2024/hl-erised-lo.png)
+![Block diagram]({static}/images/2025/hl-erised-lo.png)
 
 
 This solution is based on [Ubuntu 22.04][ubuntu-lts-22].  Note that normal
@@ -63,7 +63,7 @@ be active.
 
 **Recommended**: Modify `/etc/hosts` to include IP address of peer VMs.
 
-![drbd]({static}/images/2024/drbd.png)
+![drbd]({static}/images/2025/drbd.png)
 
 
 Install DRBD drivers:
@@ -127,7 +127,7 @@ At this point `/dev/drbd0` can be pre-loaded with the contents of the replicated
 
 ## Configure NBD server
 
-![nas]({static}/images/2024/nas.png)
+![nas]({static}/images/2025/nas.png)
 
 
 path: `/etc/nbd-server/config`
@@ -156,7 +156,7 @@ systemctl stop nbd-server
 
 ## Configure iSCSI target
 
-![iSCSI]({static}/images/2024/iscsi.png)
+![iSCSI]({static}/images/2025/iscsi.png)
 
 path: /etc/tgt/conf.d/target1.conf
 
@@ -190,7 +190,7 @@ systemctl stop tgt
 
 # Client setup
 
-![clients]({static}/images/2024/nas2.png)
+![clients]({static}/images/2025/nas2.png)
 
 The mirrored storage is exported either as NBD or iSCSI target.
 
@@ -248,7 +248,7 @@ VM XML Configuration snippets:
 
 # Performance Impact
 
-![metrics]({static}/images/2024/metrics.png)
+![metrics]({static}/images/2025/metrics.png)
 
 
 Protocol | Emulation | 512 Reads (MB/s) | 512 Writes (MB/s) | 1MB Reads (MB/s) | 1MB Writes (MB/s) 
