@@ -276,7 +276,7 @@ fi
 partition_sys() {
   local csize="$1" drive="$2"
   local swapsz=$swap
-  local uefisz=$(numfmt --to-unit=1024 --from=iec 500M)
+  local uefisz=$(numfmt --to-unit=1024 --from=iec 800M)
   local rootsz=$(numfmt --to-unit=1024 --from=iec 4G)
   local req=$(expr $uefisz + $swapsz + $rootsz)
   local syslinux_lib=/usr/lib/syslinux
