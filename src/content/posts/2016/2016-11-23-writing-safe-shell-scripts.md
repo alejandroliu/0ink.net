@@ -1,4 +1,7 @@
 ---
+title: Writing Safe Shell scripts
+date: "2023-08-27"
+author: alex
 ID: "1008"
 post_author: "2"
 post_date: "2016-11-23 11:50:22"
@@ -21,10 +24,9 @@ menu_order: "0"
 post_type: post
 post_mime_type: ""
 comment_count: "0"
-title: Writing Safe Shell scripts
-tags: configuration, directory, python, scripts, security, settings, tools
+tags: configuration, directory, python, scripts, security, settings, tools, sudo,
+  idea
 ---
-
 Writing shell scripts leaves a lot of room to make mistakes, in ways that will cause
 your scripts to break on certain input, or (if some input is untrusted) open up security
 vulnerabilities. Here are some tips on how to make your shell scripts safer.
