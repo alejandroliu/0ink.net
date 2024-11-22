@@ -45,11 +45,6 @@ jobs:
       - name: set-up albatros
         run: |
           cd src && make setup
-          ls -sh
-          git --no-pager log -3 content/pages
-          git --no-pager log -3 content/posts/2015
-          git --no-pager log -3 content/posts/2016
-          git --no-pager log -3 content/posts/2017
       - name: Generating albatros site
         run: |
           ( cd src && make html )
