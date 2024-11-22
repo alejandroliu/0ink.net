@@ -2,6 +2,8 @@
 title: Python development tips 2024
 date: "2024-02-16"
 author: alex
+tags: python, windows, idea, speed, feature, storage, configuration, scripts, application,
+  database, password, library, github, security
 ---
 [toc]
 ***

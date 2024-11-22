@@ -2,7 +2,7 @@
 title: Python GUI
 date: "2023-08-27"
 author: alex
-tags: python, windows
+tags: python, windows, scripts, application
 ---
 ![pygui]({static}/images/2024/pygui.jpg)
 

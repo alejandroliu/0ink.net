@@ -2,6 +2,8 @@
 title: Docker in Docker
 date: "2023-08-27"
 author: alex
+tags: application, security, management, integration, sudo, scripts, linux, software,
+  cloud
 ---
 [toc]
 ***

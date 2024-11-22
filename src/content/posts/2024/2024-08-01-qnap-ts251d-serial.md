@@ -2,6 +2,7 @@
 title: Adding a serial port to a QNAP TS-251D
 date: "2024-04-20"
 author: alex
+tags: alpine, device
 ---
 ![Connector]({static}/images/2024/3dp/img6.png)
 

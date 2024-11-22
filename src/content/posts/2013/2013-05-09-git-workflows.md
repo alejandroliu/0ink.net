@@ -24,6 +24,8 @@ comment_count: "0"
 title: Git Workflows
 tags: computer, feature, git, integration, remote, setup
 ---
+[toc]
+***
 
 This article describes my personal `git` Workflow.
 

@@ -2,6 +2,8 @@
 title: Linux Serial Consoles
 date: "2024-05-28"
 author: alex
+tags: remote, linux, boot, management, windows, terminal, computer, raspberry, configuration,
+  power, device, settings, speed, address, login, manager
 ---
 [TOC]
 ***

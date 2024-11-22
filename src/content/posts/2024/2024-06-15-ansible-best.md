@@ -2,6 +2,7 @@
 title: Ansible Best Practices
 date: "2024-02-29"
 author: alex
+tags: ansible, tools, remote, python, service, configuration, password, library, setup
 ---
 ![ansible logo]({static}/images/2024/ansible_logo2.png)
 

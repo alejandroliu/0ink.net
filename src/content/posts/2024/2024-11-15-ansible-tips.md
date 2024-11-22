@@ -2,6 +2,8 @@
 title: Ansible Snippets
 date: "2024-02-06"
 author: alex
+tags: ansible, configuration, directory, python, proxy, settings, feature, scripts,
+  library, sample, setup, information, remote
 ---
 [toc]
 

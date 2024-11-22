@@ -2,6 +2,7 @@
 title: Linux desktop default apps
 date: "2024-06-01"
 author: alex
+tags: linux, application, configuration, desktop, settings
 ---
 [toc]
 ***

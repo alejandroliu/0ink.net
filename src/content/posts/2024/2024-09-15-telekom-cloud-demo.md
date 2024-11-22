@@ -2,6 +2,9 @@
 title: Telekom Cloud CI/CD demo
 date: "2024-06-19"
 author: alex
+tags: github, cloud, integration, java, application, security, login, service, network,
+  management, password, ubuntu, storage, settings, configuration, installation, software,
+  scripts, tools, ~remove, sample, address, browser, git, proxy
 ---
 [toc]
 ***

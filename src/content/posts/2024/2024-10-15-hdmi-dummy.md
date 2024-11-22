@@ -2,7 +2,8 @@
 title: Tweaking HDMI dummies
 date: "2024-02-02"
 author: alex
-tags: boot, linux
+tags: boot, linux, computer, desktop, windows, software, information, configuration,
+  settings
 ---
 [toc]
 ***

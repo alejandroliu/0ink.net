@@ -2,7 +2,7 @@
 title: Inetd like service with systemd
 date: "2023-09-01"
 author: alex
-tags: boot, service
+tags: boot, service, python
 ---
 ![sysd0]({static}/images/2024/sysd0.png)
 

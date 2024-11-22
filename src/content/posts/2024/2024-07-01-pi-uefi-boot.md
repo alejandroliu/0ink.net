@@ -2,6 +2,8 @@
 title: UEFI boot on Raspberry PI
 date: "2024-03-06"
 author: alex
+tags: boot, raspberry, installation, linux, windows, drive, partition, filesystem,
+  configuration, power, setup
 ---
 [toc]
 ***

@@ -2,6 +2,7 @@
 title: Z-Wave Associations with Home Assistant
 date: "2024-10-21"
 author: alex
+tags: device, information, settings
 ---
 [toc]
 ***

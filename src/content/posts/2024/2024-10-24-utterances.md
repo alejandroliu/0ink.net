@@ -2,6 +2,7 @@
 title: Comments enabled
 date: "2024-10-23"
 author: alex
+tags: github, javascript
 ---
 Today I enabled comments on this blog.
 
