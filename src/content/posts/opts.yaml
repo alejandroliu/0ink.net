@@ -1,3 +1,0 @@
-# We disable props (and versions) since this is a git
-# repo, so that data should come from git.
-disable-props: true
