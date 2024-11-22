@@ -1,7 +1,9 @@
 ---
 title: tagcloud.md
 date: "2023-09-17"
+author: alex
 ---
+```
 ### Format:
 ### tag aliases ...
 ### For example
@@ -9,6 +11,8 @@ date: "2023-09-17"
 ### database will be used as tag.  If schema, the database tag will be used.
 ### ~word
 ### This word will be removed from the tagcloud list
+```
+ansible
 address
 epoch
 alpine
@@ -16,16 +20,14 @@ android
 database, schema
 application
 authentication
-backup
-backups
+backup, backups
 boot
 browser, firefox
 centos
 ~remove
 cloud
 computer
-config
-configuration
+configuration, config
 desktop
 device
 directory
