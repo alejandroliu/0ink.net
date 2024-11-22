@@ -1,8 +1,9 @@
 ---
 title: Getting the current proxy pac configuration
+date: "2023-08-27"
+author: alex
+tags: settings
 ---
-
-
 This is done using [tcl][tcl] for convenience.  If you
 do not have it installed you can download [freewrap][freewrap]
 executable and rename `freewrap.exe` to `wish.exe` or `freewrapTCLSH.exe` to

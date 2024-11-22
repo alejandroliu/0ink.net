@@ -1,7 +1,8 @@
 ---
 title: Calculate system availability
+date: "2023-08-27"
+author: alex
 ---
-
 To calculate the availability of redundant systems you can
 use this formula:
 

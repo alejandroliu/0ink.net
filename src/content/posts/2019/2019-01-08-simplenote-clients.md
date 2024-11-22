@@ -1,7 +1,8 @@
 ---
 title: Third Party SimpleNote clients
+date: "2023-08-27"
+author: alex
 ---
-
 An inventory of simplenote clients:
 
 SimpleNote clients:
