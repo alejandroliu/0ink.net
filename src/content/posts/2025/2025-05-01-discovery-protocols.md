@@ -2,6 +2,8 @@
 title: Using LLDP on Linux
 date: "2024-11-22"
 author: alex
+tags: device, information, network, configuration, address, management, linux, alpine,
+  service, software
 ---
 [toc]
 ***
@@ -105,6 +107,27 @@ View from switch Web GUI:
 
 
 ![screenshot]({static}/images/2025/screenshot_lldp.png)
+
+To get configured TLV values:
+
+```bash
+# lldptool -l -i ne0 adminStatus -c
+adminStatus=rxtx
+```
+
+
+```bash
+# lldptool -i ne0 -t -V portDesc -c
+enableTx=yes
+```
+
+```bash
+# lldptool -i ne0 -t -V mngAddr -c
+ipv4=192.168.2.6
+ipv6=
+enableTx=yes
+```
+
 
 
 ## Using lldpd
