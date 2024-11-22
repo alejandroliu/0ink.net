@@ -6,6 +6,9 @@ author: alex
 [toc]
 ***
 
+![icon]({static}/images/2025/lldp.png)
+
+
 # Introduction
 
 Link Layer Discovery Protocol (LLDP) is a layer 2 neighbor discovery protocol that allows devices
@@ -17,6 +20,8 @@ Commonly used layer 2 discovery protocols are often vendor-proprietary, for inst
 Foundry’s FDP, Extreme’s EDP and Nortel’s SONMP. This makes layer 2 discovery difficult in a
 heterogeneous environment. To counter this, IETF has introduced a standard vendor-neutral
 configuration exchange protocol -- the LLDP.
+
+![info]({static}/images/2025/lldp-info.png)
 
 Using LLDP, device information such as chassis identification, port ID, port description,
 system name and description, device capability (as router, switch, hub…), IP/MAC address,
@@ -149,8 +154,9 @@ Interface:    eth0, via: LLDP, RID: 1, Time: 0 day, 09:50:19
 
 ```
 
-
 # Hints and Tips
+
+![l2net]({static}/images/2025/l2net.png)
 
 When I first tried this I did a mistake of creating a loop on my network, so STP
 disabled the port I was running LLDP.  Weirdly enough, I would occasionally see

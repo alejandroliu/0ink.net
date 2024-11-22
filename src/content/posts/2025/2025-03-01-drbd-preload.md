@@ -132,6 +132,7 @@ preload_in_guest() {
 On the server size, a PHP script is used that gets `chonky` from the query parameters and 
 uses the value formatted as `offset,size` to call the python script.
 
+![preload]({static}/images/2025/preload.png)
 
 
 

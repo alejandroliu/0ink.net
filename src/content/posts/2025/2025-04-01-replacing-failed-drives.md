@@ -10,6 +10,8 @@ In a Linux softraid, you may have to replace failed drives.  As usual,
 backups are still needed, but hardware failures can be covered by
 RAID levels.
 
+![burning]({static}/images/2025/burning.png)
+
 1. Check the array status with `cat /proc/mdstat`:
    ```bash   
    xm3:~# cat /proc/mdstat
@@ -118,6 +120,8 @@ RAID levels.
    unused devices: <none>
    ```
 
+
+
 You should check the output of `dmesg`:
 
 ```text
@@ -141,3 +145,6 @@ make sure to run `fdisk` when appropriate.
 
 If you have `smartmontools` installed and running, we need to reset the daemon so it
 doesn't keep warning about the drive we removed.
+
+![advanced troubleshooting]({static}/images/2025/advanced-troubleshooting-lo.png)
+

@@ -138,6 +138,9 @@ hardware threads, if the number of hardware threads is used.
 
 # 7-Zip benchmark
 
+![icon]({static}/images/2025/benchmark.png)
+
+
 With `-mm=*` switch you can run a complex benchmark for 7-Zip code. It tests hash calculation
 methods, compression and encryption codecs of 7-Zip. Note that the tests of LZMA have big
 weight in "total" results. And the results are normalized with AMD K8 cpu in that complex
