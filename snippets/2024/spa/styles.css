@@ -1,0 +1,10 @@
+
+.disabled {
+  display: none;
+}
+/* Hide the element when printing */
+@media print {
+  .screen-only {
+    display: none;
+  }
+}

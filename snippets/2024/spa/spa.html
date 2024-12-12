@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8">
+  <title>QR page tool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="stylesheet" href="styles.css?q=3">
+  <link rel="stylesheet" href="theme.css?q=6">
+  <!--- From: https://github.com/agnoster/base32-js --->
+  <script src="base32-0.0.6.min.js"></script>
+  <!--- From: https://github.com/davidshimjs/qrcodejs --->
+  <script src="qrcode-1.0.0.min.js"></script>
+ </head>
+ <body>
+   <div id="loading" class="spa">
+     <h1 class="standout">QR page tool</h1>
+     <p> Loading ... </p>
+   </div>
+   <div id="home" class="disabled spa">
+    <div class="form-container">
+    <h2 class="standout">QR Generator Tool</h1>
+    <p>Enter input parameters to generate QR code:</p>
+    <form id="input-params" onsubmit="generateQR(event)">
+     <div class="form-line">
+       <label for="title">Title:</label>
+       <input type="text" id="title" name="title" required>
+     </div>
+     <div class="form-line">
+      <label for="desc">Description:</label>
+      <textarea id="desc" name="desc"></textarea>
+     </div>
+     <div class="form-line">
+      <label for="url">Optional URL:</label>
+      <input type="url" id="url" name="url">
+     </div>
+     <div class="form-line">
+      <label for="payload">Payload text:</label>
+      <input type="text" id="payload" name="payload" required>
+     </div>
+     <div class="form-line">
+      <input type="submit" value="Generate QR">
+      <input type="reset" value="Reset">
+     </div>
+    </form>
+    </div>
+   </div>
+   <div id="qrdisplay" class="disabled spa">
+     <div class="screen-only">
+      <button onclick="goMain()" class="btn">Back</button>
+      <a id="try-me" href="" class="btn">Try It</a>
+     </div>
+     <h1 id="show-title" class="standout">title</h1>
+     <div class="qr-container">
+     <pre id="show-desc"></pre>
+     <p id="qrcode"></p>
+     <p id="show-url"></p>
+     <p id="show-date"></p>
+     </div>
+     <p id="show-payload" class="disabled"></p>
+   </div>
+   <div id="error" class="disabled spa">
+     <h1 class="standout">Decoded</h1>
+     <p>Decoding Error!</p>
+     </div>
+   </div>
+   <div id="decoded" class="disabled spa">
+     <h1 class="standout">Decoded</h1>
+     <p><a id="dec-url" href="" class="disabled">dec-url</a></p>
+     <p><input type="text" id="dec-payload" readonly></p>
+   </div>
+   <script src="script.js?q=3435"></script>
+ </body>
+</html>

@@ -1,0 +1,79 @@
+/*
+ * themes
+ */
+h1.standout {
+  color: white;
+  background-color: navy;
+  text-align: center;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+}
+.qr-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: auto;
+}
+
+.form-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: auto;
+}
+.form-container h2 {
+    margin-top: 0;
+}
+.form-line {
+    margin-bottom: 15px;
+}
+.form-line label {
+    display: block;
+    margin-bottom: 5px;
+}
+.form-line input,
+.form-line select,
+.form-line textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+.form-line input[type="submit"],
+.form-line input[type="reset"] {
+    width: 45%;
+    background-color: navy;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.form-line input[type="submit"]:hover,
+.form-line input[type="reset"]:hover {
+    background-color: darkblue;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #4CAF50; /* Green background */
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.btn:hover {
+  background-color: #45a049; /* Darker green */
+}
