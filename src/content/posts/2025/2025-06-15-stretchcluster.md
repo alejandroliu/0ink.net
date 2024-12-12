@@ -6,8 +6,11 @@ tags: computer, software, speed, network, storage, feature, cloud, filesystem, c
   application, encryption, drive, max
 ---
 [toc]
+***
 
 # Clustering
+
+![Cluster]({static}/images/2025/stretch/cluster.png)
 
 At work, very often we need to implement disaster recovery solution.  One of the
 methods to achieve this is to implement stretch clusters.
@@ -27,6 +30,9 @@ computers of comparable speed or availability.
 
 # Stretched Clusters
 
+![Stretched Cluster]({static}/images/2025/stretch/stretched.png)
+
+
 A very special case of clusters is when instead of using a Local Area Network, 
 we connect them over a Wide Area Network.
 
@@ -41,6 +47,8 @@ cluster node members on the far away location before completing a transaction.
 Another name for Stretched Clusters is **geo-replicated clusters**.
 
 # Calculating latencies
+
+![Glassfiber]({static}/images/2025/stretch/fiber.png)
 
 Latency is a term that is used to describe a time delay in a transmission
 medium such as a vacuum, air, or a fiber optic waveguide.  In free space,
@@ -61,6 +69,8 @@ implementing a DR solution.
 
 # Common storage stretched clusters
 
+![Clusters]({static}/images/2025/stretch/clusters.png)
+
 These are common solutions for storage replication that implement stretched
 clustering:
 
@@ -73,6 +83,9 @@ clustering:
   allows to synchronously replicate data between two sites using SyncMirror.
 
 ## Ceph
+
+![ceph]({static}/images/2025/stretch/ceph.png)
+
 
 [Ceph][ceph] provides distributed operation without a single point of failure
 and scalability to the exabyte level. Ceph does not rely on any other
@@ -116,6 +129,9 @@ does not have a latency limitation, with the disadvantage that RPO can *not* be 
 
 ## VMware VSAN
 
+![vsan Cluster]({static}/images/2025/stretch/vsan.png)
+
+
 The vSphere and [vSAN][vsan] software runs on industry-standard x86 servers to form a
 hyper-converged infrastructure (or HCI). However, network operators need to have
 servers from HCL (Hardware Compatibility List) to put one into production.
@@ -139,6 +155,8 @@ The latency of 5 ms RTT translates to a maximum of 500 Km distance.
 
 ## NetApp MetroCluster
 
+![Metro Cluster]({static}/images/2025/stretch/metrocluster.png)
+
 NetApp MetroCluster configurations combine array-based clustering with
 synchronous replication to deliver continuous availability, immediately
 duplicating all of your mission-critical data on a transaction-by-transaction
@@ -156,7 +174,10 @@ Latency requirements are documented in [MetroCluster consierations for ISLs][mcr
 
 # Conclusions
 
-In generate a 3 to 5 ms RTT is a reasonable figure.  So usually betwee 300 to
+![safe computing]({static}/images/2025/stretch/safe.png)
+
+
+In general a 3 to 5 ms RTT is a reasonable figure.  So usually between 300 to
 500 Km distances.
 
 Recap of solutions:
@@ -174,18 +195,4 @@ Recap of solutions:
   [vr]: https://docs.vmware.com/en/VMware-vSphere/7.0/vsan-network-design-guide/GUID-F3401655-6EFA-477B-B072-E8F001B50BCC.html
   [metrocluster]: https://www.netapp.com/media/13480-tr4705.pdf
   [mcr]: https://docs.netapp.com/us-en/ontap-metrocluster/install-ip/concept-requirements-isls.html
-
-***
-
-
-Picts
-
-- https://en.wikipedia.org/wiki/Ceph_(software)
-- https://www.m2optics.com/blog/bid/70587/Calculating-Optical-Fiber-Latency
-- CEPH https://xahteiwi.eu/cephalocon2019-rbdmirror/#/qrcode
-- NetApp Metrocluster https://thinksystem.lenovofiles.com/storage/help/index.jsp?topic=%2FMCC-MetroCluster_IP_Installation_and_Configuration_Guide%2F4547298A-5E47-4F3D-A8AD-A4D9F56DA02B_.html
-- https://en.wikipedia.org/wiki/ONTAP
-- https://www.google.com/search?sca_esv=4ebb9fe4becce684&rlz=1C1GCEA_enNL1131NL1131&sxsrf=ADLYWIIQaB1EpnQqStoaRe1JVPoLfevjWA:1733742247582&q=storage+cluster&udm=2&fbs=AEQNm0Aa4sjWe7Rqy32pFwRj0UkWd8nbOJfsBGGB5IQQO6L3J_TJ4YMS4eRay1mUcjRHkZy86y2g07JseTh4ExwgdGoLNzaRqnq6XxewF9A-FqbL--Lpis-8XodidEX625k_h7HqPfKksh1DQgioSa0pRHkY7ERUQiN7v1Y7fGkzLxzR0EA0Ne4&sa=X&ved=2ahUKEwijhbKWxZqKAxV8_rsIHaDAM7EQtKgLegQIMhAB&biw=972&bih=784&dpr=1.5
-- https://www.google.com/search?q=storage+cluster+icon&sca_esv=4ebb9fe4becce684&rlz=1C1GCEA_enNL1131NL1131&udm=2&biw=972&bih=784&sxsrf=ADLYWIKvnKetGd0Kab6UY1UPIjS0351CUw%3A1733742250236&ei=qs5WZ7WIDv2X9u8PqpiNEQ&ved=0ahUKEwi1hdSXxZqKAxX9i_0HHSpMIwIQ4dUDCBA&uact=5&oq=storage+cluster+icon&gs_lp=EgNpbWciFHN0b3JhZ2UgY2x1c3RlciBpY29uMgQQABgeSMEkUIkRWPkhcAF4AJABAJgBuQKgAdUJqgEHMC4xLjMuMbgBA8gBAPgBAZgCBqAC4wnCAgYQABgHGB7CAgUQABiABMICBhAAGAgYHpgDAIgGAZIHBzEuMS4zLjGgB9QN&sclient=img
-
 
