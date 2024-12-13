@@ -77,3 +77,14 @@ body {
 .btn:hover {
   background-color: #45a049; /* Darker green */
 }
+.footer {
+  background-color: #333; /* Dark background color */
+  color: #ccc;
+  padding: 20px 0; /* Padding for top and bottom */
+  text-align: center; /* Center-align text */
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  font-size: 12px; /* Smaller font size */
+}
+

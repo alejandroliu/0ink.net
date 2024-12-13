@@ -39,6 +39,10 @@ function generateQR(event) {
   to_qr = myurl + "#" + encoded;
   try_url = myurl + "?q=" + Math.random() + "#" + encoded;
 
+  //~ console.log("String length: "+to_qr.length);
+  // Should check that the length is less than 1,500 characters
+  // and show an error.
+
   document.getElementById("show-payload").textContent = to_qr;
   var qrdiv = document.getElementById("qrcode");
   qrdiv.textContent = "";
@@ -60,23 +64,39 @@ function goMain() {
 function decodePage(from_qr) {
   switchPage("error");
   var decoded = base32.decode(from_qr).split("\n");
-  console.log(from_qr);
-  console.log(decoded);
-  console.log(decoded.length);
   if (decoded.length == 0) {
     return;
   }
   document.getElementById("dec-payload").value = decoded[0];
   switchPage("decoded");
-  console.log(decoded[0]);
   if (decoded.length == 1) {
     return;
   }
   var link = document.getElementById("dec-url");
-  console.log(link);
   link.classList.remove("disabled");
   link.href = decoded[1]
   link.textContent = decoded[1];
+  var copier = document.getElementById("copy-url");
+  copier.classList.remove("disabled");
+}
+
+function copyToClipboard(textToCopy) {
+  var tempElement = document.createElement("textarea");
+  tempElement.value = textToCopy;
+  document.body.appendChild(tempElement);
+  tempElement.select();
+  document.execCommand("copy");
+  document.body.removeChild(tempElement);
+}
+
+
+function copyPayload() {
+  copyToClipboard(document.getElementById('dec-payload').value);
+}
+
+function copyUrl() {
+  var link = document.getElementById("dec-url");
+  copyToClipboard(link.href);
 }
 
 function main() {

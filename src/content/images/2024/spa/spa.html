@@ -2,7 +2,7 @@
 <html lang="en">
  <head>
   <meta charset="utf-8">
-  <title>QR page tool</title>
+  <title>QR generator</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="icon.png">
   <link rel="stylesheet" href="styles.css?q=3">
@@ -13,13 +13,15 @@
   <script src="qrcode-1.0.0.min.js"></script>
  </head>
  <body>
+   <!--- LOADING SCREEN --->
    <div id="loading" class="spa">
-     <h1 class="standout">QR page tool</h1>
+    <h1 class="standout">QR generator</h1>
      <p> Loading ... </p>
    </div>
+   <!--- HOME SCREEN --->
    <div id="home" class="disabled spa">
+    <h1 class="standout">QR generator</h1>
     <div class="form-container">
-    <h2 class="standout">QR Generator Tool</h1>
     <p>Enter input parameters to generate QR code:</p>
     <form id="input-params" onsubmit="generateQR(event)">
      <div class="form-line">
@@ -45,6 +47,7 @@
     </form>
     </div>
    </div>
+   <!--- QR Display screen --->
    <div id="qrdisplay" class="disabled spa">
      <div class="screen-only">
       <button onclick="goMain()" class="btn">Back</button>
@@ -59,16 +62,28 @@
      </div>
      <p id="show-payload" class="disabled"></p>
    </div>
+   <!--- Decode Error SCREEN --->
    <div id="error" class="disabled spa">
      <h1 class="standout">Decoded</h1>
      <p>Decoding Error!</p>
      </div>
    </div>
+   <!--- Decoded SCREEN --->
    <div id="decoded" class="disabled spa">
      <h1 class="standout">Decoded</h1>
-     <p><a id="dec-url" href="" class="disabled">dec-url</a></p>
-     <p><input type="text" id="dec-payload" readonly></p>
+     <p>
+       <a id="dec-url" href="" class="disabled">dec-url</a>
+       <button id="copy-url" onclick="copyUrl()" class="disabled">&#x1F4CB;</button>
+     </p>
+     <p>
+      <input type="text" id="dec-payload" readonly>
+      <button onclick="copyPayload()">&#x1F4CB;</button>
+     </p>
    </div>
-   <script src="script.js?q=3435"></script>
+   <script src="script.js?q=4"></script>
+   <!--- Common Footer --->
+   <p class="footer">
+     QR generator v1.0 &copy; 2024 Alejandro Liu
+   </p>
  </body>
 </html>
