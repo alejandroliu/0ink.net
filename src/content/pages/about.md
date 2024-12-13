@@ -14,4 +14,5 @@ over the Internet.
 
 See this on [github](https://github.com/alejandroliu/0ink.net).
 
+[Draft posts](/drafts).
 
