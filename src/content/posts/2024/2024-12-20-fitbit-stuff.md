@@ -4,6 +4,10 @@ date: "2024-12-16"
 author: alex
 tags: settings, device
 ---
+![charge]({static}/images/2024/fitbit-charge.png)
+![luxe]({static}/images/2024/fitbit-luxe.png)
+
+
 How to reset your Fibit Charge 5, 6 or Fitbit Luxe?
 
 You can reset your Fitbit Charge 5, Charge 6, or Fitbit Luxe in 2 ways:
@@ -18,7 +22,7 @@ Method 1:
 3. Tap _Restart device._
 4. Tap _Restart_ again.
 
-Doesn't the restart solve anything? Follow the following steps.
+Doesn't the restart solve anything? Follow the following steps.\
 **Note:** You will lose all your data:
 
 1. Connect your Fitbit to your charger.
