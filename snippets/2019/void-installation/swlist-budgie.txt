@@ -1,4 +1,7 @@
 # Budgie desktop environment
+#
+# Currently doesn't work
+#
 
 
 budgie-desktop

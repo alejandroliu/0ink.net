@@ -15,13 +15,18 @@ xdg-user-dirs-gtk
 parcellite
 paprefs
 
+# cinnamon does not provide these
+gnome-terminal
+gnome-calculator
+gnome-screenshot
+
+papirus-icon-theme
+xcursor-themes
+
 #udisks2
-#papirus-icon-theme
 #gnome-control-center
 #nautilus
 #gedit
-#gnome-terminal
-#gnome-calculator
 #gnome-calendar
 #gnome-disk-utility
 #eog

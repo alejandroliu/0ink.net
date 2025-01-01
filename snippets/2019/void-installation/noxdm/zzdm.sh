@@ -1,5 +1,5 @@
 #!/bin/sh
-if [[ -z "$DISPLAY" && $(tty) == /dev/tty1 && $(id -u) -gt 100 ]]; then
+if [[ -z "$DISPLAY" && $(tty) == /dev/tty1 && $(id -u) -gt 100 && -d "$HOME" ]]; then
   export XINITRC=/etc/X11/Xsession
   . $HOME/.bashrc # Make sure PATH is set-up
   clear

@@ -32,3 +32,9 @@ gst-libav		# void-linux: add mp4 support to firefox
 parcellite
 paprefs
 
+xscreensaver 		# xscreensaver and its dependancies
+appres
+fortune-mod
+fortune-mod-void
+perl-LWP-Protocol-https
+

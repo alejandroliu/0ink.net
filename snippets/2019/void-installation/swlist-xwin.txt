@@ -17,11 +17,7 @@ ipafont-fonts-otf
 xdotool
 xdg-utils
 wmctrl			# windows scripting
-xscreensaver 		# cross DE screen saver
-appres
-fortune-mod
-fortune-mod-void
-perl-LWP-Protocol-https
+
 x11vnc
 
 numlockx
