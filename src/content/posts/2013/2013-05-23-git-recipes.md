@@ -7,24 +7,20 @@ post_author: "2"
 post_date: "2013-05-23 12:34:41"
 post_date_gmt: "2013-05-23 12:34:41"
 post_title: Git recipes
-post_excerpt: ""
 post_status: publish
 comment_status: open
 ping_status: open
-post_password: ""
 post_name: git-recipes
-to_ping: ""
-pinged: ""
 post_modified: "2017-07-02 13:03:50"
 post_modified_gmt: "2017-07-02 13:03:50"
-post_content_filtered: ""
 post_parent: "0"
 guid: http://s12.pw/wp/?p=289
 menu_order: "0"
 post_type: post
 post_mime_type: ""
 comment_count: "0"
-tags: authentication, config, directory, feature, git, github, login, password, proxy, remote, windows, wordpress
+tags: authentication, config, directory, feature, git, github, login, password, proxy,
+  remote, windows, wordpress, configuration, integration, settings, ~remove
 ---
 [TOC]
 ***
@@ -75,11 +71,11 @@ This is the default.
 
 
 
-Rewriting history
-=================
+# Rewriting history
 
-Rolling back the last commit
-----------------------------
+
+## Rolling back the last commit
+
 
 if nobody has pulled your remote repo yet, you can change your branch HEAD and force push it to said remote repo:
 
@@ -87,8 +83,8 @@ if nobody has pulled your remote repo yet, you can change your branch HEAD and f
     git push -f
 
 
-Restoring changes
-=================
+# Restoring changes
+
 
 So in the event that you want to go back to a previous version of a file. First you must identify the version using:
 
@@ -105,8 +101,8 @@ Then
     git commit $file
 
 
-User friendly version ids
-=========================
+# User friendly version ids
+
 
 Creating version ids Use:
 
@@ -120,8 +116,7 @@ Gives:
 
 However for this to work, you need to have a good tag set and a good tag naming convention.
 
-Branches
-========
+# Branches
 
 Main branch names:
 
@@ -163,11 +158,11 @@ Clean-up delete branches in remote repo from local repo...
     git remote prune origin
 
 
-Tagging
-=======
+# Tagging
 
-Creating tags
--------------
+
+## Creating tags
+
 
 Tag releases with
 
@@ -176,16 +171,16 @@ Tag releases with
 
 This creates an annotated tag that has full meta data content and it is favored by Git describe.
 
-Temporary snapshots
--------------------
+## Temporary snapshots
+
 
     git tag $tagname
 
 
 These are lightweight tag that are associated to a specific commit.
 
-Sharing tags
-------------
+## Sharing tags
+
 
 By default are not pushed. They need to be exported with:
 
@@ -197,14 +192,14 @@ or
     git push origin --tags
 
 
-To pull tags (if there aren't any)
-----------------------------------
+## To pull tags (if there aren't any)
+
 
     git fetch --tags
 
 
-Deleting tags
--------------
+## Deleting tags
+
 
     git tag -d $tagname    # Local tags
     git push --delete origin $tagname # Remote tags
@@ -212,16 +207,16 @@ Deleting tags
 
 
 
-Rename a tag:
--------------
+## Rename a tag:
+
 
     git tag new old
     git tag -d old
     git push origin :refs/tags/old
 
 
-Setting up GIT
-==============
+# Setting up GIT
+
 
     git config --global user.name "user"
     git config --global user.email "email"
@@ -237,8 +232,8 @@ Other settings:
       name = alex
 
 
-Using ~/.netrc for persistent authentication
---------------------------------------------
+## Using ~/.netrc for persistent authentication
+
 
 Create a file called `.netrc` in your home directory. Make sure you sets permissions `600` so that it is only readable by user. With Windows, create a file `_netrc` in your home directory. You may need to define a %HOME% environment variable. In Windows 7 you can use:
 
@@ -260,8 +255,8 @@ The contents of `.netrc` (or `_netrc`) are as follows:
     |   password $pwd
 
 
-Creating new repositories
-=========================
+# Creating new repositories
+
 
     mkdir ~/hello-world
     cd ~/hello-world
@@ -287,8 +282,8 @@ Creating a bare repo:
     git clone --bare .
 
 
-Vendor Branches
-===============
+# Vendor Branches
+
 
 Set-up
 
@@ -319,8 +314,8 @@ When a new release comes out:
 
 A variation of vendor branches is to sync with an upstream fork in github. Read this guide on how to do that: [Syncing a fork on github](https://help.github.com/articles/syncing-a-fork/)
 
-GIT through patches
-===================
+# GIT through patches
+
 
 Creating a patch:
 
@@ -342,16 +337,15 @@ To apply patch..
      git am --signoff &lt; file.patch
 
 
-Maintenance
-===========
+# Maintenance
 
     git fsck
     git gc --prune=now     # Clean-up
     git remote prune origin # Clean-up stale references to deleted remote objects
 
 
-Submodules
-==========
+# Submodules
+
 
 Add submodules to a project:
 
