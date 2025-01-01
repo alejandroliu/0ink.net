@@ -1,8 +1,9 @@
 ---
 title: Co-existing GLIBC binaries with Void-Linux MUSL edition
+date: "2024-02-02"
+author: alex
 tags: directory, library, linux, software, sudo
 ---
-
 I am running [void-linux](https://voidlinux.org/) at home with `musl` as the standard
 C library.
 
@@ -13,9 +14,11 @@ To enable this I followed this guide here: [Live switching Void Linux from glibc
 
 To set-up:
 
+
+
 ```
-mkdir -p /glibc
-sudo env XBPS_ARCH=x86_64 xbps-install --repository=http://alpha.de.repo.voidlinux.org/current -r /glibc -S base-voidstrap
+sudo mkdir -p /glibc
+sudo env XBPS_ARCH=x86_64 xbps-install --repository=https://repo-default.voidlinux.org/current -r /glibc -S base-voidstrap
 ```
 
 - `sudo` : yes, we need root
@@ -23,7 +26,7 @@ sudo env XBPS_ARCH=x86_64 xbps-install --repository=http://alpha.de.repo.voidlin
 - `XBPS_ARCH=x86_64` : architecture to use.  Since we are using musl,
   we point to the glibc version.  It should be possible to create
   a 32 bit root here.
-- `--repository=http://alpha.de.repo.voidlinux.org/current` : the repository
+- `--repository=https://repo-default.voidlinux.org/current` : the repository
   to use.  Feel free to replace to something closer.
 - `-r /glibc` :  directory tree where the glibc executables will live
 - `base-voidstrap` : unlike `base-system`, this meta-package is normally
@@ -32,13 +35,13 @@ sudo env XBPS_ARCH=x86_64 xbps-install --repository=http://alpha.de.repo.voidlin
 To keep this tree up to date:
 
 ```
-sudo env XBPS_ARCH=x86_64 xbps-install --repository=http://alpha.de.repo.voidlinux.org/current -r /glibc -Su
+sudo env XBPS_ARCH=x86_64 xbps-install --repository=https://repo-default.voidlinux.org/current -r /glibc -Su
 ```
 
 To add software to the tree:
 
 ```
-sudo env XBPS_ARCH=x86_64 xbps-install --repository=http://alpha.de.repo.voidlinux.org/current -r /glibc -S pkg
+sudo env XBPS_ARCH=x86_64 xbps-install --repository=https://repo-default.voidlinux.org/current  -r /glibc -S pkg
 ```
 
 Once this is set-up you need a small program to kick off the `glibc` executables.  I copied this one:

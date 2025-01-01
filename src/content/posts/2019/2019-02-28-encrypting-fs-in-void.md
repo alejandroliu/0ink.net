@@ -1,6 +1,7 @@
 ---
 title: Encrypting FileSystem in Void Linux
-date: 2022-10-21
+date: "2022-10-21"
+author: alex
 tags: backup, boot, device, encryption, filesystem, idea, partition
 ---
 The point of this recipe is to create a encrypted file sytem
@@ -59,6 +60,15 @@ Create entry in `/etc/crypttab`:
 ```
 crypt-pool 	UUID=xxxxxxxxxxxxxxxx /crypto_keyfile.bin luks
 ```
+
+If you want to enable `discard` option in flash sorage use this instead:
+
+```
+crypt-pool 	UUID=xxxxxxxxxxxxxxxx /crypto_keyfile.bin luks,discard
+```
+
+
+
 
 Create `/etc/dracut.conf.d/10-crypt.conf`
 
