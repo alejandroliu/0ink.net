@@ -19,13 +19,17 @@ paprefs
 gnome-terminal
 gnome-calculator
 gnome-screenshot
+gnome-system-monitor
+catfish
+leafpad
+eog	# Since xviewer is not in voidlinux
 
 papirus-icon-theme
 xcursor-themes
+rofi
 
 #udisks2
 #gnome-control-center
-#nautilus
 #gedit
 #gnome-calendar
 #gnome-disk-utility

@@ -21,6 +21,7 @@ wmctrl			# windows scripting
 x11vnc
 
 numlockx
+find-cursor
 
 xbindkeys		# hot keys
 scrot

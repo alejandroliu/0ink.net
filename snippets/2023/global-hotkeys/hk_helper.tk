@@ -459,18 +459,7 @@ proc op:startup {} {
     if {![file isfile "$f"]} continue
     run --bg xbindkeys -n -f $f
   }
-  wm overrideredirect . 1
-  show_message "Hotkey Helper" {
-This is a private access system.
-
-ACCESS ALLOWED TO AUTHORISED USERS ONLY.
-
-Unauthorised use or misuse of these services may be a breach of the
-relevant computer misuse legislation and subject to legal and/or
-disciplinary action.
-
-Activities on this system are logged and monitored.
-} 3000
+  exit
 }
 
 option add *Font "Helvetica 11" widgetDefault

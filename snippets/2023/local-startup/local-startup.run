@@ -69,5 +69,8 @@ fix_max_non_max_wins() {
   done
 }
 
-
-(( fix_max_non_max_wins ) & ) &
+case "${XDG_CURRENT_DESKTOP:-}" in
+  LXQt)
+    ( ( fix_max_non_max_wins ) & ) &
+    ;;
+esac
