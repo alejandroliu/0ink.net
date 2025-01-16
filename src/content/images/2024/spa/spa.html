@@ -5,7 +5,7 @@
   <title>QR generator</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="icon.png">
-  <link rel="stylesheet" href="styles.css?q=3">
+  <link rel="stylesheet" href="styles.css?q=4">
   <link rel="stylesheet" href="theme.css?q=6">
   <!--- From: https://github.com/agnoster/base32-js --->
   <script src="base32-0.0.6.min.js"></script>
@@ -76,14 +76,14 @@
        <button id="copy-url" onclick="copyUrl()" class="disabled">&#x1F4CB;</button>
      </p>
      <p>
-      <input type="text" id="dec-payload" readonly>
+      <input type="text" id="dec-payload" readonly class="wide-field">
       <button onclick="copyPayload()">&#x1F4CB;</button>
      </p>
    </div>
    <script src="script.js?q=4"></script>
    <!--- Common Footer --->
    <p class="footer">
-     QR generator v1.0 &copy; 2024 Alejandro Liu
+     QR generator v1.1 &copy; 2024 Alejandro Liu
    </p>
  </body>
 </html>
