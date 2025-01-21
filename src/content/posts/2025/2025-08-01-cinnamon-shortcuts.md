@@ -60,10 +60,10 @@ Toggle touchpad state | System:Hardware | ==TouchpadToggle==
 Turn touchpad on | System:Hardware | ==TouchpadOn==
 Turn touchpad off | System:Hardware | ==TouchpadOff==
 Show power statistics | System:Hardware | ==Battery==
-Take a screenshot of an area | System:Screenshots and Recording | Shift+Print *not default*
-Copy a screenshot of an area to clipboard | System:Screenshots and Recording | Ctrl+Print *not default*
+Take a screenshot of an area | System:Screenshots and Recording | Shift+Print
+Copy a screenshot of an area to clipboard | System:Screenshots and Recording | Ctrl+Shift+Print
 Take a screenshot | System:Screenshots and Recording | Unassigned, *Default: Print*
-Copy a screenshot to clipboard | System:Screenshots and Recording | Unassigned *Default: Ctrl+Print*
+Copy a screenshot to clipboard | System:Screenshots and Recording | Ctrl+Print
 Take a screenshot of a window | System:Screenshots and Recording | Alt+Print
 Copy a screenshot of a window to clipboard | System:Screenshots and Recording | Ctrl+Alt+Print
 Toggle recording desktop | System:Screenshots and Recording | Shift+Ctrl+Alt+R
@@ -100,12 +100,12 @@ Function | Category | Keys
 ---|----|----
 Show Calendar | Calendar | Super+C
 Global hotkey or cycling through thumbnail menus | Grouped window list | *unassigned*
-Global hotkey to show the order of apps  | Grouped window list | Super+\`
+Global hotkey to show the order of apps  | Grouped window list | *unnassigned, Default: Super+\`*
 Keyboard shortcut to open and close the menu | Menu | Super
-Show menu | Network Manager | Shift+Super+N
+Show Network Mgr menu | Network Manager | Shift+Super+N
 Show notifications | Notifications | Super+N	
 Clear notifications | Notifications | Shift+Super+C
-Show menu | Sound | Shift+Super+S
+Show Sound menu | Sound | Shift+Super+S
 
 
 
@@ -152,11 +152,11 @@ My custom commands:
 Function | Command | Keys
 ---|----|----
 System Monitor | `gnome-system-monitor -r` | Ctrl+Alt+S
-Switch Workspace | `wsswitch` | Ctrl+Escape
+Switch Workspace | `wsswitch` | Super+\`
 Find Dialog | `catfish` | Super+F
 Run Dialog | `rundlg` | Super+R
 Screenshot UI | `gnome-screenshot -i` | ==Print==
-Show windows in All Workspaces | `rofi -show window` | Ctrl+\`
+Show windows in All Workspaces | `rofi -show window` | Ctrl+Escape
 patoggle | `patoggle output` | Super+KP_Insert
 
 
