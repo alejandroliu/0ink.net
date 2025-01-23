@@ -4,6 +4,8 @@ date: "2025-01-23"
 author: alex
 tags: alpine, linux, scripts, service
 ---
+![icon]({static}/images/2025/alpinelinux-logo.png)
+
 This is a quick note.  In Alpine linux you can run start-up scripts by enabling the
 `local` service:
 
