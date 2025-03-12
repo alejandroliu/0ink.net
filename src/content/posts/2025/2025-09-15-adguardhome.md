@@ -144,7 +144,7 @@ but the process is as follows:
    it with a web browser to configure [AdGuard Home][agh].
 
 
-![icon]({static}/images/2025/adguardhome/adguard-home-screen.png)
+![icon]({static}/images/2025/adguardhome/adguard-home-screen-alt.png)
 
 
 # Configuration
