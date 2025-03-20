@@ -3,7 +3,7 @@ title: Linux Serial Consoles
 date: "2024-05-28"
 author: alex
 tags: remote, linux, boot, management, windows, terminal, computer, raspberry, configuration,
-  power, device, settings, speed, address, login, manager
+  power, device, settings, speed, address, login, manager, network
 ---
 [TOC]
 ***
@@ -438,7 +438,7 @@ Click **Open** to start the serail session.
 
 ## Linux
 
-The `screen` command can be used in Linux.  Install `screen` if not already installed.
+The [screen][screen] command can be used in Linux.  Install [screen][screen] if not already installed.
 Most distributions should have a package for it.
 
 To find the serial port device you can:
@@ -446,7 +446,7 @@ To find the serial port device you can:
 * `ls /dev/ttyS*` for on-board serial ports.
 * `ls /dev/ttyUSB*` for USB serial ports.
 
-You can now use the `screen` command to to establish a simple serial connection.
+You can now use the [screen][screen] command to to establish a simple serial connection.
 
 Type `screen <port_name> <baud_rate>` to create a connection:
 
@@ -495,6 +495,40 @@ process from the start.
   * libvirt: `virsh console vmname`
 
 
+## Using [GNU screen][screen] as Serial Console Server
+
+You can use [GNU screen][screen] mentioned earlier, to set-up a Serial Console server.
+For this Serial Console Server we have this functionality:
+
+- Let you connect to a serial port via the network
+- Log traffic over the serial port to a file
+
+For this I am using a [Raspberry Pi]]rpi] with a multi-serial port USB adaptor.  During
+system start-up I start [GNU screen][screen] as a detached session and connect it to
+the serial port.  Each serial port has a *named* session.
+
+Using `ssh` I log-on to the system and use `screen -r *SESSION*` to re-attach to the
+session.  The [GNU screen][screen] command also logs all serial port traffic to
+a file.
+
+To do this, I use the following options when starting [screen][screen]:
+
+- `-d -m` : start the session in a detached/background state
+- `-L` : turn on automatic output logging
+- `-Logfile file` : and log to the given file.
+- `-S name` : give the session a name (useful for re-attaching)
+
+I usually start the session with this additional arguments:
+
+```bash
+/dev/ttyUSB0 115200,crtscts
+```
+
+This set the given serial port to 115200 speed, and turns on RTS/CTS flow-control.
+
+I also use the `SCREENRC` environment variable to specify an initialization file
+with further configuration.
+
 
   [drac]: https://en.wikipedia.org/wiki/Dell_DRAC
   [ilo]: https://en.wikipedia.org/wiki/HP_Integrated_Lights-Out
@@ -512,6 +546,8 @@ process from the start.
   [putty]: https://www.putty.org/
   [tsurl]: http://brokestream.com/tinyserial.html
   [ts]: https://github.com/alejandroliu/0ink.net/tree/main/snippets/2024/serial/tinyserial
+  [screen]: https://www.gnu.org/software/screen/
+  [rpi]: https://www.raspberrypi.com/products/raspberry-pi-3-model-b-plus/
   
 
 
