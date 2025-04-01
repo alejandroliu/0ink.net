@@ -1,6 +1,8 @@
 ---
 title: Docker on Void
-tags: login
+date: "2023-08-27"
+author: alex
+tags: login, sudo
 ---
 This is a quick recipe to run Docker on void:
 
@@ -8,6 +10,7 @@ This is a quick recipe to run Docker on void:
   - `sudo xbps-install -Syu`
 - Install docker executables:
   - `sudo xbps-install -S docker`
+  - Additional recommended packaged: `docker-compose`, `docker-buildx`.
 - Check if docker was installed properly:
   - `docker --version`
 - Enable services:
