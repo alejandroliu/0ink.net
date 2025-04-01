@@ -38,7 +38,7 @@ RAID levels.
        ```bash
        mdadm --manage /dev/md0 --remove failed
        ```
-       Note that `failed` worked for me.  Other examles mentioned `detached`.
+       Note that `failed` worked for me.  Other examples mentioned `detached`.
    - Warm plugging, some hardware requires you to enter some commands:
      - mark drive as faulty
        ```bash
