@@ -118,6 +118,24 @@ There are more exceptions but these are not commonly used.
 
 For catching exception, it is useful to refer to the [Exception class tree][exception-tree].
 
+Raising exceptions uses the following syntax:
+```python
+if x < 0:
+  raise ValueError(f'Sorry, {x} is not valid')
+
+```
+
+And you can then catch it with:
+
+```python
+try:
+  execute_code()
+except ValueError as e:
+  print(e)
+except:
+  print("generic")
+```
+
 
 # Adding site specific customizations
 
