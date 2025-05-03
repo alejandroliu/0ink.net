@@ -6,7 +6,7 @@ tags: javascript, ~remove
 ---
 [TOC]
 
-![icon]({static}/images/2024/js-icon.png)
+![icon]({static}/images/drafts/js-icon.png)
 
 # Compute how an element is hidden
 
@@ -111,7 +111,7 @@ function copyToClipboard(textToCopy) {
 
 The reason we temporarily add a `textarea` element to the document is to leverage the
 browser’s built-in copy functionality, which typically works only on user-selected text
-or content within a focusable element like an input or textarea. 
+or content within a focusable element like an input or textarea.
 
 This workaround is necessary because `document.execCommand('copy')` relies on the text
 being selected within an editable field, and a hidden `textarea` is a simple way to
