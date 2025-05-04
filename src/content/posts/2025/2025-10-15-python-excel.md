@@ -173,7 +173,7 @@ this to **False**.  If you want to hide it, set it to **True**.
 
 For creating grouips you can use
 
-```
+```python
   worksheet.column_dimensions.group(start, end, **kwargs)
   worksheet.row_dimensions.group(start, end, **kwargs)
 
