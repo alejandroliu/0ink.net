@@ -265,11 +265,6 @@ Some tips when using [xlwings][xl]:
   to contact your IT department for assistance.
 
 
-***
-
-- TODO: COM automation
-- xlwings hings and tips
-
 
    [xw]: https://github.com/jmcnamara/XlsxWriter
    [op]: https://foss.heptapod.net/openpyxl/openpyxl
