@@ -2,7 +2,9 @@
 title: Using Excel files from Python
 date: "2025-05-03"
 author: alex
-tags: python, windows, linux, integration, library, markdown, installation
+tags: python, windows, linux, integration, library, markdown, installation, settings,
+  security, ~remove, cloud, storage, setup, service, network, management, application,
+  database, proxy, epoch
 ---
 [TOC]
 
@@ -120,6 +122,41 @@ It does support adding VBA code to Excel files, however there are limitations as
 with the VBA object model.  So while code can be added, classes and expred modules
 can not.
 
+# pywin32
+
+You can always use the [Python for Win32][pywin32] with COM support.  This gives
+you access to the Component Object Model (COM), which is the native automation
+functionality of Windows which Excel supports.
+
+This is a quick example:
+
+```python
+import win32com.client
+import sys, io
+
+# Open up Excel and make it visible (actually you don't need to make it visible)
+excel = win32com.client.Dispatch('Excel.Application')
+excel.Visible = True
+
+# Redirect the stdout to a file
+orig_stdout = sys.stdout
+bk = io.open("Answers_Report.txt", mode="w", encoding="utf-8")
+sys.stdout = bk
+
+# Select a file and open it
+file = "path_of_file"
+wb_data = excel.Workbooks.Open(file)
+  
+# Get the answers to the Q1A and write them into the summary file
+mission=wb_data.Worksheets("1ayb_MisiónyVisiónFutura").Range("C6")
+vision =wb_data.Worksheets("1ayb_MisiónyVisiónFutura").Range("C7")
+print("Question 1A")
+print("Mission:",mission)
+print("Vision:" ,vision)
+print()
+```
+
+
 # Conclusions
 
 For strictly writing Excel files, [XlsxWriter][xw] is more than enough.  It is easier
@@ -171,7 +208,7 @@ this to **False**.  If you want to hide it, set it to **True**.
 
 ![openpyxl groups]({static}/images/2025/py-excel/openpyxl-groups.png)
 
-For creating grouips you can use
+For creating groups you can use
 
 ```python
   worksheet.column_dimensions.group(start, end, **kwargs)
@@ -196,6 +233,36 @@ There a further restrictions with creating groups, in that:
 Some tips when using [xlwings][xl]:
 
 
+## Steps to Enable Programmatic Access to VBA
+
+1. **Open Excel**:
+   - Launch Excel (you don't need to open a specific workbook).
+2. **Access Options**:
+   - Click on `File` in the top menu.
+   - Select `Options` from the menu to open the Excel Options dialog.
+     `Options` item should be at the bottom of the menu.
+   - ![excel menu]({static}/images/2025/py-excel/menu.png)
+3. **Trust Center**:
+   - In the Excel Options dialog, click on `Trust Center` in the left pane.
+   - Click on `Trust Center Settings...` to open the Trust Center settings.
+   - ![excel menu]({static}/images/2025/py-excel/trustcenter.png)
+4. **Macro Settings**:
+   - In the Trust Center, click on `Macro Settings`.
+   - Check the option labeled "Trust access to the VBA project object model".
+   - ![excel menu]({static}/images/2025/py-excel/macrosettings.png)
+5. **Save Settings**:
+   - Click `OK` to save the Trust Center settings.
+   - Click `OK` again to exit the Excel Options dialog.
+
+### Additional Considerations
+
+- **Security Implications**: Enabling programmatic access to the VBA
+  project object model can expose your system to potential security
+  risks, especially if you run untrusted code. Ensure that the code
+  you execute is from a trusted source.
+- **IT Policies**: If you are using Excel in a corporate environment,
+  these settings might be managed by IT policies, and you may need
+  to contact your IT department for assistance.
 
 
 ***
@@ -208,3 +275,4 @@ Some tips when using [xlwings][xl]:
    [op]: https://foss.heptapod.net/openpyxl/openpyxl
    [pe]: https://github.com/phpexcel/PHPExcel
    [xl]: https://www.xlwings.org/
+   [pywin32]: https://github.com/mhammond/pywin32
