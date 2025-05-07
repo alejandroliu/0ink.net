@@ -49,5 +49,18 @@ albatros:
   FEED_ALL_RSS: 'feeds/rss.xml'
 
   # Enable/Disable Utterances https://utteranc.es/ comments
-  UTTERANCES_REPO: alejandroliu/0ink.net
+  #~ UTTERANCES_REPO: alejandroliu/0ink.net
+
+  # Enable/Disable giscus https://giscus.app/ comments
+  GISCUS:
+    REPO: alejandroliu/0ink.net
+    REPO_ID: MDEwOlJlcG9zaXRvcnkxMzU3MDgzOTM=
+    CATEGORY: Comments
+    CATEGORY_ID: DIC_kwDOCBa-6c4Cgh06
+    # MAPPING: pathname
+    # REACTIONS: 1
+    # EMIT_METADATA: 0
+    # INPUT_POS: bottom
+    # THEME: light
+    # LANG: en
 
