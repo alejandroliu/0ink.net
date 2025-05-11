@@ -6,7 +6,7 @@ tags: javascript, ~remove
 ---
 [TOC]
 
-![icon]({static}/images/drafts/js-icon.png)
+![icon]({static}/images/2026/js-icon.png)
 
 # Compute how an element is hidden
 
