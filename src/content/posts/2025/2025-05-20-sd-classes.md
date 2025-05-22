@@ -1,5 +1,5 @@
 ---
-title: SanDisk's ranges compare
+title: How SanDisk's ranges compare
 date: "2025-05-19"
 author: alex
 ---
