@@ -132,6 +132,10 @@ umount /mnt
 
 At this point we are ready to image the baremetal system.
 
+You can use this
+[script](https://github.com/alejandroliu/0ink.net/blob/main/snippets/2025/clonezilla/clonezilla.sh)
+to automate this step.
+
 # Running Clonezilla
 
 Insert the USB drive into one of your PCs USB ports, and turn on your PC.  You may
