@@ -111,7 +111,7 @@ repofile() {
 ## I have worked around with a combination of `Flatpak`s, `chroot`s and
 ## `namespaces`.
 ##
-## The high lights of [void linux][void]:
+## The highlights of [void linux][void]:
 ##
 ## - musl build - which is very lightweigth
 ## - Does not depend on `systemd`
@@ -121,7 +121,8 @@ repofile() {
 ## I am using [rEFInd][refind] instead of grub.  This is because it makes
 ## doing bare metal backups and restore just a simple file copy.
 ##
-## My installation process roughly follows the [UEFI chroot install][void-uefi].
+## My installation process roughly follows the void linux
+## [UEFI chroot install][void-uefi].
 ##
 ## This process is implemented in a script and can be found here:
 ##
@@ -267,9 +268,15 @@ fi
 ## Make sure you use `gpt` label type (for UEFI boot).  I am creating
 ## the following partitions:
 ##
-## 1. 500MB `EFI System`
-## 2. *RAM Size * 1.5* `Linux swap`, Mainly used for Hibernate.
+## 1. 800MB `EFI System`
+## 2. *RAM Size x 1.5* `Linux swap`, Mainly used for Hibernate.
 ## 3. *Rest of drive* `Linux filesystem`, Root file system
+##
+## When I first published this article back in 2019, I was using 500MB for
+## the EFI filesystem.  Now I am using 800MB.  This is because the size of the
+## Linux kernel including all the drivers have been growing over time.  
+## With 800MB you can only have about one or two spare kernels.
+##
 #end-output
 
 
@@ -416,21 +423,26 @@ fi
 ## For musl-libc
 ##
 ## ```bash
-## env XBPS_ARCH=x86_64-musl xbps-install -S -R http://alpha.de.repo.voidlinux.org/current/musl -r $hmnt base-system grub-x86_64-efi
+## env XBPS_ARCH=x86_64-musl xbps-install -S \
+##     -R http://repo-default.voidlinux.org/current/musl \
+##     -r $hmnt \
+##     base-system
 ## ```
 ##
 ## For glibc
 ## ```bash
-## env XBPS_ARCH=x86_64 xbps-install -S -R http://alpha.de.repo.voidlinux.org/current -r $hmnt base-system grub-x86_64-efi
+## env XBPS_ARCH=x86_64 xbps-install -S \
+##     -R http://repo-default.repo.voidlinux.org/current \
+##     -r $hmnt \
+##     base-system
 ## ```
 ##
 ## But actually, for the package list I have been using these lists:
 ##
+## base list:
 ## <script src="$embedprefix/swlist.txt"></script>
+## x-windows:
 ## <script src="$embedprefix/swlist-xwin.txt?footer=minimal"></script>
-## <script src="$embedprefix/swlist-mate.txt?footer=minimal"></script>
-##
-## This installs a [MATE][mate] desktop environment.
 ##
 #end-output
 if ! check_opt glibc "$@" ; then
@@ -482,7 +494,7 @@ echo y | env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $mnt $(
 #begin-output
 ## ### Software selection notes
 ##
-## - For time synchronisation (ntp) we ae choosing `chrony` as it is
+## - For time synchronisation (ntp) we are choosing `chrony` as it is
 ##   reputed to be more secure that `ntpd` and more compliant than
 ##   `openntpd`.
 ## - We are using the default configuration, which should be OK.  Uses
@@ -504,13 +516,15 @@ echo y | env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $mnt $(
 ## To enable under the musl version:
 ##
 ## ```bash
-## env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $hmnt void-repo-nonfree
+## env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $hmnt \
+##     void-repo-nonfree
 ## ```
 ##
 ## For glibc:
 ##
 ## ```bash
-## env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $hmnt void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
+## env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r $hmnt \
+##     void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
 ## ```
 ##
 ## Then you can install non-free software, like:
@@ -735,7 +749,7 @@ fi
 ## Copy from the `zip file` the file `refind-bin-{version}/refind/refind_x64.efi` to
 ## `/boot/EFI/BOOT/BOOTX64.EFI`.
 ##
-## The version I am using right now can be found here: [v0.11.4 BOOTX64.EFI]($repourl/BOOTX64.EFI)
+## The version I am using right now can be found here: [v0.14.2 BOOTX64.EFI]($repourl/BOOTX64.EFI)
 ##
 ## Create kernel options files `/boot/cmdline`:
 ##
@@ -762,7 +776,8 @@ repofile BOOTX64.EFI $mnt/boot/EFI/BOOT/BOOTX64.EFI
 
 #begin-output
 ##
-## For my hardware I had to add the option:
+## Depending of your hardware you may add additional options.  For example,
+## at one time I hadd to use:
 ##
 ## - `intel_iommu=igfx_off`
 ##   - To work around some strange bug.
@@ -844,19 +859,8 @@ $run xbps-reconfigure -f linux${kver}
 ## ```bash
 ## ln -s /etc/sv/dhcpcd /var/service
 ## ln -s /etc/sv/sshd /var/service
-## ln -s /etc/sv/{acpid,chronyd,cgmanager,crond,uuidd,statd,rcpbind,autofs} /var/service
+## ln -s /etc/sv/{acpid,chronyd,crond,uuidd,statd,rcpbind,autofs,socklog-unix,nanoklogd} /var/service
 ## ```
-##
-## If you want logging enable: `socklog-unix nanoklogd` too.
-##
-## Full workstation set-up:
-##
-## ```bash
-## ln -s /etc/sv/dbus /var/service
-## ln -s /etc/sv/NetworkManager /var/service
-## ln -s /etc/sv/sshd /var/service
-## ln -s /etc/sv/{acpid,chronyd,cgmanager,crond,uuidd,statd,rcpbind,autofs} /var/service
-## ln -s /etc/sv/{consolekit,xdm} /var/service
 ## ```
 #end-output
 common_svcs="sshd acpid chronyd crond uuidd statd rpcbind autofs bluetoothd socklog-unix nanoklogd"
@@ -943,8 +947,14 @@ fi
 ##
 ## ```bash
 ## setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl
-##
 ## ```
+##
+#end-output
+
+#
+# Commenting out the xdm section as I am not using it anymore
+#
+##
 ##
 ## ## Using xdm
 ##
@@ -996,50 +1006,49 @@ fi
 ## hacks seem to accept the `-root` parameter, which can be used
 ## to kick off the hack, drawing on the root window.
 ##
-#end-output
-if [ -f $mnt/etc/X11/xdm/xdm-config ] ; then
-  if check_opt xdm-candy ; then
-    sed \
-	  -i-void \
-	  -e 's!^DisplayManager.*session:.*$!DisplayManager*session:	/etc/X11/Xsession!' \
-	  -e 's!^DisplayManager._0.setup:.*$!DisplayManager._0.setup:	/etc/X11/xdm/Xsetup_0!' \
-	  -e 's!^DisplayManager._0.startup:.*$!DisplayManager._0.startup:	/etc/X11/xdm/GiveConsole!' \
-	  $mnt/etc/X11/xdm/xdm-config
-    for f in Xsetup_0 GiveConsole
-    do
-      repofile xdm/$f $mnt/etc/X11/xdm/$f
-      chmod 755 $mnt/etc/X11/xdm/$f
-    done
-    repofile xdm/xscreensaver $mnt/root/.xscreensaver
-  else
-    sed \
-	  -i-void \
-	  -e 's!^DisplayManager.*session:.*$!DisplayManager*session:	/etc/X11/Xsession!' \
-	  $mnt/etc/X11/xdm/xdm-config
-  fi
-  # Create Xsession
-  repofile Xsession "$mnt/etc/X11/Xsession"
-  chmod 755 "$mnt/etc/X11/Xsession"
-
-  # We need this for the Xsession script to work properly
-  grep -q /run/xsession.pid $mnt/etc/rc.local || echo "chmod 666 /run/xsession.pid > /run/xsession.pid" >> $mnt/etc/rc.local
-fi
-#begin-output
-##
+#if [ -f $mnt/etc/X11/xdm/xdm-config ] ; then
+#   if check_opt xdm-candy ; then
+#     sed \
+# 	  -i-void \
+# 	  -e 's!^DisplayManager.*session:.*$!DisplayManager*session:	/etc/X11/Xsession!' \
+# 	  -e 's!^DisplayManager._0.setup:.*$!DisplayManager._0.setup:	/etc/X11/xdm/Xsetup_0!' \
+# 	  -e 's!^DisplayManager._0.startup:.*$!DisplayManager._0.startup:	/etc/X11/xdm/GiveConsole!' \
+# 	  $mnt/etc/X11/xdm/xdm-config
+#     for f in Xsetup_0 GiveConsole
+#     do
+#       repofile xdm/$f $mnt/etc/X11/xdm/$f
+#       chmod 755 $mnt/etc/X11/xdm/$f
+#     done
+#     repofile xdm/xscreensaver $mnt/root/.xscreensaver
+#   else
+#     sed \
+# 	  -i-void \
+# 	  -e 's!^DisplayManager.*session:.*$!DisplayManager*session:	/etc/X11/Xsession!' \
+# 	  $mnt/etc/X11/xdm/xdm-config
+#   fi
+#   # Create Xsession
+#   repofile Xsession "$mnt/etc/X11/Xsession"
+#   chmod 755 "$mnt/etc/X11/Xsession"
+# 
+#   # We need this for the Xsession script to work properly
+#   grep -q /run/xsession.pid $mnt/etc/rc.local || echo "chmod 666 /run/xsession.pid > /run/xsession.pid" >> $mnt/etc/rc.local
+# fi
 ## ## *NOT* using a display manager
 ##
 ## If you do not want to run a display manager, you can simply
 ## start your session from the Linux console and use `startx` and
 ## `xinitrc` combination.
+#begin-output
 ##
-## Alternatively, you can add a file in `/etc/profile.d` to start X
+## I don't normally use a display manager.  To start the GUI environment,
+## you can add a file in `/etc/profile.d` to start X
 ## at login if on tty1.
 ##
 ## - [session]($repourl/Xsession)
 ## - [zzdm.sh]($repourl/noxdm/zzdm.sh)
 ##
 ## I am using the `session` script, which is a modified version of
-## the earlier `Xsession` script that I am using for `xdm` to
+## an earlier `Xsession` script that I was using for `xdm` to
 ## launch a desktop session.
 ##
 ## The script `zzdm.sh` is used to `startx` on login.
@@ -1061,7 +1070,7 @@ fi
 ## ### /etc/machine-id or /var/lib/dbus/machine-id
 ##
 ## Because we don't use `systemd`, we need to create `/etc/machine-id`
-## and `/var/lib/dbus/machine-id`.
+## and `/var/lib/dbus/machine-id`
 ## manually.  This is only needed for desktop systems.
 ##
 ## See [this article][machineid] for more
@@ -1104,16 +1113,9 @@ fi
 (
   repofile acpi-handler.patch
 ) | patch -b -z -void -d $mnt/etc/acpi
+
+
 #begin-output
-## ### rtkit spamming logs
-##
-## Apparently, `rtkit` requres an `rtkit` user to exist.  Otherwise it
-## will spam the logs with error messages.  To correct use this command:
-##
-## ```bash
-## useradd -r -s /sbin/nologin rtkit
-## ```
-##
 ## ### xen tweaks
 ##
 ## For xen we need to make some adjustments...
@@ -1152,9 +1154,17 @@ if check_opt xen "$@" ; then
     echo "$fpath"
   done) | tr '\n' '\0' | ( cd "$mnt" ; xargs -0 getcap ) > $mnt/.caps
 fi
-#begin-output
 
 ## ## Old Notes
+##
+## ### rtkit spamming logs
+##
+## Apparently, `rtkit` requres an `rtkit` user to exist.  Otherwise it
+## will spam the logs with error messages.  To correct use this command:
+##
+## ```bash
+## useradd -r -s /sbin/nologin rtkit
+## ```
 ##
 ## ### PolKit rule tweaks
 ##
@@ -1183,16 +1193,18 @@ fi
 ## ```
 ##
 ##
-#end-output
-if [ -f $mnt/etc/slim.conf ] ; then
-  sed \
-	-i-void \
-	-e 's!^login_cmd.*!login_cmd exec /bin/sh -l /etc/X11/Xsession %session!' \
-	$mnt/etc/slim.conf
-  mkdir -p $mnt/etc/X11
-  wget -O$mnt/etc/X11/Xsession $repourl/Xsession
-  chmod 755 $mnt/etc/X11/Xsession
-fi
+#
+# I am no longer using slim.conf
+#
+# if [ -f $mnt/etc/slim.conf ] ; then
+#   sed \
+# 	-i-void \
+# 	-e 's!^login_cmd.*!login_cmd exec /bin/sh -l /etc/X11/Xsession %session!' \
+# 	$mnt/etc/slim.conf
+#   mkdir -p $mnt/etc/X11
+#   wget -O$mnt/etc/X11/Xsession $repourl/Xsession
+#   chmod 755 $mnt/etc/X11/Xsession
+# fi
 #begin-output
 ## * * *
 ##

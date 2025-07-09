@@ -7,7 +7,7 @@ issues around `glibc`, it works quite well.  Most compatibility
 I have worked around with a combination of `Flatpak`s, `chroot`s and
 `namespaces`.
 
-The high lights of [void linux][void]:
+The highlights of [void linux][void]:
 
 - musl build - which is very lightweigth
 - Does not depend on `systemd`
@@ -17,7 +17,8 @@ I have tweaked the installation on my computers to use UEFI and thus
 I am using [rEFInd][refind] instead of grub.  This is because it makes
 doing bare metal backups and restore just a simple file copy.
 
-My installation process roughly follows the [UEFI chroot install][void-uefi].
+My installation process roughly follows the void linux
+[UEFI chroot install][void-uefi].
 
 This process is implemented in a script and can be found here:
 
@@ -71,9 +72,15 @@ cfdisk -z /dev/xda
 Make sure you use `gpt` label type (for UEFI boot).  I am creating
 the following partitions:
 
-1. 500MB `EFI System`
-2. *RAM Size * 1.5* `Linux swap`, Mainly used for Hibernate.
+1. 800MB `EFI System`
+2. *RAM Size x 1.5* `Linux swap`, Mainly used for Hibernate.
 3. *Rest of drive* `Linux filesystem`, Root file system
+
+When I first published this article back in 2019, I was using 500MB for
+the EFI filesystem.  Now I am using 800MB.  This is because the size of the
+Linux kernel including all the drivers have been growing over time.
+With 800MB you can only have about one or two spare kernels.
+
 
 This is on a USB thumb drive.  The data I keep on an internal disk.
 
@@ -102,25 +109,24 @@ So we do a targeted install:
 For musl-libc
 
 ```bash
-env XBPS_ARCH=x86_64-musl xbps-install -S -R http://alpha.de.repo.voidlinux.org/current/musl -r /mnt base-system grub-x86_64-efi
+env XBPS_ARCH=x86_64-musl xbps-install -S :##     -R http://repo-default.voidlinux.org/current/musl :##     -r /mnt :##     base-system
 ```
 
 For glibc
 ```bash
-env XBPS_ARCH=x86_64 xbps-install -S -R http://alpha.de.repo.voidlinux.org/current -r /mnt base-system grub-x86_64-efi
+env XBPS_ARCH=x86_64 xbps-install -S :##     -R http://repo-default.repo.voidlinux.org/current :##     -r /mnt :##     base-system
 ```
 
 But actually, for the package list I have been using these lists:
 
+base list:
 <script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/swlist.txt"></script>
+x-windows:
 <script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/swlist-xwin.txt?footer=minimal"></script>
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/swlist-mate.txt?footer=minimal"></script>
-
-This installs a [MATE][mate] desktop environment.
 
 ### Software selection notes
 
-- For time synchronisation (ntp) we ae choosing `chrony` as it is
+- For time synchronisation (ntp) we are choosing `chrony` as it is
   reputed to be more secure that `ntpd` and more compliant than
   `openntpd`.
 - We are using the default configuration, which should be OK.  Uses
@@ -142,13 +148,13 @@ binaries.
 To enable under the musl version:
 
 ```bash
-env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r /mnt void-repo-nonfree
+env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r /mnt :##     void-repo-nonfree
 ```
 
 For glibc:
 
 ```bash
-env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r /mnt void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
+env XBPS_ARCH="$arch" xbps-install -y -S -R "$voidurl" -r /mnt :##     void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
 ```
 
 Then you can install non-free software, like:
@@ -299,7 +305,7 @@ mkdir /boot/EFI/BOOT
 Copy from the `zip file` the file `refind-bin-{version}/refind/refind_x64.efi` to
 `/boot/EFI/BOOT/BOOTX64.EFI`.
 
-The version I am using right now can be found here: [v0.11.4 BOOTX64.EFI](https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/BOOTX64.EFI)
+The version I am using right now can be found here: [v0.14.2 BOOTX64.EFI](https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/BOOTX64.EFI)
 
 Create kernel options files `/boot/cmdline`:
 
@@ -308,7 +314,8 @@ root=LABEL=voidlinux ro quiet
 
 ```
 
-For my hardware I had to add the option:
+Depending of your hardware you may add additional options.  For example,
+at one time I hadd to use:
 
 - `intel_iommu=igfx_off`
   - To work around some strange bug.
@@ -376,19 +383,8 @@ Command line set-up:
 ```bash
 ln -s /etc/sv/dhcpcd /var/service
 ln -s /etc/sv/sshd /var/service
-ln -s /etc/sv/{acpid,chronyd,cgmanager,crond,uuidd,statd,rcpbind,autofs} /var/service
+ln -s /etc/sv/{acpid,chronyd,crond,uuidd,statd,rcpbind,autofs,socklog-unix,nanoklogd} /var/service
 ```
-
-If you want logging enable: `socklog-unix nanoklogd` too.
-
-Full workstation set-up:
-
-```bash
-ln -s /etc/sv/dbus /var/service
-ln -s /etc/sv/NetworkManager /var/service
-ln -s /etc/sv/sshd /var/service
-ln -s /etc/sv/{acpid,chronyd,cgmanager,crond,uuidd,statd,rcpbind,autofs} /var/service
-ln -s /etc/sv/{consolekit,xdm} /var/service
 ```
 
 Creating new users:
@@ -437,74 +433,18 @@ default:
 
 ```bash
 setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl
-
 ```
 
-## Using xdm
 
-I have switched to [xdm][xdm] as my display manager.  This is
-configured in `/etc/X11/xdm/xdm-config`.
-
-Specifically, I update the Xsession setting to be the following:
-
-```
-! DisplayManager*session:		/usr/lib64/X11/xdm/Xsession
-DisplayManager*session:		/etc/X11/Xsession
-
-```
-
-And have a custom [Xsession](https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/Xsession) script in
-`/etc/X11/Xsession`.
-
-Particularly important is the fact that the default Xsession
-script is not able to start a `mate` or `xfce4` sessions
-until you add the command:
-
-```bash
-xhost +local:
-
-```
-
-Apparently there is somewhat of an issue in the way `xauth`
-is handled.
-
-**NOTE:** _Doing `xhost +local:` is hardly a best practice
-when it comes to security._
-
-### Spicing up XDM
-
-Allthough [xdm][xdm] is fairly old-school, there are
-still some opportunities to add some eye-candy to
-it.  For that, we change the `setup` and `startup` scripts
-`Xsetup_0` and `GiveConsole` into custom scripts:
-
-- [Xsetup_0](https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/xdm/Xsetup_0)
-- [GiveConsole](https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/xdm/GiveConsole)
-
-Unfortunately, it only works for applications that draw
-directly to the root window as it is not possible to control
-overlapping windows.  For example, running `cmatrix` on
-a `xterm` window covers the login widget.
-
-On the other hand, the [xscreensaver][xs] collection of screen
-hacks seem to accept the `-root` parameter, which can be used
-to kick off the hack, drawing on the root window.
-
-
-## *NOT* using a display manager
-
-If you do not want to run a display manager, you can simply
-start your session from the Linux console and use `startx` and
-`xinitrc` combination.
-
-Alternatively, you can add a file in `/etc/profile.d` to start X
+I don't normally use a display manager.  To start the GUI enviornment,
+you can add a file in `/etc/profile.d` to start X
 at login if on tty1.
 
 - [session](https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/Xsession)
 - [zzdm.sh](https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/noxdm/zzdm.sh)
 
 I am using the `session` script, which is a modified version of
-the earlier `Xsession` script that I am using for `xdm` to
+an earlier `Xsession` script that I was using for `xdm` to
 launch a desktop session.
 
 The script `zzdm.sh` is used to `startx` on login.
@@ -547,15 +487,6 @@ it will exit.
 
 <script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/acpi-handler.patch"></script>
 
-### rtkit spamming logs
-
-Apparently, `rtkit` requres an `rtkit` user to exist.  Otherwise it
-will spam the logs with error messages.  To correct use this command:
-
-```bash
-useradd -r -s /sbin/nologin rtkit
-```
-
 ### xen tweaks
 
 For xen we need to make some adjustments...
@@ -570,36 +501,6 @@ For xen we need to make some adjustments...
 
 Normally, I would create a tarball image to transfer over, in order
 for the image to work properly you need to save `capabilities`.
-
-
-## Old Notes
-
-### PolKit rule tweaks
-
-Testing as of 2019-09-07, the following does not seem to be needed
-any longer.  I left it here just for reference (in case it breaks
-again.
-
-* * *
-
-OK, in my case, `shutdown`, `reboot` and local media access functions
-were not available using the [MATE][mate] desktop.
-
-To enable this I had to create/tweak the PolKit rules...
-
-<script src="https://tortugalabs.github.io/embed-like-gist/embed.js?style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on&target=https://github.com/alejandroliu/0ink.net/blob/main/snippets/2019/void-installation/_attic_/tweak-polkit-rules.sh"></script>
-
-## Using SLIM
-
-I have switched to [SLiM][SLiM] as the display manager.  This is
-configured in `/etc/slim.conf`.
-
-Specifically, I update the login_cmd to be the following:
-
-```
-login_cmd exec /bin/sh -l /etc/X11/Xsession %session
-```
-
 
 * * *
 
