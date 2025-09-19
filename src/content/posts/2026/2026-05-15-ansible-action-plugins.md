@@ -43,6 +43,9 @@ to handle recovery from new rulesets that would break or hang Ansible's
 control connection it became challeging to use YAML to manage control flow,
 error handling, and connection state.
 
+![netfilter logo]({static}/images/2026/ansible-actions/nflogo.png)
+
+
 By writing a custom action plugin, I could:
 - Run logic locally on the control node
 - Use Python to apply rules and handle failures gracefully
@@ -74,6 +77,8 @@ and scope:
 - **System-level plugin directory**:  
   `/usr/share/ansible/plugins/action/`  
   Useful for global availability across users and projects.
+
+![plugins]({static}/images/2026/ansible-actions/plugins.png)
 
 ## Configuring Plugin Paths
 
@@ -125,6 +130,9 @@ and initializes `result` with some defaults.
 
 # Error handling
 
+![errors]({static}/images/2026/ansible-actions/errors.png)
+
+
 Ansible leverages Python's exception system to handle errors cleanly. Within your custom
 action plugin, you can raise exceptions to signal failure conditions. Start by importing
 the relevant classes:
@@ -154,6 +162,8 @@ the call stack.
 
 # Diagnostics and Verbose output
 
+![diagnostics]({static}/images/2026/ansible-actions/diagnostics.png)
+
 Custom action plugins often need to communicate status or debug information. Ansible
 provides the `Display` class for structured output:
 
@@ -182,6 +192,8 @@ into more detailed diagnostics without cluttering standard output.
 
 # Run-time environment
 
+![rte]({static}/images/2026/ansible-actions/rte.png)
+
 When writing custom action plugins, it is often useful to inspect the execution context; 
 whether you're debugging behavior, adapting to playbook settings, or resolving file paths.
 Ansible exposes several runtime variables and constants that help you do just that.
@@ -193,6 +205,9 @@ import ansible.constants as C
 ```
 
 Here are some useful runtime indicators and paths:
+
+![context]({static}/images/2026/ansible-actions/context.png)
+
 
 ## Execution Context Flags
 - `self._task.diff`  \
@@ -322,6 +337,9 @@ This is useful for:
 
 # Implementing _diff mode_
 
+![diff]({static}/images/2026/ansible-actions/diff.png)
+
+
 _Check mode_ is often paired with the `--diff` command line argument.  This 
 will set the `self._task.diff` to True.  When this is the case, Action
 plugins must show the before-and-after changes, especially those that modify files
@@ -354,6 +372,8 @@ are being changed.  I would use the `prepared` key for when we are running
 commands on the system.   For example, running `mkfs`, `lvcreate`, etc.
 
 # Template Rendering
+
+![template]({static}/images/2026/ansible-actions/tmpl.png)
 
 When rendering templates from files within an action plugin, the following
 pattern ensures correctness and compatibility with Ansible’s templating
@@ -403,6 +423,9 @@ Action plugins often serve as orchestrators, combining logic, templating, and
 conditional behavior before delegating actual work to modules. To invoke a module
 from within an action plugin, use the `_execute_module()` method, which handles
 serialization, transport, and return parsing.
+
+![calling module]({static}/images/2026/ansible-actions/modcall.png)
+
 
 ## Example: Delegating to a Custom Module
 
@@ -492,6 +515,8 @@ return {
 For more common return values see [Common Return values][results].
 
 # Conclusion
+
+![ninja]({static}/images/2026/ansible-actions/ninja.png)
 
 Action plugins offer deep control over task execution, making them ideal for
 implementing custom logic, enforcing policy, and handling edge cases like
