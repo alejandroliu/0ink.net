@@ -45,11 +45,14 @@ Edit the `copy_path.nemo_action` file in your favorite text editor and add the f
 ```ini
 [Nemo Action]
 Name=Copy Full Filepath
+Name[fr]=Copier chemin complet
 Comment=Copies the full path of the selected file
-Exec=sh -c "readlink -f %F | xclip -selection clipboard"
+Comment[fr]=Chemin complet %F 
+Exec=sh -c "readlink -n -f '%F' | xclip -selection clipboard"
 Icon-Name=edit-copy
 Selection=notnone
-Extensions=nodirs
+Extensions=any
+Separator=,
 Dependencies=readlink;xclip;
 ```
 
