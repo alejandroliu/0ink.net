@@ -16,4 +16,11 @@ wait_win() {
 
 
 ( wait_win "Buddy List" && wmctrl -c "Buddy List" ) &
-exec pidgin
+count=60
+while [ $count -gt 0 ]
+do
+  pidgin
+  sleep 3
+  count=$(expr $count - 1)
+done
+
