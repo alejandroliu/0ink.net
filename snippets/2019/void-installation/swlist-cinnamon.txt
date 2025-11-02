@@ -17,6 +17,7 @@ paprefs
 
 # cinnamon does not provide these
 gnome-terminal
+gnome-console
 gnome-calculator
 gnome-screenshot
 gnome-system-monitor

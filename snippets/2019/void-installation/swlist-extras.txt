@@ -18,9 +18,9 @@ tcl			# gui scripts
 tk
 
 conspy			# Allow remote access to linux console
-barrier barrier-gui	# Mouse sharing
+input-leap input-leap-gui	# Mouse sharing
 
-tc-play			# Encrypted drives
+# tc-play			# Encrypted drives
 
 flatpak			# application distrib
 gnome-software		# Manage flatpaks
@@ -88,13 +88,17 @@ python3-Markdown
 python3-GitPython
 poppler-glib
 graphviz
+# Needed for icecream
+python3-asttokens python3-executing python3-colorama
+
 
 asciidoc 			# alt: ruby-asciidoctor
 pandoc				# convert md to epub
+# doxygen				# Generate C documentation
 # bootiso			# Create USB boot discs from ISOs
 # darkhttpd			# light weight web server
 
-pidgin # pidgin-sipe avahi	# chat app
+# pidgin # pidgin-sipe avahi	# chat app
 thunderbird			# e-mail app
 
 #qemu
