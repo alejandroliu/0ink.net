@@ -56,7 +56,8 @@ esac
 if [ -n "${DISPLAY:-}" ] ; then
   echo "Using $DISPLAY"
 
-  xbps-install -y virt-manager virt-manager-tools
+  xbps-install -y virt-manager virt-manager-tools passt
+  # Adding passt as is the way to do port forwarding now...
 
 fi
 
