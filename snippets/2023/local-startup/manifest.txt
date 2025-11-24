@@ -1,11 +1,12 @@
 #
 # Paths to install
 #
-local-startup.tk		/usr/local/bin/local-startup	0755
+local-startup.tk		/usr/local/bin/local-startup		0755
 local-startup-autostart.desktop	/etc/xdg/autostart/local-startup-autostart.desktop
 local-startup-prefs.desktop	/usr/share/applications/local-startup-prefs.desktop
 local-startup.png		/usr/share/pixmaps/local-startup.png
 local.cfg			/etc/xdg/local-startup.cfg
 local-startup.run		/etc/xdg/local-startup.run
-start-pidgin.sh			/usr/local/bin/start-pidgin.sh	0755
 start-safeeyes.sh		/usr/local/bin/start-safeeyes.sh	0755
+# start-pidgin.sh		/usr/local/bin/start-pidgin.sh		0755
+start-pylanchat.sh		/usr/local/bin/start-pylanchat.sh	0755
