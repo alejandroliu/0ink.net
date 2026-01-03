@@ -39,7 +39,7 @@ serial port.  A USB to Serial converter will not work as they are not enabled ea
 boot process.
 
 In addition, for Virtual Machines, it is useful to configure them with serial console
-as these can be used early in the boot process of the operating system.  
+as these can be used early in the boot process of the operating system.
 
 Specially for debugging early boot problems, simply capturing the output of the serial
 port as opposed to carefully watching the screen (be that physical or virtual)
@@ -111,7 +111,7 @@ This is not difficult to do and once wired everything snaps into place.
 
 The basic wiring is as follows:
 
-Signal | Color  | RJ45 Pin | 
+Signal | Color  | RJ45 Pin |
 -------|--------|-----|
 RTS	   | Blue	| 1
 DTR	   | Orange	| 2
@@ -137,6 +137,20 @@ DB9 Pin | Signal | Color  | RJ45 Pin
 6       | DTR    | Orange | 2
 7       | CTS    | White  | 8
 8       | RTS    | Blue   | 1
+
+Alternative Pin-out
+
+DB9 Pin | Signal | Color  | RJ45 Pin
+--------|--------|--------|----------
+1       | CD     | N/A    | N/A
+2       | RXD    | Yellow | 6
+3       | TXD    | Black  | 3
+4       | DTR    | Orange | 2
+5       | GND    | Red    | 4
+5       | GND    | Green  | 5
+6       | DSR    | Brown  | 7
+7       | RTS    | Blue   | 1
+8       | CTS    | White  | 8
 
 For a male adapter, the wiring meaning is reversed however the RJ45 to DB9 pin assignments are the same:
 
@@ -184,7 +198,7 @@ are OK.
 For me, I am using a Raspberry Pi 3B as a console server and/or a Windows laptop as
 as direct system console.  For either use case, using the USB serial cable is OK.
 
-In the case of Linux, after you plug in the serial cable, they will be shown to 
+In the case of Linux, after you plug in the serial cable, they will be shown to
 the user as `/dev/ttyUSB`X.  Where `X` is a number starting from `0` (zero).
 
 In the case of Windows, the USB serial port are usually show as device `COM`N.
@@ -259,9 +273,9 @@ The serial console can be configured using the kernel command line.  See
 [serial-console][serial-console] article.
 
 By default under Linux, the current display and keyboard combination is the console.
-You can redefine the console by adding the `console` command line option in the 
+You can redefine the console by adding the `console` command line option in the
 Linux kernel command line.  (See [kernel options][linux-kernel] for all the options
-available for the Linux kernel command line). 
+available for the Linux kernel command line).
 
 For the console, the following options are possible:
 
@@ -380,7 +394,7 @@ During run-time you can modify the serial port setting use the `stty` command:
 stty -a
 ```
 
-Will display all available settings.  You also check/set settings of a different 
+Will display all available settings.  You also check/set settings of a different
 serial port:
 
 ```bash
@@ -409,7 +423,7 @@ require a `null modem` to perform the connection.
 ## Windows
 
 In Windows you can use [putty][putty].  Either plug in a USB to serial converter or use
-an on-board serial port.  
+an on-board serial port.
 
 First determine the name of the port that the system allocated to the serial port using
 **device manager**.  The quickets way is to click on the **Start** button and type in
@@ -548,7 +562,6 @@ with further configuration.
   [ts]: https://github.com/alejandroliu/0ink.net/tree/main/snippets/2024/serial/tinyserial
   [screen]: https://www.gnu.org/software/screen/
   [rpi]: https://www.raspberrypi.com/products/raspberry-pi-3-model-b-plus/
-  
 
 
-  
+
