@@ -138,7 +138,7 @@ DB9 Pin | Signal | Color  | RJ45 Pin
 7       | CTS    | White  | 8
 8       | RTS    | Blue   | 1
 
-Alternative Pin-out
+Alternative Pin-out for cross-connection.
 
 DB9 Pin | Signal | Color  | RJ45 Pin
 --------|--------|--------|----------
