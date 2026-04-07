@@ -78,10 +78,18 @@ docker run -d --name mycontainer myimage:latest
 
 # Pinning versions
 
-I personally dislike using `latest` tag and pin a specific version tag.  In that scenario you can use
-[DIUN](https://github.com/crazy-max/diun) to query registries and report any new tags.
+I personally dislike using `latest` tag and pin a specific version tag.  I use this
+[script](https://github.com/alejandroliu/0ink.net/tree/main/snippets/2026/container_check.sh)
+to check for version changes.  Example usage:
 
-Alternatively there is [container-update-check](https://github.com/stendler/container-update-check).
+```bash
+sh container_check.sh -e '^\d+\.\d+\.\d+$' jellyfin/jellyfin:10.11.6
+sh container_check.sh -e '^\d+\.\d+\.\d+$' nginx:1,25.3  -e '^v\d+' ghcr.io/tortugalabs/mylldap:v0.6.2-2026.02
+
+```
+
+This will show matching tags that are newer than your current tag.
+
 
 Then you can use [runlike](https://pypi.org/project/runlike/) (a python PIP package)
 to re-create the `docker run` command.
@@ -107,4 +115,5 @@ Alternatively, run the container via a YAML file:
    podman play kube container.yaml
 
    ```
+
 
