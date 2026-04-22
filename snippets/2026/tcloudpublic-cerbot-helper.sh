@@ -3,8 +3,10 @@ set -euf ; ( set -o pipefail 2>/dev/null ) && set -o pipefail || :
 exec 3>&1  >&2 # All output to certbot goes to 3
 
 DNS_API_ENDPOINT="https://dns.${OS_REGION_NAME:=eu-de}.otc.t-systems.com"
+CURLER="curler.py"
 echo Using TTL=${RECORD_TTL:=60} WAIT=${PROPAGATION_SLEEP:=60}
 echo Retries=${API_RETRIES:=5} wait=${API_WAIT:=10}
+
 
 check_vars() {
   local i j k=""
@@ -42,7 +44,7 @@ api() {
 	OS_ACCESS_SECRET=$(echo "$creds" | jq -r .credential.secret) \
 	OS_ACCESS_TOKEN=$(echo "$creds" | jq -r .credential.securitytoken)
     fi
-    local resp=$(python3 curler.py "$@")
+    local resp=$($CURLER "$@")
     if [ x"$(echo  "$resp" | jq 'length == 2 and has("code") and has("message")')" = x"true" ] ; then
       echo "$1 $2: $(echo "$resp" | jq -r .message)" 1>&2
       $autocfg || return 1
